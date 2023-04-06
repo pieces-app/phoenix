@@ -17,7 +17,7 @@ echo "Number of articles: $total"
 # loop json object and create files with low grade titles.
 while [ $counter -lt "$total" ];
 do
-  jq ".[$counter]" csv.json > ../data/release_$counter.json
+  jq ".[$counter]" csv.json > ../docs/releases/release_$counter.json
   counter=$(( counter + 1))
 done
 
@@ -42,13 +42,13 @@ echo "Total Files to Format: $unformatted"
 while [ $formatted -lt "$unformatted" ];
 do
   ## data that we are going to get from each json
-  slug=$(jq ".Slug" ../data/release_$formatted.json)
-  title=$(jq ".Name" ../data/release_$formatted.json)
-  tags=$(jq ".Tags" ../data/release_$formatted.json)
-  image=$(jq ".HeaderImage" ../data/release_$formatted.json)
-  published=$(jq ".Published" ../data/release_$formatted.json)
+  slug=$(jq ".Slug" ../docs/releases/release_$formatted.json)
+  title=$(jq ".Name" ../docs/releases/release_$formatted.json)
+  tags=$(jq ".Tags" ../docs/releases/release_$formatted.json)
+  image=$(jq ".HeaderImage" ../docs/releases/release_$formatted.json)
+  published=$(jq ".Published" ../docs/releases/release_$formatted.json)
 
-  body=$(jq ".MainBody" ../data/release_$formatted.json)
+  body=$(jq ".MainBody" ../docs/releases/release_$formatted.json)
 
   # clean slug for file to remove quotes.
   slug_temp="${slug:1}"
@@ -86,18 +86,18 @@ do
   # add the image to the file
   image_clean="![](${image_clean})"
   # shellcheck disable=SC2129
-  echo "${image_clean}" >> ../data/"${slug_clean}".mdx
+  echo "${image_clean}" >> ../docs/releases/"${slug_clean}".mdx
 
   # now add the tags below that:
-  echo "${tags}" >> ../data/"${slug_clean}".mdx
+  echo "${tags}" >> ../docs/releases/"${slug_clean}".mdx
 
   # add heading for markdown -> then the title to the file:
   title_clean="# ${title_clean:0}"
-  echo "${title_clean}" >> ../data/"${slug_clean}".mdx
+  echo "${title_clean}" >> ../docs/releases/"${slug_clean}".mdx
 
   # then the publishing date of the article:
   pub_clean="> ${pub_clean:0}"
-  echo "${pub_clean}" >> ../data/"${slug_clean}".mdx
+  echo "${pub_clean}" >> ../docs/releases/"${slug_clean}".mdx
 
 #  echo "<body>" >> ../data/"${slug_clean}".mdx
 
@@ -128,15 +128,13 @@ do
   echo "SET BACK: ${returned}"
 
   # append the newly cleaned code to the file.
-  echo  "${returned}" >> ../data/"${slug_clean}".mdx
+  echo  "${returned}" >> ../docs/releases/"${slug_clean}".mdx
 #  echo "</body>" >> ../data/"${slug_clean}".mdx
 
   # then destroy the old copy now that we are done with it:
-  rm ../data/release_$formatted.json
+  rm ../docs/releases/release_$formatted.json
 
   formatted=$(( formatted + 1 ))
-
-  exit
 
   echo ""
   echo "====================== [FILE COMPLETED] ========================="
