@@ -117,7 +117,7 @@ do
 
   reversed=$(echo "${formattedHTML}" | rev)
 
-  echo "REVER: ${reversed}"
+  echo "REVERSAL: ${reversed}"
   reversed="${reversed:890}"
   echo ""
   echo "SCRIPT REMOVED: ${reversed}"
