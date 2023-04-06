@@ -2,7 +2,7 @@
     "name": "docs.page",
     "theme": "#36B9B9",
     "sidebar": [
-      ["Home", "/"],,
+      ["Home", "/"],
       ["Updates", [
         ["1-1-5 Pieces Chrome Extension Improved Snippet Saving", "/updates/1-1-5-pieces-chrome-extension-improved-snippet-saving"],
         ["1-4-10 Related Links Support For Image Processing And More", "/updates/1-4-10-related-links-support-for-image-processing-and-more"],
@@ -78,4 +78,4 @@
         ["Web Extensions 2-1-1 Customize Your Browser Experience", "/updates/web-extensions-2-1-1-customize-your-browser-experience"]
       ]]
     ]
-  }["", "/updates/"]
+  }
