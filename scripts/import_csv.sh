@@ -81,7 +81,7 @@ do
   echo ""
 
   # create the properly named file - using the slug - here.
-  touch ../data/"${slug_clean}".mdx
+  touch ../docs/releases/"${slug_clean}".mdx
 
   # add the image to the file
   image_clean="![](${image_clean})"
