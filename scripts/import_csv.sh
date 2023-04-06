@@ -99,8 +99,6 @@ do
   pub_clean="> ${pub_clean:0}"
   echo "${pub_clean}" >> ../docs/releases/"${slug_clean}".mdx
 
-#  echo "<body>" >> ../data/"${slug_clean}".mdx
-
   # store the output of the subshell word count into the $countInstances variable
   # to keep track of how many backslashes will be replaced.
   countInstances=$(echo "${body_clean}" | grep -o '\\"' | wc -l)
@@ -129,7 +127,6 @@ do
 
   # append the newly cleaned code to the file.
   echo  "${returned}" >> ../docs/releases/"${slug_clean}".mdx
-#  echo "</body>" >> ../data/"${slug_clean}".mdx
 
   # then destroy the old copy now that we are done with it:
   rm ../docs/releases/release_$formatted.json
