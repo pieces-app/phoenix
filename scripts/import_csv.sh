@@ -99,28 +99,42 @@ do
   pub_clean="> ${pub_clean:0}"
   echo "${pub_clean}" >> ../data/"${slug_clean}".mdx
 
-  echo "<body>" >> ../data/"${slug_clean}".mdx
+#  echo "<body>" >> ../data/"${slug_clean}".mdx
 
-  # and the body here:
-  echo "${body_clean}" >> ../data/"${slug_clean}".mdx
+  # store the output of the subshell word count into the $countInstances variable
+  # to keep track of how many backslashes will be replaced.
+  countInstances=$(echo "${body_clean}" | grep -o '\\"' | wc -l)
 
-  echo "</body>" >> ../data/"${slug_clean}".mdx
+  echo "====================== [FORMATTING DATA CHECK] ========================="
+  echo "Counted '\' to Replace | ${countInstances}"
+  echo ""
+
+  # $matcher is used to detect the escape variables that have been leftover in the html
+  # elements that are on the page. $replacement sets the first closing parenthesis.
+  matcher='\\"'
+  replacement='"'
+
+  # running the replacement and clean the html body code.
+  formattedHTML=${body_clean//$matcher/$replacement}
+
+  reversed=$(echo "${formattedHTML}" | rev)
+
+  echo "REVER: ${reversed}"
+  reversed="${reversed:890}"
+  echo ""
+  echo "SCRIPT REMOVED: ${reversed}"
+  returned=$(echo "${reversed}" | rev)
+  echo ""
+  echo "SET BACK: ${returned}"
+
+  # append the newly cleaned code to the file.
+  echo  "${returned}" >> ../data/"${slug_clean}".mdx
+#  echo "</body>" >> ../data/"${slug_clean}".mdx
 
   # then destroy the old copy now that we are done with it:
   rm ../data/release_$formatted.json
 
   formatted=$(( formatted + 1 ))
-  echo ""
-  echo "======================== BODY [NOT PARSED] ============================="
-#  echo "$body_clean"
-
-# re="http://([^/]+)/"
-# if [[ $name =~ $re ]]; then echo ${BASH_REMATCH[1]}; fi
-#  reg="(<p>).*?(<\/p>)"
-#  if [[ $body_clean =~ $reg ]]; then echo "${BASH_REMATCH[1]}"; fi
-
-  echo ""
-
 
   exit
 
@@ -129,6 +143,43 @@ do
   echo "DONE | $completed"
 done
 
+#  formattedHTML=${formattedHTML::-913}
+#  finalHTML=$( echo "${formattedHTML}" | sed -E "s/(<figure).*(<script>\\n).*(<\/script>).*(<\/figure>)/ /")
+
+  # removes all of the improperly placed escapes paired with quotes.
+#  matcher='*'
+#  replacement='\"'
+#
+#  local=0
+#  countInstances=$(( countInstances + 1 ))
+#  echo "========[ CHECK INSTANCES | ${countInstances}]============="
+#
+#  echo "${phaseOne}" | sed -e 's/)/(/1'
+#
+#  exit
+#  if [ $local -lt $countInstances ] && [ $(( local % 2 )) -eq 0 ]; then
+#    echo "its even"
+#    else
+#      echo "its odd"
+#  fi
+
+
+  # removes all of the improperly placed escapes paired with quotes.
+#  matcher=')'
+#  replacement="("
+#
+#  echo "REPLACEMENT -> ${body_clean//$matcher/$replacement}"
+
+
+# on the first pass. | wc -l
+  # | grep -o '\\"'
+
+#  echo "$body_clean"
+
+# re="http://([^/]+)/"
+# if [[ $name =~ $re ]]; then echo ${BASH_REMATCH[1]}; fi
+#  reg="(<p>).*?(<\/p>)"
+#  if [[ $body_clean =~ $reg ]]; then echo "${BASH_REMATCH[1]}"; fi
 
 
 #  clean_string() {

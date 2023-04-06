@@ -1,0 +1,14 @@
+{
+  "Name": "JetBrains 4.2.0: Edit snippets from your IDE",
+  "Slug": "jetbrains-4-2-0-edit-snippets-from-your-ide",
+  "Collection ID": "639a29236d30b28900f0ea0c",
+  "Item ID": "639a29236d30b28cb2f0ee67",
+  "Created On": "Tue Aug 30 2022 03:29:42 GMT+0000 (Coordinated Universal Time)",
+  "Updated On": "Mon Mar 27 2023 15:27:48 GMT+0000 (Coordinated Universal Time)",
+  "Published": "Mon Mar 27 2023 15:27:48 GMT+0000 (Coordinated Universal Time)",
+  "Update Summary": "We’re bringing one of our most-requested features directly to JetBrains: Snippet editing. Make adjustments to your snippets without the Pieces desktop app.",
+  "HeaderImage": "https://uploads-ssl.webflow.com/6143afec68f555387049efb3/630d8426d6df89467a9230ae_ezgif_com-gif-maker54_22e5ef23aa670c74e6e99ae83ece0b77_2000.png",
+  "MainBody": "<p>With today’s release, we’re bringing one of our most-requested features directly into JetBrains: Snippet editing. Now, you can make adjustments to your snippets without opening the Pieces desktop app.</p><p>To edit a snippet in the JetBrains suite:</p><ol type=\"1\"><li>Right-click in the code</li><li>Select a snippet from the Pieces menu</li><li>Select “View/Edit”</li><li>Edit your snippet</li><li>Hit <code>ctrl+S</code> or <code>⌘+S</code> to save your edits</li></ol><p>The edited snippet will be instantly ready for you to use.</p><h2 id=\"7e68d\">Support</h2><p>As always, if you run into issues or have feedback, please fill out <a href=\"https://getpieces.typeform.com/to/mCjBSIjF\" target=\"_blank\" rel=\"noopener noreferrer\">this quick form</a> or email us at <a href=\"mailto:support@pieces.app\" target=\"_blank\" rel=\"noopener noreferrer\">support@pieces.app</a> and we’ll be in touch as soon as possible!</p>\n\n    <figure data-rt-type=\"video\" data-rt-align=\"center\">\n        <!-- strchf script -->\n<script>\n        if(window.strchfSettings === undefined) window.strchfSettings = {};\n    window.strchfSettings.stats = {url: \"https://pieces-app.storychief.io/en/jetbrains-4-2-0-edit-snippets-from-your-ide?id=666602195&type=26\",title: \"JetBrains 4.2.0: Edit snippets from your IDE\",id: \"f48cd0d8-d254-4e17-a18e-3d20939412eb\"};\n            (function(d, s, id) {\n      var js, sjs = d.getElementsByTagName(s)[0];\n      if (d.getElementById(id)) {window.strchf.update(); return;}\n      js = d.createElement(s); js.id = id;\n      js.src = \"https://d37oebn0w9ir6a.cloudfront.net/scripts/v0/strchf.js\";\n      js.async = true;\n      sjs.parentNode.insertBefore(js, sjs);\n    }(document, 'script', 'storychief-jssdk'))\n    </script>\n<!-- End strchf script -->    </figure>",
+  "Date": "Tue Jul 12 2022 17:00:00 GMT+0000 (Coordinated Universal Time)",
+  "Tags": "integrations-4; new-features"
+}
