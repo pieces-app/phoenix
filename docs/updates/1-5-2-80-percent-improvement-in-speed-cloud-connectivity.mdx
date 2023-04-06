@@ -2,4 +2,51 @@
 "integrations-4; new-features; bug-fixes; ux-ui-updates"
 # 1.5.3: 80% improvement in speed + Cloud connectivity
 > Mon Mar 27 2023 14:14:05 GMT+0000 (Coordinated Universal Time)
-<p>We’ve been plugging away at performance and are excited that today’s release will drive an 80% reduction in your boot time as well as faster rendering throughout the Pieces for Developers app.</p><p>Just as importantly, today’s release marks the first introduction of our Cloud features! Pieces is disconnected from the cloud by default for your privacy, but now you can easily connect to the cloud to enable upcoming features such as backup, sync, sharing and more.</p><h2 id="3s1t4">Pieces for Developers</h2><p><em>Pieces for Developers is the core user-facing Pieces application. Get started for free <a href="http://code.pieces.app/install" target="_blank" rel="noopener noreferrer">here</a>.</em></p><h3 id="5k830">Performance Improvements</h3><ul><li>Reduced boot up time by 80%</li><li>Improved rendering performance</li><li>Users will now see a bootup loading indicator</li></ul><h3 id="7cqd2">Saving Snippets</h3><ul><li>Building on our new auto-save feature in our IntelliJ plugin, where Pieces automatically saves snippets that you commonly type, we added an empty state to the Auto-Save menu</li></ul><h3 id="bq90a">Managing Snippets</h3><ul><li>Users can now search the global list of languages when attempting to change the Language for a given snippet</li></ul><h3 id="avimc">Cloud Connectivity</h3><ul><li>Users can now click a button to connect or disconnect their account to the cloud when signed in. This is the first phase of a series of cloud features that we’ll layer into Pieces!</li></ul><h2 id="dpfh3">Pieces API</h2><p><em>Everything we develop is on top of the Pieces API. We&#x27;re excited to welcome third-party developers who want to build applications on top of our infrastructure. Email us at support@pieces.app for more details.</em></p><ul><li>Certain API endpoints now have an optional parameter, &quot;transferables&quot;, that enables a developer to specify whether or not to retrieve the whole value of a format or just the top-level meta data.</li><li>This enables a developer to fetch format metadata immediately (transferables: false) and retrieve the value of a format after the fact as a way to increase performance (transferables: true).</li></ul><p>[New Endpoints] Core endpoints around connecting to the cloud</p><ul><li>/clouds/connect</li><li>/clouds/reconnect</li><li>/clouds/disconnect</li></ul><h2 id="6mn92">JetBrains Extension (including IntelliJ and PyCharm)</h2><p><em>Get the JetBrains Extension <a href="https://plugins.jetbrains.com/plugin/17328-pieces" target="_blank" rel="noopener noreferrer">here</a>!</em></p><ul><li>General improvements and bug fixes</li></ul><h2 id="1i6vg">Chrome Extension</h2><p><em>Get the Pieces Chrome Extension <a href="https://chrome.google.com/webstore/detail/pieces/igbgibhbfonhmjlechmeefimncpekepm?hl=en" target="_blank" rel="noopener noreferrer">here</a>.</em></p><ul><li>General improvements and bug fixes</li></ul><h2 id="9ni5f">Visual Studio Code Extension</h2><p><em>Get the Pieces VSCode Extension <a href="https://marketplace.visualstudio.com/items?itemName=MeshIntelligentTechnologiesInc.pieces-vscode" target="_blank" rel="noopener noreferrer">here</a>!</em></p><ul><li>General improvements and bug fixes</li></ul>\
+<p>We’ve been plugging away at performance and are excited that today’s release will drive an 80% reduction in your boot
+    time as well as faster rendering throughout the Pieces for Developers app.</p><p>Just as importantly, today’s
+    release marks the first introduction of our Cloud features! Pieces is disconnected from the cloud by default for
+    your privacy, but now you can easily connect to the cloud to enable upcoming features such as backup, sync, sharing
+    and more.</p><h2 id="3s1t4">Pieces for Developers</h2><p><em>Pieces for Developers is the core user-facing Pieces
+    application. Get started for free <a href="http://code.pieces.app/install" target="_blank"
+                                         rel="noopener noreferrer">here</a>.</em></p><h3 id="5k830">Performance
+    Improvements</h3><ul>
+    <li>Reduced boot up time by 80%</li>
+    <li>Improved rendering performance</li>
+    <li>Users will now see a bootup loading indicator</li>
+</ul><h3 id="7cqd2">Saving Snippets</h3><ul>
+    <li>Building on our new auto-save feature in our IntelliJ plugin, where Pieces automatically saves snippets that you
+        commonly type, we added an empty state to the Auto-Save menu
+    </li>
+</ul><h3 id="bq90a">Managing Snippets</h3><ul>
+    <li>Users can now search the global list of languages when attempting to change the Language for a given snippet
+    </li>
+</ul><h3 id="avimc">Cloud Connectivity</h3><ul>
+    <li>Users can now click a button to connect or disconnect their account to the cloud when signed in. This is the
+        first phase of a series of cloud features that we’ll layer into Pieces!
+    </li>
+</ul><h2 id="dpfh3">Pieces API</h2><p><em>Everything we develop is on top of the Pieces API. We&#x27;re excited to
+    welcome third-party developers who want to build applications on top of our infrastructure. Email us at
+    support@pieces.app for more details.</em></p><ul>
+    <li>Certain API endpoints now have an optional parameter, &quot;transferables&quot;, that enables a developer to
+        specify whether or not to retrieve the whole value of a format or just the top-level meta data.
+    </li>
+    <li>This enables a developer to fetch format metadata immediately (transferables: false) and retrieve the value of a
+        format after the fact as a way to increase performance (transferables: true).
+    </li>
+</ul><p>[New Endpoints] Core endpoints around connecting to the cloud</p><ul>
+    <li>/clouds/connect</li>
+    <li>/clouds/reconnect</li>
+    <li>/clouds/disconnect</li>
+</ul><h2 id="6mn92">JetBrains Extension (including IntelliJ and PyCharm)</h2><p><em>Get the JetBrains Extension <a
+    href="https://plugins.jetbrains.com/plugin/17328-pieces" target="_blank" rel="noopener noreferrer">here</a>!</em>
+</p><ul>
+    <li>General improvements and bug fixes</li>
+</ul><h2 id="1i6vg">Chrome Extension</h2><p><em>Get the Pieces Chrome Extension <a
+    href="https://chrome.google.com/webstore/detail/pieces/igbgibhbfonhmjlechmeefimncpekepm?hl=en" target="_blank"
+    rel="noopener noreferrer">here</a>.</em></p><ul>
+    <li>General improvements and bug fixes</li>
+</ul><h2 id="9ni5f">Visual Studio Code Extension</h2><p><em>Get the Pieces VSCode Extension <a
+    href="https://marketplace.visualstudio.com/items?itemName=MeshIntelligentTechnologiesInc.pieces-vscode"
+    target="_blank" rel="noopener noreferrer">here</a>!</em></p><ul>
+    <li>General improvements and bug fixes</li>
+</ul>\
