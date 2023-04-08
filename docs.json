@@ -1,6 +1,7 @@
 {
     "name": "Updates",
     "theme": "#36B9B9",
+    "noindex": "true",
     "sidebar": [
       ["Home", "/"],
       ["Updates", [
