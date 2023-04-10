@@ -1,0 +1,21 @@
+{
+  "Title": "Pieces User Stories: Learning new languages",
+  "Slug": "pieces-user-stories-learning-new-languages",
+  "Collection ID": "642da2c43fe34c364a69857f",
+  "Item ID": "642da2c43fe34cab1e698a13",
+  "Created On": "Mon Jun 06 2022 21:42:30 GMT+0000 (Coordinated Universal Time)",
+  "Updated On": "Fri Mar 31 2023 17:47:56 GMT+0000 (Coordinated Universal Time)",
+  "PublishedOn": "Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)",
+  "MainImage": "https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62f2b427523cfad6cb79966f_learning-languages.jpg",
+  "Post summary": "Infrastructure engineer Akshita saves useful snippets, extracts text from code screenshots, and more with Pieces for Developers. ",
+  "FullPost": "<p>When infrastructure engineer Akshita made the transition from student to employee, Pieces was right there with her.</p><p>“I would say OCR is the most important feature for students,” she says, when recounting the tedious process of retyping code from tutorials, slides or textbooks. As a full-fledged developer now, Akshita still watches a lot of YouTube videos and receives screenshots of code from StackOverflow, so she continues to find the code extraction feature in Pieces invaluable.</p><p>“When I started my full-time role, I had to completely start from scratch on learning Dart; I learned by watching a lot of videos, and if I wanted to save something, I would take a screenshot of the main operators and then save them in Pieces for reference. I don't have to Google it again and again.”</p><p>Akshita saved most of her snippets for that same reason— it’s way easier to find and reference a snippet that she’s saved to Pieces than on the web. “I saved a Pub/Sub snippet when I was working on a data ingestion project because it's a lot of repeated code that I need to use. &nbsp;It was being used in multiple places and I had to rewrite that code again and again. I still use that snippet whenever I need to make a new analytics model for the machine learning team; I just take that snippet, add it to my code and change the parameters.”</p>",
+  "Date": "Tue Jun 07 2022 00:00:00 GMT+0000 (Coordinated Universal Time)",
+  "Author": "Georgia Donmoyer",
+  "Author Photo": "https://uploads-ssl.webflow.com/6143afec68f555387049efb3/628e464f10c0f2eb1d8d55c6_Georgia%20Headshot.png",
+  "AMP URL": "",
+  "TOC based on...": "",
+  "Tags": "",
+  "CTA": "",
+  "CTA link": "",
+  "Canonical URL": ""
+}

@@ -1,0 +1,21 @@
+{
+  "Title": "Pieces User Stories: Replicate processes step-by-step",
+  "Slug": "replicate-processes-step-by-step",
+  "Collection ID": "642da2c43fe34c364a69857f",
+  "Item ID": "642da2c43fe34c6f796989cd",
+  "Created On": "Thu Jun 16 2022 13:59:04 GMT+0000 (Coordinated Universal Time)",
+  "Updated On": "Fri Mar 31 2023 17:43:59 GMT+0000 (Coordinated Universal Time)",
+  "PublishedOn": "Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)",
+  "MainImage": "https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62ed724802b4f6df0cb5ecc6_sam_blog.png",
+  "Post summary": "Sam uses Pieces in all stages of his workflow, from designing a project right through implementation with the rest of the team. ",
+  "FullPost": "<p id=\"\">Sam is a Machine Learning Engineer who uses Pieces to keep his code consistent over time.</p><p id=\"\">“I like to save shell commands in Pieces, because in my workflow, I'm usually in the shell at the very start of designing a product, when I'm manipulating data. A lot of these commands I only use once every three or four weeks. An example would be things like commands to shuffle and select data points from a nested directory, or a sequence of commands to set up a cloud instance or push data to it. What I used to have to do was launch on a sort of exploration mission to try and find all the commands again or go through my internet history. Now it's just massively easier.”</p><figure id=\"\" class=\"w-richtext-figure-type-image w-richtext-align-center\" data-rt-type=\"image\" data-rt-align=\"center\"><div id=\"\"><img src=\"https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62ab40c0b7c23baf628491fa_Screen%20Shot%202022-06-16%20at%2010.39.25%20AM.png\" loading=\"lazy\" id=\"\" width=\"auto\" height=\"auto\" alt=\"A perl command in Pieces.\"></div></figure><p id=\"\">As his Pieces library grows, Sam chooses to rename his snippets to help find things more easily. “I rename my snippets where the first part of the name will be what I use it for, like data collection, and then a more precise description.”</p><p id=\"\">This has saved him a ton of time over his pre-Pieces workflow. “I used to search the command history in my terminal for snippets I needed to reuse, but often it was hard to remember the keywords. Instead, I save them in Pieces and I name or tag them in order of operations, so I'll go to the first snippet and then just iterate along for the next five snippets.”</p>",
+  "Date": "Thu Jun 16 2022 00:00:00 GMT+0000 (Coordinated Universal Time)",
+  "Author": "Georgia Donmoyer",
+  "Author Photo": "https://uploads-ssl.webflow.com/6143afec68f555387049efb3/628e464f10c0f2eb1d8d55c6_Georgia%20Headshot.png",
+  "AMP URL": "",
+  "TOC based on...": "",
+  "Tags": "machine-learning; snippets; data",
+  "CTA": "",
+  "CTA link": "",
+  "Canonical URL": ""
+}
