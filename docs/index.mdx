@@ -44,7 +44,7 @@ export const BodyP = props => {
 };
 
 export const FlexRow = props => {
-    return <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly'}}>{props.children}</div>;
+    return <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>{props.children}</div>;
 };
 
 export const ButtonCard1 = props => {
@@ -110,6 +110,21 @@ export const MicroCards2 = props => {
     </div>;
 };
 
+export const SearchMicroCards1 = props => {
+    return <div style={{width: '350px', height: '150px', textAlign: 'left', border: '1px solid black', padding: '5px'}}>
+        <h3 style={{ lineHeight: '1', fontSize: '16px' }}>Find Code & Beyond</h3>
+        <p style={{ lineHeight: '1', fontSize: '12px' }}>What’s more helpful: finding code snippets or finding a website related to the code snippet? Both? Global Search in Pieces for Developers not only finds you related code snippets, but also websites with more documentation about your query.</p>
+    </div>;
+};
+
+export const SearchMicroCards2 = props => {
+    return <div style={{width: '350px', height: '150px', textAlign: 'left', border: '1px solid black', padding: '5px'}}>
+        <h3 style={{ lineHeight: '1', fontSize: '16px' }}>Suggested Searches</h3>
+        <p style={{ lineHeight: '1', fontSize: '12px' }}>Pieces has a sense of what you’re looking for before you can think of a query. Use Suggested Searches to find what you’re looking for in record time.</p>
+    </div>;
+};
+
+
 <HeroOpening>Pieces for Developers.</HeroOpening>
 <HeroOpening>The Tool Between Your Tools.</HeroOpening>
 <HeroSubtitle>Pieces is a first-in-kind productivity suite that optimizes developer tools and eliminates
@@ -165,4 +180,28 @@ export const MicroCards2 = props => {
         <MicroCards1></MicroCards1>
         <MicroCards2></MicroCards2>
     </FlexColumn>
+</FlexRow>
+
+<Spacer></Spacer>
+
+<BodyH2>Search like never before, built for developers</BodyH2>
+<BodyP>Global Search is an entirely new way to find developer materials. This sets the stage for exciting future search capabilities, allowing you to solve problems faster and find the materials you need quickly and easily with natural language.</BodyP>
+<FlexRow>
+    <FlexColumn>
+        <MicroCards1></MicroCards1>
+        <MicroCards2></MicroCards2>
+    </FlexColumn>
+    <BodyVideo src='https://pieces.app/vid/GLOBAL_SEARCH_MACOS.mp4'></BodyVideo>
+</FlexRow>
+
+<Spacer></Spacer>
+
+<BodyH2>Search like never before, built for developers</BodyH2>
+<BodyP>Global Search is an entirely new way to find developer materials. This sets the stage for exciting future search capabilities, allowing you to solve problems faster and find the materials you need quickly and easily with natural language.</BodyP>
+<FlexRow>
+    <FlexColumn>
+        <MicroCards1></MicroCards1>
+        <MicroCards2></MicroCards2>
+    </FlexColumn>
+    <BodyVideo src='https://pieces.app/vid/GLOBAL_SEARCH_MACOS.mp4'></BodyVideo>
 </FlexRow>
