@@ -4,11 +4,15 @@ export const HeroOpening = props => {
 };
 
 export const HeroSubtitle = props => {
-    return <div style={{ width: '100%', textAlign: 'center' }}><p style={{ color: props.color, fontWeight: 'bold' }}>{props.children}</p></div>;
+    return <div style={{ width: '100%', textAlign: 'center' }}><p style={{ color: props.color }}>{props.children}</p></div>;
+};
+
+export const HeroButton = props => {
+    return <div style={{ width: '100%', textAlign: 'center' }}><button><span>{ props.children }</span></button></div>;
 };
 
 <HeroOpening color="black">Pieces for Developers.</HeroOpening>
 <HeroOpening color="black">The Tool Between Your Tools.</HeroOpening>
 <HeroSubtitle color="black">Pieces is a first-in-kind productivity suite that optimizes developer tools and eliminates the chaos of context switching.</HeroSubtitle>
-
+<HeroButton>Download on Macos</HeroButton>
 
