@@ -1,1 +1,5 @@
-<Heading type="h1">Pieces for Developers</Heading>
+export const BoldText = props => {
+    return <span style={{ color: props.color, fontWeight: 'bold' }}>{props.children}</span>;
+};
+
+# this is the <BoldText color="red">head</BoldText>
