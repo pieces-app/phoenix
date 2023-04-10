@@ -42,7 +42,7 @@ export const FlexRow = props => {
     return <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly'}}>{props.children}</div>;
 };
 
-export const Card1 = props => {
+export const ButtonCard1 = props => {
     return <div style={{width: '250px', height: '250px', textAlign: 'left', border: '1px solid black', padding: '5px'}}>
             <h3 style={{ lineHeight: '1', fontSize: '16px' }}>Simple Copy & Paste</h3>
             <p style={{ lineHeight: '1', fontSize: '12px' }}>Have a script you want to save, but not commit? Simply copy the code snippet, click the Pieces for Developers Desktop App window, and paste. Instantly, your code snippet is there for later.</p>
@@ -50,7 +50,7 @@ export const Card1 = props => {
     </div>;
 };
 
-export const Card2 = props => {
+export const ButtonCard2 = props => {
     return <div style={{width: '200px', height: '250px', textAlign: 'left', border: '1px solid black', padding: '5px'}}>
         <h3 style={{ lineHeight: '1', fontSize: '16px' }}>In-Project Snippet Discovery</h3>
         <p style={{ lineHeight: '1', fontSize: '12px' }}>Discover and extract reusable boilerplate and commonly used code snippets using our In-Project Snippet Discovery features running entirely offline and on-device.</p>
@@ -58,11 +58,36 @@ export const Card2 = props => {
     </div>;
 };
 
-export const Card3 = props => {
+export const ButtonCard3 = props => {
     return <div style={{width: '200px', height: '250px', textAlign: 'left', border: '1px solid black', padding: '5px'}}>
         <h3 style={{ lineHeight: '1', fontSize: '16px' }}>Use Code from Screenshots</h3>
         <p style={{ lineHeight: '1 !important', fontSize: '12px' }}>Need to convert a screenshot with a code snippet into usable text? We’ve got you. Drag and drop into the Pieces for Developers Desktop App and watch the magic happen within seconds.</p>
         <button><span style={{ lineHeight: '1', fontSize: '12px', fontWeight: 'bold' }}>TRY IT OUT</span></button>
+    </div>;
+};
+
+export const FlexColumn = props => {
+    return <div style={{width: '100%', textAlign: 'left', display: 'flex', flexDirection: 'column',  padding: '5px'}}></div>
+}
+
+export const Card1 = props => {
+    return <div style={{width: '250px', height: '250px', textAlign: 'left', border: '1px solid black', padding: '5px'}}>
+        <h3 style={{ lineHeight: '1', fontSize: '16px' }}>Smart Titles & Descriptions</h3>
+        <p style={{ lineHeight: '1', fontSize: '12px' }}>No need to spend time manually naming or writing descriptions for your snippets. Pieces for Developers will automatically analyze your saved snippet to apply a helpful name and description.</p>
+    </div>;
+};
+
+export const Card2 = props => {
+    return <div style={{width: '200px', height: '250px', textAlign: 'left', border: '1px solid black', padding: '5px'}}>
+        <h3 style={{ lineHeight: '1', fontSize: '16px' }}>Related Links & URLs</h3>
+        <p style={{ lineHeight: '1', fontSize: '12px' }}>Easily Attach Documentation Pages, Wiki Links, Jira Tickets, Pull Requests, GitHub Issues, etc. to your saved materials. With Pieces you can easily add a link to a saved code snippet and go back to your snippet later for all the context and metadata attached.</p>
+    </div>;
+};
+
+export const Card3 = props => {
+    return <div style={{width: '200px', height: '250px', textAlign: 'left', border: '1px solid black', padding: '5px'}}>
+        <h3 style={{ lineHeight: '1', fontSize: '16px' }}>Natural-Language Tags</h3>
+        <p style={{ lineHeight: '1', fontSize: '12px' }}>We automatically add tags to every saved snippet, so it’s easier to find or reference later. Edit tags on your snippets for personalized context on the instance or history that snippet is used for. Search for the snippet later using those keywords and tags.</p>
     </div>;
 };
 
@@ -91,7 +116,22 @@ export const Card3 = props => {
     more.</BodyP>
 
 <FlexRow>
-    <Card1></Card1>
-    <Card2></Card2>
-    <Card3></Card3>
+    <ButtonCard1></ButtonCard1>
+    <ButtonCard2></ButtonCard2>
+    <ButtonCard3></ButtonCard3>
 </FlexRow>
+
+<HeroButton>Download on Macos</HeroButton>
+<Spacer></Spacer>
+
+<BodyH2>Powerful Context and Auto-Enrichment with Proprietary AI & ChatGPT</BodyH2>
+<BodyP>When you save something to the Pieces code snippet manager it not only saves the material itself; but further, our Context Awareness Engine in combination with ChatGPT automatically attaches related context & metadata enabling powerful organization, search, and suggestion capabilities.</BodyP>
+<FlexRow>
+    <FlexColumn>
+        <Card1></Card1>
+        <Card2></Card2>
+        <Card3></Card3>
+    </FlexColumn>
+    <BodyImage src=' '></BodyImage>
+</FlexRow>
+
