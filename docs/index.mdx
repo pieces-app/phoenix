@@ -1,5 +1,14 @@
-export const BoldText = props => {
-    return <div style={{ width: '100%', textAlign: 'center' }}><span style={{ color: props.color, fontWeight: 'bold' }}>{props.children}</span></div>;
+<!-- Hero Taglines-->
+export const HeroOpening = props => {
+    return <div style={{ width: '100%', textAlign: 'center' }}><h2 style={{ color: props.color, fontWeight: 'bold' }}>{props.children}</h2></div>;
 };
 
-<BoldText color="red">this is the head</BoldText>
+export const HeroSubtitle = props => {
+    return <div style={{ width: '100%', textAlign: 'center' }}><p style={{ color: props.color, fontWeight: 'bold' }}>{props.children}</p></div>;
+};
+
+<HeroOpening color="black">Pieces for Developers.</HeroOpening>
+<HeroOpening color="black">The Tool Between Your Tools.</HeroOpening>
+<HeroSubtitle color="black">Pieces is a first-in-kind productivity suite that optimizes developer tools and eliminates the chaos of context switching.</HeroSubtitle>
+
+
