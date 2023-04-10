@@ -38,6 +38,14 @@ export const BodyP = props => {
         style={{marginTop: '16px', marginBottom: '16px'}}>{props.children}</p></div>;
 };
 
+export const FlexRow = props => {
+    return <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly'}}>{props.children}</div>;
+};
+
+export const Card = props => {
+    return <div style={{width: '200px', textAlign: 'left'}}></div>;
+};
+
 <HeroOpening>Pieces for Developers.</HeroOpening>
 <HeroOpening>The Tool Between Your Tools.</HeroOpening>
 <HeroSubtitle>Pieces is a first-in-kind productivity suite that optimizes developer tools and eliminates
@@ -61,3 +69,9 @@ export const BodyP = props => {
 <BodyP>Along the journey our users have saved things like Boilerplate/Reference snippets, Common Bash/Powershell
     Commands, CI/CD Configurations, HTTP Requests, Screenshots, Architecture/UML Diagrams, Text Notes, and so much
     more.</BodyP>
+
+<FlexRow>
+    <Card></Card>
+    <Card></Card>
+    <Card></Card>
+</FlexRow>
