@@ -11,8 +11,14 @@ export const HeroButton = props => {
     return <div style={{ width: '100%', textAlign: 'center' }}><button><span>{ props.children }</span></button></div>;
 };
 
+export const HeroImage = props => {
+    return <div style={{ width: '100%', textAlign: 'center' }}><img src={ props.src }/></div>;
+};
+
 <HeroOpening color="black">Pieces for Developers.</HeroOpening>
 <HeroOpening color="black">The Tool Between Your Tools.</HeroOpening>
 <HeroSubtitle color="black">Pieces is a first-in-kind productivity suite that optimizes developer tools and eliminates the chaos of context switching.</HeroSubtitle>
+
 <HeroButton>Download on Macos</HeroButton>
+<HeroImage src="https://pieces.app/img/MACOS_HERO.png"></HeroImage>
 
