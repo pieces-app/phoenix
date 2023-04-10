@@ -28,6 +28,11 @@ export const BodyImage = props => {
     return <div style={{width: '50%', textAlign: 'left'}}><img src={props.src}/></div>;
 };
 
+export const BodyVideo = props => {
+    return <div style={{width: '50%', textAlign: 'left'}}><video src={props.src}/></div>;
+};
+
+
 export const BodyH2 = props => {
     return <div style={{width: '100%', textAlign: 'left'}}><h2
         style={{fontWeight: 'bold', marginTop: '16px', marginBottom: '16px'}}>{props.children}</h2></div>;
@@ -132,6 +137,6 @@ export const Card3 = props => {
         <Card2></Card2>
         <Card3></Card3>
     </FlexColumn>
-    <BodyImage src=' '></BodyImage>
+    <BodyVideo src='https://pieces.app/vid/ENRICHMENT_MACOS.mp4'></BodyVideo>
 </FlexRow>
 
