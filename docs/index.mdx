@@ -1,12 +1,12 @@
 <!-- Hero Custom Elements -->
 export const HeroOpening = props => {
     return <div style={{width: '100%', textAlign: 'center'}}><h1
-        style={{color: props.color, fontWeight: 'bold', marginTop: '16px', marginBottom: '16px'}}>{props.children}</h1>
+        style={{ fontWeight: 'bold', marginTop: '16px', marginBottom: '16px'}}>{props.children}</h1>
     </div>;
 };
 
 export const HeroSubtitle = props => {
-    return <div style={{width: '100%', textAlign: 'center'}}><p style={{color: props.color}}>{props.children}</p></div>;
+    return <div style={{width: '100%', textAlign: 'center'}}><p>{props.children}</p></div>;
 };
 
 export const HeroButton = props => {
@@ -24,6 +24,10 @@ export const Spacer = props => {
     return <div style={{width: '100%', height: '150px'}}></div>;
 };
 
+export const BodyImage = props => {
+    return <div style={{width: '50%', textAlign: 'left'}}><img src={props.src}/></div>;
+};
+
 export const BodyH2 = props => {
     return <div style={{width: '100%', textAlign: 'left'}}><h2
         style={{fontWeight: 'bold', marginTop: '16px', marginBottom: '16px'}}>{props.children}</h2></div>;
@@ -34,15 +38,17 @@ export const BodyP = props => {
         style={{marginTop: '16px', marginBottom: '16px'}}>{props.children}</p></div>;
 };
 
-<HeroOpening color="black">Pieces for Developers.</HeroOpening>
-<HeroOpening color="black">The Tool Between Your Tools.</HeroOpening>
-<HeroSubtitle color="black">Pieces is a first-in-kind productivity suite that optimizes developer tools and eliminates
+<HeroOpening>Pieces for Developers.</HeroOpening>
+<HeroOpening>The Tool Between Your Tools.</HeroOpening>
+<HeroSubtitle>Pieces is a first-in-kind productivity suite that optimizes developer tools and eliminates
     the chaos of context switching.</HeroSubtitle>
 
 <HeroButton>Download on Macos</HeroButton>
 <HeroImage src="https://pieces.app/img/MACOS_HERO.png"></HeroImage>
 
 <Spacer></Spacer>
+
+<BodyImage src="/assets/dev_icons.png"></BodyImage>
 <BodyH2>Trusted by the worlds best developers</BodyH2>
 <BodyP>From students and indie developers, to startups and open source teams, to enterprise organizations and beyond,
     Pieces for Developers is purpose built as a cohesive layer and a "tool between tools" that boosts productivity
