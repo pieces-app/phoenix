@@ -16,12 +16,16 @@ export const HeroImage = props => {
 };
 
 <!-- Body Elements -->
+export const spacer = props => {
+    return <div style={{ width: '100%', height: '150px'}}></div>;
+};
+
 export const BodyH2 = props => {
     return <div style={{ width: '100%', textAlign: 'left' }}><h2 style={{ fontWeight: 'bold', marginTop: '16px', marginBottom: '16px' }}>{props.children}</h2></div>;
 };
 
 export const BodyP = props => {
-    return <div style={{ width: '100%', textAlign: 'left' }}><p style={{ fontWeight: 'bold', marginTop: '16px', marginBottom: '16px' }}>{props.children}</p></div>;
+    return <div style={{ width: '100%', textAlign: 'left' }}><p style={{ marginTop: '16px', marginBottom: '16px' }}>{props.children}</p></div>;
 };
 
 <HeroOpening color="black">Pieces for Developers.</HeroOpening>
