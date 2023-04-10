@@ -1,5 +1,22 @@
 {
-    "name": "Updates",
-    "theme": "#36B9B9",
-    "noindex": "true"
-  }
+  "name": "Updates",
+  "theme": "#36B9B9",
+  "noindex": "true",
+  "anchors": [
+    {
+      "title": "Home",
+      "icon": "house",
+      "link": "#"
+    },
+    {
+      "title": "About",
+      "icon": "info",
+      "link": "#"
+    },
+    {
+      "title": "Plugins",
+      "icon": "puzzle-piece",
+      "link": "#"
+    }
+  ]
+}
