@@ -1,4 +1,4 @@
-<!-- Hero Taglines-->
+<!-- Hero Custom Elements -->
 export const HeroOpening = props => {
     return <div style={{ width: '100%', textAlign: 'center' }}><h1 style={{ color: props.color, fontWeight: 'bold', marginTop: '16px', marginBottom: '16px' }}>{props.children}</h1></div>;
 };
@@ -15,6 +15,15 @@ export const HeroImage = props => {
     return <div style={{ width: '100%', textAlign: 'center' }}><img src={ props.src }/></div>;
 };
 
+<!-- Body Elements -->
+export const BodyH2 = props => {
+    return <div style={{ width: '100%', textAlign: 'left' }}><h2 style={{ fontWeight: 'bold', marginTop: '16px', marginBottom: '16px' }}>{props.children}</h2></div>;
+};
+
+export const BodyP = props => {
+    return <div style={{ width: '100%', textAlign: 'left' }}><p style={{ fontWeight: 'bold', marginTop: '16px', marginBottom: '16px' }}>{props.children}</p></div>;
+};
+
 <HeroOpening color="black">Pieces for Developers.</HeroOpening>
 <HeroOpening color="black">The Tool Between Your Tools.</HeroOpening>
 <HeroSubtitle color="black">Pieces is a first-in-kind productivity suite that optimizes developer tools and eliminates the chaos of context switching.</HeroSubtitle>
@@ -22,3 +31,9 @@ export const HeroImage = props => {
 <HeroButton>Download on Macos</HeroButton>
 <HeroImage src="https://pieces.app/img/MACOS_HERO.png"></HeroImage>
 
+<BodyH2>Trusted by the worlds best developers</BodyH2>
+<BodyP>From students and indie developers, to startups and open source teams, to enterprise organizations and beyond, Pieces for Developers is purpose built as a cohesive layer and a "tool between tools" that boosts productivity around code snippets in three major workflow processes: researching and problem-solving in the browser, collaborating with colleagues, and lastly, writing, reviewing, referencing, reusing code in their IDE.</BodyP>
+
+<BodyH2>Save key materials from your developer workflow</BodyH2>
+<BodyP>Pieces for Developers was built from the ground up to serve as a centralized place to save all types of materials and resources related a developers work-in-progress journey.</BodyP>
+<BodyP>Along the journey our users have saved things like Boilerplate/Reference snippets, Common Bash/Powershell Commands, CI/CD Configurations, HTTP Requests, Screenshots, Architecture/UML Diagrams, Text Notes, and so much more.</BodyP>
