@@ -42,8 +42,28 @@ export const FlexRow = props => {
     return <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly'}}>{props.children}</div>;
 };
 
-export const Card = props => {
-    return <div style={{width: '200px', height: '250px', textAlign: 'left'}}></div>;
+export const Card1 = props => {
+    return <div style={{width: '200px', height: '250px', textAlign: 'left', border: '1px solid black'}}>
+            <h3>Simple Copy & Paste</h3>
+            <p>Have a script you want to save, but not commit? Simply copy the code snippet, click the Pieces for Developers Desktop App window, and paste. Instantly, your code snippet is there for later.</p>
+            <button href="#"><span>TRY IT OUT</span></button>
+    </div>;
+};
+
+export const Card2 = props => {
+    return <div style={{width: '200px', height: '250px', textAlign: 'left', border: '1px solid black'}}>
+        <h3>In-Project Snippet Discovery</h3>
+        <p>Discover and extract reusable boilerplate and commonly used code snippets using our In-Project Snippet Discovery features running entirely offline and on-device.</p>
+        <button href="#"><span>WATCH THE VIDEO</span></button>
+    </div>;
+};
+
+export const Card3 = props => {
+    return <div style={{width: '200px', height: '250px', textAlign: 'left', border: '1px solid black'}}>
+        <h3>Use Code from Screenshots</h3>
+        <p>Need to convert a screenshot with a code snippet into usable text? We’ve got you. Drag and drop into the Pieces for Developers Desktop App and watch the magic happen within seconds.</p>
+        <button href="#"><span>TRY IT OUT</span></button>
+    </div>;
 };
 
 <HeroOpening>Pieces for Developers.</HeroOpening>
@@ -71,7 +91,7 @@ export const Card = props => {
     more.</BodyP>
 
 <FlexRow>
-    <Card></Card>
-    <Card></Card>
-    <Card></Card>
+    <Card1></Card1>
+    <Card2></Card2>
+    <Card3></Card3>
 </FlexRow>
