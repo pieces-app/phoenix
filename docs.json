@@ -1,7 +1,10 @@
 {
-  "name": "Updates",
+  "name": "Phoenix",
   "theme": "#36B9B9",
   "noindex": "true",
+  "automaticallyDisplayName": false,
+  "logo": "/assets/pieces_dark.png",
+  "logoDark": "/assets/pieces_light.png",
   "anchors": [
     {
       "title": "Home",
