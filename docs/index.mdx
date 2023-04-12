@@ -124,8 +124,8 @@ export const SearchMicroCards2 = props => {
     </div>;
 };
 
-export const ScriptForRemovals = props => {
-    return <script src={ props.src }></script>
+export const Tester = props => {
+    return <h1>{ props.children }</h1>
 }
 
 
@@ -210,4 +210,5 @@ export const ScriptForRemovals = props => {
     <BodyVideo src='https://pieces.app/vid/GLOBAL_SEARCH_MACOS.mp4'></BodyVideo>
 </FlexRow>
 
-<ScriptForRemovals src='/assets/js/removals.js'></ScriptForRemovals>
+<Tester>{ 'hi'.toUpperCase() }</Tester>
+
