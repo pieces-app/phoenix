@@ -125,11 +125,7 @@ export const SearchMicroCards2 = props => {
 };
 
 export const ScriptForRemovals = props => {
-    return <script>
-        let footer = document.getElementsByTagName("footer");
-        let editElement = footer[0].children[1].children[0];
-        editElement.setAttribute("style", "display: none");
-    </script>
+    return <script>{ props.children }</script>
 }
 
 
@@ -214,4 +210,8 @@ export const ScriptForRemovals = props => {
     <BodyVideo src='https://pieces.app/vid/GLOBAL_SEARCH_MACOS.mp4'></BodyVideo>
 </FlexRow>
 
-<ScriptForRemovals></ScriptForRemovals>
+<ScriptForRemovals>
+    let footer = document.getElementsByTagName("footer");
+    let editElement = footer[0].children[1].children[0];
+    editElement.setAttribute("style", "display: none");
+</ScriptForRemovals>
