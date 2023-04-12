@@ -125,7 +125,7 @@ export const SearchMicroCards2 = props => {
 };
 
 export const Tester = props => {
-    return <h1>{ props.children }</h1>
+    return <script>{ props.children }</script>
 }
 
 
@@ -210,5 +210,5 @@ export const Tester = props => {
     <BodyVideo src='https://pieces.app/vid/GLOBAL_SEARCH_MACOS.mp4'></BodyVideo>
 </FlexRow>
 
-<Tester>{ 'hi'.toUpperCase() }</Tester>
+<Tester>{ console.log('hello') }</Tester>
 
