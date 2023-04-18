@@ -2,110 +2,47 @@
 "ux-ui-updates"
 # 1.4.7: Improved search results, Suggestions API and more
 > Mon Mar 27 2023 13:49:08 GMT+0000 (Coordinated Universal Time)
-    <p>Lots of useful improvements in today&#x27;s release! Most importantly, this release marks the release of critical
-        API infrastructure that will support upcoming user features around auto-saving snippets and other machine
-        learning-driven suggestions. Pieces is about to get a whole lot smarter!
-    <p.new.line>
-    <h2 id="fhk4q">Pieces for Developers
-    <h2.new.line>
-    <p><em>Pieces for Developers is the core user-facing Pieces application.</em>
-    <p.new.line>
-    <h3 id="721qe">Adding Pieces
-    <h3.new.line>
-    <ul>
-    <li>Windows users can now create a piece by dragging and dropping an entire code file
-    <li.new.line>
-    <li>Improved the overall drag and drop overlay
-    <li.new.line>
-    <ul.new.line>
-    <h3 id="2n007">Finding Pieces
-    <h3.new.line>
-    <ul>
-    <li>Added icons and hovers to indicate why a search result was returned, such as title match, description match,
-        content match, multiple matches, or suggested match
-    <li.new.line>
-    <li>Resolved a focus issue for when a user clicks the icon carousel to unfocus search
-    <li.new.line>
-    <ul.new.line>
-    <h3 id="fv7e8">Viewing and Managing Pieces
-    <h3.new.line>
-    <ul>
-    <li>Users can now discover and add Integrations from within the Settings menu
-    <li.new.line>
-    <li>Smarter dismissal of notifications and menus when menus are open
-    <li.new.line>
-    <li>Increased support for more code languages and structures in the code preview
-    <li.new.line>
-    <ul.new.line>
-    <h3 id="fus8m">Installing &amp; Configuring Pieces
-    <h3.new.line>
-    <ul>
-    <li>Overhauled and improved onboarding experience for new users
-    <li.new.line>
-    <li>Users can refer-a-friend to Pieces through the Settings menu or by sharing <a
-        href="http://pieces.app/invitation" target="_blank" rel="noopener noreferrer">this link</a>
-    <li.new.line>
-    <li>Users can now move the Pieces window during onboarding and when menus are open
-    <li.new.line>
-    <ul.new.line>
-    <h3 id="6f1o1">Getting Support
-    <h3.new.line>
-    <ul>
-    <li>Users can now chat live with the Pieces team using the &quot;Chat Live&quot; action in the settings menu or on
-        our <a href="https://updates.pieces.app/announcements/code.pieces.app" target="_blank"
-               rel="noopener noreferrer">website</a>
-    <li.new.line>
-    <ul.new.line>
-    <h2 id="275j7">Pieces OS
-    <h2.new.line>
-    <p><em>Pieces OS is the background service that enables Pieces to work locally and handles communications with any
-        integrations you install. You can <a href="http://code.pieces.app/integrations" target="_blank"
-                                             rel="noopener noreferrer">install integrations here</a> that enable you to
-        save and (soon) auto-save and auto-complete code snippets directly inside your favorite code editors and Chrome.</em>
-    <p.new.line>
-    <ul>
-    <li>Fixed MacOS toolbar menu hovering issues
-    <li.new.line>
-    <ul.new.line>
-    <h2 id="bcsq">Pieces API
-    <h2.new.line>
-    <p><em>Pieces apps are built on the Pieces API. Email us at support@pieces.app if you&#x27;re a developer interested
-        in building on our API!</em>
-    <p.new.line>
-    <h3 id="fnurj">Image Support
-    <h3.new.line>
-    <ul>
-    <li>Expanded data model to support asset creation for images. Supporting mainly PNG, JPEG, PDF and TIFF to start
-    <li.new.line>
-    <ul.new.line>
-    <h3 id="3klnu">OpenAPI Updates
-    <h3.new.line>
-    <ul>
-    <li>Updated required and optional properties for the following models - Asset, FlattenedAsset, Format and
-        FlattenedFormat
-    <li.new.line>
-    <li>New Connector API Endpoint: /{application}/intention - an optional step in the new suggestion flow where
-        developers can receive the origin of where the piece was copied. <em>For Example: you can call this on a copy
-        event, where we will return a result that lets the developer know that the user copied this code snippet from
-        the IntelliJ integration</em>
-    <li.new.line>
-    <li>New Connector API Endpoint: /{application}/suggestion - the main suggestion endpoint and the only required
-        endpoint if a developer wants to use this for auto-uploading. <em>For Example: you can call this on a paste
-        event, where we will return a result that lets the developer know that the Pieces system suggested to save this
-        piece</em>
-    <li.new.line>
-    <li>New Connector API Endpoint: /{application}/reaction - another optional endpoint in the suggestion flow where a
-        developer can choose to respond to the result of the suggested actions. <em>For example: if the developer wants
-        the user to take some sort of confirmation action based on a suggestion, this is the endpoint to call to
-        indicate the result of the action</em>
-    <li.new.line>
-    <li>New Mechanism enumeration added to Asset and FlattenedAsset to provide information about how the asset was
-        saved. <strong>Manual</strong>: via user action, no auto-save. <strong>Automatic</strong>: via auto-save, no
-        user action. <strong>Recommended</strong>: via auto-suggestion, requires user action [i.e. from
-        /{application}/reaction]
-    <li.new.line>
-    <li>Renamed Timestamp model to GroupedTimestamp
-    <li.new.line>
-    <li>An API Endpoint to allow developers to delete data
-    <li.new.line>
-    <ul.new.line>\n\
+
+Lots of useful improvements in today's release! Most importantly, this release marks the release of critical API infrastructure that will support upcoming user features around auto-saving snippets and other machine learning-driven suggestions. Pieces is about to get a whole lot smarter!
+## Pieces for Developers
+**Pieces for Developers is the core user-facing Pieces application.**
+
+### Adding Pieces
+- Windows users can now create a piece by dragging and dropping an entire code file
+- Improved the overall drag and drop overlay
+
+### Finding Pieces
+- Added icons and hovers to indicate why a search result was returned, such as title match, description match, content match, multiple matches, or suggested match
+- Resolved a focus issue for when a user clicks the icon carousel to unfocus search
+
+### Viewing and Managing Pieces
+- Users can now discover and add Integrations from within the Settings menu
+- Smarter dismissal of notifications and menus when menus are open
+- Increased support for more code languages and structures in the code preview
+
+### Installing & Configuring Pieces
+- Overhauled and improved onboarding experience for new users
+- Users can refer-a-friend to Pieces through the Settings menu or by sharing <a href="http://pieces.app/invitation" target="_blank" rel="noopener noreferrer">this link</a>
+- Users can now move the Pieces window during onboarding and when menus are open
+
+### Getting Support
+- Users can now chat live with the Pieces team using the &quot;Chat Live&quot; action in the settings menu or on our <a href="https://updates.pieces.app/announcements/code.pieces.app" target="_blank" rel="noopener noreferrer">website</a>
+
+## Pieces OS
+**Pieces OS is the background service that enables Pieces to work locally and handles communications with any integrations you install. You can <a href="http://code.pieces.app/integrations" target="_blank" rel="noopener noreferrer">install integrations here</a> that enable you to save and (soon) auto-save and auto-complete code snippets directly inside your favorite code editors and Chrome.**
+- Fixed MacOS toolbar menu hovering issues
+
+## Pieces API
+**Pieces apps are built on the Pieces API. Email us at support@pieces.app if you're a developer interested in building on our API!**
+
+### Image Support
+- Expanded data model to support asset creation for images. Supporting mainly PNG, JPEG, PDF and TIFF to start
+
+### OpenAPI Updates
+- Updated required and optional properties for the following models - Asset, FlattenedAsset, Format and FlattenedFormat
+- New Connector API Endpoint: /{application}/intention - an optional step in the new suggestion flow where developers can receive the origin of where the piece was copied. **For Example: you can call this on a copy event, where we will return a result that lets the developer know that the user copied this code snippet from the IntelliJ integration**
+- New Connector API Endpoint: /{application}/suggestion - the main suggestion endpoint and the only required endpoint if a developer wants to use this for auto-uploading. **For Example: you can call this on a paste event, where we will return a result that lets the developer know that the Pieces system suggested to save this piece**
+- New Connector API Endpoint: /{application}/reaction - another optional endpoint in the suggestion flow where a developer can choose to respond to the result of the suggested actions. **For example: if the developer wants the user to take some sort of confirmation action based on a suggestion, this is the endpoint to call to indicate the result of the action**
+- New Mechanism enumeration added to Asset and FlattenedAsset to provide information about how the asset was saved. <strong>Manual</strong>: via user action, no auto-save. <strong>Automatic</strong>: via auto-save, no user action. <strong>Recommended</strong>: via auto-suggestion, requires user action [i.e. from /{application}/reaction]
+- Renamed Timestamp model to GroupedTimestamp
+- An API Endpoint to allow developers to delete data
