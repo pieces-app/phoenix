@@ -12,6 +12,15 @@ export const GridFlexSpaceBetweenRow = props => {
     }}>{props.children}</div>;
 };
 
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "wrap"
+    }}>{props.children}</div>;
+};
+
 export const MarketplaceButton = props => {
     return <a style={{textDecoration: "none"}}
               href={"https://code.pieces.app/updates"}>
@@ -47,13 +56,13 @@ in depth to bring more power to your workflow.
 
 <Accordion title="Chrome">
     <GridFlexSpaceBetweenRow>
-        <div>
+        <GridFlexRow>
             <Image width="50px" src={"/assets/logos/chrome_logo.png"} />
             ### Chrome Extension
-        </div>
-        <div>
+        </GridFlexRow>
+        <GridFlexRow>
             <MarketplaceButton>Chrome Marketplace</MarketplaceButton>
-        </div>
+        </GridFlexRow>
     </GridFlexSpaceBetweenRow>
 </Accordion>
 
