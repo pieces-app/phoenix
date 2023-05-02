@@ -24,7 +24,7 @@ export const GridFlexRow = props => {
 export const MarketplaceButton = props => {
     return <a style={{textDecoration: "none"}}
               href={ props.src }>
-        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+        <div style={{maxWidth: "fit-content", minWidth: "fit-content", paddingLeft: "8px", paddingRight: "8px" }}>
             <p class="dark:text-white text-black"
                style={{
                    padding: "8px 20px",
@@ -33,7 +33,6 @@ export const MarketplaceButton = props => {
                    fontWeight: "500",
                    background: "transparent",
                    marginBottom: "8px",
-                   marginTop: "3px"
                }}>{props.children}</p>
         </div>
     </a>
