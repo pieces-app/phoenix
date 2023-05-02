@@ -13,6 +13,24 @@ export const GridFlexSpaceBetweenRow = props => {
     }}>{props.children}</div>;
 };
 
+export const MarketplaceButton = props => {
+    return <a style={{textDecoration: "none"}}
+              href={"https://code.pieces.app/updates"}>
+        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+            <p class="dark:text-white text-black"
+               style={{
+                   padding: "8px 20px",
+                   borderRadius: "8px",
+                   border: "1px solid #f3f5f6",
+                   fontWeight: "500",
+                   background: "transparent",
+                   marginBottom: "8px",
+                   marginTop: "3px"
+               }}>{props.children}</p>
+        </div>
+    </a>
+}
+
 <link rel="canonical" href="https://code.pieces.app/support" />
 
 # Support Center
@@ -30,8 +48,13 @@ in depth to bring more power to your workflow.
 
 <Accordion title="Chrome">
     <GridFlexSpaceBetweenRow>
-        <Image src={"/assets/logos/chrome_logo.png"} />
-        ### Chrome
+        <div>
+            <Image width="50px" src={"/assets/logos/chrome_logo.png"} />
+            ### Chrome Extension
+        </div>
+        <div>
+            <MarketplaceButton>Chrome Marketplace</MarketplaceButton>
+        </div>
     </GridFlexSpaceBetweenRow>
 </Accordion>
 
