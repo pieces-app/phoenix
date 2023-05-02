@@ -32,7 +32,7 @@
     {
       "title": "Blog",
       "icon": "blog",
-      "link": "#"
+      "link": "/blog"
     },
     {
       "title": "Plugins",
