@@ -5,6 +5,9 @@
   "logo": "/assets/pieces_dark.png",
   "logoDark": "/assets/pieces_light.png",
   "noindex": true,
+  "variables": {
+    "base_route": "https://code.pieces.app"
+  },
   "anchors": [
     {
       "title": "Download Pieces",
