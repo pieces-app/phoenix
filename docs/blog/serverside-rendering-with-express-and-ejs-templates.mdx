@@ -1,0 +1,191 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd7fd22cdd9d59ecd75dd4_8_d9790cfe55001a53510782f28b13dbb7_2000.jpeg)
+"javascript-8"
+# Serverside Rendering With Express And EJS Templates
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+Server-side rendering means using a server to generate HTML files. This generation/rendering of HTML files is in response to a URL request to the server. Server-side, unlike client-side rendering, utilizes JavaScript modules to render HTML instead of the browser and DOM element. This article will examine how we can achieve server-side rendering using an<a href="https://expressjs.com/" target="_blank" rel="noopener noreferrer"> Express</a> server and EJS for templating.
+
+## What is EJS?
+EJS is a JavaScript templating language for generating HTML with plain JavaScript. In addition, it provides support for writing JavaScript alongside HTML by utilizing unique tags.
+A template language is a language that allows you to create placeholders that we can substitute for different values within our code. Templating with EJS provides a simple syntax that is easy to understand and aids fast development time. Also, EJS allows you to divide your HTML into sub-templates that can be reused and included in different templates.
+
+### EJS tags and uses
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/631f5404dd23a2d571461273_ScreenShot2022-09-08at1_04_32PM_05debc67f78afdaf4264d76495139ba6_800.png)
+
+## Getting Started
+To get started, we will need to create an express application; to do this, you must have Node.js installed. (You can download Node.js<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener noreferrer"> here</a> if you do not already have it.) After this, create a new folder, "express-ejs," and run the command below in the newly created folder.
+```
+npm init -y
+```
+The command will create the new node environment we will need for development. Following this, we will install all required dependencies.
+```
+npm install express ejs nodemon
+```
+The code block above will install the Express framework and EJS templating engine.
+
+### Set up Express Application
+In this section, we will set up the Express server. First, create an app.js file and views folder.
+```
+const express = require("express");
+const app = express();
+app.use(express.json());
+app.use(express.static(__dirname + "/public"));
+app.set("view engine", "ejs");
+app.set("views", "./views");
+module.exports = app
+```
+The ```express.json()``` is an<a href="http://expressjs.com/en/guide/using-middleware.html#using-middleware" target="_blank" rel="noopener noreferrer"> Express middleware</a> that allows you to parse requests sent with a<a href="https://www.json.org/json-en.html" target="_blank" rel="noopener noreferrer"> JSON</a> payload. We will also specify the folder to serve<a href="https://expressjs.com/en/starter/static-files.html" target="_blank" rel="noopener noreferrer"> static files</a> using ```express.static()``` middleware; this accepts the directory for the static files as a parameter.
+
+The code block above also creates a new Express application that sets up the template engine. In Express, ```views``` indicate the directory where the template files exist; in this case, we will pass the views folder as the second parameter. Once you specify ```views```, Express will load the template engine module internally.
+
+Following this, we will update the package.json to the code below:
+```
+{
+"name": "express-ejs",
+"version": "1.0.0",
+"description": "A simple app showing how to render ejs template from an express server.",
+"main": "server.js",
+"author": "Melvin Kosisoschukwu",
+"license": "MIT",
+"scripts": {
+"start": "node server.js",
+"start-dev": "nodemon server.js"
+},
+"dependencies": {
+"ejs": "^3.1.8",
+"express": "^4.18.1",
+"nodemon": "^2.0.19"
+}
+
+```
+In the project folder, create a ```server.js``` file with the following code:
+```
+const app = require("./app");
+const PORT = process.env.PORT || 4400;
+app.listen(PORT, () => {
+console.log("Server is running on port " + PORT);
+})
+```
+The code block above will create a new Express server that listens for connections between the specified host and port.
+
+## EJS
+After bootstrapping the Express server, we will work on the template engine in the views folder. We will first set up the header and footer as partials; these are sub-templates you would like to reuse across other templates.
+
+### Styling headers and footers
+In the views folder, create a partials folder with two files;<a href="https://github.com/MelvinManni/express-ejs/blob/main/views/partials/header.ejs" target="_blank" rel="noopener noreferrer"> header.ejs</a> and<a href="https://github.com/MelvinManni/express-ejs/blob/main/views/partials/footer.ejs" target="_blank" rel="noopener noreferrer"> footer.ejs</a>. Partials are added to other files using include; this accepts the file path as a value. The usage for include is demonstrated below:
+
+The next step will be to set up the pages for the application and serve them from the Express application. First, we will create an index.ejs file with the following code:
+```
+<%- include("partials/header.ejs") -%>
+<div>
+*<!--  -->*
+<h1 class="text-center">
+Home Page
+</h1>
+<p class="text-center mt-4">
+<a href="/posts">
+View Posts
+</a>
+</p>
+</div>
+<%- include("partials/footer.ejs") -%&gt
+```
+In the code block above, we added the header and footer using include in the file and the information we want for the home page. Next, we will serve the index.ejs page from the Express app:
+```
+const express = require("express");
+const app = express();
+app.use(express.json());
+app.use(express.static(__dirname + "/public"));
+app.set("view engine", "ejs");
+app.set("views", "./views");
+const posts = [
+{
+id: "1",
+title: "Post 1",
+body: "This is post 1",
+},
+{
+id: "2",
+title: "Post 2",
+body: "This is post 2",
+},
+{
+id: "3",
+title: "Post 3",
+body: "This is post 3",
+},
+];
+app.get("/", (req, res) => {
+res.render("index", {});
+});
+module.exports = app
+```
+From the code block above, we have a method that responds to GET requests on the "/" route. Within the method, we render the index file as a response by calling the ```res.render()``` method; this accepts two parameters: the file's name to render and the data to pass to the file. To test this, we will run ```npm start-dev``` in the terminal. Visit<a href="http://localhost:4400/" target="_blank" rel="noopener noreferrer"> http://localhost:4400/</a> on your web browser; you should see the index.ejs page rendered.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/631f5403dd23a25e93461245_ScreenShot2022-09-08at1_09_40PM_fade28ded04b99ff4153331305a14ca0_800.png)
+
+### Injecting dynamic data into the EJS template
+Following the previous section, we will look at how to use the data passed to the EJS template. In the views folder, create a posts.ejs file with the following code:
+```
+<%- include("partials/header.ejs") -%>
+<div>
+<h1 class="text-center">
+Posts
+</h1>
+<div class="mt-4">
+<% for (let post of posts) { %>
+<div class="card mb-4">
+<div class="card-body">
+<h2 class="card-title"><%= post.title %></h2>
+<p class="card-text"><%= post.body %></p>
+<a href="/post/<%= post.id %>" class="btn btn-primary">
+View Post
+</a>
+</div>
+</div>
+<% } %>
+</div>
+</div>
+<%- include("partials/footer.ejs") -%&gt
+```
+The template above expects the "posts" variable to exist in the data injected on a template render. Using the EJS template tags, we will loop through posts passed to the template and render the HTML file for each post data. In the Express app, we will add the code block below the GET method for the index route to render the posts.ejs file:
+```
+...
+app.get("/posts", (req, res) => {
+res.render("posts", { posts });
+} );
+...```
+From the code block above, we will render the posts.ejs file with the posts variable passed to the template. We can preview the posts page by visiting<a href="http://localhost:4400/posts" target="_blank" rel="noopener noreferrer"> http://localhost:4400/posts</a>.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/631f5403dd23a23fab461244_ScreenShot2022-09-08at1_20_29PM_fbaa5d9ac29a09c2fde29fd7f6de9f11_800.png)
+
+Next, we will set up a dynamic page that renders individual posts. But, first, we will create a post.ejs file with the code:
+```
+<%- include("partials/header.ejs") -%>
+<h1 class="text-center">
+<%= title %>
+</h1>
+<p class="mt-3">
+<%= body %>
+</p>
+<%- include("partials/footer.ejs") -%&gt
+```
+The code block will accept a data object with the keys title and body. Using EJS tags, we will display the value of the keys in the HTML. Finally, we will add the code block in the app.js to render the post page:
+```
+...
+app.get("/post/:id", (req, res) => {
+const post = posts.find(post => post.id === req.params.id);
+res.render("post", post);
+} );
+app.all("*", (req, res) => {
+res.status(404).send("404 Not Found");
+} );
+module.exports = app
+```
+In the GET method, we have an id parameter passed to the request URL. We will use the id parameter to find the needed post from the posts variable and pass it to the post.ejs template. We can test this by visiting<a href="http://localhost:4400/post/1" target="_blank" rel="noopener noreferrer"> http://localhost:4400/post/1</a>, 1 being the id for the post we want to fetch.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/631f5403dd23a2e18b461246_IuABzkEd_07efa50987fe4a1f6174c45211a23f52.g)
+
+The ```app.all()``` method is used to catch all requests that do not match the routes before it; this is why it is after all declared routes. We are using the ```app.all()``` method to catch all requests to routes that do not exist on our server and return a 404 error.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/631f5403dd23a2d018461203_ScreenShot2022-09-08at2_32_19PM_3237b46e88f5e41cf8f74e2e0e2018c8_800.png)
+
+## Conclusion and resources
+This article reviewed how to use EJS templates to create reusable partials and leverage the templates when rendering pages from an Express server. We also covered how to create dynamic pages using an Express server. If you want to learn more about EJS and Express, you can find visit the official documents at<a href="https://ejs.co/#docs" target="_blank" rel="noopener noreferrer"> https://ejs.co/#docs</a> and<a href="http://expressjs.com/en/guide/routing.html" target="_blank" rel="noopener noreferrer"> http://expressjs.com/en/guide/routing.html</a>.

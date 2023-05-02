@@ -1,0 +1,165 @@
+---
+title: Pieces Blog | Blogs on Code Snippets and Developer Tools
+description: A blog about code snippets, developer tools and productivity, frameworks, languages and more. Everything you need to know to improve your workflow and enrich your time and code.
+---
+
+<link rel="canonical" href="https://code.pieces.app/blogs" />
+
+
+export const MainContainer = props => {
+    return <div style={{display: "flex", flexDirection: "row", flexWrap: "wrap"}}>
+        {props.children}
+    </div>
+}
+
+export const Spacer = props => {
+    return <div style={{ height: "20px"}}></div>
+}
+
+export const ClickThrough = props => {
+    return <a style={{textDecoration: "none"}} href={props.src}>
+        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+            <p style={{
+                padding: "8px 20px",
+                borderRadius: "8px",
+                border: "1px solid #f3f5f6",
+                backgroundColor: "black",
+                color: "white",
+                fontWeight: "500",
+                marginBottom: "8px",
+                marginTop: "30px"
+            }}>{props.children}</p>
+        </div>
+    </a>
+}
+
+export const Card = props => {
+    return <div style={{
+        display: "flex",
+        flexDirection: "column",
+        minWidth: "350px",
+        border: "2px solid #e4e7eb",
+        borderRadius: "10px"
+    }}>
+        <div style={{padding: "10px"}}>
+            {props.children}
+        </div>
+    </div>
+}
+
+export const Date = props => {
+    return <p style={{marginTop: "0px", marginBottom: "4px"}}>{props.children}</p>
+}
+
+export const Title = props => {
+    return <h3 style={{marginTop: "4px"}}>{props.children}</h3>
+}
+
+export const Author = props => {
+    return <div style={{display: "flex", flexDirection: "row", flexWrap: "nowrap"}}>
+        <img src={ props.src } />
+        <p style={{marginTop: "0px"}}>{ props.children }</p>
+    </div>
+}
+
+export const Snip = props => {
+    return <p style={{lineHeight: "1.25", marginTop: "0px"}}>{props.children}</p>
+}
+
+# Pieces for Developers Blog
+
+![](/assets/blog/blog_header_lm.png)
+
+A blog about code snippets, developer tools and productivity, frameworks, languages and more. Everything you need to know to improve your workflow and enrich your time and code.
+
+<MainContainer>
+    <Card>
+        <Image src="https://assets.website-files.com/6143afec68f555387049efb3/643831e5d0314b657bca90c3_top-10-ways_4e111091ac3bdd191ba1f047aa43d758_2000.jpeg" />
+        <Date>April 13th, 2023</Date>
+        <Title>GitHub + Pieces: Top 10 Ways Pieces Optimizes Your Development Workflow with AI</Title>
+        <Author src="/assets/pieces_dark.png" children="The Pieces Team"></Author>
+        <Snip>Last week, Tsavo Knott, CEO of Pieces for Developers, a first-in-kind productivity suite that optimizes developer workflow and eliminates the chaos of context switching, showcased Pieces on GitHub’s YouTube channel and across their social media.</Snip>
+        <ClickThrough src="/blog/github-pieces-top-10-highlights-how-pieces-optimizes-development-workflow">Read the Article</ClickThrough>
+    </Card>
+</MainContainer>
+
+<Spacer></Spacer>
+
+<MainContainer>
+    <Card>
+        <Image src="https://assets.website-files.com/6143afec68f555387049efb3/6426fba4bc3920539f73cd0b_dev-tools-20_6cdee8850847335040e7c722288101cb_2000.jpeg" />
+        <Date>March 31, 2023</Date>
+        <Title>Developer Tools 2.0: How Microsoft, Pieces for Developers, and Google are Leveraging Generative AI to Enhance their Suites</Title>
+        <Author src="/assets/pieces_dark.png" children="The Pieces Team"></Author>
+        <Snip>The latest “Market Map” released by investment firm Sequoia Capital, Mapping AI in the Software Development Life Cycle, points to “Developer Tools 2.0” as the next generational opportunity.</Snip>
+        <ClickThrough src="/blog/developer-tools-2-generative-ai">Read the Article</ClickThrough>
+    </Card>
+</MainContainer>
+
+<Spacer></Spacer>
+
+<MainContainer>
+    <Card>
+        <Image src="https://assets.website-files.com/6143afec68f555387049efb3/6413278cc8f8674946b70a71_openai-api_f9fcc810f099afaa098121a7ae8b8ed8_2000.jpeg" />
+        <Date>March 16, 2023</Date>
+        <Title>OpenAI API Supercharges Pieces for Developers</Title>
+        <Author src="/assets/pieces_dark.png" children="The Pieces Team"></Author>
+        <Snip>AI and Machine Learning are transforming the way we live and work. It’s affecting software developers and providing them a unique opportunity to create powerful and innovative applications to solve complex problems, automate tasks, and improve decision-making. </Snip>
+        <ClickThrough src="/blog/openai-api-supercharges-developer-workflow-pieces">Read the Article</ClickThrough>
+    </Card>
+</MainContainer>
+
+<Spacer></Spacer>
+
+<MainContainer>
+    <Card>
+        <Image src="https://assets.website-files.com/6143afec68f555387049efb3/6400c4824e8dcf47b48b2907_backend%2520frameworks_d8d7920a46cceba3fd252e8e57275b0c_2000-p-1080.jpeg" />
+        <Date>March 2, 2023</Date>
+        <Title>The Top 5 Backend Web Development Frameworks for 2023</Title>
+        <Author src="/assets/pieces_dark.png" children="The Pieces Team"></Author>
+        <Snip>Web development frameworks are collections of resources and tools that software engineers use to create and maintain websites and web applications. A pre-defined infrastructure, such as the Linux, MySQL, or PHP stacks, makes an excellent foundation for a web development framework.</Snip>
+        <ClickThrough src="/blog/top-backend-web-development-frameworks">Read the Article</ClickThrough>
+    </Card>
+</MainContainer>
+
+<Spacer></Spacer>
+
+<MainContainer>
+    <Card>
+        <Image src="https://assets.website-files.com/6143afec68f555387049efb3/63fcdaa8f9979771bb2f2e21_cssunits_327924109e361894bf17b97beddadfee_2000-p-1080.jpeg" />
+        <Date>February 27, 2023</Date>
+        <Title>Why CSS Units Matter to Your Responsive Website Designs</Title>
+        <Author src="/assets/pieces_dark.png" children="The Pieces Team"></Author>
+        <Snip>Time is measured, the food we eat is measured, the places we travel to are measured… As humans, we like to give things specific measurements. Units of measurement are standard quantities that are used to express an amount of a certain thing, like meters (distance), kilograms (weight), seconds (time), or Celsius (temperature).</Snip>
+        <ClickThrough src="/blog/css-units-responsive-website-designs">Read the Article</ClickThrough>
+    </Card>
+</MainContainer>
+
+<Spacer></Spacer>
+
+<MainContainer>
+    <Card>
+        <Image src="https://assets.website-files.com/6143afec68f555387049efb3/63f8df177a0772fe1adc180a_apimethods_7d1aa2168818794215b2faef72b2b689_2000-p-1080.jpeg" />
+        <Date>February 24, 2023</Date>
+        <Title>API Methods: A Practical Guide for All Developers</Title>
+        <Author src="/assets/pieces_dark.png" children="The Pieces Team"></Author>
+        <Snip>An Application Programming Interface (API) is a means through which different applications or programs communicate/interchange data. APIs are widely used today by many organizations to transmit and manipulate data between applications. They can be used in nearly all digitalized industries, including banking, education, health, and sports.</Snip>
+        <ClickThrough src="/blog/practical-guide-api-methods">Read the Article</ClickThrough>
+    </Card>
+</MainContainer>
+
+<Spacer></Spacer>
+
+
+<MainContainer>
+    <Card>
+        <Image src="https://assets.website-files.com/6143afec68f555387049efb3/63f8df177a0772fe1adc180a_apimethods_7d1aa2168818794215b2faef72b2b689_2000-p-1080.jpeg" />
+        <Date>February 24, 2023</Date>
+        <Title>A Guide to the Temporal API in JavaScript</Title>
+        <Author src="/assets/pieces_dark.png" children="The Pieces Team"></Author>
+        <Snip>An Application Programming Interface (API) is a means through which different applications or programs communicate/interchange data. APIs are widely used today by many organizations to transmit and manipulate data between applications. They can be used in nearly all digitalized industries, including banking, education, health, and sports.</Snip>
+        <ClickThrough src="/blog/practical-guide-api-methods">Read the Article</ClickThrough>
+    </Card>
+</MainContainer>
+
+<Spacer></Spacer>

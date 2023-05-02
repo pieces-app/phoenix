@@ -1,0 +1,384 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd73ce69c93facd0482deb_lyricsfinderapp_0759d722a438d611d1bc8385de40be99_2000.jpeg)
+**typescript** **react**
+# Building a Lyrics Finder App with the React Context API and TypeScript
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+In this article, we’ll follow a React TypeScript tutorial on building a lyrics finder app. We’ll also discuss how to work with new and trending technologies like React Beautiful DnD and the React Context API. We’ll walk through using the Axios library to fetch data from an API and using <a href="https://code.pieces.app/blog/impact-of-working-with-twitter-bootstrap-v5" target="_blank" rel="noopener noreferrer">Bootstrap CSS</a> to manage the style.
+After multiple code updates and enhancements, including type inferences, powerful static type checking, and understandability, TypeScript has grown in popularity. In this guide, we’ll learn how to use TypeScript with the React Context API by building a React lyrics finder app from scratch.
+
+## Prerequisites
+Before delving further, you should note that we will build this app with TypeScript and React.js. You don't need to know how to write advanced TypeScript; I'll guide you through each step to get you going.
+To get the most out of this tutorial, you need to have a basic understanding of the following:
+- Basic JavaScript
+- ES6 JavaScript
+- Basic TypeScript
+- Basic React
+
+## Setup and Installation
+Let's set up and install a React app with TypeScript. Run this command to create the project "Lyrics App":
+```
+npx create-react-app Lyric-App --template typescript
+```
+To install TypeScript, enter the following command:
+```
+npm install --save @types/react.```
+To easily create a TypeScript project with CRA, you need to add the flag ```--template typescript```, otherwise the app will only support JavaScript.
+
+An easy-to-use React HTTP library called Axios makes it possible to manage and fetch data from APIs without any hassle. To install it, run:
+```
+npm install axios
+```
+React DnD: With the help of this simple-to-use React library, lists can easily be moved using React. This is a tool that helps develop drag-and-drop functionalities very quickly and simply.
+In the root folder, run the command: 
+
+```
+```npm install --save @types/react-beautiful-dnd``
+```
+
+React-Dom: For routing and managing the React DOM state, let's install ```react-router-dom``` with the command:
+```
+```npm install react-router-dom``
+```
+
+Let's add Bootstrap CSS after that. The best way to use React-Bootstrap is through the npm package, which you can install with npm (there’s also a yarn package if you prefer).
+```
+npm install react-bootstrap bootstrap
+```
+After installation is complete, your package.json should look like this:
+```
+{
+"name": "typ",
+"version": "0.1.0",
+"private": true,
+"dependencies": {
+"@testing-library/jest-dom": "^5.16.5",
+"@testing-library/react": "^13.4.0",
+"@testing-library/user-event": "^13.5.0",
+"@types/jest": "^27.5.2",
+"@types/node": "^16.11.59",
+"@types/react": "^18.0.20",
+"@types/react-beautiful-dnd": "^13.1.2",
+"@types/react-dom": "^18.0.6",
+"axios": "^0.27.2",
+"react": "^18.2.0",
+"react-beautiful-dnd": "^13.1.1",
+"react-dom": "^18.2.0",
+"react-router-dom": "^6.4.1",
+"react-scripts": "5.0.1",
+"typescript": "^4.8.3",
+"web-vitals": "^2.1.4"
+},```
+We’re done with our setup! Let’s start writing some code.
+
+## Create Your API Token
+Before we get into building, we need an API token to run and fetch music lyrics. For this tutorial, we will use the <a href="https://any-api.com/musixmatch_com/musixmatch_com/docs/API_Description" target="_blank" rel="noopener noreferrer">Musixmatch API</a> token. Create a new account on <a href="https://developer.musixmatch.com/" target="_blank" rel="noopener noreferrer">Musixmatch</a> for a unique token.
+Open an account and navigate to the Dashboard.
+
+Click the Applications button and scroll down.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/637bb02fbbfc1668bb50d27f_image2_92e46257db85ee5d88746046f2ac753f_800.png)
+
+Your Applications dashboard contains your API token and your username.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/637bb02ebbfc16756f50d27e_image1_d885a1de9570db91139e49e5fc2d1abb_800.png)
+
+Copy the API token and include it in a ```.env``` file in the root folder as so:
+In React v16, the React Context API was added as a mechanism to communicate data among components without passing props down at each level.
+
+It's good practice to have distinct type definition files because it strengthens the project's structure. The stated types can either be utilized explicitly by importing them into another file or by reference without importing them (though they have to be exported first).
+Now that this is established, we can get our hands dirty and write some useful code.
+```
+//Context.tsx
+import React, { useState, useEffect, createContext } from "react&quot;;
+import axios from "axios&quot;;
+interface ContextPro {
+ track_list?:({} | null)[] | string[] | number ;
+ heading?: ({} | null)[] | [] |" &quot;;
+ [key: string]: any;
+}
+export const Context = createContext({} as ContextPro );
+export const ContextP: React.FC<React.PropsWithChildren> = ({ children }) =>  {
+ const [state, setState] = useState<ContextPro[] | null | {} | string[]>([
+{
+ track_list:[],
+ heading:" ",
+ },
+]);
+useEffect(() => {
+ axios
+  .get(
+&#x60;https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/chart.tracks.get?page=1&amp;page_size=10&amp;country=us&amp;f_has_lyrics=1&amp;apikey=${
+process.env.REACT_APP_MM_KEY
+  }&#x60;
+ )
+ .then(res => {
+  console.log(res.data);
+ setState({
+  track_list: res.data.message.body.track_list,
+  heading: "Top 10 Tracks"
+ });
+ })
+  .catch(err => console.log(err));
+ }, []);
+
+```
+As you can see from the code written above, the ```ContextPro``` interface defines the types which expect an array or null object value or string type for ```track_list``` and ```heading```.
+
+While fetching React Context API data, observe the URL link before the main API data “<a href="https://cors-anywhere.herokuapp.com/" target="_blank" rel="noopener noreferrer">https://cors-anywhere.herokuapp.com</a>”. This link enables us to access the API data. The API data returns an error due to CORs restrictions. Hence, the CORs link above accounts for the error and grants access to the API.
+
+When creating the context, we set the default state value to null or an empty array temporarily; the intended values will be assigned by the provider. Here, I initialized the state with some data to have ```lyrics.tsx``` work.
+
+Only the components that require the data will receive it thanks to the context. Next, we import the context into App.js and wrap the context around the parent-level component. Here is how the App component looks:
+```
+//App.tsx
+import React from 'react';
+import {
+ BrowserRouter as Router,
+ Routes,
+ Route,
+} from "react-router-dom&quot;;
+import Navbar from './Components/Navbar';
+import Home from './Components/Home'
+import Lyric from './Components/Lyric';
+import { ContextP } from './Components/Context';
+function App() {
+ return (
+  <ContextP>
+  <Router>
+    <Navbar />
+     <div className="container">
+       <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path="/lyric/track/:id" element={<Lyric />} />
+       </Routes>
+     </div>
+</Router>
+</ContextP>
+);}
+export default App
+```
+
+Refactor the context to provide data and pass it to various child components as so:
+```
+// Context.tsx
+return (
+ <Context.Provider value={[state, setState]}>
+   {children}
+   </Context.Provider>
+)
+```
+The values are then passed to the context so that the components can consume them as above.
+
+### Create the Components and Consume the Context API
+We’ll build a ```<Search>``` component that lets a user input a song title and ```<LyricLists>``` and ```<Lyrics>``` components to display the lyrics search results in a mapped and ordered pattern.
+Finally, a ```<Lyric>``` component displays the actual lyrics when clicked.
+Let's begin by making a new folder in the src directory named “Components” because that's where all of our components will be. Let's now develop the components for ```<Lyrics>```, ```<LyricLists>``` and ```<Search>```. They must then be imported into our App.js code.
+Using the ```useState``` hook, the ```<Search>``` component below lets us manage user-entered data. Once we get the form data, we utilize the context object's setState function to show it on the ```lyricLists``` component.
+First, we’ll create a function that makes an API call to Musixmatch using the Axios library:
+```
+//Search.tsx
+import React, { useState, useEffect, useContext } from "react&quot;;
+import axios from "axios&quot;;
+import { Context } from "./Context&quot;;
+const Search = () => {
+  const ctxt = useContext(Context);
+  const [state, setState]: {} | any = ctxt;
+  const [userInput, setUserInput] = useState("");
+  const [trackTitle, setTrackTitle] = useState("");
+  useEffect(() => {
+    axios
+      .get(
+        &#x60;<a href="https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.search?q_track=${trackTitle}&amp;page_size=10&amp;page=1&amp;s_track_rating=desc&amp;apikey=${process.env.REACT_APP_MM_KEY}">https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.search?q_track=${trackTitle}&amp;page_size=10&amp;page=1&amp;s_track_rating=desc&amp;apikey=${process.env.REACT_APP_MM_KEY}</a>&#x60;
+      )
+      .then((res) => {
+        let track_list = res.data.message.body.track_list;
+        setState({ track_list: track_list, heading: "Search Results" });
+      })
+      .catch((err) => console.log(err));
+  }, [trackTitle]);
+  const findTrack = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setTrackTitle(userInput);
+  };
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserInput(e.target.value);
+  };
+};
+export default Search
+```
+Note that I use typecasting on the ```useContext``` hook to prevent TypeScript from throwing errors because the context will be null or an empty array at the beginning.
+
+Then, to confirm that we are receiving results from the API, we perform an API request on Axios using the GET method. We then use the then-catch block to obtain the API response that follows. In addition, we take advantage of the React Typescript ```useState``` hook.
+We now need to show the data to the user in our app after successfully obtaining it from the API. We'll create a very basic search field where a user may enter the title of their favorite song lyrics.
+We'll ask the Musixmatch API for the lyrics information and show the result in our user interface.
+```
+return (
+ <div className="card card-body mb-4 p-4">
+  <h1 className="display-4 text-center">
+   <i className="fas fa-music" /> Search For Lyrics
+  </h1>
+  <p className="lead text-center">Get the lyrics for any song</p>
+  <form onSubmit={(e) =>findTrack(e)}>
+   <div className="form-group">
+    <input
+     type="text"
+     className="form-control form-control-lg"
+     placeholder="Song title..."
+     name="userInput"
+     value={userInput}
+     onChange={onChange}
+    />
+   </div>
+   <button className="btn btn-primary btn-lg btn-block mb-7" type="submit">
+    Get Track Lyrics
+   </button>
+  </form>
+ </div>
+)
+```
+In the ```return``` section, we have a search input that accepts a name and listens for an event to perform a search or call the API.
+```
+//Lyrics.tsx
+import React, {useContext} from 'react'
+import LyricLists from './LyricLists';
+import { Context} from './Context'
+import{ Droppable, DragDropContext  } from 'react-beautiful-dnd'
+const Lyrics = () =>{
+ const ctxt = useContext(Context)  ;
+ if (ctxt == null) return <div>No context yet</div&gt;;
+ const [state]:any = ctxt
+ const { track_list, heading } = state;
+if (track_list === undefined || track_list.length === 0) {
+ return <h1>Loading...</h1&gt;;
+} else {
+ const onDragEnd =(result:any) => {
+  if(!result.destination)
+  return;
+}
+return (
+ <>
+  <DragDropContext onDragEnd={onDragEnd} >
+  <Droppable droppableId="droppable">
+  {(provided) => (
+   <div{...provided.droppableProps}
+   ref={provided.innerRef}>
+   <h3 className="text-center mb-4">{heading}</h3>
+  <div className="row">
+  {track_list.map((item:any, index:number) => (
+   <LyricLists
+   key={item.track.track_id} track={item.track} index={index} />
+  ))}{provided.placeholder}
+ </div>
+</div>
+ )}
+ </Droppable>
+ </DragDropContext>
+</>
+);}};
+export default Lyrics
+```
+As you can see above, we have a presentational component that shows a map listing of lyrics. It receives the state value from the context alongside ```track_list``` and ```heading``` from a destructured state object and the function to update it as parameters that need to match the Props type defined in the context.
+
+We also imported some methods from React Beautiful DnD to handle the droppable content area.
+```
+DragDropContext``` is going to give our app the ability to use the library. It works similarly to the React Context API; notice how the entire ```<lyriclists>``` component is wrapped around the ```dragdropcontext```.
+
+With the aid of the ref, ```Droppable``` gives you the ability to drop an item into a list where its properties are inherited.
+```
+//LyricLists
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Draggable} from 'react-beautiful-dnd'
+interface props {
+ track: any;index:number}
+const LyricLists: React.FC<props> = ({
+ track,index,
+}) => {
+return (
+  <Draggable draggableId={track.track_id} index={index} >
+  {(provided) => (
+  <div className="col-md-6"ref= {provided.innerRef}
+   {...provided.draggableProps}
+   {...provided.dragHandleProps} draggable >
+  <div className="card mb-4 shadow-sm">
+   <div className="card-body" draggable >
+    <h5>{track.artist_name}</h5>
+    <p className="card-text">
+     <strong>
+      <i className="fas fa-play" /> Track
+     </strong>
+     : {track.track_name}
+     <br />
+     <strong>
+      <i className="fas fa-compact-disc" /> Album
+     </strong>
+     : {track.album_name}</p>
+    <Link
+     to={&#x60;/lyric/track/${track.track_id}&#x60;}
+     className="btn btn-dark btn-block">
+     <i className="fas fa-chevron-right" /> View Lyrics
+    </Link>
+   </div>
+  </div>
+ </div>
+  )}
+ </Draggable>
+);};
+export default LyricLists
+```
+After destructuring the track from ```<Lyrics>``` components, import and wrap ```<LyricLists>``` with a draggable method. By clicking and dragging the draggable object with the mouse, you can move it around the viewport.
+
+Next, we create a ```<Lyric>``` component to display individual lyric data as well as ```artist name``` and ```track_id```. This component contains a unique link id which was created using the ```useParams()``` hook and can only be accessed from inside ```<LyricLists>``` components.
+
+Notice how we applied the ```useEffect``` hook, which allows us to interact with the environment without affecting the rendering of the component.
+```
+useParams``` returns an object of key/value pairs of URL parameters. This gives a unique key to the route access. Hence, using ```params.id``` as a dependency for the ```useEffect``` hook enables the Axios API call to only run when we click on “view lyrics.”
+```
+//Lyric.tsx
+import React, { useState, useEffect } from "react&quot;;
+import axios from "axios&quot;;
+import { Link, useParams } from "react-router-dom&quot;;
+//import Moment from "react-moment&quot;;
+const Lyric = () => {
+ const [track, setTrack] = useState<any>([]);
+ const [lyrics, setLyrics] =useState<any>([]);
+ const params = useParams();
+useEffect(() => {
+ axios
+  .get(
+&#x60;https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${
+    params.id
+   }&amp;apikey=${process.env.REACT_APP_MM_KEY}&#x60;
+  )
+  .then(res => {
+   let lyrics = res.data.message.body.lyrics;
+   setLyrics({ lyrics });
+   return axios.get(
+&#x60;https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.get?track_id=${
+    params.id
+   }&amp;apikey=${process.env.REACT_APP_MM_KEY}&#x60;
+  );
+ })
+ .then(res => {
+  let track = res.data.message.body.track;
+  setTrack({ track });
+ })
+  .catch(err => console.log(err));
+}, [params.id]);
+if (
+ track === undefined ||
+ lyrics === undefined ||
+ Object.keys(track).length === 0 ||
+ Object.keys(lyrics).length === 0
+) {
+ return <h1>Loading...</h1&gt;;
+} else {
+}
+};
+export default Lyric
+```
+Then we have the return ```div```, which displays details of the music data like name, year, artist, release date, etc. You can display as many details as you want.
+
+Awesome! Our app now does all tasks. Here is a summary of what we did:
+We received an API key for the Musixmatch API. We also created a component that enables title-based lyrics searches and stores the results in the component's state.
+
+The function was then sent to the search form so that it would take effect when we clicked the button or pressed enter. After that, we created a lyric component that shows the response information we had obtained from the React Context API and put the response in a single lyric state that can be accessed using the ```useparam``` hook.
+The repository for the component library developed in this article can be found on my <a href="https://github.com/CoderOfPHCity/Lyrics-Finder" target="_blank" rel="noopener noreferrer">GitHub</a>.

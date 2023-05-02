@@ -1,0 +1,46 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/630d699159d912a6dcb3c87d_ezgif_com-gif-maker8_5e88ff39a681dde84c881d857239651e_2000.png)
+**integrations** **new features** **bug fixes** **ux ui updates**
+# 1.5.3: 80% improvement in speed + Cloud connectivity
+> Mon Mar 27 2023 14:14:05 GMT+0000 (Coordinated Universal Time)
+
+We’ve been plugging away at performance and are excited that today’s release will drive an 80% reduction in your boot time as well as faster rendering throughout the Pieces for Developers app.
+Just as importantly, today’s release marks the first introduction of our Cloud features! Pieces is disconnected from the cloud by default for your privacy, but now you can easily connect to the cloud to enable upcoming features such as backup, sync, sharing and more.
+
+## Pieces for Developers
+**Pieces for Developers is the core user-facing Pieces application. Get started for free <a href="http://code.pieces.app/install" target="_blank" rel="noopener noreferrer">here</a>.**
+
+### Performance Improvements
+- Reduced bootup time by 80%
+- Improved rendering performance
+- Users will now see a bootup loading indicator
+### Saving Snippets
+- Building on our new auto-save feature in our IntelliJ plugin, where Pieces automatically saves snippets that you commonly type, we added an empty state to the Auto-Save menu
+### Managing Snippets
+- Users can now search the global list of languages when attempting to change the Language for a given snippet
+### Cloud Connectivity
+- Users can now click a button to connect or disconnect their account to the cloud when signed in. This is the first phase of a series of cloud features that we’ll layer into Pieces!
+## Pieces API
+**Everything we develop is on top of the Pieces API. We're excited to welcome third-party developers who want to build applications on top of our infrastructure. Email us at support@pieces.app for more details.**
+
+- Certain API endpoints now have an optional parameter, &quot;transferables&quot;, that enables a developer to specify whether or not to retrieve the whole value of a format or just the top-level meta data.
+- This enables a developer to fetch format metadata immediately (transferables: false) and retrieve the value of a format after the fact as a way to increase performance (transferables: true).
+
+[New Endpoints] Core endpoints around connecting to the cloud
+
+- /clouds/connect
+- /clouds/reconnect
+- /clouds/disconnect
+## JetBrains Extension (including IntelliJ and PyCharm)
+**Get the JetBrains Extension <a href="https://plugins.jetbrains.com/plugin/17328-pieces" target="_blank" rel="noopener noreferrer">here</a>!**
+
+- General improvements and bug fixes
+
+## Chrome Extension
+**Get the Pieces Chrome Extension <a href="https://chrome.google.com/webstore/detail/pieces/igbgibhbfonhmjlechmeefimncpekepm?hl=en" target="_blank" rel="noopener noreferrer">here</a>.**
+
+- General improvements and bug fixes
+
+## Visual Studio Code Extension
+**Get the Pieces VSCode Extension <a href="https://marketplace.visualstudio.com/items?itemName=MeshIntelligentTechnologiesInc.pieces-vscode" target="_blank" rel="noopener noreferrer">here</a>!**
+
+- General improvements and bug fixes

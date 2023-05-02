@@ -1,0 +1,55 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/630d622093e00adec2c9e7a0_ezgif_com-gif-maker3_a8dfb8d2217fb554323f22d0f06b607a_2000.png)
+**integrations** **new features** **bug fixes** **ux ui updates**
+# 1.5.0: Extract code from screenshots and more
+> Mon Mar 27 2023 14:06:02 GMT+0000 (Coordinated Universal Time)
+
+A few major features in this release, the biggest being that you can now drag in screenshots of code, and Pieces will automatically convert it to copyable text. Read below for more new features and UI changes.
+## Pieces for Developers
+### Adding Pieces
+- [New Feature] Users can now add PNG code screenshots to Pieces via manual file attachment or drag and drop
+- Screenshots will run through optical character recognition analysis (OCR) to enable users to use code from within a screenshot without retyping
+
+### Finding Pieces
+[New Feature] Users can now add custom tags to a piece to help with search
+Users will now see a helpful keyboard shortcut indicator in the search bar to help navigate search behavior: 
+- Click “/” to focus the search
+- Click “esc” to escape or re-focus search
+- Click “return” to navigate through search results
+
+### Navigating Pieces
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/630d622293e00ac51dc9e9af_ezgif_com-gif-maker1_0a9cc53f737d3848155510f351b95964_800.png)
+- The Quick Menu was re-designed to help users see more information at-a-glance and find relevant actions faster Related links, tags, and more will now be visible in the Quick Menu
+- Users will experience improved navigation throughout the app when navigating between menus
+- This includes the addition of back arrows when the user can go “back” to a previous menu
+
+### Installing & Configuring Pieces
+- [New Feature] Users can now decide whether to send crash & usage data to help improve Pieces - This can be toggled in the onboarding experience or in the settings menu
+- The keyboard shortcut to toggle between light and dark mode changed to ```cmd+shift+t``` on MacOS and ```ctrl+shift+t``` on Windows
+- The keyboard shortcut to manage tags is now ```cmd+t``` on MacOS and ```ctrl+t``` on Windows
+
+## Pieces API
+**Everything we develop is on top of the Pieces API. We're excited to welcome third-party developers who want to build applications on top of our infrastructure. Email us at support@pieces.app for more details.**
+- New class called Model, used to describe the ml_model used to classify code, determine text vs code, or ocr classification.
+- A model is now attached to CodeAnalysis & OCRAnalysis, that will give more information around the ml_model used during the processing of this Piece.
+- 5 new low-level core endpoints around adding models.
+
+## JetBrains Extension (including IntelliJ and PyCharm)
+**Get the JetBrains Extension <a href="https://plugins.jetbrains.com/plugin/17328-pieces" target="_blank" rel="noopener noreferrer">here</a>!**
+
+## [New] Onboarding View
+
+### Performance Upgrades & Bug Fixes
+- Suggestion API is now called in the background for smoother operation
+- IDE boot time error no longer occurs when OS Server is offline
+- Code pasting issues with OS Server offline are gone
+- Assets are no longer cached between sessions
+
+## Chrome Extension
+**Get the Pieces Chrome Extension <a href="https://chrome.google.com/webstore/detail/pieces/igbgibhbfonhmjlechmeefimncpekepm?hl=en" target="_blank" rel="noopener noreferrer">here</a>!**
+
+- General improvements and bug fixes
+
+## VS Code Extension
+**Get the Pieces VS Code Extension <a href="https://marketplace.visualstudio.com/items?itemName=MeshIntelligentTechnologiesInc.pieces-vscode" target="_blank" rel="noopener noreferrer">here</a>!**
+
+- New Pieces Action Menu

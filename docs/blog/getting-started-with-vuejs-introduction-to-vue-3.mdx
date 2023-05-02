@@ -1,0 +1,261 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd7d9898b76104c31f7faa_laptopinthedark_cb992d31992668f51c0eb232f1f87f4b_2000.jpeg)
+"vue; cli"
+# Getting Started with VueJS: Introduction to Vue 3
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+<a href="https://vuejs.org/guide/introduction.html" target="_blank" rel="noopener noreferrer">Vue 3</a> is a JavaScript framework for building user interfaces. It builds on top of standard HTML, CSS and JavaScript, and provides a declarative and component-based programming model that helps you efficiently develop user interfaces that can be either simple or complex.
+At the end of this article, you should be familiar with Vue 3 features and its breaking changes. You’ll also understand how to transition from Vue 2 to Vue 3, know how to install plugins and dependencies using Command Line and Graphic User interfaces, and, lastly, be familiar with the Vue 3 V-model and its issues.
+## Features of Vue 3
+
+Vue 3 is faster, smaller in file size, and has better TypeScript support than other frameworks. Other features of Vue 3 are:
+
+- <a href="https://vuejs.org/api/" target="_blank" rel="noopener noreferrer">Composition API</a> (now built-in): Composition API is a built-in feature of Vue 3 and is currently available to Vue 2 through the officially maintained<a href="https://github.com/vuejs/composition-api" target="_blank" rel="noopener noreferrer"> @vue/composition-api</a> plugin. In Vue 3, it's mainly used together with the<a href="https://vuejs.org/api/sfc-script-setup.html" target="_blank" rel="noopener noreferrer"> <script setup></a> syntax in single-report additives. Here is a basic instance of a issue using Composition API:
+
+```
+<script setup>
+import { ref, onMounted } from 'vue'
+// reactive state
+const count = ref(0)
+// functions that mutate state and trigger updates
+function increment() {
+  count.value++
+}
+// lifecycle hooks
+onMounted(() => {
+ console.log(&#x60;The initial count is ${count.value}.&#x60;)
+})
+</script>
+<template>
+ <button @click="increment">Count is: {{ count }}</button>
+</template>```<a href="https://vuejs.org/guide/extras/composition-api-faq.html" target="_blank" rel="noopener noreferrer">Composition API</a> is pre-installed in Vue 3 and is ready to use right out of the box without any further configuration.
+
+Using the Composition API has two primary benefits:
+- Improved organization
+- Code sharing and reuse
+If you think you don't need the composition API, you can always utilize the conventional methods used in Vue 2 as Vue 3 will still support Options API.
+
+### Suspense
+This feature renders a default or backup component while waiting for the main component to fetch the data. Async operations are sometimes used to fetch data from the server.<a href="https://vuejs.org/guide/built-ins/suspense.html" target="_blank" rel="noopener noreferrer"> Suspense</a> handles this for us rather than handing the template with v-if and then sending it back when we provide the data. When you want to build an API callback to display the content once it has fully loaded or display a loading notice while it’s processing, suspense can be useful.
+You may be aware that two-way binding is done using the v-model. It’s primarily utilized with form elements. Even custom components are used with it, occasionally. One v-model might be used per component under Vue 2. You can bind as many v-models as you want to your custom components in Vue 3.
+
+## Breaking Changes of Vue 3
+There are too many ground-breaking improvements introduced by Vue 3 for one article to properly address. Go to the official<a href="https://v3-migration.vuejs.org/breaking-changes/" target="_blank" rel="noopener noreferrer"> documentation</a> for further information.
+
+### **Fragments**
+<a href="https://v3-migration.vuejs.org/new/fragments.html" target="_blank" rel="noopener noreferrer">Fragments</a>, multi-root node components supported by Vue 3, are now available. Older versions of Vue did not support this.
+
+A feature of Vue 3 called<a href="https://vuejs.org/guide/built-ins/teleport.html" target="_blank" rel="noopener noreferrer"> Teleport</a> lets you choose where to render an HTML document with numerous DOM parents. Now, HTML may be rendered in several DOM locations without the need for additional components or a global state.
+When we<a href="https://vuejs.org/guide/essentials/application.html#mounting-the-app" target="_blank" rel="noopener noreferrer"> mount</a> an application in Vue 3, the element's innerHTML is replaced by the rendered content of the application:
+```
+const app = Vue.createApp({
+  data() {
+    return {
+      message: 'Hello Vue!'
+    }
+  },
+  template: &#x60;
+    <div id="rendered">{{ message }}</div>
+  &#x60;
+})
+app.mount('#app')```
+When this app is added to a page with a div with the id="app" , the following will happen:
+<a href="https://v2.vuejs.org/v2/guide/filters.html" target="_blank" rel="noopener noreferrer">Vue.js</a> allows you to define filters that can be used to apply common text formatting. Filters are usable in two places: **mustache interpolations and v-bind expressions**. Filters should be appended to the end of the JavaScript expression, denoted by the “pipe” symbol.
+
+However, filters are depreciated in<a href="https://v3-migration.vuejs.org/breaking-changes/filters.html" target="_blank" rel="noopener noreferrer"> Vue 3</a>! The same functionality can be implemented in a simple plugin, but expressions with filters are invalid since the filter's pipe interferes with the Javascript bitwise operator. Because of this, the suggested alternative is to use a method.
+
+Let’s look at how filters work in Vue 2 and how they can be implemented in Vue 3.
+
+In **Vue 2, **we define local filters in a component’s options:
+```
+filters: {
+      currencyUSD(value) {
+ return '$' + value
+      }
+    }
+  }
+</script&gt
+```
+Now, this is how it can be implemented in **Vue 3: **Instead of filters, you replace them with method calls or computed properties as seen below:
+
+The additional plugins and frameworks you use and how well they support Vue 3 will determine how difficult it is to migrate an old Vue 2 project to Vue 3.
+To make the process easier, Vue offers a migration build that enables you to convert gradually while maintaining some backwards compatibility.
+
+They also offer simple <a href="https://v3-migration.vuejs.org/" target="_blank" rel="noopener noreferrer"> step-by-step</a> migration instructions.
+
+### Migration** **Steps
+The manual lists the processes to complete migration, which includes:
+- Upgrade Vue and include the compatibility package.
+- Fix the warnings that the compatibility package has revealed.
+- Update your app's mounting.
+- Update any Vue plugins you're using, including vuex and vue-router.
+- After addressing all alerts, remove the compatibility package.
+
+Overall, the migration is simple to complete, and many official plugins (such as vue-router, vuex, and others) offer helpful migration instructions.
+
+## Getting Started with Vue 3
+Before you start, you’ll need:
+- <a href="https://nodejs.org/en/" target="_blank" rel="noopener noreferrer">Node.js 16.15.1 LTS</a> and above installed.
+- Code editor: Visual Studio Code is strongly advised.
+- Vue’s latest version running on your computer.
+- <a href="https://cli.vuejs.org/guide/installation.html" target="_blank" rel="noopener noreferrer">Vue CLI 3.0</a> installed, or you can update the previous CLI version with the following command line:
+```
+npm update -g vue-cli
+```
+To install a fresh, new CLI:
+Note:  For quick set up of your<a href="https://vuejs.org/guide/quick-start.html" target="_blank" rel="noopener noreferrer"> Vue 3 Project</a> that doesn’t require the Vue CLI:
+You can use Vue 3 with or without a build phase (whose configuration is based on<a href="https://vitejs.dev/" target="_blank" rel="noopener noreferrer"> Vite</a>, a contemporary, lightweight, and incredibly quick frontend build tool), depending on your use case and preferences.
+
+## Starting a New Project
+There are two main methods for launching a new Vue project aside from the step described above:
+- The command line interface technique.
+- The graphical user interface technique.
+
+### Command Line Interface Technique
+You can still start new projects using the<a href="https://cli.vuejs.org/guide/creating-a-project.html" target="_blank" rel="noopener noreferrer"> Command Line Interface</a>, but the syntax has changed. To do so, simply type the following command in your terminal:
+```
+vue create vue-app
+```
+Here, the application you wish to create is called Vue-app. The prompts that follow this command will all be in the terminal.
+After executing the command, you will be presented with three pre-set options:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6349a9406c27c20f71b38880_image9_836740d94181c0e6bcbf2474f492444e_800.png)
+You can select the Vue version, which is the second and third that come with Babel and ESLint. They will be packaged exclusively. This example has already been preset, but you can choose the "manually select features" configuration if you wish to incorporate other helpful dependencies like the Vue Router, Vuex and so forth.
+By hitting Space, you may go through the list of available dependencies and pick the ones you want to enable:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6349a9406c27c22ee5b38883_image4_0aecc9c4e181af7d00ab3f6bc3ef738c_800.png)
+It will then ask you numerous configuration-related questions, starting with the Vue version:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6349a9406c27c2f838b38882_image10_269e8040b9baffb4578ee3264a905207_800.png)
+For each module you chose that can be customized, questions are listed after:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6349a9406c27c281a8b3887f_image11_a31d7ab5a075b7a4b637b2d91299876c_800.png)
+The CLI will then ask you whether you wish to store these choices as a preset. If you do, you can choose from this preset in addition to the two default ones the next time you create a new application:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6349a9406c27c21149b38885_image3_b43f94b58618b4c0d1716dfdf2f50048_800.png)
+Once the creation process is completed, you can run the app in the development server directly from the CLI by using the following command:
+```
+cd vue-app
+npm run serve
+```
+Then, your browser will open up localhost:8080, where you’ll see that the app is running:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6349a9406c27c2aa7fb38886_image1_83af5af094ea8c3673f64dfbdd32d3f1_800.png)
+### Graphic User Interface Technique
+The<a href="https://cli.vuejs.org/guide/creating-a-project.html" target="_blank" rel="noopener noreferrer"> GUI</a> tool, a web interface option of the terminal for users who would prefer a graphical interface over a command line interface, is one of the features that the Vue CLI 3.0 comes with. With the help of this tool, you can build projects, add plugins and install dependencies. You can also perform operations like serving up or creating the production version of the application.
+![](143afec68f555387049efb3/6349a9406c27c23973b38889_image5_4e128af4e645e169f9696d78dc907541_800.png)
+The graphical user interface technique entails using the GUI tool to quickly and easily establish a new project.
+Run the GUI command shown below by opening the terminal on your computer:
+```
+vue ui
+```
+Your browser will instantly launch the GUI interface at<a href="http://localhost:8000/project/select" target="_blank" rel="noopener noreferrer"> http://localhost:8000/project/select</a>. At first, it appears like this:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6349a9406c27c272c8b38881_image8_9ef5a97494fc3ef8d6057fa92a0813ff_800.png)
+A file manager will open in the same interface when you click the “create” button to start a new project. You can find earlier Vue projects with a Vue symbol on them while browsing through your project files. Click the “create new project here” option on the website, then select the folder where you want your new application to be built. This will guide you through two simple registration steps.
+- Details: Here, we’ll select the project name. Choose a package manager that uses either yarn or npm. You can also toggle the option to overwrite if the contents of the folder already exist. Finally, you can decide whether to create a Git repository for your project. It has the option to select the selected initial commit message.
+- Presets: Presets are plugin and configuration associations. Once you've selected a feature, you can optionally save them as presets so you can reuse them in future projects without having to reconfigure everything. There are three categories of presets. The default presets include only Babel and ESLint plugins and the basic Vue configuration. Custom presets allow you to choose your own plugins, and remote presets allow you to choose presets from a remote Git repository.
+After a few seconds, you’ll be notified that a new project has been created, and the project dashboard will open in your application's UI.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6349a9406c27c2a56bb38887_image6_aff23a5e1a0ff63d26ed68a62172f0d8_800.png)
+### Installing Plugins/Dependencies
+The new CLI is plugin-based by design.<a href="https://vuejs.org/guide/reusability/plugins.html" target="_blank" rel="noopener noreferrer"> Plugins</a> are now used by the new CLI to change the configurations of our project setup at any time. Plugins are now recognized as features in Vue and even as features from third parties. They are essentially dependencies with additional abilities to modify the Webpack configuration.
+The primary Vue core dependencies and the development dependencies make up Vue's dependencies. These can be set up using either the GUI or the CLI method.
+GUI:
+The second icon in the sidebar of the project dashboard is for plugins. The plugins you installed during the registration process at the beginning of this article—ESLing, Babel, and the CLI service (the service on which the plugins run) —will appear when you click on it.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6349a9406c27c2ee69b38884_image2_28a290f4d8f13a0f2bb1b60789517854_800.png)
+It's simple to add a new plugin; simply click the “add plugin” button, and a list of plugins will appear. You can also use the search field to enter a search word, and the service will return a list of plugins that are currently accessible. When you select a plugin, such as Vuetify, an install button will appear; clicking it will add the plugin to your project and automatically alter its Webpack configuration.
+**Note**: <a href="https://vuetifyjs.com/en/" target="_blank" rel="noopener noreferrer"> The current version of Vuetify</a> is not compatible with Vue 3, and according to<a href="https://vuetifyjs.com/en/introduction/roadmap/#in-development" target="_blank" rel="noopener noreferrer"> the Vuetify Docs</a>, Vuetify intends to release a more harmonious version for Vue 3 in the near future (It’s best to wait for it). On that note, there’s a<a href="https://next.vuetifyjs.com/en/getting-started/installation/" target="_blank" rel="noopener noreferrer"> Vuetify 3 beta</a> version for testing purposes (not production), which will be used to illustrate how to install the Vuetify plugin with CLI.
+CLI:
+To install the Vuetify plugin via the CLI, browse to the project directory and issue the add command as follows:
+```
+vue add vuetify
+```
+Once prompted, choose Vuetify 3 Preview:
+```
+? Choose a preset:
+  Configure (advanced)
+  Default (recommended)
+  Vite Preview (Vuetify 3 + Vite)
+  Prototype (rapid development)
+❯ Vuetify 3 Preview (Vuetify 3)```
+This alters all of the files that the Vuetify plugin will touch after being installed into your Vue applications. Some plugins have additional prompts that guide you through installing them.
+GUI:
+The third symbol in the sidebar of the project dashboard represents dependencies. The Vue and core requirements are in the main part. The dev dependencies include the template compiler, ESLint dev dependencies, and many other things.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6349a9406c27c2487cb38888_image7_05c6b01fc858e78a8b6162c84d5c1271_800.png)
+To enable the use of bootstrap classes in your project, you must first install the bootstrap dependency. To do this, click the “Install Dependency” button, then type "bootstrap" into the search bar, and then click “Install.” After a brief delay, you’ll be informed of the new installation.
+CLI:
+You must enter the project directory and execute the “install” command as follows to install the bootstrap dependency directly using the CLI:
+Create a new file called helloworld.vue in a folder of your choice. Copy the following code into the file and then save it:
+```
+// helloword.vue file
+<template>
+ <div class="hello">
+ <h1>{{ msg }}</h1>
+ <h3>Installed CLI Plugins</h3>
+ <h3>Essential Links</h3>
+ <h3>Ecosystem</h3>
+ </div>
+</template>
+<script>
+ export default {
+    name: 'HelloWorld',
+    props: {
+      msg: String
+    }
+  }
+</script&gt
+```
+With this command, you can run it on the dev server:
+```
+vue serve helloWorld.vue
+```
+This launches a Vue single component on your localhost in the same way that a whole project would.
+## Vue 3 V-Model
+To give developers additional control and flexibility when creating custom components that allow two-way data binding, the v-model directive has been updated in Vue 3.
+Custom inputs that work with<a href="https://v3-migration.vuejs.org/breaking-changes/v-model.html" target="_blank" rel="noopener noreferrer"> v-model</a> can also be made using custom events.
+Keep in mind that
+```
+<input v-model="name" /&gt
+```
+has the same effect as
+```
+<input
+  :value="name"
+  @input="name = $event.target.value"
+/&gt
+```
+On a component, the v-model instead accomplishes the following:
+```
+<CustomInput
+ :modelValue="name"
+ @update:modelValue="newValue => name = newValue"
+/&gt
+```
+However, for this to function properly, the input inside the component must:
+- Bind the ```modelValue``` prop to the value attribute.
+- Emit an ```update:modelValue``` on input with the fresh value.
+This is how it works:
+```
+<!-- CustomInput.vue -->
+<script>
+export default {
+  props: ['modelValue'],
+  emits: ['update:modelValue']
+}
+</script>
+<template>
+ <input
+    :value="modelValue"
+    @input="$emit('update:modelValue', $event.target.value)"
+  />
+</template&gt
+```
+Now, this component should operate flawlessly with the v-model:
+```
+<CustomInput v-model="name" /&gt
+```
+The<a href="https://vuejs.org/guide/components/events.html#usage-with-v-model" target="_blank" rel="noopener noreferrer"> Component Events</a> section contains more information about unique v-model modifiers.
+## Problems with Vue 3
+Although we made every effort to have the migration build behave as closely as possible to Vue 2, there are some<a href="https://v3-migration.vuejs.org/migration-build.html#known-limitations" target="_blank" rel="noopener noreferrer"> restrictions</a> that can preclude your app from being eligible for upgrading:
+- **Support for Internet Explorer 11:** Vue 3 has formally abandoned its plan to support IE11. You must continue using Vue 2 if you still need to support Internet Explorer 11.
+- **Server-side rendering:** Although a bespoke SSR system can be migrated, it is considerably more difficult to do so. The migration build can be utilized for SSR. In general, ```@vue/server-renderer``` should be used in place of ```vue-server-renderer```. Vite should be used with Vue 3 SSR instead of the bundle renderer that Vue 3 used to offer. Waiting for Nuxt 3 is generally preferable if you are using Nuxt.js.
+- **Dependencies that rely on undocumented or internal APIs of Vue 2**: The use of private attributes on VNodes is the most typical scenario. It is advisable to wait for the Vue 3 compatible versions of component libraries like<a href="https://vuetifyjs.com/en/"> Vuetify</a>,<a href="https://quasar.dev/"> Quasar</a> or<a href="https://element.eleme.io/#/en-US"> ElementUI</a> if your project depends on them.
+## When to Use
+- If you need better TypeScript support, Vue 3 is far better than the previous version!
+- If performance problems persist despite optimizations. Vue 3 performs better than Vue 2 since Vue 3 was created from scratch.
+- If your dependencies allow it, use Vue 3.
+## Conclusion
+The framework in Vue 3 was completely redesigned. It has some ground-breaking features for creating large-scale corporate software, along with improved TypeScript support, better tree-shaking, lower size and increased speed.
+In the migration process, it had previously been easy to switch from node-sass, which has been depreciated to sass, as we mentioned. Since sass-loader v10 requires Webpack 5, which is a migration for another day, we were unable to get past that version.

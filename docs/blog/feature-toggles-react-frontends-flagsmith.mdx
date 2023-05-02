@@ -1,0 +1,143 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd58f2b5a69d9fe5566775_arial-photo1_863eb00a2661e98876e45dbf9b9c2b90_2000.jpeg)
+"react-7; **frontend**
+# Feature Toggles for React Frontends Using Flagsmith
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+Feature Toggles (often also referred to as Feature Flags) are a powerful technique that allows teams to modify system behavior without changing code. They allow you to manage components and compartmentalize risk. But before we jump into the how, let’s take a brief walk into why.
+
+## Why use Feature Toggles?
+It’s 2023; I don’t have to talk about why you should be using a version control system (<a href="https://en.wikipedia.org/wiki/Version_control" target="_blank" rel="noopener noreferrer">VCS</a>). That being said, **Git** is the (almost) obvious choice. In my experience, there are two major strategies for managing **Git branches**.
+Git flow is a legacy Git workflow that was originally a disruptive and novel strategy for managing Git branches.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63359702d8fadb60746b3284_image6_4ef2b14b363c9291662a02d558866ed1_800.png)
+
+### So, Should Everyone Use Git flow?
+In my experience, Git flow is more suitable for packaged software (a product that you release on occasion).
+When you have feature branches, release branches, a master branch, a development branch, a hotfix branch, and git tags, they all have to be tracked, understood and accounted for in your build and release process. More than that, you need to constantly keep track of which branch is which. With ```git-flow```, the number of things you’re keeping track of increases even more, because there are three other branches (of varying lifetimes) that merge into ```develop```: feature branches, release branches and hot fixes. Now, the potential for merge conflicts is not linear; these branches potentially triple the opportunities for merge conflicts.
+If your team is a startup or an internet-facing website or web application, you might have multiple releases in a day. When you’re working at scale, you don't want those merge conflicts to get in the way of delivery. <a href="https://www.reddit.com/r/devops/comments/g8ktuu/how_come_amazon_deploys_23000_times_a_day_what/" target="_blank" rel="noopener noreferrer">Amazon deploys roughly every 11.6 secs</a>.
+
+### **Is There a Simpler Way?**
+GitHub flow/trunk-based development is a lightweight, branch-based workflow. The GitHub flow is useful for everyone, not just developers.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63359702d8fadb20656b3275_image13_1efad805f6d737c4d4848b12705956b6_800.png)
+The primary problem associated with ```git flow``` is managing long-lived branches. With trunk-based development, we only have one deployable branch, aka ```master/main```. As the other branches are short-lived (literally a few hours), we can achieve continuous integration. So our code is always deployable at any instant. Perfect for web development. Or is it?
+This looks great in theory, but then how do we:
+- Develop long-running features?
+- Test experiments before rolling them out to everyone?
+- Refactor code without breaking everything?
+- Do performance improvements without compromising user experience?
+- Improve functionality without making it worse?
+The answer is feature toggles. :)
+
+## How Do You use Feature Toggles?
+We will be focusing on ```react-js``` as our authoring view library for managing feature toggles. The simplest implementation of React feature flags is a boolean variable:
+```
+const flag = true | false
+```
+This tiny flag will introduce a branch in the code and allow us to render a different component. The concept of a React feature flag really is that simple.
+
+### Scenario 1
+Let’s say we want to enable certain components only for a specific country. The simplest implementation is as follows:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63359701d8fadb89426b31b6_image8_a1e9bde22948a73e5bb9ab47b9d78b78_800.png)
+<a href="https://user-a00e97da-3485-43fd-bbec-75dcb17f675d-fhcmbheklq-uc.a.run.app/?p=50b64e9377" target="_blank" rel="noopener noreferrer">Save this code</a>
+The condition ```user.country === 'IN'``` is essentially a feature toggle.
+Evaluating the condition in order to render a component is now a responsibility of ```MyComponent```. Imagine the scenario wherein multiple components need to change based on country. You can argue that the computation can be abstracted out to a utility method. Something like ```const isIndia = (user) => user.country === 'IN'```.
+
+### Scenario 2
+Let’s say we have a new UX and want user feedback on it. The simplest implementation is as follows:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63359702d8fadbb8876b3201_image1_cebee51dfac4ba3a98d8e127a6f6780c_800.png)
+
+<a href="https://user-a00e97da-3485-43fd-bbec-75dcb17f675d-fhcmbheklq-uc.a.run.app/?p=07574d9c5d" target="_blank" rel="noopener noreferrer">Save this code</a>
+Every time we need to add a user to the set of targeted users, the code needs to change. You can argue that we could fetch the list of users using some API, but the evaluation of the condition viz. ```targetedUsers.includes(user.id)``` sits in the code.
+
+### Scenario 3
+Let’s say we have a brand new feature, but the underlying APIs are not completely ready for it to work. We definitely do not want our code to rot in a branch while the APIs are being finished, but we sure as hell cannot release it. Here's how we could implement feature toggles for it:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63359701d8fadb620b6b31d7_image11_59975ce34f35b1d3cb3a52b0324b057c_800.png)
+<a href="https://user-a00e97da-3485-43fd-bbec-75dcb17f675d-fhcmbheklq-uc.a.run.app/?p=cb224bbc9c" target="_blank" rel="noopener noreferrer">Save this code</a>
+```
+isBrandNewFeatureEnabled``` is just a boolean flag; it doesn’t need any other variables to be evaluated. Whenever the APIs are ready, we can test the feature in lower environments like ```qa``` or ```stage```. When we’re happy with it, turning on the feature toggles in production should be a piece of cake. You can argue that such a small boolean flag can be kept in an environment variable, but updating the environment variable would require a redeployment. :(
+
+### Evaluating Feature Toggles
+There are many other use cases for feature toggles. The point that I am trying to highlight is that the evaluation criteria of a feature flag can and will be very diverse. Having that logic in the source code just slows us down. Also, any changes to the evaluation criteria have to go into the source code, then via the build pipeline to publish a fresh deployment. You have to think about those odd days when you toggle a feature on and the world breaks down. Would you be willing for your build pipeline to finish the rollback while a rogue feature is out killing your users’ experience? Heck no. You want the ability to turn things off in an instant.
+
+## Feature Toggle Implementation
+To solve this, we’ll delegate the responsibility of managing the lifecycle of feature toggles to an external service. There are two popular implementations for feature flags:
+- <a href="https://launchdarkly.com/" target="_blank" rel="noopener noreferrer">Launch Darkly</a>
+
+Any feature flag service has three main constructs. First, a way to initialize the client SDK which would involve passing the ```API-key```. Second, a way to identify the user who will then be used for the flag evaluation. Lastly, a way to get the value of the feature flag.
+
+In this article, we will focus on Flagsmith React. Let's get cracking!
+
+### Setting up Flagsmith
+Head over to <a href="https://app.flagsmith.com/signup" target="_blank" rel="noopener noreferrer">Flagsmith</a> and create an account. We're going to create an Organization and a Project.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63359702d8fadb6f966b3200_image14_f461a5ef8bb19125fcc670019c3dbfb0_800.png)
+
+Next, we will create a simple boolean feature flag to start:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63359702d8fadb8f3a6b3215_image5_bc982f4f8d9cff5f311973a232a3ce1e_800.png)
+Then, we will create a sample app <a href="https://code.pieces.app/blog/alternatives-to-create-react-app" target="_blank" rel="noopener noreferrer">using ```create-react-app``` </a>and add ```react-native-flagsmith``` as a dependency. That's all we need!
+To start, we will create our own ```Provider``` using ```provider-pattern``` to encapsulate ```flagsmith```. This should look like this:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63359702d8fadbe2206b322d_image2_6c7691a41a28fb5e4d89cab0ce8fd9fc_800.png)
+
+<a href="https://user-a00e97da-3485-43fd-bbec-75dcb17f675d-fhcmbheklq-uc.a.run.app/?p=ff444e9b4b" target="_blank" rel="noopener noreferrer">Save this code</a><a href="https://user-a00e97da-3485-43fd-bbec-75dcb17f675d-fhcmbheklq-uc.a.run.app/?p=ff444e9b4b"> </a>
+
+```
+REACT_APP_FLAGSMITH_ID``` is a client-specific id that you can use on the URL when you look at features or under environment settings. The default environment is development. In an actual production setup, we will have multiple environments. This way, you can control which features are on/off across different environments.
+There are three things that we are doing here. One, we are allowing Flagsmith to identify the user. For the sake of simplicity, we have mocked the user information; in the real world, we would fetch this user information from some API. We are passing this information to Flagsmith so that we can create <a href="https://docs.flagsmith.com/basic-features/managing-segments" target="_blank" rel="noopener noreferrer">user segments</a> in the future. This allows us to dynamically enable/disable features for certain users based on their attributes. (We’ll get to this later.)
+The second thing we are doing is fetching all of the flags that are enabled for this environment. As we have also identified the user before fetching the flags, the response of ```getAllFlags``` is going to be enabled/disabled flags for the identified user.
+The last thing we are doing here is setting the flag data in a map that can be used by the consumers.
+
+
+Let's go back a little to this piece of code:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63359701d8fadb620b6b31d7_image11_59975ce34f35b1d3cb3a52b0324b057c_800.png)
+
+<a href="https://user-a00e97da-3485-43fd-bbec-75dcb17f675d-fhcmbheklq-uc.a.run.app/?p=cb224bbc9c" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+Every component where we do the feature flag evaluation is going to have a similar signature:
+```
+flag === true ? compA : compB1
+```
+So, the skeleton is duplicated. We end up with unnecessary wrapper components just to branch out. Let's abstract that out in a small utility component.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63359702d8fadb2f766b3202_image4_ebb9c408996bc342ca468de3370370db_800.png)
+
+<a href="https://user-a00e97da-3485-43fd-bbec-75dcb17f675d-fhcmbheklq-uc.a.run.app/?p=e39a41942f" target="_blank" rel="noopener noreferrer">Save this code</a>
+All we are doing here is wrapping up the evaluation of feature flags for React. We already have a context provider that has all of the flags, and we’ve added a context consumer to consume those values. The rest is self-explanatory.
+
+Let's see how this all stitches together.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63359702d8fadb3d0a6b3276_image7_6e711f90733695f1c6533d081f928f57_800.png)
+
+<a href="https://user-a00e97da-3485-43fd-bbec-75dcb17f675d-fhcmbheklq-uc.a.run.app/?p=331f479f5d" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+The wrapper component ```FeatureToggle``` makes it easy to add ```Active/InActive``` components. So at any point in <a href="https://code.pieces.app/blog/understanding-dom-and-virtual-dom-and-how-they-work-with-react" target="_blank" rel="noopener noreferrer">the DOM</a>, if we feel like adding a branch, all we do is add the ```FeatureToggle``` component. The rest of the code is isolated from all of the Flagsmith code.
+As everything is encapsulated, for local environments we can easily switch to using a stub service for feature toggles. I will leave that to your imagination.
+
+The real benefit of a feature flag provider is that we can enable/disable flags for certain users. We had parked this a while back— let's pick it back up.
+
+## Implementing User Segmentation for Feature Toggles
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63359702d8fadb444e6b3216_image3_32b9eda62be18ec8020332a250b865af_800.png)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63359702d8fadb69816b322c_image12_1040501d2ba016df82b2f31f89855133_800.png)
+
+Now even if the feature is disabled globally, the flag would resolve to ```true``` for all of the users in that user segment. Isn't that cool? And we didn't have to touch a single line of code!
+What about those use cases where you don’t have the required attributes to add to Flagsmith for identification? Let’s say we want to enable a feature for all users whose age is ```<18```. As we do not have age as an attribute, we can’t create a segment out of it. This can be achieved as a choreography in two steps. Assuming we have a way to know the age of a particular user that we fetch using our API, all we need to do is update this line of code:
+```
+await flagsmith.identify(user.id, {
+email: user.email,
+country: user.country,
+age: user.age
+})
+```
+The primary key for a user in Flagsmith is the first attribute of the ```identify``` method. Anytime we add additional traits, Flagsmith auto-merges the identified user. The second step would be to add a user segment and then update the feature flag accordingly.
+
+This should cover the majority of use cases. If you want to perform A/B testing based on the volume of users, that's easy to configure as well. Have a read through the <a href="https://docs.flagsmith.com/advanced-use/ab-testing" target="_blank" rel="noopener noreferrer">A/B testing</a> documentation.
+
+## <a href="https://en.wikipedia.org/wiki/With_great_power_comes_great_responsibility" target="_blank" rel="noopener noreferrer">With Great Power Comes Great Responsibility</a>
+Feature flags in React have a tendency to multiply rapidly, particularly when they are first introduced. They are useful and cheap to create, so we often create many. Feature toggles require a robust engineering process, solid technical design, and mature toggle life-cycle management. Without these three key considerations, the use of feature toggles can be counter-productive.
+If you don't think this can happen, read about <a href="https://dougseven.com/2014/04/17/knightmare-a-devops-cautionary-tale/" target="_blank" rel="noopener noreferrer">Knight Capital Group's $460 million dollar mistake</a>.
+
+Remember that the main purpose of toggles is to perform releases and experiments with minimum risk. Once a release is complete, toggles need to be removed. In order to keep the number of feature flags manageable, a team must be proactive in removing feature flags that are no longer needed. Some teams have a rule of always adding a toggle removal task to the team's backlog when a toggle is first introduced. We can also apply a lean approach to reducing inventory by placing a limit on the number of feature flags a system is allowed to have at any one time. Once that limit is reached, if someone wants to add a new toggle they will first need to do the work to remove an existing flag.
+
+**References:**
+- <a href="https://martinfowler.com/articles/feature-toggles.html" target="_blank" rel="noopener noreferrer">Feature Toggles, aka Feature Flags</a>
+- <a href="https://harness.io/blog/trunk-based-development" target="_blank" rel="noopener noreferrer">Trunk-based Development</a>

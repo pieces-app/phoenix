@@ -1,0 +1,135 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd51eabe2fe821ce24c333_weakmapandweakset_1a134e00646265ea279ee480f2ea7ebd_2000.jpeg)
+"javascript-8; memory"
+# Memory Management: Introduction to Weak References in JavaScript
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+The management of the memory used during a program's execution determines the program's optimal performance. Therefore, this aspect of programming needs attention from software developers.
+The garbage collector, a browser process that runs in the background in the JavaScript engine, helps to monitor the allocation of memory and determine when allocated memory is no longer needed, and then reclaims it. When declaring objects, references to these objects are strongly held. Therefore, these objects won’t be garbage-collected as long as their references still exist.
+The concept of weak references is relatively new in JavaScript. ```WeakSet``` and ```WeakMap``` are data structures introduced in JavaScript ES6, and are the prospective approach to weakly reference an object in JavaScript. However, in a JavaScript program, using an object as a field/key to a ```WeakMap``` or ```WeakSet``` won't prevent it from being garbage-collected.
+In this tutorial, we'll learn about weak references concerning ```WeakSet``` and ```WeakMap``` in JavaScript and how to utilize them for performance. First, let's quickly understand JavaScript garbage collection before later exploring ```WeakSet``` and ```WeakMap``` data structures.
+
+## A Quick Intro to Garbage Collection in JavaScript
+Garbage collection refers to the cleaning of memory when objects or variables stored in that space are no longer in use. Memory management is important while writing JavaScript, as with every programming language. JavaScript, unlike C, is a high-level programming language designed to automatically clear memory when objects are no longer needed. While garbage collection is a complex issue, it is critical to grasp it when addressing references. Read more about memory management through garbage collection <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management#:~:text=Some%20high-level%20languages%2C%20such,longer%20needed%20and%20reclaim%20it." target="_blank" rel="noopener noreferrer">here</a>.
+The JavaScript engine controls the automated garage collecting procedure. When a value is accessible, it is guaranteed to be retained in memory and not garbage collected. A value can be reachable in two ways: First, a value is part of the base set of values that can be reached from the global variables. The function is being executed from its local variables. The alternative method is to access any value from the root via a reference or chain of references. Let’s assume we establish an item in a global variable; this object is reachable via the global space, and so it is deemed reachable.
+
+## Understanding Weak References in JavaScript
+Let’s talk briefly about how **weak references** and **strong references** work so we can better understand how the ```WeakMap``` and ```WeakSet``` work. A weak reference is a reference to an object, the sole reference to the object in memory, and does not prohibit garbage collection.
+Let’s apply this idea to the preceding example of a strong reference, and then apply it in setting a weak reference. We’ll ignore the usage of ```WeakMap``` for the time being, as we’ll cover it in greater detail later. For now, consider the following examples of weak reference behavior:
+```
+let company = new WeakMap();
+let company = { name: 'microsoft' };
+company.set(microsoft, 'correct');
+console.log(company);
+microsoft = null;
+console.log(company); // microsoft doesn’t exist again because it has been garbage collected.```
+In a strong reference, the reference to the original ```microsoft``` object will remain, while the ```microsoft``` object stays in the ```WeakMap``` and may be accessed without difficulty.
+
+However, when we rename the variable to null and replace the reference with the original ```microsoft``` object, the original object in memory contains the weak reference back to the ```WeakMap``` that we constructed.
+This implies that the ```microsoft``` object will be deleted from memory, and we’ll assign the ```WeakMap``` to the next time the JavaScript engine performs a garbage collection procedure.
+
+The main distinction between strong and weak references is that a strong reference prevents an item from being garbage collected, but a weak reference does not.
+JavaScript employs strong references by default for all of its references, and the only method for using weak references is with a ```WeakMap``` or a ```WeakSet```. While a strong reference would prohibit the garbage collection of an item even if it were the sole object accessing it, a weak reference would not. Let’s see this in the example below:
+```
+let company = { name: 'microsoft' };
+const company = [microsoft];
+microsoft = null;
+console.log(company); // [{ name: 'microsoft' }]```
+We can insert the object into an array and delete the reference to the original object by changing its value to null through generating it as an object.
+
+Although we can no longer access the object via the ```microsoft``` variable due to a strong reference between the ```company``` array and the object, the object is still preserved in memory. It can be accessed via ```company[0]```.
+In other words, the strong reference prevents the item from being removed from memory via garbage collection.
+
+## The Difference Between Map and WeakMap
+As we learned about garbage collection, the JavaScript engine stores a value in memory for as long as it is accessible. Let's look at some examples:
+
+```
+let tesla = { name: 'car' };
+tesla = null;
+// The object is not functional again.
+```
+
+While a data structure is in memory, its properties are considered accessible, so they’re typically preserved. If we store an item in an array, the object may still be retrieved even if it has no other references, as long as the array is in memory.
+
+```
+let map = new Map();
+let tesla = { name: 'car' };
+map.set(tesla, 'car');
+// Overwrite the reference.
+tesla = null;
+// To access the object.
+console.log(map.keys())
+```
+The ```Map``` object keeps track of key-value pairs and remembers the order in which they were added. Any value (objects and primitive values alike) can be used as a key or a value.
+This means the object is similar to an object in that we can store key-value pairs and retrieve the values within the ```Map``` using the key. However, unlike a typical JavaScript object, we must use the ```.get()``` function to get the values.
+
+A ```WeakMap``` is quite similar to a ```Map```, except the references it stores are weak references, which means it will not prevent garbage collection from deleting items it refers to if they are not firmly linked elsewhere.
+
+```WeakMap``` also has the disadvantage of not being enumerable, due to the weak references.
+
+Finally, we must use objects as keys, but the values can be anything, such as text or an integer. Here is an example of  a ```WeakMap``` and the techniques that can be applied to it:
+
+```
+const countries = new WeakMap();
+const continents = new WeakMap();
+const obj1 = {};
+const obj2 = window;
+countries.set(obj1, 'italy');
+countries.set(obj2, 'USA');
+// The value can be set to anything
+countries.set(countries, continents); // a WeakMap
+continents.set(obj1, obj2);  // a variable
+countries.get(obj1); // italy
+countries.has(obj1); // true
+countries.delete(obj1);
+countries.has(obj1); // false, this is because the object has been deleted
+console.log(countries)
+```
+
+```WeakMap()``` can also be used to store additional data. Let’s assume we're developing a food delivery app platform with software that counts the number of people who use the application. In this scenario, we'd like to reduce the count when customers leave. This task would be difficult to accomplish with ```Map```, but it’s relatively simple with ```WeakMap()```:
+
+```
+let countPerson = new WeakMap();
+function countUsers(user) {
+ let count = countPerson.get(user)
+  countPerson.set(user, count ++);
+}
+let person = { name: 'Jordan' };
+// Taking count of person
+countUsers(person);
+// person leaves
+person = null
+```
+When using ```Map()```, we must clean ```countPerson``` every time a client leaves; otherwise, it would take up space by continually increasing memory. However, by using ```WeakMap()```, we do not need to do this cleaning step; it is automatically garbage-collected.
+
+## The Difference Between Set and WeakSet
+
+The ```Set``` object allows us to store unique values of any type, whether they’re raw values or object references. A set, like an array, lacks a key-value pair. Using array methods ```for...of``` and ```.forEach()```, we can iterate through a set of arrays:
+
+```
+let meals = new Set(['Rice', 'Pizza', 'Risotto', 'Garri']);
+for (let names of meals) {
+ console.log(names);
+} // Rice, Pizza, Risotto, Garri
+```
+```
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet" target="_blank" rel="noopener noreferrer">WeakSet</a>``` objects are object collections. Like ```Sets```, each object in a ```WeakSet``` can only appear once; all objects in a ```WeakSet```'s collection are unique.
+The following are the primary distinctions between the ```<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set" target="_blank" rel="noopener noreferrer">Set</a>``` object and the ```WeakSet``` object: ```WeakSets``` are merely collections of items. They, unlike ```Sets```, cannot hold arbitrary values of any type. The ```WeakSet``` is weak, which means that references to items in it are kept weak. If there are no additional references to an item in the ```WeakSet```, those objects can be garbage collected.
+
+Simply put, a ```Set``` is similar to an array in that it can only contain unique values, but it can still be iterated using techniques like ```for``` loops and ```.forEach```.
+```
+WeakSet```, like a ```Set```, is a collection of items distinct from one another. Still, it varies because ```WeakSet``` may only hold objects and cannot have arbitrary values like texts or integers.
+
+Finally, as the name implies, ```WeakSets``` are weak, as they employ weak references.
+
+Using weak references has the interesting side effect of rendering ```WeakSet``` uncountable. There is no means to iterate through the items included within the collection since there is no list of current objects stored in it; they are weakly referenced and may be destroyed at any moment.
+A ```WeakSet``` is a collection of one-of-a-kind items. ```WeakSets```, as the name implies, make use of weak references. ```WeakSet()```  has the following properties:
+- It can only hold items
+- Objects in the set may be accessible from other locations
+- It is not possible to loop through it
+
+```
+WeakSet()```, like ```Set()```, has access to similar ```.add()```, ```.has()```, and ```.delete()``` methods.
+Here's an example of ```WeakSet``` in action, along with the methods we can call on it:
+
+Although ```WeakMaps``` and ```WeakSets``` are rarely used in JavaScript, they are useful for rare scenarios and building a good foundation. Strong references are used in most cases. ```WeakMaps``` and ```WeakSets``` temporarily store data as they save us the headache of clearing or cleaning up the memory.
+

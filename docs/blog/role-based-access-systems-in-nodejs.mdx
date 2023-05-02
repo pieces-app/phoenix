@@ -1,0 +1,196 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dc2c88ea6b768a29e7bc40_rbas_0a501eaba791ca3c6b7e0211fa2d1bcd_2000.jpeg)
+"access; node-js"
+# Role-based access systems in Node.js
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+Many times, organizations of all sizes require web developers to limit access to certain resources and the rights to implement certain effects based on the hierarchy of users in the system. In this article, we'll be looking at how we can implement a role-based access system in our<a href="https://www.w3schools.com/nodejs/nodejs_intro.asp" target="_blank" rel="noopener noreferrer"> Node.js</a> server.
+To be able to follow the rest of the article, you need the following:
+- Working knowledge of JavaScript
+- A good understanding of Node.js and how to use it to create a server
+- Working understanding of database creation with Mongoose
+- Postman and knowledge of how to use Postman
+
+Before we continue, let's explain some concepts.
+
+## What is a Role-based access system?
+A Role-based access control (<a href="https://www.imperva.com/learn/data-security/role-based-access-control-rbac/" target="_blank" rel="noopener noreferrer">RBAC</a>) is a security approach that restricts network access and assigns permissions to users based on their role within an organization.
+A simple example of a role-based access system is a blog with a set of permissions that allows users to create, edit, read, or delete articles in a writing application. For this blog, we could implement three roles:
+- Writer
+- Admin
+
+## How does a Role-based access system work?
+Role-based access systems rely on every user or entity within a system having a designated role. This role determines their permissions. Here's how it works:
+- When a user creates an account, a role is assigned to the account based on its group. This role is then stored alongside other information in the database.
+- When the user attempts to access a protected route, our middleware retrieves the user's information from the database.
+- The user's role is cross-checked to confirm if the role of the user matches the required role to access the information requested.
+- If the user's role matches the required role, access is granted. If not, access will be denied.
+
+### Advantages of a role-based access system
+The following are the benefits of using a role-based access system:
+- **Security**: Coupled with proper authentication processes, RBAC enhances overall security as it pertains to privacy, confidentiality, and access management to resources and other sensitive data and systems.
+- **Reduces susceptibility to cyber attacks**: As different groups have different roles and no one person has sole control of the system, cyber-attacks on a single account are less likely to cause substantial harm to systems.
+- **Decreases unnecessary customer support: **In some systems, multiple passwords are assigned to a user for different routes and endpoints. The more passwords are assigned to a user, the more likely they are to forget them. Role-based access control takes away the need for multiple passwords and instead grants access based on the initial role assigned to a user.
+- **Establishing organizational structures:** RBAC makes it easy to distinguish which user is responsible for each task. This makes it easier to know who did what and uncover the culprit of an information leak or a network issue.
+
+### Disadvantages of a Role-based access system
+Despite the numerous advantages of a role-based access system, there are certain downsides to this system. Some of these are:
+- **Role explosion: **When a new worker or team is onboarded and their duties haven't been properly outlined, more roles may be created. Similarly, when a user from a different group requires access to information from another group, a new role is assigned to this user. The addition of many roles makes it difficult to keep track of who has access to what, making the role structure increasingly complex and compromising the effectiveness of the system.
+- **Conflicting combinations: **Different roles assigned to different users can contain conflicting access. For example, it’s possible that a user can be given given a role that enables them to create an order and the role required to approve the same order. This can create business threats.
+
+## Best practices for implementing a role-based access system
+When building a role-based access system, there are certain things to consider and actions to be taken to maintain the system and reduce confusion. Some of these are:
+- **Define** data and resources to which access should be restricted.
+- **Classify **users into different groups based on their roles and required access to certain information. Any unnecessary exceptions should be cleaned up.
+- **Avoid creating too many roles**. Creating too many roles defeats the purpose of the system and might lead to role explosion.
+- **Make roles reusable.**  If only one user in a system has a particular role, that role should not be managed by a role-based system. All defined roles should apply to groups of people, otherwise, you'll have too many roles.
+- **Analyze** how roles can be changed when necessary, how new users can be registered, and how old accounts can be deleted from a group.
+- **Continually adapt**. The first iteration of a role-based system will require some changes, so the system should be continually checked and adapted to encompass a growing organization.
+
+## Building our Node.js web server
+For better understanding we'll be building a server for a company that has three departments:
+- Marketing Department
+- Human Resources Department
+- First, we'll create a directory for our server. Navigate to a suitable directory and run the following code in your terminal:
+
+For this project, we'll use the following dependencies and packages:
+- **<a href="https://www.npmjs.com/package/dotenv" target="_blank" rel="noopener noreferrer">dotenv:</a> **This package loads environmental variables from an env file into Node’s process.env object.
+- **<a href="https://www.npmjs.com/package/bcrypt" target="_blank" rel="noopener noreferrer">bcrypt</a>**: This is used to hash our passwords and other sensitive information before sending them to the database to protect us against a breach of our database.
+- **<a href="https://www.npmjs.com/package/body-parser" target="_blank" rel="noopener noreferrer">body-parser</a>**: This is used to parse incoming data from the request body and attaches the parsed value to an object which can then be accessed by an express middleware.
+- **<a href="https://www.npmjs.com/package/jsonwebtoken" target="_blank" rel="noopener noreferrer">jsonwebtoken</a>**: This provides a means of representing claims transferred between two parties, ensuring that the information transferred has not been tampered with by an unauthorized third party.
+- **<a href="https://expressjs.com/" target="_blank" rel="noopener noreferrer">Express.js</a>**: This makes building APIs and server-side applications with Node effortless by providing us with useful features such as routing, implementing middleware, and so on.
+- **<a href="https://mongoosejs.com/" target="_blank" rel="noopener noreferrer">Mongoose</a>**: Helps us connect with our database and provides features such as schema validation, managing relationships between data, etc.
+
+For our database, we'll be using a mongo atlas database. You can create an account and easily link it to your Express server by following these steps:
+To create our employee schema, copy the code below:
+
+Before the role-based access system checks for the role of the user, we'll need to set up a route to get our employees into the system. After this, we'll grant them access to certain resources based on their roles.
+
+We’ll set up our logic for user signup, login, and authentication. Let’s start with signup.
+For our Signup endpoint, we will do the following:
+- Receive the user's information from the frontend request
+- Hash the password
+- Send the information to our database
+- Redirect the employee to the sign-in route
+```
+const bycrypt = require('brypt');
+const Employee = require("../Database/employee");
+const employeeSignup = async (req, role, res) => {
+  try {
+    //Get employee from database with same name if any
+    const validateEmployeename = async (name) => {
+      let employee = await Employee.findOne({ name });
+      return employee ? false : true;
+    };
+    //Get employee from database with same email if any
+    const validateEmail = async (email) => {
+      let employee = await Employee.findOne({ email });
+      return employee ? false : true;
+    };
+    // Validate the name
+    let nameNotTaken = await validateEmployeename(req.name);
+    if (!nameNotTaken) {
+      return res.status(400).json({
+        message: &#x60;Employee name is already taken.&#x60;,
+      });
+    }
+    // validate the email
+    let emailNotRegistered = await validateEmail(req.email);
+    if (!emailNotRegistered) {
+      return res.status(400).json({
+        message: &#x60;Email is already registered.&#x60;,
+      });
+    }
+// Hash password using bcrypt
+    const password = await bcrypt.hash(req.password, 12);
+    // create a new user
+    const newEmployee = new Employee ({
+      ...req,
+      password,
+      role
+    });
+    await newEmployee .save();
+    return res.status(201).json({
+      message: "Hurry! now you are successfully registred. Please nor login."
+    });
+  } catch (err) {
+    // Implement logger function if any
+    return res.status(500).json({
+      message: &#x60;${err.message}&#x60;
+    });
+  }
+}
+```
+With that done, we have set up our signup logic. Let's set up our login logic.
+Every employee that wants to log in has to log in from the route designed for his department. For example, if a software engineer tries to sign into the system via the login route for the marketing department, access will be denied.
+
+For our login route we'll do the following:
+- Receive the employee's information from the front-end request
+- Verify that the employee exists in our database
+- Check if the employee is signing in via the correct route for their department
+- If the user is signing in through the route for their department, we'll then check if the password is correct
+- If the password is correct, the user information coupled with a JWT token will be sent to the client side
+
+Every logged-in user has a<a href="https://jwt.io/" target="_blank" rel="noopener noreferrer"> JWT</a> token; we'll create a<a href="https://expressjs.com/en/guide/using-middleware.html" target="_blank" rel="noopener noreferrer"> middleware</a> that checks for a token. The presence of a token indicates that the user is logged in. This middleware will also<a href="https://auth0.com/docs/secure/tokens/json-web-tokens/validate-json-web-tokens" target="_blank" rel="noopener noreferrer"> verify</a> the token.
+
+We'll also create another middleware for restricting access to certain routes to only users with specific roles.
+```
+/**
+ * @DESC Verify JWT from authorization header Middleware
+ */
+const employeeAuth = (req, res, next) => {
+  const authHeader = req.headers["authorization"];
+  console.log(process.env.APP_SECRET);
+  if (!authHeader) return res.sendStatus(403);
+  console.log(authHeader); // Bearer token
+  const token = authHeader.split(" ")[1];
+  jwt.verify(token, process.env.APP_SECRET, (err, decoded) => {
+    console.log("verifying");
+    if (err) return res.sendStatus(403); //invalid token
+    console.log(decoded); //for correct token
+    next();
+  });
+};
+/**
+ * @DESC Check Role Middleware
+ */
+const checkRole = (roles) => async (req, res, next) => {
+  let { name } = req.body;
+  //retrieve employee info from DB
+  const employee = await Employee.findOne({ name });
+  !roles.includes(employee.role)
+    ? res.status(401).json("Sorry you do not have access to this route")
+    : next();
+}
+```
+The employee auth function checks for the presence of a JWT. If it finds any, it then checks if it is correct.
+The checkrole function checks if the user requesting access has the required role to access that route.
+
+### Setting up our routes
+In this section, we'll be creating the following sets of routes and applying the required middleware.
+- Sign-up routes for each department
+- Login routes for each department
+- Protected routes for each department
+
+To test out our application, we'll be creating a demo user named Victor with a Software Engineering role.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63c0198f139e8e0eec99ee53_image4_5d66cab0db2ebe24c252cf40f94d590c_800.jp)
+
+With our user created, let's try logging in.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63c0198f139e8ee33699ee51_image2_f68cdafbafb824b5e274862947062d02_800.jp)
+
+Our user logged in correctly! Now, let's try logging in from the Human Resources department’s route.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63c0198f139e8ed09199ee50_image3_c1822bb330c637a0119591218a4f9954_800.jp)
+
+We can see that our user cannot log in via another department’s route. Success!
+
+Now, let's try accessing the protected routes.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63c0198f139e8e6cac99ee54_image1_370ef3a443ca9d363654804e00914c6c_800.jp)
+
+Our user can access the software engineering protected route because that role is assigned to him. Let's try accessing the human resource route with our software engineering user.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63c0198f139e8e8ea199ee52_image5_2802ea8f828cbd6bdd6e4c9597f984d3_800.jp)
+
+From the above images, we can see that all of our routes work as expected. They can all be tweaked, and more routes can be added with same logic, but I'll leave that to you.
+
+## Conclusion
+In this article, we talked about the Role-based access system, its benefits, and its downsides. We also looked at how we can implement a role-based access system in Node.js. Happy coding!
+
+### Resources

@@ -1,0 +1,130 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd5da7118f263e6741c88a_skeletonscreen_ae7be1a4b127875e833a01389063b8db_2000.jpeg)
+"javascript-8"
+# Create an Easy Slider for an E-commerce Dashboard With Swiper.js
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+Easy access to a product often leads to an increase in demand for it. In an e-commerce website, visibility means a lot. Products that are easily seen usually have higher sales rates. Several React components make it simple for goods and products to be easily seen on an e-commerce site. These components include FullPage.js, Swiper.js, ReactSwipable, and more.
+In this article, we’ll learn what Swiper.js is, highlight its functionalities, and explore a potential use case in an e-commerce website. This information is important because it makes developers aware of useful tools like Swiper.js that easily implement amazing UI features.
+
+**Prerequisites:**
+To follow this tutorial, you’ll need the following:
+- A clear understanding of frontend technologies, i.e. HTML, CSS, and JavaScript.
+    • Node.js installed on your computer.
+    • Basic knowledge of React.js.
+
+## What is Swiper.js?
+The best on the market, Swiper is a cutting-edge free mobile carousel component with impressive native behavior and hardware-accelerated transitions. It’s intended to be used in mobile websites, mobile web apps, and mobile native/hybrid apps. Swiper is a modern touch slider focused only on modern apps/platforms to provide the best experience, as well as simplicity. It’s available for most popular frameworks like React, Vue, Angular, and so on. In addition, Swiper is a part of Framework 7, a comprehensive framework for building iOS and Android apps, and it’s also a default slider component in the Ionic Framework. To use Swiper.js, you must install it with its npm package:
+Swiper.js is mostly used for sliders or carousels. The following are some of the use cases of Swiper.js:
+- **Image gallery organization:** With Swiper.js, images and contents are easily managed. Developers only need to install Swiper.js to use any of its properties.
+- **Multiple-display navigation:** Swiper.js' exceptional multiple-display navigation implementation allows users to view more content without clicking or scrolling.
+- **Dashboard animation:** A dashboard should be interactive and have a good display. With Swiper.js, dashboard animation is very easy, from display to interaction.
+
+### Styling the Dashboard
+By default, Swiper React uses the core version of Swiper without any additional modules. Therefore, to use any other Swiper.js modules, they need to be installed.
+Swiper.js must be installed in the application before we start working on the dashboard UI.  To do this, let’s run the accompanying command in the working directory of the application:
+```
+npm install swiper```<a href="https://maryanda.pieces.cloud/?p=858c4e881d" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+After Swiper.js has been successfully installed in the application environment, we need to import the required methods and files into the "App.js" component. In this instance, we’re importing the following:
+```
+import React from "react&quot;;
+// Import Swiper React components;
+import { Swiper, SwiperSlide } from "swiper/react&quot;;
+import { Navigation, Autoplay } from "swiper&quot;;
+// Import Swiper styles;
+import "swiper/css&quot;;
+import "swiper/css/pagination&quot;;
+import "./styles.css&quot;;
+// import required modules;
+import { Pagination } from "swiper&quot;;```<a href="https://maryanda.pieces.cloud/?p=c0104eb42f" target="_blank" rel="noopener noreferrer">Save this code</a>
+In the above code snippet, we imported React, Swiper, and SwiperSlide from ```swiper/react```, Navigation and Autoplay from “Swiper,” ```swiper/css, swiper/css/pagination```, ```styles.css``` (our custom CSS stylesheet), and Pagination from ```swiper```.
+Our stylesheet is located in the 'styles.css' file that we imported. The styles in this article are contained in the stylesheet. (<a href="https://gist.github.com/prince-joel/ede986dba221767999f27352b886bb51" target="_blank" rel="noopener noreferrer">Gist</a>)
+
+Now, we’ll create a new variable called ```pagination``` inside the ```App.js``` component, which will be used as the Swiper component's pagination option.
+The ```pagination``` component shows an active slide and a button that can be clicked to move between slides. The ```pagination``` is made using the following code:
+```
+const pagination = {
+   clickable: true,
+    renderBullet: function (index: number, className: string) {
+ return '<span class="' + className + '">' + (index + 1) + "</span>&quot;;
+   },
+ };```<a href="https://maryanda.pieces.cloud/?p=2ecb488f82" target="_blank" rel="noopener noreferrer">Save this code</a>
+Next, we need to create the returned content of the ```App.js``` component. A hero section with a full-width slider, a 3-column grid slider, and a 3-column grid product gallery make up this content.
+The complete code is available here: <a href="https://gist.github.com/prince-joel/91458840e0586f7661e559919373b89a" target="_blank" rel="noopener noreferrer">Gist</a>.
+In the gist, you can see that the ```Swiper``` component was used various times, as shown in this example:
+```
+<Swiper
+         pagination={pagination}
+         autoplay={{
+           delay: 4000,
+           disableOnInteraction: true,
+         }} modules={[Navigation, Autoplay, Pagination]}
+>
+<SwiperSlide>
+<img src={img1} loading="lazy" alt="Slide 1" /></SwiperSlide> <SwiperSlide><img src={img2} loading="lazy" alt="Slide 2" /></SwiperSlide> <SwiperSlide><img src={img3} loading="lazy" alt="Slide 3" /></SwiperSlide> <SwiperSlide><img src={img4} loading="lazy" alt="Slide 4" /></SwiperSlide>
+</Swiper>```<a href="https://maryanda.pieces.cloud/?p=def04f9998" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+The code snippet above shows the component for the hero section full-width slider. The ```Swiper``` component wraps a group of ```SwiperSlide``` components and accepts options, including the following:
+- Pagination: an object that returns a component for pagination.
+- Autoplay: an object used to set the amount of time it takes for the slide to change to the next slide automatically. We can also set the slide to stop changing if a user interacts with it.
+- Modules: an array of methods used in a particular Swiper slide.
+The ```SwiperSlide``` components then wrap the main content that each slide show displays. In this case, we only wanted to display images, so we passed the ```img``` tag as a child to this component. This can be seen in the image below:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63b5c145deebfe794ae78e27_Screenshot2023-01-04at1_10_37PM_5279fb7209b6dc67d06916e4ef9b4664_800.png)
+
+Another example is the effect-card slider. This slider arranges the ```SwiperSlider``` as a stack of cards, and users can use the mouse to shuffle between the stack. We can implement the effect-card slider with this format:
+
+```
+<Swiper effect={"cards"} grabCursor={true} modules={[EffectCards]} className="mySwiper center-main" >
+        <SwiperSlide>
+         <img src={img5} loading="lazy" alt="Product 1" />
+             </SwiperSlide>
+             <SwiperSlide>
+         <img src={img6} loading="lazy" alt="Product 1" />
+             </SwiperSlide>
+             <SwiperSlide>
+         <img src={img7} loading="lazy" alt="Product 1" />
+       </SwiperSlide>
+       <SwiperSlide>
+         <img src={img8} loading="lazy" alt="Product 1" />
+       </SwiperSlide>
+</Swiper>
+```
+
+<a href="https://maryanda.pieces.cloud/?p=422c4fbe13" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+In the code snippet above, we used the ```cards``` options for the ```effect``` props, and we also set the ```grabCursor``` props to true, which enables users to drag each slide into view. We must also set the ```modules``` props to ```EffectCards```.
+The image below illustrates the outcome:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63b5c145deebfe0939e78e17_Screenshot2023-01-04at1_09_19PM_8f28eb5355baa928143519a18ddaf1c5_800.jp)
+
+Another example is the 3-column slider. We have a div containing 3 similar sliders with this format:
+
+```
+<Swiper navigation={true}
+           autoplay={{
+             delay: 2500,
+             disableOnInteraction: false,
+           }} modules={[Navigation, Autoplay]} className="mySwiper">
+           <SwiperSlide>
+            <img src={img9} loading="lazy" alt="Product 1" />
+           </SwiperSlide>
+           <SwiperSlide>
+            <img src={img5} loading="lazy" alt="Product 1" />
+           </SwiperSlide>
+           <SwiperSlide>
+            <img src={img6} loading="lazy" alt="Product 1" />
+           </SwiperSlide>
+</Swiper>
+
+```
+
+<a href="https://maryanda.pieces.cloud/?p=bc6346bbee" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+In this case, we are passing more content than just images into the ```SwiperSlide``` component. Here is what the result looks like:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63b5c147deebfed908e78f37_Screenshot2023-01-04at1_10_18PM_e5f07341cb6a5229477e3dba12944b71_800.png)
+
+## Conclusion
+In this article, we learned about Swiper.js and discussed different use cases for Swiper.js.
+We also demonstrated how to use Swiper.js to create an e-commerce React application. Are you interested in using Swiper.js to build your application, make improvements, or look over the sample code? Check out the <a href="https://github.com/prince-joel/ChrisSwiper" target="_blank" rel="noopener noreferrer">Repo</a>. You can access the app <a href="https://chris-swiper.vercel.app/" target="_blank" rel="noopener noreferrer">here</a>. Happy coding!

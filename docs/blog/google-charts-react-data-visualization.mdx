@@ -1,0 +1,255 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd7ba1c00b72975519cacb_bar-graph_be371f63939856be86720683bb9f2624_2000.jpeg)
+"react-7; data-4"
+# Using Google Charts for React Data Visualization
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+To truly understand data, try using charts and other types of data visualization instead of raw numbers. In web apps, charts are particularly useful for creating dashboards that visualize site activities. In this tutorial, we'll learn how to use Google Charts to visualize React data. React Google Charts is a thin, typed React wrapper with a free charting service and one of Google’s JavaScript libraries.
+Google Charts is a free, easy-to-use interactive web service that developers use to visualize data. Google Charts has a ton of customization options, ranging from simple line graphs to more complex map trees. To create a chart, the user inputs data and the service returns the requested chart images. 
+
+## Why Google Charts?
+The Google Charts library is highly customizable and easy to use, making it an excellent choice for React developers. Unlike other libraries, it’s also compatible with all platforms, ranging from mobile to desktop. It uses HTML and SVG at its core, and therefore doesn’t depend on any additional library or plugin.
+
+## Setting Up a Project
+We’ll start by setting up our React project. First, run the command below in your terminal:
+
+```
+npx create-react-app react-chart-app
+```
+Once the command above finishes downloading the required libraries for the React app, navigate to the project directory using the command below:
+
+Install the ```react-google-chart``` plugin using the command below:
+To begin, let’s build our first components. First, create a file called ```Chart.jsx``` in the ```src/``` folder:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6350513507f92f69d0fa12d2_image1_0187d88d1c857ca0fb0b62612a145df2_800.png)
+
+Paste the code below:
+```
+import { Chart } from "react-google-charts&quot;;
+export const data = [
+        [
+ "Courses",
+ "Mathematics",
+ "English",
+ "Chemistry",
+ "Physics",
+ "Biology",
+ "Average"
+        ],
+        ["Sam", 18, 10, 12, 16, 5, 12.2],
+        ["Jessica", 13, 11, 5, 18, 2, 9.8],
+        ["Suka", 15, 11, 7, 18, 9, 10],
+        ["Isaac", 19, 11, 6, 8, 5, 9.8],
+        ["Dee", 12, 11, 9, 16, 6, 10.8]
+];
+export const options =  {
+ "title": "Test score in a classroom between 5 students",
+ "vAxis": { "title": "Grade" },
+ "hAxis": { "title": "Students" },
+ "seriesType": "bars",
+ "series": { "5": { "type": "line" } }
+      };
+function Charts() {
+  return (
+      <Chart
+ chartType="ComboChart"
+        data={data}
+        options={options}
+        width={"100%"}
+        height={"400px"}
+      />
+  );
+}
+export default Charts
+```
+With the code block above, we imported the ```Chart``` components from the ```react-google-charts``` previously installed plugin. The ```Chart``` component contains props that enable graphical representation. For example, the ```chartType``` prop gives us the ability to change the chart display type, the ```data``` prop accepts our input data, and the ```options``` prop accepts a map of options that contains the ```title```, ```color```, ```backgroundcolor```, etc.
+
+### Updating ```App.js
+```
+
+Let’s clean up our ```App.js``` by replacing it with the code block below:
+```
+import './App.css';
+import Charts from "./Charts&quot;;
+function App() {
+ return (
+    <div className="App">
+     <Charts />
+    </div>
+  );
+}
+export default App
+```
+The code block above simply imports and renders our ```Charts``` components.
+To see what we’ve built so far, run the code on your browser using the command below:
+Here, we have a Google chart showing the various test scores of five students.
+
+## Populating Google Charts with React Hooks
+Before diving into working with <a href="https://code.pieces.app/blog/creating-custom-hooks-in-reactjs" target="_blank" rel="noopener noreferrer">React Hooks</a>, let’s first get a grip on what hooks are.
+React Hooks are state managers introduced in React 16.8. They allow us to use features like ```useState()``` and more without having to write a class.
+We’ll be simulating responses from an external source or API, and then using React Hooks to manage the states and keep track of the data.
+
+### Working with JSON
+First, create a ```data.json``` file in the src/ folder:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6350513507f92f4539fa12d1_image4_c9057ea195aecf0de1a7c90895d69a55_800.png)
+Next, paste the JSON code below into the newly created file:
+```
+{
+  "charts": [
+    {
+      "name": "Combo Chart",
+      "chartType": "ComboChart",
+      "data": [
+        [
+ "Courses",
+ "Mathematics",
+ "English",
+ "Chemistry",
+ "Physics",
+ "Biology",
+ "Average"
+        ],
+        ["Sam", 18, 10, 12, 16, 5, 12.2],
+        ["Jessica", 13, 11, 5, 18, 2, 9.8],
+        ["Suka", 15, 11, 7, 18, 9, 10],
+        ["Isaac", 19, 11, 6, 8, 5, 9.8],
+        ["Dee", 12, 11, 9, 16, 6, 10.8]
+      ],
+      "options": {
+        "title": "Test score in a classroom between 5 students",
+        "vAxis": { "title": "Grade" },
+        "hAxis": { "title": "Students" },
+        "seriesType": "bars",
+        "series": { "5": { "type": "line" } }
+      }
+    },
+    {
+      "name": "Pie",
+      "chartType": "PieChart",
+      "data": [
+        ["Task", "Hours per Day"],
+        ["Code", 11],
+        ["Eat", 5],
+        ["Tweet", 2],
+        ["Watch TV", 3],
+        ["Sleep", 4]
+      ],
+      "options": {
+        "title": "Pie Chart displaying daily activities",
+        "is3D": true
+      }
+    },
+    {
+      "name": "Scatter Chart",
+      "chartType": "ScatterChart",
+      "data": [
+        ["Task", "Hours per Day"],
+        ["Code", 7],
+        ["Write", 11],
+        ["Sleep", 2],
+        ["Read", 5],
+        ["Watch TV", 2]
+      ],
+      "options": {
+        "title": "Scattered Chart displaying daily task"
+      }
+    }
+  ]
+
+```
+The code above is in JSON format and will serve as our API response.
+
+### Creating States
+We’ll be managing two states: the loading state (when the data is coming from the API) and the data state (when displaying the data in our chart). Paste the code block below into the ```App.js``` file:
+```
+import React, { useState, useEffect } from 'react';
+function App() {
+ const [loading, setLoading] = useState(false);
+ const [data, setData] = useState(false);
+  useEffect(() => {
+  }, []);
+  .....
+
+```
+In the code block above, we imported the ```useState``` and ```useEffect``` components from the React library and then created two states: one for our loading gif, and the other to display the response data with ```useState```.
+
+### Manipulating our State
+Now, let’s manage our state by updating the code in the ```App()``` function with the code block below:
+```
+import "./App.css&quot;;
+import response from "./data.json&quot;;
+import Charts from "./Charts&quot;;
+import { useState, useEffect } from "react&quot;;
+function App() {
+ const [loading, setLoading] = useState(false);
+ const [data, setData] = useState(false);
+  useEffect(() => {
+ const id = setInterval(() => {
+      setLoading(false);
+      setData(response);
+    }, 3000);
+ return () => {
+      clearInterval(id);
+    };
+  }, [loading]);
+  .....
+
+```
+With the code block above, we import the ```data.json``` as a response that is passed into a timer function. This creates a 3-second delay to simulate a fetch request, after which we set our loading to false (stop the spinner) and set the data to the response data.
+
+### Using Multiple Charts
+React Google Charts has a variety of chart types at our disposal.
+In this section, we’ll be implementing a few of the charts to visualize our data from the ```data.json``` file.
+When loading, we want to display a loading gif. Import the loading gif into the ```App.js``` file:
+```
+import spinner from "./spinner.gif"
+```
+Now, let's populate our app with other chart types. Update the return block by copying and pasting the code block below:
+```
+function App() {
+  .....
+  return (
+    <div className="App">
+      {loading ? (
+        <img src={spinner} alt="Loading" height={400} width={400} />
+      ) : (
+        data.charts.map((i, index) => <Charts response={i} key={index} />)
+      )}
+    </div>
+  );
+
+```
+We’re looping through the response stored in the ```data``` hook and passing it to our ```Charts``` components as props while listening to the loading state. While the data is loading, the loading gif is displayed, and after 3 seconds, the data is displayed.
+
+### Updating the Google Charts Component
+In the previous section, we successfully mapped and passed our response as props into the Charts component. Let’s update our Charts component to receive the props and render the charts. To achieve this, update the code in ```src/Charts.jsx```:
+```
+import { Chart } from "react-google-charts&quot;;
+function Charts({ response }) {
+  const { data, options, chartType } = response;
+  return (
+    <Chart
+      chartType={chartType}
+      data={data}
+      options={options}
+      width={"100%"}
+      height={"400px"}
+    />
+  );
+}
+export default Charts
+```
+In the code block above, we destructure ```data```, ```options```, and ```chartType``` from the response prop, and then assign their corresponding property to the ```Chart``` component.
+We’ve successfully built our chart application! Let’s refresh it to see the charts as shown below:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63505311dcb3b056c98d0a7d_ScreenShot2022-10-19at3_41_20PM_abab8a16a4f840abb42756c79493d830_800.png)
+
+## Use Cases for Data Visualization
+
+Keeping track of user data and activities can be rigorous for users, admins, and developers since data is often presented in several rows and columns. This makes reading and interpreting data a strenuous task for the analyst. With visual data, anyone can easily understand it, thus making it easy for the brain to capture and process.
+Visual charts are most often used in:
+- Admin dashboards
+- Network mapping
+- Real-time data flow in stock markets
+
+## Conclusion
+In this tutorial, we explored React Google Charts, its uses, and how to use it to create dynamic charts for our applications. We also broadened our expertise by looking at other techniques for building complicated applications with React Hooks and the ```react-google-charts``` package.

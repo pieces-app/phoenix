@@ -1,0 +1,93 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd7efee12bd20d981ce0ec_regression-testing_167d153b5eb89190eef55bbc12a987b3_2000.jpeg)
+"testing-4"
+# Using regression testing to produce working software
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+Sometimes, changes in a software program occur due to alterations of new codes and requirements. For instance, when there’s a slight change in your code, another part of the code can suddenly start malfunctioning. Or, you deploy a bug, and then the application ceases to work as it should. Regression testing ensures that these alterations don't negatively influence the pre-existing features and functionality, ensuring that the product works well even with these new modifications.
+
+## What is Regression Testing?
+<a href="https://support.smartbear.com/testcomplete/docs/testing-approaches/regression-testing.html" target="_blank" rel="noopener noreferrer">Regression testing</a> is conceptually testing an already-tested program following new alterations to ensure that defects are not established in a stable area in the software due to these alterations. A regression test is simply a system test intended to ensure that a slight switch in a part of the system does not break an existing functionality somewhere else. Regression testing is essential because without it, it’s difficult to determine the source of new problems.
+
+For better comprehension, simply put:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/633ef57b18c3280fa9e8dd7a_image1_a898019987a57e9a8bff6f3965fc8376_800.png)
+
+Regression testing usually involves a series of tests.
+
+### Types of Regression Testing:
+- **Unit regression testing: **When coding changes for a single unit, the authoring developer of the code reruns all of the formerly passed unit tests, making this testing very effective compared to other types of testing. Unit tests are isolated.
+- **Progressive regression testing: **Progressive regression testing** **is efficient in cases where the developer designs changes in the software or application requirements.
+- **Selective regression testing: **This test involves rerunning only specific functions and/or variables as opposed to testing all software units.** **Only those aspects that may have been affected by a change are tested.
+- **Retest all regression testing: **All tests are rerun with this type of regression test, resulting in the execution of unnecessary test cases. This strategy is not recommended for cases of minor changes to an app. Retesting all is not advisable for minor modifications due to its high expense and time requirements.
+- **Complete regression testing: **Complete regression testing is useful when multiple changes have been implemented in pre-existing codes. Executing this type of test is valuable for identifying unexpected bugs. After complete regression testing, the finalized software is ready for release.
+
+## Why and When is Regression Testing Necessary?
+
+### Why Do Regression Testing?
+- It raises our chances of detecting bugs caused by software or application changes.
+- It's cost-effective. Regression testing helps to find bugs in the early development stages, thereby reducing the cost to resolve them.
+- It helps in the research of unwanted side effects due to changes.
+- It ascertains that fixed issues don't occur again.
+- It guarantees that there are no errors due to code changes.
+- It ensures the accuracy of the program.
+
+### When Should You Do Regression Testing?
+- When you add new functionalities, you should perform regression testing after the code is changed or updated.
+- When there is a change requirement.
+- When a defect has been fixed, or an actual bug has been found.
+- When there is a performance issue, such as the slow loading of a page.
+- When you update a program from one environment to another.
+- When there’s been a patch fix. For instance, poorly designed patches can sometimes lead to more problems. Regression testing helps you see the success or potential problems stemming from a patch fix.
+
+You can select test cases for the application of regression testing.
+
+### Which Test Cases Should Regression Testing be Used for?
+- Test cases with frequent defects.
+- Test cases that ascertain the primary functionality of the product.
+- Complex test cases.
+- Integration test cases.
+- Functionalities that are used frequently.
+- Test cases that cover the module where alterations exist.
+- Test cases that, for no particular reason, fail regularly.
+- Boundary value test cases.
+
+## Diving into Regression Testing
+- Execute unit-level regression tests. Fundamentally, whatever changes you make, you should scrutinize whether or not these changes are working appropriately.
+- Match the altered code and integrate it to create a new application built on the test.
+- Conduct a smoke test to validate the quality of the build before any additional test. You can execute this test automatically.
+- Perform sanity testing, which validates that the new functionality works as expected, and the known defects are resolved before any other tests, or
+- Perform meticulous integration testing to verify whether the interactions between the units in the application are working correctly or not.
+- Schedule regression tests. Depending on the code's size and scope, you should plan for regression tests if either a partial or complete regression test has been executed. Report defects back to the development team. Often, additional runs of regression testing are needed to confirm whether or not the issues have been resolved.
+- Finally, analyze the report and decide what test cases should be added, and then create a new report with this information.
+
+### Basic Steps to Perform in Regression Resting
+- **Select test cases:** Check out areas prone to common defects or that frequently go through updates or code changes.
+- **Determine <a href="https://www.qamadness.com/tools-for-regression-testing-2020-overview/" target="_blank" rel="noopener noreferrer">regression testing tools</a>**: Pick out the tools you can use to execute the process successfully.
+- **Pilot regression testing and configuration management:** This protects programming code from disruption during a regression test.
+
+## Methods of Regression Testing
+Regression testing confirms that a modified software application hasn't unintentionally changed and is still functional.
+- **Retesting**: Automated tools perform most of these tests in many cases, and this method retests the whole surface from top to bottom. However, at certain times, automation is unnecessary because using it exclusively ignores the benefits of human testers. So, automated retests are an expensive method because they require more time and resources.
+- **Selective test cases**: This is performed by selecting a limited number of test cases based on needs and requirements. This method permits the team to choose a representative selection of tests that will approximate the whole testing process. The fundamental advantage of this process is that it is performed by human testers, and therefore requires less time than the first method.
+- **Test case prioritization: **This is the most sought-after method. The primary aim here is to prioritize a limited set of test cases to execute more potentially impactful tests ahead of less critical ones. Test case prioritization is done to prioritize test cases that should impact both the current and future base of the software; this way, time, money, and effort are saved.
+- **Hybrid method:** One additional technique combines regression test selection and test case prioritization. This is known as the **<a href="https://www.igi-global.com/chapter/a-hybrid-approach-of-regression-testing-based-requirement-prioritization-of-web-applications/205299" target="_blank" rel="noopener noreferrer">hybrid method</a>**.
+
+### Common Tools Used in Regression Testing
+- **<a href="https://www.softwaretestinghelp.com/tools/top-30-functional-testing-tools/" target="_blank" rel="noopener noreferrer">Functional testing tools</a> **permit you to test single elements of a software program for defects, and provide a report to aid development.
+- **<a href="https://katalon.com/resources-center/blog/top-5-free-api-testing-tools" target="_blank" rel="noopener noreferrer">API testing tools</a>**. Application program interface testing permits you to set input criteria to validate the software output performance expectations.
+- **<a href="https://www.javatpoint.com/unit-testing-tools" target="_blank" rel="noopener noreferrer">Unit testing tools</a>** allow you to evaluate distinct code elements in a program to ensure the high quality and functionality of every piece of code integrated into the application.
+
+### Challenges of Regression Testing
+- **It’s time-consuming and expensive.** To test and retest an already-developed application that has been deployed is mainly considered a drain on resources and the workforce.
+- **It’s complex and challenging**: As new features and changes are implemented in a software product, more test cases are connected to the regression test suite, thereby expanding product functionalities and overwhelming testers.
+- **It’s difficult to communicate its value**: Explaining or justifying the value of regression testing to non-technical leaders of your company can be challenging.
+
+## Tips for Effective Regression Testing
+Below are some potential counter-strategies to challenges in regression testing:
+- Choose a testing schedule you can maintain throughout the software development life cycle.
+- Use a simple test management tool that does all of the tasks for you.
+- Break down these tests into smaller pieces, and categorize them for ease of understanding.
+- Consider the customer’s risk. The product is made for the customer, so you must keep their potential risk in mind.
+- Prioritize effectively. When using any form of test prioritization to order your regression test, try to find a rational way to prioritize to avoid errors.
+
+## Conclusion
+As mentioned above, there are three main techniques for regression testing, plus a hybrid technique. It’s important to note that the purpose of regression testing is to make sure that bugs don’t come back to haunt you in later stages. A regression test is conducted after adding a new feature to check if it has affected the functionality of older features. Formerly executed test cases are re-executed to verify the impact of the change.

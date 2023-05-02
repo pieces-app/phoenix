@@ -1,0 +1,132 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd58f4e6dced0ee59640ce_building_macos.jpg)
+"flutter; animation"
+# Build an Imitation Mac Dock With Flutter
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+id="">A couple of months ago, I started doing some UI challenges✨ in Flutter. The goal of these challenges was to be creative and explore building unique UI experiences in Flutter while sticking to what the framework offers.
+id="">As a result, I created some 😁 really interesting animations and designs in Flutter that showcase what you can build with it. In this article, I’ll walk you through one of my creations, inspired by the macOS dock experience.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62df086d4db9388363f9b857_1*hy0goSNRPgf5o8a7LpKe5w.gif" alt="The finished macOS dock animation." id="" width="auto" height="auto" loading="au)
+
+id="">By the end of this article, along with how to build this Flutter dock, you’ll have learned a little more about:
+
+- id="">Implicit Animations
+- id="">Design breakdown
+
+## Getting Started
+id=""><a href="https://github.com/rutvik110/MacOS-Inspired-Doc-Starter" target="_blank" id="">Download the starter project</a>. If you're not familiar with Flutter, check out this guide to <a href="https://code.pieces.app/blog/building-a-flutter-web-app-from-scratch-a-complete-guide" target="_blank" id="">building a Flutter app from scratch</a>. 
+id="">Once you build it, you’ll see a black screen, but we’ll soon add our animated dock there.🧑🏽💻
+id="">Build &amp; run:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62df086da52f0c2f0ffbfd2e_1*bj6kYwmD-J1PWcC-6eahvw.png" alt="The blank screen that appears when running the starter project mentioned above." id="" width="auto" height="auto" loading="au)
+
+## Constraints And Implicit Animations
+id="">Before getting our hands dirty in the code, are you familiar with <strong id="">Constraints** and <strong id="">Implicit Animations** in Flutter?🤔
+id="">If you are, then you can skip the next two sections, which talk about <strong id="">Constraints** and <strong id="">Implicit Animations**, and 🏎 race straight up to the <strong id="">Design Breakdown** section.
+id="">But if you’re not familiar, then you should read through the following two sections to understand some basics of these two topics.
+
+### Understanding Flutter Constraints
+id="">UI development in Flutter is quite different from the way it is in HTML and other frameworks.
+id="">We don’t deal with sizes directly, but rather with constraints. The constraints are basically a set of four points: the min-max width and the min-max height.
+id="">There’s one rule of thumb that guides Flutter UI development:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62df086d83176b457034f42c_1*uN1lVhVQsalsnzwbaJIuzQ.png" alt="An image that reads "Constraints go down. Sizes go up. Parent sets position." " id="" width="auto" height="auto" loading="au)
+id="">While you’re building Flutter UI, you will see this <strong id="">parent-child composition**. When the parent widget wants to lay out on the screen, it checks if it has any children. If it does, then it passes its constraints to its children and asks them how big/small they want to be. The child widget may repeat this process if it has children of its own.
+id="">Once the Parent gets the sizes for each of its child widgets, it then checks those sizes against its own constraints. Based on this, it calculates the final size for each of its child widgets and lays them out.
+id="">As you can see, the one in control of determining the size and position of a widget is the Parent widget, not the Child widget.
+id="">This is too big a topic to continue in this article; if you want to read about this in more depth, <a href="https://docs.flutter.dev/development/ui/layout/constraints" target="_blank" id="">check out the official docs</a>.
+
+### Implicit Animations
+id="">One of the reasons it's easy to build beautiful Flutter animations is that it provides many ways to animate widgets depending on your use case.
+id="">One of the ways is using <strong id="">AnimatedFoo** widgets (also called &nbsp;<strong id="">Implicit Animation** <strong id="">Widgets**), where <strong id="">Foo** is the property that you want animate.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62df086d8806997592171bbd_1*qWxlRYi5C6u82Qh0nwvlyw.gif" alt="Examples of 5 different Flutter Implicit Animations." id="" width="auto" height="auto" loading="au)
+id="">When working with <strong id="">AnimatedFoo** widgets, you only have to worry about providing the property value. AnimatedFoo widgets handle the animation flow, or the transition from the old value to the new value whenever the property value changes. These will be important for our Mac dock later!
+id="">There are different <strong id="">AnimatedFoo** widgets for animating the different properties of a widget, like <strong id="">AnimatedScale**, <strong id="">AnimatedOpacity**, <strong id="">AnimatedSize**, <strong id="">AnimatedContainer**, etc. We’ll be making use of some of these <strong id="">AnimatedFoo** widgets. You can learn more about them in <a href="https://docs.flutter.dev/development/ui/animations/implicit-animations" target="_blank" id="">the official docs</a>.
+
+## Mac Dock Design Breakdown
+id="">When you’re trying to build animations or any kind of interaction, try to always break down the design into parts. Then, understand each part and its animations and how it’s affected by other components in the design.
+id="">Below is a breakdown of our MacOS&nbsp;dock design:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62df086d39f1ba4a82db147d_1*OY8DKC6THKb4uU2npbPhJg.gif" alt="An illustration of two different animations combining into one finished Mac dock design." id="" width="auto" height="auto" loading="au)
+
+id="">As you can see, there are two main components here:
+- id="">The Mac dock
+id="">In the next sections, we’ll explore how these Flutter animations work in detail and see how we can implement them.
+
+### Adding The Items
+id="">In <strong id="">lib/macos_doc.dart**, replace the <em id="">//TODO: add items ui with the following code:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62e17da96ee313045988bf7e_raycast-untitled%20(21).png" loading="lazy" id="" width="auto" height="auto" alt="Dart code snipp)
+id="">Let’s go over the code step-by-step:
+
+- id=""><strong id="">MouseRegion:** Flutter provides a <strong id="">MouseRegion** widget which we can use to be notified when the user hovers on our item. When the mouse is within the item hover region, we set the <em id="">hoveredIndex to that item’s index and reset it to <em id="">null when the mouse exits the item’s hover region.
+- id=""><strong id="">AnimatedContainer:** This is the container that holds our item. It’s an <strong id="">AnimatedContainer** which will animate its scale and translate itself depending on the <em id="">hoveredIndex.
+- id=""><strong id="">FittedBox**: If the child of this widget has a size larger than the constraints passed down to it, then this widget will scale and position the child to fit within the constraints based on the fit set.
+- id=""><strong id="">The item:** The item in our case is text, so I’m using the <strong id="">AnimatedDefaultTextStyle** for scaling. Your item can be anything else, including an icon or an SVG. Use the appropriate Flutter animation widgets to get the smooth scale animation for them.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62df086d197fa036efe4c59d_1*D9MKsUtLdCbEmVxTmRVm1Q.png" alt="The dock items by themselves, without a dock bar or animations." id="" width="auto" height="auto" loading="au)
+
+### Animating The Items
+id="">Let’s dive a little deeper into our item’s animations.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62df086d0825de4c0b88afa4_1*1lpn-DJAeHBAEOEYqFgjGQ.gif" alt="Examples of two different animations. On the left, the item gets bigger when the mouse hovers over it. On the right, the item raises above the others when the mouse hovers over it. " id="" width="auto" height="auto" loading="au)
+
+id="">Each item on our Mac dock has two animation properties. The first one is the change in its <strong id="">size,** and the second is its <strong id="">translation along the Y-axis**. The item in focus has the max scale and the max translation along the Y-axis. The other items are then scaled and translated accordingly.
+id="">Now, both of these properties change for items depending on their position from the hovered item. The trick to this animation is to calculate these two properties based on the item’s index and the <em id="">hoveredIndex.
+id="">Let’s see how we can calculate those values!
+id="">Replace <em id="">//TODO: add getPropertyValue method with the following code :
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62e186d5028127109fd56734_raycast-untitled%20(23).png" loading="lazy" id="" width="auto" height="auto" alt="Dart code snipp)
+
+id="">First of all, if you’re scared a bit 😅 because of all of the math this method is screaming at you, don’t worry! It’s actually really simple. 😄 I’ll try my best to explain what’s going on here.
+
+id="">The <em id="">getPropertyValue method is a general property value calculator for our scale and translation properties. It has four parameters:
+
+- id=""><strong id="">baseValue:** Value when none of the items are in focus.
+- id=""><strong id="">maxValue:** Value for the hovered item.
+- id=""><strong id="">nonHoveredMaxValue:** Maximum value for the items around the hovered item.
+id="">1. Check if <em id="">hoveredIndex is null. If it is, then return <em id="">baseValue.
+id="">2. Calculate the difference between the <em id="">index of the <strong id="">hovered** item and the <strong id="">current**. Note that <strong id="">we take the positive of the difference**. So, if we try to plot the <em id="">difference for our items by assuming the <em id="">hoveredIndex is <strong id="">2,** then for each <em id="">index we get the following <strong id="">differences** as shown by the graph.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62df086def87d08041c46de7_1*15cnHKBOWtgFk7-W-LbvWg.png" alt="Graph that shows the differences in y-axis translation for each item on our MacOS dock. " id="" width="auto" height="auto" loading="au)
+
+id=""><strong id=""><em id="">[0]**<em id=""> -> 2, <strong id=""><em id="">[1]**<em id=""> ->1, <strong id=""><em id="">[2]**<em id=""> ->0, <strong id=""><em id="">[3]**<em id="">->1, <strong id=""><em id="">[4]**<em id="">->2
+id="">Note how the difference is distributed equally on left and right of the <em id="">hoveredIndex.
+id="">3. For the hovered item, the difference would be 0, as <em id="">hoveredIndex and <em id="">index would be the same. So, we return the <em id="">maxValue for it.
+id="">4. If the difference is <strong id="">less than or equal** to the <em id="">itemsAffected, then we do two things. First, calculate a <em id="">ratio, which is the value between 0.0–1.0 obtained by subtracting the <em id="">difference from <em id="">itemsAffected and then dividing it by <em id="">itemsAffected.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62df086d02b645b5eb770cda_1*8t5h-kBsGYP3sVqS1FES2A.png" alt="Graph showing the ratio of each item. " id="" width="auto" height="auto" loading="au)
+id="">Then, the <em id="">propertyValue is calculated by doing a <em id="">lerpDouble over the <em id="">baseValue and <em id="">nonHoveredMaxValue; the ratio decides the <em id="">lerpDouble percentage.
+
+id="">To understand what <em id="">lerpDouble is actually doing, take a look at the following explainer:
+
+![](3afec68f555387049efb3/62df086e7aac5a508505a37d_1*OueSzozK_Qg1sE1eN0KhqA.gif" alt="An example of how ratios change based on changing values." id="" width="auto" height="auto" loading="au)
+
+id=""><strong id="">a** represents <em id="">baseValue and <strong id="">b** represents <em id="">nonHoveredMaxValue.
+
+id="">For a ratio of <strong id="">0.0,** the <strong id="">lerp** percentage would be <strong id="">0%**, so the <em id="">propertyValue will be <em id="">baseValue. For a ratio of <strong id="">1.0,** the <strong id="">lerp** percentage would be <strong id="">100%**, i.e., the <em id="">nonHoveredMaxValue.
+
+id="">For any other ratio value, the <em id="">propertyValue will lie between the <em id="">baseValue and the <em id="">nonHoveredMaxValue. Thus, items that are closer to the hoveredIndex will have a slightly greater value than those that are further.
+id="">5. If any of the conditions don’t match, we simply return the <em id="">baseValue.
+id="">Now, to finally calculate our scale value and translation values for items, replace <em id="">//TODO: add scale and translation calculator methods with the following code:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62e1893c2be5e57c05116f5c_raycast-untitled%20(24).png" loading="lazy" id="" width="auto" height="auto" alt="Dart code snipp)
+id="">In your item’s Flutter UI code, replace the <em id="">baseItemHeight with the <em id="">getScaledSize(index) and <em id="">baseTranslationY with the <em id="">getTranslationY(index).
+id="">Test your animations by hovering over the items! 🙌
+id="">Build &amp; run:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62df086eefb36e213837be97_1*xt_ytKZ1dEV1LBIMbcMmNQ.gif" alt="Both animations working properly for all of the Mac dock items." id="" width="auto" height="auto" loading="au)
+
+## Adding the Mac Dock
+id="">The most interesting part of this design is how we size the MacOS dock. If you look at the animation carefully, then you’ll realize that the <strong id="">width of the dock is always equal to the width of the item’s row** and its <strong id="">height is equal to the baseHeight of the item’s row when none of the items are in focus**. As the items scale, so does the width of the animated dock.
+id="">But, when the <strong id="">items** are animating, we don’t know what the width of the item’s row will be at any point in the interaction. So, how can we get around this?
+id="">We’ll use our knowledge of constraints. We need to position our dock in the <strong id="">Stack** such that the constraints passed down to it will force it to have the maximum width of the <strong id="">Stack** but limit the height to what we want.
+id="">Let’s see how we can do this!
+id="">Replace <em id="">//TODO: add Dock with the following code:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62e189928da6d0f38c5595d0_raycast-untitled%20(25).png" loading="lazy" id="" width="auto" height="auto" alt="Dart code snipp)
+id="">Welcome, <strong id="">Positioned** widget! This Flutter widget is used to position widgets within the Stack. Here we tell the <strong id="">Positioned** widget that the child should be positioned to <strong id="">0** from the <strong id="">left and right edges** of the Stack and will have a <strong id="">height** equal to <em id="">baseItemHeight. These constraints are then passed down to the <strong id="">DecoratedBox**.
+id="">One thing to understand about <strong id="">DecoratedBox** is that it will size itself to its child’s size when the child is present and the constraints passed to it are not forced constraints.
+id="">Here, as the child is not present, the <strong id="">DecoratedBox** should have zero size, but our <strong id="">Positioned** widget forces it to scale within the constraints we defined as the <strong id="">DecoratedBox** itself doesn’t provide any information about its size and positioning.
+id="">Hot reload the app one final time to see our complete interaction in action! 💯
+id="">Build &amp; run:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62df086d4db9388363f9b857_1*hy0goSNRPgf5o8a7LpKe5w.gif" alt="The final fully animated inspired Mac Dock." id="" width="auto" height="auto" loading="au)
+id="">You did it! 🥳 You now have a really cool animated dock for your Flutter apps! 💙
+id=""><strong id="">Src Code :** <a href="https://github.com/rutvik110/Flutter-Animations/tree/master/lib/flutter_design_challenges/macos_inspired_doc" target="_blank" id="">MacOS Inspired Dock In Flutter</a>
+
+## Next Steps
+id="">🙏 Thanks for spending your precious time reading the article. Hope you had a blast 🙌 reading and learned some cool things!‍ If you want to check out my other creations, head over to <a href="https://github.com/rutvik110/Flutter-Animations" target="_blank" id="">this repo</a>. If you're interested in learning more about Flutter animations, check out <a href="https://code.pieces.app/blog/create-mind-blowing-visuals-using-shaders-in-flutter" target="_blank" id="">this tutorial to build shaders</a>!
+id="">Have an AMAZING day and keep Fluttering! 💙
+
+## Use Pieces to Store Your Flutter Snippets

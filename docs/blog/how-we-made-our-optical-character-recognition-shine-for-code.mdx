@@ -1,0 +1,26 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62ed63aba4f21f0c13ac0b09_ocr.png)
+"machine-learning; ocr; programming"
+# How we made our optical character recognition shine for code
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+id="">Our OCR engine at Pieces.app uses <a href="https://github.com/tesseract-ocr/tesseract" target="_blank" id="">Tesseract</a> as its main OCR engine. Tesseract performs a layout analysis and then uses an LSTM trained on text-image pairs to predict the characters in the image. It is currently one of the best free OCR tools and supports over 100 languages, but is not particularly fine-tuned to code. To make it really shine for code snippets, we added specific pre and post-processing steps to our recognition pipeline.
+
+## Standardized inputs through image pre-processing
+id="">To best support software engineers when they want to transcribe code from images, we fine-tuned our pre-processing pipeline to screenshots of code in IDEs, terminals and online resources like YouTube videos and blog posts. Since programming environments can be in light or dark mode, both modes should yield good results. Additionally, we wanted to support images with gradients or noisy backgrounds, as might be found in YouTube programming tutorials or retro websites, as well as images with low resolution, for example from being compressed from uploading or sending a screenshot.
+id="">‍
+
+![](9efb3/62991fd5cb7f76dd1933f035_1*7nuWo8H5TtpK-QMOBuTBLw.png" width="auto" height="auto" loading="auto" id)
+
+![](9efb3/62991fd568fb6b9c0f679cd5_1*T721ZoLSMh4QP-IyXdMMsQ.png" width="auto" height="auto" loading="auto" id)
+id="">Since Tesseract works best on binarized, light-mode images, we needed to invert dark-mode images in pre-processing. To determine which images are in dark mode, our engine first median-blurs the image to remove outliers, and then calculates the average pixel brightness. If it is lower than a specific threshold, it is determined to be dark and thus inverted. To handle gradient and noisy backgrounds, we use a dilation-based approach. We generate a copy of the image and apply a dilation kernel and median blur on it. We then subtract this blurred copy from the original image to remove dark areas without disturbing the text on the image. For<strong id=""> **low-resolution images, we upsample the image depending on the input size using bicubic upsampling.
+![](9efb3/62991fd51e03982cdc1b2f4a_1*moRf8wICgZdMippTt-qWdg.png" width="auto" height="auto" loading="auto" id)
+![](9efb3/62991fd5252a365dbcb0a30b_1*VyoiQpQec29ccAGeYlVweg.png" width="auto" height="auto" loading="auto" id)
+
+## Code requires layout formatting
+id="">On the text prediction of Tesseract, we perform a layout analysis and infer the indentation of the produced code. Tesseract, by default, does not indent any output, which can not only make code less readable, but even change its meaning in languages such as Python. To add indentation, we use the bounding boxes that Tesseract returns for every line of code. Using the width of the box and the number of characters found in it, we calculate the average width of a character in that line. We then use the starting coordinates of the box to calculate by how many spaces is it indented compared to the other code lines. After that, we use a simple heuristic to push the indentations into even numbers of spaces.
+![](9efb3/62991fd57414180cf8263f4d_1*j2s9JsjOphtkKmZtvhdtuw.png" width="auto" height="auto" loading="auto" id)
+![](9efb3/62991fd5522f3215d2a3e2cd_1*J6R7i54ML4bHD9ZASvDb7g.png" width="auto" height="auto" loading="auto" id)
+
+## Evaluating our pipeline
+id="">To evaluate our modifications to the OCR pipeline, we use multiple sets of hand-crafted and generated datasets of image-text pairs. By running OCR on each image, we then calculate the Levenshtein distance between the predicted text and the ground truth. We treat each modification as a research hypothesis and then use experiments to validate them. For upsampling small images, for example, our research hypothesis was that super-resolution models like SRCNN (Super-Resolution Convolutional Neural Network) would boost OCR performance more than standard upsampling methods like nearest-neighbor interpolation or bicubic interpolation. To test this hypothesis, we ran the OCR pipeline multiple times on the same datasets, each time using a different upsampling method. While we found that nearest-neighbor upsampled images yield worse results, we did not find a significant difference between super-resolution based upsampling and bicubic upsampling for our pipeline. Given that super-resolution models need more storage space and have a higher latency than bicubic upsampling, we decided to go with bicubic upsampling for our pipeline.
+![](9efb3/62991fd53332217499c49f17_1*oL8pt2k95H0UtH9XW5TKPQ.png" width="auto" height="auto" loading="auto" id)

@@ -1,0 +1,74 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd6770cf7b3c61494fa4dd_ssrandssg_2df9dc6c5516f6c9025c09726c5e8209_2000.jpeg)
+"webdev; nextjs-bf"
+# Comparing SSR and SSG in Next.js Applications
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+Server-side rendering (SSR) and static site generation (SSG) are different techniques used for data fetching or pre-rendering. Pre-rendering is a technique used to rapidly preload elements in an application.
+Pre-rendering in an application shows a snapshot of the requested site first as the page data is being loaded in the background. This helps reduce bounce rate and is advantageous for enabling web crawlers to quickly parse through the content of a site and index it.
+This article will cover static site generation and server-side rendering in <a href="https://nextjs.org/" target="_blank" rel="noopener noreferrer">Next.js</a>. In the following article, we’ll look at which to use and when to use them.
+
+## Server-side Rendering
+This is a pre-rendering technique whereby data or a webpage is first loaded on the server and then sent to the client side when requested. The user who makes the request is presented with a static snapshot of the page when the data is fetched from the server. When a server-side rendered page reaches the browser, it’s parsed by Javascript, and then the page becomes interactive for the user. Server-side rendering can also be known as dynamic rendering.
+Next.js provides support for server-side rendering through the use of the ```getServerSideProps``` function. The ```getServerSideProps``` function tells Next.js to prerender the page on every request using the date returned by the function.
+You can implement server-side rendering in your application easily by following the example below:
+
+Server-side rendering is used in applications that depend on data that comes from external sources like an e-commerce website.
+Some advantages to using server-side rendering include:
+- **SEO-friendly web pages**: Using server-side rendering means that all page information has been resolved into HTML when the page is downloaded. This helps web crawlers to see page information and data, which is great for SEO purposes.
+- **Instant page availability:** For slower connections, server-side rendered pages are available right away from the first page.
+
+Some disadvantages of using server-side rendering include:
+- **Server latency**: Server-side rendered pages need to fetch data from the server. Imagine a situation when you have many users fetching different pages, such as in an e-commerce site. In this case, there will be latency from the server on page request.
+- **Twice rendered pages**: Server-side rendered pages are first rendered on the server side and then on the client side when the data is sent over and the Javascript works on it. This might have a negative impact on page load speed.
+
+## Static Site Generation
+Static site generation is a technique whereby data is pre-rendered at build time. This means that all the pages are converted into HTML files, static paths, and assets like JavaScript and CSS. In Next.js, the page is pre-rendered at compilation time and immediately loaded upon request.
+Next.js provides support for static site generation through the use of two functions: The ```getStaticProps``` function and the ```getStaticPaths``` function.
+
+**The ```getStaticProps``` Function**
+
+The ```getStaticProps``` function tells Next.js to pre-render the page at build time using props returned by it, and then it sends the necessary data to the app components.
+
+You should use the ```getStaticProps``` function when:
+- The needed data is available before user request.
+- The data is provided by a headless CMS.
+- You are building for SEO.
+- You can publicly cache the data.
+
+You can implement static site generation with ```getStaticProps``` by following the example below:
+```
+function Blog({ posts }) {
+ return (
+  <ul>
+   {posts.map((post) => (
+    <li>{post.title}</li>
+   ))}
+  </ul>
+ )
+}
+export async function getStaticProps() {
+ const res = await fetch('https://.../posts')
+ const posts = await res.json()
+ return {
+  props: {
+   posts,
+  },
+ }
+}
+export default Blog
+```
+**The ```getStaticPaths``` Function**
+During the construction process, this function generates a list of pages that will be pre-rendered. This is significant since the function enables you to design dynamic data routes.
+You can implement static site generation with the ```getStaticPaths``` function via the example below:
+Static site generation is great for portfolio sites and web pages connected to a content management system (CMS).
+
+Some advantages of static site generation include:
+- SEO-friendly
+- Pages are served to the client more quickly
+
+Disadvantages of static site generation include:
+- Longer build time
+- UI compatibility issues
+- No new fetching of data
+
+## Conclusion

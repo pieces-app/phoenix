@@ -1,0 +1,147 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd69256f36a9075c5f25be_todoapp_c6e3bbf6174151c7859ea71c9383836f_2000.jpeg)
+"vue"
+# Building a ToDo App With Vue 3 Composition API
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+The Composition API was a significant advancement in Vue 3. It consists of a group of APIs that let users use Vue's parts by importing functions rather than expressing options as they would when using the Options API.
+In this article, we’ll be building a task tracker with Vue 3 Composition API. Here is the link to the<a href="https://vue--todo-app.vercel.app/" target="_blank" rel="noopener noreferrer"> application demo</a>.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/639739a651b100af490d477f_image1_8d4003f2c1646ff83e303abb8fa244d2.g)
+
+## What is the Composition API?
+As an alternative to the Options API, a new way to create Vue apps was introduced in Vue 3. It is a functional-based API that enables developers to create Vue components without using declarative functions by employing imported functions.
+
+### Why Use Composition API?
+Due to the logical data distribution among numerous options, scaling a large Vue application that uses the Optional API can be highly frenetic and demanding. However, the Composition API corrects this by putting all the data that has been divided into options together, making them more flexible and easier to comprehend.
+The Composition API comes with many custom hooks, some of which we’ll be using in this article. Before hopping in, let's familiarize ourselves with the hooks and their uses:
+- **<a href="https://vuejs.org/api/reactivity-core.html#ref" target="_blank" rel="noopener noreferrer">Ref</a>: **The ref hook is used to create a local state.
+- **<a href="https://vuejs.org/guide/essentials/watchers.html#basic-example" target="_blank" rel="noopener noreferrer">Watch</a>: **The watch hook initiates an event as soon as a change in a reactive state is noticed.
+- **<a href="https://vuejs.org/api/composition-api-lifecycle.html#onmounted" target="_blank" rel="noopener noreferrer">OnMounted</a>**:  The onMounted hook is a lifecycle hook that registers a callback immediately after the component is mounted.
+To follow along with this tutorial, you’ll need to first clone the<a href="https://github.com/iamVictorSam/vue-todo-app/tree/starter" target="_blank" rel="noopener noreferrer"> stater file from Github.</a>
+
+## Setting Up Work Environments
+After cloning the repo from Github, let’s navigate to the cloned project directory and run the command below in our terminal to initialize yarn for the project and also run the development server:
+With our project initialized with yarn and running in the browser, we can start creating some basic functionalities.
+
+### Initializing Global Variables
+In this section, we’ll be initializing some global variables that we’ll use later in our application. First, let’s replace the entire ```App.vue``` with the code block below:
+```
+<script setup>
+import {ref, onMounted, watch} from "vue&quot;;
+const todos = ref([]);
+const text = ref("");
+</script&gt
+```
+In the code block above, we're initializing our global variables. The setup attribute added to the ```<script>``` tag gives us access to use the Composition API and its hooks.
+
+### Creating Todos
+Next, let’s create a function that adds todos to our application. To do this, we’ll copy and add the code block below into the ```script``` tag:
+```
+<script setup>
+import {ref, onMounted, watch} from "vue&quot;;
+const todos = ref([]);
+const text = ref("");
+</script&gt
+```
+In the code block above, we’re pushing an object into the ```todos``` array containing a ```todo``` and ```done``` property whenever the user creates a todo. We’re also checking for empty inputs.
+
+The ```unshift``` method adds the current item to the beginning of the array.
+
+### Deleting Todos
+Let’s give our users the ability to remove unwanted todos from their list. Next, we’ll add the code below the ```addTodo``` function in the ```<script>``` tag:
+```
+function deleteTodo(todo) {
+  todos.value = todos.value.filter((x) => x !== todo);
+
+```
+In the code block above, we’re filtering through the todos array and returning a new array without the todo passed to it.
+
+### Adding Todos to Browsers’ Local Storage
+We want to persist our user’s data to the browser’s local storage to avoid losing it on page refresh and reload. To achieve this, we’ll add the code below the ```deleteTodo``` into the ```<script>``` tag:
+```
+watch(
+ todos,
+  (newTodoValue) => {
+    localStorage.setItem("todos", JSON.stringify(newTodoValue));
+  },
+  { deep: true }
+)
+```
+In the code block above, we’re adding a ```newTodoValue``` to the ```todos``` object in the browser’s local storage by listening to changes in the todos array.  We’re also setting the deep property to true to make our watch function listen further in the array for the slightest change.
+
+### Retrieving Todos from Browsers’ Local Storage
+Finally, let’s retrieve our todos from the browser's local storage whenever our page is mounted. To achieve this, we’ll copy and paste the function below into the ```<script>``` tag:
+```
+onMounted(() => {
+  todos.value = JSON.parse(localStorage.getItem("todos")) || [];
+})
+```
+In the code block above, we’re getting the todos from the browser's local storage whenever the page is mounted, and returning an empty array if the local storage is empty.
+
+## Building User Interface
+In the previous section, we did a setup of logic and functionalities for our task tracker. Let’s put all those into our user interface.
+
+### Handling Todo Input Event
+In this section, we’ll be using the logic created earlier to retrieve and store our user’s input data:
+```
+<template>
+  <main class="app">
+    <section class="greeting">
+      <h3 class="title">✍️ToDo Application</h3>
+    </section>
+    <div class="input-section">
+      <section class="create-todo">
+        <form @submit.prevent="addTodo">
+          <h3>What do you plan on doing🙂?</h3>
+          <input
+            type="text"
+            placeholder="e.g. email your boss"
+            v-model="text"
+          />
+          <input type="submit" value="Add todo" />
+        </form>
+      </section>
+    </div>
+  </main>
+</template&gt
+```
+In the code block above, we’re passing the user’s data from the input text into the ```addTodo``` function. The ```addTodo``` function adds this data to our todo array in our ```script``` tag.
+
+### Displaying the Todo List
+After adding the todo to our ```todos``` array, we should visualize it in our UI. To achieve this, we’ll copy and paste the code below the ```create-task``` section:
+```
+<template>
+  <main class="app">
+  ...    <!-- previous code block here -->
+    <div class="todo-section">
+      <section class="todo-list">
+        <h2 v-show="todos.length === 0">No Todos Here😞</h2>
+        <div class="list">
+          <div
+            v-for="todo in todos"
+            :class="&#x60;todo-item ${todo.done &amp;&amp; 'done'}&#x60;"
+          >
+            <label>
+              <input type="checkbox" v-model="todo.done" />
+            </label>
+            <div class="todo-content">
+              <input type="text" v-model="todo.todo" />
+            </div>
+            <div class="actions">
+              <button class="delete" @click="deleteTodo(todo)">Delete</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</template&gt
+```
+In the code block above, we’re looping through the ```todos``` array to display each todo and a checkbox to complete the task. We’re also calling the ```deleteTodo``` function to delete a particular todo from the list, and displacing a text if the ```todos``` array is empty.
+With our progress in this article, we’ve been able to achieve the results below:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/639739a651b100af490d477f_image1_8d4003f2c1646ff83e303abb8fa244d2.g)
+Here is the link to the<a href="https://github.com/iamVictorSam/vue-todo-app/tree/final" target="_blank" rel="noopener noreferrer"> full source code on Github</a>.
+
+## Conclusion
+In this article, we’ve learned how to use the most popular Composition API hooks. We’ve also used the Vue Composition API to conduct some basic operations ranging from creating, retrieving, and deleting data. Due to its hook-based simplicity, the Composition API will always be the best and most significant feature in Vue 3.

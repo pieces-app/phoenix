@@ -1,0 +1,256 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dbf335ed3e4c39923cb2e0_foundation_76b7ba322f316565e8abccef0cdf5dd8_2000.jpeg)
+"html; css; javascript-8"
+# Foundation: The Best Framework for Building Responsive Sites
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+The Foundation framework is perfect for any device, medium, and level of accessibility, which means we can use it to build front-end websites and mobile applications. It comes with predefined terms, allowing us to use the provided code and not start from scratch to build websites. Furthermore, Foundation is responsive; we can use it for all devices and screen sizes, and it is nearly effortless to install, set up, and build excellent websites.
+
+## What is Foundation?
+Foundation is the most advanced, free, open-source, responsive front-end framework for building beautiful websites, applications, and emails. Foundation, which we also call the "Zurb Foundation," started from a ZURB project aiming to develop fast and excellent front-end code. Developers all over the world use Foundation to build responsive websites.
+
+### Advantages of Foundation
+- **Customizable:** Foundation makes it very easy to include or remove some aspects while working on a project. You can style your project as you wish without making your website look the same as other peoples' websites.
+- **Easy to use and learn: **Foundation is straightforward to learn and use, provided you already know HTML and CSS.
+- **Open Source and free: **We can all use Foundation because it is an open-source front-end framework.
+- **Responsive:** Foundation is the best framework for making our website respond to various viewports, which ensures that it looks excellent on all devices. A good example is when three people view the same website with a mobile phone, desktop, and laptop, respectively; the website will show layouts specific to the screen size, irrespective of the device.
+- **Cleaner code:** Foundation will make your code cleaner because of its HTML and CSS components.
+- **Simplifies development:** Foundation comes with development packages like icon fonts, CMS templates Grunt and Libsass, themes, tools, and many more, which you can use in your projects to help the programmer code faster and better. In addition, it provides you with HTML, CSS, and Javascript components which will help you to build websites quickly.
+- **Strong support community: **Foundation’s strong community makes it very possible for you to contact them whenever you encounter any issue. You can engage with the community on Twitter or GitHub to quickly get answers to your questions.
+- **Semantic attribute: **Foundation makes us code websites semantically with its SCSC mixin features.
+- **Powerful Grid system:** Foundation helps us to create outstanding multi-device layouts with the 12-column, nestable foundation grid. The foundation framework class helps tp customize the grid system's content sizes.
+
+### Installation/Set up of Foundation
+There are many ways for you to install and set up Foundation:
+- **Download the source files manually:** You can download the source files by visiting<a href="https://get.foundation/" target="_blank" rel="noopener noreferrer"> https://get.foundation</a> and clicking on "Download Foundation 6", which automatically downloads the CSS and JavaScript. Once you extract the Zip file, you can start creating excellent projects with Foundation.
+- **Package Manager:** To install Foundation using a package manager, click on <a href="https://get.foundation/sites/docs/installation.html" target="_blank" rel="noopener noreferrer">Package Manager Installation</a>, then scroll down to "install with Package Managers."
+- **Install Foundation through CLI: **You can also install Foundation using the CLI by clicking <a href="https://get.foundation/sites/docs/installation.html" target="_blank" rel="noopener noreferrer">here</a> and scrolling to "Install with Foundation via CLI" to install it.
+- **Install Foundation using CDN: **To install Foundation framework using CDN, visit <a href="https://get.foundation/" target="_blank" rel="noopener noreferrer">https://get.foundation</a>, click on CDN to copy the link, and paste it into your IDE using the code below:
+Once you have installed Foundation, you can easily use it to build a responsive site. However, note that in the documentation from the official site of <a href="https://get.foundation/index.html" target="_blank" rel="noopener noreferrer">The Foundation Framework</a>, the docs for the site and the docs for email are grouped separately. The docs will further describe all of the components, styles, classes, and so on that we need to create a project. Throughout this article, we will use the CDN installation method to properly show you how to build a site using the foundation framework.
+
+### HTML/CSS Components
+Foundation has many HTML/CSS components that we can use to support the development of our responsive websites. In this article, we will be focusing on Foundation for Sites. Foundation for Sites makes HTML, CSS, and JavaScript available to help us prototype more effectively. In this article, we will be using HTML and CSS with VS Code and Google Chrome.
+
+- **Typography**: First, we create the “row class,” which will create horizontal groups of columns. Typing “lorem4” will give us four words:
+```
+<div class="row">
+    Lorem ipsum dolor sit.
+</div&gt
+```
+The code block will give us the result below in Chrome:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dbf337ed3e4cf4a63cb4cb_image9_b7b1f95885e92e7aa5934825f7e57e65_800.png)
+
+- **Heading:** Foundation includes styles for all of the header elements, which are balanced and based on a scale. We have six heading tags from ```<h1>``` to ```<h6>```, where the ```<h1>``` tag focuses on the most important content of a page and the ```<h6>``` tag focuses on the least important content. In the ```<h2>``` and ```<h3>``` tags, I used “subheader class” in order to make it a little lighter.
+
+```
+<h1>Heading <small>Secondary Heading</small></h1>
+    <h2 class="subheader">Heading <small>Secondary Heading</small> </h2>
+    <h3 class="subheader">Heading <small>Secondary Heading</small></h3>
+    <h4>Heading <small>Secondary Heading</small></h4>
+    <h5>Heading <small>Secondary Heading</small></h5>
+    <h6>Heading <small>Secondary Heading</small></h6>
+```
+The code block will give us the result below in Chrome:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dbf337ed3e4c06033cb4d0_image10_c2fbd681d761300a76e13a12ccc6b35f_800.png)
+
+- **Paragraph:** Foundation makes paragraphs' font sizes, line heights, and spacing match the vertical rhythm, so our text looks outstanding with its ```<strong>``` tag, ```<em>``` tag, Lead class tag, etc. The ```<strong>``` tag makes the text bold, while the ```<em>``` tag italicizes it, but both the ```<strong>``` and the ```<em>``` tags are used to show emphasis. The "Lead class" will make the text within that section larger than a section that does not have the "Lead Class."
+
+```
+    <p class="lead">In life, you don't have be great to start,
+        but you have to start to be great, and my mental health is more <em>essential to me than your money.</em>
+     If I sense you are a troublesome person and that doing business with you will cost me my peace
+     I will tell you to check other vendors or buy at the market.
+     <strong> I love my peace, I love my sanity,</strong> and I don't joke with my integrity</p>
+
+     <p>In life, you don't have be great to start,
+        but you have to start to be great, and my mental health is more <em>essential to me than your money.</em>
+     If I sense you are a troublesome person and that doing business with you will cost me my peace
+     I will tell you to check other vendors or buy at the market.
+     <strong> I love my peace, I love my sanity,</strong> and I don't joke with my integrity</p&gt
+```
+This code block gives us the result below:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dbf337ed3e4ca0193cb4cf_image3_c617180f2e25dbc9171cc943fb14962f_800.png)
+
+- **Forms:** Foundation makes creating arrangements straightforward and flexible. Foundation V6 forms have high standards in form elements, grid columns, and rows. With Foundation Forms, we can input tags such as ```labels```, ```textarea```, ```select```, ```multiple select```, ```input```, etc. Here is a classic example of Foundation Forms:
+
+```
+<div class="row">
+    <!-- FORMS -->
+    <form>
+        <div>
+            <label>Name of User</label>
+            <input type="text" placeholder="Name of User">
+        </div>
+        <div>
+            <label>Email Address</label>
+            <input type="email" placeholder="Email Address">
+        </div>
+        <div>
+            <label>Your number</label>
+            <input type="number">
+        </div>
+        <div>
+            <label>Your Message</label>
+            <textarea placeholder="Message"></textarea>
+        </div>
+        <div>
+            <label>Your Gender</label>
+            <select>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Neutral &amp; others</option>
+            </select>
+        </div>
+        <div>
+        <label>Multiple Gender Selection</label>
+            <select multiple>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="neutral and others">Neutral and others</option>
+            </select>
+        </div>
+    </form&gt
+```
+The code block above will give us the result below in Chrome. Note that I used CSS to change the background color:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dbf336ed3e4c147f3cb35d_image8_4c3fa5fd3f2f0e28a594dbfffc8ecefa_800.png)
+With the help of Foundation, we can have field sets and checkboxes inside the form. I will wrap a group of checkboxes in a ```<fieldset>``` and give them a label using the ```<legend>``` element. Then, I will create an Upload file that, when you click it on the Chrome browser, will open the window to upload a file. We do not have any back-end code; hence, it will not do anything. I also put a password field with “the help text class” to italicize it. For more on forms, click <a href="https://get.foundation/sites/docs/forms.html" target="_blank" rel="noopener noreferrer">here</a>.
+
+```
+<fieldset class="fieldset">
+            <legend>A Fieldset</legend>
+            <input type="checkbox"><label>checkbox</label>
+            <input type="checkbox"><label>checkbox</label>
+            <input type="checkbox"><label>checkbox</label>
+        </fieldset>
+        <label for="fileupload" class="button">Upload File</label>
+        <Input type="file" id="fileupload" class="show-for-sr">
+
+        <label>Your Password</label>
+        <input type="password">
+        <p class="help-text">Your password must be 5 characters or more</p>
+    </form>
+```
+
+This code block will give us the result below:
+
+- **Alignment:** In Foundation, we can align text to the right by adding ```text-right```, to the left by adding ```text-left```, to the center by adding ```text-center```, or to justify by adding ```text-justify```**.**
+
+```
+<!-- Alignment -->
+    <p class="text-right">The text in this section will move to the Right.</p>
+    <p class="text-left">The text in this section will move to the left</p>
+    <p class="text-center">The text in this section will move to the center.</p>
+    <p class="text-justify">The text in this section will justify.</p&gt
+```
+The code block will give us the result below in Chrome:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dbf336ed3e4c4f743cb35f_image4_1d518be8d2ef130af8abe9abd9424d73_800.png)
+
+- **Floats:** Foundation helps us to add proper common positioning behaviors to elements. We can change the float behavior of a part by adding the ```.float-right``` or ```.float-left``` classes to the component in question. ```.clearfix``` is the tag used to clear floats.
+
+```
+<div class="callout clearfix">
+    <a class="button float-right">Right Float</a>
+    <a class="button float-left">Left Float</a&gt
+```
+
+The float above will give us the result below:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dbf336ed3e4c7e303cb35e_image5_838d8c231399d8c8a1e89f43a93194a6_800.png)
+- **Blockquotes**: The ```<blockquote>``` tag is designed to highlight long quotations. It changes the alignment of the quote to make it different from other paragraphs; the code block below is a classic example of blockquote.
+```
+<blockquote>
+  The Pieces blockquote from foundation Framework
+  <cite>Aniekwe Jessica</cite>
+  </blockquote&gt
+```
+The code block will give us the result below:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dbf336ed3e4c7f623cb360_image6_2f3431841852e6e0bf2b2ca7216ca24a_800.png)
+- **Unordered and Ordered Lists**: We have two list tags: an unordered list and an ordered list. An unordered list does not require one item to be listed before any other item and is always shown with bullets, like a grocery list. The items in an ordered list must be in a specific order and are displayed with numbers, like a recipe. The code block of the list tag is below:
+```
+   <ul>
+        <li>The first List</li>
+        <li>The second List</li>
+        <li>The third List</li>
+        <li>The fourth List</li>
+     </ul>
+
+     <ol>
+        <li>The first List</li>
+        <li>The second List</li>
+        <li>The third List</li>
+        <li>The fourth List</li>
+     </ol&gt
+```
+The code block above will give us the below result:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dbf337ed3e4c81e43cb4cd_image7_2830a5dc91a49023a1afcb6d4c48eaba_800.png)
+- **Table:** Foundation makes it easy for us to create a responsive table with the ```.stack``` class. We also have the striped class, which adds stripes to the table, and the hover class, which will make alternating rows slightly darker.
+
+```
+<table class="striped hover stack">
+            <tr>
+                <th>Lastname</th>
+                <th>Firstname</th>
+                <th>Sex</th>
+            </tr>
+            <tr>
+                <td>Igwe</td>
+                <td>Cynthia</td>
+                <td>Female</td>
+            </tr>
+            <tr>
+                <td>Eneh</td>
+                <td>Salvation</td>
+                <td>Male</td>
+            </tr>
+            <tr>
+                <td>Umeh</td>
+                <td>James</td>
+                <td>Male</td>
+            </tr>
+        </table&gt
+```
+The code block will give us the result below in Chrome:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dbf336ed3e4c0a553cb361_image1_86a6edbaa675d1494feff97a549653c1_800.png)
+
+- **Buttons:** Foundation enables us to easily customize buttons. The standard button is blue, and we can create it with minimal markup. We can also add more classes, like size, color, hollow button, etc., to our projects.
+```
+        <!-- BUTTONS -->
+        <button class="button">Button</button>
+        <a href="#" class="button">Link</a>
+        <input type="button" value="input" class="button">
+
+        <br>
+        <!-- COLORED BUTTONS -->
+        <button class="alert button">Button</button>
+        <button class="warning button">Button</button>
+        <button class="success button">Button</button>
+        <button class="button disabled">Button</button>
+        <button class="secondary button">Button</button>
+        <br>
+        <!-- BUTTONS SIZES -->
+        <button class="button expanded large">Button</button>
+        <button class="button expanded">Button</button>
+        <button class="button large">Button</button>
+        <button class="button">Button</button>
+        <button class="button small">Button</button>
+        <button class="button tiny">Button</button>
+        <br>
+        <!-- HOLLOW BUTTONS -->
+        <button class="alert button hollow">Button</button>
+        <button class="warning button hollow">Button</button>
+        <button class="success button hollow">Button</button>
+        <button class="secondary button hollow">Button</button&gt
+```
+The code block will give us the result below:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dbf337ed3e4cbe5d3cb4ce_image2_d0087b9db51d4cdedf9acd6d614b9be9_800.png)
+
+## Conclusion
+The Foundation Framework is the best for creating beautiful, responsive websites. Foundation provides us with HTML, CSS, and Javascript templates, works on all devices and browsers, and is very customizable.

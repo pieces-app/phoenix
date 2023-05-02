@@ -1,0 +1,747 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd72b769c93f3974477eb6_reactvideoplayer_e4e65a9c9cefccb7d75cf3a9b8518031_2000.jpeg)
+"react-7; video; tutorial"
+# Developing a React Video Player with Personalized Controls
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+Web technology has developed a lot over the years; Javascript, in particular, has played an enormous role in it. By involving React, the development and use of UI have become better and more efficient. With React, including an audio-video player on any website is easy. A simple React player plugin may assist you in performing the task in a few minutes. In this article, we'll talk about how to build a customizable React video player from scratch.
+
+## Introduction
+<a href="https://www.npmjs.com/package/react-player" target="_blank" rel="noopener noreferrer">React-Player</a> is a React component that <a href="https://code.pieces.app/blog/the-encrypted-media-extension-api-and-watching-protected-video-content-on-the-web" target="_blank" rel="noopener noreferrer">plays audio-visual files from various URLs</a>, including file paths, YouTube links, Facebook links, Twitch links, SoundCloud links, Streamable links, Vimeo links, Wistia links, Mixcloud links, DailyMotion links, Kaltura links, and so on.
+In this post, we'll use the React-Player component to build a video player (which you can install with the React Player npm), while focusing more on its functionalities than its appearance. To follow this tutorial, you'll need to have Node.js installed locally on your machine and have some familiarity with Material UI, Javascript, and React.
+
+### Features of React-Player
+- Customizable and easy-to-use
+- Runs on diffrent URLs, including file paths
+- Supports video looping and play back rates
+
+## Installing Dependencies
+Running the following commands in the terminal allows us to start by setting up the project and installing the necessary dependencies:
+```
+yarn create react-app react-video-player
+cd react-video-player
+yarn add @mui/material @emotion/react @emotion/styled @mui/icons-material react-player screenfull
+yarn start
+```
+Let's start by importing ```ReactPlayer``` into our App.js file and updating it.
+```
+import ReactPlayer from "react-player&quot;;
+import "./App.css&quot;;
+import ReactPlayer from "react-player&quot;;
+import { Container } from "@mui/material&quot;;
+function App() {
+ return (
+ <div className="video_container">
+ <div>
+ <h2>React player</h2>
+ </div>
+ <Container maxWidth="md" justify="center">
+ <div className="player__wrapper">
+ <ReactPlayer
+           className="player"
+       url="https://bucket-viewer.s3.amazonaws.com/viewer1664370329252.mp4"
+           width="100%"
+           height="100%"
+           playing={true}
+           muted={true}
+         />
+ <Control />
+ </div>
+ </Container>
+ </div>
+ );
+
+```
+The ```react-player``` component is now inside a ```Container``` wrapper. Additionally, we supplied the link to the example video as the URL prop's value. Finally, we also provided the player with a set ```width```** **and ```height``` of 100%, so it will be responsive.
+
+Then, add the following code to your App.css file.
+```
+.App {
+ text-align: center;
+}
+.video_container {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ width: 100%;
+}
+.player__wrapper {
+ position: relative;
+}
+.player {
+ border: 2px solid #7b2cbf;
+ object-fit: cover;
+ padding: 0;
+ margin: 0;
+}
+h2 {
+ color: #7b2cbf;
+
+```
+To enable playback within our video player React, we added the ```playing``` and ```muted``` props to the preceding code. In addition, we set a value of ```true``` in place of the default value of ```false``` for the props. As a result, the ```playing``` footage created by the above code is shown in the picture below:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/637f8e3c4ab97637d9b427dd_image8_559f0156e52b82dbc54f485ff3b822a9_800.png)
+
+Observe that the video player is not interactive and lacks any controls. The ```react-player``` package contains a prop called ```control``` that, by default, has a value of ```false```. When the value is modified to ```true```, the React player controls are automatically added.
+
+## React Player Functionalities
+
+Let's begin by creating a new folder in the ```src``` folder named ```Components```. Then, create the Control.jsx and Control.css files as two new files inside the newly formed folder.
+First, we’ll import the required packages for our Control.jsx file:
+
+```
+import React from "react&quot;;
+import { makeStyles, Slider, withStyles, Button,  Tooltip,  Popover,Grid
+} from "@material-ui/core&quot;;
+import {
+ FastForward,
+ FastRewind,
+ Pause,
+ PlayArrow,
+ SkipNext,
+  VolumeUp,
+} from "@material-ui/icons&quot;;
+import "./Control.css"
+```
+The control.jsx file is made up of three containers:
+- The middle container (Contains the Play, Rewind and Fast forward buttons)
+- The bottom container (Contains the Slider, volume and playback rate buttons)
+```
+<div className="bottom__container">
+ <div className="slider__container">
+ <PrettoSlider />
+ </div>
+ <div className="control__box">
+ <div className="inner__controls">
+ <div className="icon__btn">
+ <PlayArrow fontSize="medium" />
+ </div>
+ <div className="icon__btn">
+ <SkipNext fontSize="medium" />
+ </div>
+ <div className="icon__btn">
+ <VolumeUp fontSize="medium" />
+ </div>
+ <Slider
+             className={&#x60;${classes.volumeSlider}&#x60;} />
+ <span>5/20</span>
+ </div>
+ </div>
+ </div&gt
+```
+Our control.jsx React player component will be like this:
+```
+const Control = () => {
+ return(
+ <div className="control_Container">
+       // <-- The Heading Container -->
+ // <-- The Middle Container -->
+ // <-- The Bottom Container -->
+ </div>
+   )
+
+```
+Let's discuss the ```.control container``` class-named ```div``` element. It’s a distinct container that, if hovered above the custom video player, appears as an overlay.
+
+The following are the styles for our Control.jsx file:
+```
+.control_Container {
+ background-color: rgba(0, 0, 0, 0.6);
+ position: absolute;
+ top: 0;
+ bottom: 0;
+ right: 0;
+ left: 0;
+ flex-direction: column;
+ z-index: 1;
+ display: flex;
+ justify-content: space-between;
+}
+.top_container {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ margin: 5px 20px;
+}
+.mid__container {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+.icon__btn {
+ padding: 0 10px;
+ color: #7b2cbf;
+}
+.slider__container {
+ /* width: 100%; */
+ display: flex;
+ align-items: center;
+ padding: 0 16px;
+}
+.control__box {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+}
+.inner__controls {
+ display: flex;
+ padding: 10px 0;
+ align-items: center;
+ width: 50%;
+}
+span {
+ color: #9556cc;
+ font-size: 0.8rem;
+ margin-left: 10px;
+}
+.second__control {
+ display: flex;
+ align-items: center;
+
+```
+Additionally, we style some of the components by adding the Material UI's ```makeStyles``` and ```withStyles``` to our Control. Jsx
+```
+const useStyles = makeStyles({
+ volumeSlider: {
+   width: "100px",
+   color: "#9556CC",
+ },
+ bottomIcons: {
+   color: "#999",
+   padding: "12px 8px",
+
+ "&amp;:hover": {
+     color: "#fff",
+   },
+ },
+});
+const PrettoSlider = withStyles({
+ root: {
+   height: "20px",
+   color: "#9556CC",
+   display: "flex",
+   justifyContent: "center",
+   alignItems: "center",
+ },
+ thumb: {
+   height: 20,
+   width: 20,
+   backgroundColor: "#9556CC",
+   border: "2px solid currentColor",
+   marginTop: -3,
+   marginLeft: -12,
+ "&amp;:focus, &amp;:hover, &amp;$active": {
+     boxShadow: "inherit",
+   },
+ },
+ active: {},
+ valueLabel: {
+   left: "calc(-50% + 4px)",
+ },
+ track: {
+   height: 5,
+   borderRadius: 4,
+   width: "100%",
+ },
+ rail: {
+   height: 5,
+   borderRadius: 4,
+ },
+})(Slider)
+```
+Adding the following code to your App.js file will import React’s ```Controls``` component, which we also need to do:
+```
+import "./App.css&quot;;
+import ReactPlayer from "react-player&quot;;
+import { Container } from "@material-ui/core&quot;;
+import Control from "./Components/Control&quot;;
+function App() {
+ return (
+ <div className="video_container">
+ <div>
+ <h2>React player</h2>
+ </div>
+ <Container maxWidth="md" justify="center">
+ <div className="player__wrapper">
+ <ReactPlayer
+           className="player"
+           url="https://bucket-viewer.s3.amazonaws.com/viewer1664370329252.mp4"
+           width="100%"
+           height="100%"
+           playing={true}
+           muted={true}
+         />
+ <Control />
+ </div>
+ </Container>
+ </div>
+ );
+}
+export default App
+```
+If you followed closely, our React custom video player ought to appear like this:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/637f8e3b4ab976ea2fb42692_image3_935201d0bb867675494d0cd76d957b32_800.png)
+
+## Handling Play and Pause
+In this section, we'll concentrate on the capabilities and logic of the custom controls for the React player, starting with playing and pausing.
+Navigate to the App.js file, where we'll begin by defining a state named ```videoState```. An object with different properties represents this state:
+```
+const [videoState, setVideoState] = useState({
+   playing: true,
+   muted: false,
+   volume: 0.5,
+   played: 0,
+   seeking: false,
+Buffer : true
+ });```<pre>//Destructuring the properties from the videoState
+ const {playing, muted, volume, playbackRate, played, seeking, buffer} = videoState
+```
+We destructure the ```videoState``` using the ES6 syntax to get its properties.
+Following that, we need to create a function that toggles the play and pause capabilities. To do this, we'll spread the previous state and toggle the necessary state.
+```
+const playPauseHandler = () => {
+ //plays and pause the video (toggling)
+   setVideoState({ ...videoState, playing: !videoState.playing });
+ }
+```
+Replace the ```true``` values for the ```playing``` and ```muted```** **properties with the appropriate values of ```playing``` and ```mute``` from the destructured ```videoState``` in the ```ReactPlayer``` component.
+```
+<div className="player__wrapper">
+ <ReactPlayer
+           className="player"
+           url="https://bucket-viewer.s3.amazonaws.com/viewer1664370329252.mp4"
+           width="100%"
+           height="100%"
+           playing={playing}
+           muted={muted}
+         />
+ <Control onPlayPause={playPauseHandler} playing={playing}/>
+ </div&gt
+```
+The ```playing``` prop in ```ReactPlayer``` is used to set the value to ```true``` or ```false```, playing or pausing the video.
+To allow the play and pause buttons to access this feature, we pass in the function to the ```Control``` component as a prop in the example above.
+We’d also update our Control.jsx file by passing the ```onPlayPause``` into the ```onClick``` of our pause button.
+```
+<div className="icon__btn" onClick={onPlayPause}>
+ <Pause fontSize="medium"  />
+ </div&gt
+```
+The playing attribute value provided within the ```videoState```, which we passed as a prop to the ```Control``` component, is used to render the icon using the ternary operator conditionally. For example, the play icon should appear when the video is paused, and when it is playing, the pause icon should appear.
+```
+<div className="icon__btn" onClick={onPlayPause}>
+         {playing ? (
+ <Pause fontSize="medium" />
+         ) : (
+ <PlayArrow fontSize="medium" />
+         )}{" "}
+ </div&gt
+```
+With the addition of these functionalities, we can easily play and pause our video, like so:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6384e888061a320f255264f8_ezgif_com-gif-maker28_1da03c70af754e02b897eed266f1f167.g)
+
+## Handling Rewind and Fast Forward
+We want to fast-forward the video by 10 seconds and rewind it by 5 seconds, much like with other video players. The ```ReactPlayer``` must be referenced using the ```useRef``` hook to obtain the video's current time before implementing this feature.
+We’ll begin by importing the ```useRef``` hook and creating a reference for the ```React Player```.
+```
+import ReactPlayer from "react-player&quot;;
+import { useRef } from "react&quot;;
+function App() {
+ //react player reference
+ const videoPlayerRef = useRef(null);
+ return (
+ <ReactPlayer
+           ref={videoPlayerRef} //updating the react player ref
+           className="player"
+           url="https://bucket-viewer.s3.amazonaws.com/viewer1664370329252.mp4"
+           width="100%"
+           height="100%"
+           playing={playing}
+           muted={muted}
+         />
+ );
+}
+export default App
+```
+Let's implement a ```rewindHandler``` function that we'll call anytime the rewind button is double-tapped. This function will use two methods for the rewind and fast-forward features obtained from the ```videoPlayerRef```.
+- ```seekTo```: Seek the given number of seconds, or a fraction if the amount is between 0 and 1
+- ```getCurrentTime()```: Returns the number of seconds that have been played
+```
+const rewindHandler = () => {
+ //Rewinds the video player reducing 5
+   videoPlayerRef.current.seekTo(videoPlayerRef.current.getCurrentTime() - 5);
+ }
+```
+The ```rewindHandler``` subtracts 5 seconds from the current video time, which is  what you're thinking about when you think about the ```fastForwardHandler``` adding 10 seconds to the current video time.
+```
+const fastFowardHandler = () => {
+ //FastFowards the video player by adding 10
+   videoPlayerRef.current.seekTo(videoPlayerRef.current.getCurrentTime() + 10);
+ }
+```
+Next, we pass the functions as props to the ```Control``` component:
+```
+<Control
+           onPlayPause={playPauseHandler}
+           playing={playing}
+           onRewind={rewindHandler}
+           onForward ={handleFastFoward }
+         /&gt
+```
+Then, we receive the props and pass the two functions into their respective buttons.
+```
+<div className="icon__btn" onDoubleClick={onRewind}>
+ <FastRewind fontSize="medium" />
+ </div>
+
+ <div className="icon__btn">
+ <FastForward fontSize="medium" onDoubleClick={onForward}/>
+ </div&gt
+```
+We can now fast-forward and rewind our video using the code above. However, you'll also notice that the video player's slider doesn't move to the current time when we rewind or fast-forward the video. Let's fix that, since we're problem solvers, right?
+
+### Seek Functionality
+The ```ReactPlayer``` has an ```onProgress``` prop callback for this feature, which is a ```Callback``` that contains played and loaded progress as a fraction as well as ```playedSeconds``` and loaded seconds.
+```
+const progressHandler = (state) => {
+
+   if (!seeking) {
+ setVideoState({ ...videoState, ...state });
+   }
+ }
+```
+The ```progressHandler``` function accepts an argument called ```state```. This ```state``` argument indicates an object with contained states. Every time the video player seek bar (the player's timing) updates, some sets of states are altered, and new values are returned. We keep the values of the previously modified States and our ```videoState``` properties in this function. We want this to happen, but only when the value of the seeking property in our ```videoState``` is negated.
+
+Next, we pass in the ```progressHandler``` function to the ```onProgess``` prop in the ```ReactPlayer```:
+```
+<ReactPlayer
+           ref={videoPlayerRef}
+           className="player"
+           url="https://bucket-viewer.s3.amazonaws.com/viewer1664370329252.mp4"
+           width="100%"
+           height="100%"
+           playing={playing}
+           muted={muted}
+           onProgress = {progressHandler}
+         /&gt
+```
+Then, to update our seek slider to the appropriate time of the video, we pass the ```played``` state that we've destructured from the ```videoState``` to the control component as a prop.
+```
+<Control
+           onPlayPause={playPauseHandler}
+           playing={playing}
+           onRewind={rewindHandler}
+           onForward ={handleFastFoward }
+           played ={played}
+/&gt
+```
+The ```PrettoSlider``` in our ```control``` component then has to be updated. The maximum value for our ```PrettoSlider``` must be 100, and the minimum value must be set to 0. The value prop is the slider's ```current e.target.value```, which multiplies the value of the ```played``` props by 100.
+```
+<PrettoSlider
+         min = {0}
+         max = {100}
+         value = {played * 100}
+/&gt
+```
+Furthermore, we need to write functions that will enable us to use the video player slider to look for a specific moment. To do this, we'd create a ```seekHandler``` and a ```seekMouseUpHandler``` to help us achieve this feature.
+```
+const seekHandler = (e, value) => {
+   setVideoState({ ...videoState, played: parseFloat(value) / 100 });
+ };
+ const seekMouseUpHandler = (e, value ) => {
+   setVideoState({ ...videoState, seeking: false });
+   videoPlayerRef.current.seekTo(value / 100);
+ }
+```
+We then pass these functions as props to the ```control``` component. The parameter given to the function is the value we immediately receive whenever the slider moves. Then, since ```played``` only accepts values between 0 and 1, we only updated the ```played``` value to the value argument divided by 100 when updating the ```videoState```.
+
+Additionally, we gave the ```mouseSeekUpHandler``` function an argument called ```value```. Spreading the previous state and changing only the ```seeking```** **state value to ```false```, which allows us to update the ```videoState```. Then, we change the video's current time to the desired time.
+```
+<Control
+           onPlayPause={playPauseHandler}
+           playing={playing}
+           onRewind={rewindHandler}
+           onForward ={handleFastFoward }
+           played ={played}
+           onSeek ={seekHandler}
+           onSeekMouseUp ={seekMouseUpHandler}
+         /&gt
+```
+To use these two functions, the ```PrettoSlider``` has two props which we can use for this functionality: ```onChange```** **and ```onChangeCommitted```**. **According to the <a href="https://mui.com/material-ui/api/slider/" target="_blank" rel="noopener noreferrer">MUI docs, </a>the ```onChange``` prop is a Callback function that fires whenever the slider's value changes, while the ```onChangeCommitted```** **is a** **Callback function that fires when the mouse moves up.
+
+This is what our video player should look like now:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/637f8e3b4ab97690f9b426a9_image2_937acdde5d84b19a9ed571a7a27c68b3.g)
+
+## Volume Functionality
+We should have the option to mute and increase/decrease the video’s volume in our React player. The icon should then change to ‘muted’ or ‘volume-up’, depending on the volume setting in that situation.
+
+Let’s head over to our App.js file.
+```
+const volumeChangeHandler = (e, value) => {
+ const newVolume = parseFloat(value) / 100;
+   setVideoState({
+     ...videoState,
+     volume: newVolume,
+     muted: Number(newVolume) === 0 ? true : false, // volume === 0 then muted
+   })
+};
+const volumeSeekUpHandler = (e, value) => {
+ const newVolume = parseFloat(value) / 100;
+   setVideoState({
+     ...videoState,
+     volume: newVolume,
+     muted: newVolume === 0 ? true : false,
+   })}
+```
+There is a volume prop for this functionality in the ```ReactPlayer``` where we pass the destructured ```volume```** **from our ```videoState```.
+```
+<ReactPlayer
+           ref={videoPlayerRef}
+           className="player"
+           url="https://bucket-viewer.s3.amazonaws.com/viewer1664370329252.mp4"
+           width="100%"
+           height="100%"
+           playing={playing}
+           volume = {volume}
+           muted={muted}
+           onProgress={progressHandler}
+         /&gt
+```
+The volume slider needs to define two functions, one for the ```onChange``` event and the other for the ```onChangeCommitted``` event, just like the ```PrettoSlider```.
+
+Now, we pass them as props to the ```control``` component:
+```
+<Control
+           onPlayPause={playPauseHandler}
+           playing={playing}
+           onRewind={rewindHandler}
+           onForward={handleFastFoward}
+           played={played}
+           onSeek={seekHandler}
+           onSeekMouseUp={seekMouseUpHandler}
+Volume={volume}
+           onVolumeChangeHandler = {volumeChangeHandler}
+           onVolumeSeekUp = {volumeSeekUpHandler}
+         /&gt
+```
+The volume slider is then updated by including new props, the ```onChange``` event, the ```onChangeCommitted``` event, and ```value```, and passing the ```onVolumeChangeHandler```**,** ```onVolumeSeekUp```**, **and ```volume``` props.
+
+We ought to be able to choose between ```muted``` and ```volume up``` whenever the mute button is clicked. The symbol should switch to ‘muted’ or ‘volume-up’ depending on the volume level.
+We’ll start by writing a function that handles the mute functionality in our App.js file.
+```
+const muteHandler = () => {
+ //Mutes the video player
+   setVideoState({ ...videoState, muted: !videoState.muted });
+ }
+```
+In the ```muteHandler```**, **we retained everything in the ```videoState``` and changed the ```muted``` property to have a value opposite of the current ```muted``` state, thereby toggling it and then passing the ```muted``` props to the ```control``` component.
+```
+<Control
+           onPlayPause={playPauseHandler}
+           playing={playing}
+           onRewind={rewindHandler}
+           onForward={handleFastFoward}
+           played={played}
+           onSeek={seekHandler}
+           onSeekMouseUp={seekMouseUpHandler}
+           volume ={volume}
+           onVolumeChangeHandler = {volumeChangeHandler}
+           onVolumeSeekUp = {volumeSeekUpHandler}
+           mute = {muted}
+           onMute = {muteHandler}
+         />
+<div className="icon__btn" onClick={onMute} >
+           {mute ? (
+ <VolumeOff fontSize="medium" />
+               ) : (
+ <VolumeUp fontSize="medium" />
+               )}
+ </div&gt
+```
+The value of the ```videoState``` field's ```muted``` state determines how the two icons in the above code would render conditionally. It also passes in a function to the wrapper, which toggles the mute functionality.
+
+This is how our video should function:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/637f8e3b4ab9767aceb42693_image6_f5491d002e8bb4ebeec2977724064f6c.g)
+
+### Video Time Functionality
+Video players, as we all know, typically show the video's current time. To accomplish this, we use some instance methods that <a href="https://www.npmjs.com/package/react-player" target="_blank" rel="noopener noreferrer">React Player</a> offers:
+- ```getCurrentTime```: Returns the number of seconds that have been played.
+- ```getDuration```: Returns the currently playing media’s total duration (in seconds).
+- ```getSecondsLoaded```: Returns the number of seconds that have been loaded.
+```
+const currentTime = videoPlayerRef.current? videoPlayerRef.current.getCurrentTime(): "00:00&quot;;
+const duration = videoPlayerRef.current? videoPlayerRef.current.getDuration(): "00:00"
+```
+We still need to format the returned time according to our preferences, even though the ```currentTime``` and ```duration``` are rendered conditionally using ternary operators.
+A function that formats the timing must be created. After accepting an argument, this function will return the time in a specific format.
+
+To use the function in App.js, we create a new file called Format.js inside the component folder.
+```
+export const formatTime = (time) => {
+ //formarting duration of video
+ if (isNaN(time)) {
+ return "00:00&quot;;
+   }
+ const date = new Date(time * 1000);
+ const hours = date.getUTCHours();
+ const minutes = date.getUTCMinutes();
+ const seconds = date.getUTCSeconds().toString().padStart(2, "0");
+ if (hours) {
+ //if video have hours
+ return &#x60;${hours}:${minutes.toString().padStart(2, "0")} &#x60;;
+   } else return &#x60;${minutes}:${seconds}&#x60;;
+ }
+```
+Following that, import the ```formatTime```** **method found in the Format.js file. Therefore, in the App.js file, we can use it. Then, two ```formatTime``` calls are made, with the ```currentTime``` and ```duration``` being passed as arguments.
+```
+const formatCurrentTime = formatTime(currentTime)
+const formatDuration = formatTime(duration)```
+We then pass the ```formatCurrentTime```** **and ```formatDuration```** **as props to the ```control```** **component.
+```
+<Control
+           onPlayPause={playPauseHandler}
+           playing={playing}
+           onRewind={rewindHandler}
+           onForward={handleFastFoward}
+           played={played}
+           onSeek={seekHandler}
+           onSeekMouseUp={seekMouseUpHandler}
+           volume ={volume}
+           onVolumeChangeHandler = {volumeChangeHandler}
+           onVolumeSeekUp = {volumeSeekUpHandler}
+           mute = {muted}
+           onMute = {muteHandler}
+           duration = {formatDuration}
+           currentTime = {formatCurrentTime}
+         /&gt
+```
+Finally, modify the default timing value to this:
+```
+<span>{ currentTime} : {duration}</span&gt
+```
+Now, you can watch the length of the video as it plays and see how much time has passed. Watch the timing as the seek bar is dragged.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/637f8e3b4ab976606bb42691_image1_235e2e72f5ac6a241fd2c46a4d9d4284.g)
+
+The ```Control``` container div is frequently resting on the player, as you can see. Let's make it more interesting by having it resemble other video players— let’s make it visible whenever we hover on the video player.
+To achieve this feature, we also need to create a reference of the ```div```** **with classname of ```control_Container```** **in the App.js file:
+```
+const controlRef = useRef(null)```
+And pass it to the ```control```** **component:
+```
+<Control
+         controlRef = {controlRef}
+           onPlayPause={playPauseHandler}
+           playing={playing}
+           onRewind={rewindHandler}
+           onForward={handleFastFoward}
+           played={played}
+           onSeek={seekHandler}
+           onSeekMouseUp={seekMouseUpHandler}
+           volume ={volume}
+           onVolumeChangeHandler = {volumeChangeHandler}
+           onVolumeSeekUp = {volumeSeekUpHandler}
+           mute = {muted}
+           onMute = {muteHandler}
+           playRate = {playbackRate}
+           onPlayRate = {playBackRateHandler}
+           duration = {formatDuration}
+           currentTime = {formatCurrentTime}
+         /&gt
+```
+We then pass it to the ```ref``` property on the ```control_Container```** **div in the ```control```** **component:
+```
+const Control = ({controlRef}) => {
+ return (
+ <div className="control_Container" ref ={controlRef}>
+    // <-- body of the control component --->
+
+ </div>
+ );
+};
+export default Control
+```
+Next, we head over to our App.js and declare a new variable called ```count```** **which will be equal to 0:
+```
+Let count = 0
+const App = () => {
+ return (
+ <div>
+    // <-- body of the App component --->
+
+ </div>
+ );
+};
+export default App
+```
+We include an ```if``` statement inside the ```progressHandler``` function to determine whether the ```count``` exceeds 3, at which point we use the ```controlRef```** **and set the visibility to ```hidden```. By doing so, the ```control``` component div is hidden.
+```
+const progressHandler = (state) => {
+   if (count > 3)
+// toggling player control container
+controlRef.current.style.visibility = "hidden&quot;;
+   } else if (controlRef.current.style.visibility === "visible") {
+     count += 1;
+   }
+   if (!seeking) {
+ setVideoState({ ...videoState, ...state });
+   }
+ }
+```
+We must create another function to make the control div visible whenever the player is hovered over.
+```
+const mouseMoveHandler = () => {
+   controlRef.current.style.visibility = "visible&quot;;
+ count = 0;
+ };
+const App = () => {
+ return (
+ <div>
+    // <-- body of the App component --->
+ <div onMouseDown = {mouseMoveHandler} >
+ <ReactPlayer/>
+ <Control/>
+ </div>
+ </div>
+ );
+};
+export default App
+```
+Our player now looks like this:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/637f8e3b4ab976922fb42685_image4_9a975ad265973fadcd05a97d63bd56fd.g)
+
+### Buffering Functionality in our React Player
+When we watch videos online, they frequently stall, primarily because of poor network connections. Let's add a similar feature to our video player.
+
+The ReactPlayer provides two props that accept a callback for this feature: ```onBuffer```** **and** **```onBufferEnd```.
+```
+const bufferStartHandler = () => {
+ console.log("Bufering.......");
+   setVideoState({...videoState , buffer: true})
+ };
+ const bufferEndHandler = () => {
+ console.log("buffering stoped ,,,,,,play");
+   setVideoState({...videoState , buffer: false})
+ }
+```
+These two functions will be passed to the ```onBuffer```** **and** **```onBufferEnd```.
+```
+<ReactPlayer
+           ref={videoPlayerRef}
+           className="player"
+           url="https://bucket-viewer.s3.amazonaws.com/viewer1664370329252.mp4"
+           width="100%"
+           height="100%"
+           playing={playing}
+           volume={volume}
+           muted={muted}
+           onProgress={progressHandler}
+           playbackRate={playBackRateHandler}
+           onBuffer={bufferStartHandler}
+           onBufferEnd={bufferEndHandler}
+         /&gt
+```
+The last step alerts users when a video freezes. The buffer state must be ```true``` to render a load effectively.
+Observe the ```Loading```** **text when the video freezes.
+
+## Conclusion
+This post taught us how to construct and modify a video player using the ```react-player``` package and ```Material UI```** **to style and import the required icons. Of course, you can always improve the build by including a few special features to make the player entirely custom.

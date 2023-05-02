@@ -1,0 +1,94 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62ed6381c0a2873d8818ec4a_refactor.png)
+"react; javascript"
+# Refactoring React Class Components: Story of a 2700-Line Component
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+id="">But in the real world, things are not so shiny. We often have to deal with codebases that have evolved over many years and components that bear the marks of many different developers.
+id="">Our story is about a component with <strong id="">2700 lines of code**. That's... way too many. Let’s try to explain how things went south and how we can do better.
+
+## Background
+id="">I currently work for a company that maintains a fleet management dashboard that shows vehicles roaming around a city in real time.
+id="">This dashboard component is the hero of our story today. It has many functionalities, but none of them are super fancy:
+- id="">A way to search for the vehicles
+- id="">A popup that shows each vehicle’s details when clicked
+- id="">A list of vehicles at the bottom
+- id="">Some filtering options
+
+id="">Sure, there are several features that this single component is responsible for displaying. But are there really enough to require 2700 lines of code?
+
+
+## The Component
+id="">Obviously, it would be stupid of me to paste 2700 lines of code into this article. (Not to mention illegal! 😓) But, let me show you, generally, the react component's structure:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62bdfdcce006d5baebc5cee7_2700-Line%20Component.png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet showing the general structure of a large React componen)
+id=""><strong id="">Okay, now tell me what’s wrong here.**
+
+id="">To be 100% honest? Almost everything. Let me explain:
+
+### Constant Declaration
+id="">This is an obvious one. Unfortunately, I've seen many examples of constant declaration across many companies and many components.
+id=""><strong id="">Keep the constants in a separate file.**
+id="">It doesn’t matter if they’re being re-used or not, it’s still better to store constants in a separate file. Down the line, someone else will create a separate constant with the same value, which will eventually create confusion.
+id="">I do it this way:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62bdff603fbf007debca0042_Constant%20Declarations.png" loading="lazy" id="" width="auto" height="auto" alt="An example of abstracted constant)
+id="">Then I import them into my component:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62bdffdfd2b9b299a3b14436_Import%20Constant%20Declarations.png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet that imports constant declaration)
+id="">For this particular React component, it isn’t a big deal, but best practices are best practices.
+
+### Styles and Helper Methods
+id="">I think it’s a very common mistake (and sometimes an allowable thing to do!) to put the styles and helper methods in the same file for smaller components.
+id="">If your component is only 30–50 lines of code, it can make sense to keep the styles and helper methods in the same file.
+id="">But, this isn't true for big React projects. 580 lines of style declaration doesn’t make sense in any scenario, as you won’t need to touch these styles very often.
+id="">I follow the following folder structure to keep things organized:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62be0027d504332d7673352a_Folder%20Structure.png" loading="lazy" id="" width="auto" height="auto" alt="An example of React file structur)
+id="">The responsibility of the files is clear from the names of the files themselves. It’s simple to split our massive component to one-third of its current size just by putting things where they should be! Refactoring React components doesn't have to be daunting.
+id="">An example:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62be0079afe7b262b3c78c38_Bad%20Styling.png" loading="lazy" id="" width="auto" height="auto" alt="An example of refactored stylin)
+id="">If you are using Raw CSS or SCSS, you probably don’t make this mistake, but projects using <a href="https://code.pieces.app/blog/react-themes-with-styled-components" target="_blank">styled-components</a> or material-ui mostly follow the above bad practice.
+id="">Once someone started it, it became the standard practice.
+id="">Don’t fall into this trap! Create a separate file for styles ahead of time; this can save your component in the future.
+
+### Dumb Components
+id="">There are two types of components:
+
+id="">Intelligent components → Show something based on logic
+id="">Every class or component should do one thing and one thing only.
+id="">Sometimes we get lazy, myself included, and put simple container components into the actual component. But, what will the next developer think when they read this component?
+id="">Will they move the smaller component into its own file?
+id="">Umm… Probably not. So after 4–5 years, you’ll have 200 lines of helper dumb components that could have been easily extracted into separate files, and it will take you much longer to refactor React components.
+
+### React Class Component
+id="">I’m not sure if you noticed, but this massive component is using ClassComponent. I’m sure you know why; it was written when functional components were not that common.
+id="">Nowadays, using functional components makes more sense:
+- id="">They use less code
+- id="">They’re (arguably) more performant
+id="">But even I wouldn’t try to convert our 2700-line component into a functional component at this stage. We need to do a lot of code refactoring before converting it into a functional component.
+
+## Results of Easy Refactors
+
+id="">Let me show you an estimate of how much we can improve this component without even understanding its function.
+id="">If all we do is export the constants to <em id="">constants.ts, the styles to <em id="">styles.ts and the helper methods to <em id="">helpers.ts, we can reduce the component by 1400 lines.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62be0116aa5bf06e682c7456_Refactor%20Calculation.png" loading="lazy" id="" width="auto" height="auto" alt="A calculation of how many lines we can remove in with easy refactor)
+id="">This will take us about two hours of work; all we need to do is put things into the appropriate files and then import them.
+id="">We can reduce our component from 2700 lines to 1300 lines!
+id="">Some may say that’s still a lot, but hey!!! One step at a time, right?
+
+### Can We Do Better?
+id="">Yes, of course. When we look into the internal logic, we can reduce the component even further if we:
+- id="">Use a functional component
+- id="">Take advantage of hooks
+- id="">Use functional redux
+
+id="">And so on… But that’s a React refactoring story for another day.
+
+### Show Me the Good Parts
+id="">Obviously, this component has lots of problems, but it has some good things going on, too.
+id="">Although the type declarations add up to 200 lines, they’re worth it. Without Typescript, it would be impossible to maintain this component.
+id="">Some of the dumb logic is extracted from the view logic itself. For example, showing a message based on vehicle status looks like this:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62be019cda48c1a37033e51f_Vehicle%20Status%20Message.png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet with React cod)
+
+id="">It’s better to have them in a separate function instead of writing the logic into the view, which can look something like this:

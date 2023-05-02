@@ -1,25 +1,58 @@
 {
-  "name": "Phoenix",
-  "theme": "#36B9B9",
-  "noindex": "true",
-  "automaticallyDisplayName": false,
+  "name": "Pieces for Developers",
+  "theme": "#BFC5EA",
+  "favicon": "/assets/pieces_dark.png",
   "logo": "/assets/pieces_dark.png",
   "logoDark": "/assets/pieces_light.png",
+  "noindex": true,
+  "variables": {
+    "base_route": "https://code.pieces.app"
+  },
+  "docsearch": {
+    "appId": "LPKUAAND39",
+    "apiKey": "8686752130f8ebd90d93e626476b5893",
+    "indexName": "pieces_for_developers_phoenix"
+  },
   "anchors": [
     {
-      "title": "Home",
-      "icon": "house",
-      "link": "#"
+      "title": "About Pieces",
+      "icon": "info",
+      "link": "https://pieces.app/about/"
     },
     {
-      "title": "About",
-      "icon": "info",
+      "title": "Blog",
+      "icon": "blog",
+      "link": "/blog"
+    },
+    {
+      "title": "News",
+      "icon": "newspaper",
+      "link": "https://news.pieces.app"
+    },
+    {
+      "title": "Download Pieces",
+      "icon": "download",
       "link": "#"
     },
     {
       "title": "Plugins",
       "icon": "puzzle-piece",
-      "link": "#"
+      "link": "/plugins"
+    },
+    {
+      "title": "Support",
+      "icon": "headset",
+      "link": "/support"
+    },
+    {
+      "title": "Updates",
+      "icon": "pencil",
+      "link": "/updates"
+    },
+    {
+      "title": "Contact Us",
+      "icon": "address-card",
+      "link": "/contact"
     }
   ]
 }

@@ -1,0 +1,155 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62ed5e6e4a15f41c999acf0f_MVVM.png)
+"flutter; dart"
+# Using MVVM Architecture in Flutter
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+id=""><strong id="">Model-View-ViewModel (MVVM)** Architecture is a unique combination of software architecture patterns that supports the separation of the UI (which is <strong id="">View**) from the development of the business logic or the backend logic (<strong id="">Model**). The view model inside MVVM is the bridge responsible for the conversion of data in a way that behaves in accordance with the changes happening in the UI.
+id="">In addition, to know about the responsibilities of the three components, it’s also important to understand how the components interact with each other. At the highest level, <em id="">the view “knows about” the view model, and <em id="">the view model “knows about” the model, but <em id="">the model is unaware of the view model, and the <em view model is unaware of the view.
+![](8f555387049efb3/62ead8e36a005d153f96fea4_0*Plj_xKz_2EwTrXQz.png" alt="A diagram showing the Flutter MVVM architecture." id="" width="auto" height="auto" loading="au)
+## Advantages and Disadvantages of MVVM
+id="">There are several advantages of MVVM Architecture:
+- id="">Improved testability
+- id="">Defined project structure
+- id="">Parallel development of UI
+- id="">Abstracting the view, thus reducing the quantity of business logic required in the code behind it
+id="">Some disadvantages of MVVM:
+- id="">It adds a lot of extra classes, so it’s not ideal for low-complexity projects.
+id="">Since architectural or MVVM design patterns are platform-agnostic, they can be used with any framework MVVM framework; in our case, <strong id="">Flutter**. If you prefer visual learning, follow along with a <a href="https://www.youtube.com/watch?v=7Q9dxzIo314" target="_blank" id="">video version of this tutorial.</a>
+## MVVM Components
+id=""><strong id="">Model:** This is basically the domain model, or the model which represents the data from your backend (i.e., the data access layer). Models hold information but typically don’t handle behavior. They don’t format information or influence how data appears. The Model in the MVVM pattern in Flutter represents the actual data that will be used in application development.
+id=""><strong id="">View:** This is basically the only part of the application users actually interact with. For instance, the user presses the button, scrolls the list, edits the settings, etc. These events are then forwarded to the view model, which does the processing and returns the expected user response (which is some form of UI). It’s important to remember the <strong id="">View** isn’t responsible here for handling the state.
+id="">A View should be as dumb as possible. Never put your business logic in a View.
+id=""><strong id="">ViewModel:** The ViewModel acts as an intermediary between the <strong id="">View** and the <strong id="">Model**, in such a way that it provides data to the UI. The ViewModel may also expose methods for helping to maintain the View’s state, update the model based on the actions on a View, and trigger events on the View. In <strong id="">Flutter,** we have a listener called <a href="https://api.flutter.dev/flutter/foundation/ChangeNotifier-class.html" target="_blank" id="">ChangeNotifier</a> that allows the ViewModel to inform or update the View whenever the data is updated.
+id="">The ViewModel has basically two responsibilities:
+- id="">It offers output data that the View can subscribe to
+id="">In summary, the ViewModel sits behind the UI layer which is a <a href="https://code.pieces.app/blog/user-interface-neumorphism-glassmorphism">key user interface principle</a>. It exposes data needed by a View and can be viewed as the source our Views go to for both data and actions.
+### What is Flutter ChangeNotifier?
+id=""><a href="https://api.flutter.dev/flutter/foundation/ChangeNotifier-class.html" target="_blank" id="">ChangeNotifier</a> is a class that provides change notifications to its listeners.
+id="">As per the official <a href="https://api.flutter.dev/flutter/foundation/ChangeNotifier-class.html" target="_blank" id="">documentation</a>, a ChangeNotifier is:
+id="">A class that can be extended or mixed in that provides a change notification API using VoidCallback for notifications.
+id=""><em id="">It is O(1) for adding listeners and O(N) for removing listeners and dispatching notifications (where N is the number of listeners).
+id="">There are two ways to consume the ChangeNotifier in Flutter:
+- id="">Using a combination of <em id="">ChangeNotifierProvider, <em id="">Consumer, and <em id="">Provider. These capabilities are provided to us by the <a href="https://pub.dev/packages/provider" target="_blank" id="">Provider</a> package.
+id="">In the real world, other classes can <em id="">listen to a <em id="">ChangeNotifier object. When the change notifier gets updated values, it can call a method called <a href="https://api.flutter.dev/flutter/foundation/ChangeNotifier/notifyListeners.html" target="_blank" id="">notifyListeners</a>, and then any of its listeners will receive the updated values.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62ebad29e9ab9b75212857f3_raycast-untitled%20(67).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet with Dart cod)
+id="">Inside the app, any class that listens to this Person will be notified in case the age changes. Internally, notifyListeners calls the registered listeners.
+## Flutter MVVM Example
+id="">Flutter is declarative in nature. This means that Flutter builds UI by overriding your build methods to reflect the current state of your app:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62ebad5c93dc2043f191b375_raycast-untitled%20(68).png" loading="lazy" id="" width="auto" height="auto" alt="Code snippet with Dart cod)
+id="">According to the <a href="https://docs.flutter.dev/development/data-and-backend/state-mgmt/ephemeral-vs-app" target="_blank" id="">Flutter documentation</a>, the state is described as “the data you need to rebuild your UI at any point in time.”
+id="">A state can be contained in a single widget, known as a local state. Flutter provides inbuilt classes and methods to deal with self-contained states like <em id="">StatefulWidget and <em id="">setState.
+id="">However, a state that has to be shared across different widgets is known as an app state. It is at this point that we introduce state management tools.
+id=""><em id="">We will be using <a href="https://pub.dev/packages/provider" target="_blank" id=""><em id="">Provider</a><em id=""> for state management.
+id="">Let’s say you were architecting an application that includes only the screen below. How would you do it?
+id=""><em id="">Hint: Using Flutter MVVM
+![](8f555387049efb3/62ead8e3e5898db7a261006c_1*KG0NtOrb3RIKXR4HJ2Amfw.png" alt="an example screen for a flutter architecture MVVM example." id="" width="auto" height="auto" loading="au)
+id="">Sample Screen
+### <strong id="">Naming convention for View**:
+id="">Each screen is called “view” and the file is suffixed with <em id="">_view. The view will be listening to the changes happening on the ViewModel Flutter, using the <a href="https://pub.dev/documentation/provider/latest/provider/Consumer-class.html" target="_blank" id=""><em id="">Consumer</a>.
+### <strong id="">Naming convention for ViewModel**:
+id=""> Each screen has a ViewModel associated with it and the file is suffixed with <em id="">_view_model. The ViewModel notifies the changes to the UI (if any) using <a href="https://api.flutter.dev/flutter/foundation/ChangeNotifier/notifyListeners.html" target="_blank" id="">notifyListeners</a>.
+![](8f555387049efb3/62ead8e3629c9081ff5d75c8_1*7kmY0bEok_LIUyU9Iv8akA.png" alt="MVVM Project structure example imagine." id="" width="auto" height="auto" loading="au)
+id="">These are the basics of MVVM architecture, as we can see in the screenshot above. This can be replicated for all of your app's screens. You can read more about <a href="https://code.pieces.app/blog/file-handling-web-development" target="_blank">The Best File Formats for Web Development</a> for a better understanding. Now, let’s see a slight addition on top of this structure.
+### Extending the MVVM toolkit with Repository and Services
+id="">In the real world, our app needs to interact with APIs or third-party integrations. So, we introduce something called a Repository.
+id="">A repository pattern provides an abstraction of data so that your application can work with a simple abstraction that has an interface. Using this pattern can help to achieve loose coupling. If implemented correctly, the Repository pattern can be a great way to ensure you follow the <em id="">Single Responsibility Principle for your data access code.
+id="">Some benefits of using the Repository pattern:
+- id="">It makes mocking easier and allows to do unit tests
+- id="">It easily switches data sources without doing time-consuming code changes
+id="">Dart has no interfaces, like Java, but we can create one with an abstract class. We begin by creating an abstract class that defines the interface for our home_repo.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62ebae923c40995a14e4ae33_raycast-untitled%20(69).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet with Dart cod)
+id="">This abstract class helps to create a boundary, and we are free to work on either side of that boundary. We could work on implementing the home repository (<em id="">recommended), or we could just use the implementation directly in our app (<em id="">not recommended).
+id="">Here, the <em id="">HomeRepository has only one method, <em id="">fetchData. This method returns the response as a model called <em id="">CarouselModel.
+id="">Next, let’s implement the <em id="">HomeRepository:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62ebaf4ab4e31a3ef38ece9a_raycast-untitled%20(70).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet with Dart cod)
+id="">Inside the method <em id="">fetchData, we introduce a delay and then load the data from the assets, which is a JSON file. This delay is basically a substitute for calling the API, <em id="">but I hope I am able to convey my thoughts to the reader.
+id="">As your application grows, you may find yourself adding more and more methods to a given repository. In this scenario, consider creating multiple repositories and keeping related methods together.
+![](8f555387049efb3/62ead8e311ea59bb35c97110_1*q1BNWS5-00kEkAVE3ob9qw.png" alt="An example of MVVM folder structure Flutter." id="" width="auto" height="auto" loading="au)
+id="">Now, we have
+- id=""><em id="">home_view representing the <strong id="">View (V)**
+- id=""><em id="">home_view_model representing the <strong id="">View Model (VM)**
+- id=""><em id="">home_repo representing the <strong id="">Repository**
+### Register the Repository
+id="">Since our repository is ready, now we need to figure out how to register it and make it available inside our app. This is when we introduce another concept called Dependency Injection (DI). We make use of the package <a href="https://pub.dev/packages/get_it" target="_blank" id="">get_it</a>. As per the documentation:
+id="">This is a simple Service Locator for Dart and Flutter projects with some additional goodies highly inspired by <em id="">Splat. It can be used instead of <em id="">InheritedWidget or <em id="">Provider to access objects, e.g., from your UI.
+id=""><strong id="">GetIt is super fast** because it uses just a <em id="">Map<Type>, which makes access to it <strong id="">O(1).** GetIt itself is a singleton, so you can access it from everywhere using its instance property (see below).
+id="">We install <em id="">get_it it by including it inside the <em id="">pubspec.yaml as:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62ebb0137f7f913219aa4b8f_raycast-untitled%20(71).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet with Dart cod)
+id="">Typically at the start of your app, you register the types that you want to later access from anywhere. After that, you can access instances of the registered types by calling the locator again.
+id="">The nice thing is you can register an interface or abstract class together with a concrete implementation. When accessing the instance, you always ask for the interface/abstract class type. This makes it easy to switch the implementation by just switching the concrete type at registration time.
+id="">We create a file called <em id="">locator.dart inside which we will instantiate the object of <em id="">get_it:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62ebb06cef7fa5045c9734e5_raycast-untitled%20(72).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet with Dart code that helps to build MVVM Architectur)
+id="">As Dart supports global variables, we assign the GetIt instance to a global variable to make access to it as easy as possible.
+id="">Although GetIt is a singleton, we will assign its instance to a global variable<em id=""> locator to minimize the code for accessing GetIt. Any call to <em id="">locator in any package of a project will get the same instance of <em id="">GetIt.
+id="">Next, we use the <em id="">locator and use the <em id="">registerFactory to register our <em id="">HomeRepository.
+Note: if you like these Dart snippets, check out our collection of <a href="https://code.pieces.app/collections/dart" id="">Dart code samples</a>.
+id="">Provider is a powerful alternative to GetIt. But there are some reasons why people use GetIt for Dependency injection:
+- id="">Provider adds its own widget classes to the widget tree that are no GUI elements, but are needed to access the in Provider registered objects.
+id="">You can implement unit testing for different elements of your Flutter applications, such as widgets, controllers, models, services, and repositories. It’s possible to unit test repository-based Flutter codebases with the following strategies:
+- id="">You don’t need to implement mock classes by yourself — the <a href="https://pub.dev/packages/mockito" target="_blank">Mockito package</a> helps you to generate them quickly and <a href="https://pub.dev/packages/mockito" target="_blank" id="">automatically</a>.
+## Integrate Repository in ViewModel
+id="">Now comes the time to use the Dependency Injection (DI). But before that, let’s see what it is.
+id="">When class A uses some functionality of class B, then it’s said that class A has a dependency of class B.
+id="">Before we can use methods of other classes, we first need to create the object of that class (i.e., class A needs to create an instance of class B).
+id=""><strong id="">Dependency injection is transferring the task of creating the object to someone else and directly using the dependency.**
+![](8f555387049efb3/62ead8e3e38b9823c21f225c_0*0r7__ZZKUzZLQbt_.png" alt="A comic strip that illustrates dependency injection." id="" width="auto" height="auto" loading="au)
+### Benefits of using DI
+- id="">Boilerplate code is reduced, as the initializing of dependencies is done by another component (locator in our case)
+- id="">Enables loose coupling
+- id="">Many compile time errors are pushed to runtime
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62ebb11691d6ba21a83895c0_raycast-untitled%20(73).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet with Dart code that integrates D)
+id="">Here, we create a constructor inside our HomeViewModel and specify the homeRepo as our required parameter. This way, we direct whomever needs access to our ViewModel first through the homeRepo.
+### Initialize the service locator
+id="">You need to register the services on app startup, so you can do that in <em id="">main.dart.
+id="">Replace the standard:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62ebb1365376ebf6da90b627_raycast-untitled%20(74).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet with Dart cod)
+id="">With the following:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62ebb15ecf737f8331384a76_raycast-untitled%20(75).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet with Dart cod)
+id="">This will register any services you have with GetIt before the widget tree is built.
+id="">If we recall, our homeRepo was registered inside the locator, so in order to declare our ViewModel, we follow this:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62ebb18255a6094317ad0c99_raycast-untitled%20(76).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet with Dart cod)
+id="">Inside our <em id="">main, we call the <em id="">setupLocator, which is the method that comprises all the registered dependencies under <em id="">locator.dart.
+id="">Next, inside our <a href="https://pub.dev/documentation/provider/latest/provider/MultiProvider-class.html" target="_blank" id="">MultiProvider</a>, we specify the HomeViewModel under the <a href="https://pub.dev/documentation/provider/latest/provider/ChangeNotifierProvider-class.html" target="_blank" id="">ChangeNotifierProvider</a>.
+id=""><em id="">ChangeNotifierProvider creates a ChangeNotifier using create and automatically disposes it when it is removed from the widget tree.
+### Using ViewModel inside the View
+id="">We have our repository registered and passed as a required parameter to our ViewModel. Let’s see how to use the ViewModel inside our View.
+id="">There are two ways to access the ViewModel inside the View:
+- id="">Using <em id="">Provider.of<T>(context)
+id="">We instantiate the <em id="">viewModel using <strong id="">Provider.of** inside the <em id="">home_view.
+id=""><em id="">Provider.of<T>(context) is used when you need to access the dependency, but you don’t want to make any changes to the UI. We simply set <em id="">listen: false, signifying that we don’t need to listen to updates from the ChangeNotifier. The<em id=""> listen: false parameter is used to specify when you're using Provider to fetch an instance and call a method on that instance.
+id=""><em id="">Note: We can also use the below:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62ebb24bcf737f7907385418_raycast-untitled%20(78).png" loading="lazy" id="" width="auto" height="auto" alt="A Dart code snippe)
+id="">For reacting to the changes that happen to the viewModel, we use Consumer<T> when we want to rebuild the widgets when a value changes. It is a must to provide the type <T> so that the Provider can understand which dependency you are referring to.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62ebb271826f8ab11d92f8be_raycast-untitled%20(79).png" loading="lazy" id="" width="auto" height="auto" alt="A Dart code snippe)
+id="">The <a href="https://pub.dev/documentation/provider/latest/provider/Consumer-class.html" target="_blank" id="">Consumer</a> widget doesn’t do any fancy work. It just calls <a href="https://pub.dev/documentation/provider/latest/provider/Provider/of.html" target="_blank" id="">Provider.of</a> in a new widget and delegates its build implementation to the <a href="https://pub.dev/documentation/provider/latest/provider/Consumer/builder.html" target="_blank" id="">builder</a>.
+id="">The Consumer widget takes two parameters, the <em id="">builder parameter and the <em id="">child parameter (optional). The child parameter widget is not affected by any change in the ChangeNotifier.
+id="">This builder can be called multiple times (such as when the provided value changes), and that is where we can rebuild our UI. The Consumer widget has two main purposes:
+- id="">It helps with performance optimization by providing more granular rebuilds.
+### Unit tests for the ViewModel (Optional)
+id="">You can mock dependencies by creating an alternative implementation of a class by making use of the <a href="https://pub.dev/packages/mockito" target="_blank" id="">Mockito package</a> as a shortcut.
+![](8f555387049efb3/62ead8e3bc5946e3e6ab1aa2_0*raBWlTIpC0H5EKFM.png" alt="A flowchart of the Flutter MVVM architecture." id="" width="auto" height="auto" loading="au)
+## What are Services?
+id="">Services are normal Dart classes that are written to do some specialized task in your app. The purpose of a service is to isolate a task, especially volatile third-party packages, and hide its implementation details from the rest of the app.
+id="">Some common examples you might create a service to handle:
+- id="">Using Cloud Providers like Firebase or some other third-party package
+id="">Let’s say you’re using <a href="https://pub.dev/packages/package_info_plus" target="_blank" id="">package_info</a> to get the package details of your app.
+id="">You use the package directly inside the app, but after some time, you found an even better package. You go through and replace all the references to <em id="">package_info with the new package <em id="">some_great_package. This was surely <strong id="">a waste of your time and effort**.
+id="">Let’s say the product owners found that no user was using this feature. Instead, they requested a new feature. You go through and remove all the references to some_great_package. This was, again, <strong id="">a waste of your time and effort**.
+id="">The point is, when you have tight coupling to some function scattered around your code, it makes it error-prone and difficult to change.
+id=""><strong id="">Clean coding takes time and effort up front, but will save you more time and effort in the long run**.
+id="">This is where services come in. You make a new class and call it something like PackageInfoService. The rest of the classes in the app don’t know how it works internally, they just call methods on the service to get the result.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62ebb2ff93dc204ff591f2d7_raycast-untitled%20(80).png" loading="lazy" id="" width="auto" height="auto" alt="A Dart code snippe)
+- id="">This supports swapping around implementations. You can create a “fake” implementation that just returns hard-coded data while another team is finalizing/developing the service implementation.
+- id="">Sometimes, the implementation may rely on other services. For example, your <em id="">xyzService might use a service for making a network call to get other types of data.
+### Registering your Service
+id="">Using a service locator like GetIt is a convenient way to provide services throughout your app.
+- id="">We will be registering <em id="">PackageInfoService as a lazy singleton. It only gets initialized when it’s first used. If you want it to be initialized on app startup, then use<em id=""> registerSingleton() instead. Since it’s a singleton, you’ll always have the same instance of your service.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62ebb35d0e07f17ec0d1ea7d_raycast-untitled%20(81).png" loading="lazy" id="" width="auto" height="auto" alt="A Dart code snippe)
+### Using the Service
+id="">Since we registered the service using the GetIt, we can get a reference to the service from anywhere in the code.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62ebb394ef7fa5463d974640_raycast-untitled%20(82).png" loading="lazy" id="" width="auto" height="auto" alt="A Dart code snippe)
+id="">Then you can use it within that class like this:
+- id=""><em id="">packageService.doSomething(someValue)
+id="">You can mock dependencies by creating an alternative implementation of the service class by making use of the <a href="https://pub.dev/packages/mockito" target="_blank" id="">Mockito package</a>.
+## Use Pieces to Store Your Flutter Snippets
+id="">When <a href="https://code.pieces.app/blog/building-a-flutter-web-app-from-scratch-a-complete-guide" target="_blank">developing Flutter web applications</a>, you may have tons of widgets you save that you want to reuse later, but you just don't have them in a safe place where you can access them. There also may be the scenario where you are combing through <a href="https://code.pieces.app/blog/using-pieces-flutter-to-build-pieces">Flutter and Dart</a> documentation, and you want to save examples that come in handy when implementing a new feature or figuring out which widget to use for different circumstances.

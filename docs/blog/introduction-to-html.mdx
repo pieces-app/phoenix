@@ -1,0 +1,91 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd74a2a353152a0b302697_introtohtml_17c6b9176e22548906e1e28ca8203317_2000.jpeg)
+"html"
+# Introduction to HTML
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+Web pages are created using a markup language called HTML. The acronym HTML stands for Hypertext Markup Language. A hypertext link is a link between two web pages. The text document within the tag that defines the structure of web pages is defined using a markup language. This language is used to annotate (add notes to) material so that a computer can comprehend it and modify the content as necessary.
+Most markup languages, like HTML, can be read by people. The foundation of HTML pages are HTML components. Images and other objects, like interactive forms, may be embedded within the produced page using HTML techniques. By indicating structural semantics for text elements like headings, paragraphs, lists, links, quotations, and other objects, HTML offers a way to generate structured texts.
+By the end of this article, you’ll be familiar with the<a href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics" target="_blank" rel="noopener noreferrer"> fundamentals</a> of HTML, the structure of an HTML element, and a few HTML<a href="https://developer.mozilla.org/en-US/docs/Glossary/Tag" target="_blank" rel="noopener noreferrer"> tags</a>.
+
+## The Basics of HTML
+Among other options, HTML content may be organized using paragraphs, bulleted lists, graphics, and data tables.
+HTML is a markup language that specifies how your material is organized. HTML is made up of a number of<a href="https://developer.mozilla.org/en-US/docs/Glossary/Element" target="_blank" rel="noopener noreferrer"> elements</a> that you can employ to enclose or wrap certain parts of the content to alter how it appears or behaves. The enclosing<a href="https://developer.mozilla.org/en-US/docs/Glossary/Tag" target="_blank" rel="noopener noreferrer"> tags</a> can italicize words, make the font bigger or smaller, hyperlink a word or image to another location, and more.
+Consider the following line of material as an illustration:
+- “I am very smart”
+
+The line might be written inside of paragraph tags if we want it to stand alone:
+HTML elements have attributes, which are extra values that customize the components or modify their behavior in different ways to enhance the user experience.
+
+![](387049efb3/6373bfd9c48ccd2a9c972e07_image1_aedefefc7e7310fae26362f289e03939_800.png)
+
+The following should always be present in an attribute:
+- A space before the element name (or the previous attribute, if the element already has one or more attributes).
+- The name of the characteristic, followed by an equal sign.
+- The attribute value enclosed in quotation marks, both first and last.
+
+Please note that the "id" attribute is a unique identifier in this case, whereas the class attribute, for example, is not.
+
+### Anatomy of an HTML Element
+All web pages are constructed using the fundamental building blocks of HTML, which include the doctype declaration, HTML, head, title, and body elements.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6373bfd9c48ccd5a2b972e0a_image11_c1c7600bf44dc6730be98c4b6bd18369_800.png)
+
+The document type declaration appears here (and is not technically a tag). This document is identified as an HTML document. There is no case distinction in the doctype statement.
+Sometimes referred to as the root element, the <html> element encloses all of the page's content.
+The<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/head" target="_blank" rel="noopener noreferrer"> <head></a> element serves as a container for whatever you wish to include on the HTML page, but don’t want to be visible to users. This comprises elements like character set declarations, keywords, and a page description that you want to show up in search results.
+The<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title" target="_blank" rel="noopener noreferrer"> <title></a> element determines the title of your page, which is displayed in the browser tab when the page is loaded. It also describes a page when you bookmark or favorite it.
+
+As shown above, the <body> tag includes all of the material that you wish to display to website visitors when they visit your page. This includes text, images, videos, games, playable audio tracks, and other media. To understand this better, click<a href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics#anatomy_of_an_html_document" target="_blank" rel="noopener noreferrer"> here</a>.
+
+### HTML Tags
+A<a href="https://developer.mozilla.org/en-US/docs/Glossary/Tag" target="_blank" rel="noopener noreferrer"> tag</a> is used to create an element in HTML. Browsers employ the HTML tags to decipher the page's content rather than displaying the tags.
+
+These tags help us to give headings to the content of a webpage. These tags are mainly written inside the body tag. HTML provides us with six heading tags from<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements" target="_blank" rel="noopener noreferrer"> **<h1>** to **<h6>**</a>. Every tag displays the heading in a different style and font size:
+We can write paragraphs on a webpage with the aid of these tags. They begin with a<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/p" target="_blank" rel="noopener noreferrer"> <p></a> tag and terminate with a </p> tag:
+A horizontal line extending from the left to right side of the page is used to create horizontal margins by using the<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/hr" target="_blank" rel="noopener noreferrer"> <hr></a> tag to divide the page into different sections. This tag is mostly empty and accepts few parameters.
+
+An image can be added to our website using the<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img" target="_blank" rel="noopener noreferrer"> <img></a> tag. The <img src="" alt=""> tag contains the source of the image that is to be inserted.
+
+There are two formats for inserting an image into the image tag:
+- If the image is in the same folder, the path only has to include the image's name and format.
+- The path, name, and format of the image must all be specified if the image is located in another folder.
+
+### Limitations of HTML
+HTML's main drawback is that HTML tags don't explain the significance of the material contained in an HTML text. The layout and instructions for how a browser should render the data contained in these tags are specified by a fixed, preset tag set used by HTML. However, the tags do not transmit the semantics or meaning of the material they contain.
+- Dynamic content creation is not possible.
+- Its capacity for design is constrained.
+- It does not detect or show syntax mistakes.
+- No calculations of any kind may be made in it.
+- It cannot be used to construct interactive websites.
+- The complexity of its code makes it challenging to read and comprehend.
+
+### Semantic Elements
+When discussing a piece of code in programming, the term "<a href="https://developer.mozilla.org/en-US/docs/Glossary/Semantics" target="_blank" rel="noopener noreferrer">semantics</a>" is used to describe its meaning. For instance, "What effect does running that line of JavaScript have?" or "What purpose or role does that HTML element have?"
+Let's take a look at some semantic elements below:
+The<a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" rel="noopener noreferrer"> HTML</a> element known as<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/article" target="_blank" rel="noopener noreferrer"> <article></a> denotes a self-contained composition that is meant to be independently distributable or reusable within a document, page, application, or website (e.g., in syndication). Examples include an interactive widget or gadget, a blog entry, a product card, a user-submitted comment, a forum post, a magazine or newspaper story, or any other independent piece of content:
+A section of a document whose content is only loosely related to the page's main content is represented by the<a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" rel="noopener noreferrer"> HTML</a> element<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/aside" target="_blank" rel="noopener noreferrer"> <aside></a>. Sidebars or call-out boxes are common ways to present asides.
+The primary material of a document's <body> is represented by the HTML element<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/main" target="_blank" rel="noopener noreferrer"> <main></a>. The key subject of a document or the primary function of an application is expanded upon or directly related in the main content area.
+An area of a page designated as<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav" target="_blank" rel="noopener noreferrer"> <nav></a> in HTML is a section whose function is to offer navigation links, either within the current document or to other documents. Menus, tables of contents, and indexes are typical navigation sections.
+With its <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element#attr-href" target="_blank" rel="noopener noreferrer">href element</a>, the HTML element<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a" target="_blank" rel="noopener noreferrer"> <a></a> (or anchor element) generates a hyperlink to web pages, files, email addresses, locations on the same page, or anything else that may be addressed by a URL.
+Each <a> should contain text that describes the link's final destination. When focused on the <a> element, pressing the enter key will activate the ```href``` property if it is present:
+In order to construct interactive controls for web-based forms and receive user input, the HTML element<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input" target="_blank" rel="noopener noreferrer"> <input></a> is used:
+Due to the enormous variety of possible combinations of input types and properties, the <input> element is one of the most potent and complicated of all HTML elements. Input elements include these types:<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button" target="_blank" rel="noopener noreferrer"> button</a>,<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox" target="_blank" rel="noopener noreferrer"> checkbox</a>,<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/color" target="_blank" rel="noopener noreferrer"> color</a>,<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date" target="_blank" rel="noopener noreferrer"> date</a>,<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/email" target="_blank" rel="noopener noreferrer"> email</a>,<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file" target="_blank" rel="noopener noreferrer"> file</a>,<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/hidden" target="_blank" rel="noopener noreferrer"> hidden</a>,<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/image" target="_blank" rel="noopener noreferrer"> image</a>,<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/month" target="_blank" rel="noopener noreferrer"> month</a>,<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/number" target="_blank" rel="noopener noreferrer"> number</a>,<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/password" target="_blank" rel="noopener noreferrer"> password</a>,<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio" target="_blank" rel="noopener noreferrer"> radio</a>,<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range" target="_blank" rel="noopener noreferrer"> range</a>,<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/reset" target="_blank" rel="noopener noreferrer"> reset</a>,<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/search" target="_blank" rel="noopener noreferrer"> search</a>,<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/submit" target="_blank" rel="noopener noreferrer"> submit</a>,<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/tel" target="_blank" rel="noopener noreferrer"> tel</a>,<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/text" target="_blank" rel="noopener noreferrer"> text</a>,<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/time" target="_blank" rel="noopener noreferrer"> time</a>,<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/url" target="_blank" rel="noopener noreferrer"> url</a>, and<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/week" target="_blank" rel="noopener noreferrer"> week</a>.
+A push<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button" target="_blank" rel="noopener noreferrer"> button</a> displays the value of the value attribute, which is empty by default and has no default behavior:
+A<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox" target="_blank" rel="noopener noreferrer"> checkbox</a> enables the selection and deselection of single values:
+This is a space where an<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/email" target="_blank" rel="noopener noreferrer"> email</a> address can be changed. Although it provides validation settings and an appropriate keyboard in supporting browsers and devices with dynamic keyboards, it seems to be a text input:
+A<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/password" target="_blank" rel="noopener noreferrer"> password</a> is a single-line text field with an illegible value. Users will be warned if a site is not secure:
+This creates a button for form<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/submit" target="_blank" rel="noopener noreferrer"> submission</a>:
+This element gives a text box with one line for inputting<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/search" target="_blank" rel="noopener noreferrer"> search</a> terms. Line breaks in the input value are automatically eliminated:
+
+### HTML Layout
+The area of graphic design known as page layout deals with how visual components are arranged on a page. The site pages look better thanks to page layout. For optimal efficacy or impact, it establishes the overall appearance, relative importance, and relationships between the visual elements to create a seamless flow of information and eye movement.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6373bfd9c48ccd03c5972e01_image12_e71880c525812288b89a40f7fd5ce68d_800.png)
+
+The HTML element<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/header" target="_blank" rel="noopener noreferrer"> <header></a> designates introductory information, which is often a collection of introductions or navigational tools. It might also have a logo, a search form, the author's name, and other features in addition to some heading components:
+The index/sidebar element is also known as the ```<aside>``` tag. It is not necessary on a page, and it contains extra information or adverts.
+
+The core area where content is presented is known as the content section.  The <main> element is used to add the webpages' primary content:
+
+The footer part of web pages contains the contact details and other pertinent information. The footer is always at the bottom of web pages, and is set by the<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/footer" target="_blank" rel="noopener noreferrer"> <footer></a> tag:
+
+## Conclusion

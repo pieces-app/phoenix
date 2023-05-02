@@ -1,0 +1,380 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd789070a1f2c81544b4de_remultapp_d483cb7e53ae69ba7c9f25605c8ecb9e_2000.jpeg)
+"react-7; remult"
+# Remult, TypeScript, and React: The Perfect Combo for a Full-stack App
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+A full-stack application is made up of frameworks, libraries, and tools for developing two separate domain applications: the backend and the frontend. Building these two applications can be very hectic, especially if the frameworks are developed from different programming languages or if one developer is working on both sides of the application. However, we’re grateful to the JavaScript developers for creating backend frameworks that allow us to use JavaScript to build both the client and server sides of our application. The Remult developers expanded on this concept by developing a framework that allows us to build both the client and server sides of an application in a single project rather than having two separate projects. We’ll explore how this can be implemented in this tutorial. Then, we’ll learn how to build a full-stack application with TypeScript and React using Remult.
+
+## What is Remult?
+Remult is a full-stack TypeScript CRUD framework with a frontend type-safe API client and a backend ORM that uses entities as a single source of truth for your API. It saves developers time by abstracting all repetitive or poorly designed code, resulting in a more flexible web application. It makes full-stack app development easier by using only TypeScript code that’s easy to follow and refactor, and it fits well into any existing or new project.
+
+### Why Use Remult?
+Below are some of the reasons developers use Remult:
+- It has a secure auto-generated TypeScript API model and classes that are consumed by frontend type-safe queries that can also be used as third-party applications.
+- It’s a simple CRUD application that interacts with the database directly from the frontend and does not require any boilerplate, so data transformations, validations, and CRUD events are easily controlled.
+- It uses a type-safe coding style to find and manipulate data on both the backend and frontend code.
+- It eliminates redundant and error-prone duplication with model metadata and declarative code that impacts both the frontend and the backend.
+
+## Prerequisites
+This is a hands-on tutorial, so to follow along, be sure that you’ve done these things:
+- Installed <a href="https://nodejs.org/" target="_blank" rel="noopener noreferrer">Node.js</a> V14 or later
+- <a href="https://www.googleadservices.com/pagead/aclk?sa=L&amp;ai=DChcSEwi3vPfd1bP6AhVKA4sKHQbnBWsYABAAGgJlZg&amp;ohost=www.google.com&amp;cid=CAESbOD2X-a6kboxXHXG3izU05eObOfzWxIrNJfa2IeMsImyvcs6l3QguTUf9pPYUNi6jbMn8Rz6TU0SWme6fbL3uUvtL6HyEzJhKOuYte37s4tYRlvpOV4oP-eB8VpRxFGnQhm1rArwTetsZzURSg&amp;sig=AOD64_3r0aVg59iknPszkLuo3XbggSzTLA&amp;q&amp;adurl&amp;ved=2ahUKEwjg2O_d1bP6AhUfgf0HHTn-AqMQ0Qx6BAgIEAE" target="_blank" rel="noopener noreferrer">MongoDB</a> Installed your database
+- Prior knowledge of <a href="https://www.typescriptlang.org/" target="_blank" rel="noopener noreferrer">TypeScript</a> and <a href="https://reactjs.org/" target="_blank" rel="noopener noreferrer">React</a>
+
+## Project Setup
+Without further ado, let’s scaffold a Remult React full stack application using Vite by running the command below:
+```
+npm create -y vite@latest remult-react-blog -- --template react-ts
+cd remult-react-blog
+```
+The above commands will scaffold a new React project with the following folder structure:
+```
+📦remult-react-blog
+┣ 📂public
+┃ ┗ 📜vite.svg
+┣ 📂src
+┃ ┣ 📂assets
+┃ ┃ ┗ 📜react.svg
+┃ ┣ 📜App.css
+┃ ┣ 📜App.tsx
+┃ ┣ 📜index.css
+┃ ┣ 📜main.tsx
+┃ ┗ 📜vite-env.d.ts
+┣ 📜.gitignore
+┣ 📜index.html
+┣ 📜package.json
+┣ 📜tsconfig.json
+┣ 📜tsconfig.node.json
+┗ 📜vite.config.ts
+```
+In order to get your React application running, change the directory into the project folder, install the required packages, and start the application by running the commands below:
+```
+cd remult-react-blog
+npm install
+```
+Now, let’s set up the backend of the application.
+
+### Install Dependencies
+The first step in setting up the backend is to install the required dependencies. We’ll use **Express **for the backend, and since Remult creates both the backend and frontend in one project, we’ll need to have them running concurrently.  So run the commands to install **Express **and the **Remult** SDK, and use ```ts-node``` to run the application in development.
+```
+npm i express remult
+npm i --save-dev @types/express ts-node-dev concurrently
+```
+Next, wait for the installation to be completed and proceed to creating the backend.
+
+### Create the Backend
+With the required packages for the backend setup installed, create a TypeScript config file and add the configurations below:
+```
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true
+  }
+
+```
+Then, create a **server **folder in the **src **folder. Next, in the server folder, create an **index.ts **file and make an Express server with the code snippets below:
+```
+import express from 'express';
+const app = express();
+app.listen(3002, () => console.log("Server started"))
+```
+Since the application is using the Common.js module, you need to remove the ```"type": "module"``` entry from the **package.json** file created by Vite.
+Next, create an **api.ts** file on the **server **and load Remult in the backend as an Express middleware with the code snippet below:
+```
+import { remultExpress } from 'remult/remult-express';
+export const api = remultExpress()
+```
+Then, register the Remult **API** middleware in the **server/index.ts** file with this code snippet:
+```
+Import {api} from “./api”;
+app.use(api)
+```
+Next, update the** **```tsconfig.json``` file to enable TypeScript decorators in the React.js full stack App with the entry below:
+```
+"experimentalDecorators": true
+```
+A Remult application is configured to run the frontend and backend from the same domain in production. However, in development, the API server listens to <a href="http://localhost:3002/" target="_blank" rel="noopener noreferrer">http://localhost:3002</a>, while the frontend listens to port <a href="http://localhost:5173/" target="_blank" rel="noopener noreferrer">http://localhost:5173</a>. Therefore, you need to use the Vite proxy feature to divert all requests to the **API** to <a href="http://localhost:5173/api" target="_blank" rel="noopener noreferrer">http://localhost:5173/api</a>. To do this, update the **vite.confg.ts** file with the code snippet below:
+```
+export default defineConfig({
+  plugins: [react()],
+  server: { proxy: { '/api': 'http://localhost:3002' } }
+})```
+Next, update the **package.json** file to add a start script to run the application in development with the entry below:
+```
+"dev": "concurrently -k -n \\"API,WEB\\" -c \\"bgBlue.bold,bgGreen.bold\\" \\"ts-node-dev -P tsconfig.server.json src/server/\\" \\"vite\\"&quot
+```
+Now, run the application with this command:
+
+With the backend created, let’s proceed to connecting the application to a MongoDB database to store our blog data. To get started, install the MongoDB package by running the command below:
+
+```
+npm i mongdb
+```
+Then, update the** server/index.ts **file and connect it to MongoDB with the following code snippet:
+
+```
+import { remultExpress } from 'remult/remult-express';
+import { MongoClient } from 'mongodb';
+import { MongoDataProvider } from 'remult/remult-mongo';
+app.use(remultExpress({
+  dataProvider: async () => {
+    const client = new MongoClient("mongodb://localhost:27017/local");
+    await client.connect();
+    return new MongoDataProvider(client.db('blogs'), client);
+  }
+}));
+```
+
+With the above code snippet, we imported the ```remultExpress```** **middleware, the ```MongoClient``` class and the ```MongoDataProvider``` class. The ```remultExpress```** **middleware** **takes a ```dataProvider```** **object as an argument, which allows us to connect to the database. We also created a client instance from the ```MongoClient``` client class passing in the database URI and established a connection using the calling-the-client-connect method.
+
+## Create a Blog Entity with Remult
+Now, with the connection to our database established, let's create a Blog entity to define and create our blog model. To do this, we’ll create a **shared **folder in the server folder. We’re saving it in this file because Remult classes are shared between the frontend and backend. This means we can access in the frontend any class created in the backend.
+
+In the **shared** folder, create a blog.ts file and add the code below:
+```
+import { Entity, Fields } from 'remult';
+@Entity('blogs', {
+  allowApiCrud: true
+})
+export class Blogs {
+  @Fields.uuid()
+  id!: string;
+  @Fields.string()
+  title = '';
+  @Fields.string()
+  coverImage = '';
+  @Fields.string()
+  content = '';
+
+```
+In the above code snippets, we imported the Remult ```Entity``` and ```Fields```** **decorators. We used the ```Entity```** **decorator to create a blogs entity, which will be translated to a model in our MongoDB base with the fields we defined in the ```Blogs``` class using the ```Fields``` decorator. We also set** **```allowApiCrud```** **to ```true``` in the ```@Entity``` decorator to allow us to perform CRUD operations on this entity.
+
+Next, update the **server/index.ts** file to register the entity in the ```remultExpress``` middleware with this code snippet:
+```
+import { Blogs } from './shared /blog';
+app.use(remultExpress({
+  dataProvider: async () => {
+    const client = new MongoClient("mongodb://localhost:27017/local");
+    await client.connect();
+    return new MongoDataProvider(client.db('test'), client);
+  },
+  entities: [Blogs],
+}))
+```
+In the above code snippet, we imported the Blogs entity and registered it to the application in the array of **entities** object.
+
+## Create CRUD Operations
+
+Now let’s create our CRUD functions so that we Create, Read, Update and Delete a blog from our database.
+
+First, you need to create a ```blogController.ts``` file in the **server/shared **folder. In the ```blogController.ts```** **file, add the following code:
+```
+import { BackendMethod, remult } from "remult&quot;;
+import { Blogs } from "./blog&quot;;
+export class BlogsController {
+  @BackendMethod({ allowed: true })
+  static async create(title: string, coverImage: string, content: string) {
+    const newBlog = await remult.repo(Blogs).save({ title, content, coverImage })
+   return newBlog
+  }
+static async getAll() {
+  return await this.blogRepo.find();
+}
+static async getOne(id: string) {
+  return await this.blogRepo.findId(id)
+}
+static async updateOne(id: string, title: string, coverImage: string, content: string) {
+  return await this.blogRepo.update(id, { title, coverImage, content })
+}
+static async deleteOne(id:string) {
+  return await this.blogRepo.delete(id)
+
+```
+In the above code snippets, we imported the Remult ```BackendMethod``` decorator and ```Remult```** **object. The ```BackendMethod```** **decorator tells Remult to expose the methods we defined in the ```BlogsController``` as API endpoints. Then, we used the ```remult.repo```** **method to create a repository for our Blogs entity. This provides us with the methods we need to perform database CRUD operations in each controller method.
+
+Next, you also need to register the ```BlogsController``` like you did for the ```Blogs```** **entity in the ```server/index.ts``` file. This can done with the code snippet below:
+
+We’re done setting up the backend part of the application. Now, let’s move to our React frontend and consume the API’s we’ve created in our backend.
+To get started, create a controllers folder in the **src **to create some React controllers for your application.
+
+First, create a **Form.ts** file in the controllers folder, and add the code below:
+```
+import { useState } from "react&quot;;
+import { BlogsController } from "../server/shared /blogController&quot;;
+export function Form() {
+  const [title, setTitle] = useState("");
+  const [coverImage, setCoverImage] = useState("");
+  const [content, setContent] = useState("");
+
+  const create = async () => {
+    await BlogsController.create(title, coverImage, content);
+};
+return (
+<div>
+  <div className="mb-3">
+    <label htmlFor="exampleFormControlInput1" className="form-label">
+    Title
+    </label>
+    <input
+      type="email"
+      className="form-control"
+      id="exampleFormControlInput1"
+      onChange={(e) => setTitle(e.target.value)}
+    />
+  </div>
+  <div className="mb-3">
+    <label htmlFor="exampleFormControlInput1" className="form-label">
+    Cover Image
+    </label>
+    <input
+      type="email"
+      className="form-control"
+      id="exampleFormControlInput1"
+      onChange={(e) => setCoverImage(e.target.value)}
+    />
+  </div>
+  <div className="mb-3">
+    <label htmlFor="exampleFormControlTextarea1" className="form-label">
+    Content
+    </label>
+    <textarea
+      className="form-control"
+      id="exampleFormControlTextarea1"
+      rows="3"
+      onChange={(e) => setContent(e.target.value)}
+    ></textarea>
+  </div>
+  <div className="mb-3">
+    <button className="btn btn-primary" onClick={()=> create()}>Add</button>
+  </div>
+</div>
+);
+
+```
+In the above code snippet, we imported the ```BlogsController``` class so we can access the API endpoints that we defined there. We also created a state variable to store the blog ```title``` and ```coverImage``` ```content```** **values from the form data. We made a** **```create```** **function and called the create endpoint from our ```BlogsController``` class, passing the variables we defined for the form values to create a new blog.
+
+We need this form to display in a modal when clicked. Therefore, we need to create a Modal.tsx file in the controllers file to create a ```Modal``` component. This can be done by using the code snippet below:
+```
+import { Form } from "./Form&quot;;
+export function Modal() {
+return (
+  <div
+    className="modal fade"
+    id="staticBackdrop"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabIndex="-1"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+  >
+  <div className="modal-dialog">
+   <div className="modal-content">
+    <div className="modal-header">
+      <h5 className="modal-title" id="staticBackdropLabel">
+      Create New Blog
+      </h5>
+    <button
+      type="button"
+      className="btn-close"
+      data-bs-dismiss="modal"
+      aria-label="Close"
+    ></button>
+    </div>
+    <div className="modal-body">
+    <Form />
+    </div>
+   </div>
+  </div>
+</div>
+);
+
+```
+In the above code, we used the ```Bootstrap``` classes to create a modal for the form component. Then, we imported the ```Form``` component and rendered it in the modal body.
+
+Next, we’ll need to add a clickable button to show the modal component we just created. To add a button in the header part of the application, create a Header.ts file in the controllers folder and add the code below:
+```
+import { Modal } from "./Modal&quot;;
+export function Header() {
+return (
+  <nav className="navbar navbar-light bg-light">
+    <div className="container-fluid">
+    <a className="navbar-brand">Blog App</a>
+    <button
+      className="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#staticBackdrop"
+    >
+    Add New
+    </button>
+   </div>
+  <Modal/>
+</nav>
+);
+
+```
+Now, let’s update the code in the** **```App.tsx``` file to make the ```Header``` component available, read the blog data from our Remult backend, and render it to users with the following:
+```
+import { useEffect, useState } from "react&quot;;
+import { Header } from "./components/Header&quot;;
+import { BlogsController } from "./server/shared /blogController&quot;;
+import { Blogs } from "./server/shared /blog&quot;;
+function App() {
+  const [blogs, setBlogs] = useState<Blogs[]>([]);
+  useEffect(() => {
+    const fetchData = async () => {
+    const blogData = await BlogsController.getAll();
+    setBlogs(blogData);
+  };
+  fetchData();
+});
+const deleteBlog = async (id:string)=>{
+  await BlogsController.deleteOne(id)
+}
+return (
+<div className="App">
+  <Header />
+    <div className="container">
+    <div className="row">
+      {blogs &amp;&amp;
+        blogs.map((blog: Blogs) => {
+      return (
+        <div className="card" style={{ width: "18rem", margin:"20px" }} key={blog.id}>
+          <img
+            src={blog.coverImage}
+            className="card-img-top"
+            alt="..."
+          />
+        <div className="card-body">
+          <h5 className="card-title">{blog.title}</h5>
+            <p className="card-text">
+            {blog.content}
+            </p>
+            <a href="#" className="btn btn-sm btn-danger" onClick={()=>{
+               deleteBlog(blog.id)
+            }}>
+            Delete
+            </a>
+        </div>
+       </div>
+     );
+    })}
+    </div>
+  </div>
+</div>
+);
+}
+export default App
+```
+Also, with the above code snippet, we created a delete function to delete blogs from our database by calling the ```deleteOne``` endpoint using the ```BlogsController```** **controller class.
+
+Next, open your browser and navigate to <a href="http://localhost:5173/" target="_blank" rel="noopener noreferrer">http://localhost:5173</a>, and you should see the output on the screenshot below:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63614dff1eb9182703a65da6_image2_79575295c40725aca88abdf2c4081a89_800.png)
+
+Click the Add New button to create a new blog.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63614dff1eb91880fda65da7_image1_9562fa5bf35783a59804210a8a68da4a_800.png)
+
+## Conclusion and Resources
+In this tutorial, we went through a React TypesScript tutorial to build a full-stack application using Remult. We began by learning what Remult is and why a developer would use it to build full-stack web applications. Then, we built a blog application with CRUD operations as a demonstration.
+Now that you’ve learned about Remult, how would you use it in your next project? To learn more about Remult, check out the official <a href="https://remult.dev/" target="_blank" rel="noopener noreferrer">documentation</a>.

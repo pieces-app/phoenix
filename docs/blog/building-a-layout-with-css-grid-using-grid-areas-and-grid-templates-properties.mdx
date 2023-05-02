@@ -1,0 +1,384 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd76ff3e56bf4f428fb316_CSSgrid_f2b2401735dbedd145e345a0b9a69f57_2000.jpeg)
+"web; development"
+# Building a Layout with CSS Grid Using Grid Areas and Grid Templates Properties
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+The <a href="https://www.w3schools.com/css/css_grid.asp" target="_blank" rel="noopener noreferrer">Grid layout</a> introduces a two-dimensional grid system to CSS; it simplifies designing a web page and enables you to move items from one grid line to another. Thus, the grid areas and grid template are vital CSS properties that help to define and assign a name to the grid item. In addition, these properties specify the grid item's size and location within a grid. Therefore, before jumping into this subject, it’s important that you understand the grid and how you can apply it to a web page effortlessly.
+
+## What is CSS Grid Layout?
+
+The <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout" target="_blank" rel="noopener noreferrer">CSS Grid</a> is a two-dimensional layout that you can use to create responsive web items. It presents a grid-based layout system with rows and columns. Also, it makes it easier to design web pages without using floats and positioning. The grid system is the foundation of a solid design, and its element consists of a parent part and one or more child parts. You can also place a component into the grid within the column and row lines.
+**Let's look at the example below for a better understanding:**
+```
+<!DOCTYPE html>
+  <html>
+  <head>
+  <style>
+ .one {
+   grid-area: headline;
+   background-color: grey;
+   text-align: center;
+   padding: 50px 0;
+   font-size: 30px;}
+ .two {
+   grid-area: menu;
+   background-color: purple;
+   text-align: center;
+   padding: 50px 0;
+   font-size: 30px; }
+ .three {
+   grid-area: news;
+   background-color: white;
+   text-align: center;
+   padding: 50px 0;
+   font-size: 30px; }
+ .four {
+   grid-area: attention;
+   background-color: yellow;
+   text-align: center;
+   padding: 50px 0;
+   font-size: 30px; }
+ .five {
+   grid-area: click ;
+   background-color: pink;
+   text-align: center;
+   padding: 50px 0;
+   font-size: 30px;}
+ .grid-container {
+   display: Grid;
+   grid-template-areas:
+   'headline headline headline headline headline headline'
+   'menu news news news attention attention'
+   'menu click click click click click';
+ gap: 10px;
+ background-color:blue;
+ padding: 10px;
+}
+</style>
+</head>
+<body>
+<h1>Grid Layout</h1>
+<div class="grid-container">
+    <div class="one">Headline</div>
+    <div class="two">Menu</div>
+    <div class="three">News</div>
+    <div class="four">Attention</div>
+    <div class="five">Click</div>
+ </div>
+ </body>
+ </html>
+```
+
+
+**Here is the outcome:**
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63695b1070b0d17fbbd0d90d_image3_59d775c65f3cd66a2102ec3e90fcce47_800.png)
+
+### The Importance of CSS Grid
+
+There are several reasons why a developer should use CSS Grid:
+- It enables a developer to optimize the markup to allow accessibility without compromising the manipulative capacity of the visual result.
+- It makes the markup on the web page easy to understand.
+- It improves the web design user interface and enhances the user experience.
+- It allows various UIs to be implemented quickly and houses them across multiple contexts.
+- It enhances the visual impression of the web page.
+- It helps create a user-friendly web page.
+- It helps to build more complex layouts using columns and rows.
+
+    ## What is a Grid Area Property?
+The <a href="https://www.w3schools.com/cssref/pr_grid-area.asp" target="_blank" rel="noopener noreferrer">grid-area property</a> specifies a grid item's size and location within a grid. It is a shorthand property, contributing a line or a span to its grid placement. Thus, it specifies the edges of its grid area. A grid area is a shorthand property that includes the following: ```grid-row-start```, ```grid-column-start```, ```grid-row-end```, and ```grid-column-end```.
+**Let's look at the example of the grid area:**
+
+```
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.grid-container {
+ display: Grid;
+ grid-template-columns: auto auto auto auto;
+ grid-gap: 20px;
+ background-color: blue;
+ padding: 20px;
+}
+.grid-container div {
+ background-color: grey;
+ text-align: center;
+ padding: 20px 0;
+ font-size: 30px;
+}
+.item7 {
+ grid-area: 1 / 1 / span 2 / span 3;
+}
+</style>
+</head>
+<body>
+<h1>The grid-area Property</h1>
+<div class="grid-container">
+ <div class="item1">One</div>
+ <div class="item2">Two</div>
+ <div class="item3">Three</div>
+ <div class="item4">Four</div>
+ <div class="item5">Five</div>
+ <div class="item6">Six</div>
+ <div class="item7">Seven</div>
+</div>
+</body>
+</html>
+```
+
+
+**Here is the result:**
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63695b1070b0d1aa38d0d910_image4_c1de99118b6e00e75668b9393b7b8585_800.png)
+
+## What Is a Grid Template Property?
+The <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template" target="_blank" rel="noopener noreferrer">grid template</a> is a shorthand property that allows you to define the columns, rows and areas in the CSS grid in the container with one declaration. Note that a grid template has these properties: ```grid-template-rows```, ```grid-template-columns``` and ```grid-template-areas```.
+
+**Let's look at the example of how a CSS grid template works:**
+```
+<!DOCTYPE html>
+  <html>
+  <head>
+  <style>
+ .grid-container {
+ display: grid;
+ grid-template: 150px / auto auto auto auto;
+ grid-gap: 20px;
+ background-color: blue;
+ padding: 20px;
+  }
+ .grid-container div {
+ background-color: grey;
+ text-align: center;
+ padding: 20px 0;
+ font-size: 30px;
+  }
+  </style>
+  </head>
+  <body>
+  <h1>The grid-template Property</h1>
+  <div class="grid-container">
+    <div class="item1">One</div>
+    <div class="item2">Two</div>
+    <div class="item3">Three</div>
+    <div class="item4">Four</div>
+    <div class="item5">Five</div>
+    <div class="item6">Six</div>
+    <div class="item7">Seven</div>
+    <div class="item8">Eight</div>
+  </div>
+  </body>
+  </html&gt
+```
+**Here is the outcome:**
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63695b1070b0d1da06d0d90a_image5_7c087411f465cc66679c157d2cc6ced1_800.png)
+
+## Types of Grid Area Properties
+There are different types of grid area properties, which we’ll discuss in detail below. They are as follows:
+
+- ```grid-row-start```
+
+- ```grid-column-start```
+
+- ```grid-row-end```
+
+- ```grid-column-end```
+
+### grid-row-start
+The <a href="https://www.w3schools.com/cssref/pr_grid-row-start.asp" target="_blank" rel="noopener noreferrer">grid-row-start</a> property defines the grid item's start position within the grid row by specifying the inline start edge of its grid area.
+
+**Here is an example of grid-row-start:**
+
+```
+<style>
+.grid-container {
+ display: grid;
+ grid-template-columns: auto auto auto auto;
+ grid-gap: 10px;
+ background-color: blue;
+ padding: 10px;
+}
+.grid-container div {
+ background-color: grey;
+ text-align: center;
+ padding: 20px 0;
+ font-size: 30px;
+}
+.item8 {
+ grid-row-start: 1;
+}
+</style&gt
+```
+**Here is the result:**
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63695b1070b0d1a5bed0d90e_image10_f308fa9b6fc21fd555be6f8de66c1f99_800.png)
+### grid-column-start
+The <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column-start" target="_blank" rel="noopener noreferrer">grid-column-start</a> property defines on which particular column line an item should start. Also, there are other values for the grid-column-start property, and the user can start from anywhere with the different values. There is a specific value that is affected on the same naming block as well.
+**Now, let's look at the example below:**
+```
+<style>
+.grid-container {
+ display: grid;
+ grid-template-columns: auto auto auto auto;
+ grid-gap: 10px;
+ background-color: blue;
+ padding: 10px;
+}
+.grid-container div {
+ background-color: grey;
+ text-align: center;
+ padding: 20px 0;
+ font-size: 30px;
+}
+.item3 {
+ grid-column-start: 1;
+}
+</style&gt
+```
+
+**Here is the outcome:**
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63695b1070b0d1c77ed0d90f_image1_10b5c7fc583df4494ba4fb581622cf80_800.png)
+
+### grid-row-end
+The <a href="https://www.w3schools.com/cssref/pr_grid-row-end.asp" target="_blank" rel="noopener noreferrer">grid-row-end</a> property specifies how many rows an item will span and on which row line the item will end. It indicates the row grid line where a grid item ends in a grid layout. In addition, this property, among other line-based placement grid properties, controls a grid item's size and where it sits on the grid.
+
+**Let's look at the example below for clarity:**
+```
+<style>
+ .grid-container {
+ display: grid;
+ grid-template-columns: auto auto auto;
+ grid-gap: 10px;
+ background-color: blue;
+ padding: 10px;
+  }
+ .grid-container div {
+ background-color: grey;
+ text-align: center;
+ padding: 20px 0;
+ font-size: 30px;
+  }
+ .item3 {
+ grid-row-end: span 2;
+  }
+  </style&gt
+```
+**Here is the result:**
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63695b1070b0d1404dd0d90b_image2_fb0115cbbc00e92dd65b798af8ea7db5_800.png)
+
+### grid-column-end
+The <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column-end" target="_blank" rel="noopener noreferrer">grid-column-end</a> property defines the columns and the items that span it, and on which column-line the item will end within the grid.
+
+**Here is an example of grid-column-end:**
+
+```
+<style>
+.grid-container {
+ display: grid;
+ grid-template-columns: auto auto auto auto;
+ grid-gap: 10px;
+ background-color: blue;
+ padding: 10px;
+}
+.grid-container div {
+ background-color: grey;
+ text-align: center;
+ padding: 20px 0;
+ font-size: 30px;
+}
+.item9 {
+ grid-column-end: span 4;
+}
+</style&gt
+```
+
+**Here is the outcome:**
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63695b1070b0d1ad85d0d912_image7_018918cb603045e5defb69f3b701566a_800.png)
+Next, let's look at the types of grid templates in this study.
+## Types of Grid Template Properties
+Grid templates have different property types and states:
+- ```grid-template-rows```
+
+- ```grid-template-columns```
+
+- ```grid-template-areas```
+
+### grid-template-rows
+The <a href="https://www.w3schools.com/cssref/pr_grid-template-rows.asp" target="_blank" rel="noopener noreferrer">grid-template-rows</a> property defines the number of rows and the heights of the rows in a grid. The values of the grid-template rows are space-separated lists, where each height of the row is a defined value.
+
+**Let's look at an example of grid-template-rows:**
+
+```
+<style>
+.grid-container {
+ display: grid;
+ grid-template-columns: auto auto auto auto;
+ grid-template-rows: 80px 270px;
+ grid-gap: 20px;
+ background-color: blue;
+ padding: 20px;
+}
+.grid-container div {
+ background-color: grey;
+ text-align: center;
+ padding: 20px 0;
+ font-size: 30px;
+}
+</style>
+```
+
+**Now, let's look at the result:**
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63695b1070b0d1a5f4d0d90c_image8_3a4d9cc94e85ebcd42eb0bf9e977e16d_800.png)
+
+### grid-template-columns
+The <a href="https://www.w3schools.com/cssref/pr_grid-template-columns.asp" target="_blank" rel="noopener noreferrer">grid-template-columns</a> property defines the number and the widths of columns in a grid. In addition, the values are a space-separated list, where each value defines the size of the column. The number of columns in the grid is set by the numerical values defined in the list.
+**Let's look at an example of grid-template-columns:**
+
+```
+<style>
+.grid-container {
+ display: grid;
+ grid-template-columns: auto auto;
+ grid-gap: 20px;
+ background-color: blue;
+ padding: 20px;
+}
+.grid-container div {
+ background-color: grey;
+ text-align: center;
+ padding: 20px 0;
+ font-size: 30px;
+}
+</style&gt
+```
+**Here is the outcome:**
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63695b1070b0d12c87d0d913_image9_0f00ea0e1dafc0743a1873921912972c_800.png)
+
+### grid-template-areas
+The <a href="https://www.w3schools.com/cssref/pr_grid-template-areas.asp" target="_blank" rel="noopener noreferrer">grid-template-areas</a> property defines areas within the grid. Also, it helps to name the grid items using the grid-area properties, and then reference the name in the grid-template-area property. Apostrophes also define each area. It helps to use a period to refer to a grid item with no name.
+
+**Let's look at an example of the grid-template-areas property:**
+```
+<style>
+.item6 {
+ grid-area: realArea;
+}
+.grid-container {
+ display: grid;
+ grid-template-areas: 'realArea realArea...';
+ grid-gap: 20px;
+ background-color: blue;
+ padding: 20px;
+}
+.grid-container div {
+ background-color: grey;
+ text-align: center;
+ padding: 10px 0;
+ font-size: 30px;
+}
+</style&gt
+```
+**Here is the result:**
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63695b1070b0d12445d0d911_image6_db4e31f35b2349c8f8999d08d6676bc9_800.png)
+
+## Conclusion
+A grid is a collection of intersecting horizontal and vertical lines that defines columns and rows. It eases a web page's design and allows you to place items from one grid line to another. CSS Grid is a two-dimensional layout that you can use to create responsive web items. Now, you can enjoy working with grids!

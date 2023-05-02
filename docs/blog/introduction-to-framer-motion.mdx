@@ -1,0 +1,296 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd6266590b593888aa6aec_framermotion_69a08f22cb46091131f7d750a2e1c81d_2000.jpeg)
+"react-7; **webdev**
+# Introduction to Framer Motion
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+Building websites has become way easier with the libraries and packages that are available in the React ecosystem. But a touch of animation takes your website from dull and boring to rockstar status. In this blog post, we’re going to introduce a new animation library named Framer Motion. With the help of this library, we can make complex animation a breeze.
+So without further ado, let's get started!
+
+**Prerequisites**
+
+I highly recommend that you go through the below concepts so that you can follow along with this article:
+- <a href="https://reactjs.org/tutorial/tutorial.html" target="_blank" rel="noopener noreferrer">Basics of React</a>
+- <a href="https://styled-components.com/" target="_blank" rel="noopener noreferrer">Styled-components</a>
+- <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes" target="_blank" rel="noopener noreferrer">CSS Animation Keyframes</a>
+
+## Compare basic animation with Framer Motion
+In this section of the blog post, we are going to compare basic animations with the animations built using react-motion. Let’s get started.
+
+Suppose that you want to move a square div element along the x-axis of the viewport. Along with movement, you also need to fade the element when it reaches the right edge of the screen. A normal thing that we would do here is to do the following:
+```
+ .square {
+   width: 30px;
+   height: 30px;
+   background-color: blue;
+
+```
+This will help us to draw a blue square with a width and height of 30px.
+If we need to manage the animation, then we need to create an animation keyframe for it. For each percentage of the animation, we’re going to provide what will be happening to the CSS property of the square div tag. We will name this animation moveToRight . Copy-paste the below code into your CSS file:
+```
+
+  @keyframes moveToRight {
+0% {
+ animation-timing-function: ease-in;
+ opacity: 1;
+ transform: translateX(0px);
+}
+25% {
+ opacity: 0.8;
+}
+50% {
+ opacity: 0.4;
+}
+75% {
+ opacity: 0.1;
+}
+100% {
+ opacity: 0;
+ transform: translateX(1000px);
+ }
+
+```
+We assign this animation to our square div tag’s CSS using the animation css property.
+```
+  .square {
+     width: 30px;
+     height: 30px;
+     background-color: blue;
+     animation: moveToRight 3s ease 0s infinite; /* Add this line*/
+
+```
+Now, let’s create the same animation with the help of the Framer Motion library. Copy and paste the below code into your App.js file:
+```
+<motion.div
+ className="square"
+ animate={{
+  x: [0, 1000],
+  opacity: [1, 0.8, 0.4, 0.1, 0],
+ }}
+ transition={{ ease: "easeIn", duration: 3, repeat: Infinity }}
+/>
+```
+Voila! It’s as simple as adding a component. All of the properties related to animation are added using animate and transition props. We will dive deeper into these props in the coming sections of this blog post.
+Before we build some examples, we’ll start off with the installation of our environment.
+
+## Basic setup
+We’re going to build our examples in React. To set up the project, we’re going to make use of the utility <a href="https://create-react-app.dev/" target="_blank" rel="noopener noreferrer">create-react-app</a>. It’s a simple utility that helps you create an initial project structure with just one command. You won’t need to install this package. When using with npx, i.e., a node package, executing it will fetch the required package from the npm registry so that the package can be executed without local installation.
+Now, let’s create our project. Copy and paste the below command in your terminal:
+```
+npx create-react-app <project-name&gt
+```
+Where ```<project-name>``` is the name of your react project that you are creating. Next, navigate to your project folder and start the project:
+```
+cd <project-name>
+npm start
+```
+Once the server is started, you will be welcomed with the homepage of your React app. Now it’s time for us to install the<a href="https://www.framer.com/docs/" target="_blank" rel="noopener noreferrer"> framer-motion</a> library. Copy and paste the below command into your terminal:
+```
+npm install framer-motion
+```
+Now that we have installed the library, we’re ready to start building our examples!
+
+## Use cases
+Now that we know how easy it is to animate with the help of Framer Motion, we can use to build simple use cases:
+- Bouncing ball animation
+
+## Animating objects in the viewport
+There are some really awesome websites, like<a href="http://apple.com/" target="_blank" rel="noopener noreferrer"> apple.com</a>, that showcase cool animations when a particular object is inside the viewport. Examples of such animation include popping in some animated objects in the viewport or enlarging the text’s size to emphasize a message. These effects can be categorized as scroll based-animations and have some similarity with the parallax effect.
+
+In this case, we’re going to do the following things:
+- Once the object is in viewport, we’re going to scale and display the rotated object
+- When in viewport, we’re going to enlarge a paragraph
+
+Let’s start by creating the basic structure of our example. This basic structure includes:
+- Lorem Ipsum text
+- CSS to bring the text into the layout
+
+Inside your App.js file, copy and paste the below lorem ipsum text in such a way that you have a page where the text overflows the page, thus enabling a scroll bar:
+```
+<div>
+  <h1 className="question">What is Lorem Ipsum?</h1>
+  Lorem Ipsum is simply dummy text of the printing and typesetting
+  industry. Lorem Ipsum has been the industry's standard dummy text ever
+  since the 1500s, when an unknown printer took a galley of type and
+  scrambled it to make a type specimen book. It has survived not only
+  five centuries, but also the leap into electronic typesetting,
+  remaining essentially unchanged. It was popularized in the 1960s with
+  the release of Letraset sheets containing Lorem Ipsum passages, and
+  more recently with desktop publishing software like Aldus PageMaker
+  including versions of Lorem Ipsum.
+ </div>
+```
+
+Once the text is placed, make sure your App.js file looks like below:
+```
+import { motion } from "framer-motion&quot;;
+import "./styles.css&quot;;
+export default function App() {
+ return (
+ <div className="App">
+  <div>
+   <h1 className="question">What is Lorem Ipsum?</h1>
+   Lorem Ipsum is simply dummy text of the printing and typesetting
+   industry. Lorem Ipsum has been the industry's standard dummy text ever
+   since the 1500s, when an unknown printer took a galley of type and
+   scrambled it to make a type specimen book. It has survived not only five
+   centuries, but also the leap into electronic typesetting, remaining
+   essentially unchanged. It was popularised in the 1960s with the release
+   of Letraset sheets containing Lorem Ipsum passages, and more recently
+   with desktop publishing software like Aldus PageMaker including versions
+   of Lorem Ipsum.
+  </div>
+  /***  Lorem Ipsum text paragraphs*/
+ <div>
+  <h1 className="question">Why do we use it?</h1> Contrary to popular It
+  is a long established fact that a reader will be distracted by the
+  readable content of a page when looking at its layout. The point of
+  using Lorem Ipsum is that it has a more-or-less normal distribution of
+  letters, as opposed to using 'Content here, content here', making it
+  look like readable English. Many desktop publishing packages and web
+  page editors now use Lorem Ipsum as their default model text, and a
+  search for 'lorem ipsum' will uncover many web sites still in their
+  infancy. Various versions have evolved over the years, sometimes by
+  accident, sometimes on purpose (injected humour and the like).
+  </div>
+ </div>
+ );
+
+```
+Now finally update the CSS of the App class:
+```
+.App {
+  font-family: sans-serif;
+  margin-left: 14rem;
+  margin-right: 14rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+```
+To scale and animate an object when it’s in the viewport, simply place the object at the top of all of the Lorem Ipsum content and set the position attribute of the object to be absolute. Here’s what it will look like:
+```
+import { motion } from "framer-motion&quot;;
+import "./styles.css&quot;;
+export default function App() {
+ return (
+  <div className="App">
+{/* Objects to animate */}
+<div
+     className="blob"
+/>
+<div>
+ <h1 className="question">What is Lorem Ipsum?</h1>
+ Lorem Ipsum is simply dummy text of the printing and typesetting
+ industry. Lorem Ipsum has been the industry's standard dummy text ever
+ since the 1500s, when an unknown printer took a galley of type and
+ scrambled it to make a type specimen book. It has survived not only five
+ centuries, but also the leap into electronic typesetting, remaining
+ essentially unchanged. It was popularised in the 1960s with the release
+ of Letraset sheets containing Lorem Ipsum passages, and more recently
+ with desktop publishing software like Aldus PageMaker including versions
+ of Lorem Ipsum.
+</div>
+/***  Lorem Ipsum text*/
+<div>
+ <h1 className="question">Why do we use it?</h1> Contrary to popular It
+ is a long established fact that a reader will be distracted by the
+ readable content of a page when looking at its layout. The point of
+ using Lorem Ipsum is that it has a more-or-less normal distribution of
+ letters, as opposed to using 'Content here, content here', making it
+ look like readable English. Many desktop publishing packages and web
+ page editors now use Lorem Ipsum as their default model text, and a
+ search for 'lorem ipsum' will uncover many web sites still in their
+ infancy. Various versions have evolved over the years, sometimes by
+ accident, sometimes on purpose (injected humour and the like).
+ </div>
+</div>
+ );
+
+```
+We’re going to add a new CSS rule inside our style.css file called “blob.” This will be the styles for the object that we need to animate. Copy and paste the below code in your style.css file:
+```
+.blob {
+  width: 100px;
+  height: 100px;
+  background-color: teal;
+  position: absolute; /* set this */
+  top: 1200px;
+  left: -250px;
+  z-index: -999;
+  border-radius: 25px 50px 30px 50px;
+
+```
+The above CSS will also ensure the following things:
+- The object will be out of the viewport with the help of top: 1200px.
+- It will not obstruct the text by overlapping on them. Instead it will be below the text with the help of z-index: -999.
+
+Now to animate this, we just need to make little changes to our object’s div tag. Replace the previous object div tag with the below code:
+```
+<motion.div
+   className="blob"
+   initial={{ opacity: 0.5 }}
+   whileInView={{ opacity: 0.5, scale: [1, 0.8, 1] }}
+   animate={{
+    rotate: [0, 150, 200, 150, 0]
+   }}
+   transition={{
+    type: "spring",
+    duration: 4,
+    repeat: Infinity
+   }}
+  /&gt
+```
+Here is the explanation of the above code:
+- We added the motion keyword to the div tag to animated it and make it accept props related to Framer Motion.
+- The initial attribute helps us set the enter animation of the object.
+- The animate prop will be used to animate the object to the values inside this prop. The animation follows some default standards.
+- In this case, we update the rotate property of the object. We are passing an array to this property because the framer will consider an array of values to be keyframed. This is a really cool feature that the framer provides, since we don’t need to set up the new keyframe animation from scratch— it’s taken care of internally by the framer library.
+- The transition prop will help us to set the animation defaults. In this case, we set the animation to be performed an infinite number of times with a duration of 4 seconds.
+- The whileInview prop will help us to achieve what we wanted here in the first place— It will animate the object with the properties that are set in it.
+
+To make this look cooler, I’ve added the same object again with some minor changes. Copy and paste it to replace your existing object animation code in the App.js file:
+
+Next, we have a bouncing ball animation. As the name of this section suggests, we’re going to make a bouncing ball. Create a new file called BouncingBall.js and copy-paste the following code:
+```
+import "./styles.css&quot;;
+import { motion } from "framer-motion&quot;;
+export default function App() {
+ return (
+  <div className="App">
+   <svg
+    height="400"
+    width="400"
+    style={{
+     border: "1px solid black"
+    }}
+   >
+    <motion.circle
+     cx="50"
+     cy="50"
+     r="40"
+     stroke="black"
+     stroke-width="3"
+     animate={{
+      cy: [310, 50]
+     }}
+     transition={{
+      ease: "easeOut",
+      duration: 0.9,
+      yoyo: Infinity
+     }}
+    />
+    <path d="M 20 350 l 150 0" stroke="black" stroke-width="3" />
+   </svg>
+  </div>
+ );
+
+```
+In this code:
+- We create an SVG with a height and width of 400px.
+- We create a circle with a center of (50, 50) with a radius of 40. As you may have observed, we’ve added a motion keyword to the circle tag. This will ensure that we can use frame animation props to a normal circle tag. Since we want a bouncing animation, we alter the y-coordinate of the circle’s center. We change the cy attribute of the circle from 310 to 50 in the animate prop. Finally, it’s time to change some default configurations for the animation with the help of a transition prop. A thing to note here is that the yoyo property has an infinity value. This makes sure that our animation will run for an infinite amount of time.
+- Finally, we add a line at the bottom to represent the ground.
+
+## Summary
+In this article, we covered:
+- What is framer motion?
+- A comparison between a normal animation and animation with Framer Motion
+- Building two use cases of Framer Motion

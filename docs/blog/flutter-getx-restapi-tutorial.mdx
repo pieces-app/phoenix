@@ -1,0 +1,379 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd7b6b81c9f1149a702aec_Flutter_GetX_215aef0f9d4c3a077735ec6df2b7beb2_2000.jpeg)
+"flutter-9; getx; tutorial"
+# Flutter Getx Rest API Tutorial - Registration & Login
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+Welcome to a beginner-friendly guide on how to create a registration and login system in Flutter using the Getx library. This guide will take you through the process step-by-step, making it easy for you to understand and follow along. To make it even easier, there's a YouTube tutorial that you can follow along with. So, whether you're new to Flutter or just looking to improve your skills, this guide is perfect for you!
+
+## What is Flutter Getx?
+Flutter Getx is a Flutter framework that provides a convenient and efficient way to handle the state management of your Flutter applications. It is built on top of the Flutter framework and provides a simple and intuitive API for managing the state of your app. Getx also integrates with Flutter's existing widgets, making it easy to use and integrate into your existing projects. The library provides a robust set of tools for managing the state of your app, making it easier to build and maintain large and complex applications.
+
+<a href="https://www.youtube.com/watch?v=h-D_kvXYmDo">You can find the tutorial for this article on YouTube</a>.
+
+### Prerequisites
+- Basic knowledge of <a href="https://bit.ly/3SvGY4c">Getx State Management &amp; Navigation Management</a>.
+- Basic knowledge of Flutter UI Design.
+
+### Packages Used
+- <a href="https://pub.dev/packages/get" target="_blank" rel="noopener noreferrer">Flutter Getx on Pub.Dev</a>
+- <a href="https://pub.dev/packages/http" target="_blank" rel="noopener noreferrer">Flutter HTTP</a>
+- <a href="https://pub.dev/packages/shared_preferences">Flutter Sharedprefs</a>
+
+## Get Started
+Let's get started! We will first create three screens for our app: a registration screen, a login screen, and a home screen. The registration and login screens will allow users to create an account or sign in, while the home screen will serve as the landing page for users who have successfully registered or logged in. Next, we will use Getx Controllers and HTTP Requests to add the logic behind our registration and login process. We will create two separate controllers, one for registration and one for login, to manage the process and ensure a smooth user experience.
+The directory structure that you should have is as follows:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6351da49a118dea490daaf5d_image2_c99e3b7d64ce6443fe3290bda3e7a58e_800.png)
+Let's now write the user interface code for our registration and login screens.
+
+## Auth Screen
+```
+// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors
+import 'package:api_app/controllers/login_controller.dart';
+import 'package:api_app/controllers/registeration_controller.dart';
+import 'package:api_app/screens/auth/widgets/input_fields.dart';
+import 'package:api_app/screens/auth/widgets/submit_button.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+class AuthScreen extends StatefulWidget {
+  @override
+  State<AuthScreen> createState() => _AuthScreenState();
+}
+class _AuthScreenState extends State<AuthScreen> {
+  RegisterationController registerationController =
+      Get.put(RegisterationController());
+  LoginController loginController = Get.put(LoginController());
+  var isLogin = false.obs;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(36),
+          child: Center(
+            child: Obx(
+              () => Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Container(
+                      child: Text(
+                        'WELCOME',
+                        style: TextStyle(
+                            fontSize: 30,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        MaterialButton(
+                          color: !isLogin.value ? Colors.white : Colors.amber,
+                          onPressed: () {
+                            isLogin.value = false;
+                          },
+                          child: Text('Register'),
+                        ),
+                        MaterialButton(
+                          color: isLogin.value ? Colors.white : Colors.amber,
+                          onPressed: () {
+                            isLogin.value = true;
+                          },
+                          child: Text('Login'),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 80,
+                    ),
+                    isLogin.value ? loginWidget() : registerWidget()
+                  ]),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+  Widget registerWidget() {
+    return Column(
+      children: [
+        InputTextFieldWidget(registerationController.nameController, 'name'),
+        SizedBox(
+          height: 20,
+        ),
+        InputTextFieldWidget(
+            registerationController.emailController, 'email address'),
+        SizedBox(
+          height: 20,
+        ),
+        InputTextFieldWidget(
+            registerationController.passwordController, 'password'),
+        SizedBox(
+          height: 20,
+        ),
+        SubmitButton(
+          onPressed: () => registerationController.registerWithEmail(),
+          title: 'Register',
+        )
+      ],
+    );
+  }
+  Widget loginWidget() {
+    return Column(
+      children: [
+        SizedBox(
+          height: 20,
+        ),
+        InputTextFieldWidget(loginController.emailController, 'email address'),
+        SizedBox(
+          height: 20,
+        ),
+        InputTextFieldWidget(loginController.passwordController, 'password'),
+        SizedBox(
+          height: 20,
+        ),
+        SubmitButton(
+          onPressed: () => loginController.loginWithEmail(),
+          title: 'Login',
+        )
+      ],
+    );
+  }
+}
+```
+
+<a href="https://amanullah.pieces.cloud/?p=fa4d4f8bc0">Save this code</a>
+
+## Text Field Design | Flutter Getx
+```
+// ignore_for_file: prefer_const_constructors
+import 'package:flutter/material.dart';
+class InputTextFieldWidget extends StatelessWidget {
+  final TextEditingController textEditingController;
+  final String hintText;
+  InputTextFieldWidget(this.textEditingController, this.hintText);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 46,
+      child: TextField(
+        controller: textEditingController,
+        decoration: InputDecoration(
+            alignLabelWithHint: true,
+            focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.black)),
+            fillColor: Colors.white54,
+            hintText: hintText,
+            hintStyle: TextStyle(color: Colors.grey),
+            contentPadding: EdgeInsets.only(bottom: 15),
+            focusColor: Colors.white60),
+      ),
+    );
+  }
+}
+```
+
+<a href="https://amanullah.pieces.cloud/?p=696e44a3a5">Save this code</a>
+
+## Submit Button Design | Flutter Getx
+```
+// ignore_for_file: prefer_const_constructors
+import 'package:flutter/material.dart';
+class SubmitButton extends StatelessWidget {
+  final VoidCallback onPressed;
+  final String title;
+  const SubmitButton({Key? key, required this.onPressed, required this.title})
+      : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 180,
+      height: 50,
+      decoration:
+          BoxDecoration(borderRadius: BorderRadius.circular(20), boxShadow: [
+        BoxShadow(
+            color: Colors.white.withOpacity(0.25),
+            offset: Offset(0, 0),
+            blurRadius: 2,
+            spreadRadius: 1)
+      ]),
+      child: ElevatedButton(
+          style: ButtonStyle(
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      side: BorderSide.none)),
+              backgroundColor: MaterialStateProperty.all<Color>(
+                Colors.pinkAccent,
+              )),
+          onPressed: onPressed,
+          child: Text(title,
+              style: TextStyle(
+                fontSize: 24,
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
+              ))),
+    );
+  }
+}
+```
+<a href="https://amanullah.pieces.cloud/?p=fa72468f1f">Save this code</a>
+We can now start writing the logic for our registration and login controllers.
+
+## Registration Controller | Flutter Getx
+To make our API call, I created three TextEditingControllers for the required fields. You can create more or fewer controllers depending on your API's requirements. After sending the request, if the status code is 200, it means that our API call was successful. To confirm that the user is registered, I checked for a response of ```**json['code']==0**``` from the API. Finally, I saved the user's token in the device's local storage using Shared Preferences, so that they stay logged in even after they close the app.
+```
+import 'dart:convert';
+import 'dart:io';
+import 'package:api_app/screens/home.dart';
+import 'package:api_app/utils/api_endpoints.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+class RegisterationController extends GetxController {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  Future<void> registerWithEmail() async {
+    try {
+      var headers = {'Content-Type': 'application/json'};
+      var url = Uri.parse(
+          ApiEndPoints.baseUrl + ApiEndPoints.authEndpoints.registerEmail);
+      Map body = {
+        'name': nameController.text,
+        'email': emailController.text.trim(),
+        'password': passwordController.text
+      };
+      http.Response response =
+          await http.post(url, body: jsonEncode(body), headers: headers);
+      if (response.statusCode == 200) {
+        final json = jsonDecode(response.body);
+        if (json['code'] == 0) {
+          var token = json['data']['Token'];
+          print(token);
+          final SharedPreferences? prefs = await _prefs;
+          await prefs?.setString('token', token);
+          nameController.clear();
+          emailController.clear();
+          passwordController.clear();
+          Get.offAll(HomeScreen());
+        } else {
+          throw jsonDecode(response.body)["Message"] ?? "Unknown Error Occured&quot;;
+        }
+      } else {
+        throw jsonDecode(response.body)["Message"] ?? "Unknown Error Occured&quot;;
+      }
+    } catch (e) {
+      Get.back();
+      showDialog(
+          context: Get.context!,
+          builder: (context) {
+            return SimpleDialog(
+              title: Text('Error'),
+              contentPadding: EdgeInsets.all(20),
+              children: [Text(e.toString())],
+            );
+          });
+    }
+  }
+}
+```
+<a href="https://amanullah.pieces.cloud/?p=24184fa563">Save this code</a>
+
+## Login Controller | Flutter Getx
+```
+import 'dart:convert';
+import 'package:api_app/screens/home.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:api_app/utils/api_endpoints.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+class LoginController extends GetxController {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  Future<void> loginWithEmail() async {
+    var headers = {'Content-Type': 'application/json'};
+    try {
+      var url = Uri.parse(
+          ApiEndPoints.baseUrl + ApiEndPoints.authEndpoints.loginEmail);
+      Map body = {
+        'email': emailController.text.trim(),
+        'password': passwordController.text
+      };
+      http.Response response =
+          await http.post(url, body: jsonEncode(body), headers: headers);
+      if (response.statusCode == 200) {
+        final json = jsonDecode(response.body);
+        if (json['code'] == 0) {
+          var token = json['data']['Token'];
+          final SharedPreferences? prefs = await _prefs;
+          await prefs?.setString('token', token);
+          emailController.clear();
+          passwordController.clear();
+          Get.offAll(HomeScreen());
+        } else if (json['code'] == 1) {
+          throw jsonDecode(response.body)['message'];
+        }
+      } else {
+        throw jsonDecode(response.body)["Message"] ?? "Unknown Error Occured&quot;;
+      }
+    } catch (error) {
+      Get.back();
+      showDialog(
+          context: Get.context!,
+          builder: (context) {
+            return SimpleDialog(
+              title: Text('Error'),
+              contentPadding: EdgeInsets.all(20),
+              children: [Text(error.toString())],
+            );
+          });
+    }
+  }
+}
+```
+<a href="https://amanullah.pieces.cloud/?p=42f04fb615">Save this code</a>
+
+## API Endpoints | Flutter Getx
+```
+class ApiEndPoints {
+  static final String baseUrl = 'http://base_url/api/';
+  static _AuthEndPoints authEndpoints = _AuthEndPoints();
+}
+class _AuthEndPoints {
+  final String registerEmail = 'authaccount/registration';
+  final String loginEmail = 'authaccount/login';
+}
+```
+<a href="https://amanullah.pieces.cloud/?p=057e4f983b">Save this code</a>
+Make sure to update the API base URL and endpoints with your own. To log out, just clear the saved user data in Shared Preferences and send the user back to the login screen.
+```
+ TextButton(
+            onPressed: () async {
+              final SharedPreferences? prefs = await _prefs;
+              prefs?.clear();
+              Get.offAll(AuthScreen());
+            },
+            child: Text(
+              'logout',
+              style: TextStyle(color: Colors.white),
+            ));
+```
+<a href="https://amanullah.pieces.cloud/?p=9c00488b2b">Save this code</a>
+
+## Conclusion
+In this article, you learned how to create a login and registration system in Flutter using Getx. We first built the user interface for the registration and login screens. Then, we added the functionality to register users through an API and keep their session active by saving their tokens using Shared Preferences. With these steps, you now have a basic understanding of how to implement flutter getx authentication/flutter token based authentication.
+<a href="https://bit.ly/3Dcq9FA">Full Source Code</a>
+<a href="https://bit.ly/3VM30Rw">Video Tutorial</a>
+
+### Bonus Tip

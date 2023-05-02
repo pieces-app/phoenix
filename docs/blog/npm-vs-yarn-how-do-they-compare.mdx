@@ -1,0 +1,81 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd5edc47af2e6a93a82d77_npmvsyarn_f107d1444ed9533bc799733b045cf91f_2000.jpeg)
+"packages; managment"
+# NPM Vs. Yarn: How do they compare?
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+Two of the most well-liked package managers among JavaScript and Node.js developers are <a href="https://www.npmjs.com/" target="_blank" rel="noopener noreferrer">NPM</a> and <a href="https://yarnpkg.com/" target="_blank" rel="noopener noreferrer">Yarn</a>. They make it simpler to manage a project's dependencies, which are any components or pieces of code that the project depends on in order to run smoothly. Keeping track of the project's dependencies is required, as it can be difficult to install, uninstall, modify, or upgrade them.
+
+## What is a Package Manager?
+Package managers, also known as package management systems, are groups of tools that make it easier to install, delete, change, upgrade, and configure software. They also audit dependencies and flag which programs need to be updated to reduce potential security risks. Developers in the modern world frequently use packaged software, which encapsulates all of the components required to make a piece of software run on a system in a single file. Even if it doesn't include everything, it at least has pointers to other places where the system can get the data it needs.
+
+## What is NPM?
+The most common command-line tool for installing Node.js dependencies and public databases of JavaScript packages is called NPM (Node Package Manager). It serves as the gateway into the community of free and open-source JavaScript modules and the tools for using and managing them.
+
+## What is Yarn?
+Facebook created Yarn, a JavaScript package and dependency manager that is backed by Google, Exponent, and Tilde. It was developed to fix problems with earlier iterations of the NPM CLI. Yarn, like NPM, enables you to utilize and share code with other developers all over the world, saving you from having to create new code from scratch, and allowing you to use code that has already been produced and published by others. As a result, it’s simpler to create software because you can use the solutions to certain issues provided by other programmers.
+
+## Features of NPM and Yarn
+NPM and Yarn share the following key characteristics:
+
+### Run scripts remotely
+You can run scripts remotely in NPM and Yarn by using the ```npx``` command in NPM and the ```yarn dlx``` command in Yarn.
+
+### Create lock files
+Both package managers automatically create a version lock file such as ```package-lock.json``` in NPM, and ```yarn.lock``` in Yarn.
+
+### Use workspaces
+Workspaces, which let you manage dependencies for numerous projects from a single repository, are supported by both Yarn and NPM.
+
+## Features of Yarn
+
+### Plug’n’Play
+Instead of using the node modules folder to map project dependencies, Yarn creates a single ```.pnp.cjs``` file. As a result, dependency trees are simplified, projects launch faster, and package installations take less time.
+
+### License-check
+When getting and installing packages, Yarn provides a built-in license checker.
+
+### Zero-Install
+Zero-Installs works with Plug'n'Play since it maps packages kept in the offline cache using the .```pnp.cjs``` file. This enables you to rapidly retrieve and set up saved packages.
+
+## NPM Vs. Yarn: The Comparison
+Below is an outline of some of the differences between Yarn and NPM.
+
+### Dependencies
+Through the ```npm install``` command, NPM installs dependencies one at a time.
+A ```package-lock.json``` version lock file is also created by NPM. Users can transfer version info from NPM to Yarn by using this file, which is also supported by Yarn.
+NPM and Yarn version 1 handle dependencies in a comparable manner. The ```package.json``` file, located in the project's ```node modules``` subdirectory, is where project metadata is saved.
+
+Since version 2, Yarn no longer keeps track of dependencies in the node modules directory. Instead, Yarn 2.0 uses the Plug'n'Play feature, which generates a single ```.pnp.cjs``` file. The dependency hierarchy of a project is depicted in this file.
+The Yarn command is used to install dependencies through ```yarn```. You can add numerous files at once because it concurrently, or in parallel, installs dependencies. A lock file, which contains the precise list of dependencies utilized for the project, is created when dependencies are installed. The name of this file is ```yarn.lock```.
+
+### Speed and Performance
+As mentioned above, Yarn installs dependencies in parallel, whereas NPM installs them sequentially. As a result, Yarn installs larger files more quickly than NPM.
+The ability to store dependency files in the offline cache is provided by both programs. Users can now install dependencies even when they're not connected to the internet.
+Additionally, Yarn employs the Zero-Install capability as of version 2. With almost no delays, this capability leverages the dependency map from the ```.pnp.cjs``` file to carry out an offline dependency install.
+
+### Security
+Security concerns dominated early implementations of NPM. With the release of version 6, NPM now performs a security evaluation each time you install a package. This ensures that no dependencies are conflicting, and it helps to prevent vulnerabilities.
+A manual audit can also be performed using the ```npm audit``` command. Use ```npm audit fix``` to resolve issues if NPM finds any vulnerabilities.
+While downloading packages, Yarn does a background security check. To make sure it doesn't download any dangerous scripts or create any dependency problems, it uses the package license information.
+To ensure secure data transit, both programs make use of encryption techniques. While NPM employs the SHA-512 (Secure Hash Algorithm) stored in the ```package-lock.json``` file, Yarn verifies packages using the checksum.
+
+### Advantages of NPM and Yarn
+- Manages globally-installed projects’ tools.
+- Manages local dependencies of projects’ tools.
+- Provides package-lock.json, which displays all dependencies of the project.
+- Manages multiple versions of code and code dependencies.
+- Has standalone tools you can download and use right away.
+- Supports parallel installation and Zero-Installs, both of which dramatically increase performance.
+- Offers a more secure form of version locking with newer versions of Yarn.
+- Has an active user community.
+
+### Disadvantages of NPM and Yarn
+- The online NPM registry may lose its dependability in the event of performance concerns. This also implies that in order to install packages from the registry, NPM needs network access.
+- Reading command output might be challenging.
+- Has security flaws installing packages even though there have been numerous upgrades in various versions.
+- Yarn is incompatible with Node.js versions prior to 5.
+- Yarn has shown problems when trying to install native modules.
+
+## Conclusion
+As you can see, both NPM and Yarn technologies have similar uses. Therefore, when deciding between them, you should consider your project's priorities as well as your own preferences. Yarn and NPM share a number of instructions, and both are rather simple to use.
+Although it can sometimes be difficult to visually discern the result of the command when several packages are being installed, the command output is typically simple to read and understand.

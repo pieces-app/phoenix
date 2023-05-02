@@ -1,0 +1,147 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd7bef1b2429019fd98da7_save-helpful-flutter-widgets_65d8df6a34252b05cf0fc5e63d7e5bd8_2000.jpeg)
+
+# A Rundown of Front-End Errors
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+The unfortunate reality of software development is that things won't always go according to plan in the real world. Errors are always around. Therefore, error handling is a vital part of a development project, and can help you and your users quickly identify what’s going wrong so that it can be fixed.
+
+## What are Front-end Errors?
+Front-end errors are errors that occur on the client side of a web app. In most cases, when a front-end error occurs (often in JavaScript), the application freezes, or the expected action doesn't happen. There are no built-in controls that will handle errors on the front-end.
+
+## Why Should You Write Tests For Your Applications?
+Here are a few short and long-term benefits of writing tests:
+- You can find problems early.
+- It forces you to produce bug-free code.
+- It ensures that you don't damage past projects while writing code that conforms to new versions or standards. With a solid test suite, no rewrite is too much to handle.
+- It facilitates working with other code. Most of the time, bugs show up when two features interact. Unique code can work flawlessly, but when merged or interacting with other code, errors can result. In these scenarios, testing allows you to create complex features with confidence.
+- You get instant feedback on the code you just wrote. By testing for errors, you’ll either be confident that your code works, or you’ll be given the opportunity to revise your code before pushing it to production.
+- You’ll get peace of mind from creating a standard for cross-checking the code you just executed. Although writing tests can be complicated, it allows you to catch many mistakes.
+- You discover what is necessary and what isn’t. When code goes through testing, it leads to a product with a better design.
+- Writing tests reduces the hard work of debugging! Debugging as a stand-alone activity can be mind-numbing and time-consuming, to say the least.
+- A test directory shows what your product can do. For big projects with many features, it can prove challenging to keep track of all that’s happening. Test directories allow easy reference. Also, everyone knows that there's little to no chance of a developer writing good documentation of code they’ve written, and tests can be referenced as documentation.
+- Tests can gauge and keep track of advancements and development procedures.
+- It’s helpful for the production of continuous integration tools. If you write tests for continuous integration tools, they’ll run all of the tests before pushing changes to production.
+- Tests give you the power to be productive.
+- It verifies your coding for open-source projects. Open-source is the future! When contributing to open-source, you must prove that your code or feature is working and doesn't affect the project's native components. Tests are certainly proof of good work.
+- Lastly, you’ll get peace of mind. You can’t measure the confidence you’ll feel when releasing tested code compared to releasing untested code.
+
+## Common Categories of Front-end Errors
+
+### Data Leaks in React
+
+A primary issue when developing React applications is a data leak.
+Below is a warning message you might come across in React when working with asynchronous calls:
+Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
+React cannot detect data leaks directly. That's why it offers a warning to guide you toward figuring them out on your own.
+React components that perform state updates and run asynchronous operations can lead to data leak issues if you update the state after the component is unmounted. Here is a typical scenario that causes a data leak:
+- The user clicks on a link that steers them to another page before the event handler had finished fetching the data.
+- The first act ends, and passes the data retrieved from the API, and then calls the function, which updates the state.
+- Reducing the amount of available memory, thereby affecting the project's performance.
+- Reducing the speed of the application.
+- Contributing to a system crash.
+
+You need to fix this data leak! Here's a helpful <a href="https://www.loginradius.com/blog/engineering/how-to-fix-memory-leaks-in-react/#fixes-for-memory-leaks" target="_blank" rel="noopener noreferrer">guide</a> to doing so:
+
+### Uncaught Exception
+An exception is mainly an occurrence that happens during the execution of a program. It interrupts the flow of the program's instructions. When a developer doesn’t catch an exception in a system, it results in an uncaught exception. If the program is in the middle of processing data, it can lead to unexpected behavior and may cause data loss. It can also lead to a security issue if the exception is not handled correctly and reveals too much information about the program or system to an attacker.
+You can prevent uncaught exception errors by adequately handling exceptions in the code. It would be best to catch exceptions in a try/catch block or by using a finally block. In some cases, throwing the exception to a higher level may be necessary so you can handle it appropriately. Proper handling of exceptions will ensure that the program behaves as expected and prevents data loss or security issues. You can learn more about how to handle exceptions <a href="https://stackoverflow.com/questions/62475654/how-to-manage-uncaught-exceptions-in-javascript-in-order-to-show-the-error-mes" target="_blank" rel="noopener noreferrer">here</a>.
+
+### CORS Request Errors
+The Cross-Origin Resource offers easy access to subdomains and trusted third parties. CORS works in a manner in which the browser and the cross-origin website you are trying to access collectively exchange HTTP headers that define trusted web origins and associated properties for access control, as defined by CORS specifications.
+CORS offers controlled access to cross-domain websites, hence it is well secured. Therefore, you can generally implement CORS to tackle limitations introduced by <a href="https://www.contentstack.com/docs/developers/how-to-guides/understanding-and-resolving-cors-error/#same-origin-policy-sop-" target="_blank" rel="noopener noreferrer">SOP</a>. However, if poorly executed, CORS can cause severe security risks. In addition, improper configuration of CORS may present some challenges and errors.
+When there's a CORS request error, it restricts users from accessing shared resources. We see this error as more of a security measure to keep a website from a potential security breach. This breach mainly occurs from incomplete or inappropriate HTTP headers on the client-side implementation, like missing authorization data such as API key.
+Here's a <a href="https://www.contentstack.com/docs/developers/how-to-guides/understanding-and-resolving-cors-error/#best-practices-to-avoid-cors-errors" target="_blank" rel="noopener noreferrer">doc</a> to guide you on how to avoid this error.
+
+### Browser Incompatibility
+Browser incompatibility refers to the inability of a website to perform flexibly or functionally on several browsers because the website's HTML coding and the scripts are not compatible. This occurs due to the inability of some codes, methods, or styles to work within all browsers. This issue mainly happens when clients use old browsers, which might result in the web page not rendering correctly. In addition, different browsers read the website code differently, so a code that works for some websites might not work for others.
+In these scenarios, <a href="https://www.browserstack.com/guide/cross-browser-compatibility-testing-beyond-chrome" target="_blank" rel="noopener noreferrer">cross-browser compatibility testing</a> comes in. Cross-browser compatibility testing is a non-functional form of testing with a primary goal of availing your website's essential features and functionality to users of different browser-OS combinations, devices, and assistive tools. It considers that not all browsers and devices work on the same configurations; they face browser compatibility issues on different levels. This inconsistency is why you might observe the lack of application uniformity across browsers and devices. You wouldn’t want some prospective users to be unable to access the application features. This testing tool ensures that your website is tested and debugged for different scenarios, so it will work consistently on all platforms and browsers.
+
+### Style Errors
+Style errors usually occur when the style file path is incorrect**. **A path reflects the address of a file, so a wrong path can quickly produce an error without your noticing it. Take, for example, this scenario:
+You are importing a CSS file into your React program. You run the code, and then an error occurs, stating that you have provided a wrong path, or that the style file path is not correct. However, when you check your path, you see nothing abnormal.
+Here is the code used in importing the file, and the error describing the code:
+
+### Incorrect Path Errors
+As displayed in the above code, the problem originates where the path begins. When declaring a path, the number of dots required is just two; on the contrary, the three dots used here generate the error.
+Here is the correct code for declaring the path:
+
+```
+import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
+import '../src/CSS_Files/style.css'
+```
+
+Also, when you have another style overriding the main class, it is usually a result of specificity. Specificity here states that if two or more CSS rules factor towards the same element, the selector with the pre-eminent specificity value will "win," and you will apply its style declaration to that HTML element.
+Specificity here, for instance:
+
+```
+<html>
+    <head>
+      <style>
+ p {color: red;}
+      </style>
+    </head>
+    <body>
+
+    <p>Hello World!</p>
+
+    </body>
+    </html&gt
+```
+
+Here we have used the "p" element as a selector, and specified a red color for this element. The resulting text will be red:
+
+<a href="https://www.w3schools.com/css/css_specificity.asp" target="_blank" rel="noopener noreferrer">Source</a>
+In some cases, this text color is further styled or restyled in the CSS style sheet with the CSS rule:
+
+```!important```
+
+This adds more importance to a property/value than usual.
+
+Using this  ```!important``` rule will override all previous styling rules for that specific property on that element.
+
+### Syntax Errors in the Stylesheet
+These are usually a result of:
+- Typos, or the lack of separating CSS declarations with a semicolon.
+- Mixing up the correct syntax for selectors, e.g. class selectors begin with a period: .class-name
+- Failure to include curly braces. Make sure each declaration block begins with an opening curly brace {, and ends with a closing curly brace }
+- Sticking with the correct syntax for CSS property names and values, ex: background-color: lightblue; not background color: light-blue;
+- Separating property name from the value with a colon.
+<a href="https://discuss.codecademy.com/t/what-other-common-css-syntax-errors-should-i-look-out-for/363583" target="_blank" rel="noopener noreferrer">Source</a>
+
+### Render Errors
+When components aren't written appropriately, use React as an instance. Passing props directly to a state might result in side effects that will cause render errors.
+Specifically, 404 is categorized as a render error code that appears when trying to render a page. It means that the page is not found. It occurs when you're trying to render a page that doesn’t exist, or when you generate the wrong page in the wrong route. You may encounter this error in these instances:
+- You are trying to access a missing page, a non-existent or deleted page.
+- There's a mistype of a URL on a page.
+- There are broken links on web pages and the internet, etc.
+
+<a href="https://thegray.company/blog/how-to-make-a-404-page-for-seo-usability#find-fix-404s" target="_blank" rel="noopener noreferrer">Here's a link</a> to a guide on how to find and fix these 404 errors as a developer.
+
+### Network Errors
+Network errors usually happen when making API/third party requests, and this can also lead to the layout getting disoriented because assets aren’t loaded. For instance, updating the front end of your website or application can suddenly result in network errors with a request block on the browser log. Sometimes, the API is on a separate port or host from the front end in cases like these.
+Network error messages can appear like this:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6331d191a7d17afbd46997a3_image2_73a76b5481512bd11dd1c99fe9733efe_800.png)
+
+This (above) is an error message from the <a href="https://app.grammarly.com/ddocs/1692799746" target="_blank" rel="noopener noreferrer">Grammarly</a> website. Most of the time, this issue is specific to your computer, and you need to disconnect from your internet for a few seconds and then reconnect. However, if the same thing appears when trying to access the website with another device, then troubleshoot your internet connection. <a href="https://www.makeuseof.com/common-network-errors-how-to-fix/" target="_blank" rel="noopener noreferrer">Here are some common network errors you may encounter, and how to fix them</a>.
+
+### Missing Media Query
+We use media queries to write custom styles for devices meeting a specified screen condition, ensuring that a web page looks good on all devices and different screen sizes. Missing media queries might result in distorted web pages on smaller or bigger screens. Hence, media queries are essential to a responsive website because they adapt CSS rules for different devices.
+- Forgetting to define the viewport meta tag in the index.html file.
+- Using inline styling in your index.html file. This will also override the media query.
+- Defining the media query rules in the wrong location. It is best to always define the media query rules at the end of the styles.css file. If you place it in any other place, it might not work because the browser reads the code from top to bottom.
+- Lastly, mixing up the correct syntax of the media query.
+
+This is the correct media query syntax:
+
+```
+@media type and (condition) {
+  //features to be changed (CSS classes)
+```
+
+For instance:
+Javascript is not a typed language; therefore, you most likely will run into issues where you see “null” or “undefined” where text is supposed to be. In addition, data type errors often happen when we access a variable that does not exist, or the API returns a wrong value.
+One fix for this is opting for TypeScript, where you can specify the exact data type expected, allowing you to catch these errors during the build.
+
+## Conclusion
+When it comes to handling errors, front-end projects are very flexible in comparison to the backend. For example, when handling client-side errors, you often have different options, including pausing the application, or allowing it to keep running. When this error only affects a part of your system, then as a developer, you’ll most likely want to allow the user to continue using the application. However, if the error is predominant, you will have to display the error message in an unrelated modal window or restore the page contents with the error message, which stops the user from attempting further action. Aside from the different solutions provided in this article, testing has also been proven to handle bugs in the system.

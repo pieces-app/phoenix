@@ -1,0 +1,145 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63fcdaa8f9979771bb2f2e21_cssunits_327924109e361894bf17b97beddadfee_2000.jpeg)
+"css; **webdev**
+# Why CSS Units Matter to Your Responsive Website Designs
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+Everything in life is measured.
+Time is measured, the food we eat is measured, the places we travel to are measured… As humans, we like to give things specific measurements. Units of measurement are standard quantities that are used to express an amount of a certain thing, like meters (distance), kilograms (weight), seconds (time), or Celsius (temperature).
+Creating websites involves building responsive layouts. You have to size, resize, and position elements on your webpage based on the screen size of your visitors— there’s no way you can create a perfectly responsive website without using the appropriate CSS units of measurement.
+The CSS units of measurement that we will cover in this article will help us to understand how to create a fully responsive websites, size and resize elements on our website appropriately, and how to figure out the best units to use.
+
+## CSS Units in Responsive Design
+There are about <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units" target="_blank" rel="noopener noreferrer">15 CSS units</a> currently supported by modern browsers, but for the sake of this article, we will only cover those that are most frequently used when writing in CSS.
+Furthermore, CSS Units are classified into two groups: <a href="https://www.freecodecamp.org/news/absolute-and-relative-css-units/" target="_blank" rel="noopener noreferrer">Absolute units and Relative units</a>.
+
+### Absolute Units
+
+Absolute units do not change. Think of them as permanent; once you set a particular element with an absolute unit, it will never change, regardless of the screen size it’s on. Examples of absolute CSS units include:
+- Pixels (```px```)
+- Milimeters (```mm```)
+- Centimeters (```cm```)
+- Inches (```in```)
+- Points (```pt```)
+- Picas (```pc```)
+
+Pixels are the most used absolute unit in the world of web development. You’ve probably come across or used pixels before.
+If you are a web development beginner, ```px``` is probably your go-to unit when setting the width, height, margin, paddings, or font size of different elements.
+However, the need to create responsive, user-friendly websites means that we cannot rely on absolute units like ```px```. If you set your dimensions with pixels (e.g., width of an element = 20px), no matter the screen size where your site is rendered, that element will always remain at 20px. This might be too small on a larger screen or too big on a smaller screen, meaning your design is not responsive. So, we often refrain from using absolute CSS units when building responsive websites.
+Absolute units are best for static, physical designs, like books or printed posters.
+
+### Relative Units
+
+Unlike absolute units, relative CSS units allow elements to vary based on the size of their parent element.
+For example, if we have a button inside a parent ```div``` container, setting the width of the parent to 500px will affect the size of the button.
+
+Below are the frequently used relative units that we’ll discuss:
+- Element (```em```)
+- Root Element’s Font Size (```rem```)
+- Percentages (```%```)
+- Viewport width (```vw```)
+- Viewport height (```vh```)
+
+When using Element (```em```), the font sizes of child elements depend on the font size of their parent element.
+```
+<section>
+        <p id= “first” >Css Units</p>
+        <p id= “second” >Measurement Units</p>
+        <p id= “third”>Mathematics</p>
+</section&gt
+```
+In the code snippet above, we can see that the three paragraphs are all children of the section element.
+```
+section{
+ font-size: 20px;
+}
+#first{
+ Font-size:2em; /*40px*/
+}
+#second{
+ Font-size:1em; /*20px*/
+}
+#third{
+ Font-size:0.5em; /*10px*/
+
+```
+In the stylesheet above, the parent element (section) has a font size of 20px. Each paragraph has a unique font sizes that depends on the font size of the parent element.
+```
+1em``` always equals the font size of the parent element. This makes it easy to calculate the font size of each child element in CSS units.
+
+The font size of the first paragraph is 40px ( 20px * 2em = 40px).
+Of the second paragraph, 20px ( 20px * 1em = 20px).
+The font size of the third paragraph is 10px ( 20px * 0.5em = 10px).
+
+Unlike ```em```, which points to a particular parent element, rem points directly to the root element (html). This root element acts like an umbrella; it covers every single element on your webpage.
+Generally, browsers set their font sizes to 16px. So if we set an element’s dimensions in rem, they can be calculated as so:
+1rem = 16px
+2rem = 32px
+
+Example:
+Just like ```em``` units, values with percentages depend on the value of the parent element’s CSS units.
+```
+section{
+ width:100%;
+}
+#first{
+ width:50%;
+}
+#second{
+    width:30%;
+}
+#third{
+ width:10%;
+
+```
+In the code snippet above, the parent element has a width of 100%. All elements have a width of 100% by default; I have explicitly added “100%” in this example to give more context.
+The first paragraph’s width is set to 50%, so it is 50% of the width of the parent element.
+If we view this webpage on a desktop with a screen width of 1200px, then the first paragraph is 50% of 1200px.
+0.5 * 1200px =  600px, therefore, the first paragraph is 600px wide. Using this formula, we can deduce that the second paragraph is 360px wide, and the third paragraph is 120px wide.
+Check out this visual representation, in which each element has a differently colored border:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63fcdaa9f99797b4c12f2f08_image2_eb197bec839ee3d083f1ffcb2251a898_800.png)
+
+Percentage CSS units work the same way with margins, paddings, heights, and so on.
+A viewport is the visible part of a webpage. The size of a viewport varies based on the type of device being used. Hence, the viewport is 100% as wide as the visible part of the webpage. In order to calculate the width of an element, you should understand that ```1vw``` is equivalent to 1% of the viewport’s width.
+
+Let’s return to our paragraphs from earlier and give them widths in ```vws```.
+```
+#first{
+ background-color: red;
+ Width:50vw;
+ font-weight: bold;
+ color:white;
+}
+#second{
+ background-color: green;
+ width:80vw;
+ font-weight: bold;
+ color:white;
+}
+#third{
+ background-color:darkorange;
+ color:teal;
+ width:5vw;
+ font-weight: bold;
+
+```
+Since ```1vw``` = 1% of the viewport width, ```100vw``` = 100% of the viewport width. Let’s take a look at our paragraphs and how they’ve scaled based on their parameters.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63fcdaa9f99797750a2f2f27_image3_bf91d00557f09c3c57874122b9ff3fdd_800.png)
+
+Just like the viewport width, the viewport height refers to the height of the visible window on device. ```1vh``` is equivalent to 1% of the viewport height.
+So, if an element is set to ```50vh```, in the browser, that element is 50% (half) of the viewport height. The red element in the image below is ```50vh``` high.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63fcdaa9f99797e6212f2f02_image1_54ab62d59a788be940ca67dcbe505c8b_800.png)
+
+## Recommended Use Cases for CSS Units
+It can be confusing to figure out which CSS units to use in a given scenario. It takes practice to completely understand the use cases for each unit, but I’ll highlight a few common ones below.
+- Use pixels when working with properties aren’t really affected by responsiveness, like ```border-radius```, ```box shadow```, or ```border-width```.
+- When setting font sizes, use ```rem```. Because it points to the root element, make sure that the font size of your root element is either 16px or 10px. (10px might make it easier to calculate ```rem``` values!)
+- Don’t use pixels to set the font sizes of your root elements. If a user tries to manually change their browser’s font size, your webpage will not scale properly. Instead, set your root elements’ font sizes in percentages, as explained below.
+If you’ll be working in 16px, use 100% as your font size. With 10px, use 62.5% as your font size.
+If your default font size is 16 px and you want to set a font size of 18px, your rem would be 18/16, or 1.125rem. Calculating these ratios while coding is challenging, so I recommend setting your root font size to 10px (62.5%). This way, you can easily divide by 10 and get your values in ```rem```.
+Using the same example, if your default font size is 10px and you want to set a font size to 18px, your rem will be 18/10, or 1.8rem. Easy, right?
+- When working with margins and paddings, use ```em``` units. Because the font size is related to the parent element, and every other property will adjust according to that particular element’s font size, everything can be adjusted at once.
+- Use percentages when working with widths and heights .
+- Use ```vh``` and ```vw``` when working with elements that depend on the viewport of the website.
+
+## Conclusion

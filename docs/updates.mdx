@@ -1,0 +1,190 @@
+---
+title: Pieces for Developers | Releases
+description: Check out our latest product release for our extensions and plugins and learn how to use never before seen features.
+---
+
+
+export const MainContainer = props => {
+    return <div style={{display: "flex", flexDirection: "row", flexWrap: "wrap"}}>
+        {props.children}
+    </div>
+}
+
+export const Spacer = props => {
+    return <div style={{ height: "20px"}}></div>
+}
+
+export const ClickThrough = props => {
+    return <a style={{textDecoration: "none"}} href={props.src}>
+        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+            <p style={{
+                padding: "8px 20px",
+                borderRadius: "8px",
+                border: "1px solid #f3f5f6",
+                backgroundColor: "black",
+                color: "white",
+                fontWeight: "500",
+                marginBottom: "8px",
+                marginTop: "30px"
+            }}>{props.children}</p>
+        </div>
+    </a>
+}
+
+export const Card = props => {
+    return <div style={{
+        display: "flex",
+        flexDirection: "column",
+        minWidth: "350px",
+        border: "2px solid #e4e7eb",
+        borderRadius: "10px"
+    }}>
+        <div style={{padding: "10px"}}>
+            {props.children}
+        </div>
+    </div>
+}
+
+export const Date = props => {
+    return <p style={{marginTop: "0px", marginBottom: "4px"}}>{props.children}</p>
+}
+
+export const Title = props => {
+    return <h3 style={{marginTop: "4px"}}>{props.children}</h3>
+}
+
+export const Author = props => {
+    return <div style={{display: "flex", flexDirection: "row", flexWrap: "nowrap"}}>
+        <p style={{marginTop: "0px"}}>The Pieces Team</p>
+    </div>
+}
+
+export const Snip = props => {
+    return <p style={{lineHeight: "1.25", marginTop: "0px"}}>{props.children}</p>
+}
+
+
+# Pieces for Developers Blog
+
+![](/assets/updates/updates_header_lm.png)
+
+All product updates and releases across our suite of products. Stay up to date with the newest features and try them the moment they are released!
+
+<MainContainer>
+    <Card>
+        <Image src="https://assets.website-files.com/6143afec68f555387049efb3/643846ec4fd1146c83718fa6_group-1031_0eccbb1cb6543ef63eebf653f2fe77b8_2000.jpeg" />
+        <Date>April 13th, 2023</Date>
+        <Title>Pieces Web Extension 2.6.0: Enable/Disable Pieces Buttons by Default</Title>
+        <Author></Author>
+        <Snip>Thanks to feedback from our users, we’re adjusting how the Web Extension works a little bit. Sometimes,
+            you don’t want Pieces buttons to show up for every single block of code on the web, so we’re making it
+            easier to customize your experience.</Snip>
+        <ClickThrough src="https://docs.page/pieces-app/releases~1/updates/pieces-web-extension-adjust-default-settings">Read the Article</ClickThrough>
+    </Card>
+</MainContainer>
+
+<Spacer></Spacer>
+
+<MainContainer>
+    <Card>
+        <Image src="https://assets.website-files.com/6143afec68f555387049efb3/643857959a416543cdfb083a_jetbrains-520_508e9b051078e1819b714f7448b19afd_2000.jpeg" />
+        <Date>April 12th, 2023</Date>
+        <Title>Pieces for JetBrains 5.2.0: Enhanced Snippet List, Snippet Preview, Bug Fixes, and More</Title>
+        <Author></Author>
+        <Snip>Everything we build is to make a developer’s workflow simpler and less time-consuming. To further that
+            goal, this release of Pieces for JetBrains contains several quality of life improvements to ease your
+            experience and make saving, sharing, and reusing your code simpler.</Snip>
+        <ClickThrough src="https://docs.page/pieces-app/releases~1/updates/pieces-jetbrains-snippet-preview-list">Read the Article</ClickThrough>
+    </Card>
+</MainContainer>
+
+<Spacer></Spacer>
+
+<MainContainer>
+    <Card>
+        <Image src="https://assets.website-files.com/6143afec68f555387049efb3/643446cba4c1c94d3c1e1849_edit-mode-update_f7758f6615179dec8d022f3b25641a35_2000.jpeg" />
+        <Date>April 10th, 2023</Date>
+        <Title>Pieces for Developers 1.13.0 and Pieces OS 4.2.1: Dropping in Even More AI 🤖 Transformations, Describe to
+            Generate, and WAY More</Title>
+        <Author></Author>
+        <Snip>Did you catch the live stream of our CEO, Tsavo, talking about Pieces with GitHub’s Rizel Scarlett? If so,
+            you got a sneak preview of the incredibly innovative new features in this release.</Snip>
+        <ClickThrough src="https://docs.page/pieces-app/releases~1/updates/pieces-developers-ai-transformations">Read the Article</ClickThrough>
+    </Card>
+</MainContainer>
+
+<Spacer></Spacer>
+
+<MainContainer>
+    <Card>
+        <Image src="https://assets.website-files.com/6143afec68f555387049efb3/642b1c5c6aefa22554f6da56_jetbrains-510_cf49d1c72891c78f033c947a47cdeeba_2000.jpeg" />
+        <Date>April 3rd, 2023</Date>
+        <Title>JetBrains 5.1.0: Discover Related Materials in Pieces 🧩</Title>
+        <Author></Author>
+        <Snip>Your time is seriously valuable! So, we've added the Find Related Materials function to the Pieces for
+            JetBrains Plugin. This feature is designed to help developers streamline their search process for code
+            snippets and other materials. </Snip>
+        <ClickThrough src="https://docs.page/pieces-app/releases~1/updates/pieces-jetbrains-related-materials">Read the Article</ClickThrough>
+    </Card>
+</MainContainer>
+
+<Spacer></Spacer>
+
+<MainContainer>
+    <Card>
+        <Image src="https://assets.website-files.com/6143afec68f555387049efb3/64146cbada956bcd48966cad_pfd-1120_82585e8e7c8d35c972d2e8cce51a30b2_2000.jpeg" />
+        <Date>March 17th, 2023</Date>
+        <Title>Pieces for Developers 1.12.0 & Pieces OS 4.1.0: Global Search, A Faster Way to Find Developer
+            Materials </Title>
+        <Author></Author>
+        <Snip>We are thrilled to announce the release of two exciting features in the Pieces for Developers Desktop App.
+            First, Global Search 🌎, an innovative new way to find materials in Pieces that sets the stage for even more
+            advanced search capabilities in the future. </Snip>
+        <ClickThrough src="https://docs.page/pieces-app/releases~1/updates/pieces-desktop-app-os-global-search">Read the Article</ClickThrough>
+    </Card>
+</MainContainer>
+
+<Spacer></Spacer>
+
+<MainContainer>
+    <Card>
+        <Image src="https://assets.website-files.com/6143afec68f555387049efb3/6410ea2bd8348c2e1a7dad37_pieces-insights_4809bd660a1af4bc77b419bb639ff10a_2000.jpeg" />
+        <Date>March 15, 2023</Date>
+        <Title>Pieces Web Extension 2.6.0: Enable/Disable Pieces Buttons by Default</Title>
+        <Author></Author>
+        <Snip>Understand new codebases more quickly, easily document your code, or collaborate with large teams by
+            writing clear, helpful comments in seconds. We’re thrilled to introduce this brand-new functionality and we
+            can’t wait for what’s next.</Snip>
+        <ClickThrough src="https://docs.page/pieces-app/releases~1/updates/pieces-jetbrains-explore-materials">Read the Article</ClickThrough>
+    </Card>
+</MainContainer>
+
+<Spacer></Spacer>
+
+<MainContainer>
+    <Card>
+        <Image src="https://assets.website-files.com/6143afec68f555387049efb3/6400cf1ead44505da0f74d3c_vs-code-050_e365a1e7f403146e054362c60ce8d7cf_2000.jpeg" />
+        <Date>March 14, 2023</Date>
+        <Title>Pieces for VS Code 0.6.0: Select Some Code. Find Related Materials. ✨</Title>
+        <Author></Author>
+        <Snip>As a developer, your time is seriously valuable, which is why we've added the Find Related Materials
+            function to our Visual Studio Code extension. </Snip>
+        <ClickThrough src="https://docs.page/pieces-app/releases~1/updates/pieces-vs-code-related-materials">Read the Article</ClickThrough>
+    </Card>
+</MainContainer>
+
+<Spacer></Spacer>
+
+<MainContainer>
+    <Card>
+        <Image src="https://assets.website-files.com/6143afec68f555387049efb3/6400cf1ead44505da0f74d3c_vs-code-050_e365a1e7f403146e054362c60ce8d7cf_2000.jpeg" />
+        <Date>March 3, 2023</Date>
+        <Title>Pieces for VS Code 0.5.0: Introducing Explore with Pieces Insights 👀</Title>
+        <Author></Author>
+        <Snip>Today, we’re launching a brand-new feature for the Pieces for Developers VS Code Extension: Explore with
+            Pieces Insights. This feature will help developers of all skill levels understand new codebases more
+            quickly and easily document their code.</Snip>
+        <ClickThrough src="/updates/pieces-vs-code-explore-insights">Read the Article</ClickThrough>
+    </Card>
+</MainContainer>
+

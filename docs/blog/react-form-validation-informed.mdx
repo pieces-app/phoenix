@@ -1,0 +1,285 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd76c3ec44888daf0e1845_formvalidation_bbc8b131a6294bbd5b1db0498cee2938_2000.jpeg)
+"form; validation"
+# React Form Validation with Informed
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+Form validation is an effective way to control the type of values that are provided in the proper format, preventing security vulnerabilities, malicious users, and entering incorrect data. It guarantees the data submitted matches the requirement. There are many validation frameworks/libraries that are used to handle <a href="https://code.pieces.app/blog/react-form-validation-with-yup-and-formik" target="_blank" rel="noopener noreferrer">React form validation</a> in web applications; Informed is one such tool.
+
+## What is Informed?
+<a href="https://www.npmjs.com/package/informed" target="_blank" rel="noopener noreferrer">Informed</a> is a React form validation tool used to create robust forms. It’s a simple framework that enables you to add custom inputs, dynamic forms, and multi-step forms to your application while making it simple to specify input error messages. It resolves the hassle of handling form state.
+
+### Getting Started With Informed
+This section will walk you through integrating the Informed React validation library into your application, along with validating fields and creating custom inputs. In addition, we'll create a React application and install the Informed library by performing either of the following commands:
+```
+yarn add informed
+```
+or
+```
+npm install informed
+```
+After installing the library, we’ll modify our ```App.css``` file by pasting the code block below:
+
+In this section, we’ll go over how to include Informed in your application. By default, the Informed library features native DOM input elements that are controlled by the React form library. This makes it easy to retrieve and manipulate form values; it handles everything related to the form state. Using the code block below, we’ll alter the ```App.js``` component:
+```
+import { Form, Input, Debug } from 'informed';
+import './App.css';
+
+const App = () => (
+ <div className="App">
+     <Form>
+      <div>
+       <Input className="input" name="name" label="Name" placeholder="Elon" />
+       <Input
+        className="input"
+        name="age"
+        type="number"
+        label="Age"
+       />
+       <Input
+        className="input"
+        name="phone"
+        label="Phone"
+        formatter="+234 (###)-###-####"
+       />
+      <button type="submit">Submit</button>
+     </div>
+     <Debug/>
+    </Form>
+  </div>
+);
+export default App
+```
+The code block above demonstrates how components imported from the Informed library are simply implemented. It’s critical to note the Debug component; this component displays the whole state of your form in real time, allowing for easier debugging. Also, the formatter prop shows you how to format input values. This can be added to text inputs as well.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/636a8c0d75f3d519e9720592_image_fdf21850d5a9bf3250c13a44f7c4ef88_800.png)
+
+### Validation Hooks
+
+The Informed library has a variety of hooks that help with various parts of managing simple to complex React forms in your application. We'll be looking at it in this section:
+The ```useFormState``` hook from the Informed library gives you access to the form state properties:
+
+```
+import { Form, Input, useFormState } from 'informed';
+const ComponentUsingFormState = () => {
+ const formState = useFormState();
+ return (
+  <pre>
+   <code>{JSON.stringify(formState.values, null, 2)}</code>
+  </pre>
+ );
+};
+const App = () => (
+ <div className="App">
+  <Form>
+  <div>
+   <Input name="name" label="Name:" />
+   <Input name="occupation" label="Occupation:" />
+   <button type="submit">Submit</button>
+  </div>
+  <div>
+   <h5>Component using formState:</h5>
+   <ComponentUsingFormState />
+  </div>
+  </Form>
+ </div>
+)
+```
+In the code block above, in ```ComponentUsingFormState```, you can access the form values by using the dot notation ```formState.values```:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/636a8c0d75f3d523e3720548_image_9dc29725c2922e2ee0dfc6687d1f16eb_800.png)
+
+The ```useFormApi``` hook from the Informed library allows you to gain access to the form API functions. You can alter the value of an input using the functions that ```formApi``` provides for React form validation:
+```
+...
+import { Form, Input, useFormApi } from "informed&quot;;
+const RandomSetterButton = () => {
+ const formApi = useFormApi();
+ return (
+  <button
+   type="button"
+   onClick={() =>
+    formApi.setValue(
+     "name",
+     Math.floor(Math.random() * Math.floor(Number.MAX_SAFE_INTEGER))
+    )
+   }
+  >
+   Random
+   </button>
+ );
+};
+const SetValuesButton = () => {
+ const formApi = useFormApi();
+ return (
+  <button
+   type="button"
+   onClick={() => formApi.setValues({ name: 'Asta', age: 26, color: "Green" })}
+  >
+   All
+  </button>
+ );
+};
+const SetTheseValuesButton = () => {
+ const formApi = useFormApi();
+  return (
+   <button
+    type="button"
+    onClick={() => formApi.setTheseValues({ age: 27, color: "Yellow" })}
+   >
+    Age &amp; Color
+   </button>
+  );
+};
+const App = () => (
+ <Form onSubmit={({ values }) => window.alert(JSON.stringify(values, null, 2))}>
+  <div>
+   <Input name="name" label="First Name:" />
+   <Input name="age" label="First Name:" type="number"  />
+   <Input name="color" label="Favorite Color:" />
+   <RandomSetterButton />
+   <SetValuesButton />
+   <SetTheseValuesButton />
+   <button type="submit">Submit</button>
+  </div>
+ </Form>
+);
+...```
+As shown in the code block above, the ```RandomSetterButton``` component uses ```setValue``` to target a single input. In this case, the name input is targeted, and the value is set to a random number. The ```SetTheseValuesButton``` component uses the ```setTheseValues``` function to change the values of name, age, and color inputs. Also, the ```SetValuesButton``` component uses ```setValues``` to set the input values of both age and color to different values. One of the important ```useFormApi``` functions is the ```onSubmit``` function. This gives you access to the form values, which can be used as payload to an endpoint.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/636a8c0d75f3d5f818720547_WDn0u8N_2b8454070c66afd115c3f984a9b2a159.g)
+
+The ```useFieldApi``` hook gives you access to the field API functions using a dot notation:
+```
+...
+import { Form, Input, useFieldApi } from "informed&quot;;
+const ComponentUsingFieldApi = () => {
+ const fieldApi = useFieldApi("name");
+ return (
+  <button
+   type="button"
+   onClick={() =>
+    fieldApi.setValue(
+     ' Math.floor(Math.random() * Math.floor(Number.MAX_SAFE_INTEGER))'
+    )
+   }
+  >
+   Random
+  </button>
+ );
+};
+const App = () => (
+ <Form>
+  <div>
+   <Input name="name" label="Name:" initialValue="Joe" />
+   <button type="submit">Submit</button>
+   <h5>Component using fieldApi:</h5>
+  <ComponentUsingFieldApi/>
+  </div>
+ </Form>
+);
+...```
+The ```name``` field having the ```initialValue``` Meliodas, changes to a random number when the random button is clicked:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/636a8c0d75f3d5301e72052a_avwYLXe_dd82415d01a7710c45e45acae0fbed64.g)
+
+The ```useFieldState``` hook gives you access to the field state attributes:
+```
+...
+import { Form, Input, useFieldState } from 'informed';
+const ComponentUsingFieldState = ({ name }) => {
+ const fieldState = useFieldState(name);
+ return (
+  <>
+   <h5>Component using fieldState: {name}</h5>
+   Render: {Math.random()}
+   <pre>
+    <code>{JSON.stringify(fieldState, null, 2)}</code>
+   </pre>
+  </>
+ );
+};
+const App = () => (
+ <Form>
+  <div>
+   <Input name="name" label="Name:" />
+   <Input field="age" label="Age:" type="number" />
+   <button type="submit">Submit</button>
+  </div>
+  <div>
+   <ComponentUsingFieldState name="name" />
+   <ComponentUsingFieldState name="age" />
+  </div>
+ </Form>
+);
+...```
+From the code block above, the ```name``` field is passed into the ```useFieldState``` hook as an argument, and can be used to keep track of every name attribute in the form state:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/636a8c0d75f3d57212720530_hvklIM9_b8e43c66c73cc4111280b39496a47cdc.g)
+
+### Form Validation Methods
+Informed forms provide the validate prop to handle field-level validation. You can pass in rules from a function to validate an input field, or mark it as ```required```:
+For more control when validating, passing ```validateOn``` props to fields makes Informed more flexible in handling React form validation. You can also choose to control when the error message shows using the ```showErrorIfError```, ```showErrorIfTouched```, and ```showErrorIfDirty``` props:
+This method aids you in displaying custom error messages for built-in validations. You can achieve this feat by making use of the ```errorMessage``` prop:
+
+## Basic Form Validation
+Informed allows you to create custom validation inputs that can be used across your application. Next, we’ll explore the ```useField``` and ```useForm``` hooks to create a custom form:
+```
+...
+import { useForm, useField, Debug } from 'informed';
+const CustomForm = ({ children, ...rest }) => {
+ const { formController, render, userProps } = useForm(rest);
+/* --- DON'T FORGET TO CALL THE RENDER METHOD FROM THE HOOK! --- */
+return render(
+ <form
+  {...userProps}
+  onReset={formController.reset}
+  onSubmit={formController.submitForm}
+  onKeyDown={formController.keyDown}>
+  {children}
+ </form>
+ );
+};
+const CustomInput = props => {
+ const { render, informed, fieldState, userProps, ref } = useField({
+  type: 'text',
+  ...props
+ });
+const { id, label, ...rest } = userProps;
+ const { error, showError } = fieldState;
+/* --- DON'T FORGET TO CALL THE RENDER METHOD FROM THE HOOK! --- */
+return render(
+ <>
+  <label htmlFor={id}>{label}</label>
+  <input
+   {...rest}
+   {...informed}
+   ref={ref}
+   style={showError ? { border: 'solid 1px red' } : null}
+  />
+   {showError &amp;&amp; <small style={{ color: 'red' }}>{error}</small>}
+  </>
+ );
+};
+const App = () => (
+ <div className="App">
+  <CustomForm
+   onSubmit={({ values }) => window.alert(JSON.stringify(values, null, 2))}
+  >
+   <div>
+    <CustomInput
+     field="name"
+     label="First name:"
+     validateOn="change"
+     required
+     minLength={5}
+    />
+    <button type="submit">Submit</button>
+   </div>
+   <Debug values errors />
+  </CustomForm>
+ </div>
+);
+...```
+Using the ```useField``` and ```useForm``` hooks, a custom form and input component was generated in the code block above. When utilizing either hook, you must always call the render method obtained from both hooks:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/636a8c0d75f3d51e7172052b_j3yYqiu_fe147621a5b320758df52aff9b15fb66.g)
+
+## Conclusion

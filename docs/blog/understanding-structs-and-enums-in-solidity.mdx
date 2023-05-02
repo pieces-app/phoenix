@@ -1,0 +1,176 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd768523db6fed3625372f_structsandenums_b3de2671ec656a30c861fcc754d0407c_2000.jpeg)
+"structs; enums"
+# Understanding Structs and Enums in Solidity
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+Structs allow you to create custom data types in Solidity. A variable declared to be a ```struct``` can have multiple data types in it.
+Enums (Enumerables)** **are user-defined data types that restrict a variable to have only one predefined value from a set of multiple predefined values. Enums are assigned integer values starting from zero to the value of the last index.
+In this article, I will explain how structs and enums work and how to use them.
+
+## Getting Started
+It will be best if you code along with me in order to best understand the material. Visit <a href="http://remix.ethereum.org/" target="_blank" rel="noopener noreferrer">remix.ethereum.org</a>— This online IDE is an excellent and easy-to-use environment for beginners. Go to the File Explorer tab, click on contracts and create a new file with your preferred name and “.sol” at the end. I will be using “StructsAndEnums.sol” as my file name:
+
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/636294a6a13967fa8c78ffc1_image5_040877e0f7ef5e5472a07447ff944027_800.png)
+
+Now in the file, start by specifying the license identifier. License identifiers indicate relevant license information at any level from the package to the source code file level. Make sure you make it a comment:
+```
+// SPDX-License-Identifier: Unlicense
+```
+Specify the solidity compiler version you want to use:
+```
+pragma solidity 0.8.0
+```
+Finally, create a contract by using the “contract” keyword and the name you wish to assign to the smart contract:
+```
+contract StructsAndEnums{
+
+```
+This empty contract ```StructsAndEnums``` is already a valid contract and is deployable to any blockchain. Go to the Solidity Compiler tab, change the compiler version to the version you are working with and click compile. Once the compilation is successful, you should see a green checkmark by the side of the compiler icon:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/636294a7a13967efe278ffcb_image13_13fa5f71fc800c592b94fbd963046f27_800.png)
+Awesome! Now we can write all of our smart contract code into StructsAndEnums.
+
+### Variable types in Solidity
+Solidity has six main variable types. They are:
+
+- Signed integers - represented as **int**.
+- Unsigned integers - represented as **uint**.
+- Booleans - represented as **bool**.
+- Addresses - represented as **address**.
+- Bytes - represented as **bytes**.
+
+To declare a struct, start off by typing the struct keyword along with the name you wish to assign to the struct. Inside the struct, list out the different data types you want the struct to have. In the code snippet below, I have a struct named “Shipment” with some variable names and types in it:
+
+To create a struct variable, type in the name of the struct followed by the name of your variable. You will need to parse the values of the different data types of the struct into the variable. One way of doing this is by assigning the values according to the order of the data type in the struct like so:
+```
+Shipment purchase = Shipment("Flash Drive", "Texas", 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4, 0x78731D3Ca6b7E34aC0F824c42a7cC18A495cabaB, 20, true)
+```
+Another way is by assigning the values in any order with the key of the variable and the value:
+```
+Shipment purchase = Shipment({price: 20, sender:0x5B38Da6a701c568545dCfcB03FcB875f56beddC4, package: "Flash Drive", delivered: true, receiver:0x78731D3Ca6b7E34aC0F824c42a7cC18A495cabaB})
+```
+To see the variable, we have to assign it to the public keyword:
+```
+Shipment public purchase = Shipment("Flash Drive", "Texas", 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4, 0x78731D3Ca6b7E34aC0F824c42a7cC18A495cabaB, 20, true)
+```
+Let’s try and look into the variables stored in this struct variable called purchase. First, we have to deploy the contract. We will deploy to the remix virtual machine, a simulation used for tests by developers and not a live blockchain network. With any new changes we add to the smart contract, we will be deploying new contracts and deleting previous ones to see the changes. By nature, smart contracts are immutable and can never be edited after deployment. Go to the Deploy &amp; run transactions tab at the bottom and click deploy.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/636294a7a139673e8a790118_image10_12ed4db3cd0143e3931cb1177c2202e3_800.png)
+
+After a successful deployment, at the bottom, you will find a Deployed Contracts section which holds the contract you just deployed. When you click on the dropdown, you will find the public variable called purchase we created earlier in our code. Click on the purchase button. Remix will return the variables stored in the purchase struct variable. Here’s what the output will look like:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/636294a7a13967ce4579000b_image2_b53c4589f4fc8ef5e318aceac4e00e56_800.png)
+
+### Updating Struct variables
+So we’ve created a struct and a struct variable, but what if we wanted to change certain things in that variable? What if we wanted to change the values inside the ```purchase``` variable from outside the contract? Let’s create a function that does just that.
+Let’s name the function ```update``` and make it public. This function will take all of the variables needed by the struct variable. Variable types such as strings and bytes are stored in data locations. The keyword ```memory``` tells Solidity to temporarily store the input data of the string variable while a function is being called.
+```
+function update (string memory _package, string memory _state,
+    address _sender, address _receiver, uint _price, bool _delivered) public{
+        purchase = Shipment(_package, _state, _sender, _receiver, _price, _delivered);
+
+```
+Once we compile and deploy this code, we should be able to see two buttons in the Deployed Contracts section. One of which is the ```purchase``` struct variable and the ```update``` function. If we click on purchase, we will see the variables from earlier:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/636294a7a13967096d79000c_image3_a6e98f7cfb5649cfa3506d688b31e901_800.png)
+
+We'll try and change these values. So by the right of the ```update``` button, click on the dropdown icon, fill in your preferred values and click on transact:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/636294a7a13967fc5d790035_image6_0158c0e00424cac9efe8f6ccc550c18c_800.png)
+
+And, once we click on purchase again:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/636294a6a139673d3278ff98_image12_57ab2071993b1fdc3e477b411131b010_800.png)
+
+Sweet! We were able to change the values in ```purchase``` successfully.
+
+## How to declare an Enum
+To declare an enum, type in the enum keyword before the name you wish to assign to the enum. Enums are somewhat similar to booleans. The only difference between them is that booleans can only have two choices which are “0” (false) and “1” (true), while enums can have more than two choices. Let us see an example of an enum with four choices:
+To assign a variable to an enum, similarly to what we did earlier with structs, we have the name of the enum in front of the variable and declare it public for us to see its value:
+```
+Status public orderStatus
+```
+And when we compile and deploy this:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/636294a6a13967455c78ffc0_image11_ca0b746f1c9a878e4215f85a0a75ed27_800.png)
+
+We get a value of 0 which is the first choice assigned to the enum (None). Enums always use the first case as the default. We could have also given a different choice to ```orderStatus``` and it would be assigned that value.
+
+### Updating Enum variables
+Let us use a function similar to the one we created for structs. The function will be called ```change``` and will take in a single parameter of type uint:
+```
+function change(uint value) public {
+  orderStatus = Status(value);
+
+```
+And once we compile and deploy this:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/636294a7a13967e28b79000a_image4_8dca2ae9ad292a09e2d035558d57e12d_800.png)
+
+The value of ```orderStatus``` is now at the third index (2) which is "Shipped".
+
+## Using an Enum in a Struct
+Since a struct is a compilation of different data types, it can also take in enums. Let us replace the boolean variable called ```delivered``` with an enum:
+```
+struct Shipment {
+  string package;
+  string state;
+  address sender;
+  address receiver;
+  uint price;
+  Status delivered;
+
+```
+Before compiling, let us make a few changes. Back in our ```purchase``` variable, change:
+```
+Shipment public purchase = Shipment("Flash Drive", "Texas", 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4, 0x78731D3Ca6b7E34aC0F824c42a7cC18A495cabaB, 20, true)
+```
+To this:
+```
+Shipment public purchase = Shipment("Flash Drive", "Texas",0x5B38Da6a701c568545dCfcB03FcB875f56beddC4, 0x78731D3Ca6b7E34aC0F824c42a7cC18A495cabaB, 20, Status(0))
+```
+Do the same for the update function. Change this:
+```
+function update(string memory _package, string memory _state,
+address _sender, address _receiver, uint _price, bool _delivered) public{
+    purchase = Shipment(_package, _state, _sender, _receiver, _price, _delivered);
+
+```
+To this:
+```
+function update(string memory _package, string memory _state,
+address _sender, address _receiver, uint _price, Status _delivered) public{
+    purchase = Shipment(_package, _state, _sender, _receiver, _price, _delivered);
+
+```
+Now compile and deploy the contract. To input the value for the enum data type when calling the ```update``` function, type in the uint value for the choice you wish to use. For example, if we want the choice to be “Pending”, our input value has to be 1.
+
+### Storing Structs and Enums in a mapping
+Mappings act like hash tables or dictionaries in other languages. We can use a mapping to store multiple data on the blockchain with a key. Mappings are more precise and also more efficient than arrays. We will keep the enum Status in the ```Shipment``` struct like we did previously but will be storing the struct in a mapping called ```getPurchase```. The key for the mapping will be the address of the sender and the value will be the data from the current Shipment struct tied to that address. To declare a mapping, type in the mapping keyword along with the key and value of the mapping in brackets and a name for the mapping at the end:
+```
+mapping(address => Shipment) public getPurchase
+```
+In the ```update``` function, we will take in new struct variables as well as new changes made to existing struct variables and store them in the mapping. Let’s make the sender the actual sender of the transaction by changing ```_sender``` to the ```msg.sender``` keyword. After doing this, we will no longer need ```address _sender``` as a parameter in the function:
+```
+function update(string memory _package, string memory _state, address _receiver, uint _price, Status _delivered) public{
+  purchase = Shipment(_package, _state, msg.sender, _receiver, _price, _delivered);
+  getPurchase[msg.sender] = purchase;
+
+```
+After we compile and deploy, let’s input new values to the ```update``` function:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/636294a6a13967a73078ffc2_image9_4a715745d947f68f8f0f385e1f3e22c3_800.png)
+
+Let’s look for the sender data in the ```getPurchase``` mapping by inputting the address of ```msg.sender``` as the key. To get your address, scroll to the top of the “Deploy &amp; Run Transactions” tab, and you will see a list of virtual addresses created by remix:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/636294a7a139671243790034_image1_8689df5f3777adaef4637aad24e60c26_800.png)
+
+Copy the first address used to make the transaction and input that address to the ```getPurchase``` mapping:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/636294a7a13967d09179000d_image8_f47c0ef182b7c25fd33396cf452608c5_800.png)
+
+Great! All new and existing sender addresses that interact with the ```update``` function will also have their struct and enum data stored or updated in the mapping. To test this further, you can try switching to multiple account addresses at the top, interacting with the ```update``` function from each and inputting those addresses as the key to the mapping.
+
+## Conclusion
+

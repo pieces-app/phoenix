@@ -1,0 +1,283 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd7e208b5ae80addb1b109_phonelaptop_729ef422ded53f459b254aa4e0e6ed16_2000.jpeg)
+"applications"
+# Building an Event App with Astro & Prismic
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+Previously, traditional CMS provided us with the ability to have all our content, such as images, videos, templates, and custom code, in a single environment. However, as the web grew and became more complex, the need to scale increased, and the past approach was no longer adequate. The introduction of the<a href="https://en.wikipedia.org/wiki/Headless_content_management_system" target="_blank" rel="noopener noreferrer"> headless CMS</a> brought about how our content serves as data over an API. A headless CMS makes it easy to distribute data across different platforms and devices on the internet.
+In this article, we’ll talk about Prismic and learn how to set it up with Astro. In addition, we’ll learn to source data from Prismic to a frontend – Astro. Also, we’ll build an event manager app with Astro and a Prismic headless CMS.
+
+## What Is Prismic?
+<a href="https://prismic.io/" target="_blank" rel="noopener noreferrer">Prismic</a> is a CMS backend for websites and apps that’s designed to increase developer productivity and includes a visual builder for creating posts and pages. Prismic is specifically a headless, API-based, hosted, proprietary CMS for technical independence that allows developers to use their preferred framework &amp; programming language.
+Major companies, such as Spotify, DigitalOcean, and Netflix, use Prismic as their CMS. Prismic allows users to create websites and apps with instantly updatable content and custom designs.
+
+## The Benefits of Using Prismic
+- Prismic allows developers to use nearly any programming language or framework to build websites and apps. It can be used with React, Vue, Angular, Rails, Node and Laravel.
+- Prismic allows users to create branded page sections and components that are reusable.
+- It provides a simple, feature-rich admin panel that allows content managers to update content on websites and apps instantly and independently.
+- Prismic allows content creators and developers to focus on creating content, managing resources, and developing a more efficient and beautiful user interface. Meanwhile, the Prismic team maintains its content infrastructure in the cloud.
+- Thanks to their partnership with Imgix, Primsic allows users to customize images. They also make it easy to create and schedule releases, as well as pull content from third parties into integration fields.
+
+## What Is Astro?
+Astro is a web framework designed for building fast, content-rich websites. Astro lets us develop faster websites with less client-side Javascript. It leverages server-side rendering over client-side rendering and supports code splitting, file-based routing, asset handling, build process, bundling, optimization and data fetching. Astro has built-in support for popular web frameworks and tools such as React, Solid, Vue, Typescript, Markdown and more.
+Also, Astro integrates partial hydration into websites and applications, which increases site performance.
+To learn more about Astro, see the article<a href="https://astro.build/" target="_blank" rel="noopener noreferrer"> here</a>.
+
+## Setting up a Prismic Headless CMS
+To set up Prismic, we first need to create an<a href="https://prismic.io/dashboard/signup" target="_blank" rel="noopener noreferrer"> account</a>. After creating an account, we’ll be directed to the dashboard. Next, we click on “create a new repository with another framework**.”**
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6346f7353fbbd85fadca278e_image8_4d03038d13ab6a4021293b2a4f7a892b_800.png)
+After creating a new repository, we’ll be directed to the admin dashboard, where we’ll create and define our **Custom Types**. In this case, we want to create **Events** under **Documents**, so we click on **Custom Types. **We’ll start by creating our Events custom type. Fill out the form as shown below:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6346f7353fbbd841edca2766_image4_c0ddd4c8dce8e2c7a75a48822c9e961b_800.png)
+
+Once this is created, we’ll be directed to a new page where we’ll define our custom type.
+Next, we’ll be using the drag-and-drop feature that Prismic offers to create our custom type. We use the drag-and-drop editor to fill out the following:
+- A ```title``` field with the value **title - **the title of the event**.**
+- A ```rich text``` field with the value **description - **the description of the event.
+- A ```date``` field with the value **date - **the date of the event**.**
+- A ```number``` field with the value **duration - **the time duration of the event.
+- A ```number``` field with the value **price - **the price to attend events**.**
+- An ```image``` field with the value **image - **the event’s featured image**.**
+
+After defining custom types, click on **save**.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6346f7353fbbd8a714ca2748_image1_a3fd3ee144ea805b3ad3f846f6e14d22_800.png)
+
+### Adding Contents
+Next, let’s add some content to our custom types. On our admin dashboard, we first select **Documents **and click on **Create New. **We’ll be prompted to create an entry, but start by adding content for the Events:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6346f7353fbbd8d532ca2767_image2_d0885134472dfc889703d72756a10159_800.png)
+
+We also added the tags **tech-hangout **and **live-coding **as shown in the image below**. **We will be using the tags to filter our Events.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6346f7353fbbd82c2dca278c_image3_c01b21d56c33f418f5bcd5b3f458c4c5_800.png)
+
+Here, we can fill out our desired information in the fields created earlier. We can add as many **Events** as desired by clicking on **Create New. **After filling out the entry, we then click **Save &amp; Publish.**
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6346f7353fbbd81f5fca2768_image7_0fb56b2408bb588d8fe1d742effc69ae_800.png)
+
+### Setting up Roles &amp; Permissions
+
+Before we can access our data through the API endpoint, we need to grant access to our API by navigating to **Settings** on our admin dashboard and clicking on **API &amp; Security. **We’ll see an API endpoint automatically generated by Primsic**. **Next, we copy and save this API endpoint. Finally, we try accessing ```https://your-repo-name.cdn.prismic.io/api/v2``` to see all of our content returned in our browser.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6346f7353fbbd86672ca278d_image9_62a116ec5de39a390b5625a3e3f99cf3_800.png)
+
+- In order to use the Prismic preview feature, we have to make the **API access token **private.
+
+## Setting up Our Frontend with Astro
+In this section, we’ll install and set up Astro, and build the event app user interface. So let’s get started by installing Astro. In our terminal, we run the following command:
+```
+# Yarn
+yarn create astro
+```
+The above command will bootstrap the application configuration for the project. We’ll be asked to make some choices based on how we want the project to run on Astro. Our selection should look like the one in the image below:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6346f7353fbbd8847eca2765_image6_e76ea8afe6fb9408040b0b711a0ac10f_800.png)
+After selecting the configuration for the project, we change it to the project directory. Then, we’ll start the application with the command below:
+
+### Configuring Our Dependencies
+Before we start developing our application, let's install and configure some dependencies:
+
+- <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer">Tailwind</a> – a utility-first CSS framework for styling our application.
+- ```@prismicio/client```** – **a package responsible for handling requests to our Prismic endpoint. It is also used in creating web apps with Prismic and Javascript.
+- ```@prismicio/helpers``` – a package that helps us work with data from Prismic.
+
+Let’s start by installing and configuring Tailwind into our project by running this command:
+```
+yarn astro add tailwind react
+```
+We’ll see the Astro CLI add Tailwind and React dependencies to our project. Next, we’ll go to ```astro.config.mjs```, where we’ll see that Astro has automatically included these codes into our project. Astro allows us to integrate with any frontend framework.
+```
+// astro.config.mjs
+import { defineConfig } from 'astro/config';
+import tailwind from "@astrojs/tailwind&quot;;
+import react from "@astrojs/react&quot;;
+// https://astro.build/config
+export default defineConfig({
+  integrations: [tailwind(), react()]
+})
+```
+After installing Tailwind and React into our project, we’ll install libraries that will help us fetch data from Prismic into our project. In our terminal, we run the command below to install the dependencies:
+Next, in our ```src``` folder, we create a ```prismic.js``` file and add the code below:
+```
+import Prismic from '@prismicio/client';
+const API_ENDPOINT = process.env.ASTRO_PUBLIC_PRISMIC_URL;
+const Client = Prismic.createClient(API_ENDPOINT)
+```
+First, we imported ```Prismic```  from ```@prismicio/client``` then initialized our API endpoint, and passed it to ```prismic.createClient()``` to generate a client object. The client object contains a collection of properties and methods to help us query the Prismic API. With this done, we can start writing our query.
+
+### Adding a Query to Our Prismic Client
+Inside our ```prismic.js``` file, we’ll add the code below:
+```
+export function getAllCategories(tag) {
+ return Client.getByTag(tag)
+}
+export function getAllEvents() {
+ return Client.getAllByType("event")
+
+```
+We’ll use methods to write our query that are provided by the client object. The ```getAllEvents``` query will help us request our Events, and the ```getAllCategories``` will filter our query request.
+Before we start building our layouts, let’s create a ```.env``` in our root folder and paste it into our Prismic URL API:
+We’ll start by creating our app layout. The layout of Astro allows us to create reusable components. We’ll create a navigation layout for all the pages in our application. First, replace the content inside ```layouts/layout.astro``` in the src folder with the code snippet below:
+```
+---
+export interface Props {
+    title: string;
+}
+const { title } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width" />
+   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+   <meta name="generator" content={Astro.generator} />
+   <title>{title}</title>
+ </head>
+ <body>
+   <nav class="bg-indigo-600 border-gray-200 dark:bg-gray-900">
+   <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl px-4 md:px-6 py-2.5">
+     <a href="/" class="flex items-center">
+       <span class="self-center text-xl font-semibold whitespace-nowrap text-white">Event-App</span>
+     </a>
+     <div class="flex md:order-2">
+     <button type="button" data-collapse-toggle="navbar-search" aria-controls="navbar-search" aria-expanded="false" class="md:hidden text-gray-500 bg-white dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 mr-1" >
+       <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+       <span class="sr-only">Search</span>
+     </button>
+   <div class="hidden relative md:block ">
+     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+       <svg class="w-5 h-5 text-gray-500" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+       <span class="sr-only">Search icon</span>
+     </div>
+     <input type="text" id="search-navbar" class="block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search...">
+   </div>
+  </div>
+ </div>
+</nav>
+<nav class="bg-gray-50 dark:bg-gray-700">
+  <div class="py-3 px-4 mx-auto max-w-screen-xl md:px-6">
+    <div class="flex items-center">
+      <ul class="flex flex-row mt-0 mr-6 space-x-8 text-sm font-medium">
+       <li>
+        <a href="/" class="text-gray-900 dark:text-white hover:underline" aria-current="page">Home</a>
+       </li>
+       <li>
+        <a href="/liveCoding" class="text-gray-900 dark:text-white hover:underline">Live Coding</a>
+       </li>
+       <li>
+        <a href="/techHangout" class="text-gray-900 dark:text-white hover:underline">Tech Hangout</a>
+       </li>
+     </ul>
+   </div>
+  </div>
+ </nav>
+<slot />
+</body>
+</html&gt
+```
+Astro allows JavaScript and TypeScript to be written inside the ```---``` block. The area is called the **Component Script. **Astro also uses ```Astro.props``` to pass data to components in Astro and make it available to use throughout the component. Below the ```---``` block is where we structure the UI. Astro allows us to insert child elements from other files into the component template by using the ```<slot />``` element as a placeholder for external HTML information.
+
+## Displaying Our Events
+In this section, we’ll request Prismic. Once we get back our desired data, we’ll populate the home page with the different events received from Prismic. However, before doing this, we need to create a card component that we can reuse to display our event data.
+In the components folder, we’ll create the ```Card``` component, and add the following:
+```
+---
+export interface Props {
+    event: any
+}
+const { event } = Astro.props;
+const id = 'events/'+event.id;
+---
+<div class="max-w-md bg-white rounded-md border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+ <a href={id}>
+   <img class="rounded-t-lg" src={event.data.image.url} alt={event.data.title[0].text}>
+ </a>
+ <div class="p-5">
+   <a href={id}>
+    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{event.data.title[0].text}</h5>
+   </a>
+   <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{event.data.datetime}</p>
+   <a** **href={id} class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            Read more
+   <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+   </a>
+ </div>
+</div&gt
+```
+Here, we have passed an ```event``` prop into this component. The prop is an array of events passed down from the home page ```pages/index.astro```. We added styles using TailwindCSS, and added the necessary information to be displayed on the card, thanks to the prop. We also noticed some kind of dynamic routing for when we click on an event:
+```
+const id = 'events/'+event.id
+```
+Now that we’ve created our components, let’s replace the content in the ```pages/index.astro``` file with the code snippet below:
+```
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import { getAllEvents } from '../prismic.js';
+const events = await getAllEvents();
+---
+<Layout title="Event App.">
+ <main>
+ <div class="md:flex md:justify-evenly md:items-center flex-wrap mt-8 px-4 overflow-hidden">
+            {events.map(event => <Card event={event}></Card>)}
+ </div>
+ </main>
+</Layout&gt
+```
+Each file with the ```.astro``` extension in the ```src/pages``` folder will be a page on our site due to Astro’s routing mechanism called “file-based routing.”
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6346f7363fbbd8c266ca287c_image5_9320b9052d117fe919d50d6b0fc4864f_800.png)
+
+### Displaying a Particular Event
+In this section, we’ll be displaying a particular Event. In our ```pages``` folder, we create an ```events/[id].astro``` file:
+```
+---
+import Layout from "../../layouts/Layout.astro&quot;;
+import { PrismicRichText } from '@prismicio/react'
+import {getAllEvents} from '../../prismic';
+export async function getStaticPaths() {
+ const events = await getAllEvents();
+ return events.map((event) => {
+ return {
+ params: { id: event.id },
+      props: { event }
+    };
+  });
+}
+const { id } = Astro.params;
+const { event } = Astro.props;
+---
+<Layout title={event.uid}>
+    <div class="container mx-auto px-80 mb-8 space-y-6 py-3">
+        <h1 class="text-4xl">{event.data.title[0].text}</h1>
+        <figure class="relative overflow-hidden shadow-md mb-10">
+            <img src={event.data.image.url} alt={event.data.title[0].text} class='object-top h-full w-full object-cover shadow-lg rounded-t-lg lg:rounded-lg' />
+        </figure>
+        <h1 class="text-4xl">Duration - {&#x60;${event.data.duration}mins&#x60;}</h1>
+        <h1 class="text-4xl">Price - {&#x60;${event.data.price}$&#x60;}</h1>
+        <PrismicRichText field={event.data.description} />
+    </div>
+</Layout&gt
+```
+Using the integrated ```getStaticPaths()``` function, Astro enables us to execute dynamic routing. We can render the pages specified in params, which is our ```id```, using ```getStaticPaths()```. To be able to render the Rich Text and Title fields as React components, we need to install and use the ```<PrismicRichText>``` component from ```@prismicio/react```. The<a href="https://prismic.io/docs/technologies/template-content-nextjs#rich-text-and-titles" target="_blank" rel="noopener noreferrer"> ```PrismicRichText```</a> component can be customized to our taste.
+In this section, we’ll filter our Events based on the tags. We want each tag to be displayed on its page. First, we create a ```techHangout.astro``` and ```liveCoding.astro``` file in the ```src/pages``` folder. Next, we add the code below to our ```liveCoding.astro``` file:
+```
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import { getAllCategories } from '../prismic.js';
+const events = await getAllCategories('livecoding');
+---
+<Layout title={events.results[0].tags[0]}>
+ <main>
+ <div class="md:flex md:justify-evenly md:items-center space-y-2 mt-8 px-4 overflow-hidden">
+            {events.results.map(event => <Card event={event}></Card>)}
+ </div>
+ </main>
+</Layout&gt
+```
+We have two tags for our events: ```tech-hangout``` and ```live-coding```. We want each tag to be displayed on its page. From our query, we filter events based on each tag, and display them on their respective pages. After we do the same for the ```techHangout``` event page, everything should work fine.
+
+## Conclusion
+In this article, we demonstrated how to set up Prismic, and fetch data from Prismic using Astro and RESTful API. In the process, we created an event custom type to build the application. We also looked at how to write queries using the Prismic client object to help query the Prismic API. Lastly, we created a page that displays information about each event, and we filtered the events based on their tags to enable easy navigation.

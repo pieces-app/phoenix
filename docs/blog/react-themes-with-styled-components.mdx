@@ -1,0 +1,46 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd2f96a2a65fb92236233a_react%20themes%20with%20styled%20components.jpg)
+"react; front-end"
+# Styling Components with React Themes
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+## What is styled-components?
+id="">Styled-components is a library for styling React components. It lets you use <a href="https://en.wikipedia.org/wiki/CSS-in-JS" id="">CSS-in-JS</a> by adding JavaScript logic to your CSS. This makes it simple to create dynamic styles for your React components and integrate your react component library.
+### Advantages of Styled-Components
+- id="">Prevents class name collisions with unique class names
+- id="">Dynamic and adaptive styles
+- id="">Component-level styling for easier debugging
+- id="">Server-side rendering support
+- id=""><a href="https://sass-lang.com/install" target="_blank" id="">Sass</a> style support
+- id="">Custom style theme support
+- id="">Simple theme setup
+
+id="">This section will explore how to add the styled-components library to your React application, style React components, and add light and dark themes. First, create a React app and install the styled-components library by running one of the commands below:
+id="">or
+id="">Once we install the library, we will start styling the application.
+
+## Styling a React App with Styled-Components
+id="">Styled-components lets you add styles to <a href="https://www.geeksforgeeks.org/react-styled-components-module/" target="_blank" id="">React components</a> with the react inline stylestyled interface. You'll use tagged template literals to pass style rules to the component.
+id=""><em id="">import styled from "styled-components";
+‍
+
+id="">The component name follows the React naming convention. Access the <a href="https://code.pieces.app/blog/understanding-dom-and-virtual-dom-and-how-they-work-with-react" target="_blank" id="">DOM element</a> you want to style from the styled object and pass the style rules within template literals.
+id="">Styling a real-life project's nav will look similar to this code block:
+id="">The code block above creates a styled nav element. You can pass props or add JavaScript logic to styled components.
+
+id="">In the code block, the opacity style value depends on the show prop. If <em id="">show is true in <em id="">MyComponents, the div's opacity is 1, else 0. Use <em id="">createGlobalStyle for global styles that are not tied to a specific component.
+id="">The code block above creates a global styled component that we can use to style components outside its scope.
+
+## React Themes
+id="">Styled-components supports multiple themes for React apps; use <em id="">ThemeProvider to provide the theme via a context API. To do so, pass a theme rule object as a value to its theme prop, access the theme rule in all styled-components using prop.theme, and set up a theme object in the theme folder.
+id="">The theme object exported as the default in the code block above has two properties: dark and light. We’ll pass the proper property to the ThemeProvider component based on the selected theme. The following action will wrap the application with ThemeProvider:
+id="">From the code block above, we have the <em id="">currentTheme state; this controls the theme rule to pass to <em id="">ThemeProvider. The <em id="">ToggleButton component allows us to toggle between light and dark themes.
+
+## Using Themes in Styled-Components
+id="">To use the theme rules in the style component, we will need to access the theme from the <em id="">props object:
+
+id="">In the code block above, we are destructuring the theme property from the props object. This will give us access to all of the theme rules. Using the code sample above, we have:
+id="">This will apply the primary color from the current selected theme's theme rule.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/630cec306cc12c64c506d0c9_Togglingstyled-componentstheme_c80921e23facedb5c5725c6eae5c30fd.gif" id="" width="auto" height="auto" loading="au)
+
+## Conclusion

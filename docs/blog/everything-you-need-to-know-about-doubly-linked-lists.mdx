@@ -1,0 +1,388 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd6ee42cefb89ff8f4d6a6_doublylinkedlists_5a584020d19fbf52340df125887aa37e_2000.jpeg)
+"lists; data-4"
+# Everything you Need to Know about Doubly Linked Lists
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+Like an array, a linked list is a linear data structure. This means that data elements are arranged in a way that one element is directly linked to its previous and next elements. There are different types of linked lists suited for different situations in software development; in this article we'll look at doubly-linked lists, their capabilites, and when you should use them.
+
+## What is a linked list?
+A linked list is a linear data structure in which data is not stored in adjacent memory locations. A node in a linked list has a data segment and a pointer pointing to the memory location of the next element; this continues until we get to the end of the list.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/639178e3c389b3382a818dc8_image5_db38e7ca0047365db94eeb248d0ef27f_800.png)
+You can learn more on the linked list <a href="https://www.geeksforgeeks.org/types-of-linked-list/?ref=lbp" target="_blank" rel="noopener noreferrer">here</a>.
+
+## What is a doubly linked list?
+A doubly linked list is a variation of a linked list where each node of the linked list contains three separate parts:
+- A pointer to the previous node.
+- The data on the current node.
+- A pointer to the next node in the list.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/639178e3c389b34181818dc5_image4_233563f3cdd76d0b5fe5788f6f96a4c7_800.png)
+Above is an example of a node in a doubly linked list.You can see how the differences in the nodes for a doubly linked list change the flow of data in the following diagram:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/639178e3c389b323a0818dc7_image3_563c2879cc4d56748c5ace2bdb9e26a0_800.png)
+
+## Pros and cons of using a doubly linked list
+Here are some advantages of a doubly linked list:
+- Allows us to traverse in both directions, moving data forward and backwards.
+- It's easier to reverse a doubly linked list.
+- Inserting a new node is quicker.
+- Useful in implementing different data structures.
+
+Here are some disadvantages of using a doubly linked list:
+- Consumes extra memory due to the extra pointer.
+- For actions like insertion, both the previous pointer and the next pointer must be modified.
+
+## Operations on doubly linked list
+In this section, we'll be looking at operations that are used to manipulate doubly linked lists.
+
+### Creating
+Before learning how to manipulate a doubly linked list, it’s important to first understand its creation. Below is the code for a creating the struct of a single node in a doubly linked list in C:
+
+```
+struct node {
+  int data;
+  struct node *next;
+  struct node *prev;
+};
+typedef struct node
+```
+
+Here you can see that each node contains a variable to store an integer, a second variable to store the address of the next node, and a third variable to store the address of the previous node.
+Now that the struct is declared, let's create our doubly linked list of nodes:
+
+```
+/* creating our nodes */
+node *head;
+node *first = NULL;
+node *second = NULL;
+node *third = NULL;
+/* Allocate memory */
+first = malloc(sizeof(struct node));
+second = malloc(sizeof(struct node));
+third = malloc(sizeof(struct node));
+/* store address of the first node in head */
+head = first;
+/* Assign data values */
+first->data = 75;
+second->data = 85;
+third->data = 100;
+/* linking our nodes */
+first->next = two;
+first->prev = NULL;
+second->next = three;
+second->prev = one;
+third->next = NULL;
+third->prev = two;
+```
+
+<a href="https://user-a8d2af0a-e410-4d3e-985a-20f2fd9c570d-agyqaaz4hq-uc.a.run.app/?p=83e74d917c" target="_blank" rel="noopener noreferrer">Save to Pieces</a>
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/639178e3c389b390f1818dc2_image1_96d03561fd3a48e44bb380389f375199_800.jp)
+
+### Inserting a node
+Two of the advantages of using a linked list instead of an array is the list’s ability to change size and how easy it is to insert new nodes. In this section, we'll look at how to add a new node into our list. Since there are different locations where nodes can be inserted, we will look at each case individually to understand them all well.
+To insert a node at the beginning of our doubly linked list we'll first have to create it and give it some value to store as data:
+
+```
+/* creating new node*/
+node *new_node = NULL;
+/* Allocating memory for new node */
+new_node = malloc(sizeof(struct node));
+/* assigning data */
+new_node->data = 105
+```
+
+To insert our newly created node at the beginning, we'll have to set the ```prev``` pointer of the new node to ```null``` and then set the next pointer of the new node to the first node in the list.
+
+```
+new_node->prev = NULL;
+new_node->next = first
+```
+
+Now that there is a new node at the beginning of the list, set the ```prev``` pointer of the first node so that it points to the new node that was just created, and then set the head equal to the new node.
+
+```
+first->prev = new_node;
+head = new_node
+```
+
+The following function can be used to insert a new node at the beginning of a doubly linked list:
+
+```
+void insert_at_beginning(node** head, int data)
+{
+  // allocate memory for new_node
+  node* new_node = NULL;
+  new_node = malloc(sizeof(struct node));
+  // assign data to newNode
+  new_node->data = data;
+  // point next of new_node to the first node of the doubly linked list
+  new_node->next = (*head);
+  // point prev to NULL
+  new_node->prev = NULL;
+  // point previous of the first node (now the first node is the second node) to new_node
+  if ((*head) != NULL)
+  (*head)->prev = new_node;
+  // head points to newNode
+  (*head) = new_node;
+}
+```
+
+<a href="https://user-a8d2af0a-e410-4d3e-985a-20f2fd9c570d-agyqaaz4hq-uc.a.run.app/?p=a95f4182a0" target="_blank" rel="noopener noreferrer">Save to Pieces</a>
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/639178e3c389b35b45818dc6_image11_72830c61eba2296ca479929681c6f517_800.jp)
+To insert a node in between two nodes of our doubly linked list, we'll have to create the node before we place it:
+
+```
+node *new_node = NULL;
+/* Allocating memory for new node */
+new_node = malloc(sizeof(struct node));
+/* assigning data */
+new_node->data = 124
+```
+We will then traverse through the list until we get to where we want to insert the new node. In the example below, we want to place our new node after the third node on the list.
+
+```
+node *temp;
+temp = *head;
+for (i = 0; i < 1; i++)
+  {
+    temp = temp->next;
+    if(temp == NULL)
+      return;
+
+```
+
+After traversing down the list, the temp pointer refers to the second node with an index of one (1). Now we'll make the next pointer of the new node point to the third node. We can access the next node via ```temp->next```.
+
+```
+new_node->next = temp->next
+```
+
+We'll then set the ```prev``` pointer of our new node point to the second node, which is referenced by ```temp```:
+
+```
+new_node->prev = temp
+```
+
+Our new node now points to the third and fourth nodes. Now let's make the next pointer of our third node point to our new node and the prev pointer of our third node point to our new node.
+
+```
+temp->next = new_node;
+temp->next->prev = new_node
+```
+
+```Temp``` refers to the second node while ```temp->next->prev``` refers to the ```prev``` pointer of the third node. With this done we have successfully inserted our new node in the second and third nodes of our list.
+
+Here's the function for adding a new node at a specified position in a doubly linked list:
+
+```
+void insertMid(node **head, int data)
+{
+  // allocate memory for the new node
+  node *new_node, *temp;
+  int i;
+  new_node = malloc(sizeof(node));
+  new_node->data = data;
+
+  // traversing through the list
+  temp = *head;
+  for (i = 0; i < 2; i++)
+  {
+    temp = temp->next;
+    if(temp == NULL)
+      return;
+  }
+  // inserting our new node
+  new_node->next = temp->next;
+  new_node->prev = temp;
+  temp->next = new_node;
+  temp->next->prev = new_node;
+}
+```
+
+<a href="https://user-a8d2af0a-e410-4d3e-985a-20f2fd9c570d-agyqaaz4hq-uc.a.run.app/?p=647f4cb643" target="_blank" rel="noopener noreferrer">Save to Pieces</a>
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/639178e3c389b37af3818dc0_image10_5e0823811b28858d36df3d125e6f76e8_800.jp)
+
+To insert our node at the end of our list, we'll first have to create it:
+```
+node *new_node = NULL;
+/* Allocating memory for new node */
+new_node = malloc(sizeof(struct node));
+/* assigning data */
+new_node->data = 136
+```
+We'll then traverse down the list till we get to the end of the list:
+```
+node *temp;
+temp = *head;
+while (temp->next != NULL)
+{
+  temp = temp->next;
+
+```
+The ```temp``` variable now refers to the last node. Now let's make the next pointer of the last node point to our ```new_node``` instead of ```null```:
+```
+temp->next = new_node
+```
+Let's make the next pointer of our new node point to ```null``` and the ```prev``` pointer point to the last node:
+```
+new_node->prev = temp;
+new_node->next = NULL
+```
+With all of those steps completed, we have successfully added our new node to the end of our list. Here's what an entire function for adding a new node to the end of a doubly linked list would look like:
+```
+void insertAtEnd(node **head, int data)
+{
+  node *new_node, *temp, *buf;
+  new_node = malloc(sizeof(node));
+  new_node->data = data;
+  temp = *head;
+  while (temp->next != NULL)
+  {
+    temp = temp->next;
+  }
+  temp->next = new_node;
+  new_node->prev = temp;
+  new_node->next = NULL;
+}
+```
+
+<a href="https://user-a8d2af0a-e410-4d3e-985a-20f2fd9c570d-agyqaaz4hq-uc.a.run.app/?p=a8f8428fbe" target="_blank" rel="noopener noreferrer">Save to Pieces</a>
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/639178e3c389b3d425818db5_image9_852e9c2d907b48a38998cdcf630752a2_800.jp)
+
+### Updating a node
+With our list created, let's look at how we update a specific node located inside of a doubly linked list. In the example below we'll be editing the 3rd node with an index of 2 in our list.
+First, we'll traverse down the list to the third node that we would like to update:
+```
+node *temp;
+temp = *head;
+for (i = 0; i < 2; i++)
+{
+  temp = temp->next;
+  if(temp == NULL)
+     return;
+
+```
+Now, all we have to do is declare ```temp->data``` and set a specific value:
+```
+temp->next = 36
+```
+Here's what the function for updating a node to the end of a doubly linked list would look like:
+```
+void updateNode(node **head, int data)
+{
+  node *temp, *buf;
+  int i;
+  temp = *head;
+
+  for (i = 0; i < 2; i++)
+  {
+    temp = temp->next;
+    if(temp == NULL)
+      return;
+  }
+  temp->data = data;
+}
+```
+
+<a href="https://user-a8d2af0a-e410-4d3e-985a-20f2fd9c570d-agyqaaz4hq-uc.a.run.app/?p=dbfe43a132" target="_blank" rel="noopener noreferrer">Save to Pieces</a>
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/639178e3c389b31125818dc4_image8_40e18fee2f3bf7c39bf1b22dcdd04ccb_800.jp)
+
+### Deleting a node
+To delete a node after a specified node in our list, we'll first create a ```temp``` node for traversing down the list until we get to our node:
+```
+node *temp;
+temp = *head
+```
+Now we'll traverse down the list.
+```
+while(temp->data != val)
+temp = temp->next
+```
+This sets ```temp``` to the node before the node we intend to delete. Now we'll create a new pointer and point to the node we intend to delete:
+```
+node *ptr;
+ptr = temp->next
+```
+With this completed, the pointer now refers to the node that will be deleted. Now we'll make the next pointer of the specified node point to the node after the node we intend to delete:
+```
+temp->next = ptr->next
+```
+To completely disconnect the node that we’re deleting from our list, we'll set the ```prev``` node of the pointer after the one we want to delete to the specified node:
+```
+ptr->next->prev = temp
+```
+With everything completed, the ```ptr``` has been disconnected from our list and all we need to do is release the memory that was allocated to ```ptr```.
+```
+free(ptr)
+```
+Here's the entire function for deleting a node to the end of a doubly linked list. It can be used regardless of the list’s length:
+```
+void deleteNode(node **head)
+{
+  node *ptr, *temp, *buf;
+  int val;
+  temp = *head;
+  val = 75;
+
+  while(temp -> data != val)
+    temp = temp->next;
+    ptr = temp->next;
+    temp->next = ptr->next;
+    ptr->next->prev = temp;
+
+  free(ptr);
+}
+```
+
+<a href="https://user-a8d2af0a-e410-4d3e-985a-20f2fd9c570d-agyqaaz4hq-uc.a.run.app/?p=1b8a499fc6" target="_blank" rel="noopener noreferrer">Save to Pieces</a>
+In the function above, we deleted the node directly after the node with a value of 75.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/639178e3c389b3da04818dc3_image7_90a37ea18c8ca0796c6e99db5692c6f0_800.jp)
+
+### Reversing a doubly linked list
+To reverse a doubly linked list, we'll start by taking the two pointers:
+```
+node *temp, *buf
+```
+Now let ```buf``` point to ```NULL``` while ```temp``` points to our ```head``` pointer:
+```
+buf = NULL;
+temp = *head
+```
+In a loop using both pointers, swap the next and previous pointer for all nodes of the doubly linked list:
+```
+while (temp != NULL)
+{
+  buf = temp->prev;
+  temp->prev = temp->next;
+  temp->next = buf;
+  temp = temp->prev;
+}
+```
+
+<a href="https://user-a8d2af0a-e410-4d3e-985a-20f2fd9c570d-agyqaaz4hq-uc.a.run.app/?p=92884295a2" target="_blank" rel="noopener noreferrer">Save to Pieces</a>
+With these done, our previous and next pointers has been swapped. Now we'll set the head pointer to the last node of the list.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/639178e3c389b392e7818dc1_image2_51bf123530ce800c8531abc16cd26867_800.jp)
+
+With all these done, here's the output of all of our operations.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/639178e4c389b3658b818de4_image6_ef9971ff17adb7889bd6a54a691f86e3_800.jp)
+
+You can get the code for all our functions from the<a href="https://github.com/King-AJr/doubly_linked_list" target="_blank" rel="noopener noreferrer"> repo</a>.
+
+## Time complexities for operations with doubly linked lists
+- Operations without traversal has a time complexity of O(1). (Inserting at the beginning of the list.)
+- Operations that involve traversal that requires traversal has a time complexity of O(n). (Deleting and updating nodes other than the first, reversing the list.)
+
+## Applications of doubly linked lists
+- Redo and undo functionality in software.
+- Implementation of stacks and queues.
+- Forward and backward navigation in browsers.
+- Navigation systems where forward and backward navigation is required.
+
+## Conclusion
+In this article, we looked at doubly linked lists and the different operations we can carry out on a doubly linked list to modify, create, and remove nodes to efficiently work with the data moving through them. Happy coding!
+**Resources**
+<a href="https://github.com/King-AJr/doubly_linked_list" target="_blank" rel="noopener noreferrer">Code repo</a>
+<a href="https://en.wikipedia.org/wiki/Linked_list?wprov=sfla1" target="_blank" rel="noopener noreferrer">Linked list</a>

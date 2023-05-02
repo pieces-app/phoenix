@@ -1,0 +1,385 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd6036a41bb07b4e1fd58a_yupandformik_27cf38bdb8b864349330198e161879c0_2000.jpeg)
+"react-7; validation"
+# Integrating Formik & Yup for React Form Validation
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+In software development, forms offer a way of receiving data from users before sending information to the server. The data obtained through these forms must be validated and checked for mistakes that might break the server or cause problems. For example, you might need to verify that a username contains the required characters, or that the ```password``` field value and ```confirm-password``` field value match. In this article, we’ll examine how form validation in React Applications using two React form libraries: the Formik and Yup packages. To easily follow this article, fundamental knowledge of React is required. The code for the sample project we’ll be working with in this <a href="https://github.com/MelvinManni/react-formik" target="_blank" rel="noopener noreferrer">GitHub repository</a>.
+
+## What Are Formik and Yup?
+<a href="https://formik.org/docs/overview" target="_blank" rel="noopener noreferrer">Formik</a> is a React/React Native package used for handling forms; it keeps track of form values, errors, and events, and handles form submissions. Formik eliminates the work involved in setting up a state for form fields, allowing you to focus more on other aspects of development.
+<a href="https://www.npmjs.com/package/yup" target="_blank" rel="noopener noreferrer">Yup</a> is a JavaScript schema builder for validating or parsing values. It allows you to model complex or inter-dependent validations using built-in validators or custom validations using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions" target="_blank" rel="noopener noreferrer">regular expressions</a>.
+
+### Yup Schema
+The Yup schema allows you to create validation schema/rules that values should follow. You can create a Yup validation schema by calling ```Yup.object().shape()```. You’ll pass the schema object as a parameter with the schema rules as the value for the field keys. The schema has different datatypes: <a href="https://github.com/jquense/yup#string" target="_blank" rel="noopener noreferrer">string</a>, <a href="https://github.com/jquense/yup#number" target="_blank" rel="noopener noreferrer">numbers</a>, <a href="https://github.com/jquense/yup#date" target="_blank" rel="noopener noreferrer">date</a>, <a href="https://github.com/jquense/yup#tuple" target="_blank" rel="noopener noreferrer">tuple</a>, <a href="https://github.com/jquense/yup#array" target="_blank" rel="noopener noreferrer">arrays</a>, <a href="https://github.com/jquense/yup#object" target="_blank" rel="noopener noreferrer">objects</a>, <a href="https://github.com/jquense/yup#boolean" target="_blank" rel="noopener noreferrer">booleans</a>, and <a href="https://github.com/jquense/yup#mixed" target="_blank" rel="noopener noreferrer">mixed</a>. The mixed method allows you to create a schema that matches all data types or the ones you configured. Next, you’ll learn about the different Yup validation in React methods you can apply to schema types.
+Formik allows easy integration with Yup for validating form values and ensures that the submitted data is error-free and matches a predetermined schema. The following sections will cover how to use Formik and Yup to validate forms in a simple React Application.
+
+## Create a React App
+To <a href="https://code.pieces.app/blog/alternatives-to-create-react-app" target="_blank" rel="noopener noreferrer">create a React app</a>, you’ll need to have <a href="https://nodejs.org/en/download/" target="_blank" rel="noopener noreferrer">Node.js</a> installed. In your terminal, run the following command:
+```
+npx create-react-app react-formik```<a href="https://melvin.pieces.cloud/?p=4c0941b4eb" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+Once you create the application, update the ```App.css```** **file with the following styles:
+```
+*{
+  outline: none;
+  transition: 0.3s ease all;
+}
+main{
+  max-width: 1024px;
+  margin: auto;
+}
+.App {
+  background-color: #202020;
+  padding: 40px;
+  min-height: 100vh;
+}
+.App-logo {
+  pointer-events: none;
+  margin: 20px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+.App-header {
+  margin-bottom: 45px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  text-align: center;
+}
+.App-header img {
+  width: 150px;
+}
+.App-link {
+  color: #61dafb;
+}
+.styledInput {
+  margin-bottom: 25px;
+}
+.styledInput > input {
+  background: #fefefe;
+  border: 1px solid #8db2e2;
+  box-sizing: border-box;
+  border-radius: 4px;
+  height: 50px;
+  min-width: 100%;
+  max-width: max-content;
+  padding: 5px 15px;
+  padding-top: 0.7rem;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  color: #242235;
+  font-style: normal;
+  font-size: 0.87rem;
+  line-height: 15px;
+}
+.styledInput > input:focus {
+  box-shadow: 1px 2px 4px #8db2e2;
+}
+.styledInput > input::placeholder {
+  color: #929292;
+  font-size: 14.4px;
+  font-family: "Courier New", Courier, monospace;
+  font-style: normal;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+.helperText {
+  color: #dc3545;
+  font-size: 12px;
+  min-height: 15px;
+  text-align: left;
+}
+button {
+  color: #fff;
+  background: #2f4858;
+  border-radius: 4px;
+  font-family: "PT Sans", sans-serif;
+  font-weight: 700;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+  font-size: 18px;
+  height: 50px;
+  min-width: 100%;
+  max-width: max-content;
+}
+button:hover {
+  box-shadow: 0px 3.5px 5px #e1e5f1a0;
+  transform: translateY(-0.7px);
+}
+button:focus:before {
+  transition: all 0.4s ease-out;
+  opacity: 0;
+  width: 40px;
+  height: 40px;
+  margin-top: -20px;
+  margin-left: -20px;
+}
+button:before {
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.6);
+  content: "&quot;;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+}
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+```
+
+<a href="https://melvin.pieces.cloud/?p=c07c49b6c3" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+## Using Formik and Yup Form Validation
+The ```App.js```** **file has a simple sign-up form controlled by Formik. In order to validate Forms in React, inject the Yup form validation schema into the Formik object:
+```
+import logo from "./logo.svg&quot;;
+import { useFormik } from "formik&quot;;
+import * as Yup from "yup&quot;;
+import "./App.css&quot;;
+import StyledInput from "./components/StyledInput&quot;;
+import { useState } from "react&quot;;
+function App() {
+  const [loading, setLoading] = useState(false);
+  const validateSchema = Yup.object().shape({
+    firstName: Yup.string().required("This field is required"),
+    lastName: Yup.string().notRequired(),
+    email: Yup.string().email("Please enter a valid email").required("This field is required"),
+    password: Yup.string()
+      .required("This field is required")
+      .min(8, "Pasword must be 8 or more characters")
+      .matches(/(?=.*[a-z])(?=.*[A-Z])\\w+/, "Password ahould contain at least one uppercase and lowercase character")
+      .matches(/\\d/, "Password should contain at least one number")
+      .matches(/[&#x60;!@#$%^&amp;*()_+\\-=[\\]{};':"\\\\|,.<>/?~]/, "Password should contain at least one special character"),
+    confirmPassword: Yup.string().when("password", (password, field) => {
+      if (password) {
+        return field.required("The passwords do not match").oneOf([Yup.ref("password")], "The passwords do not match");
+      }
+    }),
+  });
+  const formik = useFormik({
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+    validationSchema: validateSchema,
+    onSubmit: (values, { resetForm }) => {
+      console.log(values);
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+        resetForm();
+      }, 1000 * 2);
+    },
+  });
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <h4>Signup</h4>
+      </header>
+      <main>
+        <form className="spaceY-lg w100-small w50-lg" onSubmit={formik.handleSubmit}>
+          <StyledInput
+            label="First Name"
+            name="firstName"
+            onChange={formik.handleChange}
+            value={formik.values.firstName}
+            type={"text"}
+            helperText={formik.errors.firstName ? formik.errors.firstName : ""}
+          />
+          <StyledInput
+            label="Last Name"
+            type={"text"}
+            name="lastName"
+            onChange={formik.handleChange}
+            value={formik.values.lastName}
+            helperText={formik.errors.lastName ? formik.errors.lastName : ""}
+          />
+          <StyledInput
+            label="Email Address"
+            type={"email"}
+            name="email"
+            onChange={formik.handleChange}
+            value={formik.values.email}
+            helperText={formik.errors.email ? formik.errors.email : ""}
+          />
+          <StyledInput
+            label="Password"
+            type={"password"}
+            name="password"
+            onChange={formik.handleChange}
+            value={formik.values.password}
+            helperText={formik.errors.password ? formik.errors.password : ""}
+          />
+          <StyledInput
+            label="Confirm Password"
+            type={"password"}
+            name="confirmPassword"
+            onChange={formik.handleChange}
+            value={formik.values.confirmPassword}
+            helperText={formik.errors.confirmPassword ? formik.errors.confirmPassword : ""}
+          />
+          <button disabled={loading} type={"submit"}>
+            {loading ? "Loading..." : "Sign Up"}
+          </button>
+        </form>
+      </main>
+    </div>
+  );
+}
+export default App;```<a href="https://melvin.pieces.cloud/?p=a0c94fadf8" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+In the code block above, we can see the Yup and Formik validation schema for the sign-up form on line 10. This creates a set of rules that each form field will follow.
+On line 27, we have the ```useFormik``` hook with the initial values for the form state, the validation schema created with Yup and the ```onSubmit``` event for the form. Next, we linked the Formik values to the input fields. Using the First Name form field as a reference, we connected the field value from Formik to the value attribute and for the input to create a <a href="https://reactjs.org/docs/forms.html#controlled-components" target="_blank" rel="noopener noreferrer">controlled component</a>. Finally, we passed the ```handleSubmit``` function from Formik to the ```onSubmit``` event for the form.
+
+### Validation Messages
+Validation messages are tips that help the user understand which characters are valid for a specific form field, making them incredibly useful in React form validation. In addition, they serve as a guide for the user in resolving form errors. Validation messages are accessible through Formik errors for each field. We can see this example on line 61. The First Name field validation message can be accessed from ```formik.errors.firstName```.
+
+### Built-in Validators
+Yup has some built-in validators that we can implement. As seen in the code block above, we used some built-in validators in the validation schema. As discussed in the previous section, there are different datatypes for a Yup Schema. For each data type, there are different validation methods that can be chained to it. An exception is a boolean datatype that can be either true or false.
+
+### Custom Validations (RegEx)
+We can create our custom validation rules by using the ```matches()```** ** method for string schema. This accepts a regular expression and the validation message as a value:
+```
+    password: Yup.string()
+      .required("This field is required")
+      .min(8, "Pasword must be 8 or more characters")
+      .matches(/(?=.*[a-z])(?=.*[A-Z])\\w+/, "Password ahould contain at least one uppercase and lowercase character")
+      .matches(/\\d/, "Password should contain at least one number")
+      .matches(/[&#x60;!@#$%^&amp;*()_+\\-=[\\]{};':"\\\\|,.<>/?~]/, "Password should contain at least one specia```<a href="https://melvin.pieces.cloud/?p=387d4d94a1" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+The schema rule above will check if a value is a string and verify that the string value is not empty. Next, it will check to make sure that the minimum length for the string characters is eight. Finally, the following three validation rules for the value are customized using a regular expression:
+- The first expression checks if there is at least one uppercase letter and one lowercase letter in the string.
+- The second expression checks if the value contains at least one number.
+- The last expression checks if the value contains at least one special character.
+
+This validation can be applied in real-life scenarios for creating a strong password, as seen in the code sample in the ```App.js```** **file:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63b3030c83c6d5f6a08d4784_image3_2801fcfdf10873b9c7745fb26676c17a.g)
+
+### Validating a Dynamic Form with Formik and Yup
+The Formik validation package also comes with built-in components that let us control the form state and events. In this section we’ll examine how to create a dynamic form using Formik form components and Yup. First, we’ll set up a form that allows us to create a list of items:
+```
+import "./styles.css&quot;;
+import * as yup from "yup&quot;;
+import { Field, FieldArray, Form, Formik } from "formik&quot;;
+import React from "react&quot;;
+export default function App() {
+  const [list, setList] = React.useState([]);
+  const validationSchema = yup.object().shape({
+    items: yup.array().of(yup.string().required("This value is required"))
+  });
+  return (
+    <div className="App">
+      <Formik
+        initialValues={{
+          items: [""]
+        }}
+        validationSchema={validationSchema}
+        onSubmit={(values, { resetForm }) => {
+          setList(values.items);
+          setTimeout(() => {
+            console.log("clean");
+            resetForm();
+          }, 3000);
+        }}
+      >
+        {({ values }) => (
+          <Form>
+            {values.items.map((_, index) => (
+              <React.Fragment key={index}>
+                <FieldArray
+                  name="items"
+                  render={(helpers) => (
+                    <div>
+                      <Field name={&#x60;items.${index}&#x60;}>
+                        {({
+                          field, // { name, value, onChange, onBlur }
+                          form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+                          meta
+                        }) => (
+                          <div>
+                            <input
+                              type="text"
+                              placeholder="Enter item..."
+                              {...field}
+                            />
+                            {meta.touched &amp;&amp; meta.error &amp;&amp; (
+                              <small className="error">{meta.error}</small>
+                            )}
+                          </div>
+                        )}
+                      </Field>
+                      <div className="row">
+                        <button
+                          disabled={values.items.length === 1}
+                          onClick={() => {
+                            values.items.length > 1 &amp;&amp; helpers.remove(index);
+                          }}
+                          type="button"
+                          className="remove"
+                        >
+                          Remove
+                        </button>
+                        {values.items.length === index + 1 &amp;&amp; (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              helpers.push("");
+                            }}
+                            className="add"
+                          >
+                            Add New Item
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                />
+              </React.Fragment>
+            ))}
+            <button type="submit">Submit</button>
+          </Form>
+        )}
+      </Formik>
+      <div className="list-wrapper">
+        <ul>
+          {list.map((val) => (
+            <li>{val}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+```
+
+<a href="https://melvin.pieces.cloud/?p=49dd4e86ae" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+In the code block above, we have the Yup schema, which is an array type of strings. As we can see from the Yup validation schema, the array values are required; we cannot have an empty string as an array value.
+Next, we imported the ```Formik``` component from the Formik package; this wraps the form. Since we’re working with arrays/dynamic form values, we used the ```FieldArray``` component, which helps with array manipulations. On line 32, we have the ```FieldArray```, which is used to render each form field and button. The render props from the ```FieldArray``` had helper props passed to them. This prop allowed us to mutate the array values, as seen in the "Add New Item" button, where we used the ```push()``` method from the helpers to add new values at the end of the array. Also, the "remove" button calls the ```remove()```** **method on click, with the item's index to remove passed as a parameter:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63b3030c83c6d599a08d4783_image1_4048e61d06aada1b9cb258fdbbe71f4d.g)
+
+Finally, to test your dynamic form, you can use the code sample in this <a href="https://codesandbox.io/s/3h5o32" target="_blank" rel="noopener noreferrer">codesandbox</a>.
+
+## Conclusion
+Formik and Yup provide a great way to manage form state and validate values in a form before sending data to the server. They provide a lot of flexibility and ease when creating forms. You can also utilize the Formik form components or hooks to handle your forms in a React application.

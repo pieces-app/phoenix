@@ -1,0 +1,93 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd751ee5cfc310869e35d9_configuringfirebase_1766be509b5becffb7d2b31768f98d35_2000.jpeg)
+"flutter-9; firebase"
+# Firebase App: How to Setup Firebase in Your Flutter Project
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+## What Is Firebase?
+Firebase, the mobile and web application development platform, has become one of the most popular BaaS (Backend as a Service) tools for developers around the world. With its wide range of features designed to streamline the development process and improve app performance, Firebase provides developers with a suite of tools and services that are both powerful and easy to use.
+One of the key features of Firebase is its real-time database, which allows developers to store and sync data in real-time. Another important feature is authentication, which provides a simple and secure way to authenticate users using email and password, phone numbers, and social media accounts.
+
+In addition to these features, Firebase also integrates with Google Analytics, which provides powerful insights into user behavior and app performance. This integration allows developers to track user engagement, measure conversion rates, and optimize their app for better performance.
+
+Whether you're building a mobile app, a web app, or both, Firebase provides a reliable and scalable solution for hosting your app and serving static and dynamic content. And with its cloud functions, developers can run their code in response to events and triggers, making it easier than ever to build complex, server-less applications.
+Firebase has become the go-to platform for developers looking to build high-quality apps across multiple platforms. Its integration with Google Analytics and its powerful BaaS features make it a must-have tool for any developer looking to build and deploy scalable, high-performance applications.
+
+## What Will You Build? | Firebase App
+Are you interested in integrating Firebase into a Flutter app but don't know where to start? Look no further! In this tutorial, we'll walk you through the process step by step.
+
+We understand that some of the concepts and code blocks might seem a bit overwhelming at first. That's why we've glossed over non-essential parts and provided code blocks that you can simply copy and paste into your Pieces app. <a href="https://code.pieces.app/install">Pieces</a> allows you to quickly save and access frequently used code blocks.
+
+If you're new to Flutter and don't have an existing app to work with, don't worry! <a href="https://code.pieces.app/blog/building-a-flutter-web-app-from-scratch-a-complete-guide">We also have a step-by-step guide on how to build a Flutter app from scratch.</a> This will give you a foundation to work with as we integrate Firebase into the app.
+With Firebase, you can add powerful features to your app such as real-time data storage, user authentication, and push notifications and firebase analytics from the firebase console. By the end of this tutorial, you'll have a better understanding of how to use Firebase with Flutter and how to implement its features into your app.
+
+So, let's get started and build an amazing Flutter app with Firebase!
+
+## Set Up a Firebase project
+After you've set up and created a simple Flutter app, go to the Firebase official website here: <a href="https://console.firebase.google.com/" target="_blank" rel="noopener noreferrer">Firebase Console</a>
+- Create a new project by clicking the **Create a project** button:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63594a517658ace18586a0df_image6_c54eee87a79662c68c22934b6b5ca192_800.png)
+- Next, type in your **Project Name**, accept the **Firebase agreement **terms**, **and click **Continue**:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63594a517658ac126a86a0e2_image5_34b7e60d64dabae33c0fa0454c20e67d_800.png)
+- Enable** Google Analytics**, which will provide you with detailed analytics about your project. Then, click** Continue:**
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63594a517658acf19986a0e1_image8_a2366b33f0bf625adc491c3b3ce04fe2_800.png)
+- Next, you can select the Google **Analytics location** based on your projected users. If you’re not sure, you can choose the U.S. for a location. Now, accept the **Analytics terms** and click **Create project.**
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63594a527658acc64f86a0e6_image3_d9b4caceb196c73985d5d3601bb5328b_800.png)
+- Now, you can select the **Android icon** to configure Firebase with your Android application:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63594a517658ac7d9286a0de_image2_da16dab6b1af9ee48c0ec9c7c99f9169_800.png)
+- Next, you’ll have to **register **your app by providing your app** nickname **and **package name**. You can find your app package name in Flutter here, and as shown below: **project directory->android->app->src->main->AndroidManifest.xml**
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63594a517658ac6d5686a0e4_image1_6c1903dec4daf39e50bebc6ee4a43e60_800.png)
+- Now, you can **download **your** google-services.json** file and put it inside your Flutter Project as shown below:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63594a517658ac0a8c86a0e3_image7_1262f5a6ce86ab3bfe402524c9f5021b_800.png)
+- To make the **```google-services.json```** config values accessible to Firebase SDKs, you need the Google services Gradle plugin.
+- Add the plugin as a ```buildscript``` dependency to your **project-level** ```build.gradle``` file:
+- Copy this line of code inside dependencies:
+```
+classpath 'com.google.gms:google-services:4.3.13'```<a href="https://user-3bd62076-a30e-4130-a83f-fa1499e38c30-fhcmbheklq-uc.a.run.app/?p=f8754f8039" target="_blank" rel="noopener noreferrer">Save this code</a>
+Root-level (project-level) Gradle file (```<project>/build.gradle```):
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63594a527658ac15a886a0e5_image4_362c3029849f540d6d9ccf0911ec78c5_800.png)
+
+- Then, Select Kotlin and in your **module (app-level)** **```build.gradle```** file, add both the ```google-services``` plugin and any Firebase SDKs that you want to use in your app.
+- Replace following lines of code with your dependencies (last part inside ```build.gradle``` file (app-level):
+```
+apply plugin: 'com.google.gms.google-services'```<a href="https://user-3bd62076-a30e-4130-a83f-fa1499e38c30-fhcmbheklq-uc.a.run.app/?p=6ad848964a" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+- After adding the plugin and the desired SDKs, Click **Next**, and **Continue to Console**.
+
+## Add Firebase Packages
+Firebase is accessed via a variety of libraries, and there is one for each Firebase product (e.g., database, authentication, analytics or storage). Flutter provides a collection of Firebase plugins known as FlutterFire.
+**Available FlutterFire plugins**
+- cloud_firestore
+- cloud_functions
+- firebase_admob
+- firebase_analytics
+- firebase_auth
+- firebase_core
+- firebase_crashlytics
+- firebase_database
+- firebase_dynamin_links
+- firebase_messaging
+- firebase_ml_vision
+- firebase_performance
+- firebase_remote_config
+- firebase_storage
+
+**Steps to Add Firebase Packages into Your Project:**
+- Open the **pubspec.yaml** file from the root directory of your Flutter app.
+- Add any package that you want to use, such as firebase_core: 
+```
+dependencies:
+  flutter:
+    sdk: flutter
+  firebase_core: ^1.21.1```<a href="https://user-3bd62076-a30e-4130-a83f-fa1499e38c30-fhcmbheklq-uc.a.run.app/?p=f3a641884b" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+    ### Running the Application
+- Connect your Android emulator or physical device to test the application. Next, click Build &amp; Run.
+## Conclusion on Firebase App Flutter Project

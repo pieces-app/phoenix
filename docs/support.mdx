@@ -1,0 +1,199 @@
+---
+title: Pieces Support Center
+description: All of the help you need for Pieces product support pages. FAQs and articles and more. Contact our Support team for help.
+---
+
+export const GridFlexSpaceBetweenRow = props => {
+    return <div style={{
+        paddingLeft: "8px",
+        paddingRight: "8px",
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        flexWrap: "wrap"
+    }}>{props.children}</div>;
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+};
+
+export const MarketplaceButton = props => {
+    return <a style={{textDecoration: "none"}}
+              href={props.src}>
+        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+            <p class="dark:text-white text-black"
+               style={{
+                   padding: "8px 20px",
+                   borderRadius: "8px",
+                   border: "1px solid #f3f5f6",
+                   fontWeight: "500",
+                   background: "transparent",
+                   marginBottom: "8px",
+               }}>{props.children}</p>
+        </div>
+    </a>
+};
+
+export const Spacer = props => {
+    return <div style={{height: "20px"}}></div>
+};
+
+<link rel="canonical" href="https://code.pieces.app/support"/>
+
+# Support Center
+
+<Image width="auto"
+       src="https://assets.website-files.com/6143afec68f55570f449ef97/63349265603dbf9fead4ad8a_support-opt.png"></Image>
+
+## Questions by Integration
+
+Get support for any of our integrations and extensions and explore further into our documentation to learn how each integration works
+in depth to bring more power to your workflow.
+
+<Accordion defaultOpen title="Chrome">
+    <GridFlexSpaceBetweenRow>
+        <GridFlexRow>
+            <Image width="30px" src={"/assets/logos/chrome_logo.png"}/>
+            <Heading type="h3" style={{marginTop: "16px", marginLeft: "8px"}}>Chrome Extension</Heading>
+        </GridFlexRow>
+        <GridFlexRow>
+            <MarketplaceButton
+                src="https://chrome.google.com/webstore/detail/pieces-save-code-snippets/igbgibhbfonhmjlechmeefimncpekepm">Chrome
+                Marketplace</MarketplaceButton>
+        </GridFlexRow>
+    </GridFlexSpaceBetweenRow>
+
+    The Pieces Chrome Extension makes it easy to save from the web. There are customizable features and more that you
+    can manage from inside of your from browser.
+
+    #### FAQ's
+    <Accordion title="Where are my saved snippets stored?">
+        The Pieces Suite must be downloaded and installed separately from the Chrome Extension in order for the
+        extension to work properly.
+        When you save code snippets with Pieces, they are stored locally in the Pieces desktop app.
+    </Accordion>
+
+    <Spacer></Spacer>
+
+    <Accordion title="What does the share button do?">
+        When you click the Share button below a code block, Pieces generates a link that is specifically designed to
+        share useful code with its context— it's automatically copied to your clipboard once it's generated.
+    </Accordion>
+
+    <Spacer></Spacer>
+
+    <Accordion title="How do I remove the Pieces buttons from a site?">
+        If you don't want the Pieces buttons to appear on a certain website, you can disable the Pieces buttons for that
+        site in the extension settings.
+        1. Right-click the Pieces icon in the top right corner of your browser and choose “Options”
+        2. Toggle the "Disable Pieces buttons" option. The page will automatically refresh and the Pieces buttons will
+        disappear.
+    </Accordion>
+
+    <Spacer></Spacer>
+
+    <MarketplaceButton src="https://docs.pieces.app/extensions-plugins-support/troubleshooting-chrome">More
+        Documentation</MarketplaceButton>
+
+</Accordion>
+
+<Spacer></Spacer>
+
+<Accordion defaultOpen title="Jetbrains">
+    <GridFlexSpaceBetweenRow>
+        <GridFlexRow>
+            <Image width="30px" src={"/assets/logos/jetbrains_logo.png"}/>
+            <Heading type="h3" style={{marginTop: "16px", marginLeft: "8px"}}>Jetbrains Extension</Heading>
+        </GridFlexRow>
+        <GridFlexRow>
+            <MarketplaceButton
+                src="https://plugins.jetbrains.com/plugin/17328-pieces--save-search-share--reuse-code-snippets">Jetbrains
+                Marketplace</MarketplaceButton>
+        </GridFlexRow>
+    </GridFlexSpaceBetweenRow>
+
+    Share snippets in Slack or Teams with a simple right-click action from within your IDE. Your colleagues receive both
+    the snippet and its related context - tags, descriptions, where it’s from and more.
+
+    #### FAQ's
+    <Accordion title="Why don't I see the snippet I just saved in the list view in my editor?">
+        Go to the Pieces sidebar. At the top of the window, click the refresh icon, and newly added snippets will be
+        viewable once you expand its language classification tab.
+    </Accordion>
+
+    <Spacer></Spacer>
+
+    <Accordion title="I’m in JetBrains and I keep getting the notification “Can’t Connect to Pieces OS”. What do I do?">
+        Restart Pieces OS. After a couple of seconds, re-open Pieces for JetBrains.
+    </Accordion>
+
+    <Spacer></Spacer>
+
+    <Accordion title="How are my snippets suggested in the snippet list view?">
+        Similar to the Pieces for Developers' "filter by suggested" view, The Pieces for JetBrains Suggested Snippet
+        List View returns a list of existing snippets that are perceived as relevant to the user's current project.
+    </Accordion>
+
+    <Spacer></Spacer>
+
+    <MarketplaceButton src="https://docs.pieces.app/extensions-plugins-support/troubleshooting-jetbrains">More
+        Documentation</MarketplaceButton>
+</Accordion>
+
+<Spacer></Spacer>
+
+<Accordion defaultOpen title="Visual Studio Code">
+    <GridFlexSpaceBetweenRow>
+        <GridFlexRow>
+            <Image width="30px" src={"/assets/logos/vscode_logo.png"}/>
+            <Heading type="h3" style={{marginTop: "16px", marginLeft: "8px"}}>VSCode Extension</Heading>
+        </GridFlexRow>
+        <GridFlexRow>
+            <MarketplaceButton
+                src="https://marketplace.visualstudio.com/items?itemName=MeshIntelligentTechnologiesInc.pieces-vscode">VSCode
+                Marketplace</MarketplaceButton>
+        </GridFlexRow>
+    </GridFlexSpaceBetweenRow>
+
+    Share snippets in Slack or Teams with a simple right-click action from within your IDE. Your colleagues receive both
+    the snippet and its related context - tags, descriptions, where it’s from and more.
+
+    #### FAQ's
+    <Accordion title="Change the auto-complete key in the VS Code extension">
+        To change the auto-complete key:
+
+        1. Go to the Pieces Settings by searching for “Pieces” in the VS Code settings or by clicking the settings
+        button next to “Saved Pieces” in the Pieces Explorer.
+        2. Scroll down to Pieces: Autocomplete Key
+        3. Choose the keys that you prefer: Enter and Tab, or just Tab
+    </Accordion>
+
+    <Spacer></Spacer>
+
+    <Accordion title="Search for snippets in VS Code">
+        To search for a snippet:
+
+        1. Open an editable file in VS Code
+        2. Right-click or use the shortcut CTRL+K/⌘+K
+        3. Click “Search Pieces.”
+        4. Type keywords into the search bar, and when you hit enter, the snippet will be inserted into the file.
+    </Accordion>
+
+    <Spacer></Spacer>
+
+    <Accordion title="How are my snippets suggested in the snippet list view?">
+        Similar to the Pieces for Developers' "filter by suggested" view, The Pieces for VSCode Suggested Snippet List
+        View returns a list of existing snippets that are perceived as relevant to the user's current project.
+    </Accordion>
+
+    <Spacer></Spacer>
+
+    <MarketplaceButton src="https://docs.pieces.app/extensions-plugins-support/troubleshooting-vscode">More
+        Documentation</MarketplaceButton>
+</Accordion>

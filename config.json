@@ -1,0 +1,9 @@
+{
+  "index_name": "pieces_for_developers_phoenix",
+  "start_urls": ["https://docs.page/pieces-app/phoenix~6/"],
+  "selectors": {
+    "lvl0": "h1",
+    "lvl1": "h2",
+    "lvl2": "h3"
+  }
+}

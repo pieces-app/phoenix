@@ -1,0 +1,267 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63e65f2417cf27ec0fd7d243_UnderstandingReflection_bf9055563e304293f1c6ebd838b6f31d_2000.jpeg)
+"interface; go-a"
+# Understanding Reflection and Interfaces in the Go Programming Language
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+Go is a statically-typed “minimalist” programming language with an execution approach based on the notion that programs are collections of instructions to be compiled and executed— procedural programming. As a result, it does well when writing server-side applications that are simple, fast and familiar to most programmers.
+This article will look at the **Reflection and Interface** concepts that Go provides as part of its collection of features. **Reflection** gives us the flexibility to dynamically inspect and learn about the type of an arbitrary object along with information about its intrinsic structure. **Interface **on its own dynamics helps identify, abstract, and define behavioral patterns that different data types can share.
+
+## What is Reflection in Go?
+Go uses static typing, meaning every variable has precisely one fixed type known at build time, known as its static type. With that well stated, there’s then a concern of how to deal and interact with data types that do not yet exist when you implement your code, but may exist in the future.
+In its simplest form, reflection is the capacity of a program to examine/inspect its own values and variables during execution and determine their type. A familiar scenario where reflection allows us to inspect and manipulate unknown structures is decoding JSON data. Another scenario would be when working with data types that don't implement a common interface and thus have peculiar or unknown behaviors.
+Reflection is built around three concepts: **Types**, **Kinds**, and **Values**. The **Kind** can be struct, int, string, slice, map, or any other Go primitive type. If you define a struct named Foo, the Kind is a **struct,** and the Type is **Foo**. The types and functions used to implement reflection in Go reside in the standard library's reflect package. Let’s look at some helpful functions defined within the reflect package:
+```
+// go
+package main
+import (
+ "fmt"
+ "reflect"
+)
+type Foo struct {
+  addr string
+  dip  Dip
+}
+type Dip struct {
+  name string
+  age  int
+}
+var data = Foo{
+  dip: Dip{name: "Alice", age: 10},
+  addr: "alton street",
+}
+func main() {
+ // Inspect the reflection Type of a variable
+  rt := reflect.TypeOf(data)
+  fmt.Println(rt)
+ // Inspect the reflection Value of a variable
+  rv := reflect.ValueOf(data)
+  fmt.Println(rv)
+ // Alternatively
+  rt = rv.Type()
+  fmt.Println(rt)
+ // Inspect the reflection Kind of a variable
+  rk := rv.Kind()
+  fmt.Println(rk)
+ // Inspect the reflection Name of a variable
+  rn := rt.Name()
+  fmt.Println(rn)
+ // Traverse the fields of a struct.
+ if rt.Kind() == reflect.Struct {
+ for i := 0; i < rt.NumField(); i++ {
+      fv := rv.Field(i)
+      fmt.Println(fv)
+    }
+  }
+ // Inspect the underlying contained type in a variable
+  rt = reflect.TypeOf([2]int {1, 2})
+  ct = ct.Elem()
+  fmt.Println(ct)
+}
+```
+
+<a href="https://ikehakinyemi.pieces.cloud/?p=e6a84ab2a6" target="_blank" rel="noopener noreferrer">Save this code</a>
+**Output:**
+```
+// terminal
+main.Foo
+{alton street {Alice 10}}
+main.Foo
+struct
+Foo
+alton street
+{Alice 10}
+int
+```
+In the above snippet, we defined two structs, ```Foo``` and ```Dip``` as our sample structures to use along with the ```reflection``` package. The ```reflect.TypeOf``` function returns ```reflect.Type```, which has methods defined on its type to provide other information about the type of the variable passed in. The ```reflect.ValueOf``` function returns ```reflect.Value```, which allows the reflection to read or write values.
+In addition to reading, we can also use the ```reflection``` package to modify/write the value of a structure. To modify a value using the ```reflect.ValueOf``` function, we need to pass a pointer to the variable instead and call the ```Elem``` function, which will return the value at the pointer address.
+```
+// go
+package main
+import (
+ "fmt"
+ "reflect"
+)
+type Pieces struct {
+  Id int
+  Content string
+  Rating float64
+}
+func main() {
+  data := Pieces{1, "I come in peace, comrade!", 4.1}
+  fmt.Printf("Original data: %+v\\n", data)
+  mutData := reflect.ValueOf(&amp;data).Elem()
+ for i := 0; i < mutData.NumField(); i++ {
+ if mutData.Field(i).Kind() == reflect.Int {
+      mutData.Field(i).SetInt(12)
+    } else if mutData.Field(i).Kind() == reflect.String {
+      mutData.Field(i).SetString("No, I live for violence, comrade!")
+    } else if mutData.Field(i).Kind() == reflect.Float64 {
+      mutData.Field(i).SetFloat(5.5)
+    }
+  }
+  fmt.Printf("Mutated data: %+v\\n", data)
+}
+```
+
+<a href="https://ikehakinyemi.pieces.cloud/?p=6e54499f8e" target="_blank" rel="noopener noreferrer">Save this code</a>
+**Output**:
+```
+// terminal
+Original data: {Id:1 Content:I come in peace, comrade! Rating:4.1}
+Mutated data: {Id:12 Content:No, I live for violence, comrade! Rating:5.5
+```
+In the above snippet, notice the use of the ```SetInt```, ```SetString```, and the ```SetFloat``` functions to write the new values of the structure.  The ```reflect``` package defined more of these functions for changing the value of primitive data types. Find more info about the <a href="https://pkg.go.dev/reflect" target="_blank" rel="noopener noreferrer">reflect package</a>. Note, it’s a safe practice always to check if the value of the structure can be changed using the ```reflect.Value.CanSet``` function.
+## Introduction to Type methods and Interface in Go
+### Type methods
+When a function is attached to a specific data type, receiver argument, we consider this a type method in Go. The receiver argument gives the method the needed access to the underlying data type to either read it, write to it, or both.
+We can define the type method using the following Go syntaxes:
+```
+// A copy of the receiver argument
+func (p Pieces) refChange() { } // <-- 1
+// a pointer to the receiver argument
+func (p *Pieces) refChange() { } // <-- 2```
+Defining a type method with the first syntax means we’re passing a copy of the value of the receiver argument to the ```refChange``` function. In the second definition, we defined and passed the pointer to the receiver argument instead of passing a copy of the receiver argument. This definition gives us direct access to the receiver argument in the ```refChange``` function, meaning we can persist the changes made to the receiver argument.
+Let’s implement a method on the ```Pieces``` struct to change the values of the struct using the ```reflect``` package:
+```
+// go
+...
+func (p *Pieces) refChange(id int64, content string, rating float64) {
+  mutData := reflect.ValueOf(p).Elem()
+ for i := 0; i < mutData.NumField(); i++ {
+ if mutData.Field(i).Kind() == reflect.Int {
+      mutData.Field(i).SetInt(id)
+    } else if mutData.Field(i).Kind() == reflect.String {
+      mutData.Field(i).SetString(content)
+    } else if mutData.Field(i).Kind() == reflect.Float64 {
+      mutData.Field(i).SetFloat(rating)
+      mutData.Field(i).CanSet()
+    }
+  }
+}
+func main() {
+  data := &amp;Pieces{1, "I come in peace, comrade!", 4.1}
+  fmt.Printf("Original data: %+v\\n", data)
+  data.refChange(100, "No, peace is not an option comrade!", 4.7)
+  fmt.Printf("Mutated data: %+v\\n", data)
+}
+```
+
+<a href="https://ikehakinyemi.pieces.cloud/?p=38ef428609" target="_blank" rel="noopener noreferrer">Save this code</a>
+**Output**:
+```
+// terminal
+Original data: {Id:1 Content:I come in peace, comrade! Rating:4.1}
+Mutated data: {Id:100 Content:No, peace is not an option comrade! Rating:4.7
+```
+This is a simple introduction to the type method on structures in Go. <a href="https://go.dev/doc/effective_go#methods" target="_blank" rel="noopener noreferrer">Learn more about the type method in the Go documentation.</a>
+### Interfaces
+In Go, an **interface **is a mechanism for defining behavior that is implemented using a set of method signatures. The interface type describes the behavioral expectation of other types by defining a set of type methods that need to be implemented by these other types before claiming to support the behavior. In essence, interface works with type methods associated with a given data type; although we can use any data type in Go, it’s usually struct. So, before a Go type satisfies an interface type, it would need to implement all of the type methods defined by the interface type.
+```
+...
+type Blog interface {
+  ReadContent(string) (string, int)
+  GetRating() (float64)
+}
+...```<a href="https://ikehakinyemi.pieces.cloud/?p=788340858c" target="_blank" rel="noopener noreferrer">Save this code</a>
+The above snippet defines an interface type with two function signatures, ```ReadContent``` and ```GetRating```. For a type in Go to implement this interface means it has ```ReadContent``` and ```GetRating``` type methods defined. Let’s define these type methods for the ```Pieces``` struct:
+```
+...
+func (p *Pieces) ReadContent(input string) (string, int) {
+ if input != "" {
+    p.Content = input
+  }
+ return p.Content, utf8.RuneCountInString(p.Content)
+}
+func (p *Pieces) GetRating() (float64) {
+ return p.Rating
+}
+...```<a href="https://ikehakinyemi.pieces.cloud/?p=409e458def" target="_blank" rel="noopener noreferrer">Save this code</a>
+In the above snippet, once we implemented the functions of an interface for the ```Pieces``` data type, that interface is satisfied automatically** **for that data type. To make some sense out of these, let’s say we want to publish any post on our blog, but we want the post to be readable and rate-able. With the help of interface type, we can place some sort of boundary on a ```Publish``` function:
+```
+...
+func Publish(post Blog) {
+ if r := post.GetRating(); r != 0 {
+    c, rc := post.ReadContent("")
+    fmt.Printf("New post: %s\\nWord count:%d\\tWith rating: %.1f\\n", c, rc, r)
+  }
+}
+...```<a href="https://ikehakinyemi.pieces.cloud/?p=36de438801" target="_blank" rel="noopener noreferrer">Save this code</a>
+**Output:**
+```
+// terminal
+New post: No, peace is not an option comrade!
+Word count:35   With rating: 4.7
+```
+Interfaces are abstract types that outline a set of methods that must be implemented for another type before it can be regarded as an instance of the interface. In other words, an interface consists of both a type and a collection of methods.
+An **empty interface **is defined as just ```interface{}```. Since an empty interface has no methods, it can and is already implemented by every data type. For example, a slice which defines its elements as a type of empty interface means it can store anything in itself.
+```
+// go
+s := []interface{}{4, "string", 2.5, new(Pieces), true} // [4 string 2.5 0x140000ae000 true]```<a href="https://ikehakinyemi.pieces.cloud/?p=b93243aa67" target="_blank" rel="noopener noreferrer">Save this code</a>
+It’s advised to sparingly make use of the empty interface, especially when storing sequences of data so as to avoid errors that are easily tracked down during compiling time.
+Let’s briefly look at three commonly used interfaces from the standard library shipped with Go upon installation. The three interfaces are the ```sort.Interface```, the ```io.Writer```, and ```io.Reader``` interfaces. Let’s briefly explain each below:
+Once we implement ```sort.Interface``` for our custom data stored in slices, the above three methods allow us to sort the slices according to our custom needs and data.
+- The ```Len``` function returns the actual length of the slice being sorted.
+- The ```Less``` function contains the implementation of how the elements would be compared and sorted; this implementation would be custom to the needs of the developer but must return the boolean value of the comparison between the element at index ```i``` and ```j```.
+- The ```Swap``` does the actual swapping of elements within the slice based on the outcome of ```Less```. This is required for the sorting algorithm to work.
+     2 . The ```io.Writer```: This interface represents the writing part of the basis of file I/O in Go. The operation of writing to either a file, network or any writable process, involves the implementation of ```io.Writer``` for that writable object (data type). The interface definition is:
+```
+// go
+type Writer interface {
+  Write(p []byte) (n int, err error)
+}
+```
+
+<a href="https://ikehakinyemi.pieces.cloud/?p=765343948b" target="_blank" rel="noopener noreferrer">Save this code</a>
+The above interface definition needs only one function signature to satisfy the ```Writer``` interface. The ```Write``` function takes as its argument a byte slice containing the data we want to write to, either a file, network or any writable object, and returns two named values, ```n``` and ```err```. These values represent the number of bytes written and an ```error``` variable.
+   3. The ```io.Reader```: This interface represents the reading part of the basis of file I/O in Go–the operation of reading from either a file, network or any readable process. The ```Reader``` interface defines only one function signature just like ```io.Writer```. Let’s look at the interface definition:
+```
+// go
+type Reader interface {
+  Read(p []byte) (n int, err error)
+}
+```
+
+<a href="https://ikehakinyemi.pieces.cloud/?p=765343948b" target="_blank" rel="noopener noreferrer">Save this code</a>
+The above definition takes as its argument a byte slice which we will fill with data being read from a file, a network, or any readable object. We fill the byte slice with data up to its length. The return values represent the number of bytes read and an ```error``` variable.
+## Use cases of Go interface
+The concept of interfaces is predominantly used across different Go packages and executable programs to achieve flexibility without affecting the program's performance. The following example will explore the use of ```sort.Interface``` to sort the ```Pieces``` struct type:
+```
+// go
+...
+type PSlice []Pieces
+func (ps PSlice) Len() int {
+ return len(ps)
+}
+func (ps PSlice) Less(i, j int) bool {
+ return ps[i].Id < ps[j].Id
+}
+func (ps PSlice) Swap(i, j int) {
+  ps[i], ps[j] = ps[j], ps[i]
+}
+...
+func main() {
+  posts := []Pieces {
+    {7, "I come in peace, comrade!", 4.1},
+    {100, "No, peace is not an option comrade!", 4.7 },
+    {13, "I preach violence, comrade!", 4.5},
+    {-1, "I live for violence, comrade", 5.5},
+  }
+  fmt.Println("Original:", posts)
+  sort.Sort(PSlice(posts))
+  fmt.Println("Sorted:", posts)
+ // Reverse sorting automatically works
+  sort.Sort(sort.Reverse(PSlice(posts)))
+  fmt.Println("Reverse sort:", posts)
+  ...
+}
+```
+
+<a href="https://ikehakinyemi.pieces.cloud/?p=c21b4f8c07" target="_blank" rel="noopener noreferrer">Save this code</a>
+**Output**:
+```
+Original: [{7 I come in peace, comrade! 4.1} {100 No, peace is not an option comrade! 4.7} {13 I preach violence, comrade! 4.5} {-1 I live for violence, comrade 5.5}]
+Sorted: [{-1 I live for violence, comrade 5.5} {7 I come in peace, comrade! 4.1} {13 I preach violence, comrade! 4.5} {100 No, peace is not an option comrade! 4.7}]
+Reverse sort: [{100 No, peace is not an option comrade! 4.7} {13 I preach violence, comrade! 4.5} {7 I come in peace, comrade! 4.1} {-1 I live for violence, comrade 5.5}]```
+That’s a long example, but only implemented the foundational concepts we shared earlier about the ```sort.Interface``` interface. We implemented ```Len```, ```Less``` and ```Swap``` for a type, ```PSlice```, which is basically a slice of ```Pieces```. With the type methods in place, we can now use the ```sort.Sort``` function to sort the slice, and also make use of the sort.Reverse function to perform reverse sorting on the slice. The ```PSlice(posts)``` expression will adapt the ```[]Pieces``` slice into the ```PSlice``` type with the methods ```Len```, ```Less``` and ```Swap```. This is possible because ```[]Pieces``` has the appropriate type signature with ```PSlice```.
+## Conclusion
+In this tutorial, we covered what reflection and interfaces are in Go. For example, reflection provides a more elegant approach to scrubbing sensitive data before logging it. And as well, interfaces provide the flexibility to implement functionalities based on behaviors expected on a data type. We can now extend these concepts to build complex interfaces by combining one interface with another to form a new interface. The ```ReadCloser``` interface is a typical example of combining two interfaces, ```Reader``` and ```Closer```. The extensibility of these concepts are far beyond this tutorial, so I encourage you to explore more on these concepts. For more about when to use Go in general, check out <a href="https://code.pieces.app/blog/python-vs-golang" target="_blank" rel="noopener noreferrer">this comparison guide</a>.
