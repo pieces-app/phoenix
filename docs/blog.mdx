@@ -57,7 +57,8 @@ export const Title = props => {
 
 export const Author = props => {
     return <div style={{display: "flex", flexDirection: "row", flexWrap: "nowrap"}}>
-        <p style={{marginTop: "0px"}}>The Pieces Team</p>
+        <img src={ props.src } />
+        <p style={{marginTop: "0px"}}>{ props.children }</p>
     </div>
 }
 
@@ -67,7 +68,7 @@ export const Snip = props => {
 
 # Pieces for Developers Blog
 
-![](/assets/blog_header_lm.png)
+![](/assets/blog/blog_header_lm.png)
 
 A blog about code snippets, developer tools and productivity, frameworks, languages and more. Everything you need to know to improve your workflow and enrich your time and code.
 
@@ -75,8 +76,8 @@ A blog about code snippets, developer tools and productivity, frameworks, langua
     <Card>
         <Image src="https://assets.website-files.com/6143afec68f555387049efb3/643831e5d0314b657bca90c3_top-10-ways_4e111091ac3bdd191ba1f047aa43d758_2000.jpeg" />
         <Date>April 13th, 2023</Date>
-        ## GitHub + Pieces: Top 10 Ways Pieces Optimizes Your Development Workflow with AI
-        <Author></Author>
+        <Title>GitHub + Pieces: Top 10 Ways Pieces Optimizes Your Development Workflow with AI</Title>
+        <Author src="/assets/authors/connor_ohern.jpeg" children="The Pieces Team"></Author>
         <Snip>Last week, Tsavo Knott, CEO of Pieces for Developers, a first-in-kind productivity suite that optimizes developer workflow and eliminates the chaos of context switching, showcased Pieces on GitHub’s YouTube channel and across their social media.</Snip>
         <ClickThrough src="/blog/github-pieces-top-10-highlights-how-pieces-optimizes-development-workflow">Read the Article</ClickThrough>
     </Card>
