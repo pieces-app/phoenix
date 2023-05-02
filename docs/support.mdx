@@ -3,6 +3,16 @@ title: Pieces Support Center
 description: All of the help you need for Pieces product support pages. FAQs and articles and more. Contact our Support team for help.
 ---
 
+export const GridFlexSpaceBetweenRow = props => {
+    return <div style={{
+        maxHeight: "100px",
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+};
+
 <link rel="canonical" href="https://code.pieces.app/support" />
 
 # Support Center
@@ -10,6 +20,24 @@ description: All of the help you need for Pieces product support pages. FAQs and
 <Image height="300px" width="300px" src="https://assets.website-files.com/6143afec68f55570f449ef97/63349265603dbf9fead4ad8a_support-opt.png"></Image>
 
 ## Questions by Integration
+
+Get support for any of our integrations and extensions and explore further into our documentation to learn how each integration works
+in depth to bring more power to your workflow.
+
+<Accordion defaultOpen title="Resources">
+
+</Accordion>
+
+<Accordion title="Chrome">
+    <GridFlexSpaceBetweenRow>
+        <img src={"/assets/logos/chrome_logo.png"} />
+        ### Chrome
+    </GridFlexSpaceBetweenRow>
+</Accordion>
+
+<Accordion title="Jetbrains">
+    Jetbrains
+</Accordion>
 
 <Accordion title="Chrome">
     Chrome
