@@ -46,7 +46,7 @@
     },
     {
       "title": "Contact Us",
-      "icon": "mail",
+      "icon": "address-card",
       "link": "/contact"
     }
   ]
