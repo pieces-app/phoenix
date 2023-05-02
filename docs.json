@@ -10,19 +10,9 @@
   },
   "anchors": [
     {
-      "title": "Download Pieces",
-      "icon": "download",
-      "link": "#"
-    },
-    {
       "title": "About Pieces",
       "icon": "info",
       "link": "https://pieces.app/about/"
-    },
-    {
-      "title": "Support",
-      "icon": "ticket",
-      "link": "/support"
     },
     {
       "title": "Blog",
@@ -30,9 +20,19 @@
       "link": "/blog"
     },
     {
+      "title": "Download Pieces",
+      "icon": "download",
+      "link": "#"
+    },
+    {
       "title": "Plugins",
       "icon": "puzzle-piece",
       "link": "#"
+    },
+    {
+      "title": "Support",
+      "icon": "ticket",
+      "link": "/support"
     },
     {
       "title": "Updates",
