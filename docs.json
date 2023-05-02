@@ -15,14 +15,14 @@
       "link": "#"
     },
     {
+      "title": "About Pieces",
+      "icon": "info",
+      "link": "https://pieces.app/about/"
+    },
+    {
       "title": "Home",
       "icon": "house",
       "link": "https://pieces.app"
-    },
-    {
-      "title": "About",
-      "icon": "info",
-      "link": "https://pieces.app/about/"
     },
     {
       "title": "Blog",
@@ -30,14 +30,14 @@
       "link": "/blog"
     },
     {
-      "title": "Updates",
-      "icon": "pencil",
-      "link": "/updates"
-    },
-    {
       "title": "Plugins",
       "icon": "puzzle-piece",
       "link": "#"
+    },
+    {
+      "title": "Updates",
+      "icon": "pencil",
+      "link": "/updates"
     }
   ]
 }
