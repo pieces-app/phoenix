@@ -1,0 +1,21 @@
+Due to the way the base docs.page system works, this file serves as a "how to" on using the repo.
+
+
+=================== [Changing the base domain] ===================
+
+The base domain is set to:
+
+>>>  https://code.pieces.app
+
+To replace the domain throughout the project you can find and replace the above link, and all paths will be similar with
+the new domain following the end of the base url.
+
+so:
+
+>>>  https://code.pieces.app/updates
+
+would become
+
+>>>  https://new.domain.com/updates
+
+
