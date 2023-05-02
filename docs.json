@@ -20,6 +20,11 @@
       "link": "/blog"
     },
     {
+      "title": "News",
+      "icon": "newspaper",
+      "link": "https://news.pieces.app"
+    },
+    {
       "title": "Download Pieces",
       "icon": "download",
       "link": "#"
@@ -31,13 +36,18 @@
     },
     {
       "title": "Support",
-      "icon": "ticket",
+      "icon": "headset",
       "link": "/support"
     },
     {
       "title": "Updates",
       "icon": "pencil",
       "link": "/updates"
+    },
+    {
+      "title": "Contact Us",
+      "icon": "mail",
+      "link": "/contact"
     }
   ]
 }
