@@ -8,6 +8,11 @@
   "variables": {
     "base_route": "https://code.pieces.app"
   },
+  "docsearch": {
+    "appId": "R2IYF7ETH7",
+    "apiKey": "599cec31baffa4868cae4e79f180729b",
+    "indexName": "docsearch"
+  },
   "anchors": [
     {
       "title": "About Pieces",
