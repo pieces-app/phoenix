@@ -18,4 +18,16 @@ would become
 
 >>>  https://new.domain.com/updates
 
+================= [Header Icon Navigation] =====================
 
+This can be a little interesting - especially during testing. The default for docs.page is to set the base URL to
+the link that is on the href when that button/icon is clicked. In order for the proper functionality, you have to make sure that:
+
+index.mdx file is set as so
+
+---
+redirect: https://code.pieces.app
+---
+
+that way when the icon is pressed the redirect pushes from there. Important because otherwise there really isnt a button
+to get to the home page outside of the existing bottom navigation.
