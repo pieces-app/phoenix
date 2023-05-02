@@ -59,13 +59,15 @@ in depth to bring more power to your workflow.
 <Accordion defaultOpen title="Chrome">
     <GridFlexSpaceBetweenRow>
         <GridFlexRow>
-            <Image width="50px" src={"/assets/logos/chrome_logo.png"} />
+            <Image width="30px" src={"/assets/logos/chrome_logo.png"} />
             ### Chrome Extension
         </GridFlexRow>
         <GridFlexRow>
             <MarketplaceButton src="https://chrome.google.com/webstore/detail/pieces-save-code-snippets/igbgibhbfonhmjlechmeefimncpekepm">Chrome Marketplace</MarketplaceButton>
         </GridFlexRow>
     </GridFlexSpaceBetweenRow>
+
+    The Pieces Chrome Extension makes it easy to save from the web. There are customizable features and more that you can manage from inside of your from browser.
 
     #### FAQ's
     <Accordion title="Where are my saved snippets stored?">
@@ -87,6 +89,8 @@ in depth to bring more power to your workflow.
         2. Toggle the "Disable Pieces buttons" option. The page will automatically refresh and the Pieces buttons will disappear.
     </Accordion>
 
+    <Spacer></Spacer>
+
     <MarketplaceButton src="https://docs.pieces.app/extensions-plugins-support/troubleshooting-chrome">More Documentation</MarketplaceButton>
 
 </Accordion>
@@ -94,11 +98,82 @@ in depth to bring more power to your workflow.
 <Spacer></Spacer>
 
 <Accordion title="Jetbrains">
-    Jetbrains
+    <GridFlexSpaceBetweenRow>
+        <GridFlexRow>
+            <Image width="30px" src={"/assets/logos/jetbrains_logo.png"} />
+            ### Jetbrains Plugin
+        </GridFlexRow>
+        <GridFlexRow>
+            <MarketplaceButton src="https://plugins.jetbrains.com/plugin/17328-pieces--save-search-share--reuse-code-snippets">Jetbrains Marketplace</MarketplaceButton>
+        </GridFlexRow>
+    </GridFlexSpaceBetweenRow>
+
+    Share snippets in Slack or Teams with a simple right-click action from within your IDE. Your colleagues receive both the snippet and its related context - tags, descriptions, where it’s from and more.
+
+    #### FAQ's
+    <Accordion title="Why don't I see the snippet I just saved in the list view in my editor?">
+        Go to the Pieces sidebar. At the top of the window, click the refresh icon, and newly added snippets will be viewable once you expand its language classification tab.
+    </Accordion>
+
+    <Spacer></Spacer>
+
+    <Accordion title="I’m in JetBrains and I keep getting the notification “Can’t Connect to Pieces OS”. What do I do?">
+        Restart Pieces OS. After a couple of seconds, re-open Pieces for JetBrains.
+    </Accordion>
+
+    <Spacer></Spacer>
+
+    <Accordion title="How are my snippets suggested in the snippet list view?">
+        Similar to the Pieces for Developers' "filter by suggested" view, The Pieces for JetBrains Suggested Snippet List View returns a list of existing snippets that are perceived as relevant to the user's current project.
+    </Accordion>
+
+    <Spacer></Spacer>
+
+    <MarketplaceButton src="https://docs.pieces.app/extensions-plugins-support/troubleshooting-jetbrains">More Documentation</MarketplaceButton>
 </Accordion>
 
 <Spacer></Spacer>
 
 <Accordion title="VSCode">
-    Visual Studio Code
+    <GridFlexSpaceBetweenRow>
+        <GridFlexRow>
+            <Image width="30px" src={"/assets/logos/vscode_logo.png"} />
+            ### Visual Studio Code Extension
+        </GridFlexRow>
+        <GridFlexRow>
+            <MarketplaceButton src="https://marketplace.visualstudio.com/items?itemName=MeshIntelligentTechnologiesInc.pieces-vscode">VSCode Marketplace</MarketplaceButton>
+        </GridFlexRow>
+    </GridFlexSpaceBetweenRow>
+
+    Share snippets in Slack or Teams with a simple right-click action from within your IDE. Your colleagues receive both the snippet and its related context - tags, descriptions, where it’s from and more.
+
+    #### FAQ's
+    <Accordion title="Change the auto-complete key in the VS Code extension">
+        To change the auto-complete key:
+
+        1. Go to the Pieces Settings by searching for “Pieces” in the VS Code settings or by clicking the settings button next to “Saved Pieces” in the Pieces Explorer.
+        2. Scroll down to Pieces: Autocomplete Key
+        3. Choose the keys that you prefer: Enter and Tab, or just Tab
+    </Accordion>
+
+    <Spacer></Spacer>
+
+    <Accordion title="Search for snippets in VS Code">
+        To search for a snippet:
+
+        1. Open an editable file in VS Code
+        2. Right-click or use the shortcut CTRL+K/⌘+K
+        3. Click “Search Pieces.”
+        4. Type keywords into the search bar, and when you hit enter, the snippet will be inserted into the file.
+    </Accordion>
+
+    <Spacer></Spacer>
+
+    <Accordion title="How are my snippets suggested in the snippet list view?">
+        Similar to the Pieces for Developers' "filter by suggested" view, The Pieces for VSCode Suggested Snippet List View returns a list of existing snippets that are perceived as relevant to the user's current project.
+    </Accordion>
+
+    <Spacer></Spacer>
+
+    <MarketplaceButton src="https://docs.pieces.app/extensions-plugins-support/troubleshooting-vscode">More Documentation</MarketplaceButton>
 </Accordion>
