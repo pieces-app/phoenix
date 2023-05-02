@@ -43,7 +43,11 @@ export const Spacer = props => {
     return <div style={{ height: "20px"}}></div>
 };
 
+<style>
+    h3 {
 
+}
+</style>
 
 <link rel="canonical" href="https://code.pieces.app/support" />
 
@@ -60,7 +64,7 @@ in depth to bring more power to your workflow.
     <GridFlexSpaceBetweenRow>
         <GridFlexRow>
             <Image width="30px" src={"/assets/logos/chrome_logo.png"} />
-            ### Chrome Extension
+            <Heading type="h3" style={{ marginTop: "16px", marginLeft: "8px" }}>Chrome Extension</Heading>
         </GridFlexRow>
         <GridFlexRow>
             <MarketplaceButton src="https://chrome.google.com/webstore/detail/pieces-save-code-snippets/igbgibhbfonhmjlechmeefimncpekepm">Chrome Marketplace</MarketplaceButton>
