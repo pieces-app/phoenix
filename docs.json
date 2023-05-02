@@ -1,19 +1,34 @@
 {
-  "name": "Phoenix",
-  "theme": "#36B9B9",
-  "noindex": "true",
-  "automaticallyDisplayName": false,
+  "name": "Pieces for Developers",
+  "theme": "#BFC5EA",
+  "favicon": "/assets/pieces_dark.png",
   "logo": "/assets/pieces_dark.png",
   "logoDark": "/assets/pieces_light.png",
+  "noindex": true,
   "anchors": [
+    {
+      "title": "Download Pieces for Developers",
+      "icon": "download",
+      "link": "#"
+    },
     {
       "title": "Home",
       "icon": "house",
-      "link": "#"
+      "link": "https://pieces.app"
     },
     {
       "title": "About",
       "icon": "info",
+      "link": "#"
+    },
+    {
+      "title": "Documentation",
+      "icon": "pencil",
+      "link": "https://docs.pieces.app"
+    },
+    {
+      "title": "Blog",
+      "icon": "blog",
       "link": "#"
     },
     {
