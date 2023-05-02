@@ -25,14 +25,14 @@
       "link": "https://pieces.app/about/"
     },
     {
-      "title": "Documentation",
-      "icon": "pencil",
-      "link": "https://docs.pieces.app"
-    },
-    {
       "title": "Blog",
       "icon": "blog",
       "link": "/blog"
+    },
+    {
+      "title": "Updates",
+      "icon": "pencil",
+      "link": "/updates"
     },
     {
       "title": "Plugins",
