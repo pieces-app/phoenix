@@ -21,8 +21,8 @@
     },
     {
       "title": "Support",
-      "icon": "house",
-      "link": "https://pieces.app"
+      "icon": "ticket",
+      "link": "/support"
     },
     {
       "title": "Blog",
