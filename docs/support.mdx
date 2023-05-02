@@ -10,7 +10,7 @@ export const GridFlexSpaceBetweenRow = props => {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        flexWrap: "nowrap"
+        flexWrap: "wrap"
     }}>{props.children}</div>;
 };
 
@@ -19,7 +19,7 @@ export const GridFlexRow = props => {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'start',
-        flexWrap: "wrap"
+        flexWrap: "nowrap"
     }}>{props.children}</div>;
 };
 
@@ -109,7 +109,7 @@ in depth to bring more power to your workflow.
     <GridFlexSpaceBetweenRow>
         <GridFlexRow>
             <Image width="30px" src={"/assets/logos/jetbrains_logo.png"}/>
-            ### Jetbrains Plugin
+            <Heading type="h3" style={{marginTop: "16px", marginLeft: "8px"}}>Jetbrains Extension</Heading>
         </GridFlexRow>
         <GridFlexRow>
             <MarketplaceButton
@@ -148,11 +148,11 @@ in depth to bring more power to your workflow.
 
 <Spacer></Spacer>
 
-<Accordion title="VSCode">
+<Accordion title="Visual Studio Code">
     <GridFlexSpaceBetweenRow>
         <GridFlexRow>
             <Image width="30px" src={"/assets/logos/vscode_logo.png"}/>
-            ### Visual Studio Code Extension
+            <Heading type="h3" style={{marginTop: "16px", marginLeft: "8px"}}>VSCode Extension</Heading>
         </GridFlexRow>
         <GridFlexRow>
             <MarketplaceButton
