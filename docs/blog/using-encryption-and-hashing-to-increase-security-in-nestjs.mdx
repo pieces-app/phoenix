@@ -1,0 +1,191 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd5f5347af2e3268a85d53_encryptionandhashing_b2ea24b26d10645800dcbd6521965990_2000.jpeg)
+"cybersecurity"
+# Using Encryption and Hashing to Increase Security in NestJS
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+Data stored on the web is prone to attacks. To guarantee the integrity of users' data in an online application, you'll need to adopt a secure method for handling and storing your users' data. There are many approaches to this, such as encoding the user's information to allow only authorized users access. This is where encryption and hashing come into play.
+## What Is NestJS?
+<a href="https://nestjs.com/">NestJS</a> is a Node.js framework for developing TypeScript-based server-side applications that are fast, testable, scalable, and loosely coupled. It makes use of powerful HTTP server frameworks like Express and Fastify. Nest abstracts Node.js frameworks and makes their APIs available to developers.
+The NestJS framework is compatible with database management systems such as PostgreSQL and MySQL. It provides dependency injections, Websockets, and APIGetaways as well.
+
+## What Are Data Encryption and Hashing?
+Data encryption encodes information by converting its original representation, plaintext, into an alternate form known as cipher text. With cipher text, only authorized users can access and decrypt the original data. Data encryption prevents interception while denying potential interceptors intelligible content. Encryption is a two-way function, meaning encrypted information can only be decrypted with the correct key.
+Hashing, however, converts a given key into another value that generates a new value using a mathematical algorithm. It should be impossible to go from the output to the input once hashing is complete.
+
+### Prerequisites
+This tutorial is a hands-on demonstration. To follow along, ensure you have the following installed:
+- Node.js version 14 or later
+- MongoDB database
+
+## Project Setup
+With the above requirements met, let’s install the NestJS CLI tool by running the command below:
+
+```
+npm install -g nest/cli
+```
+Once the installation is completed, create a new NestJS project by running this command:
+```
+nest new encryption
+```
+The above command will prompt you to choose your preferred npm package manager. For this tutorial, we'll use ```npm``` and wait for the necessary packages to be installed.
+
+### Install Dependencies
+We’ll use the default <a href="https://nodejs.org/api/crypto.html" target="_blank" rel="noopener noreferrer">crypto module</a> provided by Node.js to handle our data encryption. For data hashing, we’ll use the <a href="https://www.npmjs.com/package/bcrypt" target="_blank" rel="noopener noreferrer">bcrypt </a>NodeJS third-party module. To install the ```bcrypt``` module, run the command below:
+```
+npm i -D @types/bcrypt
+npm i bcrypt
+```
+Wait for the installation to complete and then connect the application to a MongoDB database.
+
+### Connect a Database
+To demonstrate how to store secret data in a database securely, we’ll connect the application to a MongoDB database. To do that, we need to install the Mongoose module with the command below:
+```
+npm i @nestjs/mongoose mongoose
+```
+Next, let’s update the code in the ```app.module.ts``` file with the code snippet below:
+```
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { MongooseModule } from '@nestjs/mongoose';
+@Module({
+  imports: [
+    MongooseModule.forRoot('mongodb://localhost/nest'),
+  ],
+  controllers: [AppController],
+  providers: [AppService],
+})
+export class AppModule {
+```
+In the above code snippet, we imported the ```MongooseModule```, which allows us to connect to the database using the ```forRoot``` method. The ```forRoot()```** **method takes in the connection URI similar to the ```mongoose.connect()```** **method.
+
+### Create a Model
+Now, let’s define the schema to create a model for our database. To get started, create a ```model```** **folder in the ```src``` directory. Then create a ```users.ts``` file and define a User Schema class with the code snippet below:
+```
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
+export type UserDocument = User &amp; Document;
+@Schema()
+export class User {
+  @Prop()
+  name: string;
+  @Prop()
+  email: string;
+  @Prop()
+  password: string;
+}
+export const UserSchema = SchemaFactory.createForClass(User)
+```
+In the code snippet above, we imported the following: the ```Prop``` decorator to define the properties of the schema, the ```Schema``` decorator, which will map our ```User``` class to a MongoDB collection, and the ```SchemaFactory```** **decorator to compile the schema and prepare the schema for validation.
+Next, we need to register the schema in our root ```app.module.ts``` file to allow our application to use it.
+```
+...
+@Module({
+  imports: [
+    ...
+    MongooseModule.forFeature([{ name: 'user', schema: UserSchema }]),
+  ],
+   ...
+})
+export class AppModule {
+```
+In the above code, we used the ```MongoseModule.forFeature()``` method to configure the module, specifying the models we want to register for the current scope.
+
+### Implement Data Hashing
+With our database model created, let's look at the actual hash implementation. First, we'll create a signup API to allow users to sign up with their name, email, and password. Then we'll hash the user's password before saving it to our database. This way, even if a hacker gains access to the records in our database, they won't be able to access our user accounts because they will only see the hashed version of the password.
+Let’s go ahead and see the implementation. In the ```app.service.ts```** **file, update the code with the snippets below:
+```
+import { Injectable } from '@nestjs/common';
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
+import { User, UserDocument } from './models/users';
+import * as bcrypt from 'bcrypt';
+@Injectable()
+export class AppService {
+  constructor(@InjectModel('user') private userModel: Model<UserDocument>) {}
+  async createUser(user: User): Promise<User> {
+    const salt = await bcrypt.genSalt();
+    const hashPassword = await bcrypt.hash(user.password, salt);
+    user.password = hashPassword;
+    const newUser = new this.userModel(user);
+    return newUser.save();
+  }
+
+```
+In the above code snippet, we imported the ```bcrypt``` module, the ```User``` class, and the ```UserDocumet``` type. Then, we created a createUser method in which we created a ```salt``` to generate random text for our password hash. Then, we hashed the user’s password using the ```bcrypt.hash()``` function, which takes in the user's password and salt value. Finally, we modified the user object to change the password value to the hashed password and save it to the database.
+Now, we’ll create another method to check if the password a user enters is the same as the plain-text equivalent of the hashed password. To do this, let’s add the method below to the AppService class:
+```
+...
+async loginUser(email: string, password: string): Promise<string> {
+    const user = await this.userModel.findOne({ email });
+    if (user) {
+      const match = await bcrypt.compare(password, user.password);
+      if (match) return 'Credentials are correct!';
+      return 'Invalid Credentials!';
+    }
+    return 'Invalid Invalid!';
+  }
+…```
+In the above code snippet, we used the ```userModel.findOne()``` method to check if the email provided by the user exists in our database. Then, we used ```bcrypt.compare()``` to compare the plain password supplied with the database's hashed version of the password. Here, you can decide to grant a user access to services in your application if the credentials provided are correct.
+
+### Implement Data Encryption
+We’ve seen how to increase the security of our application by hashing the sensitive data in a user’s record. Now, let’s look at how we can secure user data with encryption. Let's say we’re building a chatting or social networking application where many users' secrets (confidential to them and the person they’re communicating with) are shared online. If such data is not encrypted, hackers can gain unauthorized access to the user's private information.
+
+Let’s get started implementing data encryption in our application. First, create a ```utils```** **folder in the** **```src```** **directory. In the ```utils```** **folder, create an ```encrypt.ts``` file and add the code snippets below:
+```
+import {
+  createCipheriv,
+  randomBytes,
+  createDecipheriv,
+  createHash,
+} from 'crypto';
+const alg = 'aes-256-ctr';
+let key = 'The Encryption Key';
+key = createHash('sha256').update(String(key)).digest('base64').substr(0, 32);
+export const encryptData = (data) => {
+  const iv = randomBytes(16);
+  const cipher = createCipheriv(alg, key, iv);
+  const result = Buffer.concat([iv, cipher.update(data), cipher.final()]);
+  return result;
+}
+```
+We imported all the functions we needed from the crypto module in the above code snippet. We’re using the AES (Advanced Encryption System) algorithm because it’s easy to implement. You can use any algorithm of your choosing. In our code, we created an initializer vector and built a new cipher using the algorithm, key, and iv with the ```createCipher()``` method. Finally, we made an encrypted buffer from the data supplied.
+
+Now, let’s create another function to decrypt the data when an authorized user wants to access it. To do this, we’ll use the code snippet below:
+```
+export const decryptData = (data) => {
+  const iv = data.slice(0, 16);
+  data = data.slice(16);
+  const decipher = createDecipheriv(algorithm, key, iv);
+  const result = Buffer.concat([decipher.update(data), decipher.final()]);
+  return result;
+}
+```
+In the above code snippet, we used the ```slice()``` method to get the first 16 bytes of the encrypted buffer and then the rest of the data. We also modified the value. Then, we created a decipher and decrypted the encrypted buffer.
+
+Now, open the ```app.service.ts``` file, and create another method to encrypt and decrypt users' messages with the code snippet below:
+```
+...
+import { encryptData, decryptData } from './utils/encrypt-file';
+...
+async sendMessage(message: string): Promise<object> {
+  const encryptedMessage = encrypt(message);
+  const decrytedMessage = decrypt(encryptedMessage);
+  return {
+    'Encryted Message': encryptedMessage.toString(),
+    'Decryted Message': decrytedMessage.toString(),
+  };
+}
+...```
+In the above code snippet, we imported the ```encryptData``` and ```decryptData```** **functions we created. Then we encrypted and decrypted the user-provided message and returned both versions of the message. This was done to show what the encrypted message looks like. However, you can proceed and save the encrypted data in your database.
+
+Finally, create the route controllers for the AppService class methods in the ```app.controller.ts``` file with the code snippet below:
+
+Now, start the application by running the command below:
+```
+Npm run start:dev
+```
+Then, use any API testing tool like Postman or Insomnia to test the application at <a href="http://localhost:3000/" target="_blank" rel="noopener noreferrer">http://localhost:3000</a>.
+
+## Conclusion
+This tutorial demonstrated how to increase the security of a NestJS application with encryption and hashing. Now, you should have an understanding of what encryption, hashing, and NestJS are. You also learned how to create a NestJS allocation, connect to a database, create a model, service, and controller, and implement data encryption and hashing. Now that you have this knowledge, how would you increase the security of your next project? Perhaps you can check out the NestJS official <a href="https://docs.nestjs.com/" target="_blank" rel="noopener noreferrer">documentation</a> to learn more.

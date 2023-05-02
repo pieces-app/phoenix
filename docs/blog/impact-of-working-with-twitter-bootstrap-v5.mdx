@@ -1,0 +1,253 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd71814584e235051f0c9d_bootstrapv5_da18549a37ea516550e43f9aa62b217c_2000.jpeg)
+"bootstrap; twitter"
+# Bootstrap by Twitter: Impact of working with V5
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+<a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/" target="_blank" rel="noopener noreferrer">Bootstrap by Twitter</a> is undoubtedly the world's most popular framework for building accurate, responsive sites and mobile-first front-end websites. As time passed, Twitter made Bootstrap accessible, free, and open for all to use. It comes with HTML, CSS, and JavaScript-based design templates, forms, buttons, navigation, grids, and other interface components. Twitter Bootstrap makes it easy for us all to build outstanding-looking websites.
+
+## What is Twitter Bootstrap?
+There have been more than twenty different versions of Twitter Bootstrap, but the current major version is Bootstrap V5, released in May 2021. Many utilities changed in Twitter Bootstrap V5; for example, ```Left-*``` and ```Right-*```, changed to ```start-*``` and ```end-*;``` ```float-left``` and ```float-right``` were renamed to ```float-start``` and ```float-end```, among other modifications. Bootstrap makes it easy for us to build great websites and does excellent work behind the scenes. If you search for Twitter Bootstrap on GitHub, you will find that over 159k people have starred it because it is so essential to them.
+
+## The Impacts Of Working With Twitter Bootstrap V5
+- Easy to use:** **Tech enthusiasts who don’t have much knowledge of coding can design a classic landing page due to the ease of working with Bootstrap from Twitter.
+- <a href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Responsive/responsive_design_building_blocks" target="_blank" rel="noopener noreferrer">Responsiveness</a>:** **Responsive means that the site responds to the viewport. Assuming you look at the same website with an iPad or on a laptop or a mobile device, it will have a different layout so you can view the size of the screen. Most people in the world use mobile devices to access the internet; hence, programmers must build mobile-responsive websites. Bootstrap makes it possible to design for the smaller screen before the larger screen. With the help of Bootstrap, you can now create a website that will adjust to various screen sizes and viewports, thereby making it easy for anyone to browse your website with any device.
+- Faster Development:** **Working with** **Bootstrap makes coding faster due to its classic ready-made code blocks, responsiveness, and components. You don’t have to start coding from scratch; instead, you can use ready-made code blocks. Plus, the pre-made Bootstrap themes and templates are easily editable to suit what you want.
+- Professional support:** **Bootstrap has qualified professionals willing to help you with any issues. Its vast support community makes it possible for people to get the correct answers to their queries.
+- Extremely Customizable:** **To customize Bootstrap, all you have to do is tick off the aspects you do not need in your project. This Twitter CSS framework allows you to create your design in the way you wish.
+- Frequent Updates:** **The developers of Bootstrap update it often, ensuring it supports the most cutting-edge technology.
+- JavaScript Plugins:** **Bootstrap supports JavaScript components like alerts, modal windows, tooltips, etc., which help us to bring our projects to life. These make pages more interactive, and adding these functionalities is very easy.
+- Add** **Consistency: Building our websites/mobile applications with Bootstrap combines developers and designers to ensure consistency.
+- Pre-styled components:** **Twitter Bootstrap comes with pre-styled features for nav bars, dropdowns, alerts, etc., thereby helping us create outstanding web designs for our sites.
+
+## Installation/Set Up
+There are several ways to install and set up Bootstrap:
+- **Content Delivery Network (Twitter Bootstrap CDN): **This is the easiest way to install Bootstrap. Visit <a href="https://getbootstrap.com/" target="_blank" rel="noopener noreferrer">getbootstrap.com</a>, scroll down to the "Include via CDN" link, copy the "CSS ONLY" link, and paste it into the required destination in your VS Code IDE. You also need to copy the "JavaScript Bundle with Popper" link and paste it into your VS Code IDE. Check out the example below:
+```
+npm install bootstrap@5.2.0
+```
+NB: In order to know that you have appropriately installed Bootstrap, all you need to do is to copy the full path to your browser. When you open your browser, right-click and select Inspect; then, click on "Network" and reload the page to see the Bootstrap Bundle and bootstrap.min.css indicating that Bootstrap is installed. For more information, visit the <a href="https://getbootstrap.com/docs/5.2/getting-started/introduction/" target="_blank" rel="noopener noreferrer">Getting Started</a> page.
+
+## Creating A Project Using Bootstrap V5
+Once we’ve installed Bootstrap, we can go straight to building a project.
+
+### <a href="https://www.w3schools.com/bootstrap/bootstrap_typography.asp" target="_blank" rel="noopener noreferrer">Heading Element</a>
+<a href="https://www.w3schools.com/bootstrap/bootstrap_typography.asp" target="_blank" rel="noopener noreferrer">To center our </a>content, we can use a Bootstrap by Twitter container. Once you add the "Container" class and save it, reload the browser to see it in the middle of the page. You’ll also notice the changes when the window is adjusted, which means it responds to the viewport. We have a class called the "Page Header" for the heading and a subheading "With faded secondary text." Again, you will notice that it is responsive when you adjust the browser window. An example of a Heading Element is in the code below:
+```
+<!DOCTYPE html>
+<**html** lang="en">
+<**head**>
+ <**meta** charset="UTF-8">
+ <**meta** http-equiv="X-UA-Compatible" content="IE=edge">
+ <**meta** name="viewport" content="width=device-width, initial-scale=1.0">
+ <**title**>Creating a Project Using Twitter Bootstrap</**title**>
+ <!-- CSS only -->
+<**link** href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</**head**>
+<**body**>
+ <**div** class="container">
+ <**h1** class="page-header">Hello Bootstrap World <**small** class="text-muted">With faded secondary text</**small**></**h1**>
+ </**div**>
+ <!-- JavaScript Bundle with Popper -->
+<**script** src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></**script**>
+</**body**>
+</**html**&gt
+```
+The above code is the Heading Element; it will look like this in your browser:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6388e4cf7ebe5d8383150df4_image7_9a9ec6ac5e7f6520305beea5131ccf18_800.png)
+### <a href="https://www.w3schools.com/bootstrap/bootstrap_typography.asp" target="_blank" rel="noopener noreferrer">Paragraph, strong, mark, lead elements</a>
+- We use the ```<mark>``` tag to highlight text.
+- We use the ```<del>``` tag to cross out text.
+- We use the ```<u>``` tag to underline text.
+- We use the ```<strong>``` tag to bold text.
+- We use the ```<em>``` tag to italicize text.
+```
+<**p** class="lead">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem eaque perspiciatis,
+      repellendus autem ipsa eius! Nesciunt natus, modi doloribus a eaque sit ea facilis</**p**>
+ <**p**><**mark**>ipsum dolor, sit amet consectetur adipisicing elit</**mark**>. Exercitationem eaque perspiciatis,
+ <**del**>repellendus autem ipsa eius!</**del**> Nesciunt natus, eaque sit ea facilis
+  eligendi quo atque laborum incidunt ipsam. <**strong**>Lorem ipsum dolor sit amet consectetur</**strong**>
+  adipisicing elit. <**em**>non nobis velit. Illo voluptatem itaque eveniet et,</**em**>
+  impedit consequuntur <**u**>nihil ipsam necessitatibus</**u**>, fugiat praesentium velit
+  amet a mollitia quibusdam voluptatibus?</**p**>
+ </**div**&gt
+```
+The above code will give you this outcome in the browser:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6388e4cf7ebe5d0b5d150dfc_image9_3f1ab7d918be316d4a2cb599817238b7_800.png)
+### <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/float" target="_blank" rel="noopener noreferrer">Alignment and Float</a>
+Alignment and Float help us to position text. We can align text to the center, left, or right of the page. Twitter Bootstrap V5 made many changes to Alignment and Float because several utilities changed names.
+- ```Left-*``` and ```Right-*``` were renamed to ```start-*``` and ```end-*
+```
+
+- ```float-left``` and ```float-right``` were renamed to ```float-start``` and ```float-end
+```
+
+- ```text-left-*``` and ```text-right-*``` were renamed to ```text-start*``` and ```text-end*
+```
+
+The ```<hr>``` tag, called the Horizontal rule, breaks the paragraph-level element.
+For alignment, we will use different classes: ```text-start```, ```text-center```, ```text-end```, ```text-justify```, and ```text-nowrap```. We also have some transformation classes. For example, let's say that we want all of the ```text-start``` to be upper case, the ```text-center``` to be capitalized, and the ```text-end``` to be lowercase. We’ll add it to the Transformation classes. In Float, we have ```float-start``` and ```float-end```. Note that when you float something, you have to clear it in order for the code to go back to normal. In Twitter Bootstrap, a special utility called ```Clearfix``` will do this quickly.
+```
+<hr>
+<!-- ALIGNMENT &amp; TRANSFORMATION -->
+<p class="text-start text-uppercase">start aligned text.</p>
+<p class="text-center text-capitalize">Center aligned text.</p>
+<p class="text-end text-lowercase">end aligned text.</p>
+<p class="text-justify">Justified text.</p>
+<p class="text-nowrap">No Wrap text.</p>
+<!-- QUICK FLOATS -->
+<div class="float-start">Float start on all viewport sizes</div>
+<div class="float-end">Float end on all viewport sizes</div>
+<!-- CLEAR FLOATS -->
+<div class="clearfix"></div>
+<hr&gt
+```
+The code above will show the outcome below in a Chrome browser:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6388e4cf7ebe5d28b9150df2_image8_58d340852011c560d1e30299321d3242_800.png)
+### <a href="https://www.w3schools.com/tags/tag_blockquote.asp" target="_blank" rel="noopener noreferrer">Block Quotes</a>
+We use block quotes to style the blocks of contents from other sources that appear within our document. Block quotes make a project look excellent and well-organized. When we use block quotes, we are quoting from another source; hence we should link the URL in the cited example.
+```
+<!-- BLOCKQUOTE -->
+<blockquote class="blockquote">
+<p>A typical example of Blockquote.</p>
+</blockquote>
+<figcaption class="blockquote-footer">
+Quote by <cite title="Emeka Henry">Emeka Henry</cite>
+</figcaption>
+</figure&gt
+```
+The above code will give us the outcome below in the Chrome browser:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6388e4cf7ebe5d2e33150de9_image4_e640a58e536ca0284f1c1ad1233e02ea_800.png)
+### <a href="https://www.w3schools.com/bootstrap/bootstrap_list_groups.asp" target="_blank" rel="noopener noreferrer">List Item Element</a>
+The ```<li>``` tag represent the items we have in a list which are always contained in a parent element; for example, an ordered list ```<ol>```, an unordered list ```<ul>```, or a menu list ```<menu>```. The list item naturally comes with a bullet, but the bullets will disappear once we add a class like ```list-unstyled```. We also have a ```list-inline``` which is very good for a menu. Here’s an example of the code of the list item below:
+```
+<!-- LISTS -->
+<ul class="list-unstyled">
+<li>first item.</li>
+<li>second item.</li>
+<li>third item.</li>
+<li>fourth item.</li>
+<li>fifth item.</li>
+</ul>
+<ul class="list-inline">
+<li class="list-inline-item">first item.</li>
+<li class="list-inline-item">second item.</li>
+<li class="list-inline-item">third item.</li>
+<li class="list-inline-item">fourth item.</li>
+<li class="list-inline-item">fifth item.</li>
+</ul&gt
+```
+The code above will give us the outcome below in the browser:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6388e4cf7ebe5d5bf7150dea_image3_1c61dcc96b74fe6550aec8714ba84df3_800.png)
+### <a href="https://www.w3schools.com/bootstrap4/bootstrap_colors.asp" target="_blank" rel="noopener noreferrer">Contextual Colors Element</a>
+The contextual color will help us to add color to our text in order to alert people on things like danger, warning, success, etc. Twitter Bootstrap’s contextual colors help us with flexible alert messages and adequate styling.
+```
+<!-- CONTEXTUAL COLORS -->
+<div class="alert alert-default" role="alert">
+A Default alert
+<div class="alert alert-primary" role="alert">
+A primary alert
+</div>
+<div class="alert alert-secondary" role="alert">
+A secondary alert
+</div>
+<div class="alert alert-success" role="alert">
+A success alert
+</div>
+<div class="alert alert-danger" role="alert">
+Danger alert
+</div>
+<div class="alert alert-warning" role="alert">
+A warning alert
+</div&gt
+```
+The above code will give us the outcome below on the Chrome browser:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6388e4cf7ebe5d11ab150df3_image2_8af9689caa469154fba6c1727f9ed500_800.png)
+### <a href="https://getbootstrap.com/docs/4.0/components/buttons/" target="_blank" rel="noopener noreferrer">Buttons</a>
+Bootstrap V5 has many buttons, each programmed to support multiple sizes. I will start from the default buttons to other buttons like primary, secondary, success, etc. The code for the complete button and the code for button sizes is below:
+```
+<!-- BUTTONS -->
+<button type="button" class="btn btn-default">Default</button>
+<button type="button" class="btn btn-primary">Primary</button>
+<button type="button" class="btn btn-secondary">Secondary</button>
+<button type="button" class="btn btn-success">Success</button>
+<button type="button" class="btn btn-danger">Danger</button>
+<button type="button" class="btn btn-warning">Warning</button>
+<br>
+<!-- BUTTONS SIZES -->
+<button type="button" class="btn btn-default btn-sm">Small button</button>
+<button type="button" class="btn btn-primary btn-sm">Small button</button>
+<button type="button" class="btn btn-secondary btn-sm">Small button</button>
+<button type="button" class="btn btn-primary" disabled>Primary button</button>
+<button type="button" class="btn btn-secondary" disabled>Button</button&gt
+```
+The above code will give us the outcome below on the Chrome browser:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6388e4cf7ebe5d52d1150de7_image1_bd01e4be76f4b68257c932c04b5e8b06_800.png)
+### <a href="https://www.w3schools.com/Bootstrap/bootstrap_forms.asp" target="_blank" rel="noopener noreferrer">Forms</a>
+With Bootstrap by Twitter, you can easily create a well-styled form that has up to four inputs like your name, your email, your messages, and your password, along with the form-check and the submit button. I will drop the code for the form below:
+```
+<!-- FORMS -->
+<form>
+ <div class="mb-3">
+  <label for="InputName" class="form-label">Name</label>
+  <input type="Name" class="form-control" id="InputName">
+ </div>
+  <div class="mb-3">
+   <label for="InputEmail" class="form-label">Email address</label>
+   <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text">We won't share your email with anybody.</div>
+  </div>
+  <div class="mb-3">
+   <label for="yourmessage" class="form-label">Message</label>
+   <input type="password" class="form-control" id="yourmessage">
+  </div>
+  <div class="mb-3">
+   <label for="InputPassword" class="form-label">Password</label>
+   <input type="password" class="form-control" id="InputPassword">
+  </div>
+  <div class="mb-3 form-check">
+   <input type="checkbox" class="form-check-input" id="Check">
+   <label class="form-check-label" for="Check">Check me out</label>
+  </div>
+   <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</form&gt
+```
+The code above will give us the output below on the Chrome browser:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6388e4cf7ebe5da9a9150de8_image6_91c9d25168a78e377accc134ae5c4c12_800.png)
+### <a href="https://www.w3schools.com/bootstrap5/bootstrap_tables.php" target="_blank" rel="noopener noreferrer">Tables</a>
+Bootstrap tables are responsive. You can modify the table by adding buttons, checkboxes, and so on.
+```
+<!-- TABLE -->
+<table class="table">
+ <thead>
+  <tr>
+   <th scope="col">Serial Number</th>
+   <th scope="col">First-name</th>
+   <th scope="col">Last-name</th>
+   <th scope="col">Handle</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <th scope="row">1</th>
+   <td>Emeka</td>
+   <td>Henry</td>
+   <td>@emekahenry</td>
+  </tr>
+  <tr>
+   <th scope="row">2</th>
+   <td>Cynthia</td>
+   <td>Eboh</td>
+   <td>@cynthiaeboh</td>
+  </tr>
+  <tr>
+   <th scope="row">3</th>
+   <td colspan="2">Jessy the Sparkles</td>
+   <td>@jesysparkles</td>
+  </tr>
+ </tbody>
+</table&gt
+```
+The above code will give us the outcome below on the Chrome browser:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6388e4cf7ebe5dea19150de6_image5_b5d90602f66ba2de3107c0e196ad2379_800.png)
+## Conclusion

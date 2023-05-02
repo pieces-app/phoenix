@@ -1,0 +1,231 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dc2dcfa494e79d32d1abc7_oop3_85066d077bf2008f39e8556cd3fbb91d_2000.jpeg)
+"development"
+# Understanding the Pillars of Object-Oriented Programming
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+This article will give an overview of object-oriented programming (OOP), including a look at a few concepts related to OOP and steps for implementing its concepts in JavaScript.
+
+## What is Object-Oriented Programming?
+Writing highly readable code is crucial in programming because it promotes code reusability and scalability; OOP helps us achieve this.
+Object-oriented programming is a programming pattern used in many programming languages like Java, C++, JavaScript, and C#. It focuses on organizing software around specific data or objects rather than around the logic required to manage them. In essence, OOP models a system as a collection of data called objects, and each object represents a part of the system.
+Certain features make up the foundation for a language to be considered object-oriented:
+
+### Classes
+These are user-defined data types that are grouped together. They share similar attributes and serve as a template for creating objects.
+
+### Methods
+Methods are functions defined inside a class. They dictate how an object will behave. They are used to keep functionality encased in an object.
+
+### Objects
+These unique entities contain methods and properties. They are instances of a class created with specifically defined data.
+
+### Attributes
+This is a characteristic that defines the state of an object. It is used to manipulate or reference a class’s property.
+
+### The Importance of OOP
+Object-oriented programming offers several perks:
+- Code re-usability as a result of inheritance allows the use of properties from the main class in a new subclass.
+- It also improves general productivity by allowing developers to create programs more quickly.
+- It makes collaborative development and troubleshooting much more straightforward.
+- It improves code scalability significantly.
+- It makes software maintenance much more accessible by hiding complex code and protecting parts of the code.
+- It allows more flexibility through polymorphism; since a single function can be modified to adapt to the class that it's placed in.
+
+## Pillars of Object-oriented Programming
+There are four key concepts in object-oriented programming that apply to supported languages:
+
+### Abstraction
+This is the process of refactoring complex code, making objects reveal only internal mechanisms that other objects require. This concept allows developers to quickly make changes or additions to the code over time.
+
+### Encapsulation
+The principle of encapsulation ensures that code is only used as intended by securing important information inside an object and allowing only a selection of information to be exposed. The values and data cannot be manipulated because they are held privately inside a defined class. Other objects do not have the authority to make changes; they can only call public functions in the class. Doing this provides a greater level of program security and avoids unintentional tampering.
+
+### Inheritance
+Inheritance allows classes to reuse code from other classes. For example, there is one class called the main class with all the primary features, and then another called the sub-class, which inherits all the functionality from the main class. This allows developers to reuse common logic while maintaining a unique hierarchy. This practice ensures a higher level of accuracy and reduced development time.
+
+### Polymorphism
+When an object shares traits with a class, there are certain times when changes need to be made to the behaviors inherited from the main class. Polymorphism helps by allowing us to override functions inherited from the main class in a sub-class. This helps reduce the amount of duplicated code.
+
+## Implementing Object-oriented Programming Concepts in JavaScript
+
+### Object Literals for Abstraction
+An object in JavaScript is a collection of data and similar functionality. It mostly consists of variables and functions (known as properties and methods) separated by commas. Objects can also contain other objects within them.
+
+Abstraction requires that we package code into more uncomplicated form factors, and objects are a perfect way to achieve this. Of course, there are other ways to achieve abstraction in JavaScript, but for the purpose of this article, we’ll stick to using object literals to accomplish this result.
+An object is declared as so:
+```
+const objectname1 = {
+                    property1: ”String”,
+                    property2: 100,
+                    objectname2: { }
+
+```
+Let’s use an example to illustrate object use in object-oriented programming.
+
+Next, we’ll attempt to create a car object inside of a land vehicle class. Instead of individually declaring the car's properties in the class, we can use an object to organize everything in one spot:
+```
+const car =
+{
+    brand: ”Audi”,
+    model: “Q” + 7,
+    year: 2021,
+    dashDisplay()
+    {
+        console.log(“This is a ” + brand + ” ” + model + “ ”+ year );
+    }
+ };
+ const truck =
+ {
+    //truck properties.
+ };
+car.brand;
+car.model;
+car.year;
+car.dashDisplay
+```
+As shown above, refactoring code with object literals makes it easier for a developer to see the essential parts of the code. It also prevents other objects, like the truck object, from accidentally accessing the properties of the car object. No changes or additions can be made quickly to the code.
+
+## JavaScript Classes
+Classes in JavaScript are blueprints for creating an object. They encapsulate data and code to work on that data. In JS, they are built on prototypes, but they also have their own syntax and semantics. For example, classes can contain variables, methods and objects.
+
+### Defining a Class
+To declare a class, we use the ```class``` keyword followed by the class name and curly brackets. It is possible to declare a class without specifying the class name. Both methods of declaration are illustrated below.
+
+One thing to note about classes is how different they are from functions. For example, they can only be called after they have been defined, unlike functions, which can be called before being defined. Therefore, calling a class before its definition will result in a reference error.
+It’s also important to note that defining a class with a class name is known as a class declaration.
+```
+class Person
+{
+    constructor(name, age, height)
+    {
+       this.name = name;
+       this.age = age;
+       this.height = height;
+    }
+
+```
+Further, defining a class without a name is known as a class expression.
+```
+let person = class{
+    constructor(name, age, height)
+    {
+       this.name = name;
+       this.age = age;
+       this.height = height;
+     }
+     sayHi()
+    {
+     console.log(&#x60;Hey, my name is ${name} and I am ${age} years old)
+    }
+
+```
+The constructor method used above is unique, and can only be defined once in a class using the keyword constructor. It is used to create and initialize an object with a class. Declaring a constructor is optional, as one will be made in the background for the class if one is not defined.
+
+## Inheritance Using Classes and Subclasses
+It’s possible to have one class share properties with another class. In JavaScript, we create one class called the main class. The main class has all the features and functionality needed across the board, and other classes inherit from that class. The other classes are known as subclasses, and they use the ```extends``` keyword followed by the name of the main class.
+Now, let's create a ```Lion``` class that is inherited from the ```Animal``` class to illustrate this:
+```
+class Animal
+{
+    const trait =
+    {
+        animal,
+        hunger,
+        speed,
+        sound
+    };
+    Speak()
+    {
+       let sound = trait.sound;
+       console.log(“This animal makes a ” + this.sound);
+    }
+    Feed(food)
+    {
+       If(trait.hunger == 0)
+       {
+          console.log("It eats its fill of " + food);
+       }
+    }
+    Walk(speed)
+    {
+       trait.speed = speed;
+       console.log(“It walks at ” + speed + ”km/h”);
+    }
+}
+class Lion extends Animal
+{
+    trait.animal = “lion”;
+    trait.hunger = 0;
+    trait.sound = “roar”;
+}
+    const lion1 = new Lion();
+    lion1.Speak();
+    lion1.Feed(“Deer”);
+    lion1.Walk(10)
+```
+By adjusting the properties of the trait object in the ```Lion``` class and calling the ```Speak```, ```Feed``` and ```Walk``` functions. The resulting message would be the following:
+This animal makes a roar.
+It eats its fill of Deer.
+It walks at 10km/h.
+
+The ```Lion``` class has inherited all the functionality and properties associated with the ```Animal``` class and can make changes to these properties as needed. Using inheritance allows for code reusability. Also, the methods and properties of an existing class can be shared, allowing us to write shorter, more efficient code.
+
+## Polymorphism Through Method Overriding
+Just as inheritances enable the sharing of properties and functions, sometimes the shared functions might need to be tweaked to suit the class inheriting these functionalities. In this case, we have to use polymorphism. It allows a common method to be implemented differently in multiple objects. Polymorphism can be achieved through a process known as method overriding.
+Method overriding allows a subclass to implement the main class method differently by redefining the method in the subclass. A simple example to illustrate this is shown in the two classes below:
+```
+class Vehicle
+{
+    Horn()
+    {
+       console.log(“This vehicle makes a sound”);
+    }
+}
+class Truck extends Vehicle
+{
+    Horn()
+    {
+       console.log(“A truck makes a loud honking sound.”);
+    }
+}
+let transport = new Truck();
+transport.Horn()
+```
+The above code will output: A truck makes a loud honking sound.
+## Encapsulation in JavaScript
+Encapsulation in JavaScript is done using an access modifier before the variable or function name. By starting a character with a hashtag(#), we make the variable or function private in the class, hiding it from other objects that have access to it. When a variable or function is made private, it can only be accessed within the declared class.
+Here’s a method and variable declaration that does this:
+```
+class Time
+{
+    #hour = 22;
+    #minute=15;
+    #second = 05;
+    constructor(hour, minute, second)
+    {
+       this.#hour = hour
+       this.#minute = minute
+       this.#second = second
+    }
+    #ResetToZero()
+    {
+       this.#hour = 0;
+       this.#minute=0;
+       this.#second = 0;
+       console.log(&#x60;New time ${this.#hour} : ${this.#minute} : ${this.#second}&#x60;);
+    }
+    callResetToZero()
+    {
+       #ResetToZero();
+    }
+}
+class Watch
+{
+    let time = new Time(19,30,0);
+    time.#hour;    // this will produce an error
+    time.#ResetToZero();     //this will also produce an error.
+
+```
+Additionally, the only way to access a private variable or method from another class is by calling that method in a public method within the main class and using that method in the sub-class.
+## Conclusion
+Object-oriented programming helps make you a better programmer and allows you to write more effective code. With the concepts explained and illustrated in this article, you can better implement object-oriented programming in your JavaScript code.

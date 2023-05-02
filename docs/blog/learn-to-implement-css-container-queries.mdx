@@ -1,0 +1,278 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63da9aabf021432ec0e71a74_csscontainer_076154ca449af46f6621fe3666118127_2000.jpeg)
+"css; testing-4"
+# Learn to Implement CSS Container Queries
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+The media query specification was first recommended ten years ago, and it truly helped us as we transitioned towards <a href="https://alistapart.com/article/responsive-web-design/" target="_blank" rel="noopener noreferrer">the concept of responsive design.</a> Since the modern web is primarily made up of components, media queries are somewhat inadequate in this context. Fortunately, container queries have emerged to address many of the issues that media queries are unable to address.
+When creating a component, we frequently include a variety of versions and alter them according to the viewport size or CSS class. This isn't always the best option, and it may force us to write CSS that is dependent on a viewport size or a variation class.
+
+## What Are CSS Container Queries?
+The first thing to know about CSS container queries is that “containers” are the elements being queried, but rules within container queries affect only the container descendants. In other words, you may define main as a container, or perhaps article, or even list items. With this, container queries will allow defining rules for how elements within them change across container sizes.
+<a href="https://alistapart.com/article/container-queries-once-more-unto-the-breach" target="_blank" rel="noopener noreferrer">CSS Containment</a> incorporates the container queries specification. The contain feature was first introduced in the CSS Containment proposal to support efficiency improvements. It offers a method for web designers to isolate DOM elements and communicate to browsers that they are separate from the rest of the document.
+Using the ```container-type``` attribute, a component can check its nearest parent for defined containment.
+That’s it – similar to how media queries for CSS are written, here it is applied to components.
+
+### Container Queries Syntax
+To query a component based on its parent width, we need to use the ```container-type``` property. Consider the following example:
+```
+.wrapper {
+  container-type: inline-size;
+}
+```
+
+<a href="https://victorchisom25.pieces.cloud/?p=c6744b8f13" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+This allows us to begin querying a component. In the example below, we need to add a certain style if the container of the ```.card``` element has a width of ```400px``` or more:
+```
+@container (min-width: 400px) {
+  .card {
+    display: flex;
+    align-items: center;
+  }
+}
+```
+
+<a href="https://victorchisom25.pieces.cloud/?p=8d0946bf48" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+While the above method is effective, using many containers can make it a little overwhelming. For this reason, it's best to give a container a name:
+```
+.wrapper {
+  container-type: inline-size;
+  container-name: card;
+}
+```
+
+<a href="https://victorchisom25.pieces.cloud/?p=c8e74ba294" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+The container name can now be added next to ```@container``` as shown below:
+```
+@container card (min-width: 400px) {
+  .card {
+    display: flex;
+    align-items: center;
+  }
+}
+```
+
+<a href="https://victorchisom25.pieces.cloud/?p=5be049a19b" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+Let's go back to the first example to see how container queries can help us avoid using several CSS classes:
+```
+.wrapper {
+  container-type: inline-size;
+  container-name: card;
+}
+.c-article {
+  /* Default stacked style */
+}
+@container card (min-width: 400px) {
+  /* Horizontal style. */
+  .c-article {
+    display: flex;
+    align-items: center;
+  }
+}
+```
+
+<a href="https://victorchisom25.pieces.cloud/?p=ef4647ac72" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+## When and Where to Use CSS Container Queries
+For this project, we'll utilize plain HTML and CSS. This is our first HTML. You'll see that we've included a link to our own "styles.css file" as well:
+
+```
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Container Queries</title>
+ <!-- our own styles -->
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+  </body>
+</html>```<a href="https://victorchisom25.pieces.cloud/?p=79a2439458" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+To get started, we'll make a very straightforward card with a picture, a title, and some text. A ```card-header``` with an image and a ```card-body``` with a title and other card elements will make up this card. The image remains on the left and the remaining text content is on the right because the card is styled with ```flex``` and ```flex-direction: row```**.**
+To center everything on the page, we'll surround this card in a container and use a ```div``` with the class parent set to ```big```:
+
+```
+<body>
+    <div class="container">
+      <div class="parent large">
+        <div class="card">
+          <div class="card--header">
+            <img
+             class="card--image"
+             src="house-project.jpg"
+             alt="card image"
+             width="500"
+             height="400"
+            />
+            <!-- we have this img.jpeg file in our folder -->
+          </div>
+          <div class="card--body">
+            <h1 class="card--title">The Customer's Choice</h1>
+            <h3 class="card--content">
+              You've got to start with the Customer experience and work back
+              towards the technology, not the other way round. Quality in a
+              product or service is not what the supplier puts in. it is what the
+              the customer gets out and is willing to pay for. a product is not
+              Quality because it is hard to make and costs a lot of money, as
+              manufacturers typically believe.
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>```<a href="https://victorchisom25.pieces.cloud/?p=e01148b22e" target="_blank" rel="noopener noreferrer">Save this code</a>
+```
+/* styles.css */
+body {
+ background-color: rgb(230, 205, 173);
+}
+.container {
+ display: grid;
+ place-items: center;
+ grid-gap: 1em;
+}
+.card {
+ background: white;
+ border-radius: 2em;
+ display: flex;
+ flex-direction: row;
+ overflow: hidden;
+ padding: 2em;
+}
+.card--header {
+ width: 100%;
+}
+.card--image {
+ border-radius: 1em;
+ object-fit: cover;
+ height: 100%;
+ width: 100%;
+}
+.card--body {
+ padding: 2em;
+ flex: 3;
+}
+.card--header {
+ flex: 2;
+}
+.large {
+ width: 100%;
+}
+```
+
+<a href="https://victorchisom25.pieces.cloud/?p=956e4e97c7" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+Your page will look like this:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63d193b7ca25817a1cd6b094_image5_dd2d52f9bf1a663a5758a300ca1db079_800.png)
+
+The same card will be copied and pasted into a new ```div``` that has the class ```parent small```. For the ```small``` class, we will additionally specify some styles:
+
+```
+<!-- index.html -->
+<body>
+    <div class="container">
+        <div class="parent large">
+            <div class="card">
+              <!-- ...card -->
+            </div>
+        </div>
+        <div class="parent small">
+            <div class="card">
+             <!-- ...card -->
+            </div>
+        </div>
+    </div>
+</body>```<a href="https://victorchisom25.pieces.cloud/?p=248f4db9a9" target="_blank" rel="noopener noreferrer">Save this code</a>
+```
+// styles.css
+.small {
+ width: 500px;
+}
+```
+
+<a href="https://victorchisom25.pieces.cloud/?p=d8f7499591" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+Keep in mind that both cards are identical, and are simply arranged in two distinct ```divs```. This is how they appear:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63d193b7ca25810e59d6b0b4_image6_92c81741fce12abb454c336c1ca39cf2_800.png)
+
+Now, let’s add container queries…
+
+In the event that the container's width is less than 500 pixels, we want the text content to appear below the image on the card. In order for container queries to function, we must apply CSS to the container to establish the "containment context&quot;; the children within this containment context respond to the container's properties via container queries. To contain these cards, we will create ```divs``` with the class ```parent```. To accomplish this, we change the ```parent``` class's CSS:
+```
+/* styles.css */
+.parent {
+ contain: layout inline-size style;
+}
+```
+
+<a href="https://victorchisom25.pieces.cloud/?p=3c554f9a73" target="_blank" rel="noopener noreferrer">Save this code</a>
+Now, we can add container queries to our card:
+```
+/* styles.css */
+@container(max-width: 500px) {
+ .card {
+ flex-direction: column;
+ background-color: pink;
+    }
+}
+```
+
+<a href="https://victorchisom25.pieces.cloud/?p=a21847a741" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+The end! Now, if you return to your browser, you’ll see that the new styles have been applied to the card within the ```div``` with the class ```small```.
+
+Congratulations! 🎊
+
+Rather than merely using the device characteristics, we were able to modify the styling based on the container size (screen size). This is the power of container queries.
+
+## Compatibility Issues with Container Queries
+This is similar to how every website should work flawlessly across all OS platforms and browsers in software development, due to the fact that CSS is a crucial component in creating any modern website.
+Given the widespread fragmentation of devices and browsers, CSS will inevitably need to be interoperable with a variety of browsers in order for a site to render flawlessly for users with various browser preferences. CSS is a styling element that is applied to all websites to improve their aesthetic appeal.
+
+### Browser Support
+Container queries are only supported on Chrome Canary and Safari, and require that the ```enable-container-queries``` flag is enabled. You can download Chrome Canary <a href="https://www.google.com/intl/en_in/chrome/canary/" target="_blank" rel="noopener noreferrer">here</a>. Once installed, open the URL <a href="http://chrome://flags/#enable-container-queries" target="_blank" rel="noopener noreferrer">chrome://flags/#enable-container-queries</a> and enable container queries:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63d193b7ca2581de94d6af4c_image4_d18f047c0557b62f5739b83317c79371_800.png)
+There is a polyfill under development that you can use for container queries today. You can check it out <a href="https://www.bram.us/2021/04/27/a-first-look-at-cqfill-a-polyfill-for-css-container-queries/" target="_blank" rel="noopener noreferrer">here.</a>
+This table below shows an up-to-date list of browser support:
+
+✅  Available in Chromium 106 and up.
+Experimental support first appeared in Chromium 91.0.4459.0 with the #enable-container-queries flag enabled
+🚫 No support
+
+✅ Available in Safari 16.0 and up.
+Experimental support first appeared in Safari Technology Preview 142.
+
+To stay up-to-date regarding browser support, you can follow these tracking issues:
+- Blink/Chromium: <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=1145970" target="_blank" rel="noopener noreferrer">Issue #1145970</a> – Fixed (Closed)
+- Gecko/Firefox: <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1744221" target="_blank" rel="noopener noreferrer">Issue #1744221</a> – NEW
+- WebKit/Safari: <a href="https://bugs.webkit.org/show_bug.cgi?id=229659" target="_blank" rel="noopener noreferrer">Issue #229659</a> – Resolved/Fixed
+
+### Polyfill
+A polyfill is a piece of code (or plugin) that provides the technology that you, the developer, expect the browser to provide natively. You can learn more about it in this article: <a href="https://remysharp.com/2010/10/08/what-is-a-polyfill/" target="_blank" rel="noopener noreferrer">What is a Polyfill?</a>
+Polyfill is not like ```cqfill```, <a href="https://www.bram.us/2021/04/27/a-first-look-at-cqfill-a-polyfill-for-css-container-queries/" target="_blank" rel="noopener noreferrer">which is covered here</a>. Characteristics of a polyfill for container queries include the following:
+- It does not require you to declare a separate custom property ```-–css-contain``` that duplicates the value of the ```contain``` property.
+- It does not require you to duplicate your ```@container``` rule into a ```@media``` rule.
+- It parses the newer container queries syntax that uses the ```container-type``` + ```container-name``` properties (shorthanded to ```container```).
+
+Because of this, the polyfill is a drop-in piece of code that will auto-magically do its thing.
+
+A polyfill transpiles CSS code on the client-side and implements container query functionality using ```ResizeObserver``` and ```MutationObserver```.
+Additionally, this polyfill does not rely on ```requestAnimationFrame```, which makes it more performant.
+Do note that this polyfill comes with a few limitations:
+- Currently, only a small number of queries are supported. Only the following values are supported: ```min-width```, ```max-width```, ```min-height```, and ```max-height```.
+- No layering of CQs inside of other media queries is supported; only top-level container queries are.
+- The only way to provide container query thresholds is in pixels.
+
+These restrictions are the outcome of a design decision:
+In order to keep the polyfill simple(-ish), compact, and effective, we want to make sure that it functions properly for the majority of use-cases. This sounds entirely logical.
+
+## Conclusion

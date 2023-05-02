@@ -1,0 +1,256 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63d1635f04522cb436652465_particle_js_4386e6958b00486a300a510a43404d17_2000.jpeg)
+"react-7; animations"
+# Create Beautiful Animations by Integrating Particles.js With React
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+Have you ever wondered how some programmers are able to produce beautiful backdrop animations like fireworks, confetti, or a night sky with twinkling stars? I initially assumed it was just a video playing in the background, or that some rockstar developer had spent hours creating it manually. However, after doing a lot of research, I discovered a great package for creating nice background animations without the need for any complicated code. The JavaScript plugin used to make 2D animations like the ones mentioned above is called Particles.js.
+Particles.js is a dependency-free, lightweight, responsive JavaScript plugin for the kind of adaptable, reactive particle design that can be used for different projects.
+Using ```react-tsparticles```, you can incorporate Particles.js into your React app, creating beautiful animations that will undoubtedly draw in more viewers.
+
+**Prerequisites**
+- Knowledge of JavaScript
+- Node.js 
+- React.js 
+- Knowledge of command-line syntax
+
+## Create a React Project
+Use ```npx create-react-app my-app``` to start a fresh React app, or keep working on an existing one if you've already started.
+
+The work will be done in the ```App.js``` file, which can be found in your app:
+```
+import logo from './logo.svg';
+import './App.css';
+function App() {
+ return (
+ <div className="App">
+ <header className="App-header">
+ <img src={logo} className="App-logo" alt="logo" />
+ <p>
+          Edit <code>src/App.js</code> and save to reload.
+ </p>
+ <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+ </a>
+ </header>
+ </div>
+  );
+}
+export default App
+```
+You’ll have to edit the ```App.js``` file to remove some unnecessary code bases. Below is ```App.js``` after editing:
+
+Next, you must first install both ```tsparticles``` and ```react-tsparticles``` in your project as dependencies. Both packages will enable your app to run Particles in the right order.
+```
+npm install react-tsparticles```<pre>npm install tsparticles
+```
+After that, import Particles from ```react-tsparticles``` and ```{ loadFull }``` from ```tsparticles```:
+```
+import './App.css';
+import Particles from "react-tsparticles&quot;;
+import { loadFull } from "tsparticles&quot;;
+function App() {
+ return (
+ <div className="App">
+ <h1>Welcome!</h1>
+ </div>
+  );
+}
+export default App
+```
+You can use the Particles component by passing some props such as ```init``` and ```id```, which will be initialization functions. Also, you’ll use the ```options``` prop, which will be the configurations for particles that we want to display:
+```
+import './App.css';
+import Particles from "react-tsparticles&quot;;
+import { loadFull } from "tsparticles&quot;;
+function App() {
+ return (
+ <div className="App">
+ <h1>Welcome!</h1>
+ <Particles
+      id="tsparticles"
+      init={particlesInit}
+      options={ // display config
+      }/>
+ </div>
+  );
+}
+export default App
+```
+You’re almost done! You just have to configure your particles/objects in order of animation, interaction, direction, opacity, etc. For this illustration, you’ll be using an already preset configuration from the ```tsparticles```<a href="https://github.com/matteobruni/tsparticles/tree/main/websites/particles.js.org/presets" target="_blank" rel="noopener noreferrer"> repository</a>, but you can always tweak it to your own style or create one from scratch if you’d like.
+Below is the particle configuration for the project:
+```
+import './App.css';
+import Particles from "react-tsparticles&quot;;
+import { loadFull } from "tsparticles&quot;;
+function App() {
+  return (
+    <div className="App">
+     <h1>Welcome!</h1>
+     <Particles
+      id="tsparticles"
+      init={particlesInit}
+      options={{
+ "fullScreen": {
+ "enable": true,
+ "zIndex": 1
+        },
+ "detectRetina": true,
+ "fpsLimit": 120,
+ "interactivity": {
+ "events": {
+ "onClick": {
+ "enable": true,
+ "mode": "push"
+                },
+ "onDiv": {
+ "elementId": "repulse-div",
+ "enable": false,
+ "mode": "repulse"
+                },
+ "onHover": {
+ "enable": true,
+ "mode": "connect",
+ "parallax": {
+ "enable": false,
+ "force": 60,
+ "smooth": 10
+                    }
+                },
+ "resize": true
+            },
+ "modes": {
+ "bubble": {
+ "distance": 400,
+ "duration": 2,
+ "opacity": 0.8,
+ "size": 40,
+ "speed": 3
+                },
+ "connect": {
+ "distance": 80,
+ "lineLinked": {
+ "opacity": 0.5
+                    },
+ "radius": 60
+                },
+ "grab": {
+ "distance": 400,
+ "lineLinked": {
+ "opacity": 1
+                    }
+                },
+ "push": {
+ "quantity": 4
+                },
+ "remove": {
+ "quantity": 2
+                },
+ "repulse": {
+ "distance": 200,
+ "duration": 0.4
+                }
+            }
+        },
+ "particles": {
+ "color": {
+ "value": "random"
+            },
+ "lineLinked": {
+ "blink": false,
+ "color": "#ffffff",
+ "consent": false,
+ "distance": 150,
+ "enable": false,
+ "opacity": 0.4,
+ "width": 1
+            },
+ "move": {
+ "attract": {
+ "enable": false,
+ "rotate": {
+ "x": 600,
+ "y": 1200
+                    }
+                },
+ "bounce": false,
+ "direction": "none",
+ "enable": true,
+ "outMode": "out",
+ "random": false,
+ "speed": 6,
+ "straight": false
+            },
+ "number": {
+ "density": {
+ "enable": true,
+ "area": 800
+                },
+ "limit": 500,
+ "value": 300
+            },
+ "opacity": {
+ "animation": {
+ "enable": false,
+ "minimumValue": 0.1,
+ "speed": 1,
+ "sync": false
+                },
+ "random": false,
+ "value": 0.5
+            },
+ "shape": {
+ "type": "circle"
+            },
+ "size": {
+ "animation": {
+ "enable": false,
+ "minimumValue": 0.1,
+ "speed": 40,
+ "sync": false
+                },
+ "random": true,
+ "value": 5
+            }
+        },
+ "polygon": {
+ "draw": {
+ "enable": false,
+ "lineColor": "#ffffff",
+ "lineWidth": 0.5
+            },
+ "move": {
+ "radius": 10
+            },
+ "scale": 1,
+ "type": "none",
+ "url": ""
+        },
+ "background": {
+ "color": "#000000",
+ "image": "",
+ "position": "50% 50%",
+ "repeat": "no-repeat",
+ "size": "cover"
+        }
+    }
+      }/>
+    </div>
+  );
+}
+export default App
+```
+As a result, you’ll have this nice animation:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63d1636004522c9e2e6526a0_image1_d9529ddc585753a9fa499ee5b9b5b769.g)
+
+Now that you have options for different preset configurations, play with them! Below is a link to a GitHub<a href="https://github.com/matteobruni/tsparticles/tree/main/websites/particles.js.org/presets" target="_blank" rel="noopener noreferrer"> repository</a> that contains a list of various settings for different particles.
+
+### Resources
+- <a href="https://reactjs.org/" target="_blank" rel="noopener noreferrer">React</a>
+- <a href="https://particles.js.org/" target="_blank" rel="noopener noreferrer">tsparticle</a>
+- <a href="https://github.com/EJINEROZ/Particles" target="_blank" rel="noopener noreferrer">Github Repo</a>

@@ -1,0 +1,72 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/640a4945452d1e97f6f8a6de_PFDPiecesOS-1_7_0_8097c448b8676927edddd48436e562dd_2000.jpeg)
+**new features** **bug fixes**
+# 1.7.0: Collections, personal Pieces domain, and more!
+> Mon Mar 27 2023 17:27:04 GMT+0000 (Coordinated Universal Time)
+
+Today’s release is overflowing with improvements to your overall experience with Pieces as well as the Pieces API. From saving collections of curated, popular snippets to personalized domains for link sharing (claim your domain today!), we’ve designed every feature in this release to make Pieces even more helpful to your workflow.
+
+## Pieces for Developers
+### Import curated collections of popular snippets
+Announcing Collections! We’ve curated collections of useful snippets for six popular languages and frameworks: Javascript, Typescript, Node.js, SQL, Dart and Python.
+**Coming soon: Collections for even more languages and frameworks, user-curated collections and team-specific collections!**
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63a0c9fdbe957d67938fa0ac_ScreenShot2022-06-30at12_20_50AM_34099dd729c06ff1180753c1f23e3753_800.jpeg)
+
+These collections are useful for developers of all stages, from beginners to experts. When you add a collection to Pieces, not only do you save the snippets, but also their descriptions, tags, related links, and other metadata.
+To add a collection, hit ```Shift+Cmd/Ctrl+C``` from within the Pieces desktop app or visit <a href="http://code.pieces.app/collections" target="_blank" rel="noopener noreferrer">code.pieces.app/collections</a>. With a single click, you’ll be able to instantly add collections or read more about each snippet and its related context.
+
+### Claim your Pieces domain
+Sharing your snippets and all associated info (description, related links, tags) with one-click is game-changing. On the receiving end, it’s helpful to know who sent the link before clicking on it, and with today’s release, you can register your personalize cloud domain so all your shared snippets can be tied to you.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63a0c9fdbe957d820c8fa03c_ScreenShot2022-06-30at12_53_14AM_037be1ece9aed7c8b891090634682c35_800.jpeg)
+
+To claim your domain, go to Settings in the Pieces desktop app and simply edit your personal domain. All your future shareable links will be sent from [username].pieces.cloud.
+
+> You must have an account and be connected to the cloud to claim your personal domain.
+
+### Protect sensitive information
+Sometimes, there’s information in your snippets that you don’t want to share. With today’s release, Pieces auto-magically highlights sensitive data in your snippets to prevent unwanted sharing and add another layer of security.
+You can also manually mark information as sensitive and choose the level of sensitivity, from low to high. To view and manage your sensitive information, hit [Cmd/Ctrl + !]
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63a0c9fdbe957d48098fa0ab_ScreenShot2022-06-30at12_59_44AM_99bab101ebdf11ae049490df11c6d82a_800.jpeg)
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63a0c9fdbe957dc0d28fa03b_ScreenShot2022-06-30at1_00_09AM_c20d65933638f2d6a49c6a3e51f00331_800.jpeg)
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63a0c9fdbe957dac188fa023_ScreenShot2022-06-30at12_58_16AM_2423a67ff69d60af91010691bcbbbdd1_800.jpeg)
+
+### In-app tips
+While you navigate Pieces for Developers, you’ll see tips that help you discover new features and how to use them.
+
+### Performance & Connectivity improvements
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63a0c9fdbe957d06718fa011_ScreenShot2022-06-30at12_54_25AM_dcd55308812c18bad1ace9bb5bf6fd17_800.jpeg)
+
+We’ve also improved the error screen to give you more information if something goes wrong and upgraded the reliability and performance of Pieces through various bug fixes and optimizations.
+
+## Pieces API
+All the features you see in Pieces for Developers as well as Pieces plugins are powered by the Pieces API. If you are a developer with a vision for a tool or feature for your own product that can utilize our APIs, reach out to us directly at <a href="mailto:support@pieces.app" target="_blank" rel="noopener noreferrer">support@pieces.app</a>.
+
+### Model: Persons
+As we build more infrastructure around sharing, it’s important to associate the relevant people with the share, such as the creator, sharer, and maybe even those who helped curate the snippet itself.
+We layered in a Persons model to individual assets so developers can associate people with an asset. The first example of this is in the creation flow, where we now attach the creator of the asset, and with sharing, we will attach the sharer.
+This model comes with all basic CRUD operations behind secure endpoints so developers can manually add, update, and delete Persons at their own discretion.
+
+### Model: Sensitives
+Similar to Persons, we found it important to associate any sensitive information with a snippet so developers can add in extra layers of security and prevent unwanted shares and more.
+Sensitives is a model added to an asset that contains any sensitive information related to the asset. The first example of this is in the creation flow, where we proactively detect and associate any sensitive information contained in a saved asset.
+This model also comes with all basic CRUD operations behind secure endpoints so developers can manually add, update, and delete Sensitives at their own discretion.
+
+### /discovery/discover/assets
+This endpoint is designed to provide recommendations on snippets to upload. This can be useful when trying to eliminate duplicate uploads or for added security measures.
+Developers simply pass a SeededAsset list with the option to automatically upload, and we return the snippets we believe you should upload. If automatic is set to true, we will upload them for you!
+
+### /discovery/discover/sensitives
+Discover sensitives is a way to detect if an arbitrary string contains any sensitive data. This is a great way to know whether or not to have added security features around a snippet.
+This endpoint accepts a list of strings with the option to automatically upload, and we return all the detected sensitive data. If an asset is associated and automatic is set to true, we will automatically attach this sensitive information to the asset.
+
+### /database/import & /database/export
+With the addition of /database/import and /database/export endpoints, a developer now has the ability to export their entire database and import it on another machine. We are very excited about this capability and the features it will unlock for teams and enterprises.
+
+### /linkify/multiple
+This endpoint paves the way for the first version of collections. With this, a developer can take a list of multiple assets and generate a single link representing all of them. You can see this in action with the Pieces Collections at <a href="https://code.pieces.app/collections" target="_blank" rel="noopener noreferrer">code.pieces.app/collections</a>.
+
+## Support

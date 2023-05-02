@@ -1,0 +1,122 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62ed62f14a15f471779b2031_react_hooks.png)
+"javascript; react"
+# Creating Custom Hooks in ReactJS
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+id="">In this article, we are going to unravel all of the mysteries related to custom hooks and take a look at a good number of examples of creating our own custom hooks.
+id="">Without further ado, let’s get started!
+
+id=""><strong id="">Prerequisites**
+
+id="">Read the below articles to get the most out of this article:
+- id=""><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch" target="_blank" id="">Fetch API</a>
+
+## What are Custom Hooks?
+id="">React v16.8 introduced hooks, wrappers that help to encapsulate repeated stateful logic so that it can be used and shared later across multiple components.
+id="">Hooks allow you to use all class-based components’ life cycle methods in function-based components. They let you use <em id="">useState and other React features without a class.
+id="">Having said that, React allows you to create your own custom hooks. A custom hook is a way to share stateful logic across components. We can also follow HOC and render props patterns to share this stateful logic across components; custom hooks are just another way to do it.
+
+## How to Create a Custom Hook
+id="">To create your own React custom hook, we have to follow certain guidelines. Here is a summary of these rules:
+- id="">Hooks should be called at the top of the component. We should avoid using hooks inside of a condition or a loop because React will be uncertain about the order of execution of the hooks. React knows about each hook and its associated value via the order of execution of hooks during rendering. It’s expected that at each render, the order of hooks remains the same. In this way, React preserves the state.
+- id="">Hooks should be called from a function-based component.
+- id="">You can call one hook from another hook.
+- id="">Every call to a hook gets an isolated state.
+
+id="">Now that we know some basic rules of hooks, let’s create a simple example:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62fe5c370e6d1334e8062de1_raycast-untitled%20(1).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet with the React code for a custom hoo)
+
+id="">This is one of the more basic React custom hooks examples. In this hook, we do the following things:
+- id="">The purpose of this hook is to return the access token from the local storage or fetch a new one if the access token is not present in the local storage.
+- id="">We have named this hook <em id="">useAuthState. This satisfies the rule that the name of the hook must start with <em id="">use.
+- id="">If you carefully observe the code inside this hook, you will find that we need this each and every time we need to use the access token.
+- id="">This can create a lot of redundant code pretty quickly.
+- id="">To avoid this, we can make use of such hooks and use this logic in whichever component we require.
+- id="">While the hook is in use, it gets its own isolated state.
+
+id="">Using this component is also simple. Just import the hook as follows:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62fe5c65d4d8521dc766b30e_raycast-untitled%20(2).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet that implements the above custom hoo)
+id="">Now that we have a basic understanding of custom hooks, let’s dive deep into some more React custom hooks examples.
+
+## Creating a Custom Hook to Fetch Data
+
+id="">There might be scenarios where you want to fetch data from an API, but you also need the following data:
+- id="">Was data fetched successfully?
+- id="">Was fetching the data unsuccessful, throwing an error?
+id="">In all of the above scenarios, you would do something like this:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62fe5c883b868222d4748477_raycast-untitled%20(3).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet that creates another custom hoo)
+id="">You would make use of multiple <em id="">useStates and one <em id="">useEffect to get the data on page load. Imagine you are repeating this multiple times across multiple components.
+id="">In such cases, it is suitable for us to create a hook that will abstract this stateful logic. Then we can simply get these values/states as a return value of the hook.
+
+id="">Here we go: we’re going to call <em id="">useFetch as a hook that will fetch the data for us from the given URL/API.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62fe5cac7fb88297a5d5c4d8_raycast-untitled%20(4).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet with React cod)
+
+id="">We just wrapped the above code inside a custom React hook function. There are a couple of things to note about our custom hook:
+- id=""><em id="">isLoading - This is set to <em id="">true at the start whenever we start fetching the data inside the <em id="">useEffect. Once the data fetches or an error throws, we set its value to false. We are doing this because we need a way to know that the hook is doing its work. While the hook is working, we can show a spinner on the UI with the help of this toggle. Its default value is <em id="">false.
+- id=""><em id="">data and <em id="">error - These two states, as the names suggest, store the data and the error that the fetch API throws.
+- id=""><em id="">isError - This toggle state shows whether an error has occurred or not. Its default value is <em id="">false, but if we get an error during <em id="">fetch API, then we set its value to <em id="">true.
+- id=""><em id="">isSuccess - This toggle state is set to <em id="">true whenever the data from the <em id="">fetch API fetches successfully. Its default value is <em id="">false.
+- id="">In the above hook, we introduced a <em id="">setTimeout API inside the <em id="">useEffect because we want to display the loading state. Since the data is fetched quickly, we introduced the <em id="">setTimeout API to showcase the loading state.
+
+id="">The code below demonstrates how we consume this hook:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62fe5cc65c607ad7594831cc_raycast-untitled%20(5).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet with React cod)
+
+## A Custom Hook to Track Mouse Position
+id="">There might be certain scenarios where you might want to track your mouse movement from the edges of the browser inside a specific div or you want to track it over the entire page. In any case, custom hooks can return the x- and y-coordinates along with a handler function that will manage the track of the mouse event inside an element will do a fine job.
+
+id="">So, here we go! We’re going to name this hook useMousePosition. Below is the code for the same:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62fe5cfe954f0fa905cece31_raycast-untitled%20(6).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet with React cod)
+
+id="">Here is a bit of explanation for the above code:
+- id="">Next, we have a <em id="">handleMouseMovement function. This function is an event handler on <em id="">mousemove events.
+- id="">Then, we have a <em id="">useEffect that adds an event listener on page load for the event <em id="">mousemove. We remove this event listener when the component is unmounted from <a href="https://code.pieces.app/blog/understanding-dom-and-virtual-dom-and-how-they-work-with-react" target="_blank">the DOM</a>. We do this operation when we want to track the mouse movement across the entire page. This is why we attached the event listener to the window object. To track the mouse position on the entire page, we use a toggle variable called <em id="">global. If it's true, then we track all of the mouse movement.
+- id="">If <em id="">global is set to false, then the code inside the <em id="">useEffect is not used and the mouse position tracker completely relies on <em id="">handleMouseMovement.
+- id="">In such a case, while consuming this hook we can pass on the <em id="">handleMouseMovement function to the target element’s <em id="">onMouseMove property to track the cursor position inside that element.
+id="">Here is how you will be consuming this hook while targeting mouse tracking on a specific div element:
+
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62fe5d1f954a4529b65df220_raycast-untitled%20(7).png" loading="lazy" id="" width="auto" height="auto" alt="A React snippet that consumes custom hook)
+
+## Custom Hooks to Get CSS&nbsp;Variables
+
+id="">CSS variables are entities that can be created and reused later inside a document, also called custom properties. We denote them with a special notation like <em id="">--primary-color and we access them using a special function called <em id="">var().
+
+
+id="">In large projects, we can repeat styles, colors, or sizes in multiple locations. This can get quite difficult to manage and it can also become infeasible to remember these common values.
+
+id="">So, it’s always better to have a central place where you can store these values and use them later. You can consider this a central repository of style properties. These variables, once created, can be accessed anywhere in the document via CSS’s <em id="">var() function when you declare them inside the <em id="">:root pseudo-classs selector.
+id="">If we compare this methodology in React, then the CSS variables inside these <em id="">:root classes would act as a global state.
+
+id="">Now, enough of this intro! Let’s create actual CSS variables. Let’s create two variables <em id="">--primary-color and <em id="">--font-size-large.
+id="">Since we’re using a CRA app, by default there’s a <em id="">styles.css file inside the <em id="">src folder. If not, create the file and paste the following code in it:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62fe5d4f954a455ceb5df4e3_raycast-untitled%20(9).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet with CSS cod)
+id="">Simple usage of these variables would be similar to below:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62fe5d6554fbe1a6b90a6459_raycast-untitled%20(10).png" loading="lazy" id="" width="auto" height="auto" alt="A CSS code snippe)
+id="">Let’s do some of the fun part here! Consider a scenario where you need to access these CSS variables in your component and change it based on a certain value of an API.
+
+id="">You will need to do following:
+
+- id="">Create a <em id="">useEffect and use JavaScript’s <em id="">getComputedStyle function to access the styles of the <em id="">:root element
+- id="">Use the <em id="">setProperty function to set the new or existing CSS variable values
+- id="">Repeat this logic across multiple components
+
+id="">Repeating this logic everywhere would be a hassle. To manage this better, let’s create a React.JS custom hook named <em id="">useCSSVariable to do exactly the same thing.
+id="">Copy and paste the below code in your utility or <em id="">CustomHooks.ts file (if one doesn’t exist, then create it):
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62fe5d8be1d4e97e6ac552b1_raycast-untitled%20(11).png" loading="lazy" id="" width="auto" height="auto" alt="A React code snippet that creates custom hook)
+id="">Ok, there are some new moving parts to this hook, but trust me. The pattern of creating a custom hook remains the same:
+
+- id="">Next, we create two state variables: <em id="">cssRootStyles and <em id="">rootElement.
+- id=""><em id="">cssRootStyles is a state variable that stores all of the computed styles of the <em id="">targetElement via <em id="">getComputedStyle.
+- id=""><em id="">rootElement is another state variable that will store the <em id="">targetElement. We will use this state to set the CSS variable using <em id="">setProperty function.
+- id="">Then, we have a <em id="">useEffect that sets the <em id="">rootElement and <em id="">cssRootStyles as a <em id="">targetElement and <em id="">computedStyles of the root element.
+- id="">We also have <em id="">getCssVariable, which is a simple getter function that gets the CSS variable’s value with the help of <em id="">getPropertyValue. We return the same value from this function.
+- id="">Next, we have <em id="">setCssVariable, which takes the CSS variable’s name and value and stores them with the help of the <em id="">setProperty function.
+- id="">Finally, we return these two functions so that we can use the consumer component once it’s mounted.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62fe627cb9de594961b07692_raycast-untitled%20(12).png" loading="lazy" id="" width="auto" height="auto" alt="A React code snippe)

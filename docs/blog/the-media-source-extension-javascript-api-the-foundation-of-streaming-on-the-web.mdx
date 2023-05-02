@@ -1,0 +1,152 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd7cbe1b2429efebda4190_segments_3dee7b8cfb581c8d69adc424e23919b5_2000.jpeg)
+"video; javascript-8"
+# The Media Source Extension <> JavaScript API: The foundation of streaming on the web
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+The streaming universe is booming.
+Since its inception way back in 2013, influential companies like Netflix, Amazon and Apple have poured millions of dollars into creating new TV shows, movies and other video content. Over the past decade, many business areas have been leveraged by this unique ecosystem, including tech. Because distributing video is challenging and costly, the tech industry has been tasked with making it faster, cheaper and easier to stream content. As a result, the way we stream video on the web is vastly different than it was a decade ago.
+Back in the day, we relied on external plugins in browsers to play videos, like Microsoft Silverlight (2007) and Adobe Flash Player (1996).
+
+They were the first solutions for playing videos on the web, but they quickly ran into trouble because of many security issues in their source code that attackers leveraged, among other technical limitations shown by the growing demand for video content.
+In January 2013, the World Wide Web Consortium (W3C) wrote a new standard to address these challenges: <a href="https://www.w3.org/TR/2013/WD-media-source-20130129/" target="_blank" rel="noopener noreferrer">Media Source Extensions</a> (MSE).
+
+MSE aimed to be incorporated into the HTML5 standard. It set specifications for the byte streams and video/audio codecs supported on web browsers through video and audio HTML5 tags.
+In September 2013, Youtube was one of the first video pioneers to use MSE.
+
+## The MSE advantage
+Handling video data on the web is challenging.
+
+Have you ever tried to share a big video file over the internet? Not many free and reliable solutions exist, as storing big data is generally very costly and very inconvenient to download.
+
+As you know, requesting a whole movie bigger than 1.5GB on a web browser is not exactly efficient.
+
+That's when byte streams begin to take shape. MSE and HTTP form a great team when it comes to downloading part of a file. Indeed, a few streaming standards have emerged— like Microsoft Smooth Streaming, DASH and HLS— to propose a solution that would leverage these two APIs to make transporting video content on the web much more efficient than it used to be. These standards permit requesting a small chunk of video data, usually 2 seconds at a time.
+This technique is very efficient because you don't have to download the entire video, but only what you really consume; there’s no point in downloading the complete video data when you can only watch one part of it at a time.
+Here is a small schema explaining the process that most streaming companies use to transport video data to your TV, phone or computer.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63176af152c14e4e9218944c_ScreenShot2022-09-02at2_03_43PM_b5158075f03068fd82fbf31e5ccd5143_800.png)
+
+## How it works
+Based on the schema above, we can see that the server stores the various pieces that the client needs to play a video.
+On one hand, we have the segments, which are small chunks of a video (usually two seconds long). If we merge those two-second chunks, we have the whole video.
+On the other hand, we have the manifest. This is our guide: it tells us where to find the video data on the server and what data is available. This could be in which quality the video is available or what audio and subtitle languages we can choose.
+The manifest’s file follows different possible standards, the most common of which are the <a href="https://dashif.org/docs/DASH-IF-IOP-v4.3.pdf" target="_blank" rel="noopener noreferrer">DASH</a> and <a href="https://developer.apple.com/streaming/" target="_blank" rel="noopener noreferrer">HLS</a> standards.
+
+You can see <a href="https://mediahelper.vercel.app/manifest" target="_blank" rel="noopener noreferrer">here</a> what form the manifest could take depending on the standard it adopts.
+
+It's then the role of the application to decide what to download, depending on the user's choice and internet conditions. For example, downloading 4K video segments may not be the best choice if the user's internet access is limited, as 4K video segments are the heaviest.
+The video player layer is responsible for requesting video segments from the server under the form of ArrayBuffer, a JavaScript type used to represent raw binary data.
+
+Nowadays, manipulating binary data on the front end is not very common, but this is where MSE comes into play.
+
+## The MSE API
+
+### The <video/> element
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63176af252c14e032018945c_ScreenShot2022-09-02at2_05_38PM_5b2acc5ac487bb2370bf81647dda018d_800.png)
+
+The magic happens in the <a href="https://www.w3.org/TR/2011/WD-html5-20110113/video.html#attr-media-src" target="_blank" rel="noopener noreferrer"><video/> HTML5 element</a>. Many developers know that we have to specify a media element to the ```src``` attribute like so:
+```
+<video src="https://myvideo.com/birthday.mp4"/&gt
+```
+But a few know that we can pass a URL that is directly linked to an object that lives in memory.
+
+We achieve that thanks to the API:
+```
+URL.createObjectURL(...)```
+The URL will look like what we have below:
+```
+const video = document.querySelector('video');
+video.src = URL.createObjectURL(...);
+//src="blob:<https://www.youtube.com/8d195e98-26d6-4f01-8251-f1d1fabc2634>&quot
+```
+<a href="https://3863d558-45a9-40e6-9dff-136019435fd6.pieces.cloud/?p=adb749911c" target="_blank" rel="noopener noreferrer">Click to save this command to Pieces</a>
+
+### Media Source
+Now that we know that we can create a URL that is directly linked to an object, we will leverage the MediaSource API to create a ```MediaSource``` object connected to the ```<video/>``` element.
+```
+const mediaSource = new MediaSource();
+video.src = URL.createObjectURL(mediaSource)
+```
+<a href="https://3863d558-45a9-40e6-9dff-136019435fd6.pieces.cloud/?p=2529488477" target="_blank" rel="noopener noreferrer">Click to save this command to Pieces</a>
+
+Until here, everything works fine, but nothing will happen as the ```MediaSource``` object isn’t filled with anything. It’s empty. We need to add video data.
+This is when the ```SourceBuffer``` object is used.
+
+### SourceBuffer
+The ```SourceBuffer``` object acts like an actual buffer. It's a small object used to store data and could be represented like so:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63176af152c14e817418944b_ScreenShot2022-09-02at2_08_36PM_83ac7f4f7410f83c81ca7001f72fde29_800.png)
+
+We will store the two-second video segments we discussed earlier in this buffer.
+
+A few methods live in the ```MediaSource``` instance. One of them is ```addSourceBuffer```. This is the method that will create and add a ```SourceBuffer``` object to the ```MediaSource```.
+```
+const mimeCodec = 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"';
+const bufferVideo = mediaSource.addSourceBuffer(mimeCodec)
+```
+<a href="https://3863d558-45a9-40e6-9dff-136019435fd6.pieces.cloud/?p=37f44cad38" target="_blank" rel="noopener noreferrer">Click to save this command to Pieces</a>
+The ```addSourceBuffer``` methods take a single parameter that needs to be specified to tell the ```SourceBuffer``` the kind of data we will insert in the buffer.
+
+In the video world, we compress and decompress video to transport it through the internet to gain in size, as we would do with a big file that we’ve zipped to make it easier to transport.
+Multiple types of compression algorithms exist out there, but the most known in the industry are H264 (Advanced Video encoding) and its evolution, H265 (High-Efficiency Video Coding). H265 compresses twice as well for the same quality as H264. The decoding usually happens on the hardware side of the client you use to play the video (PC, Smartphone, Console…). As H265 is relatively new to the market, many hardware materials do not support this codec.
+
+The MSE API provides a way to know if the codec you want to use is available, given your current hardware configuration.
+```
+MediaSource.isTypeSupported(mimeCodec) // true or false
+```
+<a href="https://3863d558-45a9-40e6-9dff-136019435fd6.pieces.cloud/?p=c0e14abd30" target="_blank" rel="noopener noreferrer">Click to save this command to Pieces</a>
+Here, ```mimeCodec``` is essential, because most of the time, you can’t push a different codec type on the same ```SourceBuffer```. Before adding new data from a different codec, you must first call the ```changeType``` method on the ```SourceBuffer```.
+
+The codec is the program we name that encodes and decodes a data stream.
+Finally, once we have our ```SourceBuffer``` instance, we can start adding actual video segments to the buffer we just created, thanks to the ```appendBuffer(buf)``` method on the ```SourceBuffer``` instance.
+```
+const mimeCodec = 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"';
+const bufferVideo = mediaSource.addSourceBuffer(mimeCodec);
+bufferVideo.appendBuffer(buf)```
+<a href="https://3863d558-45a9-40e6-9dff-136019435fd6.pieces.cloud/?p=582045b77b" target="_blank" rel="noopener noreferrer">Click to save this command to Pieces</a>
+Once the ```videoElement``` has enough data in the buffer to start playing the video, its property ```readyState``` will be superior or equal to 3. The ```videoElement``` can then trigger the ```play``` method.
+
+### Events
+The process of setting up these APIs is eventful. This means that most APIs should be called when an event has been sent to tell them that the API is ready to proceed further.
+
+For instance, when we create a ```MediaSource``` instance, we can’t instantaneously use it, as it will be in the <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaSource/readyState" target="_blank" rel="noopener noreferrer">```closed``` state</a>:
+```
+const mediaSource = new MediaSource()
+console.log(mediaSource.readyState); // closed
+```
+<a href="https://3863d558-45a9-40e6-9dff-136019435fd6.pieces.cloud/?p=ee584bbf87" target="_blank" rel="noopener noreferrer">Click to save this command to Pieces</a>
+
+We need to wait for the ```MediaSource``` to be in the **open** state.
+```
+mediaSource.addEventListener('sourceopen', () => {
+ // The mediaSource is open and ready to receive a sourceBuffer
+})
+```
+<a href="https://3863d558-45a9-40e6-9dff-136019435fd6.pieces.cloud/?p=2670468443" target="_blank" rel="noopener noreferrer">Click to save this command to Pieces</a>
+The ```SourceBuffer``` object also produces many <a href="https://developer.mozilla.org/en-US/docs/Web/API/SourceBuffer#events" target="_blank" rel="noopener noreferrer">events</a>.
+
+### Appending real data
+We now know how to append data, but how can we retrieve the data that we will send to the ```SourceBuffer``` we just created?
+
+We will use the ```responseType``` property from the ```XMLHttpRequest``` API that tells the browser what kind of data we want back.
+```
+const xhr = new XMLHttpRequest;
+  xhr.open('get', url);
+  xhr.responseType = 'arraybuffer';
+  xhr.onload = () => {
+ // append the video segment to the buffer
+  sourceBuffer.appendBuffer(xhr.response);
+  };
+  xhr.send()
+```
+<a href="https://3863d558-45a9-40e6-9dff-136019435fd6.pieces.cloud/?p=b7834d8d23" target="_blank" rel="noopener noreferrer">Click to save this command to Pieces</a>
+We set the ```responseType``` to ```arraybuffer```, which acts like a binary JavaScript representation that contains the two-second video segment.
+
+Once we request that data from the server, we can insert it inside the ```SourceBuffer``` object we created.
+
+## Conclusion
+Since the first live-streamed concert in 1993, video has been a part of the internet. Since then, video has gained more and more traction, reaching incredible milestones and allowing internet companies to create entire businesses around video. For instance, in 2018,<a href="https://www.bbc.com/news/technology-45745362?ocid=socialflow_twitter" target="_blank" rel="noopener noreferrer"> according to research from bandwidth management company Sandvine</a>, Netflix occupied 15% of worldwide internet traffic. There’s also the mastodon of video on the internet, YouTube, which accrues more than<a href="https://www.globalmediainsight.com/blog/youtube-users-statistics/" target="_blank" rel="noopener noreferrer"> 1 billion hours of watched content worldwide every day</a>.
+
+From these success stories, it’s clear that the technical handling of video on the internet has required innovation. So many of these actors gathered to create new technologies of distribution to make it faster and less frustrating for users to consume video on the web.
+Hence, MSE has evolved to be even more supported across different browsers and platforms. This article acts as an introduction to how prominent actors handle video on the web. However, video is more complex than we think, and many other factors should be considered in further articles.

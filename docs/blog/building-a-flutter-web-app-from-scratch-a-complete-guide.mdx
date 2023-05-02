@@ -1,0 +1,173 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63e6b35e11852a57922a3e0b_flutter%20web%20app.jpg)
+"flutter; dart; front-end"
+# Build a Flutter Web App from Scratch: A Complete Guide
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+id="">Flutter performs extremely well across different platforms because it applies each platform’s native code without the need for an intermediary layer to interpret it. It enjoys strong support from Google and has a vibrant <a href="https://flutter.dev/community" target="_blank" id="">community</a>. The Flutter team and community also provide easy-to-follow documentation with straightforward step-by-step breakdowns, and written and video tutorials.
+
+## What Will You Learn from This Guide?
+id="">Let's build a Flutter app from scratch!&nbsp;If you’re new to Flutter, you’ll be introduced to the framework through setting up the dev environment, building a starter app, and running it in your browser. You’ll learn what widgets are and also how to build complex user interfaces from scratch using various types of widgets, as well as how to create your own widgets. You’ll learn how to pass data between widgets to create interactive and dynamic content and how to work with assets such as fonts and images (both local images and dynamically over the internet).
+id="">Finally, you’ll learn how to bundle and export your Flutter web app and get it ready to be hosted online.
+id="">For those already familiar with Flutter or who have completed production work with Flutter mobile, this tutorial will explain how you can get started with Flutter web and show you how you can get your application online. This tutorial is broken into several subsections to make it easier to follow, so feel free to skip to the relevant parts.
+
+## Getting Started: Setting Up Your Environment
+id="">Setting up Flutter is very simple; you can follow the installation procedure on the <a href="https://docs.flutter.dev/get-started/install" target="_blank" id="">Flutter documentation page</a>. After selecting your operating system, you’ll be directed to the relevant instructions. Fedora 35 Linux was used for this guide, so the following instructions demonstrate how to get set up on Linux:
+id="">2. Permanently add Flutter to your execution path so your system knows where to find and run Flutter-related commands or programs. You do this by adding the path to your `f=Flutter` directory to the `PATH` variable in your bash profile file `~/bash_profile`.
+id="">In the setup used for this tutorial, the above command will be as follows:
+id="">3. If this was done correctly, when you run `$ which flutter` in the terminal, it should print out the path to your Flutter installation. In the setup used for this tutorial, the path was as follows:
+id="">4. Pre-downloading Flutter development binaries will make certain artifacts and binaries available offline, which may be needed during development:
+id="">5. Check that your installation and dependencies are properly set up by running the following:
+id="">6. Enable Flutter for web. Earlier versions of Flutter (below version 2) are set up for Android and iOS mobile development by default and have to be enabled to build for the web. If you’re using an earlier version, you can do that by running the command below in your terminal; alternatively, you can just upgrade to the latest version (<a href="https://docs.flutter.dev/whats-new" target="_blank" id="">3.7 at the time of writing</a>):
+id="">7. Finally, to provide support for syntax highlighting and code completion for the Dart language and Flutter framework, you need to enable some plugins for your text editor or IDE of choice. The Flutter documentation officially supports and provides <a href="https://docs.flutter.dev/get-started/editor?tab=androidstudio" target="_blank" id="">instructions for Android Studio, IntelliJ IDEs, Visual Studio Code, and Emacs Text Editor</a>.
+
+## What Are You Building?
+id="">With your dev environment all set up, you’re ready to start Flutter app development. This guide explains how to build a movie catalog web application that shows a list of movies under specific categories, where the content changes in each category according to the data available. This application was chosen for this Flutter tutorial as it will help you learn most of the fundamentals.
+id="">The user interface (UI) takes inspiration from the design below by <a href="https://dribbble.com/shots/3840377-Movie-Dashboard-for-Ipad/attachments/869734?mode=media" target="_blank" id="">Dribble artist Zaini Achmad</a>. Though it may seem complex for a beginner, building this application will allow you to appreciate the power of Flutter widgets and learn how to break down complex interfaces into simple and smaller units that are easier to build.
+id="">Please note, as this will not be a fully functioning web application, the data for the interface will be static and not all functionality will be covered. However, the tutorial will demonstrate how to design a Flutter UI that’s as close as possible to the sample artwork.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/628fed2d5f801072c34a6b58_1*2NEY8dPdRjlcceMMRREK1g.png" width="auto" height="auto" loading="auto" id)
+
+## Building the App
+id="">Now that you’ve been introduced to Flutter and you have an idea about the app you’ll be building, it’s time to put together your Flutter web app and get it running. Each section will cover various tasks to explain and walk you through every aspect of building the application. 
+
+### 1. Create and Run the Initial Project
+id="">First, you need to create a starter project. Enter the terminal change directory to an appropriate location on your system where you can start a project and run the command below:
+id="">In the command above, you’re telling Flutter to create a new Flutter app with the name “movie_catalogue”. This will scaffold a basic Flutter starter app with the name “movie_catalogue” into a directory with the same name. You should have an output similar to this:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/628fed2d7c1a3c84e1106c31_1*pdGzxFctzQtzs0f8ba40aw.png" width="auto" height="auto" loading="auto" id)
+id="">You can now change the directory to the project directory and run the basic app in your Chrome browser. Then, switch to the IDE of your choice (Android Studio for this tutorial). Open the project directory in your IDE to start writing some code.
+id="">You should have an output like this:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/628fed2dda66886dd2594d54_1*J7_-4m7nWqWIuroVZb_SaQ.png" width="auto" height="auto" loading="auto" id)
+id="">Before you get started, clean up the `main.dart` file in the root of the project directory to contain only the code below for now:
+id="">In the above code, you’ve created a class called `TheMovieCatalogue`, which is the base of your app. It extends a `Stateless` widget, therefore making this class a widget (more to come on that in the “Building the Layout and User Interface” section below). It contains a build method that generates the final structure of the UI based on the various widgets described and their nested or lower-level widgets. In this case, you’re retrieving a `MaterialApp` widget from the Material library in Flutter (imported at the top of the file). This implements Google’s material design UI out of the box and gives you access to a wide range of widgets for building your user interface.
+id="">The `void main()` function you see is where the app gets called to start running when launched. Currently, if you run this Flutter web app, you’ll be presented with a blank page. Time to build your UI.
+
+### 2. Data and Assets
+id="">Before you start to build a web app, you need to add some fonts and static images to your application, such as the background image file. You also need to add some data that provides basic functionality and “dynamic” content, as you won’t be developing an API server.
+id="">First, create a directory called `assets` in the root of the project directory. In the assets directory, create two directories, namely `fonts` and `img`. These will contain the font and image files that you’ll be using in your application. Copy and paste your background or other images into the respective directories. Feel free to use those from <a href="https://github.com/rexfordnyrk/movie-catalogue" target="_blank" id="">the complete tutorial code</a>.
+id="">After that, declare the image and font files in the app’s configuration file `pubspec.yaml` located in the root of the project directory. Uncomment the respective lines and edit the file as follows:
+id="">The entire data file can be obtained from the project repository in <a href="https://github.com/rexfordnyrk/movie-catalogue/blob/dev/lib/data.dart" target="_blank" id="">this `data.dart` file</a>. However, due to the extensive nature of the data, how it’s declared and will be used in your application is only briefly explained here.
+id="">The movie data — obtained for free from <a href="https://themoviedb.org" target="_blank" id="">TMDB</a>—is structured in a standard JSON format. You can register for a free developer account to get access to their API. The movies are arranged in four list sets for the four categories in the application’s main navigation, namely, “New Releases,” “Most Popular,” “Recommended,” and “Top Chart.” Each set contains twenty items of movie details. Our data also contains a list of genres for the movies.
+id="">In the file linked above, you have six constant variables declared and initialized:
+- id="">`bImageBase`: the string value for the base url for the backdrop images of each movie.
+- id="">`genres`: a list of movie genres with their ID and names.
+- id="">`newReleases`, `mostPopular`, `recommended`, and `topChart` are all lists of movies for the menu items “New Releases,” “Most Popular,” “Recommended,” and “Top Chart,” respectively.
+id=""><strong id="">Note:** In Dart, a JSON object is of type `Map<dynamic,dynamic>` because the keys of an object can be numeric or string values. However, since you’re sure that the keys of your objects are strings, you specify the map as `Map<String,dynamic>`. Therefore, for a list of JSON objects that is a list of maps, you type `List<Map<String,dynamic>>`.
+id="">Each object has a structure as below:
+id="">With your data in place, you can now proceed.
+
+### 3. Building the Layout and User Interface
+id="">Flutter UIs are built on blocks of widgets. Each and every item consists of one or more widgets just like UIs in standard web development are built using blocks of HTML elements. Each widget provides you with options to describe what it should look like or how it should behave: <a href="https://docs.flutter.dev/development/ui/widgets-intro" target="_blank" id="">Flutter has a widget for almost anything you can imagine</a>.
+id="">This section will cover how to get started using widgets to build the layout and UI for your Flutter web app.
+id="">To make this simple, you can break down the design into various sections as depicted in the diagram below, identify the units within them to build them individually, and finally bring them all together.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/628fed2d8876883239ede34a_1*xlZCtnQQnR_g4fD-aO4SGg.png" width="auto" height="auto" loading="auto" id)
+id="">You need to create a main widget that will provide the overall structure in which the various widgets for the individual sections will be placed. Below is a skeleton and tree of the layout that this tutorial will help you achieve. It lists the main widgets that are going to be used to compose the various sections.
+id="">However, some of these widgets will be wrapped in other widgets not shown in the diagram or tree. They are mainly to introduce some level of control or specific visual behaviors and effects, but will not affect the main structure.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/628fed2d345e6d34522e2777_1*Vlz-EnpXLX3RfKeqgqCH6g.png" width="auto" height="auto" loading="auto" id)
+id="">To get started, create a file called `layout.dart` inside the `lib` directory of the project root and edit its content as follows:
+id="">Here’s what’s going on in the code snippet above:
+id="">1. &nbsp;You create a `StatefulWidget` called “AppLayout” that’ll be used to contain and coordinate all other child widgets. You use a `StatefulWidget` because you’ll be handling and manipulating data for dynamic content based on specific events or actions. This can only be done in a widget with a state.
+id="">2. As explained above, you need to create another class `_AppLayoutState` to hold the `State` of our `StatefulWidget` as seen above. In the `build` method of the `_AppLayoutState`, you return a `Container()` widget. This container allows you to define a background image for the entire application by passing `BoxDecoration` as an argument to the decoration key or parameter.
+id="">3. The `BoxDecoration` widget is used to set the background image by specifying a `DecorationImage` widget as an argument to the `image` parameter. This `DecorationImage` also accepts an <a href="https://api.flutter.dev/flutter/painting/ImageProvider-class.html" target="_blank" id="">ImageProvider</a> to provide the actual image to be displayed. Here, an `AssestImage` widget is used as an `ImageProvider`. It accepts a relative path to the image file to be displayed. The `fit` parameter is used to determine the behavior of the image across the entire container widget. In this case, you want it to cover the entire container using the `Boxfit.cover` argument.
+id="">4. Notice the child of the `Container` widget is a `BackDropFilter` widget. This `BackDropFilter` widget allows you to <a href="https://api.flutter.dev/flutter/widgets/BackdropFilter-class.html" target="_blank" id="">apply image filters on its parent widgets</a>. This means it actually has no effect on the child widgets; only the `Container` with the image background is affected. Here, you’re using it to blur the background image.
+id="">5. This line creates the parent `Row` widget, which allows you to arrange elements horizontally. You align all the contents of the row to the center.
+id="">6. &nbsp;For the children, just as you have in the tree, you define the first column for the Left Pane section, but the column widget does not allow you to specify a width for it. Depending on the size required by its children widgets, it uses the space made available to it by the parent widget. Therefore, you wrap it with a container widget where you define a width of 300. You also specify the color indigo to make that section visible when you run your app.
+id="">7. Here you define a `Column` widget inside an `Expanded` widget to allow the column’s children to utilize the screen space left after it assigns 300 pixels to the container for the Left Pane. The column contains three children: the first for the main header with the search bar, the second for the sort and filter section, and the third for the main pane.
+id="">8. For the header and filter sections, you have two `Rows` created each within a `Container` of height 120 and assigned colors to make them visible when you run the app.
+id="">9. For the Main Pane section, you use another expanded widget so it can expand to fill and utilize the screen space left after assigning the various heights to the header and filter sections.
+id="">Now run the app in your browser — using either your IDE controls or the terminal — using this command:
+id="">You should have an output similar to the one below.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/628fed2dc9e8b141b2aeb8af_1*NZLTZiz_8AY01674lwMQmw.png" width="auto" height="auto" loading="auto" id)
+
+id="">Create a directory inside the `lib` directory of your project root and name it `widgets`. Create another directory there called `leftpane`. This directory will contain all the code and custom widgets related to the left pane.
+id="">Next, you’ll create the following files — ` main_nav_item.dart`, `sub_nav_item.dart`, and `left_pane_widget.dart`— inside the `leftpane` directory, and then follow the instructions below for creating the content within each.
+id="">In the above code:
+id="">1. &nbsp;You declare a set of variables to help define the title, the icon, and the selected state of your menu items.
+id="">2. &nbsp;For the build method returning the widget, you first define a `Container` with padding horizontally for the space before and after each menu item.
+id="">3. From the Material library, the `MaterialButton` widget is used to add a clickable button widget within which each menu item title and icon will be wrapped. You then use the `isSelected` variable to determine the color of the button. If true, highlight it with a purple color; if false, leave it. The `onPressed` parameter is used to define a function that’s called when the menu item (which is actually a button) is clicked or pressed. For this, you’ll pass `action` to the menu item. The value of the action will be a function passed from the parent widget of each menu item during its creation.
+id="">4. For the child of the `MaterialButton` widget, you’ll define a row widget that contains an `Icon` and a `Text` widget with a `SizedBox` widget in between them. `SizedBox` is used to define the space between the two widgets on the same row. Considering all the menu items have the same format or styling (where icons have the same color and size), you define them as constants and only pass an `IconData` as an argument to the `Icon` widget constructor. The same applies to the `Text` widget. You define a style with constant values white and font size 20, but for the text value, you pass on the values from your constructor as an argument to the `Text` widget.
+id="">As you’ve probably noticed, the code above is very similar to that of the `MainNavItem` widget you previously created. The differences between the two are explained below:
+- id="">The variables are “Null Safe.” Simply put, they can be initialized to `null`, so that for the same widget you can decide to provide only the `title` without the icons and it will be displayed as one of the smaller menu items. If you do provide icons, they’ll appear in their respective positions.
+- id="">Also, the default text size is 18, which is smaller than the `MainNavItem`. Therefore, for a bigger menu item size like the first one, you can specify the `size` parameter when creating the widget.
+id="">In the code above, as pointed out earlier, you add the logo, the main navigation menu, and the sub-navigation menu.
+- id=""><strong id="">The Upper or Main Navigation Menu:** You then define a `Column` setting the `CrossAxisAlignment` to the center, so that the children of the column will be aligned vertically in the middle as you see in the artwork. The children of the `Column` include the size box at the top to introduce some space between the logo and the first menu item.
+- id="">Next, you have the four main navigation items using the widgets created earlier in this section. As you can see, you first pass in the title of the menu item as a string value, then you pass on the respective icon, a Boolean value to tell the widget if it’s selected or not, and an empty anonymous function. This creates the menu items that will be clickable but won’t do anything if you click. Don’t worry about this for now.
+- id=""><strong id="">Sub Navigation Menu:** Next is another `Column` widget just as you did for the main navigation pane. Its children are four `SubNavItem` widgets. Just as you defined, this widget takes a `String` for the title of the menu item, a `double` for size and then two icons, (the first one for the icon before the title and the second one for the icon after the title), then a Boolean value and a function.
+id="">You can see that, with the exception of the very first item on this menu, you don’t provide the icons and font size for the subsequent items even though you’re using the same widget. This will show when you run the application, as the latter three menu items will be smaller using the default font size, 18.
+id="">To see these changes when you run the app, create the `LeftPane` widget in the appropriate section of the `AppLayout` widget you created earlier. Replace the child of the `Container` with the width of 300 from `Column` to `LeftPane` as seen below.
+id="">Change this:
+id="">to this:
+id="">Now run the app to see what you have. Your output should be similar to the image below. You’ll notice the menu items are clickable but nothing happens. You’ll work on that later.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/628fed2edec22224e81083b4_1*aDEll10Y8_WD6GqmUo_01A.png" width="auto" height="auto" loading="auto" id)
+
+id="">This section consists of two major components: the Profile Section and the Search Bar. Start by creating a directory named `mainheader` inside the `widgets` directory and create the following three files to provide the content for the components.
+id="">As you can see, this is a very simple widget.
+- id="">The `Text` widget is used for the user’s name. This is just a constant string value and should ideally be loaded from an API backend.
+- id="">The `CircleAvatar` is a widget that accepts an image and formats it within a circle. In this case, you’re providing an `AssetImage` widget with the path to your profile thumbnail photo file. This could also be a `NetworkImage` widget that would load the image from a server dynamically if you’re getting your data via a backend API as stated earlier. You can determine the size of this widget by specifying the radius as we’ve done here with the value 35.
+- id="">The next is the `Icon` widget, where you specify a white settings icon. Ideally, it should be able to respond to clicks and, therefore, should have been wrapped with a `MaterialButton` as was done with the menu items. But the aim is mainly to achieve the UI represented in the artwork.
+- id="">The `SizedBox` widgets you see were used to define spaces in between these three widgets.
+
+id="">As you can see above, you’re returning a `Flexible` widget so that the search area will fill the rest of the screen space after assigning the required space for the `ProfileSection` widget.
+- id=""><strong id="">Search icon:** As part of the decoration for the `TextField` widget, you can define a `prefixIcon`, which is essentially an icon that’s shown before the input box. You specify the `Icon` widget with the search icon and wrap them inside a `Padding` widget to provide some spacing around the icon as seen in the artwork.
+- id=""><strong id="">Hint text search in text box:** You use the `hintText` parameter to provide a text on what can be searched in the search input field and you also define the styling for that text.
+- id=""><strong id="">Remove borders:** By default, the `TextField` widget has some borders, and here, you specify that this `TextField` widget should have no borders.
+- id=""><strong id="">Text color and style:** You specify the color for the cursor and the style for the text when something is typed in the search box.
+
+id="">Once again, update the `AppLayout` widget to include the `MainHeader` widget instead of the existing `Row` widget. You should edit the `layout.dart` file as follows:
+id="">Running the app should now give you the following output.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/628fed2ef8f5c6eea1f36e08_1*DhUXbIeH4hcEcG2Biq0zoA.png" width="auto" height="auto" loading="auto" id)
+
+id="">This section has two major components. The first is the Sort Section and the second is the View Controls. Create a directory named `subheader` inside the `widgets` directory. You’ll then create the three files — `sort_control.dart`, `view_controls.dart`, and `sub_header.dart` — and define the contents for each file as per the specific instructions below.
+id="">The row contains the following children:
+- id="">Next, you have a `Text` widget that you use as a label titled “Sort by.”
+- id="">Then there is another `SizedBox` that’s used to create space between the `Text` and the next widget.
+- id="">Finally, you add a `DropdownButton` widget for the filter options. This widget allows you to specify a number of dropdown menu items using the `items` parameter of that widget as seen above. Here you add only one `DropdownMenuItem`, named “duration.” It provides other parameters to define actions that should happen when any of the menu items is selected. But for now, you leave it with an empty anonymous function.
+id="">Update the `AppLayout` widget to now include the `SubHeader` widget instead of the existing `Row` widget. Edit the `layout.dart` file as follows:
+id="">Running the app should now give you an output that looks like the image below.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/628fed2efad35e5d2e892549_1*qRXbuBw9KVbptzJhhg-VRg.png" width="auto" height="auto" loading="auto" id)
+
+id="">This widget is the part of the application to which most attention will be paid by users, as it contains the main content. This part of the app takes the data provided and creates a grid of scrollable tile items. The contents of the file are as follows:
+- id="">Then, you define a constructor that allows you to initialize the data variable. This means when creating or instantiating this widget, you need to provide a list of maps with the movie data that will be used to build the `<a href="https://api.flutter.dev/flutter/widgets/GridView-class.html" target="_blank" id="">GridView`</a> of movies.
+- id="">In the build method, you return a `<a href="https://api.flutter.dev/flutter/widgets/GridView/GridView.builder.html" target="_blank" id="">GridView.builder`</a> widget. This widget allows you to build a `GridView` by specifying the number of parameters and also describing how each tile item in the grid will look.
+- id="">Add a padding of 100 horizontally and 20 vertically to create some space from the edges of the Main Pane area.
+- id="">The `itemCount` parameter is provided with the value of the length or number of items in the list of data that will be received from the constructor.
+- id="">The `gridDelegate` parameter is provided a `<a href="https://api.flutter.dev/flutter/rendering/SliverGridDelegate-class.html" target="_blank" id="">SliverGridDelegate`</a> widget. According to Flutter’s documentation, this widget is used to control the layout of tiles in a grid. It uses the various constraints provided to compute the layout of the tiles in the grid.
+- id="">In this case you are providing a `<a href="https://api.flutter.dev/flutter/rendering/SliverGridDelegate-class.html" target="_blank" id="">SliverGridDelegateWithMaxCrossAxisExtent`</a> widget. This widget creates a layout with the maximum number of items that can fit horizontally in the grid, meaning that the size of each grid item and the number of items shown per row in the grid will vary depending on the screen size of the device. This level of responsiveness exists in this widget by design, but is not present in other elements of the implemented UI, as the corresponding widgets don’t include responsiveness by design and adding such functionality is beyond the scope of this tutorial.
+- id="">For the `gridDelegate` parameter, you want to specify some spacing between the grid items, both horizontally and vertically. That’s done with the values of 50 and 20, respectively, to `crossAxisSpacing` and `mainAxisSpacing`.
+- id="">The maximum width of each item is defined by the value of 300 assigned to the `maxCrossAxisExtent` parameter.
+- id="">And finally an aspect ratio of 2.8/5 is specified to determine the ratio of width to height of each item.
+- id=""><strong id="">Building individual grid items with itemBuilder:** The `ItemBuilder` parameter is used to define various widgets and describes how each tile should look. This parameter takes an anonymous function that accepts a `BuildContext` and an index (of the current item in the data list) and returns a widget. Here, you return a `Column` widget containing a `Flexible` widget and a `Container` widget.
+- id=""><strong id="">Creating rounded corners with ClipRRect:** The `Flexible` widget contains a `<a href="https://api.flutter.dev/flutter/widgets/ClipRRect-class.html" target="_blank" id="">ClipRRect`</a> widget. This widget is used to round the corners of its child widget. This allows each item in the grid to have rounded corners. The roundness of the corner is defined by passing a circular border radius of 10 to the `borderRadius` parameter of this widget.
+- id="">The `<a href="https://api.flutter.dev/flutter/widgets/ClipRRect-class.html" target="_blank" id="">GridTile`</a> widget is assigned an `<a href="https://api.flutter.dev/flutter/widgets/Image-class.html" target="_blank" id="">Image`</a> widget as a child and a `Container` widget as a footer. As the tile images are going to be dynamically loaded over the network, a `<a href="https://api.flutter.dev/flutter/painting/NetworkImage-class.html" target="_blank" id="">NetworkImage`</a> is used as a provider to the `Image` widget. The URL string to the image file is specified by concatenating the base URL from the value of `pImageBase` and the image filename for each tile to get the complete URL string.
+- id="">The footer of the tile is assigned a `Container` that is used to define the movie rating on the lower right side of the tile.
+- id=""><strong id="">Defining the movie title and genre:** Next, the movie title and the genre are defined. All of these are placed in a `Column` widget so you can have the title at the top and the genre beneath it. The outer `Container` widget is used to align the contents to the center left using the `alignment` parameter.
+- id="">Both the title and the genre are defined using `Text` widgets with the string values obtained from the data items provided.
+- id="">For the movie genre, you create a function at the bottom of the class named `getGenre` that uses the IDs of the genre provided for each movie to obtain the title of the genre from the list of genres in the genre data set. This function can be seen below:
+id="">Finally, you need to add the `MainPane` widget to the `AppLayout` and also provide some data when instantiating the `MainPane` widget. To do that, you import your `data.dart` file (that was created at the beginning of the tutorial) into the `layout.dart` file by adding the following line to the top of the file:
+id="">Next, you replace the “Hellooooo World” `Text` widget with the `MainPane` and pass the `topChart` data variable from the `data.dart` file as an argument to the `data` parameter as follows:
+id="">Change this block:
+id="">to this:
+id="">Running the app should now give you an output similar to the following image.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/628fed2e14ca970ae5b9f4a3_1*ZsV3zYKiiY_FtYrsSPdIYg.png" width="auto" height="auto" loading="auto" id)
+
+### 4. Adding Basic Functionality
+id="">As stated earlier in this tutorial, the goal is to achieve basic functionality in our Flutter web app. In this case, making the main navigation on the left pane functional. In other words, clicking on each item will do two things:
+id="">1. Change the data for the `GridView` in the `MainPane` widget to the respective data for the selected menu item and update the UI with the new data.
+id="">2. Toggle the `isSelected` state of the menu item to show it’s currently selected.
+id="">To be able to get the functionality needed, you have to understand basic state management in Flutter. In the `layout.dart` file, the `AppLayout` widget was created as a stateful widget mainly because this is where all the other parts of the application come together.
+id="">First, you introduce two new variables. One is a list of maps with the movies and the other is an integer:
+
+- id="">The map will be used to hold the current data to be shown.
+id="">These should be placed right before the build method as follows:
+id="">Second, you have to add a method that’ll be used to change the values of the variables you just added each time a menu item is clicked. This method will be passed down to the `LeftPane` widget. Therefore, it will accept two arguments, an integer to set the current page and the list of maps of movies to change the data. The snippet below should be placed before the end of the state class definition’s closing braces:
+id="">In Flutter, every time you need to update the UI with a new set of values, you call `setState()`. This will ensure that all variables with updated values are used to reconstruct or refresh the widget trees in order to reflect the current data. So every time a menu item is clicked, `setState()` will be called in your function and used to update the page number and the data for the main pane.
+id="">Now, you pass the `menuAction()` method you just created and the `_currentPage` variable as arguments to the left pane widget as follows:
+id="">You also need to pass the `data` variable as an argument to the `MainPane` widget as follows:
+id="">Now in the `LeftPane` widget, you need to pass your action function to each menu item. There’s also a need to dynamically toggle the selected state of each menu item using the selected value passed to the parent widget. This can be done by simply modifying each menu item call as follows:
+id="">Here, you check to see if the `selected` value passed is the same as that of the menu item, which can be true or false. You also pass the respective data list from the `data.dart` file to the `mainNavAction()` method call.
+id="">At this point, running the app should give you the output below with the menu item clicks working.
+
+### 5. Building the App for Production
+id="">To get your Flutter web app into production, you first have to build and release a version of it. This will generate static files including JavaScript, HTML, and the various assets for the project. You can do that by running the command below from the root directory of your project using your terminal:

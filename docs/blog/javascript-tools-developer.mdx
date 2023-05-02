@@ -1,0 +1,111 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62f2bbd9c96fca3824eab183_javascript-tools.jpg)
+""
+# JavaScript Tools Every Developer Should Know
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+## Best JavaScript Debugging Tools
+id="">Debugging is a routine task in software development. Bugs can be caused by syntax errors, incorrect algorithms, incomplete loops, or other things entirely.
+id="">According to <a href="https://queue.acm.org/detail.cfm?id=3068754#:~:text=Software%20developers%20spend%2035%2D50,time%20validating%20and%20debugging%20software.&text=The%20cost%20of%20debugging%2C%20testing,more%20than%20%24100%20billion%20annually" target="_blank" id="">ACM Queue</a>, developers spend 35–50% of their time validating and debugging software, and debugging, testing, and verification can cost 50–75% of the total budget of a software project.
+id="">Debugging tools for JavaScript simplify the process of finding these bugs, saving you time, energy, and resources. There are several types of tools that help with JavaScript debugging.
+
+### Browser Console Tools
+
+![](9efb3/623dde51fe0f9c707e7328d6_1*EeiSEUxVy7tCNukwB0UVAQ.png" width="auto" height="auto" loading="auto" id)
+
+id="">The console object provides access to the browser’s debugging console via methods including console.log, console.trace, console.assert, and console.group. The following are some examples:
+id="">console.log() is used for outputting text to the console. For example, to output a single object to the console, run this code:
+id="">The output will be:
+id="">You can also output multiple objects by listing them with the .info() method, as the following: 
+id="">The output will be: 
+id="">The .trace() method will show you the call path taken to reach the point at which you called console.trace(). For example, in this code: 
+id="">The output of the code will look something like this:
+
+
+![](8f555387049efb3/623de1b92c57af45ab0b24f6_1*0ensG2ZMvX9Wxws1j6oHlA.png" width="auto" height="auto" loading="auto" id)
+
+id="">This is handy when you need to find all of the places in your code that call for a particular function. Just call console.trace() js at the point where the function is declared.
+id="">Check our <a href="https://developer.mozilla.org/en-US/docs/Web/API/console" target="_blank" id="">MDN Web docs</a> for more about the browser console methods. 
+
+### React Developer Tools &nbsp;
+![](9efb3/623de1e97438562d8698ad92_1*98a8xYgJ8LIdkWl_GJZrDA.png" width="auto" height="auto" loading="auto" id)
+id="">React Developer Tools is a <a href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en" target="_blank" id="">Chrome </a>and <a href="https://addons.mozilla.org/en-US/firefox/addon/react-devtools/" target="_blank" id="">Firefox</a> DevTools extension for open source React JavaScript library. It allows you to debug your React application from your browser. Both the root component and the subcomponents show all loaded components, events, and states.
+
+### Vue Devtools
+![](9efb3/623de1e99b87bd1de8661f93_1*lw27yxmd9vNrJcNBgaknxA.png" width="auto" height="auto" loading="auto" id)
+id="">Like React Developer Tools, <a href="https://devtools.vuejs.org/" target="_blank" id="">Vue Devtools</a> helps JavaScript developers debug Vue.js applications. If you’re using an unsupported browser or have specific needs, the extension can be installed <a href="https://devtools.vuejs.org/guide/installation.html#standalone" target="_blank" id="">as a standalone application</a> using the Node package manager. There are also numerous Vue Devtools plugins available.
+
+### VS Code Built-In Debugger Tool
+id="">If you use the popular Visual Studio Code editor, it comes with a <a href="https://code.visualstudio.com/docs/introvideos/debugging" target="_blank" id="">powerful debugger</a> that helps accelerate your edit, compile, and debug loop. The VS Code documentation offers excellent information on how to use it.
+
+## Linting/Code Formatting Tools
+id="">Linting is the automated process of checking for programmatic or syntax errors during programming. A linter scans your code and flags style bugs or warnings about inconsistencies in code styles. For example, the code below has a syntax error that JavaScript wouldn’t approve:
+id="">JavaScript does not allow the constant declaration of variables to be repeated. This sort of error is so minor that it would be hard to detect in a large codebase, but a linter would flag it. Some code formatters will also fix the code after detecting an error.
+id="">The following are several good examples of JavaScript linters.
+
+### Prettier
+![](9efb3/623de2a0566e6702e59a3570_1*R9ag8OG3_15EQlv4fVpQEA.png" width="auto" height="auto" loading="auto" id)
+id=""><a href="https://prettier.io/" target="_blank" id="">Prettier</a> is an <a href="https://prettier.io/docs/en/why-prettier.html" target="_blank" id="">opinionated</a> code formatter. Just save and your code will be formatted automatically. Your team won’t need to discuss style in code review — just add a prettierrcdocument at the root of your project with the required style options.
+
+### ESLint
+![](9efb3/623de2a1316de080ec91278e_1*LvbqAP0y9kJM9HChRGLAFQ.png" width="auto" height="auto" loading="auto" id)
+id=""><a href="https://eslint.org/" target="_blank" id="">ESLint</a> is a static code analysis tool for identifying and reporting patterns found in ECMAScript or JavaScript code to improve code consistency and prevent errors. It helps maintain code integrity, offers suggestions for code changes, and allows you to format automatically on save.
+id="">ESLint is available as a VS Code extension. It is also available via JavaScript package managers such as npm and yarn, as follows:
+id="">The ESLint website offers<a href="https://eslint.org/docs/user-guide/configuring/" target="_blank" id=""> detailed documentation</a> in how to configure ESLint for your needs. 
+
+##  Productivity JavaScript Tools
+id="">The way to increase productivity is to automate what you can, saving time and energy, while you focus on writing code. There are multiple JavaScript tools to enhance productivity.
+
+###  RegExr
+![](9efb3/623de35cb45b0c5e60973db4_1*tIZHeqERSXUa_fkrR8WM5A.png" width="auto" height="auto" loading="auto" id)
+id=""><a href="https://regexr.com/" target="_blank" id="">RegExr</a> is a web tool to learn, build, and test <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions" target="_blank" id="">regular expressions</a> by visualizing the results. RegExr also provides a cheat sheet for regular expressions.
+
+###  Faker
+![](9efb3/623de35c206ce570f4d94f2e_1*rKmyUngC-n0nF_KP1W3eqQ.png" width="auto" height="auto" loading="auto" id)
+id=""><a href="https://fakerjs.dev/" target="_blank" id="">Faker</a> is a JavaScript library for generating fake data sets that can be used in testing software.
+id="">Faker can be installed using any of the following:
+id="">The Faker <a href="https://fakerjs.dev/guide/" target="_blank" id="">guide</a> offers a detailed explanation of installation and usage in the browser, Node applications, and Deno applications.
+
+## JavaScript Documentation Tools
+id="">Documentation is a key part of the code review process because it helps developers, testers, and QA engineers to more easily understand the codebase, making maintenance easy. However, the documentation process can be complex, which is where these code documentation tools can help.
+
+
+### Postman
+![](9efb3/623de42386ded6639e7bdb8b_1*xEGsXziR2Zbbu0wyNpsqWw.png" width="auto" height="auto" loading="auto" id)
+id=""><a href="https://www.postman.com/" target="_blank" id="">Postman</a> allows you to build, test, and document APIs and web applications. It can be integrated into your application using the Postman API, and it offers a built-in tool to mock data for API testing. Postman has extensive documentation and a <a href="https://learning.postman.com/docs/getting-started/introduction/" target="_blank" id="">cheat sheet</a>.
+
+###  Swagger
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/623de424cae7526b83c9af8b_1*DuNEE8WwHeG6WjBgD8F0wQ.png" width="auto" height="auto" loading="auto" id)
+id=""><a href="https://swagger.io/" target="_blank" id="">Swagger</a> is a JSON schema that describes the structure of an API. It’s a good tool for documenting APIs and web applications. Swagger helps you automatically generate and update API documents, ensuring they stay up to date as the API evolves.
+
+### JSDoc
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/623de423ab02bdff95322c43_1*9Ozr3-kBxK5WlD9NDUeLog.png" width="auto" height="auto" loading="auto" id)
+id="">
+
+id=""><a href="https://jsdoc.app/index.html" target="_blank" id="">JSDoc</a> is an API documentation generator for JavaScript, similar to Javadoc or phpDocumentor. After you add document comments next to the source code, JSDoc scans the source code and generates an HTML document. This makes project documentation easy.
+
+## JavaScript Testing Tools
+id="">Testing helps to ensure that your code is working as expected and is bug-free. It also ensures that updates don’t introduce new bugs or break other parts of the codebase. These tools save you the trouble of manual testing.
+
+###  Jest
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/623de42314a18c07c2a27fce_1*Q2i6yYe2jGHxEyeHVNzG0Q.png" width="auto" height="auto" loading="auto" id)
+id=""><a href="https://jestjs.io/" target="_blank" id="">Jest</a> is a JavaScript testing framework that runs tests in Node.js. Originally built to test React, Jest is available as an npm package. It helps you to write tests that are fast, reliable, and maintainable.
+
+### Cypress
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/623de424cae7528350c9af8a_1*EyVyZkxUBbG8g-WUg2IiHg.png" width="auto" height="auto" loading="auto" id)
+id="">
+
+id=""><a href="https://www.cypress.io/" target="_blank" id="">Cypress</a> is an end-to-end testing framework using snapshots. The all-in-one testing framework with assertion offers a built-in tool for mocking and stubbing. Tests are written in pure JavaScript and work quickly, as they execute directly inside the browser. Cypress is available as an npm package.
+
+## Code Completion JavaScript Tools
+id="">Code completion is the process of providing coding suggestions during programming, which helps you to write code more quickly and efficiently. The following tools will enhance the consistency and readability of your code.
+
+
+### Tabnine
+![](9efb3/623de423cdf89a48dda3295c_1*_8kXWee0-_wLbILEM2EUmw.png" width="auto" height="auto" loading="auto" id)
+id=""><a href="https://www.tabnine.com/" target="_blank" id="">Tabnine</a> is an AI code completion assistant that learns from every interaction, providing personalized, contextually relevant code completions. It supports the most popular languages, libraries, and frameworks, including JavaScript, and it’s available on the major IDEs as extensions.
+
+### GitHub Copilot
+![](9efb3/623de423561b7d93bbbe99df_1*CwUYi4ePEM8k_qtkaHJlIQ.png" width="auto" height="auto" loading="auto" id)
+id=""><a href="https://copilot.github.com/" target="_blank" id="">GitHub Copilot</a> is a GitHub-powered, open-source code review tool that helps you write code faster and with less work. It simplifies coding with a new or unfamiliar language or framework. It’s available as an extension for VS Code, JetBrains, and Neovim.
+
+## Pieces for Developers:&nbsp;The Ultimate JavaScript Tool

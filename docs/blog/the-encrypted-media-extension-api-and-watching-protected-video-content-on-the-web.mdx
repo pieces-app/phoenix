@@ -1,0 +1,162 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd7c8b6b2878227d1059ab_streaming_5e6d28bd64e7476f8d534b691209bdbb_2000.jpeg)
+"api-3; video"
+# The Encrypted Media Extension API and watching protected video content on the web
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+Since the beginning of video on the internet, it’s been a continual challenge to protect video copyright and prevent illegal distribution.
+From music to books and movies, we can still find pirated copies on the internet. Audio and video assets have flooded the internet for years. Netflix, HBO, Disney, Amazon, Spotify, and others regularly upload hours and hours of content to watch and listen to.
+However, much of the uploaded content is protected by its authors and copyright holders. This content is encrypted thanks to cryptographic technologies that prevent streaming without the right to do so. Hence, to play the content, users first have to prove that they’re allowed to do so by presenting proof that they’ve paid to watch it.
+Early on, a few standards emerged to address the problem of distributing protected content on the internet, so the term Digital Rights Management (DRM) was created.
+
+## Content Decryption Module (CDM)
+Encryption would be impossible without the Content Decryption Module. The CDM is a piece of proprietary software that uses a key to decrypt video content that is encrypted.
+
+A CDM is integrated into almost all major browsers, including Safari, Chrome, and Firefox.
+However, depending on the browser, there are different kinds of CDMs.
+
+For instance, Safari uses an Apple-created CDM named Fairplay on every Apple device.
+Some others are less frequently used, like Microsoft’s Playready, or Nagra.
+The most common CDM, though, is Widevine. We can find Widevine inside Firefox, Chrome, Microsoft Edge, and many other setup boxes like Chromecast.
+
+For example, the Playstation 5 uses Playready as a CDM, but Microsoft Edge also implemented Playready and Widevine. For Widevine, you can check the following URL to see devices in which the CDM is implemented:
+
+<a href="https://developers.google.com/widevine/drm/overview" target="_blank" rel="noopener noreferrer">https://developers.google.com/widevine/drm/overview</a>
+
+The CDM is basically like a black box; the less we know about how it works, the better it is for keeping the CDM safe from potential hackers.
+The level of protection that the CDM offers is closely related to the hardware. Indeed, we can take the example of Widevine, which offers three levels of protection, depending on the hardware:
+- Widevine L1 ⇒ Highest level of protection. Media and cryptography operations occur in a trusted execution environment (TEE).
+- Widevine L2 ⇒ Only cryptography operations are executed in a TEE, not media processing.
+- Widevine L3 ⇒ Software-based DRM only.
+
+When a company like Google with its Chromebook or Apple with its Macbooks or iPhones owns the whole line from the hardware to the software, this allows for a more robust level of protection as TEEs are implemented.
+
+However, the CDM is not the only piece of the puzzle in the entire process. We also need a server that will distribute the key that the CDM will use to decrypt the content.
+In the next section, we’ll see how the Encrypted Media Extension API is used to orchestrate the exchange between the server that distributes the keys and the CDM that decrypts the video content.
+
+## Encrypted Media Extension
+Encrypted Media Extension (EME) is an API that’s available in most browsers following a<a href="https://www.w3.org/TR/encrypted-media/" target="_blank" rel="noopener noreferrer"> W3C standard</a> that allows the client to play encrypted audio and video content without using additional plugins.
+
+### The First Building Block
+Let’s enter the API. Everything starts from the method: ```requestMediaKeySystemAccess``` bound to the navigator object in the browser. The call to this method is the mandatory first step in deciphering the video content. It’s a way for us to ask what configuration is available given a specific content decryption module. For instance, it allows the ability to ask for a very strict configuration that respects a high level of security. This is because our content is very sensible, but also can only serve standard quality when the guarantee on the device is too low.
+```
+requestMediaKeySystemAccess(keySystem, supportedConfigurations)```
+As a first parameter, there is a ```keySystem``` string that allows us to identify what kind of CDM we want to use for the current session. For instance, if we want to use Widevine as a CDM, it would be ```com.widevine.alpha```. The following URL shows some of the most used keySystems:
+<a href="https://mediahelper.vercel.app/encryption#simpleKeySystems">https://mediahelper.vercel.app/encryption#simpleKeySystems</a>
+
+Next, it accepts a second parameter, which is a possible configuration we may want to use for deciphering video/audio content. Specifying a configuration helps to know what level of security the device supports. You can check the following URL to uncover what parameters the configuration is waiting for:
+<a href="https://mediahelper.vercel.app/encryption#advancedKeySystems">https://mediahelper.vercel.app/encryption#advancedKeySystems</a>
+
+The method returns a promise that will either resolve with any supported CDM configuration or reject it if no configuration asked for by the current device is supported.
+
+### MediaKeySystemAccess Interface
+```
+navigator.requestMediaKeySystemAccess('com.widevine.alpha', [{"label":"","initDataTypes":["cenc"],"audioCapabilities":[{"contentType":"audio/mp4;codecs=\\"mp4a.40.2\\"","robustness":"HW_SECURE_ALL"},{"contentType":"audio/mp4;codecs=\\"mp4a.40.2\\"","robustness":"HW_SECURE_DECODE"},{"contentType":"audio/mp4;codecs=\\"mp4a.40.2\\"","robustness":"HW_SECURE_CRYPTO"},{"contentType":"audio/mp4;codecs=\\"mp4a.40.2\\"","robustness":"SW_SECURE_DECODE"},{"contentType":"audio/mp4;codecs=\\"mp4a.40.2\\"","robustness":"SW_SECURE_CRYPTO"}],"videoCapabilities":[{"contentType":"video/mp4;codecs=\\"avc1.4d401e\\"","robustness":"HW_SECURE_ALL"},{"contentType":"video/mp4;codecs=\\"avc1.4d401e\\"","robustness":"HW_SECURE_DECODE"},{"contentType":"video/mp4;codecs=\\"avc1.4d401e\\"","robustness":"HW_SECURE_CRYPTO"},{"contentType":"video/mp4;codecs=\\"avc1.4d401e\\"","robustness":"SW_SECURE_DECODE"},{"contentType":"video/mp4;codecs=\\"avc1.4d401e\\"","robustness":"SW_SECURE_CRYPTO"}],"distinctiveIdentifier":"optional","persistentState":"optional","sessionTypes":["temporary"]}]).then(console.warn```<a href="https://3863d558-45a9-40e6-9dff-136019435fd6.pieces.cloud/?p=a08b469db2">Save this code</a>
+
+The first step is over. We detected that an existing configuration that suits our needs is available, so we can use that configuration returned by the ```requestMediaKeySystemAccess``` to go further.
+```
+interface MediaKeySystemAccess {
+    readonly attributeDOMStringkeySystem;
+    MediaKeySystemConfigurationgetConfiguration();
+ Promise<MediaKeys>createMediaKeys();
+};```<a href="https://3863d558-45a9-40e6-9dff-136019435fd6.pieces.cloud/?p=bdf84091ab">Save this code</a>
+Indeed, the previous method above is returning a ```MediaKeySystemAccess``` interface that will be our go-to to exchange data between the server and the CDM.
+
+### Creating the MediaKeys
+To start, we need to create a ```MediaKeys``` instance that represents a set of keys that an associated ```HTMLMediaElement``` can use for decryption.
+
+We can create a ```MediaKeys``` instance thanks to the method present on the ```MediaKeySystemAccess``` interface we currently have.
+```
+const mediaKey = await mediaKeySystemAccess.createMediaKeys();```<a href="https://3863d558-45a9-40e6-9dff-136019435fd6.pieces.cloud/?p=f0bd428cf9">Save this code</a>
+
+It returns a promise with the new ```MediaKey``` created.
+Once we have created the media key, we can first attach this media key to the ```VideoElement``` like so:
+```
+video.setMediaKeys(mediaKeys);```<a href="https://3863d558-45a9-40e6-9dff-136019435fd6.pieces.cloud/?p=2c214e9d2c">Save this code</a>
+
+Doing this will tell the video element that we will use that media key instance to decipher the content. A ```MediaKey``` represents a CDM instance. A ```MediaKey``` has the following interface:
+```
+interface MediaKeys {
+    MediaKeySession  createSession(optional MediaKeySessionType sessionType = "temporary");
+ Promise<boolean> setServerCertificate(BufferSource serverCertificate);
+};```<a href="https://3863d558-45a9-40e6-9dff-136019435fd6.pieces.cloud/?p=431743b9e0">Save this code</a>
+
+On the one hand, we have the ```setServerCertificate``` method that permits encrypting messages sent between the license/key server and the CDM. That method is not mandatory, but would help avoid an additional round trip of exchange between the license server that contains the keys used to decipher and the content decryption module (CDM).
+On the other hand, the ```createSession``` method is mandatory to continue our journey to decipher the video to be playable in the browser.
+
+The ```createSession``` method takes a parameter that will tell if the current session of deciphering will be temporary or persistent. Indeed, some licenses distributed by the server could contain persistent keys that the CDM can reuse later. The CDM stores those reusable keys in safe local storage on the machine. However, this feature requires a higher level of security from the device because it’s a lot more sensitive since we store the key on our machine. Persistent licenses are often used to consume the content offline or for performance purposes to avoid retrieving the licenses containing the keys again.
+
+### MediaKeySessions
+As you may be aware, we need to create a new ```MediaKeySession``` to decrypt the content. We can do that by invoking the following method:
+```
+const mediaKeySession = mediaKey.createSession('temporary');```<a href="https://3863d558-45a9-40e6-9dff-136019435fd6.pieces.cloud/?p=784e4aa929">Save this code</a>
+
+It returns a ```MediaKeySession``` with a richer interface than we saw before:
+```
+interface MediaKeySession :EventTarget {
+    readonly attribute DOMStringsessionId;
+    readonly attribute unrestricted doubleexpiration;
+    readonly attribute Promise<void>closed;
+    readonly attribute MediaKeyStatusMapkeyStatuses;
+             attribute EventHandleronkeystatuseschange;
+             attribute EventHandleronmessage;
+ Promise<void>generateRequest(DOMStringinitDataType,
+                                     BufferSourceinitData);
+ Promise<boolean>load(DOMStringsessionId);
+ Promise<void>update(BufferSourceresponse);
+ Promise<void>close();
+ Promise<void>remove();
+};```<a href="https://3863d558-45a9-40e6-9dff-136019435fd6.pieces.cloud/?p=1e88428797">Save this code</a>
+
+We’re more specifically interested in the ```generateRequest``` method used to generate a challenge that will be sent to the license server. A challenge is raw binary data containing information on how to decipher the content. We then need to transmit that challenge to the license server that will be able to answer with a license containing the necessary keys to decrypt the video content.
+
+Therefore, in order to ask the CDM to generate a challenge, we use the ```generateRequest``` method as follows:
+```
+await mediaKey.generateRequest(initDataType, initData);```<a href="https://3863d558-45a9-40e6-9dff-136019435fd6.pieces.cloud/?p=cf65408756">Save this code</a>
+
+It takes two parameters. The first is the encryption schema we should use. Most of the time, this will be ```cenc``` for common encryption. Then, the second parameter is the initialization data, a generic term for container-specific data used by a CDM to generate a license request. To get the ```initData```, we would listen to the ```onencrypted``` event from the video element (```<a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement" target="_blank" rel="noopener noreferrer">HTMLMediaElement.onencrypted</a>```). Indeed, if a video segment is encrypted, as soon as the video receives the first video segment in the buffer, this event will fire with the ```initDataType``` and the ```initData``` needed.
+
+### Listening to events when the CDM is ready and pushing the license to the CDM
+Once we call the ```generateRequest``` method, we would need to wait for the challenge to be produced by the CDM. To achieve this, we can listen to a specific event on the ```mediaKeySession``` we created earlier:
+```
+mediaKeySession.addEventListener('message', event => {
+ const challenge = event.message;
+ const xhr = new XMLHttpRequest();
+    xhr.open("POST", LICENSE_SERVER_URL, true);
+    xhr.onerror = (err) => {
+      reject(err);
+    };
+    xhr.onload = (evt) => {
+ if (xhr.status >= 200 &amp;&amp; xhr.status < 300) {
+ const license = evt.target.response;
+        resolve(license);
+      } else {
+ const error = new Error(
+ "getLicense's request finished with a " + &#x60;${xhr.status} HTTP error&#x60;
+        );
+        reject(error);
+      }
+    };
+    xhr.responseType = "arraybuffer&quot;;
+    xhr.send(challenge);
+}}
+```
+
+<a href="https://3863d558-45a9-40e6-9dff-136019435fd6.pieces.cloud/?p=809e4393d0">Save this code</a>
+
+The challenge is under a form of binary content: ```Uint8Array```. We need to send that data to the license server through a POST request. The license server should answer us with a license containing the keys to decipher the video content.
+If everything goes well and the server gives back the license, we need to give the license to the CDM by using the ```update``` method on ```MediaKeySession```.
+```
+await mediaKeySession.update(license);```<a href="https://3863d558-45a9-40e6-9dff-136019435fd6.pieces.cloud/?p=55fd46b57e">Save this code</a>
+
+The license is also binary type data. If the CDM accepts the license, the video element will change its ```readyState``` to ready, and the browser will play the video in the browser through the video element.
+This is a simplified version of how the different steps should be achieved, but many events can happen between the start and finish. I strongly recommend reading the entire spec from the W3C to build a fully working piece that is compliant with the standard.
+
+<a href="https://www.w3.org/TR/encrypted-media/">https://www.w3.org/TR/encrypted-media/</a>
+
+## Conclusion
+With the growth of the streaming universe, companies like Netflix, Disney+, and Amazon put tremendous effort into creating video content. They expect, in return, paid subscriptions from the users to consume the content. These companies need to protect their content from hackers that could distribute movies, series, or music for free on the internet. A solution to this issue is encrypted content; EME allows the deciphering for paid subscribers.
+
+However, encrypted content doesn't mean that it's unbreakable. Some levels of security are known to have been broken in the past. For instance, the lowest level of protection, Widevine L3, has been broken, as demonstrated on the following <a href="https://www.hacking.land/2020/10/widevine-l3-decryptor-chrome-extension.html" target="_blank" rel="noopener noreferrer">website</a>. Since the movie's rights owners can't fully trust some CDM security levels, they decided to restrain the deciphered quality to a certain level. For example, if you don't qualify for the security restriction they put in place, you will be able to watch the video, but only at standard quality (720p).
+
+Finally, we can say that the less open the device is in terms of software and hardware, the more you will be able to play high-quality video content. This is because it’s harder for an attacker to find an attack surface. For example, in your next streaming session, you’ll have a greater chance of playing high-quality video content on Apple devices coupled with Safari browsers.
+However, since the beginning of content protection, there has been a debate regarding DRM (Digital Rights Management) because it’s against the philosophy of open-source, so it’s become tough to develop open-source browsers and include EME standards.

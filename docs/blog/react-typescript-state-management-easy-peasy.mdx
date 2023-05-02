@@ -1,0 +1,113 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62ed420c0e99ef3703e1f3a1_React_Typescript.png)
+"react; redux; easy-peasy"
+# Typescript-React State Management With Easy Peasy
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+## What is Easy&nbsp;Peasy?
+id="">The Easy Peasy library handles state management in applications. It’s an abstraction of <a href="https://redux.js.org/" id="">Redux</a>, which means that it is built on Redux but focuses on the crucial APIs that a developer requires. Easy Peasy state management, as the name suggests, allows you to easily set up state management for your application with zero configuration while providing the architectural leverage that Redux offers.
+
+### Pros of Using Easy Peasy for React State Management
+- It provides all of Redux’s features, including state persistence and Redux middleware support.
+- Easy Peasy provides support for global, context, or local stores: The global store is accessible everywhere in your application, while a context store is accessible to a selected component. The local stores are for specific components, and can replace <strong id="">useState**.
+- Easy Peasy supports computed properties, allowing you to create a state from an operation performed on another state.
+For more on Easy Peasy Redux, you can check its <a href="https://easy-peasy.vercel.app/" id="">official website</a>.
+
+### Cons of Using Easy Peasy for React State Management
+Easy Peasy has many advantages, but we should consider some tradeoffs of integrating the React state management library into your application.
+- It increases the bundle size of applications due to its additional dependencies.
+- You must know Redux in order to use it for React state management.
+
+## Getting Started with Easy Peasy
+id="">Let’s look at the parts of Easy Peasy you need to understand to use the library.
+
+
+### Store
+id="">The store holds all of the actions and states for the application. The Easy Peasy store's structure is on model/object definition; they contain the states and all actions that act on the state.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62e40a56a06acc7c296ab81a_raycast-untitled%20(36).png" loading="lazy" id="" width="auto" height="auto" alt="A snippet of React cod)
+id="">The code block above demonstrates how to create a store using the createStore method from Easy Peasy. The createStore method accepts two parameters: the store model and an optional configuration for the store. You can find additional information on the Easy Peasy store and its properties <a href="https://easy-peasy.vercel.app/docs/api/store.html" id="">here</a>.
+
+### Actions
+id="">Actions are triggered to mutate the state in the store. Easy Peasy has an Action type that accepts two types as parameters; the model and the payload. The payload parameter for the Action type is optional.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62e40a99a06acc6d9a6ab927_raycast-untitled%20(37).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet that shows an Actio)
+
+id="">The code block above demonstrates the typing for actions with the updateName action; we pass the IModel interface as the first parameter and a payload with a type string.
+id="">Actions are defined using the "action" function, encapsulating a function with the model state and payload as arguments. For example, you can define actions in your model like so:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62e40ab7765430ef6902d3ce_raycast-untitled%20(38).png" loading="lazy" id="" width="auto" height="auto" alt="A React code snippe)
+id="">The action above accepts a string as a payload to update the name state on the model.
+id=""><strong id=""><em id="">NB:** You should not destructure the state in your actions, as this will prevent the state from being updated.
+
+### Thunks
+id="">Thunks are actions used to handle <a href="https://en.wikipedia.org/wiki/Side_effect_(computer_science)" target="_blank" id="">side effects</a>, e.g., HTTPS requests.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62e4316b8c6e3892fbc5fda8_raycast-untitled%20(58).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet that demonstrates thunk)
+id="">In the code block above, we have a thunk "fetchUserName" that accepts model type as a first parameter and payload type as an optional second parameter. The thunk function allows us to use asynchronous requests and access the model actions.
+
+### Hooks and Typing Hooks
+id="">Easy Peasy comes with a few custom hooks that help use its features or access the store:
+- <strong id="">useStoreAction hook**: grants you access to the actions in the store
+- <strong id="">useStore:** enables you to access the store instance
+
+id="">You can check out the <a href="https://easy-peasy.vercel.app/docs/api/use-store-actions.html" id="">documentation</a> for additional information on the custom hooks and how to use them for React state management.
+id="">When using React-Typescript, you need to type the hooks to have the store model type. We can achieve this with the createTypedHooks function.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62e4320d085a96eac266aaeb_raycast-untitled%20(61).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet that demonstrates custom hook)
+
+id="">In the code block above, we call the createTypedHooks function with the store model passed as type and assigned to the typedHooks variable. Then, we move on to export reassigned typed version of the hooks. Finally, we will go on to use the typed hooks in the application:
+![](3afec68f555387049efb3/62e4178790f073ec7d86672e_raycast-untitled%20(44).png" loading="lazy" id="" width="auto" height="auto" alt="A React custom hoo)
+id="">In the following section, we will build a simple React to-do list application that uses Easy Peasy for React state management and persisting state. The application features include adding a new list item, editing existing list items, and deleting existing items. We will not use Easy Peasy thunks, as the application requires no side effects.
+
+## Project Setup
+id="">First, we’ll create a new React-Typescript app using the <a href="https://code.pieces.app/blog/alternatives-to-create-react-app" target="_blank" id="">create-react-app CLI tool</a>.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62e418e240f75da47aa66f13_raycast-untitled%20(45).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet to create a React applicatio)
+id="">The command above creates a new React typescript application. Then, we’ll install the Easy Peasy dependency and Bootstrap to style the application.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62e41910bf64eb8500d24150_raycast-untitled%20(46).png" loading="lazy" id="" width="auto" height="auto" alt="The command to install Easy Peasy and Bootstra)
+
+### Setting Up the Store
+id="">In the src folder, we will create a folder called store with this structure:
+![](3afec68f555387049efb3/62e41946a91d31ed8fb86584_raycast-untitled%20(47).png" loading="lazy" id="" width="auto" height="auto" alt="An example of the file structur)
+
+id="">Once we have the file structure for the store set in the interface file, we have the types for our model:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62e4197c765430258003a309_raycast-untitled%20(48).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet with React cod)
+id="">In the code block above, we have the ITodo interface as the model interface. This has an items state, a setItem Action that accepts a string as its payload, a removeItem Action that accepts a string as its payload, and an updateItem Action that accepts the IItem type as its payload.
+
+id="">Next, we need to set up the model. In the model file, we will create the model object:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62e419b83458f60bcd3ffd2c_raycast-untitled%20(49).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet to create the model objec)
+id="">The code block above represents the model for our store. The model includes:
+- A setItem action that accepts a new item as an argument and creates an id for the new to-do item
+- A removeItem action that filters out the id of the item passed in as an argument to the action
+- A updateItem action that accepts an object with id and the new item value as its arguments.
+
+id="">In the previous section for React custom hooks, we covered how to type Easy Peasy hooks. We repeat this for the useStoreActions and useStoreState hooks in the hooks folder.
+
+id="">We’ll need to create the store for React state management. We handle this in the index.ts file:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62e419ea6c8bceef62e05ab2_raycast-untitled%20(50).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet with React cod)
+id="">In the code block above, we create a new store by calling the createStore function with the type StoreModel. Then, we call the persist function with the model passed as a parameter; this will persist the store in <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage" id="">sessionStorage</a>. Check the <a href="https://easy-peasy.vercel.app/docs/api/persist.html" id="">documentation</a> for more information on extensively using the persist function.
+
+### Integrating Easy Peasy State Management
+id="">To integrate the store into our app, we must wrap the application within the StoreProvider component from Easy Peasy.
+id=""><strong id=""><em id="">NB: **<em id="">If you are using React 18, you will need to cast the StoreProvider component; this will override the type error for children. You will also need to disable React.StrictMode in the index.tsx file.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62e41a1e6c8bce397de06023_raycast-untitled%20(51).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet with React cod)
+id="">We cast the type for the StoreProvider component from the code block and setting the prop type for children to React.ReactNode. Then, in the app function, we wrap the application in the StoreProvider component with the store props accepting the store created as value. Finally, the <a href="https://easy-peasy.vercel.app/docs/api/persist.html#rehydrating-your-store" id="">useStoreRehydrated</a> hook checks for the persisted data and rehydrates the state with the data found.
+
+### Using Easy Peasy for React Typescript State Management
+
+id="">We have completed the setup for Easy Peasy and integrated the store into the application, so it’s accessible from every component. The following action will use the state and actions from the store to get the application working.
+id="">To use the store state in the application component, we call the useStoreState hook.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62e41a51ca2a2c74422bc819_raycast-untitled%20(52).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet with React cod)
+id="">The code block demonstrates how the useStoreState hook accesses the items state from the Content component. The items variable maps through the TodoItem and passes the item value and the id to the component props.
+
+id="">Items state:
+![](8f555387049efb3/62e3e5ff882dc5d32de846f3_s_6E93A300972C911FDC33A636E8587FAC231CE6319D9BC2BD68B7652B8584503C_1658880505113_Screenshot%2B2022-07-27%2Bat%2B01.07.45.png" alt="The items' states." id="" width="auto" height="auto" loading="au)
+
+id="">Finally, we need to set up the actions for the application.
+id="">The setItem action adds a new to-do item to the items array in the store; it accepts a string as a parameter.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62e432918c6e385a37c60cb9_raycast-untitled%20(63).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet to add a new item to our lis)
+
+id="">The code block above demonstrates how we can access actions from the store using the useStoreActions hook. We’ll call the addNewItem variable and then pass the parameter.
+id="">This action will update an existing item with a new value. It’s achieved by calling the updateItem action and passing an object with the id of an existing item and the value of the new item.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62e41acdbcd1063e5da7f663_raycast-untitled%20(54).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet to update an item on our lis)
+
+id="">Removing an item is achieved using the removeItem action from the store, which accepts the item's id to remove from the items array.

@@ -1,0 +1,118 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd621a590b5942edaa13d4_skeletonscreen_32de434d531b22f6cfba32446cd43db4_2000.jpeg)
+"css; **react**
+# Using CSS to Create a Skeleton Screen
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+The web has recently undergone improvements that benefit both consumers and developers. Because new methods of enhancing user experiences continue to emerge over time, user experience is a major focus that goes beyond present metrics.
+Skeleton displays are one component of UX improvement. In this article, we’ll be covering the purpose of skeleton loaders, their significance, and how to create one for a website using React and basic CSS.
+
+## What is a Skeleton Screen?
+An animated placeholder known as a "skeleton screen" simulates a website's design while data is being loaded. Skeleton screens inform the user that some content is loading while also, and perhaps more crucially, indicating whether an image, text, card or other type of data is loading.
+Because the user is aware of the type of content loading before it manifests, the page appears to load more quickly. Perceived performance is what we're talking about here.
+Here are some illustrations of skeleton displays from Medium and Facebook:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63a1d17e8f7d334ce21a61ab_image4_a11ea04ce848a98507f5371275c78fa5_800.png)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63a1d17e8f7d33c9411a61ac_image5_55f3297010408508bc0074de9526a084_800.png)
+
+The gray shapes indicate how the data will be shown once it has loaded. These images are replaced once the data from the server actually arrives.
+Skeleton loaders seldom improve efficiency or loading speed. They exist solely to provide the visitor with something to look at and the impression that the website is loading more quickly.
+
+### Notable Qualities of Skeleton Loaders
+- They seem to move more quickly and are easier to utilize. A better user experience and higher conversion rates are both provided by improved perceived performance.
+- They give the impression of quickness and quick loading.
+- Users have no indication of what is loading or how long it will take with spinners and loaders, which can be a problem.
+- Since the load time is unknown, using spinners or loaders puts the user in a state of uncertainty.
+- Users might be tempted to move on rather than wait through skeleton screens.
+
+## Build a Skeleton Loader with React
+For the purpose of this article's tutorial, we'll build a page that lists blog articles as cards. The final product will resemble the following:
+
+The skeleton screen:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63a1d17e8f7d33862f1a61aa_image3_ed9f30c66d0e99a7875c3207fbcf2e73_800.png)
+
+The actual site after loading:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63a1d17e8f7d3352d91a61ae_image2_db20779063fefd6369ee6a9b10888fec_800.png)
+
+### Setting up a React Project
+We'll begin by putting up a React project with the code below in order to use Google Charts in our React application:
+```
+npx create-react-app react-skeleton
+```
+Next, let’s change the working directory to the folder established by the previous command with the following code:
+```
+cd react-react-skeleton
+```
+Next, we’ll open the folder in our preferred text editor. Now that our app is configured, it's time to add and remove unnecessary boilerplate from it. In the ```/src``` folder, let’s make a ```components``` folder, and in the root directory, we’ll make a ```server``` folder.
+
+We have a ```server``` folder because we're going to create a structure that resembles a database so we can store information about the blogs. We won't be entering any backend, so don't be concerned. With ```JSON``` Server, we’ll create a phony REST API.
+
+Next, let’s create a file named ```db.json``` or ```data.json``` in the ```/server``` folder and fill it with some random information typically found on a blog, such as an avatar, author name, thumbnail, title, and description.
+
+The contents of our ```db.json``` file should resemble something like the image below.
+N.B.: An altered version of data is used in this tutorial due to its enormous size, but you can tweak it to your own style as much as you want.
+```
+//db.json
+{
+ "blogs" : [
+        {
+ "title" : "Using regression testing to produce working software",
+ "thumbnail" : "https://blog.pieces.com/hero_Z1Aauk4.webp",
+ "avatar" : "https://blog.pieces.com/authors/avatars/goodness-woke.jpg",
+ "author" : "Goodness Woke",
+ "description" : "Lorem ipsum dolor sit amet, consectetur adipisci"
+        },
+        {
+ "title" : "Using regression testing to produce working software",
+ "thumbnail" : "https://blog.pieces.com/hero_Z1Aauk4.webp",
+ "avatar" : "https://blog.pieces.com/authors/avatars/goodness-woke.jpg",
+ "author" : "Goodness Woke",
+ "description" : "Lorem ipsum dolor sit amet, consectetur adipisci"
+        },
+        {
+ "title" : "Using regression testing to produce working software",
+ "thumbnail" : "https://blog.pieces.com/hero_Z1Aauk4.webp",
+ "avatar" : "https://blog.pieces.com/authors/avatars/goodness-woke.jpg",
+ "author" : "Goodness Woke",
+ "description" : "Lorem ipsum dolor sit amet, consectetur adipisci"
+        },
+        {
+ "title" : "Using regression testing to produce working software",
+ "thumbnail" : "https://blog.pieces.com/hero_Z1Aauk4.webp",
+ "avatar" : "https://blog.pieces.com/authors/avatars/goodness-woke.jpg",
+ "author" : "Goodness Woke",
+ "description" : "Lorem ipsum dolor sit amet, consectetur adipisci"
+        },
+        {
+ "title" : "Using regression testing to produce working software",
+ "thumbnail" : "https://blog.pieces.com/hero_Z1Aauk4.webp",
+ "avatar" : "https://blog.pieces.com/authors/avatars/goodness-woke.jpg",
+ "author" : "Goodness Woke",
+ "description" : "Lorem ipsum dolor sit amet, consectetur adipisci"
+        },
+        {
+ "title" : "Using regression testing to produce working software",
+ "thumbnail" : "https://blog.pieces.com/hero_Z1Aauk4.webp",
+ "avatar" : "https://blog.pieces.com/authors/avatars/goodness-woke.jpg",
+ "author" : "Goodness Woke",
+ "description" : "Lorem ipsum dolor sit amet, consectetur adipisci"
+        }
+    ]
+
+```
+We need to run the above file using the JSON Server package so that we can add endpoints to it and conduct operations like ```POST```, ```GET```, ```DELETE```, etc.
+
+    To do that, let’s open a new terminal and run ```json-server -watch server/db.json --port 8000```. If it runs successfully, then the terminal should start the server on port 8000, and we should start watching for any changes. By copying and pasting <a href="http://localhost:8000/" target="_blank" rel="noopener noreferrer">http://localhost:8000</a> in a browser, we’ll see that the JSON file has been hosted on localhost. We can also see the blog resources on<a href="http://localhost:8000/blogs" target="_blank" rel="noopener noreferrer"> http://localhost:8000/blogs</a>.
+### Creating a Fetch Function in App.js
+Let's first retrieve the data from our local server. The data will be shown using a template that we’ll generate after successfully retrieving the data and handling any fetch failures.
+In our app.js:
+To continue, we’ll create our ```blogs.jsx``` and ```skeleton.jsx``` components. In the ```blogs.jsx```, we pass in ```blogs``` as a prop, and then go further to create a template for the different properties of our blog, like ```blog.title```, ```blog.description```, etc. While in the skeleton components, we created a function to return a ```div``` that places our ```blog```, ```avatar```, ```title```, ```author```, etc., in the right location, and in the correct order:
+We removed the styling from ```index.css``` so that we could substitute with our very own CSS style. You can check out the complete files and folders<a href="https://github.com/EJINEROZ/css-skeleton/blob/main/src/index.css" target="_blank" rel="noopener noreferrer"> here</a>.
+This is just a grid layout with a typeface. When the Blog component is imported inside the App component, our blog site should now appear as follows:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63a1d17e8f7d334cd71a61ad_image1_1d7a00f02a0507f1c0974d788fc5afc7.g)
+## Use Cases of Skeleton Loader
+- Use to alert viewers that something is loading when several elements are loading simultaneously.
+- Use when data loading takes longer than three seconds.
+- Use on heavily visited websites.
+- Use for a lengthy or background process.
+## Conclusion
+We now understand what skeleton loading is, how it improves user experience by giving the appearance of speedy data loading, and how to put it into practice. The tutorial's source code is available<a href="https://github.com/EJINEROZ/css-skeleton" target="_blank" rel="noopener noreferrer"> here</a>. Feel free to modify it, style it to be whatever you like, and add code enhancements.
+**Resources**

@@ -1,0 +1,84 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62ed725352cca71229c67d1d_flutter_nav.png)
+"flutter; front-end; dart; widget"
+# Flutter Navigation Overview and Best Practices
+> 
+
+id="">This article will first explain why Flutter navigation is important, and then show you how to implement navigation in your Flutter apps using the Navigator widget and the Router widget.
+id="">Let’s say that your app looks like this:
+
+![](9efb3/62a9fdc051e580dcff2b6076_1*s_wb4IioJ3cSwLXxSC_rNQ.png" width="auto" height="auto" loading="auto" id)
+
+id="">This home page has a button that leads to a login page. Now, you need to code this button so that it displays the login page upon clicking. This can be accomplished using Flutter navigation.
+
+id="">Through the navigation stack, which is explained fully later in the article, Flutter navigation provides the ability to show different pages to users depending on their actions, for example, clicking a button leads to the display of a different page.
+- id="">When users struggle to navigate through your app, the result is bad user experience. If you don’t understand Flutter navigation properly, you won’t be able to implement a navigation system that works effectively for your app, which ties back to optimizing the user experience.
+- id="">A strong understanding of the navigation system will help you deal with technical issues that come up in developing the app. Copy-pasting code won’t help during troubleshooting.
+
+id="">Continuing with the example described above, this section will demonstrate how you can start implementing Flutter navigation.
+
+id="">The home page of the app that’s used an example in this article starts off with the following code:
+id="">In this example, you have one main widget called `MyApp` and another widget called `MyHomePage`, containing your app bar, text, and button. `MyApp` references `MyHomePage` for the content of the page.
+id="">With the basic code for the home page in place, you now need to work on your button so that it displays another screen upon clicking. For that, let’s explore the two navigation methods.
+id="">As the name suggests, the `Navigator` widget is the most popular option in Flutter for navigation. The two main functions you need to know for `Navigator` are `Navigator.push()` and `Navigator.pop()`.
+
+id="">However, before you dive into using these functions, you need to understand a fundamental concept, the <em id="">navigation stack.
+
+![](9efb3/62a9fdc0f6b0bc4dffbea779_1*Uu28CVd_AwENXl6WbEtlJw.png" width="auto" height="auto" loading="auto" id)
+
+id="">You can think of the navigation stack as a pile containing the pages in your app. The page at the top of the bundle will be displayed to the user, while the others remain out of sight.
+id="">When you `push` a page, it goes to the top of the navigation stack, and that’s what the user sees. Using `pop`, you remove the page at the top of the navigation stack, displaying the page underneath it to the user. So you can either add a page on the stack for navigation between two pages or remove one from the stack.
+id="">By understanding the role of the navigation stack, you’ll be able to effectively use the functions like `push` and `pop` as a subset of the `Navigator` widget. Let’s continue with the use case and implementation now.
+id=""><strong id="">The Navigator Widget Use Case**
+
+id="">You should use the `Navigator` widget when:
+- id="">Nor do you need to store the browsing history of the user; and
+- id="">You just want to pass simple data to other pages.
+
+id="">This widget provides a straightforward and clean way to navigate between pages on a mobile app where the user cannot directly access the page URLs. You’ll be able to add navigation without writing too much code or logic.
+id=""><strong id="">Navigator.push()**
+id="">You can add pages to the call stack with the `Navigator.push()` function. For example, if you want to go from the home page to the login page, you should use the `push()` function as follows:
+
+id="">For the navigation to work, you only need to edit the `ElevatedButton()`, because that’s how the user will hop from one page to another.
+![](9efb3/62a9fdc0050987c171c62c97_1*k_9Vy06dIdSKLlbLS1br-w.png" width="auto" height="auto" loading="auto" id)
+
+id=""><strong id="">Note:** For reference, here’s an unannotated version of the same screenshot.
+
+![](9efb3/62a9fdc0914cdf5fae11ab1e_1*K0ZNJbfLfR4M2Bb-A0Twwg.png" width="auto" height="auto" loading="auto" id)
+
+id="">In the `onPressed()` property of the button, you added a `Navigator.push()` function where we have passed the `context` and the `MaterialPageRoute` widget.
+id="">The `MaterialPageRoute` helps create a route object that can be pushed onto the navigation stack. You define `LoginPage()` as the destination, which is a widget in your `login.dart` file for the login page.
+id="">As you can see, this process is relatively straightforward. Now, let’s look at how you navigate back to other pages on the navigation stack.
+
+id=""><strong id="">Navigator.pop()**
+id="">This simple function is used to go back to the previous route on the stack. On your login page, you add a simple button using the following code:
+id="">You can add the functionality to go back to the home page upon clicking the button with the following modifications to the button code:
+id="">A short line inside the `onPressed()` function is all that’s needed to add this functionality.
+
+id=""><strong id="">The Router Widget Use Cases**
+id="">The `Router` widget is what will likely come in handy if you’re using Flutter for web app development.
+
+id="">At first, the widget can be challenging to master because it has many essential nested functions that you need to understand, and it requires many more lines of code even for simple navigation compared to the `Navigator` widget.
+id="">However, if your app has any type of content and you want to save the history of every single interaction, then you should use the `Router` widget. For example, if you’re building a blog and you want to store the URLs of the user’s visited blog posts from their history. Or, let’s say you showcase videos on your site and you want to store the URLs of videos that users have watched on your website from their history.
+
+id=""><strong id="">How Does It Work?**
+
+id="">As we mentioned, the `Router` widget is complicated. In fact, despite Flutter trying to make routing more straightforward with this widget, it’s probably more complex than it needs to be.
+
+id="">The widget contains several subsections, which can be explained as follows:
+- id=""><strong id="">Route name provider:** This delegate assists the router in actually understanding which routes to show according to the operating system’s request.
+- id=""><strong id="">Route name parser**: Parses the string from `routeNameProvider` into a user-specified data type.
+- id=""><strong id="">Router delegate**: This is the main component of the `Router` widget. The `routerDelegate` determines how to rebuild the navigation stack to display the pages.
+- id=""><strong id="">Back button dispatch**: Tells the app to rebuild the `Router` to go back after the system back button has been pressed.
+
+id="">In more simple terms , this widget handles navigation in the following way:
+- id="">The interaction modifies the state of the app;
+- id="">The app state notifies the `Router` widget; and
+- id="">The `Router` widget rebuilds the `Navigator` to show the new route.
+
+id="">The implementation of many of the functions is left to the developer. You can read more about <a href="https://medium.com/flutter/learning-flutters-new-navigation-and-routing-system-7c9068155ade" target="_blank">Flutter’s complex navigation and routing system</a>.
+id="">Now that you know about implementing navigation, it’s time to learn about some coding standards and best practices.
+id="">Anonymous routes push and remove elements from the top of the stack, and the state of the underlying objects is left untouched.
+
+id="">`Navigator.pushNamed()` is used for named routes where you define a `routes` map containing the URL and the widget linked to it.
+id="">To minimize repetition and work, you can choose from the thousands of <a href="https://pub.dev" target="_blank">Flutter third-party libraries</a> that are available.
+id="">Also, most libraries are pre-tested and verified, so you can be confident that the solution you’ll be using will be one of the best ones. Apart from saving time, third-party libraries are also a huge cost saver.

@@ -1,0 +1,339 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd7a109d909c0d8104f5d7_introductiontouikit_1d1639f87b563dbc4bafdedbcd097985_2000.jpeg)
+"ui"
+# Introduction to UIkit
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+## What is UIKit?
+
+A User Interface Kit, often known as a UI kit, is a group of materials that includes a variety of design elements, including UI components and styles. These kits are lightweight and adaptable front-end frameworks that are ideal for creating quick, effective web interfaces. User interface elements show items’ meaning and functionality. Widgets, navigation menus, and input forms are a few examples of UI components. In this article, we’ll discuss using <a href="https://getuikit.com/" target="_blank" rel="noopener noreferrer">UIkit</a> specifically.
+
+### Benefits of UIkit
+- Develops fast and responsive user interfaces
+- Controls how your app interacts with the system and offers classes that let you control the data and resources
+- Assists in following up more effectively and learns more quickly with documentation and content accessibility
+- Supports autocomplete when the UIkit extension is installed in your UIkit text editor.
+- Blends with other CSS styling frameworks
+
+### Drawbacks of UIKit
+- Styling conflicts may occur
+
+### Why Use UIKit?
+No one has ever complained that learning UIkit requires advanced programming language knowledge, because UIKit is simple to understand and use. Currently, developers are drawn to UIkit for creating quick and responsive websites for their clients.
+In the tutorial that follows, we'll use UIkit and plain HTML.
+
+### Browser Support for UIkit
+The following browsers support UIkit:
+- Internet Explorer by Microsoft (beginning with version 3.0)
+- Firefox
+- Safari
+- Opera
+- Chrome
+- Any other browser whose maker has JavaScript installed or licensed
+
+### UIkit Extensions for Auto-complete
+Using UIkit will work best if you have a reliable code editor like <a href="https://www.sublimetext.com/" target="_blank" rel="noopener noreferrer">Sublime Text</a> or <a href="https://atom.io/" target="_blank" rel="noopener noreferrer">Atom</a>. Installing one of the auto-complete plugins for your preferred IDE or code editor can help you to work even more efficiently. You won't have to search for and manually type all of the UIkit classes and markup, which will save a lot of time.
+Go to the extension tab on VS Code to install the UIkit extension. It requires no additional code and is easy to install and use.
+
+GitHub auto-complete plugins offered:
+- <a href="https://github.com/uikit/uikit-sublime" target="_blank" rel="noopener noreferrer">Autocomplete plugin for Sublime Text 3</a>
+- <a href="https://atom.io/packages/uikit-atom" target="_blank" rel="noopener noreferrer">Autocomplete plugin for Atom</a>
+- <a href="https://marketplace.visualstudio.com/items?itemName=Keno.uikit-3-snippets" target="_blank" rel="noopener noreferrer">Snippets for Visual Studio Code</a>
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/635bfcf5642ab76e8c691d11_image9_5c3572c083637a0f31a28d6e1af2aad1_800.png)
+
+## Getting Started
+The three ways I recommend installing UIkit in your projects are:
+
+**1. Via Download**
+Download the<a href="https://github.com/uikit/uikit/releases/tag/v3.15.10" target="_blank" rel="noopener noreferrer"> latest release </a>with pre-built JavaScript and CSS.
+
+**2. Via npm or yarn**
+
+```
+yarn add uikit
+```
+
+
+<pre>npm i uikit
+```
+
+
+**3. Via CDN**
+
+By utilizing HTML classes, we’ll be able to add a stylistic component to our HTML.
+You can use the CDN provided above to continue; I extracted the zipped folder I downloaded for this tutorial.
+It's simple to apply UIkit's styles, and one feature I like about them is that you can customize them by utilizing the standard CSS style attribute. To make a long story short, styles are added in the same way that simple HTML styles are added. So, let's get started!
+Code:
+```
+<h1 class="uk-text-primary">Hello primary color</h1>
+<h1 class="uk-text-success">Hello success color</h1>
+<h1 class="uk-text-warning">Hello warning color</h1>
+<h1 class="uk-text-danger">Hello danger color</h1>
+<h1 class="uk-text-muted">Hello muted color</h1&gt
+```
+Output:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/635bfcf5642ab73db9691cf9_image8_640b61e791c6928f734be47d5e279043_800.png)
+
+    ### 2. Text Alignment
+By applying the formats supplied below, you can quickly add alignment to an element.
+Code:
+```
+<!-- Alignment -->
+<h1 class="uk-text-left">Align left</h1>
+<h1 class="uk-text-center">Align center</h1>
+<h1 class="uk-text-right">Align right</h1>
+<h1 class="uk-text-left uk-text-success">Align left with color</h1&gt
+```
+Output:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/635bfcf5642ab77516691cfa_image6_3fe4c361fab1c278d6fc3807e08bf1b2_800.png)
+You can see that we added combined styles for "align left with color". This is fantastic since it allows you to add different styles by experimenting with the styles already provided.
+
+### 3. Font Weight
+Next, we'll be working with font weight, which is simple to use and implement. You just need to be aware of how it is represented in standard CSS font-weight-adding values (e.g., 300, 900). I'll explain everything below and use code examples so you can get a clear understanding of font weight in UIkit.
+Code:
+```
+<!-- Font Weight -->
+<h1 class="uk-text-light">Light text which is 300 in font Weight</h1>
+<h1 class="uk-text-normal">Normal text which is 400 in font Weight</h1>
+<h1 class="uk-text-bold">Bold text which is 900 in font Weight</h1>
+<h1 class="uk-text-lighter uk-text-success">Lighter text with no default value </h1>
+<h1 class="uk-text-bolder uk-text-danger">Bolder text with no default value</h1&gt
+```
+Output:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/635bfcf5642ab73b5a691d07_image4_11922635cae64082d5bbe1d114948e2e_800.png)
+
+### 4. Buttons
+You can create attractive buttons with ease, and they’re available in several styles.
+You can use button styles much more simply by adding class names to a class such as uk-button (to initialize the button to utilize UIKit styles) and then:
+the uk-button-default, etc.
+Applying styles to the button will allow us to use it.
+
+Code:
+```
+<br>
+<button class="uk-button uk-button-default"> Default button</button>
+<button class="uk-button uk-button-default" disabled>Disabled Default button</button>
+<br>
+<br>
+<button class="uk-button uk-button-danger"> Danger Button</button>
+<button class="uk-button uk-button-primary">Primary Button</button&gt
+```
+Output:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/635bfcf5642ab719df691d06_image7_00a145cbc69d33561d5c74c58bf78f93_800.png)
+Learn more about styling buttons<a href="https://getuikit.com/docs/button" target="_blank" rel="noopener noreferrer"> here</a>.
+
+### 5. Alerts
+This section teaches you how to show alert messages with styles applied. Let's jump in.
+Common classes applied to alert styles:
+```
+uk-alert:``` Installs the alert for getting started
+```
+.uk-alert-primary:``` Gives the message a prominent styling.
+```
+.uk-alert-success:``` Indicates success or a positive message.
+```
+.uk-alert-warning:``` Indicates a message containing a warning.
+```
+.uk-alert-danger:``` Indicates an important or error message.
+.```uk-alert-close:``` Implements styles and closes the alert messages.
+```
+.uk-close:``` Installer-specific attribute that sets up the JavaScript on click event, which will be used to hide the error message.
+
+We all know that these error messages don’t display long on the screen. An event must occur, and either you close it manually, or it closes itself automatically, which could be implemented with JavaScript ```SetTimeout```. However, ```SetTimeout``` is not covered in this tutorial, so use this <a href="https://developer.mozilla.org/en-US/docs/Web/API/setTimeout" target="_blank" rel="noopener noreferrer">link</a> to learn about ```SetTimeout```.
+
+Code:
+```
+<!-- Alert  -->
+<div class="uk-alert-primary" uk-alert>
+  <a class="uk-alert-close" uk-close></a>
+  <p>This is a primary success message.</p>
+</div>
+<div class="uk-alert-success" uk-alert>
+  <a class="uk-alert-close" uk-close></a>
+  <p>This is a secondary success message.</p>
+</div>
+<div class="uk-alert-warning" uk-alert>
+  <a class="uk-alert-close" uk-close></a>
+  <p>This is a danger warning message.</p>
+</div>
+<div class="uk-alert-danger" uk-alert>
+  <a class="uk-alert-close" uk-close></a>
+  <p>This is a danger alert message.</p>
+</div&gt
+```
+Output:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/635bfcf5642ab7836b691cfe_image12_a037b8b0a0ee4842fe44c9d168cc794a_800.png)
+
+### 6. Dropdown
+A dropdown is a list that is activated by an event, such as a hover or click. With this action, content that is not visible by default is displayed in the dropdown menu.
+In this section, we'll make use of the straightforward UIkit dropdown feature.
+Let's get started.
+
+A dropdown can contain a nav from the <a href="https://getuikit.com/docs/nav" target="_blank" rel="noopener noreferrer">Nav component</a>. Simply add the ```.uk-nav``` class and the ```.uk-dropdown-nav``` modifier to a ```<ul>``` element.
+Code:
+```
+<button class="uk-button uk-button-default" type="button">Hover</button>
+<div uk-dropdown>
+  <ul class="uk-nav uk-dropdown-nav">
+    <li class="uk-active"><a href="#">Active</a></li>
+    <li><a href="#">Item</a></li>
+    <li class="uk-nav-header">Header</li>
+    <li><a href="#">Item</a></li>
+    <li><a href="#">Item</a></li>
+    <li class="uk-nav-divider"></li>
+    <li><a href="#">Item</a></li>
+  </ul>
+</div&gt
+```
+Output:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/635bfcf5642ab72757691cfc_image2_640b1e2130757c00c26350eed1219dc9_800.png)
+You can learn more about dropdowns from the UIkit<a href="https://getuikit.com/docs/dropdown" target="_blank" rel="noopener noreferrer"> official doc</a>**.**
+
+### 7. Background
+To give an element a background color, you can include one of the following classes. Your chosen or modified UIkit style determines the actual color for each modification.
+```
+.uk-background-default:``` Applies the default background color.
+```
+.uk-background-muted:``` Applies a muted background color.
+```
+.uk-background-primary:``` Applies the primary background color.
+```
+.uk-background-secondary:``` Applies a secondary background color.
+
+> Note: I will use ```uk-flex``` to implement the common CSS display flex.
+
+Code:
+```
+<div class="uk-child-width uk-text-center uk-flex">
+  <div>
+    <div class="uk-background-primary uk-light uk-padding uk-panel">
+      <p class="uk-h4">Primary</p>
+    </div>
+  </div>
+  <div>
+    <div class="uk-background-secondary uk-light uk-padding uk-panel">
+      <p class="uk-h4">Secondary</p>
+    </div>
+  </div>
+</div&gt
+```
+Note: ```uk-child-width``` stretches the width of the direct child of the parent ```div``` where flex was applied.
+Output:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/635bfcf5642ab761e8691cf8_image5_130c98169e463436597cc5345a2e4851_800.png)
+
+### 8. Background Images
+To add a background image to your app if you’re implementing an inline approach, use ```style="background-image: url(images/dark.jpg)```. In order to apply styles and alignment to the background, apply the UIkit classes.
+Code:
+```
+<div class="uk-child-width-1-2@s uk-light" uk-grid>
+  <div>
+    <div class=".uk-background-center-right uk-background-cover uk-height-medium uk-panel uk-flex uk-flex-middle uk-flex-center"
+style="background-image: url(img.png);">
+      <h1 class="uk-h1 uk-text-bolder">Hello World</h1>
+    </div>
+  </div>
+</div&gt
+```
+Output:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/635bfcf6642ab7034e691d1e_image10_61c1777ef718ace59bb90182d5a77665_800.png)
+Add the ```uk-background-norepeat``` class to stop smaller images from repeating to fill the background space.
+```
+<div class="uk-background-norepeat"></div&gt
+```
+You can learn more about background images at this<a href="https://getuikit.com/docs/background" target="_blank" rel="noopener noreferrer"> link</a>.
+
+### 9. Toggle
+Use a toggle to reveal, change, or alter the look of certain content elements.
+Simply add the ```uk-toggle="target: #ID"``` property to a button or anchor element to use this component. The toggle attribute supports the use of any selector.
+
+The item's class or attribute can be added or removed using the toggle. It automatically inserts the hidden attribute to make the element invisible.
+Additionally, you can toggle several elements at once. Simply use a selector that applies to all items and add the ```target: SELECTOR``` option to the ```uk-toggle``` attribute.
+
+Code:
+```
+<button class="uk-button uk-button-default" type="button" uk-toggle="target: .toggle">Toggle</button>
+<p class="toggle">UIKit is Easy!</p>
+<p class="toggle" hidden>Start using it!</p&gt
+```
+Output:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/635bfcf5642ab7747c691cfb_image1_c23d94df700c9313e5d3f53c53ef46f8_800.png)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/635bfcf5642ab70ed9691cfd_image3_3d672505cdef977296d0e33b2da84f8a_800.png)
+
+Learn more about<a href="https://getuikit.com/docs/toggle#toggle" target="_blank" rel="noopener noreferrer"> toggles here</a>.
+
+### 10. Sliders
+Have you ever fantasized about employing sliders to add professionalism to a client's website or your portfolio? Since creating a slider from scratch would take a lot of time, it can be relatively inefficient. Also, to implement a slider, you must have prior JavaScript experience.
+Many thanks to UIkit for offering a fantastic slider carousel that is fully responsive and customizable.
+Let’s get started utilizing a slider from UIkit.
+To use this component, create a list of slides using the ```.uk-slider-items``` class and add the ```uk-slider``` property to a container element. Each item should have an image or other material added.
+Use the width component to specify the slider items' widths. Use the ```.uk-child-width-*``` classes to specify the width of all slider items, or the ```.uk-width-* ```classes to specify exact widths for each list item. If no fixed width is assigned, each item's width is determined by the size of the content itself.
+
+Please remember that everything still functions if you use conventional CSS.
+
+The basic CSS that we'll be using without the slider is seen below:
+```
+<style>
+  img {
+    width: 340px;
+    height: 400px;
+    object-fit: cover;
+  }
+</style&gt
+```
+Slide Code:
+```
+<div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider>
+  <ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m">
+  <li>
+    <img src="slides/slide3.png" alt="">
+    <div class="uk-position-center uk-panel">
+      <h1>1</h1>
+    </div>
+  </li>
+  <li>
+    <img src="slides/slide1.jpg" alt="">
+    <div class="uk-position-center uk-panel">
+      <h1>2</h1>
+    </div>
+  </li>
+  <li>
+    <img src="slides/slide2.jpg" alt="">
+    <div class="uk-position-center uk-panel">
+      <h1>3</h1>
+    </div>
+  </li>
+  <li>
+    <img src="slides/slide6.jpg" alt="">
+    <div class="uk-position-center uk-panel">
+      <h1>4</h1>
+    </div>
+  </li>
+  <li>
+    <img src="slides/slide5.jpg" alt="">
+    <div class="uk-position-center uk-panel">
+     <h1>5</h1>
+    </div>
+  </li>
+  <li>
+    <img src="slides/slide6.jpg" alt="">
+      <div class="uk-position-center uk-panel">
+        <h1>6</h1>
+      </div>
+  </li>
+</ul>
+<a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous
+uk-slider-item="previous"></a>
+<a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next
+uk-slider-item="next"></a>
+</div&gt
+```
+Output:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/635bfcf6642ab758b1691d1f_image11_3a72dcea473bd41293b4d75012fd1e8c_800.png)
+
+The slider appears and is responsive to the outside appearance of things. <a href="https://getuikit.com/docs/slider" target="_blank" rel="noopener noreferrer">Click here</a> to find out more about sliders.
+
+## Conclusion

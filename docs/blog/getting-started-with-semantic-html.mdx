@@ -1,0 +1,149 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd7d5eb4770c80aeb73efa_semantichtml_2977a160295f2a328d8a729c46f05333_2000.jpeg)
+"html"
+# Getting Started with Semantic HTML
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+As you know, HTML (HyperText Markup Language) is the essential building block of the web. All web applications use HTML to create structured documents for web pages. HTML indicates texts, images, and other contents on a web page using unique tags such as ```<img />```, ```<head></head>```, ```<body></body>```, ```<p></p>```, and ```<ul></ul>```.
+There are specific guidelines and rules for using HTML, and one of these rules is specifying the doctype for the HTML file. This is declared at the top of the file with ```<!DOCTYPE >```. The doctype informs the browser of the HTML document type, ensuring that the browser renders the file using the relevant specification for the document. You can see the doctype declaration for HTML5 below:
+```
+<!DOCTYPE html>```<a href="https://user-147066d7-6cd9-463c-bdbe-2c385fc39ce0-fhcmbheklq-uc.a.run.app/?p=180f479277" target="_blank" rel="noopener noreferrer">Save this code</a>
+Guidelines for writing HTML documents ensure that the browser correctly renders the document. These guidelines are followed by writing semantic HTML. However, the browser does not enforce HTML rules. For example, when a div element is used to render what should be a button, the browser will still render the file:
+```
+<!-- A div styled as a button -->
+<div>
+    Click Me
+</div>
+<!-- A proper button -->
+<button>
+    Click Me
+</button>```<a href="https://user-147066d7-6cd9-463c-bdbe-2c385fc39ce0-fhcmbheklq-uc.a.run.app/?p=56004da566" target="_blank" rel="noopener noreferrer">Save this code</a>
+In the HTML code above, you can style the two tags using <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" rel="noopener noreferrer">Cascading Style Sheet (CSS)</a> to look like and function as a button.
+
+## What is Semantic HTML?
+Semantic HTML involves writing HTML code that focuses not only on presentation, but also effectively describes the purpose of the document/code blocks using required HTML tags and elements. Writing semantic HTML helps define a document for the browser and the developer.
+
+## The Importance of Semantic HTML
+Writing semantic HTML improves the browser readability of HTML documents, ensuring that the web page will be rendered correctly. Also, a good SEO practice is to use the proper tags when writing an HTML document; this will enable easier crawling of the web page. In addition, a properly written HTML document also helps improve other aspects of a web page, including structure, accessibility, styling, etc.
+
+### Structure
+Semantic HTML provides a better structure for web pages, whereas a code block describes what it presents. An example with appropriate tags can be seen here:
+```
+<!-- Ordered List -->
+<ol>
+    <li>
+        Item 1
+    </li>
+    <li>
+        Item 2
+    </li>
+</ol>
+<!-- Unordered List -->
+<ul>
+    <li>
+        Item
+    </li>
+    <li>
+        Another Item
+    </li>
+</ul>```<a href="https://user-147066d7-6cd9-463c-bdbe-2c385fc39ce0-fhcmbheklq-uc.a.run.app/?p=6fd540b91e" target="_blank" rel="noopener noreferrer">Save this code</a>
+The code block uses the ```<ol></ol>``` tag to represent a group of ordered list items, while the ```<li></li>``` tag is used to distinguish each list item in the code. The ```<ul></ul>``` tag groups a list of unordered items in the code block. Semantic HTML suggests to developers the type of data to put into the element/what will be displayed.
+
+### Accessibility
+The accessibility of a website for people with a disability depends significantly on the web page structure. Writing semantic HTML makes a web page more easily understood by screen readers, which improves accessibility for visually impaired audiences.
+Further, semantic HTML simplifies finding useful blocks of codes, as opposed to sifting through ```<div></div>``` tags. When looking for a block of code in a semantic HTML web page, search for the ```<code></code>``` and ```<nav></nav>``` tag to access the page navigation.
+
+### Styling
+Semantic HTML allows your web page to apply the user agent stylesheet properly; these are default styles given to a web page by the browser. Also, semantic HTML makes it easier to cascade styles in a custom style sheet. Referring back to the HTML lists above, if you need to style a specific ordered list item, you know that it must be a ```<li></li>``` tag within a ```<ol></ol>``` tag; thus, you can write the style selector: ```ol > li```.
+
+## How to Write Semantic HTML
+In general, writing semantic HTML code goes beyond presentation and focuses on writing meaningful codes that describe its functionalities. To do this, we’ll use some unique tags and elements to describe sections of a web page.
+The first building block in a web page is the doctype declared at the top of the document. Following this, we have the ```<html></html>``` tag, which wraps other elements in the document. Within the HTML tag, we have the ```<head></head>``` and ```<body></body>``` tag, respectively. The head tags hold information about the web page, while the body tag holds the web page contents:
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Web page information -->
+</head>
+<body>
+    <!-- Web page content -->
+</body>
+</html>```<a href="https://user-147066d7-6cd9-463c-bdbe-2c385fc39ce0-fhcmbheklq-uc.a.run.app/?p=732747be71" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+### Semantic Elements and Non-semantic Elements
+Semantic elements are HTML elements that describe their content, while non-semantic elements hold no meaning for their content (e.g. ```<div></div>```, ```<span></span>```). When writing HTML documents, you need to think carefully about the content of an element before choosing the tag that properly represents the content. For example, is it an article, section, ordered list, or unordered list? Thinking in this way helps you write meaningful HTML codes.
+There are a handful of semantic HTML elements, but for this article, we’ll be covering the ones mentioned below;
+
+```
+<header>```, ```<nav>```, ```<main>```, ```<aside>```, ```<article>```, ```<section>```, ```<summary>```, ```<figcaption>```, ```<details>```, ```<abbr>```, ```<code>```, heading groups ```<h1>``` - ```<h6>``` and ```<picture>```.
+
+The header elements contain introductory elements for the web page, such as navigation items, logo, and hero section of the page.
+The nav tag holds useful links for navigating a current web page or to other pages in an HTML document:
+
+```
+<!-- Example of a navigation links -->
+<nav>
+    <ul>
+        <li>
+            <a href="#hero">
+                Hero link
+            </a>
+        </li>
+        <li>
+            <a href="page1.html">
+                Page 1
+            </a>
+        </li>
+        <li>
+            <a href="page2.html">
+                Page 2
+            </a>
+        </li>
+    </ul>
+</nav>```<a href="https://user-147066d7-6cd9-463c-bdbe-2c385fc39ce0-fhcmbheklq-uc.a.run.app/?p=8f7147961e" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+The main element contains the primary content within the document body. It can be content that extensively explains or expands on information about the web page.
+
+The aside element holds secondary information not required to understand the web page.
+The article element is a piece of information that is independent and reusable. It can be removed from a web page, and the web page will still make sense.
+This element is a section of standalone information that another semantic element cannot adequately describe.
+
+This element defines a summary for a ```<details>``` element block:
+```
+<!-- Example of a details and summary -->
+<details>
+    <summary>This is the summary for the full details </summary>
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Hic, itaque. Lorem ipsum, dolor sit amet consectetur
+    adipisicing elit. Nostrum animi quaerat fugit ab corporis minima corrupti soluta odio harum deserunt, quae dicta
+    natus repellendus repellat facere sed quod delectus consectetur!
+</details>```<a href="https://user-147066d7-6cd9-463c-bdbe-2c385fc39ce0-fhcmbheklq-uc.a.run.app/?p=cab342a498" target="_blank" rel="noopener noreferrer">Save this code</a>
+When the summary element above it toggles the content in the details tag, it appears like this:
+
+![](387049efb3/634d89e8984d7e8756d2a5a7_image2_e9982b66704e15fb30340a7a7369a745.g)
+
+The figcaption element represents a caption that describes its parent ```<figure></figure>``` tag:
+
+```
+<!--Example demonstrating how figcaption is used -->
+<figure>
+    <img src="sample-image.webp" alt="a sample image">
+    <figcaption>
+        A sample image to demonstrate captions
+    </figcaption>
+</figure>```<a href="https://user-147066d7-6cd9-463c-bdbe-2c385fc39ce0-fhcmbheklq-uc.a.run.app/?p=d2e740a2ef" target="_blank" rel="noopener noreferrer">Save this code</a>
+The abbr element defines an abbreviation/acronym; it has a title <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes#attribute_list" target="_blank" rel="noopener noreferrer">attribute</a> containing the expanded version:
+```
+   <!-- How to use abbr tag -->
+    <abbr title="HyperText Markup Language">HTML</abbr> ```<a href="https://user-147066d7-6cd9-463c-bdbe-2c385fc39ce0-fhcmbheklq-uc.a.run.app/?p=54a347ac31" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+The ```<code>``` tag displays its content as a computer code sample.
+
+These semantic elements give their contents the role of headings, with priority levels from one to six. For example, the ```<h1>``` represents the most important heading on the page. The browser user agent has a default style applied to the heading group tags that emphasize the priority level of each element.
+The ```<picture>``` tag allows you to provide different images for different contexts. It can contain zero or more ```<source>``` tags and a ```<img>``` tag. When a ```<source>``` condition is met, the ```srcset``` link will replace the ```<img>``` placeholder; otherwise, the link in the ```src``` attribute for the ```<img>``` tag is displayed:
+```
+<picture>
+  <source media="(min-width: 60em)" srcset="images/dino-wide.jpg">
+  <source media="(min-width: 38em)" srcset="images/dino-rectangle.jpg">
+  <img src="images/dino-small.jpg" alt="All the dinosaurs!">
+</picture>```<a href="https://user-147066d7-6cd9-463c-bdbe-2c385fc39ce0-fhcmbheklq-uc.a.run.app/?p=d68646ab12" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+## Conclusion

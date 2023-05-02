@@ -1,0 +1,262 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd2eaea6177a2075cb1b7d_redis-for-caching_ae2129c69fc14de43c679cc74139794c_2000.jpeg)
+"react-7; api-3"
+# Using Redis Caching and the Redis CLI to Improve API Performance
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+Using Redis caching is a simple way to improve the performance of your APIs. Redis (**Re**mote **Di**ctionary **S**erver) is a fast, open-source, in-memory, key-value data store. It delivers sub-millisecond response times, enabling millions of requests per second for real-time applications.
+Redis is a key-value-based<a href="https://databasecamp.de/en/data/nosql-databases" target="_blank" rel="noopener noreferrer"> NoSQL</a> database that stores data in memory (in RAM).
+
+Redis is often used for caching; geospatial storage; chat, messaging, and queues; and gaming leaderboards. It’s well-suited to these tasks because it is simple, fast, and easy-to-use; supports a variety <a href="https://redis.io/docs/data-types/tutorial/" target="_blank" rel="noopener noreferrer">of data structures</a>; allows for storing key and value pairs as large as 512MB; and <a href="https://redis.io/topics/sentinel" target="_blank" rel="noopener noreferrer">Redis Sentinel</a> provides high availability for non-clustered Redis.
+
+However, Redis requires huge amounts of RAM, depending on the type of application you’re running; failovers in master components cause all slave components to lose all of their data; and data can only be accessed via keys.
+## Setting up Redis
+We will set up<a href="https://redis.io/download/" target="_blank" rel="noopener noreferrer"> Redis</a> using<a href="https://hub.docker.com/_/redis/" target="_blank" rel="noopener noreferrer"> Docker</a>.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f367de5815a5bac7564_image10_ed3fd7af962e0609781cea51c37f061f_800.png)
+
+<a href="https://b6278012-e3a5-4917-aedd-d98df2ddcf25.pieces.cloud/?p=4a2548ad24" target="_blank" rel="noopener noreferrer">Save this code </a>
+
+Nowadays, there are some hosting providers, such as<a href="https://aws.amazon.com/redis/" target="_blank" rel="noopener noreferrer"> AWS</a>,<a href="https://redislabs.com/" target="_blank" rel="noopener noreferrer"> Redis Labs</a> or<a href="https://upstash.com/?utm_source=goredis" target="_blank" rel="noopener noreferrer"> Upstash</a>, that provide Redis on the cloud.
+
+There are many ways to connect to<a href="https://redis.io/docs/clients/" target="_blank" rel="noopener noreferrer"> Redis</a>. In our case, we will be using the<a href="https://redis.io/topics/rediscli" target="_blank" rel="noopener noreferrer"> Redis CLI</a>. Since we have the Docker setup ready, let's connect.
+Here is an example of using Redis CLI commands to set, get and delete a value from the Redis database:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f397de581800cac77df_image7_1cbae1a067e0e0e0fe3e6b45be3016c4_800.png)
+
+<a href="https://b6278012-e3a5-4917-aedd-d98df2ddcf25.pieces.cloud/?p=a41d49b693" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+Some other useful Redis CLI commands:
+- ```keys```: find all keys
+- ```FLUSHALL```: delete all keys from all databases
+- ```FLUSHDB```: delete all keys from the currently selected database
+- ```EXPIRE key 120```: delete a key in 120 seconds
+
+## Caching APIs with Go and Redis
+There are multiple clients available in<a href="https://redis.io/docs/clients/#go" target="_blank" rel="noopener noreferrer"> Go</a> for implementing Redis. However, in this article, we will be using<a href="https://github.com/go-redis/redis" target="_blank" rel="noopener noreferrer"> go-redis</a>. Let’s look into how this works with Redis caching.
+
+### Go-Redis
+Go-Redis is a type-safe Go Redis client library. It’s a Redis client that is able to support a Redis cluster and is designed to store and update slot info automatically with a cluster change. It also supports features like<a href="https://redis.uptrace.dev/guide/go-redis-pubsub.html" target="_blank" rel="noopener noreferrer"> Pub/Sub</a>,<a href="https://redis.uptrace.dev/guide/go-redis-sentinel.html" target="_blank" rel="noopener noreferrer"> Sentinel</a>, and pipelining.
+
+### Create APIs using Gorilla Mux
+We will be using<a href="https://github.com/gorilla/mux" target="_blank" rel="noopener noreferrer"> Gorilla Mux</a> to create the APIs locally. Gorilla Mux implements a request router and dispatcher to match the incoming requests.
+Install it using the following command:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f397de5815e57ac77e0_image9_5f8d996f8938ae001a255bbddca16ac8_800.png)
+
+<a href="https://b6278012-e3a5-4917-aedd-d98df2ddcf25.pieces.cloud/?p=e07c4f912d" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+We will register the following endpoints:
+
+<a href="https://b6278012-e3a5-4917-aedd-d98df2ddcf25.pieces.cloud/?p=c0134fae43" target="_blank" rel="noopener noreferrer">Save this code</a>
+<a href="https://b6278012-e3a5-4917-aedd-d98df2ddcf25.pieces.cloud/?p=aec94ab5ab" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+Next, we create the router instance using the ```mux.NewRouter()``` and assign the above-created routes to the respective handlers.
+Each of the corresponding handlers is passed ```ResponseWriter``` and ```Request``` as parameters, which help in returning the desired response to the client.
+We then specify the server details using ```http.Server``` to run an HTTP server.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f397de581ab8aac77fd_image25_ec430ab4a1570a304d512d5625beed30_800.png)
+
+<a href="https://b6278012-e3a5-4917-aedd-d98df2ddcf25.pieces.cloud/?p=c70946acf7" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+- ```Handler```: This is the object that responds to the incoming HTTP requests that we created above.
+- ```Addr```: This specifies the TCP address for the server to listen on. By default, this is 80.
+- ```WriteTimeout```: The maximum duration before timing out the writes of the response.
+- ```ReadTimeout```: The maximum duration for reading the entire incoming request.
+
+Finally, we run the server using ```ListenAndServe``` which listens to the network address specified in the ```Addr``` and serves the requests based on the ```Handler```.
+
+### Setting up Postgres
+We will be using Postgres for our database. Install it using Docker by running the following:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f377de5814d5bac75ca_image27_5b5120758170d3fe8f7c84aa1539bc00_800.png)
+
+Then, verify that the new container is created and running ```docker ps -a``` at ```0.0.0.0:5432```.
+
+To the database from your browser, install<a href="https://www.pgadmin.org/download/" target="_blank" rel="noopener noreferrer"> ```pgAdmin```</a> and connect to it using the above credentials. If all is well, you should see this:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f367de5814cbaac756a_image11_fba031dc5c64624915842b4f359522cb_800.png)
+
+We will create a table called ```users``` which will have the following schema:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f367de581e972ac75a0_image15_79750eb3bfb0bc59c4f3b5642e68d2c2_800.png)
+
+Let’s insert some dummy data using the following:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f387de581827bac7769_image22_de93c8cfc067c96b32fc04dbe64fd84f_800.png)
+
+To connect to ```Postgres``` with Go, we’ll install this:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f367de581d8a6ac75b5_image28_3dfb6c51ff6aa76a41dc6e9d28d55a50_800.png)
+
+Here is the ```struct``` for the ```users```:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f397de581ae2bac77e1_image21_c519a4b23afa175aaa2f50af7126c35f_800.png)
+
+Once the ```get users``` API and the ```get users by id``` API are created, we will use Gorilla Mux to create a localhost server and listen to the endpoints.
+
+## Redis Caching for APIs
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f387de5816d1cac7768_image4_65e1ff9c540d4c5c1033901deb9a359b_800.png)
+
+To connect to Redis, we create a Redis Client using<a href="https://github.com/go-redis/redis/blob/v8.11.5/redis.go#L546" target="_blank" rel="noopener noreferrer"> ```NewClient```</a>. We specify the address at which the Redis exists like so:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f367de5817fdeac75c7_image23_484368298f051d8cde06174335e366a2_800.png)
+
+The configuration options are available through the ```redis.Options``` parameter.
+- ```Addr```: The string of the host and the port address. Since we are hosting Redis locally, the value is ```127.0.0.1```. By default, Redis runs on port ```6379```.
+- ```DB```: The database which will be selected after connecting to the server. By choosing 0, we will use the default database.
+- ```DialTimeout```: This specifies the timeout for establishing a new connection if our connection to the Redis server breaks.
+- ```ReadTimeout```: This allows us to put a timeout for the socket reads. If any of the Redis server requests reach this timeout, the command calling it will fail instead of blocking the server.
+To check if we connected to the server, we call<a href="https://pkg.go.dev/github.com/go-redis/redis/v8#Client.Ping" target="_blank" rel="noopener noreferrer"> Ping</a> using the client we created above. If there is no error, we are connected to the Redis server.
+Finally, we return the Redis client, which internally may have zero or more connections.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f367de581ed60ac75c6_image3_927306cdde1127498638d95aab435fd3_800.png)
+
+<a href="https://aseem.pieces.cloud/?p=b9a74bbc84" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+### Get and Set Keys
+Whenever the front end asks for the details of a particular user, we fetch that user from the API and then cache it. Subsequent requests for the particular user will be served from the cache until the cache key expires (we set this expiration to 20 seconds). We will be making use of<a href="https://github.com/go-redis/redis/blob/v8.11.5/commands.go#L890"> ```Set```</a> to set the value in the cache.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f397de5818841ac776b_image20_d0f4b1232d2cb2a0cbce59a4b0b40e75_800.png)
+
+<a href="https://aseem.pieces.cloud/?p=57064ab312" target="_blank" rel="noopener noreferrer">Save this code</a>
+**Note**: Here we take the ```user struct``` as input. We then convert the Go struct into JSON (i.e., marshaling), as JSON is a language-independent data format.
+
+We set the key pair with an optional expiration parameter of 20 seconds. This means the key will automatically expire in 20 seconds. If there is no expiration parameter, the key will not expire.
+
+### Get Keys
+We will be making use of<a href="https://github.com/go-redis/redis/blob/v8.11.5/commands.go#L784" target="_blank" rel="noopener noreferrer"> ```Get```</a> to retrieve the value of a key:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f367de58138b6ac75c2_image1_6665f92f9658f9bc215c819f9a7264b1_800.png)
+
+<a href="https://aseem.pieces.cloud/?p=8b0646b7f4" target="_blank" rel="noopener noreferrer">Save this code</a>
+The response is in the form of a string. We convert this byte data into the original user struct (i.e., unmarshalling).
+
+Inside this function, we add a Redis publisher (which we’ll discuss in the next section).
+
+### Calling APIs with Redis Caching
+
+We have this API endpoint hosted locally—```GET /users/:id``` — to get a user’s information based on the id. Once the client calls this endpoint, we first check if the value for this request can be served from the cache.
+**Note**: If the data exists inside the cache, we set the source to "cache."
+
+Logically, the first request will always hit the server, so the time to get the response will be longer.
+**Note**: When getting the value from the server, we set the source to "API."
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f367de581280dac75c1_image14_b256049ce8cfc39d4e77bfb503e9d54b_800.png)
+<a href="https://aseem.pieces.cloud/?p=483b46a627" target="_blank" rel="noopener noreferrer">Save this code</a>
+As we can see in the above snippet, we first invoke ```redis.GetUser``` to check the cache. This function checks for the id inside the cache; if the id is present, it returns the value. If the result fails, the function returns ```null``` and we proceed to invoke the API ```GetUserByID```, which hits our Postgres database.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f397de58197d9ac776c_image26_f18593d372a7634712c733c43cdf0c4b_800.png)
+
+<a href="https://aseem.pieces.cloud/?p=2cac4fab16" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+This is how it looks when the key is not present in Redis:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f367de58187d5ac7563_image30_d194f9ad8acdf80c1e20db473a2eb3a1_800.png)
+
+The result from the API uses Redis caching, so the subsequent requests are now served by the cache (for 20 seconds, until the key expires).
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f367de5815978ac75c3_image2_c8b7ecb65b56300022bb271f823a3d16_800.png)
+
+<a href="https://aseem.pieces.cloud/?p=9a624dab00" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+This is how it looks when the key is present in Redis:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f387de5812d7fac76fb_image5_96778cd1bfb3f9aa4f0ac9f8a6f2dcf2_800.png)
+
+## Redis Subscription using Pub/Sub
+In the field of software engineering, publish-subscribe is a pattern where senders (publishers) categorize the messages into channels without knowing if there are any subscribers.
+On the other hand, subscribers show interest in one or more channels and only receive messages that are of interest without knowing if there are any publishers.
+This decoupling of publishers and subscribers allows for greater scalability.
+
+### Redis Pub/Sub
+We will be using Redis for pub/sub, however, there are various alternatives including Apache Kafka and Google cloud Pub/Sub.
+In order to subscribe to channels, for example, ```foo``` and ```bar```, the client uses<a href="https://redis.io/commands/subscribe" target="_blank" rel="noopener noreferrer"> ```SUBSCRIBE```</a> and provides the names of the channels:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f387de5814cfdac776a_image6_bcf29a0f39f3b9d334d4165b2e745151_800.png)
+
+<a href="https://aseem.pieces.cloud/?p=2ee443b3a1" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+Messages sent by other clients to these channels will be pushed by Redis to all of the subscribed clients.
+Once we have a Redis client subscribed to a channel, that client can no longer execute any other operations besides unsubscribing from the current channel and subscribing to more channels.
+
+### Go-Redis Publisher
+```
+Go-redis``` allows users to publish messages and subscribe to channels. It also automatically re-connects to the Redis Server when there is a network error.
+Inside our ```get user``` function, we will create a publisher using<a href="https://github.com/go-redis/redis/blob/v8.11.5/commands.go#L3172"> ```redis.Publish(}
+```
+
+</a>. This function takes two arguments: the name of the channel to which we want to send the message and the message.
+In our case, we set the channel name to ```send-user-name``` and the payload is the response from ```redis.GetUser``` (see above).
+We are sending the marshaled payload to the channel using ```Publish``` because it allows us to transfer the data as ```[]byte```. Since we are using a ```User``` struct, it can be encoded into a ```[]byte```.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f367de581b893ac75c5_image8_5324b0310d04e74fb704fe1ea062f38e_800.png)
+
+<a href="https://aseem.pieces.cloud/?p=41bd4ab4c7" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+### Go-Redis Subscriber
+
+We create a subscriber using the<a href="https://github.com/go-redis/redis/blob/v8.11.5/redis.go#L686" target="_blank" rel="noopener noreferrer"> ```redis.Subscribe(}
+```
+
+</a> function.
+We will have one argument: the channel we want to subscribe to. In our case, this is ```send-user-name```.
+
+```
+Subscribe``` subscribes the client to the specified channels. Since this method does not wait for a response from Redis, the subscription may not be active immediately.
+
+We create a new file that connects to the same Redis instance and calls the following:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f367de581a428ac75c8_image17_2f92cd575c46ef68f626a4cbd8185d3c_800.png)
+
+<a href="https://aseem.pieces.cloud/?p=20544980a4" target="_blank" rel="noopener noreferrer">Save this code</a>
+The result of the ```subscribe``` is a Pub/Sub, and we extract the channel property out of this object.
+This ```Channel``` returns a Go channel for concurrently receiving messages. If the channel is full for 30 seconds, then the message is dropped.
+
+We loop over the channel and extract the data from it, which is of the type ```Message```. Each message object comprises three arguments:
+- ```Payload```: The marshaled data received in the channel
+- ```Pattern```: The pattern for the message
+
+Finally, we can access the struct properties and print inside the console. We can also print the message’s channel name just for fun!
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f367de5818647ac7569_image29_3eace9a5918b0a9795d104a9b94d70a9_800.png)
+
+Here, we get the message, “Received message from send-user-name” and the user details for Bob.
+
+## Calling APIs using React
+In the above section, we created and hosted APIs locally using<a href="https://github.com/gorilla/mux" target="_blank" rel="noopener noreferrer"> Gorilla Mux</a>. We will now consume these APIs from the front end using React.
+
+We’ll be using Axios to call the APIs for which we previously discussed Redis caching. Let’s install this dependency by running the following command:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f367de58164baac75c4_image24_af1671ce19ae1ec151911ef17b9d2158_800.png)
+
+<a href="https://aseem.pieces.cloud/?p=c60c4dba0a" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+Axios is a lightweight HTTP client which makes calling requests very intuitive. It is similar to the JavaScript Fetch API. It works well with JSON data and does the heavy lifting of setting the request headers. Axios handles errors well when accessing the response and integrates well with ```async-await``` syntax, plus it can be used on the server as well as the client.
+
+### Integrate with React
+We will be using the hooks ```useEffect``` and ```useState```. A <a href="https://code.pieces.app/blog/creating-custom-hooks-in-reactjs" target="_blank" rel="noopener noreferrer">React hook</a> is a special function that lets you “hook into” React features.
+
+### ```useEffect
+```
+
+Using this hook, we can inform React that our components need to do something after rendering. By default, ```useEffect``` runs after each render of the component where it’s called. A common use of this hook is to fetch and display data.
+React remembers the function you passed and invokes it after the DOM updates.
+
+**Note**: We have an empty array at the end of the ```useEffect``` hook to make sure that the internal function inside renders only once.
+
+If we want our effects to run less often, we provide the second argument (which is an array of values). These can be considered the dependencies for the effect, and if there are any changes since the last time the effect was run, the effect runs again.
+
+### ```useState
+```
+
+This is a way of adding a state to components and preserving some values between function calls. In general, variables “disappear” when the function exits, but state variables are preserved by React. This state can be an array, object, number, boolean, etc. The argument passed to ```useState()``` is the initial state.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f397de5813046ac777e_image18_0a65e97bc0a74efed2304d3524a9d718_800.png)
+<a href="https://aseem.pieces.cloud/?p=61fa45af76" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+To make a ```GET``` request using Axios, we use the ```.get()``` method. The response is returned as an object.
+
+We use the ```.data``` property from the response to get the requested data and set it inside the hook using ```setFetchedData```.
+
+When the page loads for the first time, the API hits our backend. The resulting ```fetchedData``` is then displayed on the page.
+Notice that the source is the API.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f387de5814e87ac7732_image12_a108dbaa5f3edee2e93e84ce6df54ae0_800.png)
+On the next request, the API hits our cache, displayed with ```source: cache
+```
+
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f367de581967eac759f_image19_c697bea62972566c270daf310c2a3445_800.png)
+
+## Conclusion

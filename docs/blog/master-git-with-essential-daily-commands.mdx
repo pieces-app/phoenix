@@ -1,0 +1,106 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62ed60394a15f407229b0046_master_git.png)
+"git; developer-workflow"
+# Master Git With Essential Daily Commands
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+id="">In this article, I will explain some of the commands I use every day in Git to allow me to stay productive while managing my own code. Hopefully, after this, you will be able to come away with some helpful commands and have some you even want to save!
+## Resetting
+id="">The <em id="">git reset command is used to reset the <em id="">HEAD to a specific state. In this part, we will see a few ways to use it to achieve particular items.
+
+### Hard
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62d0f5499b46315b07e49678_raycast-untitled%20(7)-min.png" loading="lazy" id="" width="auto" height="auto" alt="The git reset comman)
+
+id="">The <em id="">reset command, used with the <em id="">--hard option, is a destructive operation that will rewrite your git history, so you must be extremely careful when using it. However, <em id="">reset --hard can become very handy if you know what you’re doing.
+id="">To put your mind at ease, as long as you don’t push the changes to the remote server, you’re safe. Things get complicated when you rewrite the server Git history, as your unique source of truth (the server) is no longer the right source to follow.I like using <em id="">reset --hard when I want to restart from another branch’s state. For instance, I typically use it when I want to rewrite a Git history of a working copy.
+id="">I reset my local branch to the state where it was initially, and then I better organize the working copy by getting the commits from the server one by one in an order that best suits.
+
+### Soft
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62d0f64da039f9d09f3b97bd_raycast-untitled%20(8)-min.png" loading="lazy" id="" width="auto" height="auto" alt="A git reset comman)
+id="">On the other hand, the <em id="">reset --soft command is less destructive, as it will rewrite the Git history, but all the changes of each commit you reset will come back to you.
+id=""><em id="">reset --soft is very handy when you’ve shipped one or multiple commits, but you realize that you want to restructure the way the commits are organized, as it allows you to <strong id="">reset** to the starting point before you committed your changes.
+
+## Amending
+id="">Enhance your <em id="">git commit usage:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62d0f68f68ea161a182346d1_raycast-untitled%20(9)-min.png" loading="lazy" id="" width="auto" height="auto" alt="A command to amend a git commi)
+id="">Amending has a secret power. You should generally use this command to edit the commit message, but it can also be used to add more changes to an already committed commit.Indeed, if you stage the changes and apply an amend, the staged changes will be added to the commit.
+id="">You can even add <em id="">--no-edit if you don't want to edit the commit message.However, that operation is seen as destructive, as it could rewrite the Git history since you’re adding changes to an already committed commit. So, you can only push it by using the <em id="">--force option. Be careful when using it!
+id=""><strong id="">A small note** on the <em id="">--force option: I tend to use <em id="">--force-with-lease more often, as it will protect you against a potential situation wherein someone pushes a commit while you rebase. It could save lives, as it won’t push and erase the commit that a co-worker pushed just before you.
+
+## Rebasing
+id="">Reapply a commit on top of another base:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62d0f6d06e8bed99f710aaac_raycast-untitled%20(10)-min.png" loading="lazy" id="" width="auto" height="auto" alt="A command to rebase a commi)
+id="">Rebasing permits you to apply a commit on top of an existing commit, but it doesn't create an additional merge commit as <em id="">git merge does. That command is usually used to keep your branch feature up-to-date with the <em id="">main/master branch.
+id="">It applies all the missing commits from <em id="">main/master to your branch.
+
+### Interactive Rebasing
+id="">Enhance your rebasing by going interactive:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62d0f6ff7d7bebaa48a3a284_raycast-untitled%20(11)-min.png" loading="lazy" id="" width="auto" height="auto" alt="An interactive rebasing comman)
+id="">Interactive rebasing will give you more granularity and more power over how you want to organize your commit history. It's a convenient and powerful tool, but it can also be a source of confusion, as the commands are complex to assimilate.
+id="">Git will enter interactive mode to let you rebase interactively.
+id="">For instance, we want to update the last ten commits’ history in this real-world example.
+id="">Git provides a range of commands that will help us rewrite the history to our will:
+- id="">reword
+- id="">edit
+- id="">squash
+- id="">fixup
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62d0ed698b8758c4f5486ecc_reword.png" loading="lazy" id="" width="auto" height="auto" alt="A collection of interactive rebase command)
+id="">If you want to run it, you have to transform the <em id="">pick command into an <em id="">edit command. Then you can save the file, and Git will open a new editor to let you update the commit you wanted to update.
+
+id=""><strong id="">Small tip:** You can use the first letter of the command. In our case, it would be <em id="">e.
+id="">The <em id="">fixup command is convenient when you want to merge multiple commits into one.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62d1176f12d3c8e5610a91b8_this_one-min.png" loading="lazy" id="" width="auto" height="auto" alt="Using the fixup comman)
+id="">For instance, if you created many commits while you were developing, but in the end, you realized that you could merge your commits to form a single commit, the fixup command can help you with that.In the example I gave above, we will make one single commit out of the commit <em id="">f9c4640c8d and the previous commit <em id="">1c4d338cc2, and the commit message will be the one of those mentioned above. You can use this command multiple times at once.
+id="">The <em id="">squash command is almost the same as the <em id="">fixup command explained above, except that <em id="">squash keeps the commit message of the squashed commit and inserts it into the previous commit.
+
+## Cherry-picking
+id="">Applying the changes introduced by existing commits:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62d0f7565f70f4c5e7d872a7_raycast-untitled%20(12)-min.png" loading="lazy" id="" width="auto" height="auto" alt="The cherry-picking comman)
+id="">For me, <em id="">cherry-picking is the Git symbol of flexibility.
+id="">It allows you to pick a commit from a branch and apply it in your current branch.
+id="">You can also pick a range of commits to apply in your current branch:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62d0f788f0c56e7287439927_raycast-untitled%20(13)-min.png" loading="lazy" id="" width="auto" height="auto" alt="Using the cherry-pick comman)
+id=""><strong id="">Tip: **the minor <em id="">^ character includes a commit in the current commit. Otherwise, the <em id="">shaCommitOldest would be excluded.
+id="">To give a real-world example, I usually heavily rely on this Git command when I want to completely rewrite the Git history of my feature. I use a <em id="">reset --hard, which puts me up to date with <em id="">master/main, and then I reapply the commits that I want from the server.
+
+## Applying changes from specific branches/commits on specific files
+id="">Ever wanted to reset a file's state from an existing commit?
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62d0f7c0a039f954cf3b9e76_raycast-untitled%20(14)-min.png" loading="lazy" id="" width="auto" height="auto" alt="The git checkout comman)
+id="">With the command above, you can retrieve the state of a file from a specific commit or branch and apply it to your current working branch.
+
+## Adding new origins from forked repositories
+id="">Have you ever forked a repository to submit a pull request and, a few days later, ended up out of sync with the original repository?
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62d0f7b3f0c56ec451439bb7_raycast-untitled%20(15)-min.png" loading="lazy" id="" width="auto" height="auto" alt="A command to add to a new repositor)
+
+id="">If you’ve ever encountered that situation, you may have already run the command above. It permits you to add the original repository to your forked repository to be able to pull the changes out of the original repository. Once you run the above command, you can perform a <em id="">git pull to pull the changes from your forked to the original repo you just added. <strong id="">Tip**: You can replace the <em id="">original keyword with whatever name allows you to identify the source better. However, take care not to erase an existing source.
+
+## Stash
+id="">Store the changes in a dirty working directory.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62d0f81d6761bbc7be0dfa1b_raycast-untitled%20(16)-min.png" loading="lazy" id="" width="auto" height="auto" alt="The git stash comman)
+
+id="">The stash command is convenient when you want to save some changes you made but want to jump to another branch without committing. For instance, if you try to create a change on the feature branch you are working on and then try to change branches, an error message will appear to tell you that you must have a clean working directory before switching. You then have two solutions: committing or stashing.
+id="">By using <em id="">stash, Git will keep your changes, and as soon as you need them, you can re-invoke those changes by using:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62d0f846d6c0090a81a9ef97_raycast-untitled%20(17)-min.png" loading="lazy" id="" width="auto" height="auto" alt="Using git stas)
+
+## Shortcuts
+id="">Productivity at a glance.
+
+### Go back to the previous branch
+id="">Do you know what <em id="">cd - is doing? It permits you to go back to the previous path you were on.You can use the same mechanism as switching branches to return to a the branch you were previously on.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62d0f8816761bb46750dfd16_raycast-untitled%20(18)-min.png" loading="lazy" id="" width="auto" height="auto" alt="The git checkout comman)
+
+id="">Git is a tool you will use almost every day during your career as a software engineer. You will type the same commands thousands and thousands of times. What if, instead of writing the full command each time, you wrote a couple of letters to gain time and productivity?
+id="">Git thought of that by introducing Git aliases:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62d0f8a965832045dabb3afd_raycast-untitled%20(19)-min.png" loading="lazy" id="" width="auto" height="auto" alt="Creating git aliase)
+id="">Do not hesitate to create new aliases for other commands you type a lot.
+
+## Conclusion
+id="">For many, the learning curve for Git is pretty steep, but with a few go-to commands, you should be able to cover most operations you would like to perform in&nbsp;Git. One downside many point to when working with Git is that there is no graphic interface since it is CLI&nbsp;based, but if you are in the camp of people who want a more visual tool, be sure to check out <a href="https://www.gitkraken.com/" target="_blank" id="">GitKraken</a> to get a more visual interface to interact with Git. 
+id="">A big part of becoming more comfortable with Git involves time and practice, but two resources in particular helped me improve faster: 
+id="">The official git documentation: <a href="https://git-scm.com/" target="_blank" id="">https://git-scm.com/</a> and this <a href="https://www.amazon.com/Version-Control-Git-collaborative-development/dp/1449316387" target="_blank" id="">book</a>: <em id="">Version Control with Git: Powerful tools and techniques for collaborative software development.

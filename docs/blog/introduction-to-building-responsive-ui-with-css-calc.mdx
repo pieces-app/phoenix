@@ -1,0 +1,285 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd5ea4cb9cc970a3e9c5c9_csscalc_e8f671d2e51750c5f6a506fd5203637f_2000.jpeg)
+"css; responsive"
+# Building Responsive UI with CSS calc()
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+The ```calc()``` function allows you to perform computations when specifying CSS property values. It can calculate a wide range of values including length, percentage, time, numbers, integers, frequencies, and angles.
+This tutorial guide explores using the CSS ```calc()``` function. Perhaps you’ve never tried it, or you’ve used it, but ran into some issues along the way. This guide will help you build responsive user interfaces and quickly adapt to different screen resolutions.
+
+## A Quick Introduction to CSS calc()
+The CSS ```calc()``` function is a built-in CSS function that allows us to perform calculations when specifying CSS property values. For example, it simplifies the positioning of an item with an already predetermined margin.
+```
+calc()``` is a native CSS method for doing basic math correctly in CSS as a substitute for any longitudinal value or almost any number. Simple CSS calculations are carried out using this function by using the operators for addition (+), subtraction (-), multiplication (*) and division (/).
+
+Additionally, wherever length, percentage, time, numbers, integers, frequencies, and angles are specified, this function can be used.
+
+### The calc() function syntax:
+```
+width: calc(100% / 6);
+width: calc(100% * 6);
+font-size: calc(7vw + 4px);
+font-size: calc(7vw - 4px);```<a href="https://aleru.pieces.cloud/?p=7f424a8b61" target="_blank" rel="noopener noreferrer">Save this code</a>
+The only input for ```calc()``` is one expression. The expression's calculated outcome then determines the value. It may use any of the following operators, while adhering to the usual precedence rules of the operators: +, -, *, and /.
+
+### Key Notes on calc()
+- This function can be **nested**.
+- Only the usage of the variant with the unit is acceptable for addition and subtraction.
+
+**For example:**
+
+```
+- margin-top: calc(0px + 35px); is acceptable, however
+- margin-top: calc(0 + 35px); /* is not acceptable and is considered invalid */```<a href="https://aleru.pieces.cloud/?p=4ef44582e2" target="_blank" rel="noopener noreferrer">Save this code</a>
+- Multiplication and division require the second number to be unitless, or it will be invalid.
+**For example:**
+```
+ .box {
+   margin: calc(50px * 2);
+   /* and */
+   margin: calc(50px / 3);
+}
+```
+
+<a href="https://aleru.pieces.cloud/?p=07eb4b9ba0" target="_blank" rel="noopener noreferrer">Save this code</a>
+- HTML generates an **error** when you **divide by zero**.
+- **Whitespace** must be used around the + and - operators, but is not mandatory for the * and / operators. However, it is both permitted and advised to add whitespace for uniformity.
+**For example:**
+```
+ .box {
+   font-size: calc(7vw + 4px);
+
+   /* Instead of */
+
+   font-size: calc(7vw+4px);```<a href="https://aleru.pieces.cloud/?p=86d84f97b8" target="_blank" rel="noopener noreferrer">Save this code</a>
+- We can use the ```calc()``` function to check that form fields are sized appropriately without extending past the edge of the container while retaining the correct margin.
+For example:
+**HTML**
+```
+<form>
+    <div class="email-box">
+      <label>Enter email:</label>
+      <input type="text"/>
+    </div>
+  </form>```<a href="https://aleru.pieces.cloud/?p=b65145a75b" target="_blank" rel="noopener noreferrer">Share this code</a>
+**CSS**
+```
+input {
+ padding: 5px;
+ display: block;
+ width: calc(100% - 1em);
+}
+.email-box {
+ width: calc(100% / 6);
+ border: 1px solid #000;
+ padding: 4px;
+ background-color:#000;
+ color: #FFF;
+}
+```
+
+<a href="https://aleru.pieces.cloud/?p=3ee64ca5f2" target="_blank" rel="noopener noreferrer">Save this code</a>
+**OUTPUT**
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63b444427e2b10d7d25a4772_image3_0df3bbf95086684be1c935668cc072a7_800.png)
+## Unit Conversion in CSS
+Using ```calc()```, a value without an assigned unit can be converted to a value with a unit. This can be achieved by multiplying the value by the number and unit type that you want to convert it to. Also, this is incredibly helpful if you have CSS variables set without the unit.
+```
+html{
+ --num: 2;
+}
+.color {
+ background-color: #000;
+ height: 22px;
+ width: calc(var(--num) * 11px);
+ display: inline-block;
+ margin-right: 10px;
+ margin: 50px;
+}
+```
+
+<a href="https://aleru.pieces.cloud/?p=f09a47814c" target="_blank" rel="noopener noreferrer">Save this code</a>
+**OUTPUT**
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63b444427e2b105e1a5a4773_image1_a3d7af995f7d5726fe8f2d0d04be13ff_800.png)
+
+## Using calc() to Convert Font Sizes
+We can increase our font size based on the viewport or screen size. For example, consider a situation where we need our paragraph's font to be large on a desktop, but small on a mobile device. In this case, the c```alc()``` method is well suited for the job.
+
+This will enable us to have smaller fonts in mobile views and larger fonts in desktop views, respectively:
+```
+html{font-size: 10px;
+}
+section{
+ color: #ffffff;
+ font-size: calc(1rem + 1vw);
+}
+h1{
+ text-transform: uppercase;
+}
+body{
+ background-color: #800080;
+}
+```
+
+<a href="https://aleru.pieces.cloud/?p=3ab54abfb3" target="_blank" rel="noopener noreferrer">Save this code</a>
+Above, ```rem``` = root element’s font-size, which has been set to ```10px```;
+```
+VW``` = viewport width, which helps adjust the entire page depending on the screen type or size.
+The units above can be divided, multiplied, added and subtracted.
+## Adjusting HTML Elements (Position, Length and Height)
+To position the boxes inside the container perfectly, the complete width of the screen (100%) was divided by 5 using the nested CSS method and 20px was subtracted from the resulting number to determine the final value for our minimum width.
+**HTML**
+```
+<div class="container">
+  <div class="box">
+    <p>Books</p>
+  </div>
+  <div class="box">
+    <p>Hats</p>
+  </div>
+  <div class="box">
+    <p>Shoes</p>
+  </div>
+  <div class="box">
+<p>Clothes</p>
+</div>
+</div>```<a href="https://aleru.pieces.cloud/?p=999c42a668" target="_blank" rel="noopener noreferrer">Save this code</a>
+**CSS**
+```
+*{
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+}
+body{
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ min-height: 100vh;
+}
+.container{
+ position: relative;
+ display: flex;
+ width: 350px;
+ height: 200px;
+ background:#ccc
+}
+.box{
+ position: relative;
+ min-width: calc((100% / 5) - 20px);
+ height: calc(100% - 20px);
+ background:#ffffff;
+ margin: 10px;
+ color: #1f1d1d;
+}
+```
+
+<a href="https://aleru.pieces.cloud/?p=bf0a41ab3c" target="_blank" rel="noopener noreferrer">Save this code</a>
+OUTPUT
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63b444437e2b1034a35a4774_image4_06cdc4fbd16454cdd4568234698248ee_800.png)
+Also, you can set overflow to scroll if the contents do not fit.
+## Using CSS calc() to Fix Gutters Without Parents
+We can make two boxes or columns adjacent to one another. A fixed gap separates the columns, with the first being 40% wide and the second 60%. Also, we want the gap to be set to 1em. The columns are produced by internal padding within those columns, and they bump straight into one another.
+We can use ```calc()``` to set the first column to be 40% wide with a 1em right margin, and the second column to be 60% wide,  minus the initial 40% margin we just set the first column to.
+**HTML**
+```
+<div class="container">
+        <div class="books">
+          <h1>BOOKS</h1>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium facilis quibusdam dolores magni maxime quasi unde laboriosam officia exercitationem! Magnam iusto illo fugiat enim ducimus modi voluptatibus adipisci error nesciunt.</p>
+        </div>
+        <div class="hats">
+          <h1>HATS</h1>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem commodi doloribus nesciunt eaque, error ab consequatur consequuntur excepturi aspernatur, quos mollitia, natus delectus qui dolorum expedita illum atque maiores. Vitae?</p>
+        </div>
+      </div>```<a href="https://aleru.pieces.cloud/?p=dad1459172" target="_blank" rel="noopener noreferrer">Save this code</a>
+**CSS**
+```
+.books{
+
+ width: 40%;
+ float: left;
+ margin-right: 1em;
+ background-color: #2cbe8e;
+ color: #ffffff;
+}
+.hats{
+ display: block;
+ width: calc(60% - 1em);
+ float: right;
+ background-color: #000000;
+ color: #ffffff;
+}
+```
+
+<a href="https://aleru.pieces.cloud/?p=b2eb4191d5" target="_blank" rel="noopener noreferrer">Save this code</a>
+**OUTPUT**
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63b444437e2b109ca45a4777_image2_422bc5f0da1416546d585857cfb864f2_800.png)
+## Using CSS calc() to Improve Background Positioning to the Right Bottom
+With the help of the ```calc()``` function, we can better determine the relative width of the right bottom of the background of our element as follows:
+```
+background-image: linear-gradient(rgb(34, 34, 34, 0.6),
+ rgba(34, 34, 34, 0.6)),
+url(christophe-rollando-Couy-PRl448-unsplash.jpg);
+ background-position: calc(100% - 20px) calc(100% - 20px);```<a href="https://aleru.pieces.cloud/?p=d25f4fb37f" target="_blank" rel="noopener noreferrer">Save this code</a>
+Also, let's imagine a case where the parent element gets too small to fit the entire module's content. This is a perfect use for the ```calc()``` function.
+## Using CSS calc() for Animations
+Specifying variables in the HTML element can utilize the ```calc()``` function to achieve the border and width.
+For example, one of our margin tops comes from multiplying the variable (```--size```), which multiplies the value 5px in our HTML element by 50. This makes determining the value easier:
+```
+margin-top: calc(var(--size) * 50)```
+Also:
+```
+border: var(--size) solid #777474
+```
+**HTML**
+```
+<div class="load">
+    <span class="loading"></span>
+    <span class="loading"></span>
+    <span class="loading"></span>
+</div>```<a href="https://aleru.pieces.cloud/?p=46e84ca327" target="_blank" rel="noopener noreferrer">Save this code</a>
+**CSS**
+```
+.load {
+ overflow: hidden;
+ width: 100%;
+ height: 100%;
+ position: float;
+ top: 0;
+ left: 0;
+ display: flex;
+ align-items: center;
+ align-content: center;
+ justify-content: center;
+ margin-top: calc(var(--size) * 50);
+}
+.loading {
+ border-radius: 100%;
+ margin: calc(var(--size) * 2);
+}
+.loading:nth-child(1) {
+ animation: css-calc-animation 0.6s ease-in-out alternate infinite;
+ border: var(--size) solid #ffffff;
+}
+.loading:nth-child(2) {
+ animation: css-calc-animation 0.6s ease-in-out alternate 0.3s infinite;
+ border: var(--size) solid #b8b2b2;
+}
+.loading:nth-child(3) {
+ animation: css-calc-animation 0.6s ease-in-out alternate 0.4s infinite;
+ border: var(--size) solid #777474;
+}
+@keyframes css-calc-animation {
+  100% {
+ transform: scale(2);
+  }
+}
+```
+
+<a href="https://aleru.pieces.cloud/?p=53d74fb9fd" target="_blank" rel="noopener noreferrer">Save this code</a>
+**OUTPUT**
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63b444437e2b10bbc05a4775_image5_2dda6836b954013952e4a0a35b0d1fbf.g)
+## Browser Compatibility With the calc() Function
+The ```calc()``` function is browser compatible, with some limitations. Below is a list of the browser compatibility of the CSS ```calc()```:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63b444437e2b102b5a5a4776_Screenshot2022-12-20at3_34_15PM_c64ecf40165376eec6f822d2af8a943a_800.png)
+## Conclusion
+Although the CSS ```calc()``` function might appear to have one specific application, it offers many useful options. For example, it comes in handy when we want to change our website's layout and other components and prevent repetition when doing the same calculations. The ```calc()``` function is a tool every web developer should know and utilize in many ways.

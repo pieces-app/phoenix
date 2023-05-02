@@ -1,0 +1,222 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63d4033007c581ac0623b925_useState_77f4a70aa2e003abd811928794ee9fdf_2000.jpeg)
+"react-7; state; managment"
+# You don’t need a state management library for React. Use useState + Context
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+One of the most crucial parts of any app is state management. The app's state determines what users view, how the app appears, what data is kept, and so on.
+As a result, it's no surprise that there are so many open-source tools dedicated to making state management more manageable and more pleasurable.
+
+It's worth noting some drawbacks associated with using a state management library, which include:
+- **Complexity**: Keeping a state management system is not easy. It is incredibly useful for development, but controlling it might be difficult.
+- **Heavy**: If you're creating a basic blog or a SPA (Single Page Application) with few activities, or if you only want to promote your idea and content, state management isn't for you because it stores "redundant" data.
+
+Despite React's widespread use, one of the most significant challenges developers face when working with the toolkit is excessive component re-rendering, which slows down performance and reduces readability.
+When developers need components to connect with each other in a process known as prop drilling, component re-rendering is very destructive.
+
+We can use the React Context API to pass data through our component trees, allowing our components to communicate and share data at various levels. This article will look at how we can use React Context to prevent prop drilling. First, we'll define prop drilling and explain why it's a bad idea.
+
+useState is a hook that enables state variables in functional components. You give this function the starting state, which returns a variable with the current state value (which might or might not be the starting state), and another function to update this value.
+
+Using the context API and useState hook capabilities simplifies the process of developing a React application while avoiding the use of a state management library.
+
+Even if this is your first time using React context, you're in the perfect place. Everything you need to know will be taught to you through clear, detailed examples.
+
+Let's get started!
+
+**Prerequisites**
+You should be familiar with the following:
+- Basic knowledge of React and JavaScript, plus intermediate CSS
+- NodeJS installed on your computer
+- Basic understanding of npm packages
+- A good code editor (VS Code for me). You can get started by downloading <a href="https://code.visualstudio.com/download" target="_blank" rel="noopener noreferrer">VS Code here</a>
+- React Router, a library for routing in React will also be used. Knowledge of React Router isn’t necessary, but you may want to check out the <a href="https://reactrouter.com/docs/en/v6" target="_blank" rel="noopener noreferrer">documentation</a>.
+
+## What Is React State Management?
+React applications are built using components. A typical React application consists of multiple linked components. There must be a way to update various pieces of data in any given component without affecting other components.
+
+Here is where the idea of a "state" comes into play.
+"State" in React is just a fancy term for a JavaScript data structure. If a user changes the state by interacting with your application, the UI may look completely different afterward because it's represented by this new state rather than the old state.
+
+Think of a social media platform where selecting the "like" or "follow" button changes the status of a number of different elements.
+- Follow or Unfollow a user
+- Add a user
+- Reply to a user
+
+If something goes wrong, it can be very challenging to figure out what is going on if developers do not keep scalability in mind. This is why you need state management in your application.
+Let's look at some popular and powerful React state management libraries:
+- <a href="https://redux.js.org/" target="_blank" rel="noopener noreferrer">Redux</a>
+- <a href="https://docs.pmnd.rs/zustand" target="_blank" rel="noopener noreferrer">Zustand</a>
+- <a href="https://rematchjs.org/" target="_blank" rel="noopener noreferrer">Rematch</a>
+- <a href="https://jotai.org/" target="_blank" rel="noopener noreferrer">Jotai</a>
+- <a href="https://mobx.js.org/" target="_blank" rel="noopener noreferrer">MobX</a>
+
+There are many different types of states to manage in React, but for the purposes of this tutorial, we'll focus on just two of them:
+- Global state
+**Local state**: The data we manage in one or more components is referred to as a "local state."
+
+Local states are most often managed in React using the useState hook.
+Given the abundance of tools included in the core React library for managing states, local state management in React may be the simplest type of state management in the world.
+
+To track values for a form component, such as form submission, when the form is disabled, or the values of a form's inputs, a local state would be required.
+```
+const Counter = () => {
+ const [count, setCount] = useState(0)
+ const incrememt = () => setCount(count => count + 1)
+ return (
+    <>
+      <h1>The count is: {count}</h1>
+      <button onClick={increment}>increment</button>
+    </>
+  )
+
+```
+Let’s render the counter component and see what happens.
+```
+<>
+  <Counter />
+  <Counter />
+</&gt
+```
+Notice that we end up with less code, but we still have to pass state manually for each component.
+
+**Global state**: Data that we manage across various components is referred to as a "global state."
+
+A global state is required when we want to get and update data across our app, or at least across multiple components.
+Global means our state is accessible by every element or component of the app. It's important to remember that because it echoes in every component that accesses it, the rendering affects the entire app.
+
+An authenticated user state is a typical illustration of a global state. It is necessary to access and modify a user's data throughout our app while they are logged in.
+```
+export const Counter = ({ part = 0 }) => {
+ const dispatch = useDispatch()
+ // Now it selects just one of counters
+ const count = useSelector(store => store.counters[part].count)
+ return (
+    <>
+      <h1>The count is: {count}</h1>
+      {/*We'll also need to change our action factory and reducer */}
+      <button onClick={() => dispatch(inc(part))}>Increment</button>
+    </>
+  )
+
+```
+Next, a counter component can be called as so:
+```
+<>
+  <Counter />
+  <Counter part={1} />
+</&gt
+```
+Now the counter store can be updated:
+
+Sometimes a state that we consider to be local may turn out to be global.
+When the data is shared within a single component, the local state is sufficient.
+
+When it comes to sharing data between numerous unrelated React components, we need to look further than the local state. Here we want to put the global state into effect.
+
+Debugging is a pleasure thanks to well-known state managers like Redux and Recoil. Redux is notorious for being verbose, and using it requires discipline. Large projects are where it is intended to be used.
+
+## Overview Of The Context API And useState Hook
+The Context API is not a state manager itself. Actually, if you want to use it for that, you have to manage everything yourself from scratch. Furthermore, it does not optimize re-rendering, in contrast to some state managers. It may instead result in needless re-renders.
+
+The Context API is merely a prop-passing solution. The reason for this widespread misunderstanding is that many libraries use the context API for functions that are similar to passing theme state.
+But occasionally the theme will change, and when that happens, the entire app should be re-rendered.
+
+In React, we can use props to enable synchronous communication between our components. As an example, to keep components synchronized, components typically have some data or functionality that another component needs.
+Components are like JavaScript functions that can accept any number of arguments. Let's look at a simple JavaScript function below, which takes in two arguments, a and b, and adds them up.
+```
+function add(a, b) {
+ return a + b;
+
+```
+Execution can be called as so:
+```
+console.log(sum(2, 2)); // 4
+```
+These arguments are referred to as props in React components, which stands for properties.
+**Prop-drilling: **This term describes the transfer of data between parent and child component trees, which may be sufficient for straightforward React applications.
+
+However, it can become verbose and inconvenient if you need to pass a prop deep into the tree or if multiple components require the same prop.
+
+Take a look at the component tree below, which shows how we pass props down through many levels of different app components.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63d4033107c581729d23b926_image1_c64c86512194775e92df9267631b263e_800.png)
+Our code is cluttered and challenging to maintain because we manually pass state and data through components that don't need it. Additionally, we might encounter bugs and unintentionally rename props in the middle of this "drilling" process. Large-scale applications exacerbate these problems, rendering this method impossible.
+
+You can read more about prop-drilling in the official React <a href="https://beta.reactjs.org/learn/passing-data-deeply-with-context#the-problem-with-passing-props" target="_blank" rel="noopener noreferrer">documentation</a>.
+You might be thinking that we haven't done any state management. In this example, we'll use the ```useState``` hook in conjunction with the context API to manage the state of our app. Every component that depends on our context will now need to be re-rendered whenever its value is updated in order to keep all of the components' states in sync. If you're unfamiliar with the ```useState``` hook, think about this example:
+```
+Const [state, setState] = useState('initial value')```
+State is the variable that has the value "initial state" assigned to it, and ```setState``` is a callback function to change the state variable's value. Every time the value of the state variable changes, every component that uses it must be re-rendered. To update the value of our state variable, we must call ```setState```. For the moment, this is sufficient to understand the ```useState``` hook.
+
+## Getting started with React Context
+The Context API allows you to share and manage state across your components, as well as provide data to only those that need it.
+In this case, we start by creating a new context and temporarily setting the default value to null; the provider will then assign the desired values.
+
+The Context API requires us to use ```createContext()``` to create context and place it at the top of our component tree.
+Once we've provided it at the top, the context is available at every level of our component tree.
+Using the ```useContext``` hook, we can then consume its value. The component provider is then developed, providing context to the component consumers.
+
+It may sound complicated, but you will find it simple, as you will see in the examples below.
+
+So, import React and ```createContext``` as so:
+```
+import React, { createContext } from "react&quot;;
+const UserContext = createContext()
+```
+Create a component that will wrap the provider named ```Provider```, e.g., ```UserProvider```.
+
+An example using ```useState``` hooks:
+```
+const UserProvider = ({ children }) => {
+ const [name, setName] = useState("Mike");
+ const [age, setAge] = useState(1);
+ const happyBirthday = () => setAge(age + 1);
+ return (
+    <UserContext.Provider value={{ name, age, happyBirthday }}>
+      {children}
+    </UserContext.Provider>
+  );
+}
+```
+To consume the context and export it, create a higher order component, for example, ```userData``` as below:
+```
+const userData = (Child) => (props) => (
+  <UserContext.Consumer>
+    {(context) => <Child {...props} {...context} />}
+  </UserContext.Consumer>
+);
+export { UserProvider, userData }
+```
+With this advancement, we can now provide context in the app root. So, let’s wrap the context provider in the next part as so:
+```
+ReactDOM.render(
+  <UserProvider>
+    <App />
+  </UserProvider>,
+ document.getElementById("root")
+)
+```
+Other components can access the ```userData``` function via the ```useContext``` hook, whilst noting that the consumer consumes the closest provided context.
+
+### Global state management with context
+Each time it renders, all of its child components render as well. Keeping context as close to the location it is being used as possible, as we have done with ```UserProvider```, is one way to reduce rendering.
+When it comes to context, the state of each context is linked to the provider's life cycle. When the container that is providing state to the context unmounts, all of that state is automatically reset, thereby reducing coupling and making the component more reusable.
+
+When it comes to prop-drilling and passing data between components, passing multiple props can be overkill for simple React applications. Therefore, they would be less effective if we positioned them higher in the component level tree.
+
+## State Management vs Context API: Final Thoughts
+To be clear, I'm not saying context is superior to a state library like Redux; both have benefits and applications in the React world.
+
+As developers, it is our responsibility to reach into our toolbox and select the appropriate tool for the job. Hence, I'm simply demonstrating what is possible in the context of this refactor.
+Are state management libraries replaced by React Context? No.
+
+As we've seen, context and a state management library like Redux are two different tools. Comparisons frequently result from misunderstandings of the purposes for which each tool is intended.
+Context can be configured to function as a state management tool, but since that isn't its intended use, you'll need to put in more effort to make it work. Numerous practical state management tools are already available that will reduce your problems.
+
+Redux and Context meet at the crossroads of prop drilling and global state management. Redux offers more features in this area.
+For Redux, achieving something that is easier to solve today with context can be relatively complex. In the end, it is preferable to think of Redux and Context as complementary tools that work well together.
+
+## Summary
+We went over the React Context API's definition of when to use it to prevent prop drilling and the best ways to use it in this article.
+
+In this article, we discussed the differences between a state management library like Redux and the Context API.
+The Context API is a lightweight solution better suited for passing data from a parent to a deeply nested child. We learned how to combine both the ```useState``` hook and the Context API to manage the state whilst avoiding the verbose nature of a state management library.

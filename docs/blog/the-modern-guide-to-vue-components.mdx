@@ -1,0 +1,243 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd759b9c497425cdf8be2e_guidetovuecomponents_1491e8b9104afaea3c390d907dd4985b_2000.jpeg)
+"vue"
+# The Modern Guide to Vue Components
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+This detailed guide will explore everything Vue devs – and all developers in general – need to know about components, including in-depth examples of class components, dynamic components, single file components, functional components, and table components.
+To fully follow this article, the reader should have a fair understanding of the <a href="https://vuejs.org/guide/introduction.html" target="_blank" rel="nofollow">Vue framework.</a>
+
+## Introduction
+The ```.vue``` extension is commonly added to Vue components. They are unique elements made with JavaScript objects, a syntax like HTML, and occasionally, a style block to style the component. Data from other components, referred to as props, can be imported and used by other components.
+Examples provided in this post require Vue3.
+
+A typical example of a Vue component:
+```
+<!--HTML like template-->
+<**template**>
+ <**h1**>Welcome!</**h1**>
+</**template**>
+<!--JS Object-->
+<**script**>
+ export default {
+    name: 'Greet'
+  };
+</**script**>
+<!--style-->
+<**style**>
+ h1{
+ color: blue;
+    }
+</**style**&gt
+```
+Vue creates a compiler that processes the content in the ```<template>```  tag and returns a render function, which in turn sends back a virtual DOM node, i.e Vue's DOM. This DOM chooses the UI that will be updated and rendered in the DOM of your browser.
+You'll discover the various sorts of Vue components, how they function, and use cases for each one in this article.
+
+## Class Component
+Using a built-in library called ```vue-class-component```, Vue enables you to design a component with syntax similar to that of a class. A lot of developers use ```vue-property-decorator```, which has special features called decorators. Decorators are a type of declaration attachable to a class, parameter, accessor property, or method, often in the form ```@expression```. Class-like syntax encourages OOP (object-oriented programming) concepts like inheritance, which lets you use the extends keyword to inherit particular values, methods or properties from another object or class.
+When you have a complex component like a modal or form, class components are a suitable choice. Your code will become more readable if you use class components to segregate its various methods and properties.
+
+### How It Functions
+You’ll need to install Vue class component in order to use it:
+```
+$ npm install --save  vue-class-component
+```
+Below is a standard sample code snippet for Vue class components.:
+```
+<**template**>
+ <**div**>
+  <**h1**> {{ msg }} </**h1**>
+  <**button** @click="clearMessage">Greeting</**button**>
+ </**div**>
+</**template**>
+<**script**>
+ import { Component, Vue } from 'vue-class-component';
+
+ //Define component using the class-like syntax
+    @Component
+ export default class Greet extends Vue {
+ //component property
+      msg = 'Welcome'
+
+ //component methods
+      clearMessage() {
+ this.msg = ''
+      }
+
+      sayWelcome() {
+ this.msg = 'Welcome'
+      }
+    }
+</**script**&gt
+```
+The HTML-like syntax that corresponds to the DOM is specified by the ```template``` tag. By using the methods and properties instantiated in the ```script``` tag, its data can be controlled and set. Your class is turned into a Vue component by the ```@Component``` decorator, while the next line defines the name of your component: ```Greet```. In order for other components to utilize the Vue properties and methods that this component inherits (e.g. the ```mounted()``` method), it exports them so that other components can also make use of them.
+
+The ```Greet``` component is then imported and used:
+A single-file component — simply referred to as SFC—is made up of 3 blocks:
+- ```<template>```: Basically the HTML-like foundation of the UI.
+- ```<style>```: Where all the styling in the UI is done.
+- ```<script>```: Used to process the dynamic functionality and logic of the application.
+
+They are in charge of its structure, style and logic.
+A typical SFC is demonstrated below:
+
+```
+<**template**>
+ <**p** class="greetings">{{ greet }}</**p**>
+</**template**>
+<**script**>
+ export default {
+    data() {
+ return {
+        greet: 'Welcome!'
+      }
+    }
+  }
+</**script**>
+<**style** scoped> <!--the &#x60;scoped&#x60; attribute applies this style to only this component-->
+.greetings {
+  color: white;
+  font-family: Arial;
+}
+</**style**&gt
+```
+A few merits of using SFC’s are:
+- It’s created using familiar HTML, CSS, and JavaScript syntax, and it contains all concerns (structure, style, and logic) of an element in one component.
+- It takes a scope attribute like ```<style scoped>``` in its styling tag to designate styles to a specific component.
+
+Some use cases for SFCs are:
+- Creating applications with a single page.
+- Making static pages.
+
+## How It Functions
+The ```<template>``` block lets you attach the rendered DOM to your designated Vue instance's data (commonly in the ```<script>``` block), which then gets added into the virtual DOM. The ```<style>``` block is added into the browser as an actual ```<style>``` tag during development to simplify hot updates.
+The SFC is normally pre-compiled by a Vue library called ```@vue/compiler-sfc``` into JavaScript and CSS.
+
+## Dynamic Component
+During run time, you can swap between components, thanks to dynamic components. You could use a dynamic component to render a component based on specific conditions rather than employing unique components separately. The dynamic component can serve as a replacement for conditional directives like ```v-else```, ```v-else-if``` and ```v-if``` with a ```v-bind:is``` directive, which is also written as ```:is```, e.g.:
+```
+<component :is="comp" /&gt
+```
+Code that uses dynamic components is substantially more reusable. It can also increase speed since it decreases the number of times your page loads by rendering components dynamically instead of routing to the individual components.
+A few sample use cases for dynamic components are as follows:
+- Navigating between tabbed components without routing to a new page.
+- Displaying different content on the page based on a user's login status.
+- Rendering different types of pop-ups dynamically in one component element.
+
+### How It Functions
+A dynamic component accepts a component by inserting its name as the parameter, or in some situations, as the component's options object. First, you’ll have to import the components that are to be used dynamically:
+```
+import Write from './Write.vue'
+import Preview from './Preview.vue'```
+Next, make a variable to represent the present component, which will be rendered by default, and then dynamically later on, depending on the user’s actions.
+
+This variable can be generated as shown below:
+
+As the name suggests, table components are components that let you render data in a tabular format. To render table components in Vue, the majority of developers utilize tools like<a href="https://www.w3schools.com/bootstrap/bootstrap_get_started.asp" target="_blank" rel="noopener noreferrer"> Bootstrap</a>.
+
+Here is an example of a basic code snippet of a table component:
+```
+<**template**>
+ <**div**>
+ <**table**>
+ <**thead**>
+ <**tr**>
+ <**th** v-for="(header, index)in headers" :key="index"> <!--loop through headers and render 'First Name', 'Last Name'-->
+ {{ header }}
+ </**th**>
+ </**tr**>
+ </**thead**>
+ <**tbody**>
+ <!--accept dataObject prop frm parent component with sample data like:
+           dataObject=[
+            { firstName: "Chris", lastName: "Roland" },
+            { firstName: "Andrea", lastName: "Landry" },
+            { firstName: "Somto", lastName: "Rose" },
+          ]-->
+ <**tr** v-for="(data, index) in dataObject" :key="index + 'x'">
+ <**td**>{{ data.firstName }}</**td**>
+ <**td**>{{ data.lastName }}</**td**>
+ </**tr**>
+ </**tbody**>
+ </**table**>
+ </**div**>
+</**template**>
+<**script**>
+export default {
+  name: "Table",
+  props: {
+    dataObject: Array,
+  },
+  computed: {
+    headers() {
+ const prop = ['First Name', 'Last Name']
+ return prop;
+    },
+  },
+};
+</**script**>
+ <!--Add "scoped" attribute to limit CSS to this component only-->
+ <**style** scoped>
+ table{
+ border-collapse: collapse;
+    }
+ tr, th {
+ background: gray;
+    }
+ tr:nth-child(odd) {
+ background: #fff;
+   }
+ </**style**>
+</**script**&gt
+```
+Table components are helpful because they enable you to organize comparable or statistical facts in a comprehensible format.
+
+How table components are used is demonstrated below:
+```
+<table-component
+     :data="[
+     { firstName: 'Wesley', birthday: '04/10/1940', score: 72 },
+     { firstName: 'Ann', birthday: '18/06/1942', score: 70 },
+     { firstName: 'Georgia', birthday: '25/02/1943', score: 22 },
+     { firstName: 'Ralph', birthday: '07/07/1940', score: 2 },
+     ]"
+ sort-by="score"
+ sort-order="asc"
+     >
+     <table-column show="firstName" label="First name"></table-column>
+     <table-column show="score" label="Score" data-type="numeric"></table-column>
+     <table-column show="birthday" label="Birthday" :filterable="false" data-type="date:DD/MM/YYYY"></table-column>
+ </table-component&gt
+```
+This will produce a table that can be sorted and filtered. Above the table, a filter field will be visible. When filtering, if your data contains any HTML, it will be removed during the filter process. Clicking on the column headers will let you sort the table. By default, it will keep track of the filter and sorting that was used for 15 minutes.
+
+### How It Functions
+Table components normally consist of a table body and a header. The header is indicated by the ```<thead>``` tag. The body contains the table rows and columns, which are indicated using the ```<tr>``` and ```<td>``` tags. The table component can take in props and computed data in order to manipulate the data that it renders. It works well with state or can work the same way functional components do, and it basically renders nonreactive data in a tabular format.
+
+## Functional Component
+The ```this``` keyword cannot be used with these components because functional components in Vue are simply components that are stateless, have no lifecycle methods, and no instances. Because they can’t sustain their own state, they are not reactive. They take in props and render a UI-based function on the received props, but they can't know when the data has changed. It's relevant to note that they’re not the same with a<a href="https://vuejs.org/guide/extras/render-function.html" target="_blank" rel="noopener noreferrer"> render</a> function, but are capable of containing render functions in them.
+
+An example of a functional component template is show below:
+```
+<**template** functionals> <!--note the functional keyword-->
+ <**h1**> {{props.sample}}</**h1**> <!--accepts a prop called "sample"-->
+</**template**>
+<**script**>
+ export default {
+    props: {
+      sample: String
+    }
+  }
+</**script**&gt
+```
+In comparison to dynamic components, functional components are easier to write and debug since they have less complexity and are faster because they have no state and reactivity.
+
+Some use cases for functional components are as follows:
+- To return multiple root nodes.
+- For solely presentational UIs that do not require state or reactivity.
+- For looping by using the ```v-for``` directive and rendering list items.
+
+### How It Functions
+The functional component works similarly to the single-file component, except that in this case, it is stateless and has no instance, and also includes a functional keyword in its ```<template>``` tag, which informs Vue that it is a functional component.
+
+## Conclusion
+In this article, we intricately discussed Vue components and how they work. We then broke down the listed components and explained them with in-depth examples and code demonstrations.

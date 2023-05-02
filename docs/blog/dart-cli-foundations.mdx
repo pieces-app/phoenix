@@ -1,0 +1,320 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd7a542cefb8b199fd7353_dartoncli_1a0fd612b711ec435a2cc5d6bc1b7e45_2000.jpeg)
+"cli; dart-c"
+# Dart CLI Foundations: CLI Tools to Streamline Your Workflow
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+Are you ready to take your software development skills to the next level? Then, it's time to dive into the world of Command Line Interface (CLI) tools with dart CLI. These tools run directly in the terminal, the familiar space for developers, and can streamline your workflow with their minimal interface and quick access.
+In this series of articles, we will be exploring Dart CLI apps and how to build them. You'll learn about the structure of Dart CLI projects, handling arguments, working with input/output, reading and writing to files, and finally, compiling and installing your Dart CLI apps. Embrace the full power of the terminal and join us on this exciting journey to build CLI apps in Dart.
+
+## Getting Started
+
+<a href="https://dart.dev/get-dart">Install the Dart SDK</a> to get started. We will be using <a href="https://marketplace.visualstudio.com/items?itemName=MeshIntelligentTechnologiesInc.pieces-vscode">Visual Studio Code</a> as the development environment for our Command Line Interface (CLI) application. However, the choice of Integrated Development Environment (IDE) is not crucial and you can work with any IDE that you prefer, without affecting the learning outcome.
+
+To create a new Dart CLI project, run the following dart command:
+```
+dart create dart_cli -t console
+```
+This will create a Dart CLI project in the respective directory.
+
+You can run your Dart CLI application with the following dart command:
+```
+dart run bin/dart_cli.dart
+```
+Here, ```-t``` defines the template for the Dart project. <a href="https://dart.dev/tools/dart-create">Dart has several templates</a> you can use to work on CLI, web or server-side projects.
+
+<a href="https://takrutvik.pieces.cloud/?p=0b324f8f6b" target="_blank" rel="noopener noreferrer">Save the above commands</a>
+
+## Understanding Project Structure with Dart CLI
+Three of the most important things in our project structure are the <a href="https://dart.dev/tools/pub/package-layout#public-directories" target="_blank" rel="noopener noreferrer">**bin** and **lib**</a> directories along with the **pubspec.yaml** file.
+- **bin:** This is a public directory that is the entry point for your Dart CLI application. This includes the executable Dart file that the CLI app will run.
+- **lib: **Lib includes the public libraries that your application uses. Like Dart methods, classes or any other code, this is imported into the bin directory.
+- <a href="https://dart.dev/tools/pub/pubspec">**pubspec.yaml**:</a> The Dart CLI app is a package in itself. This file contains the package/CLI app information like name, app version, any dependencies your app is using, etc. It also includes the entry point for your CLI application defined by the executables. This usually directs to the executable in the bin folder. Whenever you’ll be using your CLI app, you’ll be running this executable.
+
+### Arguments in Dart CLI
+Within the ```bin/dart_cli.dart``` file, you’ll see that the main function accepts a list of strings called **arguments**. These are inputs provided to CLI applications that you can use to know what to do.
+Arguments are broken down into the following major types relevant to this tutorial:
+- **Command:** The command you wish to run to execute a particular task.
+- **Flags:** Flags hold a boolean value. They can be used to turn on/off some flows within your program.
+- **Options**: Options are **key-value pairs** that you can define. You can also define options that accept a value from an allowed list of values, thus restricting the input that a user can provide for the option.
+
+For example, take a look at the following command, which creates the Dart project with some additional arguments added:
+```
+$ dart create dart_cli -t console --force --[no-]pub```<a href="https://takrutvik.pieces.cloud/?p=08f342bb7e" target="_blank" rel="noopener noreferrer">Save this code</a>
+- **create:** The command you want to execute.
+- **dart_cli:** This is an argument for the earlier command which defines the name for the project. This is not predefined, so if there are any such arguments that a command would be accepting, then it should know about it.
+- **-t:** An option where the ```t``` is the abbreviation used for the ```template``` for the project. You can also provide options like ```follow```, ```-t console``` or ```--template="console"```.
+- **console**: This is the value for the option earlier.
+- —**force:** This is a flag and is used to force the creation of a project even if the target directory already exists. You can also turn on certain flags by using the flags abbreviations (if any) provided for them, e.g., ```-f```. Both of these methods will turn the respective flag on.
+- —**no-pub**: By default, Dart create will run ```pub get```, which will fetch the dependencies within your **pubspec.yaml.** The prefix **no** is used to set the flag’s value to false.
+
+### Parsing Arguments in Dart CLI
+You’ll see that within our main method, the arguments are provided as a list of strings. Working with them this way would be inefficient and unmanageable. Therefore, what we’ll do is parse the list of arguments into something that’s more approachable and friendlier to use.
+
+We’ll be using the **args** package, which helps us define parsers for the raw command line arguments. You can add it to your project by running the following command:
+
+```
+$ dart pub add args```<a href="https://takrutvik.pieces.cloud/?p=13a74a8cee" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+This will add the **args** dependency in your **pubspec** file. We used the Darts<a href="https://dart.dev/tools/pub/cmd" target="_blank" rel="noopener noreferrer"> package manager **pub**</a> to add this dependency.
+
+Now, take a look at the code below:
+```
+void main(List<String> arguments) async {
+ final ArgParser parser = ArgParser()
+    ..addCommand("create")
+  ..addOption(
+    "template",
+    defaultsTo:   "t",
+   // If allowed is non-null, then input will be restricted to the values
+   // provided in allowed list.
+      allowed:   [
+        "console",
+        "package"
+        "web",
+        "server-shelf",
+       ],
+     )
+     ..addFlag("force",   abbr:   "f");
+
+ final ArgResults argResults = parser.parse(arguments);
+ final command = argResults.command!.name!;
+ // gets the command entered
+ final isForced = argResults["force"] as bool;
+}
+```
+
+<a href="https://takrutvik.pieces.cloud/?p=d3b0499bd4" target="_blank" rel="noopener noreferrer">Save this code</a>
+There are two important pieces of information here, the ```ArgParser``` and the ```ArgResults```:
+- **ArgParser:** ```ArgParser``` can be used to define parsers to parse the arguments. You can then add to the parser the commands, flags and options that you expect to use in your CLI application.
+- **ArgResults:** Once you’ve created your parser, you can parse the raw ```arguments``` and it’ll return the ```ArgResults``` object, which will map the raw values from the ```arguments``` list to the defined commands, flags and options. This makes it easier to use the arguments from input through a concrete class. You can also treat it like a ```map``` to find different values as we did above to get values for the ```force``` flag.
+
+### I/O
+The<a href="https://dart.dev/articles/libraries/dart-io" target="_blank" rel="noopener noreferrer"> dart:io</a> library provides us with different streams through which we can manage input/output events. Let’s take a look at them below.
+The ```stdout``` from dart:io provides the standard output stream. This stream can be used to log outputs to the terminal, like below:
+```
+stdout.writeln("Hello World!");```<a href="https://takrutvik.pieces.cloud/?p=391944bc1f" target="_blank" rel="noopener noreferrer">Save this code</a>
+This will output ```"Hello World"``` and is a non-blocking operation. This means any other i/o operations will not be blocked from executing while this is running.
+The ```stdin``` provides the standard input stream, which we can read/listen to get the input from the terminal, like the following:
+```
+final input = stdin.readLineSync();
+stdout.writeln(input);```<a href="https://takrutvik.pieces.cloud/?p=85b64c8d78" target="_blank" rel="noopener noreferrer">Save this code</a>
+Here, ```readLineSync()``` listens to the input from the standard stream. This is a blocking operation, and until input is received and the user presses return, other i/o events are blocked.
+
+![](43afec68f555387049efb3/635ab3e8bd64ae625f663586_input_demo_983b9a71f3f6da6446887a2a966e666e.g)
+
+Alternatively, if you want a non-blocking input read, then you can use the ```.pipe()``` method:
+```
+final input = await stdin.pipe(stdout);```<a href="https://takrutvik.pieces.cloud/?p=38234c9a80" target="_blank" rel="noopener noreferrer">Save this code</a>
+This method is **non-blocking** and **async**. It takes in another stream consumer like ```stdout```, which consumes the events from the ```stdin``` stream without blocking the ```output``` stream.
+It’s not uncommon to come across errors in your applications and catch them, or to explicitly throw errors if things don’t add up.
+
+The dart:io library also provides a standard error stream that logs the errors to the console:
+```
+stderr.writeln("Ooops! Something's not right!"}
+```
+
+<a href="https://takrutvik.pieces.cloud/?p=50d64f936a" target="_blank" rel="noopener noreferrer">Save this code</a>
+This will log out the given error. Also, this operation is non-blocking.
+Your application may throw exceptions at runtime. You should handle these exceptions when they occur, and provide the proper message to the user to tell them what went wrong. Exceptions can be easily caught with a ```try/catch``` block.
+```
+void main(List<String> arguments) {
+ try {
+  // This will throw an exception as abbr can be either null or character of length 1.
+ final ArgParser parser = ArgParser()..addFlag("save", abbr: "save");
+      } on ArgParserException catch (e) {
+  stdout.writeln("Failed while parsing arguments");
+      studout.writeln(e.message);
+      exit(1);
+    } catch (e) {
+  stdout.writeln("Something went wrong");
+  studout.writeln(e.message);
+          exit(1);
+}
+}
+```
+
+<a href="https://takrutvik.pieces.cloud/?p=c83548a027" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+Here, we used a ```try/catch``` block to catch any exceptions that might be thrown during the parsing of ```arguments```. Also, we are defining a ```catch``` block that will only catch the exceptions of type ```ArgParserException```. This makes it easier to work with different types of exceptions individually and provide outputs that are more helpful for those kinds of exceptions.
+The last catch block will catch all other exceptions aside from the ```ArgParserException``` type, and provide a general message with the error thrown to the user.
+
+## **Dart CLI Exit Codes**
+Exit codes are a small number that shows the success, failure or any other state of the program to the system that called it. Within Dart, there are pre-defined exit codes appropriate for certain conditions.
+
+Generally, exit codes like ```0``` mean ```success```, ```1``` mean ```warning``` and ```2``` mean an ```error``` has occurred. See more Dart exit codes here:<a href="https://dart.dev/tutorials/server/cmdline#setting-exit-codes" target="_blank" rel="noopener noreferrer"> src</a>.
+
+The dart:io library defines a top-level property called ```exitCode```, which you can change to set the exit code for the running program:
+```
+void readFile(String path) {
+ try {
+  final file = File(path);
+  file.readAsLines();
+ } on FileSystemException catch (e) {
+   exitCode = 2;
+ }
+}
+```
+
+<a href="https://takrutvik.pieces.cloud/?p=20364f8430" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+Setting up a new ```exitCode``` doesn’t terminate the program. The program will continue to execute until it’s complete or an error occurs.
+
+Along with the ```exitCode```, there is also a top-level method ```exit(exit_code)```, which sets the ```exitCode``` to the given code and terminates the program immediately.
+
+## Reading/Writing to Files
+As with any other type of application, when working with a CLI, you may need to access files on a user's system for either reading or writing purposes. The dart:io library provides ways to access files on the system. Here’s how you can do that:
+
+### Reading a File
+```
+final notesFile = File("./bin/notes.txt");
+final notes = notesFile.readAsLinesSync();
+for (String note in notes) {
+       stdout.writeln(note);
+   }
+```
+
+<a href="https://takrutvik.pieces.cloud/?p=14544997ee" target="_blank" rel="noopener noreferrer">Save this code</a>
+The ```File``` object is part of dart:io and has utility methods that you can use for reading/writing to a file at the given path.
+Here, you’re reading from a file named **notes.txt** within the **bin** folder, as shown below:
+```
+Learn Dart on CLI.🙌
+Practice what I learned.🧑🏽‍💻
+Build something cool with it.🔥```<a href="https://takrutvik.pieces.cloud/?p=66cf41bb79" target="_blank" rel="noopener noreferrer">Save this code</a>
+The file is read as lines, and then you log each line to the output.
+Output:
+```
+$ dart run bin/dart_cli.dart
+Learn Dart on CLI.🙌
+Practice what I learned.🧑🏽‍💻
+Build something cool with it.🔥```<a href="https://takrutvik.pieces.cloud/?p=dc774d970f" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+### Writing to a File
+```
+final newNotes = [
+ "Having fun learning Dart on CLI!🤩",
+ "Dart makes it so easy to write cli apps.👍🏽",
+ "Can't wait to build something cool with it!💙",
+      ];
+ final notesFile = File("./bin/notes.txt");
+ final notesString = newNotes.join("\\n");
+      notesFile.writeAsStringSync(
+          notesString,
+// FileMode.append will add the new content at the end of the file.
+            mode: FileMode.append,
+//   FileMode.write will override the existing file content with the new content.
+ // mode: FileMode.write,
+    );```<a href="https://takrutvik.pieces.cloud/?p=1e624bad9a" target="_blank" rel="noopener noreferrer">Save this code</a>
+You can see that here we have defined some new notes. We are writing them to a notes file by using ```.writeAsStringSync```. Before writing to the file, we joined the existing notes with ```\\\\n``` line delimiters because each note will be written on a new line.
+Next, set the ```FileMode.append```, which will add the new content to the end of the file. You can set it to ```.write``` if you want to override the existing content of the file.
+```
+File``` has many other utility methods that you may find useful. Some of the most common ones are shown below:
+```
+// Creates the file at the path the File object was initialized with.
+    file.create();
+ // Checks if the file exists.
+    file.exists();
+ // Deletes the file.
+    file.delete();
+ // Listens to changes on file.
+    file.watch().listen((event) {
+ // File changed. Do something.
+   });```<a href="https://takrutvik.pieces.cloud/?p=278b46bb5e" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+## Styling Your Application
+Oftentimes, CLI applications can have a less appealing visual experience as coloring the output text, adding a colorful background to text and changing how users can interact with the app is challenging. This is definitely not an easy task; there are a lot of factors that go into getting this right.
+Next, we’ll take a look at a logger package that makes it easier for us to style our CLI.
+
+### Adding Mason Logger
+We can use<a href="https://pub.dev/packages/mason_logger" target="_blank" rel="noopener noreferrer"> Mason logger</a> to log stylized and more interactive outputs to the terminal.
+To use it, add it as a dependency in your **pubspec.yaml**, or just run the following command that will add it for you:<a href="https://takrutvik.pieces.cloud/?p=7d2e498b49"> </a>
+```
+$ dart pub add mason_logger```<a href="https://takrutvik.pieces.cloud/?p=7d2e498b49" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+Mason provides us with a range of different output levels like info, warning, error, success, etc. It also allows us to add a background color to text, as in the example below.
+```
+import 'package:mason_logger/mason_logger.dart';
+void main(List<String> arguments) async {
+ final logger = Logger();
+    logger.info('\\nThis is an info.🔵\\n');
+    logger.warn('\\nThis is a warning.🌕');
+    logger.err('\\nThis is an error.🔴');
+    logger.success('\\nThis is success!🟢');
+    logger.success(
+          backgroundBlue.wrap("\\nLook! A text with colored background!🥳"),
+    );
+}
+```
+
+<a href="https://takrutvik.pieces.cloud/?p=d29d4cbad1" target="_blank" rel="noopener noreferrer">Save this code</a>
+Output:
+![](/6143afec68f555387049efb3/635ab3e8bd64ae4cb5663587_output_b1d7215a553f6793cc3bd89dd7444bf2_800.png)
+
+Mason can not only help with styling output, but also with implementing more common types of interactive outputs with rich experiences like below:
+```
+import 'package:mason_logger/mason_logger.dart';
+void main(List<String> arguments) async {
+ final logger = Logger();
+
+ // Confirmation message
+ final isConfirmed =
+                logger.confirm("This is a confirmation messsage with yes and no option.");
+ if (isConfirmed) {
+ // User permitted the action.
+   }
+ // Single choice selection
+ final selectedChoice = logger.chooseOne("Options picker", choices: [
+ "Choice1",
+ "Choice2",
+ "Choice3",
+      ]);
+ logger.info("Selected Choice-->$selectedChoice");
+ // Multiple choice selection
+ final selectedListOfChoices = logger.chooseAny("Options picker", choices: [
+ "Choice1",
+ "Choice2",
+ "Choice3",
+ "Choice4",
+ "Choice5",
+  ]);```<a href="https://takrutvik.pieces.cloud/?p=543c4f9f53" target="_blank" rel="noopener noreferrer">Save this code</a>
+Output:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/635ab3e8bd64ae74f9663588_output2_17116c26be794acf2becc3bf0e25e9ac.g)
+
+## Compiling
+Once you’re done with your app, it’s time to compile it so you can distribute it to stores, or anywhere else you like.
+While in the dev process, the application runs on top of Dart VM, which is optimized for faster performance and execution times.
+For production, you can use the Dart compiler. This offers AOT compilation to compile the program to native machine code:
+```
+$   dart compile exe bin/dart_cli.dart```<a href="https://takrutvik.pieces.cloud/?p=ef7b47a777" target="_blank" rel="noopener noreferrer">Save this code</a>
+This will generate the application executable in your **bin** folder.
+You can run the executable like so:
+```
+$ ./bin/dart_cli.exe```<a href="https://takrutvik.pieces.cloud/?p=593a4db4c7" target="_blank" rel="noopener noreferrer">Save this code</a>
+Another interesting fact about the executables is that they can be run without installing Dart SDK on the system they’re running on. This is because the executables are self-contained with everything needed to run properly.
+
+## Installing Dart CLI
+Besides building the executable, you can also directly install the CLI app through **pub.** However, before this step, make sure you’ve mentioned the<a href="https://dart.dev/tools/pub/pubspec#executables" target="_blank" rel="noopener noreferrer"> executables</a> in your **pubspec.yaml,** which you’ll want to activate:
+```
+..
+...
+executables:
+    dart_cli: dart_cli # value can be left empty and is inferred from the key
+    other_executable: todo_cli
+..
+...```<a href="https://takrutvik.pieces.cloud/?p=f2ee479a8d" target="_blank" rel="noopener noreferrer">Save this code</a>
+To add the executable, you’ll need to provide a **key-value** pair. If the ```value``` is not provided, then it’s inferred from the ```key```.
+
+Then, run the following command to activate values globally:
+```
+$ dart pub global activate --source path <project_path>```<a href="https://takrutvik.pieces.cloud/?p=31ec45a850" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+Next, provide the path of the project. If you’re in the project’s directory, provide the ```project_path``` as ```.``` .
+This will globally activate the CLI application by installing the executable on your system.
+You can run the application from anywhere on your system like so:
+```
+$ dart_cli <command>```<a href="https://takrutvik.pieces.cloud/?p=315f4da0b2" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+## Summary on Dart CLI
+So, you took a leap of faith in learning to build CLI apps with Dart. You learned the basics of i/o, working with files, HTTP requests and more in Dart. Along with this, you also looked into how to compile and install CLI apps to use them on your system.
+Working with Dart on CLI applications is really amazing. The pace at which it’s evolving is astonishing to me. I’ve never grown so fond of a language that makes building CLI tools so easy. There are a lot of interesting things that you can do with Dart right now. You can learn more about them<a href="https://dart.dev/tutorials/server/get-started#6-compile-for-production" target="_blank" rel="noopener noreferrer"> here</a>.
+
+Going forward in this series, we’ll explore building casual/utility CLI apps with Dart and maybe some CLI games! 👀 Who knows? 🤫

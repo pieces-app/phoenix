@@ -1,0 +1,57 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/630d8b94f8b0de15903ac539_ezgif_com-gif-maker72_18352784950c8349d64e6440cc019288_2000.png)
+**new features** **bug fixes** **ux ui updates**
+# Pieces 1.8.0: It’s getting pretty wild out here 🤠 Automatic Snippet Descriptions, JSON/YAML/TOML support, Gen 2 Sharing, and a whole lot more 🔥
+> Mon Mar 27 2023 15:51:45 GMT+0000 (Coordinated Universal Time)
+
+Today, we’re releasing a seriously upgraded sharing experience, support for JSON, YAML and TOML (a very popular request!), the ability to copy code with its context in the Pieces desktop app and so much more!
+1.8.0 marks a huge jump forward in user experience, and we’re continuing to work hard on building the best possible personal micro-repo. Let us know what you think of this release and what we should improve next!
+
+## Snippet Sharing, massively improved
+We’re super excited to be releasing the latest version of sharing your snippets! The experience for recipients of Pieces links is way better— once recipients click your share link, they can preview the code and view its context without having Pieces installed or running.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/630d8b96f8b0de3e3f3ac6d4_ezgif_com-gif-maker67_306aec6d9bdad0fa180bd501f959e579_800.png)
+
+From the preview, they can easily save the snippet to Pieces, copy the code, or copy the code and its context with one click.
+Our upgraded sharing experience also introduces Related People. Pieces will automatically associate you with your snippets and maintain that association when you share a snippet. Anyone who saves a snippet you share will be able to tell that it came from you!
+
+## YAML, JSON and TOML support
+We’ve added support for three of our most-suggested languages: YAML, JSON and TOML. They’ll now be automatically classified, formatted and syntax highlighted correctly.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/630d8b96f8b0de24fa3ac670_ezgif_com-gif-maker68_09bfa3ffa04facfc24a7bf9a4b28cb5c_800.png)
+
+If you’d like Pieces to support a new language, let us know <a href="https://getpieces.typeform.com/to/qjOzAqHo?os=b741a1e5-951b-4931-b974-b877baed4751&user=null">here</a>.
+
+## Copy code with context
+The Pieces desktop app is one of the most powerful tools in the Pieces Suite because of the metadata associated with every snippet. To copy both the code and its context, hover over the icon in the bottom right corner and hit “Copy with Context Summary” to add it to your clipboard. From there, wherever you paste, you'll paste both the code and its related context.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/630d8b95f8b0deb88b3ac637_ezgif_com-gif-maker69_0f980cc1a8d100a85c731985cfd54637_800.png)
+
+## Auto-generated descriptions
+Adding a description to your snippets makes them way more useful— they’re easier to search for, give you implementation information, source information or whatever other info you find helpful. But, it takes time to add a good description. In this release, Pieces will auto-generate Smart Descriptions for all of your snippets! The Smart Descriptions live alongside your manually added descriptions, and you can edit or remove them if you’d like something different.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/630d8b96f8b0de20333ac6d2_ezgif_com-gif-maker70_3639fc997fced2c761417d1df0f1f9b6_800.png)
+
+## Fine-tune your user experience
+You can now set preferences for notifications and confirmation messages in the Pieces desktop app. If you prefer, you can choose to limit your notifications to only critical notifications or turn them off entirely. You can also choose to turn off confirmation messages on deletion events.
+All of your preferences can be edited in the settings menu of the Pieces desktop app.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/630d8b96f8b0de4e443ac6d3_ezgif_com-gif-maker71_7be585b6f8dbb3d871426788cb1c043c_800.png)
+
+## Bug fixes and performance improvements
+Finally, this release includes a plethora of bug fixes and performance improvements. Most notably, you’ll be logged out for security far less often than before!
+
+## Pieces OS
+New Endpoints:
+
+/discovery/discover/assets
+- Accepts files or strings and returns a list of recommended assets
+- Includes a property, ‘discovered: true’ on an asset returned by the endpoint
+
+/discovery/discover/tags
+- An endpoint that accepts a tag as a parameter and returns a list of related tags
+
+Infrastructure to support Related People
+
+Bug Fixes & Performance Improvements
+- The format creator is now in sync with an asset creator
+- Faster loading time on boot-up from ~2.5s to ~1.5s
+
+## Support
+As always, if you run into issues or have feedback, please fill out <a href="https://getpieces.typeform.com/to/mCjBSIjF" target="_blank" rel="noopener noreferrer">this quick form</a> or email us at <a href="mailto:support@pieces.app" target="_blank" rel="noopener noreferrer">support@pieces.app</a> and we’ll be in touch as soon as possible!

@@ -1,0 +1,85 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd6acbf1029fb5e3caa095_flutter%20app%20accessibility.jpg)
+"flutter"
+# Improve App Accessibility in Flutter for Better User Experience
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+id="">Enter Accessibility (A11y)! Many developers ignore it, some are even unaware of it, but app accessibility is as important as any other feature. Your audience may include people who do not use the internet the same was as others, which could make it challenging or even impossible to use your beautifully crafted Flutter apps.
+id="">According to the <a href="https://www.who.int/news-room/fact-sheets/detail/disability-and-health" target="_blank" id="">World Health Organization</a>, there are over <strong id="">1 billion** people with disabilities around the world. This can make it challenging to carry out daily tasks and perform actions that others often take for granted. In our context as Flutter developers, we want to make sure that everyone can interact with digital services, apps, <a href="https://code.pieces.app/blog/build-a-pong-game-in-flutter-with-flame" target="_blank" id="">games</a>, etc.
+
+![](fb3/6425dabc49f020abc816200a_62fbc4cb2c32732a027bfe04_1_tchgEbp8Wjbgr8EEtj2MzA.png" loading="lazy" alt="A grid of disabilities that read: vision, hearing loss, cognitive, neurological, mobility, and motor impairmen)
+
+id="">‍
+
+id=""><a href="https://code.pieces.app/blog/accessibility-in-web-development-wai-aria-and-implementation" target="_blank" id="">Building accessible apps</a> should be one your main goals. App accessibility is about building products that are accessible to everyone, no matter their abilities. Making your app accessible may also help to broaden your user base, as allowing more people to engage with your application increases your DAU count.
+
+id="">Flutter is a cross-platform framework that makes it possible to reach millions of users across the world. By implementing accessibility options in a friendly and consistent way, we can make sure that developers— as well as users— have the same experience no matter which platform they are using.
+
+id="">Flutter accessibility is pretty simple, as it's designed to be accessible out-of-the-box while providing first-class framework support for solving accessibility problems by adding to what the underlying operating system offers.
+id="">We’ll see how we can tackle some of these common app accessibility problems mentioned below in Flutter and provide a better experience for everyone.
+
+## Text Scaling
+![](fb3/6425db18dfbbd667d8bdfd0a_Text_Scaling.gif" loading="lazy" alt="A gif of random text increasing and decreasin)
+id="">People who have vision problems may find it difficult to read text in your app when it's the default size. They often rely on screen readers or enlarging the text with the accessibility options on their devices. Be aware of this <strong id="">text scale factor** to make sure that the text within your app scales properly based on accessibility settings.
+id="">In Flutter app development, if you’re using a <em id="">Text widget to display text, then the changing text size calculations are handled by the widget itself. It has a <em id="">textScaleFactor property which is multiplied by the set/default font size to calculate the text's new font size.
+id="">The Flutter <em id="">textScaleFactor is obtained from the <em id="">MediaQuery.of(context).textScaleFactor, which represents the <em id="">textscaleFactor set by the underlying operating system or user through accessibility options. By default, it’s <strong id="">1.0**.
+id="">For example, if the <em id="">textscaleFactor is 1.5, the text will be 50% larger than the specified font size.
+id="">Note that if you’re using a <em id="">RichText Flutter widget, it won't support automatic text scaling. You’ll need to explicitly pass the <em id="">textscaleFactor from the <em id="">MediaQuery to the <em id="">RichText widget’s <em id="">textscaleFactor parameter.
+id="">Finally, always make sure your UI layout is proper for scaling text. If your UI doesn’t look good or is almost useless above a certain font size, then you need to update your layout. For more information, check out <a href="https://iiro.dev/restricting-system-text-scale-factor/" target="_blank" id="">this very interesting article that discusses this problem</a>.
+id="">Be aware that limiting text scaling may create problems for some users, so choose carefully!
+id=""><strong id=""><em id="">Note: **<em id="">Contrast is the difference in <a href="https://en.wikipedia.org/wiki/Luminance" target="_blank" id=""><em id="">luminance</a><em id=""> or <a href="https://en.wikipedia.org/wiki/Colour" target="_blank" id=""><em id="">color</a><em id=""> that makes an object (or its representation in an image or display) distinguishable. — <a href="https://en.wikipedia.org/wiki/Contrast_(vision)" target="_blank" id=""><em id="">Wikipedia</a>
+id=""><em id="">The <strong id=""><em id="">contrast ratio**<em id=""> (CR) is defined as the <a href="https://en.wikipedia.org/wiki/Ratio" target="_blank" id=""><em id="">ratio</a><em id=""> of the <a href="https://en.wikipedia.org/wiki/Luminance" target="_blank" id=""><em id="">luminance</a><em id=""> of the brightest shade to that of the darkest shade that the system is capable of producing. This ratio is within a range of 1 to 21 (commonly written as 1:1 to 21:1), where increasing numbers mean higher contrast. — <a href="https://en.wikipedia.org/wiki/Contrast_ratio" target="_blank"><em id="">Wikipedia</a>
+
+## Contrast
+![](fb3/6425db3f20915c144f646ff9_Contrast_Text.gif" loading="lazy" alt="Random text changing in color and contras)
+id="">People with vision impairments may also face issues using your app if there’s not enough contrast between different parts of your app. Many visual impairments cause issues with reading text at a low contrast. Even people with normal vision will face this issue if there’s not enough contrast between text and its background.
+id="">The <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html" target="_blank" id="">W3C</a> recommends the following contrast ratios (CR) depending on the situation:
+
+- id="">3:1 — If text is at least 18 pt if not bold and at least 14 pt if bold.
+id="">The following image shows you different contrast levels for text with its background. The example on the left has a CR of 1.96:1, below the accessibility standard, which makes it hard to read. The other two have an acceptable CR, so we can easily read the text.
+![](fb3/6425db6a49f020a6c4162c30_Contrast_rectangles.png" loading="lazy" alt="An image containing three rectangles in a row. One shows low contrast with a light blue background and white text. The second rectangle shows moderate contrast which has a medium blue as the background and white text and the third rectangle has a dark blue background with white text making it high contras)
+id="">As Flutter follows Material Design guidelines, most parts of your apps will have high enough contrast between text and their background unless you’ve added custom theming, in which case you need to make sure the CR is high enough.
+id="">You can use online tools like <a href="https://webaim.org/resources/contrastchecker/" target="_blank" id="">contrast-checker</a> and <a href="https://contrast-ratio.com/" target="_blank" id="">contrast-ratio</a> to see if the CR of your colors meets app accessibility standards.
+id="">Also, some users may prefer a higher CR than the default. They can turn on this option through the accessibility settings on their device.
+![](8f555387049efb3/6425ac9f7d58f797abd33a8f_contrast.jpg" loading="lazy" id="" width="auto" height="auto" alt="A screenshot of the settings view showing "Increase Contrast" turned o)
+id="">In your app, you can add a check for this option through the <em id="">highContrast property of <em id="">MediaQuery. Based on the result, update your background colors to provide higher contrast.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62fbc50326e6887d2ed833fe_raycast-untitled%20(97).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet with Dart code)
+id="">Note: This flag is currently updated on iOS devices that are running iOS 13 and above.
+
+## Tap Targets
+![](fb3/6425dbedd484c85fa6ef4d1d_Tap_Targets.gif" loading="lazy" alt="A gif of a mouse pressing a button and the button changing color to notify that the button was clicke)
+id="">When you’re developing for mobile or any touch screen interfaces, you need to make sure that the tappable area for a button or any action is large enough that it can be tapped properly.
+id="">People with motor impairments may find it difficult to focus or concentrate their muscles on small areas and may find it challenging to tap the button if the tap target is too small. Even people with larger than average fingers may be frustrated by mis-tapping a small tap target.
+id="">The Android <a href="https://material.io/design/layout/spacing-methods.html#touch-targets" target="_blank" id="">Material Design guidelines for touch targets</a> recommend a minimum of 48x48 <a href="https://material.io/design/layout/pixel-density.html#density-independence" target="_blank" id="">density-independent pixels (dp)</a> for buttons, and <a href="https://developer.apple.com/design/human-interface-guidelines/components/menus-and-actions/buttons#best-practices" target="_blank" id="">Apple recommends</a> at least 44x44 dp. They also recommend adding spaces of at least 8 dp between interactive components to make them distinguishable from the surrounding components; also, make sure to avoid overlapping tap targets.
+id="">In Flutter UI, the minimum tap target size is set to 48 dp, in line with the Material Design guidelines. The same size is also used for iOS and all of the other platforms that Flutter supports.
+
+## Semantics
+![](fb3/6425dc4620915c81c4647f27_Semantics_Accessibility.gif" loading="lazy" alt="The word accessibility is being scanned and read by a screen reade)
+id="">People with some forms of vision impairments may access your app with screen readers. Screen readers provide spoken feedback so that people can use their devices without looking at their screens.
+id="">Based on a user's gestures or through external controllers like a keyboard, screen readers narrate the semantics of the components, say whether something is tappable or not, and then dictate the results of those actions and other information that may help the user navigate through your app.
+id="">On Android, we have a screen reader called TalkBack. On iOS, we have VoiceOver; similar screen readers are available for other operating systems. People can enable them through the accessibility options on their devices.
+id="">By default, most Flutter widgets have some semantics. Flutter is smart enough to update those default semantics based on the data you pass to the required parameters of those widgets.
+id="">Let’s look at the following example where we navigate through a Flutter counter app with the help of Android's screen reader.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62fbcafaef501c23ad1281bb_raycast-untitled%20(98).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet with several Flutter widgets)
+
+id="">When the app is first opened with the screen reader, it reads the title in the <em id="">AppBar. As we tap different parts of the app, it gives feedback on the tapped component.
+id="">The default results are usually fine, but sometimes the default semantics won’t be able to provide a user with the proper information. In such cases, you can add your own semantics to suit your needs. Flutter provides us with several accessibility widgets that can help us to build more accessible apps.
+id="">One of those widgets is <a href="https://api.flutter.dev/flutter/widgets/Semantics-class.html" target="_blank" id="">Semantics</a>. It allows you to add custom semantics to your Flutter widgets by providing you with various options to provide a description of a widget, its content, and whether it’s a button, slider, or other action component that a user can interact with. Also, you can describe the specific action that takes place if you double-tap, long press, or perform any other gestures on the component.
+id="">There’s a lot more to semantics than just the Semantics widget, including <a href="https://api.flutter.dev/flutter/widgets/MergeSemantics-class.html" target="_blank" id=""><em id="">MergeSemantics</a> and <a href="https://api.flutter.dev/flutter/widgets/ExcludeSemantics-class.html" target="_blank" id=""><em id="">ExcludeSemantics<strong id="">,**</a> which can be helpful in various scenarios. If you want to learn more about the best practices, ways you can use them, or dig a little deeper into the underlying workings of <a href="https://www.didierboelens.com/2018/07/semantics/" target="_blank" id="">Semantics In Flutter</a>, which we haven’t covered here, check out some of the links to the learning materials I mention at the end of this article.
+
+### On App Accessibility: A Note to Developers
+id="">Proper app accessibility should never be an optional task. The things some people take for granted can be difficult to achieve for others, and making sure that everyone can enjoy your apps and games is your responsibility as a developer.
+id="">Most of the time, we don’t even realize that there are people who are missing out on these experiences and totally neglect the users who would be enjoying your apps if you’d only learned how to make an app accessible.
+id="">Adding accessibility options takes more time and effort, but it’s something we can’t neglect. Many people depend on these digital solutions, and a developer's efforts can go a long way toward being truly helpful. You can always start small by improving things in your apps, gradually making them more accessible.
+
+## Summary
+id="">We discussed some common app accessibility problems and how you can make your Flutter apps more accessible by considering accessibility solutions.
+id="">There’s far more to accessibility apps than what we discussed. I’ve shared some links below, which I think you should definitely take the time to explore. They go more in-depth on app accessibility in general and Flutter accessibility in particular. Building accessibility awareness can only make you a better developer and give your apps a wider audience with better UX.
+id="">Thanks for reading this article! If you found it helpful, please don’t forget to share it with other devs.
+
+### More On Accessibility In Flutter
+- id=""><a href="https://www.youtube.com/watch?v=bWbBgbmAdQs&t=138s" target="_blank" id="">Building in Accessibility with Flutter (Flutter Interact ‘19)</a>
+- id=""><a href="https://docs.flutter.dev/development/accessibility-and-localization/accessibility" target="_blank" id="">Official Flutter documentation on Accessibility</a>
+- id=""><a href="https://medium.com/flutter-community/a-deep-dive-into-flutters-accessibility-widgets-eb0ef9455bc" id="">A deep dive into Flutter’s accessibility widgets — Salih Guler</a>
+
+## Use Pieces to Store Your Flutter Snippets

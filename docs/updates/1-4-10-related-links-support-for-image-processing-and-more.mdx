@@ -1,0 +1,55 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/630d5f9393e00a926cc5ca52_ezgif_com-gif-maker_dc3aff1a2c2bb99aa09260edd0537dec_2000.png)
+**integrations** **new features** **bug fixes** **ux ui updates**
+# 1.4.10: Related Links, Support for Image Processing and more
+> Mon Mar 27 2023 14:03:36 GMT+0000 (Coordinated Universal Time)
+
+# Were excited to announce the release of 1.4.10.
+
+The headliners in this release include:
+- Related Links: when saving a code snippet, context is critical. It's often useful to associate related web pages with your code snippets. Now you can, simply by tapping CMD+K to associate any number of URLs to a piece.
+- Image Processing: Pieces OS now contains all the infrastructure needed to store and process images, including screenshots. User-facing upgrades will be out in a couple of weeks.
+
+## Pieces for Developers
+**Pieces for Developers is the core user-facing Pieces application.**
+
+### Managing a Piece
+- [New Feature] Related Links: users can tap CMD+K to associate any number of URLs to a piece.
+- Default descriptions for a piece will now be adjusted automatically when a user reclassifies a piece.
+
+### Adding Pieces
+- Improved empty state experience (when a user has no pieces saved) to make it more helpful to discover Pieces integrations
+
+### Installing & Configuring Pieces
+- Users can now choose to connect Pieces to the cloud or work in offline mode during the onboarding flow
+
+### Getting Support
+- Users can now click to restart the app when a failed connection to Pieces OS occurs
+
+## Pieces API
+**Everything we develop is on top of the Pieces API. We're excited to welcome third-party developers who want to build applications on top of our infrastructure. Email us at support@pieces.app for more details.**
+
+Pieces OS now contains APIs and data structures enabling an association of links and tags with a Piece:
+- [New Feature] Support for associating tags with a piece
+- [New Feature] Support for associating web pages with a piece
+
+### Image Processing
+- Pieces OS also supports all the needed components to support storing and processing images
+
+### Privacy
+- Variable privacy flags: as we add users inside enterprises and entire teams and enterprises themselves, we want to ensure data and usage opt-in capabilities. This release includes variable privacy flags on assets throughout the platform.
+
+## Pieces for Chrome
+
+**Get the Pieces Chrome Extension <a href="https://chrome.google.com/webstore/detail/pieces/igbgibhbfonhmjlechmeefimncpekepm?hl=en" target="_blank" rel="noopener noreferrer">here</a>.**
+
+- Revised the onboarding experience outlining how to use Pieces with Chrome
+- Increased website support
+- Adds a notification when a piece is saved
+- Saves the source URL of snippets saved via Chrome extension to Related Links Menu in Pieces for Developers
+## Pieces for JetBrains (including IntelliJ and PyCharm)
+
+**Get the JetBrains Extension <a href="https://plugins.jetbrains.com/plugin/17328-pieces" target="_blank" rel="noopener noreferrer">here</a>.**
+
+- Performance improvements to Suggested Save
+- Small patches and cleaning to the plugin codebase
+- Compatibility with Pieces OS 1.4.10 or greater

@@ -1,0 +1,116 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/630638b1a7ad23587babc478_emca_e2bd8ab6534aefb56d5f144eb012901a_2000.png)
+"javascript-6; emca"
+# The path of a JavaScript feature from concept to browser
+> 
+
+But have you ever heard of how those features arrive directly in your browser?
+To become a part of the JavaScript standard, all of the features of JavaScript follow a strict path.
+This article will go through the path of a JavaScript feature, from the thinking phase to the conception phase, until it reaches your browser.
+
+The world needs standardization.
+
+A standard is a piece of technical writing that defines rules, conditions, guidelines, or characteristics that anyone can refer to implement a solution.
+For instance, an operating system, in order to give access to the internet to a computer, has to develop a piece of software capable of doing that, which must follow the TCP/IP Network Standard.
+What would have happened if no standard existed and every operating system had to write its custom implementation of a network software?
+
+Without those standards, it would be challenging for everyone to communicate easily as no one would allow information to be easily shared. It’s similar to trying to communicate with someone that doesn’t speak the same language as you.
+
+The standards have been part of the internet for many years. The ECMA, initially the European Computer Manufacturers Association organization, was created to address standards in the computer hardware industry in 1961.
+In 1994, with the increasing success of the organization, they renamed it simply Ecma. The reason for that change was to signal that they were changing the original mission of the association by becoming international and by operating on more diverse standardization topics like software, hardware, communications, media, storage, and more.
+TC39 is a technical committee composed of industry experts formed by Ecma to address multiple tasks regarding ECMAScript, the Javascript standard. Their work consists of:
+- Identifying, developing, and maintaining standards for libraries that extend the capabilities of ECMAScript<em ®.
+- Building test suites to verify the correct implementation of these standards.
+- Contributing selected standards to ISO/IEC JTC 1.
+- Evaluating and considering proposals for complementary or additional technologies.
+Here is an excellent video from a JSConf in 2018 that presents the work of the TC39 committee.
+![](https://uploads-ssl.webflow.com/embed/Hj5q8uyqGYc?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" title="TC39 Panel - JSConf EU 2018"></ifr)
+
+An Ecma technical committee is organized so that a feature passes 5 different stages (stages 0, 1, 2, 3 and 4) before going live in the standard.
+![](43afec68f555387049efb3/630638b3a7ad23b82dabc4fb_image5_a65e3e56e1caeed53fed15ab16d48284_800.png" id="" width="auto" height="auto" loading="au)
+
+This chapter will discuss each stage, its objectives, and the work required.
+The first stage is open to everyone, and there are no entrance criteria, so anyone can submit a discussion, idea, or proposal for a change or addition.
+
+This stage is considered a “straw person” stage; a straw person is a philosophic term used when the weakest version of an argument is attacked while stronger ones are ignored.
+In order to make the process smoother, some work is required to create a feature request.You should document the problem and sketch a solution with other community members, including TC39 members.
+
+Your role is to convince a TC39 champion— a TC39 core member— to agree that the feature you propose is helpful enough to add it to the standard.
+
+Once you have convinced a TC39 champion, that person will present the proposal at a TC39 meeting that occurs six times a year to determine whether to move the proposal to the next stage or not.
+
+You can find the agenda of the TC39 meeting <a href="https://github.com/tc39/agendas/" target="_blank" here</a>.
+Here is also an example of what a TC39 stage 0 proposal should look like:
+
+- <a href="https://github.com/tc39/template-for-proposals" target="_blank" >https://github.com/tc39/template-for-proposals</a>
+
+In one stage 0 proposal, a developer asked to enhance the trim method already implemented in ECMAScript so that she could pass a string parameter to trim instead of just trimming whitespaces:
+![](43afec68f555387049efb3/630638b2a7ad23e345abc4d3_codeblock1_34d5b9cd4dfcd82b36cdbeb1aa8f5164_800.png" id="" width="auto" height="auto" loading="au)
+
+For example, the proposal above is already implemented in a famous library named <a href="https://lodash.com/docs/4.17.15#trim" target="_blank" Lodash</a>.
+Developers would like to add their various proposals to the standard to eliminate the need to download and install a dependency and to continuously improve the ECMAScript standard.
+Stage 1 and beyond are considered the “maturity” stages, where the TC39 team will challenge and harden the proposal.
+Step 1 proposals represent problems for which the committee wishes to explore solutions.
+
+These proposals have multiple purposes:
+- Describing the shape of a solution
+- Identifying potential challenges
+
+For the proposal to enter Stage 1, multiple criteria have to be provided by the proposal, including (but not limited to):
+- Prose outlining the problem or need and the general shape of a solution
+- Illustrative examples of usage
+
+While each stage is an opportunity to challenge the proposal, the committee can, at any given time during the process, downgrade the proposal to an earlier stage if a blocking point is raised that should have been spotted earlier.
+At each stage, the committee must reach a consensus to move forward. Once consensus is achieved, the committee can give the TC champion permission to move forward.
+
+Stage 2 aims to precisely describe the syntax and semantics using formal spec language.
+It also marks a significant milestone, as passing from stage 1 to stage 2 means a lot for the future of the proposal. As the official stage 2 documentation says: “The committee expects the feature to be developed and eventually included in the standard.”
+
+Hence, passing stage 2 almost always means that the committee will include the proposal in the standard if no insurmountable issues are encountered, but there is still work to accomplish.
+
+For the feature to enter stage 2, an initial spec text should be given in addition to all of the requirements to enter stage 1.
+
+In stage 2, the committee also chooses reviewers for acceptance. The reviewers must give their approval before a proposal enters stage 3, and all TC39 participants should approve the design of proposals they care about before stage 3.
+
+If a proposal passes stage 3, it indicates that further refinement will require feedback from implementations and users.
+
+To pass this stage, the committee expects a complete spec text that has been reviewed and signed by the designated reviewers and all ECMAScript editors.
+
+You must also write a conformance test suite that is an ECMAScript standard to ensure that the proposal is technically safe to implement. These test requirements are here: <a href="https://github.com/tc39/test262/" target="_blank" https://github.com/tc39/test262/</a>.
+
+Here is what a test could look like:
+![](43afec68f555387049efb3/630638b2a7ad234f44abc4f0_code3_16766b3346025abcfd8f531fcad58874_800.png" id="" width="auto" height="auto" loading="au)
+
+Passing this stage means the solution is complete, and no further work is possible without implementation experience, significant usage, and external feedback.
+When a consensus is reached at this stage, the solution is complete.
+The last step of a long journey, stage 4, indicates that the addition is ready for inclusion in the formal ECMAScript standard.
+
+This means that few acceptance tests for mainline usage have been written, but two implementations of the feature have also been developed, and they should pass the acceptance tests. Finally, a pull request has been sent to <a href="https://github.com/tc39/ecma262" target="_blank" tc39/ecma262</a> with the integrated spec text, and all ECMAScript members have approved the pull request.
+
+The proposal will be included in the soonest practical standard revision when all the checks above are satisfied.
+
+Once the proposal has been approved and merged into the official standard, other actors in the JavaScript world can safely implement the proposal into their implementation without expecting rework and hence make the feature available to other developers.
+
+For example, V8, the most used JavaScript core engine that backs Chromium and Node.js, will adopt the proposal safely to distribute it to everyone without dependencies.
+We saw that for a feature to be usable, the main actors of the field like V8, SpiderMonkey, or others must implement the feature once merged into the ECMAScript standard.
+
+Most of the features introduced into ECMAScript have been developed with Babel, a JavaScript compiler that lets us power up the language semantics without waiting for the standard to validate a feature.
+
+Babel allows any developer to enhance their JavaScript workflow by adding features to the language that are not yet available natively.
+
+For instance, the bind function syntax proposal stage-0 is available as a Babel plugin if we want to use the feature immediately, without waiting for the proposal to be validated to the standard.
+- <a href="https://babeljs.io/docs/en/babel-plugin-proposal-function-bind" target="_blank"> https://babeljs.io/docs/en/babel-plugin-proposal-function-bind</a>
+![](43afec68f555387049efb3/630638b2a7ad234a46abc4eb_code4_ec8677712660eeca2c7c7339fd74fd8b_800.png" id="" width="auto" height="auto" loading="au)
+
+When Babel was developed, it was a significant change for all developers as it changed the ecosystem around JavaScript.
+Standards are the building block of the internet world we live in. They are essential to tech as they permit us not to reinvent the wheel each time; developers rely on standards to build other pieces of technology on top.
+I think this quote from Isaac Newton illustrates the situation here well.
+
+Without noticing it, in our daily life, we rely on the <strong Internet Standard** that rules worldwide communications.
+
+Standardization is helping the world to maximize compatibility, interoperability, safety, repeatability, and quality.
+- <a href="https://tc39.es/process-document/" target="_blank" >https://tc39.es/process-document/</a>
+- <a href="https://github.com/tc39/how-we-work/blob/HEAD/matrix-guide.md" target="_blank"> https://github.com/tc39/how-we-work/blob/HEAD/matrix-guide.md</a>
+- <a href="https://es.discourse.group/" target="_blank" >https://es.discourse.group/</a>
+- <a href="https://github.com/tc39/proposals/" target="_blank" >https://github.com/tc39/proposals/</a>
+- <a href="https://github.com/tc39/agendas/blob/main/2022/07.md" target="_blank" >https://github.com/tc39/agendas/blob/main/2022/07.md</a>
+- <a href="http://www.sis.pitt.edu/mbsclass/standards/viar/TCP-IP.html#:~:text=The" target="_blank"> http://www.sis.pitt.edu/mbsclass/standards/viar/TCP-IP.html#:~:text </a>The protocols in the TCP, by the Network Information Center.

@@ -1,0 +1,444 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd710455beb63a72270a5a_sanity_io_8dc51aeb13ee9b62ceb5d404ce37858d_2000.jpeg)
+""
+# How to use Sanity.io as a Headless CMS in Next.js
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+<a href="https://www.sanity.io/" target="_blank" rel="noopener noreferrer">Sanity.io</a> is a unified content platform where you can store and manage content for a website or application. Unlike traditional **Content Management Systems** (CMS) like WordPress or Wix, which keep your content and display it on the front-end for you, Sanity is a headless CMS that stores your content but lets you decide how you want that content to be displayed. With Sanity.io, you can show your content on different web and mobile applications.
+One framework which works well with Sanity.io is Next.js. <a href="https://nextjs.org/" target="_blank" rel="noopener noreferrer">Next.js</a> is a popular React framework used by developers to render React applications server-side to improve Search Engine Optimization (SEO) performance.
+
+In this tutorial, We will go through how you can create text, images, and other media types with Sanity.io and display that content in your Next.js application.
+
+**Prerequisites**
+This tutorial assumes that you have a basic understanding of how Content Management Systems and Next.js work. If you want to learn more about Next.js, check out this <a href="https://medium.com/@sageosoro/why-you-should-use-next-js-in-all-your-react-projects-a8e634bba4b4" target="_blank" rel="noopener noreferrer">article</a> that I wrote with more detail on the subject.
+
+## Why should you use Sanity?
+Sanity lets you treat content like data by creating a content lake. In a content lake, all your content is structured together and readily available for collaborative authoring. It is a real-time database for content in the Sanity studio. The Sanity studio is an open-source single-page application that uses schemas to let users organize content within the system.
+
+### What is a Schema?
+Schemas are the structures in a database for organizing images, texts, tables, attributes, references, and other types of media. Schemas are a plus for building server-side rendering applications with Next.js or Gatsby by providing additional information about the content of pages to web crawlers.
+
+### Types of Schemas in Sanity
+These are the most common schema types you will encounter when working with Sanity:
+- Document
+- Array
+- Block
+- Boolean
+- Date
+- Datetime
+- File
+- Geopoint
+- Image
+- Number
+- Object
+- Reference
+- Slug
+- String
+- Span
+- Url
+- Text
+
+## Getting started with Sanity
+First things first, we need to install Node.js. If you don’t have Node.js, download it<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener noreferrer"> here</a>. Once we have that downloaded and installed, let’s install the Sanity CLI using the command below:
+```
+npm install -g @sanity/cli```<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=539345a921">Save this snippet</a>
+Once we have installed the Sanity CLI, we will initialize a new Sanity project by running the command:
+```
+sanity init```<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=f1a940b234">Save this snippet</a>
+
+After running the command, we will create an account with Sanity using any of the signup methods below:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/638a36b2d070df57cafba38d_image3_99289fe2d99c194dfd574264e7eba3df_800.png)
+
+Once the authentication finishes, we’ll have to give a name to our project. I’ll name it “sanity_tutorial”, but you can call yours whatever you want.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/638a36b2d070df8547fba389_image9_2fe85ef6ae715a51f7fa0d875d7ceadc_800.png)
+
+Click on Enter, and we'll specify if we want our project to be public or private. We’ll choose "public" by inputting "Y" and clicking Enter:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/638a36b2d070df3164fba38c_image7_b803144f5e1329d561c334d97568b9b0_800.png)
+
+Declare an existing path to set up the project on your PC:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/638a36b2d070df6b2ffba38e_image10_8d93cdd19025a7eb40d508e1937ad4d3_800.png)
+
+Click Enter and select a schema or template. We’ll be going for a clean template with no predefined schemas. After clicking Enter, we’ll have a project with files and node dependencies in our folder.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/638a36b2d070dfb827fba38b_image8_25901007038dbbcfe56327edb7f9dd21_800.png)
+
+Now that we've created our project, we can start using some helpful scripts provided by Sanity. There are two scripts in the project's “package.json” file by default:
+- **sanity build** - This will generate our current Sanity configuration to a static build.
+
+The studio UI is pretty cool. We’ll have a look at how it looks locally on our browser. But first, we’ll have to run the command:
+```
+sanity start```<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=8ac14294a9">Save this snippet</a>
+
+Next, we’ll visit localhost:3333. After that, sanity will connect, and we’ll sign in with our earlier method when setting up our project.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/638a36b2d070df08f7fba38a_image6_0c3e80e94e29eba16a70fbd12481a5b1_800.png)
+
+Once we have signed into the studio, we’ll notice that it has no content or schemas. The studio is empty because we had selected “Clean project with no predefined schemas” before creating the studio. So now, let’s add some schemas.
+### Creating Schemas
+Back in our code editor, we will find a file called “schema.js” under the schema folder of our project. This file is where all the schemas we create will be imported and used. Let’s read the comments provided in the file to have a bit more understanding of what’s going on before we proceed:
+```
+// First, we must import the schema creator
+import createSchema from 'part:@sanity/base/schema-creator'
+// Then import schema types from any plugins that might expose them
+import schemaTypes from 'all:part:@sanity/base/schema-type'
+// Then we give our schema to the builder and provide the result to Sanity
+export default createSchema({
+    // We name our schema
+    name: 'default',
+
+    // Then proceed to concatenate our document type
+    // to the ones provided by any plugins that are installed
+    types: schemaTypes.concat([
+    /* Your types here! */
+  ]),
+}}
+```
+
+<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=b2924f835d">Save this snippet</a>
+
+Create a file in the schemas folder and call it ```firstSchema.js```. In the file, we have to declare a type for the schema. Depending on the schema type we use, specific properties are required to go along it. We will use the document type for this current schema, which requires a name, title, and input field. The key for input fields in Sanity, called “fields”, is a property that lets us declare the kind of input to expect. We’ll be using the string type input field.
+```
+export default {
+  type: "document", //value must be a schema type e.g document
+  name: "author", //value can be any word
+  title: "Author", //value can be any word
+  fields: [
+    {
+      type: "string",
+      name: "name",
+      title: "Author's Name"
+    }
+  ]
+}
+```
+
+<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=fcf94fafdb">Save this snippet</a>
+
+Let’s go back to ```schema.js``` and delete the comments to have a clearer view of what we’re about to do. Then, just above the **createSchema** component, import the schema we’ve just created, **firstSchema,** as a type into the **createSchema** component like so:
+```
+import firstSchema from "./firstSchema"
+export default createSchema({
+    name: 'default',
+    types: schemaTypes.concat([
+    firstSchema,
+  ]),
+}}
+```
+
+<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=ba824ab56a">Save this snippet</a>
+
+Save the changes and visit localhost:3333. Next, we’ll see the title of the schema we created, **Author**, displayed. **Author** contains all the schema properties we defined in our project. With these properties, we’ll be able to input and publish new content from the studio to the application.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/638a36b3d070dfa0c0fba390_image1_956f1c4c768e7583daa86bbf13d0d635_800.png)
+
+Click on Publish, and the **Author** will be saved to the studio.
+
+### Referencing Schemas
+Reference is a schema type for modeling relations between documents. It models one or more relations and stores the reference in an array. Let’s create a second file under the schemas folder called ```secondSchema.js```, which will refer to the first schema we created. The properties of this schema will be pretty different from the first. The schema will be of the type document with the name **book** and title **Book** but with an input field of the types string, image, and reference. The type reference requires an additional property called **to**, which will contain the single or multiple schemas we want to refer to in **book**. In this case, we want the book to refer to its author from the first schema.
+```
+export default {
+  type: "document",
+  name: "book",
+  title: "Book",
+  fields: [
+    {
+      type: "string",
+      name: "name",
+      title: "Book Name"
+    },
+    {
+      type: "image",
+      name: "image",
+      title: "Book Image"
+    },
+    {
+      type: "reference",
+      name: "author",
+      title: "Author",
+      to: { type: "author"}
+    }
+  ]
+}
+```
+
+<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=45084a8c6d">Save this snippet</a>
+
+We will also need to provide a slug as an id to navigate between different pages in our Next.js application later. Let’s add that right under the string type like so:
+```
+fields: [
+{
+type: "string",
+name: "name",
+title: "Book Name"
+},
+{
+type: "slug",
+name: "slug",
+title: "Slug"
+},
+{
+type: "image",
+name: "image",
+title: "Book Image"
+},
+{
+type: "reference",
+name: "author",
+title: "Author",
+to: { type: "author"}
+}
+]```<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=cf2847beeb">Save this snippet</a>
+
+To see this schema and its reference in the studio, import ```secondSchema``` into ```schema.js``` and insert it in the **createSchema** component.
+```
+import firstSchema from "./firstSchema"
+import secondSchema from "./secondSchema&quot;;
+export default createSchema({
+name: 'default',
+types: schemaTypes.concat([
+firstSchema,
+secondSchema
+]),
+}}
+```
+
+<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=8fc84c89af">Save this snippet</a>
+
+Save the changes and visit localhost:3333. Then, click **Book** and we’ll see the second schema’s properties. For the name of the book, let’s give it any name; for the slug, an id of 1 because this is our first book; an image for the book; and for the last input field, which has the reference type, select an author from the dropdown.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/638a36b3d070df7c76fba392_image2_bddb7316cddc33ff7bce6ec5d269d845_800.png)
+
+Great! Let’s see how we can use this content across multiple front-end applications like Next.js.
+
+## Connecting Sanity.io to Next.js
+Let’s set up our Next.js project by running the command:
+```
+npx create-next-app```<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=822849a7df">Save this snippet</a>
+
+In the ```index.js``` file of the pages folder, delete all the content in the **Home()** functional component and replace it with what we want the header of our homepage to be. First, we’ll create a **div** tag containing just the header:
+```
+export default function Home() {
+return (
+<div>
+<h1>Books</h1>
+</div>
+)
+}
+```
+
+<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=6759468548">Save this snippet</a>
+
+Let’s have the name of our book right below the **h1** tag. But how do we get the book we created in the Sanity studio into this component? We’ll use a special server-side rendering function from Next.js called **getServerSideProps** and a query language from Sanity.io called GROQ. Right below the Home() component, we will export an asynchronous **getServerSideProps()** function. Inside this function will be a GROQ query describing the type or nature of information we want to fetch, a URL, a response and a return statement. Since we want to fetch the book’s content from the studio, this is what the query will look like:
+```
+const query = &#x60;*[ _type == "book" ]&#x60;```<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=5c2d4bb800">Save this snippet</a>
+And if we were to fetch the author’s content, the query would look like this:
+```
+const query = &#x60;*[ _type == "author" ]&#x60;```<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=add74daa8a">Save this snippet</a>
+
+Now that we have our query, we will have to encode it with encodeURIComponent().
+```
+const query = encodeURIComponent(&#x60;*[ _type == "book" ]&#x60;}
+```
+
+<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=22ed4b9dbc">Save this snippet</a>
+
+For the next step, let’s get the project ID from<a href="https://www.sanity.io/login"> https://www.sanity.io/login</a>. First, sign in using the previous method. Once signed in, click on the Sanity project we are working with, and you will find your project ID. Copy the project ID and paste it  into an environment variable. Next, we will have to set a URL for the fetch request we are about to make with the query. The URL will contain our project ID and our query.
+```
+const url = &#x60;https://YOUR_PROJECT_ID.api.sanity.io/v1/data/query/production?query=${query}&#x60;```<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=45d04180c3">Save this snippet</a>
+
+Now, we need to fetch a response from the URL and convert that to JSON. The response is going to return three objects named “ms”, “query”, and “result”. We are only interested in the result since that is where all of our content is stored, so we will get that result and return it as props in **getServerSideProps()**.
+```
+const response = await fetch(url).then(res => res.json())
+return {
+props: {
+book: response.result
+}
+```
+
+<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=f28442bfd7">Save this snippet</a>
+
+In the end, we will get a function in Next.js that fetches content from Sanity:
+```
+export async function getServerSideProps(){
+  const query = encodeURIComponent(&#x60;*[ _type == "book" ]&#x60;)
+  const url = &#x60;https://YOUR_PROJECT_ID.api.sanity.io/v1/data/query/production?query=${query}&#x60;
+  const response = await fetch(url).then(res => res.json())
+  return {
+    props: {
+      book: response.result
+    }
+  }
+}
+```
+
+<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=754446a258">Save this snippet</a>
+
+Now that we have our content in our application, we have to display it. So in the **Home()** functional component, let’s parse in the props from **getServerSideProps()** and use the props underneath our header. The result from Sanity is an array, and we do have just one book created in the studio, but we will be using a mapping just in case we want to add more content to the studio in the future.
+```
+export default function Home({ book }) {
+  return (
+   <div>
+    <h1>Books</h1>
+    <ul>
+      {book.map((b) => {
+         return (
+          <li key={b}>
+            {b.name}
+          </li>
+       )
+      })}
+    </ul>
+  </div>
+ )
+}
+```
+
+<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=a06b4d9474">Save this snippet</a>
+
+Let’s save this and run the app in development mode by running the command:
+```
+npm run dev```<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=364b44bd54">Save this snippet</a>
+
+And visiting localhost:3000:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/638a36b3d070df9117fba38f_image11_fea8c23b2da8c5ad8efc8e358a55877d_800.png)
+
+We’ll see our book displayed! Now let’s get the rest of our content on a different page. This way, if we create more content in the studio, we will be able to see a list of multiple books on our homepage and their details on different pages.
+
+### Displaying More Sanity Content
+Next.js is amazing when it comes to moving between pages. The process is called “Dynamic Routing”. Remember, we used a slug for our second schema (Book) at the Sanity studio to serve as a custom unique identifier. We will input that slug at the end of our URL to navigate between the pages in Next.js. Let’s create a subfolder in pages called “bookInfo”. The “bookInfo” folder will have a file for our slugs called “[slug].js”. The brackets tell Next.js to treat the file as a dynamic route. Inside “[slug].js”, export an asynchronous **getServerSideProps()** which will expect a context as an argument.
+```
+export const getServerSideProps = async context => {
+}
+```
+
+<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=a9644997cb">Save this snippet</a>
+
+In **getServerSideProps()**, we will query the slug from the context and store it in a variable called pageSlug like so:
+```
+const pageSlug = context.query.slug```<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=6bad4dba87">Save this snippet</a>
+
+Let’s create our query with GROQ, but this time we will use the page’s slug and ensure the slug corresponds with the properties of **book**.
+```
+const query = encodeURIComponent(&#x60;*[ slug.current == "${pageSlug}" &amp;&amp; _type == "book" ]&#x60;}
+```
+
+<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=cfa7418d76">Save this snippet</a>
+
+Now, we’ll create a URL like we did before and fetch a response.
+```
+const response = await fetch(url).then(res => res.json()}
+```
+
+<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=43c648ab06">Save this snippet</a>
+
+The response has a result object which contains our book’s name, the book’s image, and the book’s author. We expect the book to have only one detail, so we do not need to map through the result. Let’s store the book’s name into a variable called book like so:
+```
+const book = response.result[0].name```<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=de78499d8a">Save this snippet</a>
+
+To get our image, we must download a package from Sanity, which will provide a source URL. Run the command:
+```
+npm install @sanity/image-url```<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=e2774b8299">Save this snippet</a>
+
+And import the **imageUrlBuilder()** from the package like so:
+```
+import imageUrlBuilder from "@sanity/image-url"```<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=fadb4ca26b">Save this snippet</a>
+
+Inside **getServerSideProps()**, We have to provide our project ID and dataset as an object to **imageUrlBuilder()** and store it into a variable like so:
+
+```
+const builder = imageUrlBuilder({
+  projectId: "YOUR_PROJECT_ID",
+  dataset: "production"
+}}
+```
+
+<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=1f9741b250">Save this snippet</a>
+With that variable, let’s call the image builder and parse the original return value for our book’s image.
+```
+const bookImage = builder.image(response.result[0].image).url(}
+```
+
+<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=e0464c9f8f">Save this snippet</a>
+Lastly, we’ll need to get our book’s author. The author in the second schema is not of type string. Instead, the author is of the type reference, so we will make a GROQ query using the reference content in the second schema’s author to get the string content of the first schema’s author. The content of the reference type is also the same as the “_id” type of our first schema. **_id** is an extended text format generated by Sanity for organizing content. Let’s make a query for our author using an asynchronous function outside of **getServerSideProps()**. We’ll call this function “getAuthor”, and it will contain the following:
+```
+async function getAuthor(id){
+  const query = encodeURIComponent(&#x60;*[ _id == "${id}" ]&#x60;)
+  const url = &#x60;https://YOUR_PROJECT_ID.api.sanity.io/v1/data/query/production?query=${query}&#x60;
+  const response = await fetch(url).then(res => res.json())
+    return(response.result[0].name)
+}
+```
+
+<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=2c4a4babfa">Save this snippet</a>
+
+So we are saying we want to make a query for the “_id“ type in our studio and return the name of the author. Back in **getServerSideProps()**, let’s use the function we just created to get our author. The author contains two objects: the “_type” and “_ref”. We will parse in “_ref” as the id for the function like so:
+```
+const author = await getAuthor(response.result[0].author._ref}
+```
+
+<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=dd994a8aed">Save this snippet</a>
+Sweet! We’ve got all of our content. Once we return them as props, we’ll get something like this:
+
+```
+export const getServerSideProps = async details => {
+  const pageSlug = details.query.slug
+  const query = encodeURIComponent(&#x60;*[ slug.current == "${pageSlug}" &amp;&amp; _type == "book" ]&#x60;)
+  const url = &#x60;https://YOUR_PROJECT_ID.api.sanity.io/v1/data/query/production?qery=${query}&#x60;
+  const response = await fetch(url).then(res => res.json())
+  const book = response.result[0].name
+  const builder = imageUrlBuilder({
+    projectId: "YOUR_PROJECT_ID",
+    dataset: "production"
+})
+const bookImage = builder.image(response.result[0].image).url()
+const author = await getAuthor(response.result[0].author._ref)
+return {
+  props: {
+    book: book,
+    bookImage: bookImage,
+    author: author
+  }
+ }
+}
+```
+
+<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=9fe24b9000">Save this snippet</a>
+All we have to do now is parse the three props into our default functional component like so:
+```
+export default function BookInfo({ book, bookImage, author })
+  {return(
+    <div>
+      <img src={bookImage} height="350" />
+        <div>{book} is a book published by <b>{author}</b> </div>
+    </div>
+  )
+}
+```
+
+<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=384146b3a2">Save this snippet</a>
+
+Let’s return to our “index.js” file and connect it to the “[slug].js” with **useRouter()**, a function in Next.js that lets us move smoothly between clicked pages in the application. For example, when we click on a book on our homepage, Next.js will change our route to a page containing the book’s details. So, in index.js, import the **useRouter()**:
+```
+import { useRouter } from "next/router"```<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=23de448ab2">Save this snippet</a>
+
+And store it in a const variable called **router**. Make sure the variable is inside the default functional component:
+```
+const router = useRouter(}
+```
+
+<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=4ce740bfc2">Save this snippet</a>
+
+We’ll use the router and its push method in an **onClick()** event for the **li** tag, which contains the name of our books. Inside the push method, we’ll provide the slug of the page we want to navigate to like so:
+```
+{book.map((b) => {
+  return (
+    <li onClick={() => router.push(&#x60;/bookInfo/${b.slug.current}&#x60;)} key={b}>
+      {b.name}
+    </li>
+  )
+})}
+```
+
+<a href="https://user-24360516-d5f9-4a9d-9df1-4f3938c9563c-fhcmbheklq-uc.a.run.app/?p=ac4240bd44">Save this snippet</a>
+
+Save, go to localhost:3000, and click on the book “Sanity Tutorial”:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/638a36b4d070df9a5afba393_image4_0e1f2a3033181d5553eea4e0e78611d9_800.png)
+And there’s all of our content :). Sanity lets us take the wheel when styling content for our front-end. We can add more books and authors to the studio, and they'll be rendered to the front-end automatically.
+
+## Conclusion

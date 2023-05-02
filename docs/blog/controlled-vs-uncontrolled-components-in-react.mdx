@@ -1,0 +1,95 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62f53e032130ef2e53e639ee_controlled-vs-uncontrolled.jpg)
+"react"
+# React: Controlled vs Uncontrolled Components
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+id="">Without further ado, let’s get started!
+id="">**Prerequisites**
+id="">To follow along with this article, I would highly recommend reading these articles for some background:
+- id=""><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind" target="_blank">Bind function in JS</a>
+
+## What is a Controlled Component?
+id="">Controlled components are components whose value is directed/driven by React’s state. By state, we mean the state we store inside a React component, i.e., inside <em id="">this.state or with <em id="">useState.
+id="">This means that these components will receive the latest changes.
+id="">For any controlled component, we pass our state variable inside the <em id="">value prop of the component. The function that changes this <em id="">state variable of the component is passed in the <em id="">onChange prop of the controlled component.
+id="">Here is an example that demonstrates a controlled component:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62f5416cbe7e7ecbfdf8b18b_raycast-untitled%20(96).png" loading="lazy" id="" width="auto" height="auto" alt="Code snippet with React cod)
+
+id="">Let’s explain:
+- id="">Its <em id="">render method consists of a <em id="">form with an <em id="">input element and a <em id="">strong element that displays the value of the state variable of the component.
+- id="">We pass the state variable <em id="">inputValue as a <em id="">value prop to the input element.
+- id="">Similarly, we pass the <em id="">handleOnChange function to the <em id="">onChange prop of the input component.
+- id="">Now, whatever you type inside the input element will set the value of the <em id="">inputValue state via <em id="">handleOnChange, and then the same will be displayed in the <em id="">input element.
+- id="">To show that the state variable <em id="">inputValue is changing, we display it inside the <em id="">strong element.
+
+id="">Here's a video for the above code:
+
+id="">The controlled component’s <em id="">value prop does not always need to be a component’s internal state. It can be a prop of the parent component, or it can come from the Redux store. This is similar to the <em id="">onChange prop.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62f42c8c5606d806c1b8a6b5_raycast-untitled%20(84).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet with React cod)
+id="">In a similar manner, we can use <em id="">react-redux to get the state and the <em id="">handleOnChange function from the Redux store to have similar functionality to what we had when we were using <em id="">useState.
+id="">The same context can be applied to the checkbox, radio, text area, and select DOM elements so that they can act as controlled elements.
+
+id="">Here are some of the advantages of using controlled components:
+- id="">Form data can be passed between different components
+- id="">The event handler and the value prop can be from the parent or a redux store
+- id="">The React component acts as a source of truth for this component
+
+id="">Some disadvantages of controlled components:
+- id="">A controlled component can be a bad choice when large changes are required to be made to the component
+id="">As the name suggests, the value of uncontrolled components is not driven by the React component’s state variable. It's completely controlled by the DOM.
+id="">Uncontrolled components are generally used when the use case is simple or the action is not trackable; for example, a user uploading a file using file input.
+id="">The basic requirement of any uncontrolled component is to be handled by the DOM. In this case, we cannot pass the <em id="">state variable inside the form’s input element. Now the question arises — how are we going to set the value inside this input element?
+id="">We use React’s <em id="">useRef for functional components or <em id="">createRef for class-based components. A <em id="">useRef is a hook that returns a mutable object with <em id="">current as its property with value being <em id="">initialValue that is passed inside the hook.
+id="">Here is the syntax of the <em id="">useRef hook:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62f42cccb9b831cce62ef24b_raycast-untitled%20(85).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet with React cod)
+
+id="">A <em id="">ref object can be used in many ways, e.g., as a state variable that does not re-render the component on change, to access DOM elements, etc.
+
+id="">We can leverage this into our React uncontrolled component to access input elements attributes, i.e., value properties.
+id="">Here's a simple example of how you can create an uncontrolled component:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62f42df7f09d03702f9c3405_raycast-untitled%20(87).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet with React cod)
+id="">And here is what the above component will look like:
+
+id="">As you can see, this <em id="">App component consists of <em id="">form and a bunch of <em id="">span elements. We use the <a href="https://jsonplaceholder.typicode.com/" target="_blank" id="">JSON placeholder API</a> in the component to fetch the <em id="">post based on <em id="">id. This is the summary of our component, but let’s understand a bit more about how the <em id="">App component works internally.
+- id="">We are making use of a <em id="">ref object here. This <em id="">ref object is named as <em id="">selectRef and this is being passed on to the <em id="">select element as a <em id="">ref prop.
+- id="">Here comes the catch— we don’t need to watch for any changes that happen to the <em id="">select element, nor do we need to make use of a state variable to keep track of the current value that is selected in this element.
+- id="">This begs the question, how do we get the latest value from the <em id="">select element?
+- id="">Well, we don’t need to. This is an uncontrolled component/element; a component/element that is managed by the DOM.
+- id="">So, the change in the <em id="">value property of the select element is managed by the browser.
+- id="">Now we just need to find a way to capture this value. <em id="">refs comes to rescue here. Since we passed our <em id="">ref object into the <em id="">select element as a prop, we can now access the value present inside this element.
+- id="">To get hang of this, you can check out the <em id="">handleOnSubmit function. This function makes use of the <em id="">selectRef.current.value to access the value property of the <em id="">select element. The <em id="">selectRef stores all of the values inside the <em id="">current object. In this case, <em id="">selectRef.current will store the <em id="">select element itself. To access the value, simply access its <em id="">.value property.
+- id="">Next, the <em id="">handleOnSubmit function calls the API. On success, we simply store it in the state variable <em id="">apiData.
+
+id="">Here are some advantages of uncontrolled components:
+- id="">Browser DOM handles the changes to the element
+- id="">Simple to use
+- id="">Keeps track of the internal state
+id="">And some of the disadvantages of uncontrolled components:
+- id="">It’s not always efficient to use uncontrolled components where we require granular control over the value
+
+## <a href="https://formik.org/" target="_blank">Formik</a>
+id="">Formik is an open-source library to build forms in React and React Native. It’s the world’s leading library for building forms in React.
+id="">Formik is a complete solution that helps you to implement form validation, keep track of visited fields, and handle form submission in an efficiently and robustly. It's based on the concept of a controlled component react.
+id="">Now, let’s look at one simple example of how can Formik can be used to build a form along with the form validation.
+id="">We are going to use the same uncontrolled component example. First, we’ll convert the example into a controlled component and then, use Formik to make our life easier.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62f52af74f9c70097ce76bea_raycast-untitled%20(94).png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet with a React componen)
+
+id="">Here are some of the brief points that will get you up to speed on understanding the above component:
+- id=""><em id="">Formik is a wrapper component that helps to build forms.
+- id="">It takes in <em id="">initialValues, which tells the Formik form about the fields and their initial values.
+- id="">Next, we have the <em id="">validationSchema prop. It can accept a <a href="https://github.com/jquense/yup" target="_blank" id="">Yup</a> object to define validations inside the form.
+- id="">Finally, we provide our <em id="">submitHandler function as a callback that needs to be executed whenever a submission takes place.
+- id="">This is a controlled component. All the values are handled by Formik.
+- id="">In the above component, we have used <em id="">Formik, <em id="">Field and <em id="">ErrorMessage components. These are similar to the normal input elements present inside the form element.
+- id="">The <em id="">Field component, as the name suggests, acts as a wrapper component on top of form input elements.
+- id="">Finally, we have the <em id="">ErrorMessage component. This component takes in the <em id="">name prop. This <em id="">name prop will be used by this component to provide an element that displays the error message for that particular field.
+- id="">Now, you might be wondering how these components know which field they should work for. Here comes the <em id="">name and <em id="">id props to the rescue. You should provide either of these props to make sure your <em id="">Field and <em id="">ErrorMessage components work properly.
+- id="">We should also make sure that we pass the submitted values to Yup’s <em id="">validations that we set earlier. &nbsp;For example, for the select field, we pass in <em id="">name="selectVal" in the <em id="">Field and <em id="">ErrorMessage components. In this way, Formik knows how to map these wrapper components to their respective fields.
+id="">Finally, here is our outcome with form validation in place with the help of Formik:
+
+## Summary
+id="">Now, you've learned some of the differences of React controlled vs uncontrolled components. Choosing which type of component to use in your project completely depends upon your use case.
+id="">If you’re looking for tangible results with a simple use case or trying to use memory-intensive operations, such as document editors, uncontrolled components are the way to go.

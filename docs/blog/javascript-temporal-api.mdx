@@ -1,0 +1,102 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63f79bd786668cf4a79bf1b0_temporalapi_008b3fa859323e7ddec5f8d8808d26ec_2000.jpeg)
+"javascript-8; api-3"
+# A Guide to the Temporal API in JavaScript
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+Every JavaScript developer has worked with date and time at one point in their careers, so we all know that working with dates in JavaScript is very ugly. The Date API is clunky and has almost no methods that respect immutability. This pushed most of us to resort to libraries like<a href="https://momentjs.com/" target="_blank" rel="noopener noreferrer"> moment.js</a> or<a href="https://date-fns.org/" target="_blank" rel="noopener noreferrer"> date-fns</a> in a bid for a simpler way of working with time in JavaScript. Enter the Temporal API.
+ The Temporal API comes with the Temporal object in JavaScript and lots of methods that make working with dates and time almost pain-free. This article will take a look at the Temporal API, what issues it solves, and some data types available with it.
+
+Some issues most developers face when using the Date object in Javascript include that it is error prone when doing string to date parsing, it only supports the Gregorian calendar, and it is easily mutable.
+
+The Temporal API deals with most of these issues by:
+- Being an API that's easy to use for dates and times
+- Providing support for non-Gregorian calendars
+- Providing support for all timezones
+
+## **Temporal API Data Types**
+There are two data types which the Temporal API makes available to us: The Plain data type and the Zoned data type.
+**Plain data type:** The Plain data type represents a date or time that has no time zone information. The Plain data type is best utilized when you want to represent time with no information as to what time zone the time comes from.
+**Zoned data type:** The Zoned data type represents a specific date and time with information to a specific time zone. Use it when dealing with specific times within certain time zones or if you need to format or perform time/date difference/addition operations that take time zone-specific information into account.
+
+## **Enabling the Temporal API in your project**
+
+The first step to using the Temporal API is to install the package by running the command below:
+```
+npm install @js-temporal/polyfill
+```
+
+We will install Snowpack as a ```dev``` dependency to enable us to build and ship our files to the browser:
+
+```
+npm install --save-dev snowpack
+```
+In the ```package.json``` file, paste the code below into the scripts section.
+```
+"start": "snowpack dev&quot
+```
+Create an ```index.html``` file and paste the code below into the file:
+```
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Temporal API</title>
+    <script src="index.js" type="module"></script>
+  </head>
+  <body>
+    <h1>A guide to the Temporal API</h1>
+  </body>
+</html&gt
+```
+Create an ```index.js``` file and import the Temporal package into it.
+```
+import { Temporal } from '@js-temporal/polyfill'
+```
+With that done, run ```npm start``` in your terminal to start your development server. Let’s look at some Temporal data types that you will most likely work with.
+
+### PlainDateTime
+Given that it just provides a date and time without taking into account the time zone, the ```PlainDateTime``` object is one of the simplest objects to comprehend. Using ```Temporal.now``` is the simplest way to construct a new ```PlainDateTime```.
+
+The ```temporal.now()``` function is a method in the Temporal API that returns the current date and time in the local time zone. This function can be used to get the current time in a script or program using the Temporal API.
+```
+const todaysDateAndTime = Temporal.Now.plainDateTimeISO()
+console.log(todaysDateAndTime.toString()) //2022-12-30T11:39:20.729760718
+```
+You can even go as far as getting the date and time differently and in a human readable fashion:
+The Zoned data type represents a specific date and time with information to a specific time zone. Use it when dealing with specific times within certain time zones or needing to format or perform time/date difference/addition operations that take time zone-specific information into account. A ```ZonedDateTime``` is a ```datetime``` that includes all time zone-related data, making it the ideal choice for displaying local dates and times and doing computations involving things like daylight savings time.
+
+Some examples of how to use the Zoned data type are shown below:
+
+The Temporal API also comes with some helper methods that make working with date and time a joy. We’ll cover some of these methods in this section.
+
+### Adding and subtracting methods
+JavaScript makes it quite difficult to add or subtract portions of dates and time, but thanks to the Temporal API, all of the data types we've discussed so far have add and subtract methods built in that make the process relatively simple. The arguments for both functions are same; the only distinction is that one subtracts and the other adds. To use the add and subtract methods, we only need to pass the properties we want to change.
+
+An example is shown below:
+```
+const today = Temporal.Now.plainDateISO()
+console.log(today.subtract({ days: 12, months: 5 }).toString()) //2022-07-20
+```
+The Temporal API automatically takes care of overflow for you and clamps the date to the nearest valid date. This means that if you try to add one day to March 31st, then the date will automatically be changed to April 1st because March 32nd doesn't exist and is not valid.
+
+### The with method
+The ```with``` method takes in an object of fields and uses that object to create a new instance of the current date. This new instance will bear the date but will have the properties specified in the object changed.
+
+Let’s take a look at an example:
+```
+const today = Temporal.Now.plainDateISO()
+console.log(today.with({ year: 1999, month: 5 }).toString()) //1999-05-01
+```
+In the example above, we specified that we want today's date but we want the year to be 1999 and we want the month to be the fifth month (May).
+
+## **Browser Support for the Temporal API**
+The Temporal API is great, but, unfortunately, there is currently no browser support for it. This is because this API is still in <a href="https://code.pieces.app/blog/the-path-of-a-javascript-feature-from-concept-to-browser" target="_blank" rel="noopener noreferrer">Proposal Stage 3</a>.
+
+However, you can still make use of this API by using a ```polyfill```. For this API, there are a variety of polyfills available, but I like the ```@js-temporal/polyfill``` the best. You can use the Temporal API as soon as you install this package.
+
+## **Conclusion**
+
+This article covers the Temporal API, how it works, and solutions it gives to the problems with using the ```Date()``` object in JavaScript. For further information concerning the Temporal API, please refer to:
+- <a href="https://tc39.es/proposal-temporal/docs/" target="_blank" rel="noopener noreferrer">The Temporal Documentation</a>

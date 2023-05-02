@@ -1,0 +1,115 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63f8df177a0772fe1adc180a_apimethods_7d1aa2168818794215b2faef72b2b689_2000.jpeg)
+"api-3"
+# API Methods: A Practical Guide for All Developers
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+## What is an API?
+An Application Programming Interface (API) is a means through which different applications or programs communicate/interchange data. APIs are widely used today by many organizations to transmit and manipulate data between applications. They can be used in nearly all digitalized industries, including banking, education, health, and sports.
+With APIs, an Application A can send a response to or request info from another Application B over specified API methods. For example, assume you wish to send money to a friend's bank account using payment platforms like Stripe or PayPal. It’s via APIs that these payment platforms are able to communicate with your friend's bank and the money gets sent to your friend's account. You need APIs to establish interactions between software programs (e.g., yours and that of other organizations).
+In this article, you will learn about APIs, how they work, and their structure. You will also learn about some of the most used API methods, such as ```GET```, ```POST```, ```DELETE```, ```PATCH```, and ```PUT```. You’ll learn how to "call" (communicate with) APIs using JavaScript as well as Postman. You will also learn about HTTP status codes, and lastly, how to handle errors when calling APIs.
+
+## REST APIs
+REST APIs use HTTP requests to access data from API endpoints. These requests are done via API methods (which are covered in a later section of this article), and their requests and responses are represented in <a href="https://www.json.org/" target="_blank" rel="noopener noreferrer">JSON format</a>.
+Assume Stripe needs to retrieve your friend's account details from Bank X.
+Stripe sends a request (also known as payload) to an API endpoint (e.g., ```https://bankx.api.com/accounts```) provided by Bank X using a ```GET``` method. The request body will look like this:
+
+```
+// Stripe sends a request to https://bankx.api.com/accounts
+{
+ accountNumber: 2974044820
+
+```
+If successful, Bank X's API returns a response containing your friend's details. Otherwise, it returns an error indicating that your request wasn't successful. Here's what a typical API response looks like:
+
+```
+// Bank X replies with a response
+{
+ name: "Oyindamola Rowaiye"
+ accountNumber: 2974044820
+
+```
+In JavaScript, the ```fetch()``` function can be used to communicate with the API server. It basically accepts two arguments—a URL and an object which is used to specify the request method and other necessary information. You can read more about the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch" target="_blank" rel="noopener noreferrer">```fetch()``` method</a> if you’d like to learn more.
+
+## Base URLs and Endpoints
+An API’s base URL is a consistent URL to which all endpoints are attached. Endpoints, on the other hand, are various resource locations to which you can send requests and get responses. Think of endpoints as doors to rooms with various resources. Different endpoints return different kinds of data. In the example above, ```<a href="https://bankx.api.com/" target="_blank" rel="noopener noreferrer">https://bankx.api.com</a>``` is the base URL while ```/accounts``` is the endpoint that returns user account details and together they form the API endpoint. Without one, the other will yield an error; therefore, every endpoint must have a relative base URL. Typically, an API has several endpoints, e.g., ```<a href="https://bankx.api.com/USSD">https://bankx.api.com/USSD</a>```, ```<a href="https://bankx.api.com/users">https://bankx.api.com/users</a>```, ```<a href="https://bankx.api.com/cards">https://bankx.api.com/cards</a>```, etc.
+
+## API Methods
+API methods are methods that determine the kind of request being made to the API endpoint. When sending a request, a method is specified, and based on this method, the server is able to determine what action is needed and the corresponding response to be sent.
+To further understand how API methods work, you will get a hands-on approach using sample endpoints created at <a href="https://mockapi.io/" target="_blank" rel="noopener noreferrer">mockapi.io</a>. The base URL is ```<a href="https://62ab0faba62365888bd3aea0.mockapi.io/api/v1">https://62ab0faba62365888bd3aea0.mockapi.io/api/v1</a>```, while the endpoint is ```/users``` which consists of a list of users.
+To follow through, you need to either be conversant with the JavaScript ```fetch()``` method, which is used for calling APIs, or you must have installed and be able to use <a href="https://www.postman.com/" target="_blank" rel="noopener noreferrer">Postman</a>, which can be used to test APIs.
+
+### GET Method
+The ```GET``` method is used to retrieve data from the server. This method is one of the most commonly used API methods. It basically queries an endpoint for a particular resource sometimes requiring you to send a request body (payload); other times, it doesn't require a payload.
+Using the ```GET``` method, you can get the list of users available from the ```/users``` endpoint using the JavaScript ```fetch()``` method or Postman.
+
+Please note that the default API method used when calling an API using the ```fetch()``` method is the ```GET``` method. Therefore, it doesn't have to be defined explicitly, unlike other methods.
+Here's how API data is retrieved using the ```GET``` method:
+```
+const baseURL = "https://62ab0faba62365888bd3aea0.mockapi.io/api/v1&quot;;
+fetch(&#x60;${baseURL}/users&#x60;)
+.then(res => res.json())
+.then(data => console.log(data)) // logs list of users
+.catch(error => console.log(error.message))
+```
+If you noticed, the ```GET``` method isn't specified like so:
+```
+fetch(&#x60;${baseURL}/users&#x60;, { method: "GET" })```
+But, it’s still able to fetch the list of users from the ```/users``` endpoint.
+
+Also, you can fetch data for a single user by attaching the ID of the user to the end of the endpoint URL, e.g., ```users/1```, like so:
+```
+fetch(&#x60;${baseURL}/users/1&#x60;)```
+The ```fetch()``` method returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="noopener noreferrer">promise</a> and using the ```then()``` method, the response can be converted to JSON. This is done using the ```json()``` method, which also returns a promise and finally, the data can be accessed using the ```then()``` method again. The ```catch()``` method at the last line is used to handle errors should any occur.
+
+### POST Method
+The ```POST``` method is also one of the most commonly used API methods. It is used to send or push data to the API server. It often requires a request body (payload) and is explicitly defined when using the JavaScript ```fetch()``` method.
+Here's how data is sent to the API server using the ```POST``` method:
+```
+// new user data to be created in the API server
+const newUser = {
+  fname: "Paul",
+  paymentMethod: "Direct Deposit",
+  rate: "750",
+  hours: 40,
+  overtimeHours: 4,
+  salaryAmount: "1500.55",
+  lname: "Ibeabuchi",
+  compType: "Salaried",
+}
+const baseURL = "https://62ab0faba62365888bd3aea0.mockapi.io/api/v1&quot;;
+fetch(&#x60;${baseURL}/users&#x60;, {
+  method: "POST",
+  body: JSON.stringify(newUser)
+})
+.then(res => res.json())
+.then(data => console.log(data))
+.catch(error => console.log(error))
+```
+Note that the ```newUser``` object was converted to JSON string using the ```JSON.stringify``` method, else it will throw an error.
+
+### DELETE Method
+This method is as straightforward as the name implies. It is used to delete a resource (data) from the API server. For this, the method is set to ```DELETE``` and the ID of the resource to be deleted is affixed to the end of the endpoint URL like so:
+The ```PATCH``` method is basically used to update one or more properties in the API data or resource. You have to specify an object containing properties that you want to ```PATCH``` and the API server will update the resource data corresponding to the properties you have specified.
+
+The method is set to ```PATCH``` and the ID for the resource to be updated is attached to the end of the endpoint like so:
+The ```PUT``` method is much similar to the ```PATCH``` method as they are both used to update data in the API server. However, the difference is that the ```PUT``` method is more like a "replace" action. Unlike ```PATCH```, where you just specify the property (or properties) to be updated, ```PUT``` requires you to include all the properties with values to be updated.
+Here's what a ```PUT``` request looks like:
+
+There are various levels of <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#successful_responses" target="_blank" rel="noopener noreferrer">HTTP status codes</a>, and each signifies different possible situations when a request is made to an API server. The most common ones are:
+- 200: this indicates that the request was successful and no problems were encountered.
+- 400: this signifies a problem with the request being sent to the API server. To resolve this issue, you must make sure that the expected request is sent to the API server.
+- 401: this code indicates that you are not authenticated and cannot access the requested resources. This issue is mostly due to errors in API headers for APIs which requires authentication.
+- 403: this indicates a forbidden request, which means that you do not have access to the resource you're requesting for.
+- 404: this is a very popular error, it basically indicates that you are requesting non-existent data or data from a non-existent resource.
+- 500: this error indicates a problem with the server. It could be that the server is down or is unable to handle the request at the moment.
+
+### Handling API Errors
+Making a request to a server is not always successful, it is common for errors to occur. Knowing this, it is important to handle possible errors from the API on the client side for a better user experience.
+
+For example, assume you are trying to access a list of users from the ```/users``` endpoint which should be displayed in your application's UI. If an error occurs, then you won't receive the list of users as expected, so nothing is displayed in your application UI. For a better user experience, you can handle such errors by displaying an error message (usually returned by an API), indicating to the user that a possible error has occurred.
+
+The ```catch()``` method is used to handle errors. You can display some kind of error message (customized messages or API error messages) to your users in the ```catch()``` method. You can also display UI to show different errors; for example, most websites display an image for 404 errors.
+Asides from being able to chain the ```catch()``` method, it can also be used with the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch" target="_blank" rel="noopener noreferrer">try...catch statement</a> where the error is handled in the ```catch``` block.
+
+## Conclusion
+At this point, you've learned what APIs are and why you need them. You have learned what base URLs are and what endpoints are. You are also now able to call APIs using various methods, such as ```GET```, ```POST```, ```DELETE```, ```PATCH```, and ```PUT```. You’ve learned about HTTP status codes and how you can handle errors in your application.

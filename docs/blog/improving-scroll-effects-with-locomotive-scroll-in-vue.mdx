@@ -1,0 +1,484 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dc2c325b0a943777ca81d0_locomotivescroll_c5f3aafaf65de797267f5e7e2ff55ddb_2000.jpeg)
+"vue; scroll"
+# Improving Scroll Effects with Locomotive Scroll in Vue
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+Websites, especially those with enormous amounts of material, can use scrolling animations as features to make browsing more enjoyable. With the advent of specialized libraries, scrolling animations are becoming increasingly widespread on the web. Web pages may use a variety of scroll movements, including sticky scroll, smooth scroll, CSS parallax, and more. In this article, we’ll be improving our scroll effects with the Locomotive scroll library.
+
+## What is Locomotive Scroll?
+<a href="https://github.com/locomotivemtl/locomotive-scroll#readme" target="_blank" rel="noopener noreferrer">The Locomotive scroll</a> is a scrolling library that is used to create custom scrollers that support touch, keyboard, and mouse interactions. It comes with a variety of customizable features including Smooth scroll, Page overlay scroll, and parallax effects.
+
+## Why use Locomotive Scroll?
+A user-friendly and fully customized website is one of all developers' main priorities. With the browser's default scroll, just a few scroll effects are possible. However, we can alter how your website scrolls and behaves when you go from page to page thanks to the Locomotive scroll library.
+
+## Installation
+Let’s get started with scaffolding our Vue application. Run the command below in the terminal.
+```
+yarn create vite my-vue-app vue-locomotive-scroll
+```
+Once the command above is done installing all of the required files, install the<a href="https://github.com/locomotivemtl/locomotive-scroll" target="_blank" rel="noopener noreferrer"> locomotive scroll</a> library using the command below.
+
+Let’s create a basic home page that we’ll customize later with some cool locomotive scroll effects. To achieve this, replace all of the code in the ```App.vue``` file with the code below.
+```
+<template>
+  <main>
+    <section className="hello">
+      <h1>Hello World From Sam</h1>
+    </section>
+    <section id="sticky">
+      <h1>Sticky scroll example</h1>
+      <p>Placeholders Placeholders</p>
+      <p>Placeholders Placeholders</p>
+      <p>Placeholders Placeholders</p>
+      <p>Placeholders Placeholders</p>
+    </section>
+    <section className="parallax">
+      <h1>Vertical Parallax scroll</h1>
+      <h1>Horizontal Parallax Scroll</h1>
+    </section>
+    <section className="scroll-into-view">
+      <h1>
+        Here, we're calling the Animate class when the Content scrolls into view
+      </h1>
+    </section>
+  </main>
+</template>
+<script>
+</script>
+<style>
+section {
+ height: 100vh;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ color: white;
+ font-size: xx-large;
+}
+.hello {
+ background-color: red;
+ background-image: url("./background.png");
+ color: rgba(0, 0, 0, 0.745);
+}
+.parallax {
+ background-color: greenyellow;
+}
+#sticky {
+ background-color: rgba(137, 43, 226, 0.469);
+ padding: 50px;
+}
+.scroll-into-view {
+ background-color: black;
+ color: white;
+}
+</style&gt
+```
+In the code above, we’re creating four sections, namely, ```hello```, ```sticky```, ```parallax```, and ```scroll-into-view```. These will be customized later on in this tutorial.
+For the ```hello``` style, we’re adding a background image. Download this<a href="https://res.cloudinary.com/iamvictorsam/image/upload/v1665509403/background_qtdtz5.png" target="_blank" rel="noopener noreferrer"> image</a> and add it to the ```src/assets``` folder.
+
+With the project setup complete, run the code using ```yarn dev``` to see the results below.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63c1793f29808b61e9a60f08_gif1-small_3b8f59d4d6a4a9c732d62f7827e4574b.g)
+
+## Configuring Locomotive Scroll
+
+Let’s configure the Locomotive Scroll library into our application before looking at its features. Update the ```<main>``` tag in the ```App.vue``` file.
+```
+<template>
+  <main ref="container">
+       <!-- other code blocks here -->
+  </main>
+</template&gt
+```
+In the code block above, we’re giving the ```<main>``` tag an identifier, a ```ref``` value.
+
+Next, copy and paste the code below into the ```<script>``` tag.
+```
+<script>
+import LocomotiveScroll from "locomotive-scroll&quot;;
+export default {
+  methods: {
+    setLocomotiveScroll() {
+ new LocomotiveScroll({
+        el: this.$refs.container,
+      });
+    },
+  },
+  mounted() {
+ this.setLocomotiveScroll();
+  },
+};
+</script&gt
+```
+In the code above, we’re calling the ```setLocomotiveScroll()``` function whenever the page is initialized on the browser. The ```setLocomotiveScroll()``` function creates a new ```LocomotiveScroll``` instance that accepts certain properties for its customization.
+The ```el``` property initializes its children as a scrollable container.
+
+Finally, replace all of the code in the ```style.css``` file with the code block below.
+```
+* {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+}
+html.has-scroll-smooth {
+ overflow: hidden;
+}
+html.has-scroll-dragging {
+ -webkit-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ user-select: none;
+}
+.has-scroll-smooth body {
+ overflow: hidden;
+}
+.has-scroll-smooth [data-scroll-container] {
+ min-height: 100vh;
+}
+[data-scroll-direction="horizontal"] [data-scroll-container] {
+ height: 100vh;
+ display: inline-block;
+ white-space: nowrap;
+}
+[data-scroll-direction="horizontal"] [data-scroll-section] {
+ display: inline-block;
+ vertical-align: top;
+ white-space: nowrap;
+ height: 100%;
+}
+.c-scrollbar {
+ position: absolute;
+ right: 0;
+ top: 0;
+ width: 11px;
+ height: 100%;
+ transform-origin: center right;
+ transition: transform 0.3s, opacity 0.3s;
+ opacity: 0;
+}
+.c-scrollbar:hover {
+ transform: scaleX(1.45);
+}
+.c-scrollbar:hover,
+.has-scroll-scrolling .c-scrollbar,
+.has-scroll-dragging .c-scrollbar {
+ opacity: 1;
+}
+[data-scroll-direction="horizontal"] .c-scrollbar {
+ width: 100%;
+ height: 10px;
+ top: auto;
+ bottom: 0;
+ transform: scaleY(1);
+}
+[data-scroll-direction="horizontal"] .c-scrollbar:hover {
+ transform: scaleY(1.3);
+}
+.c-scrollbar_thumb {
+ position: absolute;
+ top: 0;
+ right: 0;
+ background-color: black;
+ opacity: 0.5;
+ width: 7px;
+ border-radius: 10px;
+ margin: 2px;
+ cursor: -webkit-grab;
+ cursor: grab;
+}
+.has-scroll-dragging .c-scrollbar_thumb {
+ cursor: -webkit-grabbing;
+ cursor: grabbing;
+}
+[data-scroll-direction="horizontal"] .c-scrollbar_thumb {
+ right: auto;
+ bottom: 0;
+
+```
+The code block above is the recommended style when using Locomotive Scroll to prevent page distortion.
+## Locomotive Scroll Features
+
+A number of features are included in the Locomotive Scroll package to provide your website with a nice UX and UI. We'll examine some of the Locomotive Scroll package's most practical capabilities in this section.
+### Smooth Scroll
+Smooth Scroll is one of the major Locomotive Scroll effects; this gives the page a sleek and fluid scroll experience. Let’s add this to our page.
+```
+export default {
+  methods: {
+    setLocomotiveScroll() {
+ new LocomotiveScroll({
+        el: this.$refs.container,
+        smooth: true,           //added this
+      });
+    },
+  },
+  mounted() {
+ this.setLocomotiveScroll();
+  },
+}
+```
+In the code block above, we’re setting the smooth property to true.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63c1793f29808bfd36a60ef7_gif2-small_09e7265874e0c24288060a33dea0c03b.g)
+
+### Speed Scroll
+With the Locomotive Scroll library, the scrolling speed of a page can be fully customized. This feature is dependent on the smooth scrolling feature.
+```
+export default {
+  methods: {
+    setLocomotiveScroll() {
+ new LocomotiveScroll({
+        el: this.$refs.container,
+        smooth: true,
+        multiplier: 5,        //add this
+      });
+    },
+  },
+  mounted() {
+ this.setLocomotiveScroll();
+  },
+}
+```
+In the block above, we’re adding the ```multiplier``` property to the ```LocomotiveScroll``` instance. The multiplier boosts or reduces the scrolling speed of the page based on the value provided.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63c1793f29808b7e44a60f0a_gif3-small_287dc7e4f8e235f44cfbb61ec4b7f61d.g)
+
+## Locomotive Scroll Attributes
+Before looking into other Locomotive Scroll features, let’s review Locomotive Scroll attributes.
+```
+data-scroll-container```: This is a required attribute used mostly in the top-level tag of the container to define the scroll container of the application.
+```
+data-scroll```: This attribute detects if an element is in view, and is necessary when trying to add an effect to any element.
+```
+data-scroll-section```: This attribute defines a scrollable section within your section.
+```
+data-scroll-speed```: This sets the speed of the element it's used on.
+```
+data-scroll-direction```: This helps in parallax scrolling. It scrolls the element into place from the direction specified.
+```
+data-scroll-target```: This attribute targets the element’s location when it scrolls into view.
+```
+data-scroll-repeat```: When set as true, this attribute makes all effects repeat their initial phase, thus causing a continuous effect when scrolling over.
+
+### Section overlay scroll
+Creating a nice visual effect where a section scrolls over the previous section before going out of view can easily be achieved with the Locomotive Scroll library. Let’s add this to our application.
+
+```
+<template>
+  <main ref="container" data-scroll-container>
+    <section
+      className="hello"
+      data-scroll
+      data-scroll-speed="2"
+      data-scroll-section
+    >
+      <h1>Hello World From Sam</h1>
+    </section>
+    <section id="sticky" data-scroll-section>
+      <h1>Sticky scroll example</h1>
+      <p>Placeholders Placeholders</p>
+      <p>Placeholders Placeholders</p>
+      <p>Placeholders Placeholders</p>
+      <p>Placeholders Placeholders</p>
+    </section>
+    <section className="parallax" data-scroll-section>
+      <h1>Vertical Parallax scroll</h1>
+      <h1>Horizontal Parallax Scroll</h1>
+    </section>
+    <section className="scroll-into-view" data-scroll-section>
+      <h1>
+        Here, we're calling the Animate class when the Content scrolls into view
+      </h1>
+    </section>
+  </main>
+</template&gt
+```
+In the code block above, we’re initializing all of the sections using the ```data-scroll-section``` attribute to prevent page distortion among the sections. We’re then making the ```hello``` section with the ```data-scroll``` attribute to enable the Locomotive Scroll feature to work on it when its in view. We’re also delaying the scroll-out time of the ```hello``` sections by setting the speed to 2. This combo gives rise to the ```Scroll-overlay``` animation.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63c1793f29808b60dca60f07_gif4-small_fcdfd67f6a5d1424a3e5e4abfb520b1b.g)
+
+### Sticky Scroll
+Pinning an element in its position when scrolling can also be implemented with the Locomotive Scroll library. Let’s implement this by updating the ```<h1>``` tag in the ```sticky``` section.
+```
+<template>
+  <main ref="container">
+    ...     <!-- other code blocks here -->
+    <section id="sticky" data-scroll-section>
+      <h1
+        data-scroll
+        data-scroll-sticky
+        data-scroll-target="#sticky"
+      >
+        Sticky scroll example
+      </h1>
+      <p>Placeholders Placeholders</p>
+      <p>Placeholders Placeholders</p>
+      <p>Placeholders Placeholders</p>
+      <p>Placeholders Placeholders</p>
+    </section>
+    ....     <!-- other code blocks here -->
+  </main&gt
+```
+In the code block above, we added the ```data-scroll-sticky``` attribute to our ```h1``` tag. We also pinpointed the target section that we want the text to stick to, which is the ```sticky``` section.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63c1793f29808b057ca60f0b_gif5-small_292e44c454d6c02164adf1c04ddfe171.g)
+
+### Parallax Scroll
+Parallax scrolling means moving elements around a page either horizontally or vertically at different speeds when scrolling. Let’s see how we can achieve this in our parallax section.
+```
+<template>
+  <main ref="container">
+    ....     <!-- other code blocks here -->
+    <section className="parallax" data-scroll-section>
+      <h1 data-scroll data-scroll-direction="vertical" data-scroll-speed="9">
+        Vertical Parallax scroll
+      </h1>
+      <h1 data-scroll data-scroll-direction="horizontal" data-scroll-speed="9">
+        Horizontal Parallax Scroll
+      </h1>
+    </section>
+
+    ....     <!-- other code blocks here -->
+  </main>
+</template&gt
+```
+In the code block above, we added the ```data-scroll-direction``` to both ```h1``` tags and specified the direction we want them to flow. We also increased the speed to make it move faster when scrolling.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63c1793f29808b0e9ea60f06_gif6-small_8e65028953d15a133389d40964b70dcb.g)
+
+### Scroll-into-view Classes
+Sometimes we want to add some style to an element when it is scrolled into view and remove it when it is out of view. The Locomotive Scroll library makes this feature very easy to achieve; this comes in handy when dealing with certain animations.
+```
+<template>
+  <main>
+    ....     <!-- other code blocks here -->
+    <section className="scroll-into-view" data-scroll-section>
+      <h1
+        className="hint-text"
+        data-scroll
+        data-scroll-repeat="true"
+        data-scroll-class="animate"
+        data-scroll-speed="5"
+      >
+        Here, we're calling the Animate class when the Content scrolls into view
+      </h1>
+    </section>
+  </main>
+</template&gt
+```
+In the code block above, we’re adding the ```hint-text``` to the ```h1``` tag making the tag invisible on the initials. When it scrolls into view, we’re adding the ```animate``` class, which contains some animations to fade in the tag. We repeat this process every time the user scrolls to this section.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63c1793f29808b68e7a60f05_gif7-small_e13a452ed156a49b21dbcff33356af2b.g)
+
+## Building a Simple Landing Page with Locomotive scroll features
+Let’s build a Mini project with all of the Locomotive features we’ve discussed. To get started, clone the project starter file from <a href="https://github.com/iamVictorSam/landing-page-with-locomotive-scroll/tree/starter" target="_blank" rel="noopener noreferrer">Github</a>.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63c1793f29808bf296a60f04_gif8-actuallysmall_18754bfb4e31c51ba17c04f6b53b8185.g)
+
+First, install and configure the Locomotive Scroll library the same way we did in the “Configuring Locomotive Scroll” section. With that done, your ```App.vue``` should look like the code below.
+```
+<template>
+  <main ref="container" data-scroll-container>
+    <Introduction />
+    <Services />
+    <Appreciation />
+  </main>
+</template>
+<script>
+import Introduction from "./components/Introduction.vue&quot;;
+import Services from "./components/Services.vue&quot;;
+import Appreciation from "./components/Appreciation.vue&quot;;
+import LocomotiveScroll from "locomotive-scroll&quot;;
+export default {
+  components: {
+    Introduction,
+    Services,
+    Appreciation,
+  },
+  methods: {
+    setLocomotiveScroll() {
+ new LocomotiveScroll({
+        el: this.$refs.container,
+      });
+    },
+  },
+  mounted() {
+ this.setLocomotiveScroll();
+  },
+};
+</script&gt
+```
+Next, we’ll add smooth scrolling and multiplier properties to our Locomotive scroll instance to give it some swift scrolling and speed.
+```
+setLocomotiveScroll() {
+ new LocomotiveScroll({
+        el: this.$refs.container,
+        smooth: true,
+        multiplier: 3,
+ });
+},```
+Head over to the ```Introduction.vue``` file in the ```src/components/``` folder and update the ```template``` to the code block below.
+```
+<template>
+  <section data-scroll data-scroll-speed="2" data-scroll-section>
+    <h1 data-scroll-speed="2" data-scroll>
+      Welcome to Jexxi Code
+      <br />
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum tenetur
+      magnam natus repellat quod dolorem culpa excepturi doloremque, autem.
+    </h1>
+    <div>
+      <img src="../assets/man-thinking.png" />
+    </div>
+  </section>
+</template&gt
+```
+Now we’ve registered our section with the Locomotive library and given the ```h1``` text some scroll speed to make it scroll off of the page before the it is completely removed.
+
+Next, head over to the ```Services.vue``` file in the ```scr/components``` folder and update the ```template``` to the code below.
+```
+<template>
+  <section id="sticky" data-scroll-section>
+    <div class="service-text">
+      <h1
+        data-scroll
+        data-scroll-sticky
+        data-scroll-target="#sticky"
+        data-scroll-speed="9"
+      >
+        Services we Offer
+      </h1>
+    </div>
+    <div>
+      <ServiceText />
+      <ServiceText />
+      <ServiceText />
+    </div>
+  </section>
+</template&gt
+```
+We’ve made our ```h1``` text stick to its position on the screen whenever the user scrolls.
+
+Finally, head over to the ```Appreciation.vue``` file also in the ```src/components``` and update the ```template``` to the code below.
+```
+<template>
+  <section data-scroll-section>
+    <h1
+      className="appreciation-text"
+      data-scroll
+      data-scroll-repeat="true"
+      data-scroll-class="animate"
+      data-scroll-speed="5"
+    >
+      Thank You For Using The Locomotive Scroll Library
+    </h1>
+    <br />
+    <h2 data-scroll data-scroll-direction="horizontal" data-scroll-speed="9">
+      - Sam Victor
+    </h2>
+  </section>
+</template&gt
+```
+In the code block above, we’re adding the ```animate``` class whenever the user scrolls this section into view to give our element a fade-in animation. We’re also giving the ```h2``` tag some parallax scroll effect with speed.
+
+With our achievements so far, run the code using ```yarn dev``` to get the project running.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63c1793f29808b27d2a60f09_gif9-small_0e96155c6e04b2817d5b2a8e752f4a70.g)
+
+## Conclusion
+In this article, we’ve learned how to configure, use and build with the Locomotive library. We’ve also seen how to combine two or more attributes to build some nice effects. Head over to the<a href="https://github.com/locomotivemtl/locomotive-scroll" target="_blank" rel="noopener noreferrer"> official documentation</a> to find out more about the library.
+Here is the link to the<a href="https://github.com/iamVictorSam/landing-page-with-locomotive-scroll/tree/final" target="_blank" rel="noopener noreferrer"> complete source</a> code on Github.

@@ -1,0 +1,324 @@
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd75e623db6f3f6724bb6f_truffle_ebfe7be7f0b34532c68a0eb9e1d6cd4a_2000.jpeg)
+"ethereum; truffle"
+# How to write, test and deploy Ethereum smart contracts using Truffle
+> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+Ethereum is a public blockchain that serves as the foundation for creating decentralized, permissionless, censorship-resistant apps and organizations. To develop these apps (DApps), Ethereum allows developers to write and deploy smart contracts on the Ethereum network.
+This article will look at writing, testing and deploying a smart contract using the Solidity programming language and Truffle. We will explore functions and state variables. To find a pattern in how to develop our smart contract, we test it along the way to know if we are on the right track. To help us here, we will adopt a<a href="https://en.wikipedia.org/wiki/Test-driven_development" target="_blank" rel="noopener noreferrer"> test-driven development</a> (TDD) approach for quick feedback. Additionally, we will develop our skills with the Truffle framework, which offers tools for deploying and testing our contracts.
+Before we dive down the rabbit hole of writing and testing our smart contract, let's see what a smart contract is, what smart contract testing is, the different methods of testing a smart contract and why you should test your smart contract.
+
+## What are Smart Contracts?
+Unlike traditional contracts, which are written or spoken, smart contracts are computer programs stored on a blockchain that execute according to the terms of the contract or agreement. When deployed, smart contracts are not under the control of anyone, but run as programmed. Smart contracts cannot be modified once deployed to the network and any interactions with them are irreversible.
+
+## What is Smart Contract Testing?
+Testing a smart contract is the process of carefully examining and performing detailed functional testing of business logic on a smart contract to determine the level of its source code during the development cycle. Testing minimizes the likelihood of software faults that could result in expensive exploits and makes it simpler to find flaws and vulnerabilities.
+
+## Methods of Smart Contract Testing
+There are many different methods of smart contract testing. We'll keep things simple for this article by investigating the three primary methods:
+
+### Unit testing
+Unit testing involves checking the correctness of a single function in a smart contract. It’s essential when creating smart contracts, especially when new logic is added to the code. Unit tests are easy to use, execute quickly, and, if they fail, clearly identify what went wrong.
+
+### Integration testing
+Integration testing involves examining how different functions in smart contracts interact. It also finds errors that arise from interactions across several contracts.
+
+### System testing
+System testing involves examining a smart contract as a single, fully integrated product to determine whether it operates according to technical specifications. In system testing, end-users can do test runs and report problems associated with the contract's business logic and overall operation. Smart contracts deployed on the<a href="https://ethereum.org/en/developers/docs/evm/" target="_blank" rel="noopener noreferrer"> Ethereum Virtual Machine (EVM)</a> are unchangeable. Therefore, deploying a smart contract in a production-like environment, such as a Testnet or development network, is a great way to perform system testing on a smart contract.
+
+## Why test your smart contract?
+Testing is important, both for the development process and before releasing it as a mainnet contract.
+- High-value transactions are managed by many smart contracts. When there are little bugs in your code, it could lead to the loss or theft of significant amounts of cryptocurrency or priceless NFTs. However, comprehensive testing can reveal bugs in your code and lower security threats.
+- Testing your smart contract helps your code operate as you intend it to work.
+- Testing improves the quality of the code you write.
+- Testing helps save time in debugging and speed up development.
+- Refactoring is made simpler with a test suite. Your tests will start to fail as you make adjustments, giving you a clear indication of the problems that still need to be solved.
+- A successful test suite enables you to verify that you haven't broken any existing functionality when you add new code. Testing your smart contract helps guarantee that the newly added code does not have unintended side effects.
+
+**Prerequisites**
+In this tutorial, we will make use of the following tools to develop and test smart contracts:
+- <a href="https://www.trufflesuite.com/truffle" target="_blank" rel="noopener noreferrer">Truffle</a> - To install Truffle, run this command in your terminal:
+- <a href="https://docs.soliditylang.org/en/v0.8.9/" target="_blank" rel="noopener noreferrer">Solidity</a> - To write smart contract code
+You need to have basic knowledge of JavaScript, Solidity and Node.js. Also, have<a href="https://nodejs.org/" target="_blank" rel="noopener noreferrer"> Node.js</a> and<a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn" target="_blank" rel="noopener noreferrer"> MetaMask</a> installed.
+
+## Setting up our smart contract with Truffle
+In your terminal, let’s create a directory and change it to our new directory by running the command below:
+```
+mkdir FinancialContract &amp;&amp; cd FinancialContract
+```
+Now initialize a new Truffle project. Run the command below:
+```
+truffle init
+```
+Truffle is a blockchain utility belt that provides tools that make compiling, testing, deploying and packaging your application easy.
+
+This command will generate a new project for you. Our ```FinancialContract``` directory should now include the following files:
+```
+FinancialContract
+  ├── contracts
+  │ └── Migrations.sol
+  ├── migrations
+  │ └── 1_initial_migration.js
+  ├── test
+  │ └── .gitkeep
+  ├── truffle-config.js
+```
+The ```truffle-config.js``` files are where we will place all of our application-specific configurations.
+Truffle provided some commands that make developing smart contracts easy:
+- ```truffle compile``` - Compile all the contracts in the contracts directory
+- ```truffle migrate``` - Deploy our compiled contracts by running the scripts in our migrations directory
+- ```truffle test``` - Run the tests in our test directory
+
+### Writing our smart contract
+In this section, we’ll look at testing and writing our smart contract. We will adopt the TDD pattern, where we will begin with a test that fails before writing the code necessary to make our test pass. Once everything functions as expected, we will restructure the code to make it easier to maintain.
+
+In your ```Truffle.config.js``` file, add the following code:
+```
+const HDWalletProvider = require('@truffle/hdwallet-provider');
+module.exports = {
+  networks: {
+    goerli: {
+      provider: () => {
+ return new HDWalletProvider(mnemonic, "http://127.0.0.1:8545");
+      },
+      network_id: "*",
+     },
+}
+```
+To install HDWalletProvider, use the following command:
+```
+npm install truffle-hdwallet-provider --save-dev
+```
+Now that we are done setting up our ```truffle.config.js``` file, let’s start writing and testing our smart contract. In the test folder, create a file called ```financialContract_test.js``` and add the following code:
+```
+const FinancialContract = artifacts.require("FinancialContract");
+contract("FinancialContract", () => {
+    it("has been deployed successfully", async () => {
+ const finance = await FinancialContract.deployed();
+ assert(finance, "contract was not deployed");
+    });
+})
+```
+Here, we pass in the name of the contract through the ```artifacts.require``` function that Truffle provided. With the aid of ```artifacts.require```, contracts can be loaded and interacted with using Truffle. To prevent the state from being shared between different test groups, Truffle tests use Mocha. Similar to the built-in ```describe```, the contract function will have the advantage of utilizing Truffle's clean room feature. Using this feature, new contracts will be released before the tests they include are run.
+
+When writing our test, we will take advantage of some of the structures and functions that Truffle provides to facilitate writing the tests.
+- ```it()``` - You can think of this function as an independent test or a unit test because it is a standalone test of a function.
+- ```describe()``` - This function describes a collection of connected ```it()``` tests and is a composite test structure.
+- ```assert()``` - These functions are found inside the test functions of an it, describe function. They help match the actual result of the declaration execution with the expected results. If the match passes, the assertion passes.
+
+We also take advantage of the ```async/await``` syntax because every transaction on the blockchain is asynchronous.
+When running our tests, if the ```FinancialContract```  contract exists, our test will pass. If it doesn’t exist, we will receive an error. Use the command below to run the test:
+
+```
+truffle test
+```
+Here is what our output will look like:
+
+```
+Compiling your contracts...
+===========================
+> Compiling ./contracts/FinancialContract.sol
+Error: Could not find artifacts for FinancialContract from any sources
+ ....omitted...
+Truffle v5.5.26 (core: 5.5.26)
+Node v14.20.0
+```
+This provides useful feedback. The message informs us that Truffle was unable to locate a contract named ```FinancialContract``` after compiling our contract.
+
+Let’s create the ```contract/FinancialContract.sol``` file and add the following code:
+```
+// SPDX-License-Identifier: MIT
+pragma solidity  ^0.8.16;
+contract FinancialContract {
+
+```
+The ```pragma``` line is a compiler instruction. Here we tell the Solidity compiler that our code is compatible with Solidity version 0.8.16 and above. Solidity contracts are very similar to classes in object-oriented programming languages. Within the contract’s opening and closing curly braces, the data and functions or methods defined will be exclusive to that contract.
+After making these changes, let’s run our tests again:
+```
+Compiling your contracts...
+===========================
+> Compiling ./contracts/FinancialContract.sol
+> Artifacts written to /tmp/test--23887-k79dUigR3QPQ
+> Compiled successfully using:
+   - solc: 0.8.16+commit.07a7930e.Emscripten.clang
+  Contract: FinancialContract
+    1) has been deployed successfully
+    > No events were emitted
+  0 passing (192ms)
+  1 failing
+  1) Contract: FinancialContract
+       has been deployed successfully:
+     ReferenceError: Cannot access 'FinancialContract' before initialization
+      at Context.<anonymous> (test/FinancialContract_test.js:5:35)
+      at processTicksAndRejections (internal/process/task_queues.js:95:5)```
+Here, the error indicates that our contract has not yet been deployed to the network. Truffle builds our contracts before deploying them to a test network whenever we run the ```truffle test``` command. To deploy our contract, we will use the ```truffle migrate``` command. The deployment of our contracts is automated through migrations. Migrations are written in JavaScript.
+
+First, we will create a ```migrations/2_deploy_financialContract.js``` file to hold our migration code. Inside the file, add the following code:
+```
+const FinancialContract = artifacts.require("FinancialContract");
+module.exports = function(deployer) {
+    deployer.deploy(FinancialContract);
+
+```
+Now run the test with ```truffle test```. Here’s what our output will look like:
+```
+Compiling your contracts...
+===========================
+> Compiling ./contracts/FinancialContract.sol
+> Artifacts written to /tmp/test--5856-XvCghuxtf2Cy
+> Compiled successfully using:
+   - solc: 0.8.16+commit.07a7930e.Emscripten.clang
+  Contract: FinancialContract
+    ✔ has been deployed successfully
+  1 passing (149ms)```
+Our contract has been successfully deployed. This test confirms that everything is configured properly and that we can start adding more features.
+
+Our smart contract will be stored on the Ethereum network at a specific address once it has been deployed. It won't do anything until someone makes a request. Our functions specify what kind of work our contract is allowed to do. In the same way as before, we will start with a test to create a function that will return a value of 10.
+In your ```/test/financialContract_test.js``` file, add the code below:
+```
+describe("value()", () => {
+        it("returns 0.01 ether", async () => {
+ const finance = await FinancialContract.deployed();
+ const expected = 10;
+ const actual = await finance.value();
+ assert.equal(actual, expected, "return a value of 10 ether'");
+        });
+    })
+```
+Since we are making a call to interact with our local test blockchain, we made our test function ```async```. We then set an expected value and retrieved the value from our contract to see if they are equal. If we run our test command ( ```truffle test``` ) again, our output should look like this:
+```
+Compiling your contracts...
+===========================
+> Compiling ./contracts/FinancialContract.sol
+> Artifacts written to /tmp/test--51119-ZO2Gl2SaUhyg
+> Compiled successfully using:
+   - solc: 0.8.16+commit.07a7930e.Emscripten.clang
+  Contract: FinancialContract
+    ✔ has been deployed successfully
+    value()
+      1) returns 10 ether
+    > No events were emitted
+  1 passing (137ms)
+  1 failing
+  1) Contract: FinancialContract
+       value()
+         returns 10 ether:
+     TypeError: finance.value is not a function
+      at Context.<anonymous> (test/financialContract_test.js:12:42)
+      at processTicksAndRejections (internal/process/task_queues.js:95:5)```
+Based on the error, we see that ```finance.value``` is not a function. Inside our ```contracts/FinancialContract.sol``` contract, add the function below:
+```
+function value() external pure returns(uint256) {
+ return 10;
+
+```
+Here we created a function with the name  ```value```, which does not take any parameters. We indicated that our function is<a href="https://docs.soliditylang.org/en/v0.8.16/control-structures.html#function-calls" target="_blank" rel="noopener noreferrer"> ```external```</a>. This means that it is part of the contract’s interface and can be called from other contracts or transactions, but cannot be called from within the contract. We also included that our function is<a href="https://docs.soliditylang.org/en/v0.8.16/contracts.html#state-mutability" target="_blank" rel="noopener noreferrer"> ```pure```</a>. The ```pure``` function operates on the data passed in or data that did not need any input at all.
+
+Lastly, we identify what we expect our function to return, which is the ```uint256``` type.  The body of the function returns a value of 10. Run the test to verify if it satisfies the requirements of our test.
+```
+Truffle test
+```
+Here is what our output looks like:
+```
+Compiling your contracts...
+===========================
+> Compiling ./contracts/FinancialContract.sol
+> Artifacts written to /tmp/test--51657-dvLDHyxWOaQw
+> Compiled successfully using:
+   - solc: 0.8.16+commit.07a7930e.Emscripten.clang
+  Contract: FinancialContract
+    ✔ has been deployed successfully
+    value()
+      ✔ returns 10 ether (76ms)
+  2 passing (211ms)```
+Success! With this test passed, we’ll make the contract flexible to enable users to modify its values.
+
+### Making Our Contract Dynamic
+In this section, we will look at making our contract dynamic. To achieve this, we need to add another function that allows us to set the value that will be returned by our ```value()``` function.
+
+To make sure that our state changes stay separate from the rest of the tests so that we do not find ourselves in a situation where the order of our test suite's success or failure will be influenced by the tests. We use the **clean room **feature to deploy new instances of our contracts. In our ```test/financialContract_test.js``` file, create another contract block and add the following code:
+```
+contract("FinancialContract: update value", () => {
+    describe("setValue(uint256)", () => {
+        it("the passed-in uint256 value is set", async () => {
+            const finance = await FinancialContract.deployed()
+            const expected = 15;
+            await finance.setValue(**expected**);
+            const actual = await finance.value();
+            assert.equal(**actual**, expected, "value was not updated");
+        });
+    });
+})
+```
+This test is similar to our previous test. We have set a variable to hold our expected return value, which is the ```uint256``` we will also pass to the ```setValue``` function. Both of these calls are asynchronous, thus we use the ```await``` keyword. Lastly, we check the value from ```value``` against our expected value.
+When running the tests, we will get a similar output — ```finance.setValue``` is not a function. That means the ```setValue``` function does not yet exist; add this function to our contract. Back to our ```contracts/FinancialContract.sol``` file, replace all of the code with this new code:
+```
+// SPDX-License-Identifier: MIT
+pragma solidity  ^0.8.16;
+contract FinancialContract {
+     uint256 private amount = 10;
+ function value() external view returns(uint256) {
+ return amount;
+     }
+ function setValue(uint256 newValue) external {
+        amount = newValue;
+    }
+
+```
+Here, we declare a state variable with the name ```amount``` and a value of 10. State variables are available for all functions defined inside of a contract.
+
+We have updated our ```value()``` to be a ```view``` function since we are only reading the state of the blockchain. We have also updated the return value to use the value stored in the ```amount```.
+The ```setValue``` function is intended to update the state of our contract with a new amount, which means we need to accept a parameter for this new value. This new value is expected to be ```uint256``` and will be referred to by the identifier ```newValue```.
+
+In your terminal, run the ```truffle test``` command. Here is what our output looks like:
+```
+Compiling your contracts...
+===========================
+> Compiling ./contracts/FinancialContract.sol
+> Artifacts written to /tmp/test--62673-uoVu8QO6JzNN
+> Compiled successfully using:
+   - solc: 0.8.16+commit.07a7930e.Emscripten.clang
+  Contract: FinancialContract
+    ✔ has been deployed successfully
+    value()
+      ✔ returns 10 ether (73ms)
+  Contract: FinancialContract: update value
+    setValue(uint256)
+      ✔ sets value to passed in uint256 (121ms)
+  3 passing (278ms)```
+Success! We now see that all three tests are passing!
+
+### Deploying our smart contract to the Goerli testnet using Parity
+Before we deploy our smart contract to the Goerli testnet, let’s install<a href="https://bit.ly/35nWBkz" target="_blank" rel="noopener noreferrer"> Parity</a>.
+
+Parity is an Ethereum client written in Rust and provides one of the fastest syncing options of the available clients. To install Parity, run the code below in your root folder— If you’re running a Mac or Ubuntu (or the Windows 10 WSL version of Ubuntu).
+```
+bash <(**curl** https://get.parity.io -L)```
+Once we install the script, we want to start syncing the blocks from the Goerli testnet:
+```
+parity --chain=goerli
+```
+Install MetaMask, set it up, and copy your mnemonic key. Create a ```.env``` file and paste your mnemonic:
+```
+MNEMONIC="your mnemonic&quot
+```
+Update your ```truffle.config.js``` file.
+```
+goerli: {
+ provider: () => {
+        const mnemonic = process.env.MNEMONIC
+        return new HDWalletProvider(mnemonic, "http://127.0.0.1:8545");
+      },
+ network_id: "*",
+    },```
+To be able to deploy your smart contract to the Goerli network, you will need more than 10 GoerliETH. Visit the<a href="https://goerli-faucet.slock.it/" target="_blank" rel="noopener noreferrer"> Goerli faucet</a> to get some faucets. Run the following commands:
+```
+truffle compile
+```
+This command compiles our smart contract to a JSON formatted data structure. After compiling your contract, use the command below to deploy to the Goerli testnet:
+```
+truffle migrate --network goerli
+```
+By running this command, we will see that our smart contract has successfully been deployed. Copy your contract address and search for it on the <a href="https://goerli.etherscan.io/" target="_blank" rel="noopener noreferrer">Goerli network block explorer</a>.
+
+## Conclusion
+In this article, we cover how to write, test and deploy smart contracts on the Ethereum network. We adopted a TDD approach wherein we wrote a test for our smart contract to fail before writing the code necessary to make our test pass. We looked at different methods of testing smart contracts and why testing is important before deploying a smart contract to the mainnet for end-users and how it can improve the quality of your code. We learned how to create a new smart contract project using Truffle, including directories to house our contracts, tests and migrations. We explored using Solidity and Javascript to write and test our smart contracts. Lastly, we look at how to deploy our smart contract to the Goerli testnet using Parity.
