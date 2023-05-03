@@ -1,7 +1,30 @@
+---
+title: 1.5.0: Extract code from screenshots and more
+description: A few major features in this release, the biggest being that you can now drag in screenshots of code, and Pieces will automatically convert it to copyable text. Read below for more new features and UI changes.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+}
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+};
+
+<link rel="canonical" href="https://code.pieces.app/updates/1-5-0-extract-code-from-screenshots-and-more" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/630d622093e00adec2c9e7a0_ezgif_com-gif-maker3_a8dfb8d2217fb554323f22d0f06b607a_2000.png)
-**integrations** **new features** **bug fixes** **ux ui updates**
+<GridFlexRow><Tag>integrations</Tag> <Tag>new features</Tag> <Tag>bug fixes</Tag> <Tag>ux ui updates</Tag></GridFlexRow>
+
 # 1.5.0: Extract code from screenshots and more
-> Mon Mar 27 2023 14:06:02 GMT+0000 (Coordinated Universal Time)
+> **Published by the Pieces Team** | May 1st, 2023
 
 A few major features in this release, the biggest being that you can now drag in screenshots of code, and Pieces will automatically convert it to copyable text. Read below for more new features and UI changes.
 ## Pieces for Developers

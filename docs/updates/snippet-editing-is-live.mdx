@@ -1,7 +1,30 @@
+---
+title: Snippet editing is live!
+description: Throughout the last few weeks, we’ve received a ton of feedback and ideas from users, and we couldn’t be more appreciative. We’re listening intently and working hard to make Pieces indispensable to your workflow.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+};
+
+<link rel="canonical" href="https://code.pieces.app/updates/snippet-editing-is-live" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/630d73d8140f09aa407fb708_ezgif_com-gif-maker26_978d2990eb4bc83967bd9dcb6f144c08_2000.png)
-**new features** **bug fixes**
+<GridFlexRow><Tag>bug fixes</Tag> <Tag>new features</Tag></GridFlexRow>
+
 # Snippet editing is live!
-> Mon Mar 27 2023 14:30:34 GMT+0000 (Coordinated Universal Time)
+> **Published by the Pieces Team** | May 1st, 2023
 
 Throughout the last few weeks, we’ve received a ton of feedback and ideas from users, and we couldn’t be more appreciative. We’re listening intently and working hard to make Pieces indispensable to your workflow.
 One of the most common requests (especially from our internal users!) is to be able to lightly edit a snippet saved in Pieces. <strong>Well, we’re happy to let you know that now you can!</strong>

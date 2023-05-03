@@ -1,7 +1,30 @@
+---
+title: Shareable links land in plugins
+description: We’ve gotten fantastic feedback from users since last week’s mega release of one-click Snippet Sharing from the Pieces desktop app!
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+};
+
+<link rel="canonical" href="https://code.pieces.app/updates/shareable-links-land-in-plugins" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/630d822a169f6c0cf925c7cf_ezgif_com-gif-maker52_5c23b41552baee68e901a3b40ce3eb37_2000.png)
-**integrations** **new features**
+<GridFlexRow><Tag>integrations</Tag> <Tag>new features</Tag></GridFlexRow>
+
 # Shareable links land in plugins
-> Mon Mar 27 2023 15:24:31 GMT+0000 (Coordinated Universal Time)
+> **Published by the Pieces Team** | May 1st, 2023
 
 We’ve gotten fantastic feedback from users since <a href="https://updates.pieces.app/announcements/1-6-0-share-snippets-with-one-click" target="_blank" rel="noopener noreferrer">last week’s mega release of one-click Snippet Sharing</a> from the Pieces desktop app!
 We’re not surprised - devs share snippets constantly, but most tools like Slack or Discord struggle to present and index code as code for readers. Sharing snippets via Pieces couldn’t be easier, and recipients benefit from improved formatting, syntax highlighting, tags and related links, which means your recipients receive both the code AND the context around that code.
