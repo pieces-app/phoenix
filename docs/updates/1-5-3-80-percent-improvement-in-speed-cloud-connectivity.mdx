@@ -1,7 +1,30 @@
+---
+title: 1.5.3 | 80% improvement in speed + Cloud connectivity
+description: We’ve been plugging away at performance and are excited that today’s release will drive an 80% reduction in your boot time as well as faster rendering throughout the Pieces for Developers app.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+};
+
+<link rel="canonical" href="https://code.pieces.app/updates/1-5-3-80-percent-improvement-in-speed-cloud-connectivity" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/630d699159d912a6dcb3c87d_ezgif_com-gif-maker8_5e88ff39a681dde84c881d857239651e_2000.png)
-**integrations** **new features** **bug fixes** **ux ui updates**
+<GridFlexRow><Tag>integrations</Tag> <Tag>new features</Tag> <Tag>bug fixes</Tag> <Tag>ux ui updates</Tag></GridFlexRow>
+
 # 1.5.3: 80% improvement in speed + Cloud connectivity
-> Mon Mar 27 2023 14:14:05 GMT+0000 (Coordinated Universal Time)
+> **Published by the Pieces Team** | May 1st, 2023
 
 We’ve been plugging away at performance and are excited that today’s release will drive an 80% reduction in your boot time as well as faster rendering throughout the Pieces for Developers app.
 Just as importantly, today’s release marks the first introduction of our Cloud features! Pieces is disconnected from the cloud by default for your privacy, but now you can easily connect to the cloud to enable upcoming features such as backup, sync, sharing and more.

@@ -1,6 +1,29 @@
+---
+title: Pieces for VS Code 0.1.16: Viewing snippets just got a lot better 😎 + JSON, TOML and YAML list-view support ✅
+description: One of the hands-down most game-changing features of Pieces is our auto-magical code enrichment. While you’ve always been able to view and utilize the tags, descriptions, titles, related links, related people (and more!) that are automatically added to your snippets from the Pieces desktop app, with today’s release, you can take full advantage of snippet enrichment directly inside VS Code.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+};
+
+<link rel="canonical" href="https://code.pieces.app/updates/pieces-for-vs-code-0-1-16-view-your-context-in-your-ide" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/633b1d648bd9fe19e74df37f_VSCode0_1_16_c01518a68764142ebf3352dcfb934fe5_2000.png)
-**new features** **integrations**
-# Pieces for VS Code 0.1.16: Viewing snippets just got a whole lot better 😎 + JSON, TOML and YAML list-view support ✅
+<GridFlexRow><Tag>integrations</Tag> <Tag>new features</Tag></GridFlexRow>
+
+# Pieces for VS Code 0.1.16: Viewing snippets just got a lot better 😎 + JSON, TOML and YAML list-view support ✅
 > Mon Mar 27 2023 16:01:00 GMT+0000 (Coordinated Universal Time)
 
 One of the hands-down most game-changing features of Pieces is our auto-magical code enrichment. While you’ve always been able to view and utilize the tags, descriptions, titles, related links, related people (and more!) that are automatically added to your snippets from the Pieces desktop app, with today’s release, you can take full advantage of snippet enrichment directly inside VS Code.

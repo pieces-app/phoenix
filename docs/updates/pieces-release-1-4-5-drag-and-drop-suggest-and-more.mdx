@@ -1,7 +1,30 @@
+---
+title: Pieces Release 1.4.5 | Drag & Drop on macOS, Suggest a Language, and more!
+description: We're shipping a doozy of a release today! There's a long list of integration changes, read more to find out what's new!
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+};
+
+<link rel="canonical" href="https://code.pieces.app/updates/pieces-release-1-4-5-drag-and-drop-suggest-and-more" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/630d26192d137a83729ae7a9_ezgif_com-gif-maker4_8a3a27256583301c5cb28157859e9b5f_2000.png)
-**ux ui updates**
-# Pieces Release 1.4.5 - Drag & Drop on MacOS, Suggest a Language, and more!
-> Mon Mar 27 2023 13:46:46 GMT+0000 (Coordinated Universal Time)
+<Tag>ux ui updates</Tag>
+
+# Pieces Release 1.4.5 - Drag & Drop on macOS, Suggest a Language, and more!
+> **Published by the Pieces Team** | May 1st, 2023
 
 **For newer users, Pieces OS is the background service that enables Pieces to work locally and handles communications with any integrations you install.**
 - Support for automatically launching Pieces OS on machine boot-up on Windows

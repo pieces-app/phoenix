@@ -1,7 +1,30 @@
+---
+title: Pieces for Developers 1.9.2: Are you seeing double? ✌️
+description: Hope everyone is excited to try out our new snippet duplication feature! As developers, we often copy and paste code and then make edits in-line. But it’s helpful to have the original version in case you need it later.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+};
+
+<link rel="canonical" href="https://code.pieces.app/updates/pieces-for-developers-1-9-2-are-you-seeing-double-try-duplicating-your-code-snippets" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63405a907f56de239726d799_PFD1_9_2_a0bbd919fd400d0ca511983e39100cb2_2000.jpeg)
-**new features** **bug fixes**
+<GridFlexRow><Tag>bug fixes</Tag> <Tag>new features</Tag></GridFlexRow>
+
 # Pieces for Developers 1.9.2: Are you seeing double? ✌️
-> Mon Mar 27 2023 16:02:52 GMT+0000 (Coordinated Universal Time)
+> **Published by the Pieces Team** | May 1st, 2023
 
 Hope everyone is excited to try out our new snippet duplication feature! As developers, we often copy and paste code and then make edits in-line. But it’s helpful to have the original version in case you need it later.
 With snippet duplication, you can press ⌘+D or open the quick menu and select “Duplicate Snippet” when looking at a code snippet in your Pieces for Developers window, and it will duplicate that snippet so you have a new version that you can work on.

@@ -1,7 +1,30 @@
+---
+title: Pieces for VS Code 0.4.0: Brand-New Suggested Materials View ✨
+description: The demands on developers increase every day. As a result, a developer's time is becoming ever more precious and anything that boosts productivity is no longer a nice-to-have, but a need-to-have.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+};
+
+<link rel="canonical" href="https://code.pieces.app/updates/pieces-vs-code-suggested-materials-view" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6421fb4b0da72785abaae646_VSCodeTest_225dc0698064987ee63a8286b783a7ff_2000.jpeg)
-**new features** **plugins**
+<GridFlexRow><Tag>integrations</Tag> <Tag>new features</Tag></GridFlexRow>
+
 # Pieces for VS Code 0.4.0: Brand-New Suggested Materials View ✨
-> Mon Mar 27 2023 20:23:41 GMT+0000 (Coordinated Universal Time)
+> **Published by the Pieces Team** | May 1st, 2023
 
 The demands on developers increase every day. As a result, a developer's time is becoming ever more precious and anything that boosts productivity is no longer a nice-to-have, but a need-to-have.
 With that, our team has invested serious resources into enabling Pieces for Developers to proactively suggest the most relevant materials at the right time.

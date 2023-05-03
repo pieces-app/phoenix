@@ -1,7 +1,30 @@
+---
+title: Pieces Web Extensions 2.2.0: Upgraded Settings Menu
+description: Thanks to feedback from our users, we’re adjusting how the Web Extension works slightly. Sometimes, you don’t want Pieces buttons to show up for every single block of code on the web, so we’re making it easier to customize your experience.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+};
+
+<link rel="canonical" href="https://code.pieces.app/updates/pieces-web-extension-adjust-default-settings" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/631b6f60616efa8126d1876d_webextensions2_2_0_c96848c3097f81aa39c9d8f48afe0de1_2000.png)
-**ux ui updates** **new features**
+<GridFlexRow><Tag>new features</Tag><Tag>integrations</Tag> <Tag>ux ui updates</Tag></GridFlexRow>
+
 # Pieces Web Extensions 2.2.0: Upgraded Settings Menu
-> Mon Mar 27 2023 15:55:53 GMT+0000 (Coordinated Universal Time)
+> **Published by the Pieces Team** | May 1st, 2023
 
 The Pieces web extensions are having a moment— did you see that we just got verified on the Chrome Web Store? We’re keeping that momentum rolling with better code detection, a new and improved settings menu and groundwork for new features.
 Go update your extension right now! You don’t want to miss this release.
