@@ -1,5 +1,29 @@
+---
+title: Drawing interactive shapes with the Canvas API in a React application
+description: In this blog post, we will build a React application through which we can draw interactive shapes with the help of the Canvas API. We’ll also learn about Canvas HTML elements, the Canvas API, and drawing different shapes with mouse interactions.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/draw-interactive-shapes-react-canvas-api" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd7c3ca6ec43690eaac3f4_shapesbuildingwithflutter_40e847cca1555417e18bf9fcfdf41431_2000.jpeg)
-"react-7; canvas"
+<GridFlexRow><Tag>react</Tag> <Tag>canvas</Tag></GridFlexRow>
+
 # Drawing interactive shapes with the Canvas API in a React application
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 

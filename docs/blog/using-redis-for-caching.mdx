@@ -1,5 +1,29 @@
+---
+title: Using Redis Caching and the Redis CLI to Improve API Performance
+description: Using Redis caching is a simple way to improve the performance of your APIs. Redis (Remote Dictionary Server) is a fast, open-source, in-memory, key-value data store. It delivers sub-millisecond response times, enabling millions of requests per second for real-time applications.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/using-mvvm-architecture-in-flutter" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd2eaea6177a2075cb1b7d_redis-for-caching_ae2129c69fc14de43c679cc74139794c_2000.jpeg)
-"react-7; api-3"
+<GridFlexRow><Tag>react</Tag> <Tag>api</Tag></GridFlexRow>
+
 # Using Redis Caching and the Redis CLI to Improve API Performance
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 
@@ -9,6 +33,7 @@ Redis is a key-value-based<a href="https://databasecamp.de/en/data/nosql-databas
 Redis is often used for caching; geospatial storage; chat, messaging, and queues; and gaming leaderboards. It’s well-suited to these tasks because it is simple, fast, and easy-to-use; supports a variety <a href="https://redis.io/docs/data-types/tutorial/" target="_blank" rel="noopener noreferrer">of data structures</a>; allows for storing key and value pairs as large as 512MB; and <a href="https://redis.io/topics/sentinel" target="_blank" rel="noopener noreferrer">Redis Sentinel</a> provides high availability for non-clustered Redis.
 
 However, Redis requires huge amounts of RAM, depending on the type of application you’re running; failovers in master components cause all slave components to lose all of their data; and data can only be accessed via keys.
+
 ## Setting up Redis
 We will set up<a href="https://redis.io/download/" target="_blank" rel="noopener noreferrer"> Redis</a> using<a href="https://hub.docker.com/_/redis/" target="_blank" rel="noopener noreferrer"> Docker</a>.
 

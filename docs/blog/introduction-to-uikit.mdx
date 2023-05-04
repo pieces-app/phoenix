@@ -1,5 +1,29 @@
+---
+title: Introduction to UIkit
+description: A User Interface Kit, often known as a UI kit, is a group of materials that includes a variety of design elements, including UI components and styles. These kits are lightweight and adaptable front-end frameworks that are ideal for creating quick, effective web interfaces. User interface elements show items’ meaning and functionality. Widgets, navigation menus, and input forms are a few examples of UI components. In this article, we’ll discuss using UIkit specifically.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/introduction-to-html" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd7a109d909c0d8104f5d7_introductiontouikit_1d1639f87b563dbc4bafdedbcd097985_2000.jpeg)
-"ui"
+<Tag>ui</Tag>
+
 # Introduction to UIkit
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 
@@ -53,8 +77,8 @@ Download the<a href="https://github.com/uikit/uikit/releases/tag/v3.15.10" targe
 yarn add uikit
 ```
 
-
-<pre>npm i uikit
+```
+npm i uikit
 ```
 
 

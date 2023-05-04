@@ -1,5 +1,29 @@
+---
+title: Fundamentals of the CSS Float and Clear Properties
+description: When you float an element on a web page, it remains part of the flow, allowing the adjacent elements to flow around it. The floated element will move to the right or left until it touches the edge of its containing box or another floated element. You can't float an element to a container's center, top, or bottom.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/fundamentals-of-the-css-float-and-clear-properties" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd74d8ec4488eb610c7570_floatandclear_82e1ac551b5a0ee05e4a858a53591943_2000.jpeg)
-"css; **frontend**
+<GridFlexRow><Tag>css</Tag> <Tag>frontend</Tag></GridFlexRow>
+
 # Fundamentals of the CSS Float and Clear Properties
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 

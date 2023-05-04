@@ -1,5 +1,29 @@
+---
+title: Learn to Implement CSS Container Queries
+description: The media query specification was first recommended ten years ago, and it truly helped us as we transitioned towards the concept of responsive design. Since the modern web is primarily made up of components, media queries are somewhat inadequate in this context. Fortunately, container queries have emerged to address many of the issues that media queries are unable to address.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/learn-to-implement-css-container-queries" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63da9aabf021432ec0e71a74_csscontainer_076154ca449af46f6621fe3666118127_2000.jpeg)
-"css; testing-4"
+<GridFlexRow><Tag>css</Tag> <Tag>testing</Tag></GridFlexRow>
+
 # Learn to Implement CSS Container Queries
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 
@@ -93,7 +117,10 @@ For this project, we'll utilize plain HTML and CSS. This is our first HTML. You'
   </head>
   <body>
   </body>
-</html>```<a href="https://victorchisom25.pieces.cloud/?p=79a2439458" target="_blank" rel="noopener noreferrer">Save this code</a>
+</html>
+```
+
+<a href="https://victorchisom25.pieces.cloud/?p=79a2439458" target="_blank" rel="noopener noreferrer">Save this code</a>
 
 To get started, we'll make a very straightforward card with a picture, a title, and some text. A ```card-header``` with an image and a ```card-body``` with a title and other card elements will make up this card. The image remains on the left and the remaining text content is on the right because the card is styled with ```flex``` and ```flex-direction: row```**.**
 To center everything on the page, we'll surround this card in a container and use a ```div``` with the class parent set to ```big```:
@@ -128,7 +155,11 @@ To center everything on the page, we'll surround this card in a container and us
       </div>
     </div>
   </body>
-</html>```<a href="https://victorchisom25.pieces.cloud/?p=e01148b22e" target="_blank" rel="noopener noreferrer">Save this code</a>
+</html>
+```
+
+<a href="https://victorchisom25.pieces.cloud/?p=e01148b22e" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 ```
 /* styles.css */
 body {

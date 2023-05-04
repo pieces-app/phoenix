@@ -1,5 +1,29 @@
+---
+title: Build a Task Manager CRUD App with React and Hygraph
+description: In this article, we will introduce readers to how to build a fully functional CRUD application using Hygraph as our backend, React as our frontend, and ApolloClient to manage our state and fetch and mutate our data. We’ll leverage the Content and Mutation APIs that the Hygraph software exposes to us to perform a simple example of querying and mutating data using a task manager app: creating tasks, reading tasks, updating tasks, and finally deleting a task with Apollo Client. We’ll also demonstrate how to set up and manage our content and connect Hygraph to React.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/build-crud-task-manager-react-hygraph" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63efa8163dcbda5d8500e565_taskmanager_11f49c4b3e79aa28268b2e70c21d5c0c_2000.jpeg)
-"tutorial; productivity-e"
+<GridFlexRow><Tag>tutorial</Tag> <Tag>productivity</Tag></GridFlexRow>
+
 # Build a Task Manager CRUD App with React and Hygraph
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 
@@ -67,9 +91,9 @@ Or
 npx create-react-app project-manager &amp;&amp; cd project-manager
 ```
 To make the development of our application easier, we will use Material-UI. This is a React UI library that adheres to Google's Material Design and offers React components right out of the box to develop our UI. In addition to the Material UI, you will need to use some libraries to connect to our backend (Hygraph):
-- **```graphql``` -  t**his package provides logic for parsing GraphQL queries. It is used for interpreting GraphQL queries and mutations.
-- **```apollo-client``` - **this is a tool that helps connect to our Hygraph GraphQL server. It’s also used to fetch, cache, and modify application data, while automatically updating your UI.
-- **```react-router-dom``` -  **a library that makes it possible to integrate dynamic routing into web applications. It enables you to show pages and lets users navigate through them.
+- **```graphql```** this package provides logic for parsing GraphQL queries. It is used for interpreting GraphQL queries and mutations.
+- **```apollo-client```** this is a tool that helps connect to our Hygraph GraphQL server. It’s also used to fetch, cache, and modify application data, while automatically updating your UI.
+- **```react-router-dom```** a library that makes it possible to integrate dynamic routing into web applications. It enables you to show pages and lets users navigate through them.
 
 Run the command below to install ```react-router-dom``` into your React app.
 ```

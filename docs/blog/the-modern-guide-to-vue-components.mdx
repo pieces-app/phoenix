@@ -1,5 +1,29 @@
+---
+title: The Modern Guide to Vue Components
+description: This detailed guide will explore everything Vue devs – and all developers in general – need to know about components, including in-depth examples of class components, dynamic components, single file components, functional components, and table components.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/the-modern-guide-to-vue-components" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd759b9c497425cdf8be2e_guidetovuecomponents_1491e8b9104afaea3c390d907dd4985b_2000.jpeg)
-"vue"
+<Tag>vue</Tag>
+
 # The Modern Guide to Vue Components
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 

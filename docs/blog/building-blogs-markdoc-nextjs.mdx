@@ -1,9 +1,34 @@
+---
+title: Use Markdoc and Next.js to Build a Git-powered Markdown Blog
+description: Most modern developer blogs and documentation websites have one thing in common— they run on JAMstack (static websites) and their content is file-based and powered by Git. This allows multiple developers to collaboratively edit content with perks like versioning and version control. In this tutorial, we’re going to see how we can build a simple yet powerful and interactive blog with Next.js and Markdoc.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/building-blogs-markdoc-nextjs" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ebb738f94da42b777574e4_markdoc_0d265e06587d59d3892a20d671cce1ad_2000.jpeg)
-"nextjs-bf; blog; tutorial"
+<GridFlexRow><Tag>next js</Tag><Tag>blog</Tag><Tag>tutorial</Tag></GridFlexRow>
+
 # Use Markdoc and Next.js to Build a Git-powered Markdown Blog
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 
 Most modern developer blogs and documentation websites have one thing in common— they run on JAMstack (static websites) and their content is file-based and powered by Git. This allows multiple developers to collaboratively edit content with perks like versioning and version control. In this tutorial, we’re going to see how we can build a simple yet powerful and interactive blog with <a href="https://nextjs.org/" target="_blank" rel="noopener noreferrer">Next.js</a> and <a href="https://markdoc.dev/" target="_blank" rel="noopener noreferrer">Markdoc</a>.
+
 ## A Brief Overview of the Article
 This tutorial will cover how we can leverage modern tools and frameworks to build a fast &amp; performant blog without relying on a backend to manage our content.
 We’ll look into Next.js, its features, and why it’s important. We'll then take a look at tools like Markdoc that we can use to author and render markdown content into pages for blogs and documentation sites.

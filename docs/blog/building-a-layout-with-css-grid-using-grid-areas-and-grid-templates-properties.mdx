@@ -1,5 +1,30 @@
+---
+title: Building a Layout with CSS Grid Using Grid Areas and Grid Templates Properties
+description: The Grid layout introduces a two-dimensional grid system to CSS; it simplifies designing a web page and enables you to move items from one grid line to another. Thus, the grid areas and grid template are vital CSS properties that help to define and assign a name to the grid item. In addition, these properties specify the grid item's size and location within a grid. Therefore, before jumping into this subject, it’s important that you understand the grid and how you can apply it to a web page effortlessly.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/building-a-layout-with-css-grid-using-grid-areas-and-grid-templates-properties" />
+
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd76ff3e56bf4f428fb316_CSSgrid_f2b2401735dbedd145e345a0b9a69f57_2000.jpeg)
-"web; development"
+<GridFlexRow><Tag>web</Tag> <Tag>development</Tag></GridFlexRow>
+
 # Building a Layout with CSS Grid Using Grid Areas and Grid Templates Properties
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 

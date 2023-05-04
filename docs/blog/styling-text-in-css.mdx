@@ -1,5 +1,29 @@
+---
+title: Styling Text in CSS
+description: One of the beautiful things about using CSS is its ability to style text. Making text on our web pages look attractive and catchy can boost the user experience on your web page. So, we need to learn how to use CSS to style our text. By the end of this article, we’ll know what CSS text styling is and how we can use different CSS text properties to make our websites unique.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/styling-text-in-css" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ced3d35b3600679bdc231a_csstextstyling_be8546ae1f042d7aaec32a1a3ed18e9d_2000.jpeg)
-"css; **webdev**
+<GridFlexRow><Tag>css</Tag> <Tag>webdev</Tag></GridFlexRow>
+
 # Styling Text in CSS
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 

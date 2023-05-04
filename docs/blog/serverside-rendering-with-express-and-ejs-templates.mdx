@@ -1,5 +1,29 @@
+---
+title: Serverside Rendering With Express And EJS Templates
+description: Server-side rendering means using a server to generate HTML files. This generation/rendering of HTML files is in response to a URL request to the server. Server-side, unlike client-side rendering, utilizes JavaScript modules to render HTML instead of the browser and DOM element. This article will examine how we can achieve server-side rendering using an Express server and EJS for templating.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/serverside-rendering-with-express-and-ejs-templates" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd7fd22cdd9d59ecd75dd4_8_d9790cfe55001a53510782f28b13dbb7_2000.jpeg)
-"javascript-8"
+<Tag>javascript</Tag>
+
 # Serverside Rendering With Express And EJS Templates
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 

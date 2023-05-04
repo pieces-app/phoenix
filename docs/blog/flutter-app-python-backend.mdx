@@ -1,5 +1,29 @@
+---
+title: Flutter App with Python Backend | Kings of both -ends
+description: In this article will explore how to build a flutter app with a python backend. We will learn how to integrate the Flask-RESTful backend, a Python extension, with Flutter as our frontend. We can take advantage of a straightforward API and make some magic happen with a flask extension!
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/flutter-app-python-backend" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd7d05df1ad45557b5926d_flutter_py_5185b3da3667b942c42b743cd22c532b_2000.jpeg)
-"flutter-9; python-a"
+<GridFlexRow><Tag>flutter</Tag> <Tag>python</Tag></GridFlexRow>
+
 # Flutter App with Python Backend | Kings of both -ends
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 
@@ -225,6 +249,7 @@ class DataCubit extends Cubit<DataState> {
 
 <a href="https://user-ef1260fb-64b8-4440-986b-261489d319c9-fhcmbheklq-uc.a.run.app/?p=9e954baf07" target="_blank" rel="noopener noreferrer">Save this code</a>
 Now let’s handle the flutter frontend using ```BlocBuilder```. The final product will be something like this:
+
 ```
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -305,6 +330,7 @@ And… 🥁🥁🥁
 ## Complexity++
 To improve our understanding, I will make the API response more complex and adjust the data.dart model class accordingly. This will illustrate the interaction between the API response and the data model and show us how to present the information effectively in the front end Flutter app.
 ### API response
+
 ```
 import flask
 from flask_restful import Resource, Api
@@ -338,6 +364,7 @@ if __name__ == '__main__':
 
 <a href="https://user-ef1260fb-64b8-4440-986b-261489d319c9-fhcmbheklq-uc.a.run.app/?p=5664458dc2" target="_blank" rel="noopener noreferrer">Save this code</a>
 ### Data.dart
+
 ```
 import 'dart:convert';
 class Data {

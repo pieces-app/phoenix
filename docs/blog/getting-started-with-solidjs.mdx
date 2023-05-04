@@ -1,5 +1,29 @@
+---
+title: Getting Started With SolidJS
+description: SolidJS is a JavaScript declarative User Interface (UI) library for web applications. It is comparable to other JavaScript frameworks like Svelte, React, and Vue. Ryan Carniato developed SolidJS, which was released as open-source in 2018.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/getting-started-with-solidjs" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd6f5fb745d563c267b950_SolidJS_b5c78210db6c81c505fef536d51d2e6e_2000.jpeg)
-"solidjs; javascript-8"
+<GridFlexRow><Tag>solidjs</Tag> <Tag>javascript</Tag></GridFlexRow>
+
 # Getting Started With SolidJS
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 

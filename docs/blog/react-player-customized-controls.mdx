@@ -1,5 +1,30 @@
+---
+title: Developing a React Video Player with Personalized Controls
+description: Web technology has developed a lot over the years; Javascript, in particular, has played an enormous role in it. By involving React, the development and use of UI have become better and more efficient. With React, including an audio-video player on any website is easy. A simple React player plugin may assist you in performing the task in a few minutes. In this article, we'll talk about how to build a customizable React video player from scratch.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/react-player-customized-controls" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd72b769c93f3974477eb6_reactvideoplayer_e4e65a9c9cefccb7d75cf3a9b8518031_2000.jpeg)
 "react-7; video; tutorial"
+<GridFlexRow><Tag>react</Tag><Tag>video</Tag><Tag>tutorial</Tag></GridFlexRow>
+
 # Developing a React Video Player with Personalized Controls
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 
@@ -593,9 +618,12 @@ export const formatTime = (time) => {
  }
 ```
 Following that, import the ```formatTime```** **method found in the Format.js file. Therefore, in the App.js file, we can use it. Then, two ```formatTime``` calls are made, with the ```currentTime``` and ```duration``` being passed as arguments.
+
 ```
 const formatCurrentTime = formatTime(currentTime)
-const formatDuration = formatTime(duration)```
+const formatDuration = formatTime(duration)
+```
+
 We then pass the ```formatCurrentTime```** **and ```formatDuration```** **as props to the ```control```** **component.
 ```
 <Control
@@ -625,8 +653,12 @@ Now, you can watch the length of the video as it plays and see how much time has
 The ```Control``` container div is frequently resting on the player, as you can see. Let's make it more interesting by having it resemble other video players— let’s make it visible whenever we hover on the video player.
 To achieve this feature, we also need to create a reference of the ```div```** **with classname of ```control_Container```** **in the App.js file:
 ```
-const controlRef = useRef(null)```
+const controlRef = useRef(null)
+
+```
+
 And pass it to the ```control```** **component:
+
 ```
 <Control
          controlRef = {controlRef}

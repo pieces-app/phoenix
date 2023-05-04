@@ -1,5 +1,29 @@
+---
+title: Creating and Retrieving Data from Dynamic Forms in Flutter
+description: Forms are a major way to retrieve user data in most applications today. A form consists of many input fields together that take in a user’s response or request. Also, developers might want users to make certain decisions based on their interactions, and then save this data to a server. This form data can also be used later on in the application, thus calling for the creation of a more complex form that is referred to as a dynamic form.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/creating-and-retrieving-data-from-dynamic-forms-in-flutter" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63d015ef567fcc7736fc6964_dynamicformsinflutter_1ad75d7ff8dd2e9e0ae006cfcfe7d983_2000.jpeg)
-"dart-c; flutter-9"
+<GridFlexRow><Tag>dart</Tag> <Tag>flutter</Tag></GridFlexRow>
+
 # Creating and Retrieving Data from Dynamic Forms in Flutter
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 

@@ -1,9 +1,34 @@
+---
+title: Using Encryption and Hashing to Increase Security in NestJS
+description: Data stored on the web is prone to attacks. To guarantee the integrity of users' data in an online application, you'll need to adopt a secure method for handling and storing your users' data. There are many approaches to this, such as encoding the user's information to allow only authorized users access. This is where encryption and hashing come into play.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/using-encryption-and-hashing-to-increase-security-in-nestjs" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd5f5347af2e3268a85d53_encryptionandhashing_b2ea24b26d10645800dcbd6521965990_2000.jpeg)
-"cybersecurity"
+<Tag>cybersecurity</Tag>
+
 # Using Encryption and Hashing to Increase Security in NestJS
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 
 Data stored on the web is prone to attacks. To guarantee the integrity of users' data in an online application, you'll need to adopt a secure method for handling and storing your users' data. There are many approaches to this, such as encoding the user's information to allow only authorized users access. This is where encryption and hashing come into play.
+
 ## What Is NestJS?
 <a href="https://nestjs.com/">NestJS</a> is a Node.js framework for developing TypeScript-based server-side applications that are fast, testable, scalable, and loosely coupled. It makes use of powerful HTTP server frameworks like Express and Fastify. Nest abstracts Node.js frameworks and makes their APIs available to developers.
 The NestJS framework is compatible with database management systems such as PostgreSQL and MySQL. It provides dependency injections, Websockets, and APIGetaways as well.

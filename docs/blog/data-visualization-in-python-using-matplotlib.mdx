@@ -1,5 +1,29 @@
+---
+title: Data Visualization in Python Using Matplotlib
+description: Data visualization is a useful way for data scientists to present a clear idea of all important information contained in a data set. It shows a graphical illustration of data values, allowing readers to comprehend vast amounts of information at a glance. Data is presented in charts (such as bar charts, pie charts, line graphs, etc.), making it easier to identify patterns and trends from large data sets.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/data-visualization-in-python-using-matplotlib" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd702c40110a225faf31fd_matplotlib_602c6aee74720ee8a7eda7972fd39caf_2000.jpeg)
-"python-a; **data** **visualization**
+<GridFlexRow><Tag>python</Tag><Tag>data</Tag><Tag>visualization</Tag></GridFlexRow>
+
 # Data Visualization in Python Using Matplotlib
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 
@@ -137,7 +161,9 @@ Price= [2000,1500,1500,2000,1500]
 plt.pie(Reg_price, labels=Car)
 # Adding title to the Graph
 plt.title('Car prices')
-plt.show()```
+plt.show()
+```
+
 The pie charts have no x- or y-axis like a typical bar chart, hence there is no need to define those. The chart is plotted taking into consideration only the values presented. Here is what the output looks like:
 Output:
 

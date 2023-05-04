@@ -1,5 +1,29 @@
+---
+title: Building a ToDo App With Vue 3 Composition API
+description: The Composition API was a significant advancement in Vue 3. It consists of a group of APIs that let users use Vue's parts by importing functions rather than expressing options as they would when using the Options API.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/building-a-todo-app-with-vue-3-composition-api" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd69256f36a9075c5f25be_todoapp_c6e3bbf6174151c7859ea71c9383836f_2000.jpeg)
-"vue"
+<Tag>vue</Tag>
+
 # Building a ToDo App With Vue 3 Composition API
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 

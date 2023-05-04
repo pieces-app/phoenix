@@ -1,5 +1,28 @@
+---
+title: Angular Material CDK with Drag and Drop
+description: Developers can quickly design beautiful and unified user interfaces in their Angular projects by utilizing the User Interface (UI) component package known as Angular Material. Programmers can find reusable and visually appealing UI elements like cards, inputs, data tables, datepickers, and much more with Angular Material. In accordance with the Material Design specification, each component is prepared for use in the default style. Applications that use drag-and-drop capability on browsers are known as drag-and-drop platforms. Using a mouse or touchpad, the user clicks and drags files to a droppable element (drop zone), and then releases the mouse button to release the files.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/angular-material-cdk-with-drag-and-drop-NUQ8GQNRzsoiWD" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd783dabd0f446461c6040_angularcdk_7bed5d04b16fa232c4627793d2693061_2000.jpeg)
-**angular** **drag and drop**
+<GridFlexRow><Tag>angular</Tag> <Tag>drag and drop</Tag></GridFlexRow>
+
 # Angular Material CDK with Drag and Drop
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 
@@ -11,7 +34,9 @@ First, we have to install Angular Material UI into our Project:
 ```
 ng add @angular/material
 ```
+
 We’ll then import our ```DragDropModule``` into ```NgModule```:
+
 ```
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -99,7 +124,10 @@ To do this, we’ll split the ```items``` array into three smaller arrays: one f
 ```
 incomingGoods = ['Tomatoes', 'Carrots', 'Onions', 'Pepper']
 availableGoods = ['Cucumber']
-soldGoods = ['Orange', 'Apple', 'Banana']```
+soldGoods = ['Orange', 'Apple', 'Banana']
+
+```
+
 Three different lists must be displayed with each list that has its own drop zone. We can connect the arrays to a drop zone by using the ```cdkDropData``` input:
 
 A ```cdkDrop``` list can be connected to another ```cdkDrop``` list using the input attribute ```[cdkDropConnectedTo]```. If we don't take the following steps, we won't be able to drag and drop the items to another list.
