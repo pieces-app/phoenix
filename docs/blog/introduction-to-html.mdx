@@ -1,5 +1,29 @@
+---
+title: Introduction to HTML
+description: Web pages are created using a markup language called HTML. The acronym HTML stands for Hypertext Markup Language. A hypertext link is a link between two web pages. The text document within the tag that defines the structure of web pages is defined using a markup language. This language is used to annotate (add notes to) material so that a computer can comprehend it and modify the content as necessary.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/introduction-to-html" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd74a2a353152a0b302697_introtohtml_17c6b9176e22548906e1e28ca8203317_2000.jpeg)
-"html"
+<Tag>html</Tag>
+
 # Introduction to HTML
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 

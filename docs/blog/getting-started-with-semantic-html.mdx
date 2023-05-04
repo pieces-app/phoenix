@@ -1,5 +1,29 @@
+---
+title: Getting Started with Semantic HTML
+description: As you know, HTML (HyperText Markup Language) is the essential building block of the web. All web applications use HTML to create structured documents for web pages. HTML indicates texts, images, and other contents on a web page using unique tags.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/getting-started-with-semantic-html" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd7d5eb4770c80aeb73efa_semantichtml_2977a160295f2a328d8a729c46f05333_2000.jpeg)
-"html"
+<Tag>html</Tag>
+
 # Getting Started with Semantic HTML
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 

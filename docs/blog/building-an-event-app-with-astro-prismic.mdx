@@ -1,5 +1,29 @@
+---
+title: Building an Event App with Astro & Prismic
+description: Previously, traditional CMS provided us with the ability to have all our content, such as images, videos, templates, and custom code, in a single environment. However, as the web grew and became more complex, the need to scale increased, and the past approach was no longer adequate. The introduction of the headless CMS brought about how our content serves as data over an API. A headless CMS makes it easy to distribute data across different platforms and devices on the internet.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/building-an-event-app-with-astro-prismic" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd7e208b5ae80addb1b109_phonelaptop_729ef422ded53f459b254aa4e0e6ed16_2000.jpeg)
-"applications"
+<Tag>applications</Tag>
+
 # Building an Event App with Astro & Prismic
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 

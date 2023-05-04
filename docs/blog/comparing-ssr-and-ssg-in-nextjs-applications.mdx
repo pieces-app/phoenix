@@ -1,5 +1,29 @@
+---
+title: Comparing SSR and SSG in Next.js Applications
+description: Server-side rendering (SSR) and static site generation (SSG) are different techniques used for data fetching or pre-rendering. Pre-rendering is a technique used to rapidly preload elements in an application.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/comparing-ssr-and-ssg-in-nextjs-applications" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd6770cf7b3c61494fa4dd_ssrandssg_2df9dc6c5516f6c9025c09726c5e8209_2000.jpeg)
-"webdev; nextjs-bf"
+<GridFlexRow><Tag>webdev</Tag> <Tag>nextjs</Tag></GridFlexRow>
+
 # Comparing SSR and SSG in Next.js Applications
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 

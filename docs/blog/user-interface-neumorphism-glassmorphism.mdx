@@ -1,5 +1,29 @@
+---
+title: User Interface Principles: Neumorphism and Glassmorphism
+description: Neumorphism entails building a soft user interface in which the User Interface components are positioned behind the background rather than directly on it. It gives the impression that background elements, such as buttons, are present but are only made visible by their projection.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/user-interface-neumorphism-glassmorphism" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ee4918aab1c7ce8f022b3a_Neumorphism_ae48bafeb12fa9d74d68cb10b7823925_2000.jpeg)
-"ui; css"
+<GridFlexRow><Tag>ui</Tag> <Tag>css</Tag></GridFlexRow>
+
 # User Interface Principles: Neumorphism and Glassmorphism
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 

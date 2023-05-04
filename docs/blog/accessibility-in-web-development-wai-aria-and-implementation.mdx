@@ -1,5 +1,28 @@
+---
+title: Accessibility in Web Development: WAI-ARIA and Implementation
+description: Building accessible web content and products should be the goal of every developer. To achieve this, a developer should learn about accessibility and ways to implement it.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/accessibility-in-web-development-wai-aria-and-implementation" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd505b508c1d26f8ffe66f_wai-aria_4a997341c96128aedfe38a0c969c0754_2000.jpeg)
-**accessibility** **webdev**
+<GridFlexRow><Tag>accessibility</Tag> <Tag>webdev</Tag></GridFlexRow>
+
 # Accessibility in Web Development: WAI-ARIA and Implementation
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 

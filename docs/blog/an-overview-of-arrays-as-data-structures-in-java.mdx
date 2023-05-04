@@ -1,5 +1,29 @@
+---
+title: An Overview of Arrays as Data Structures in Java
+description: As a developer, you need to understand data structures and how they can help your tech journey. This article will solely focus on how arrays work as data structures. The primary programming language for this article will be Java.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/an-overview-of-arrays-as-data-structures-in-java" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63d808fd5800503d10df2c24_arraysinjava_875201c2f68ee472274e02c143562b47_2000.jpeg)
-**java** **arrays**
+<GridFlexRow><Tag>java</Tag> <Tag>arrays</Tag></GridFlexRow>
+
+
 # An Overview of Arrays as Data Structures in Java
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 
@@ -39,19 +63,25 @@ Graphs are data structures involving vertices (each shape's angular point) and e
 ## Arrays as a Data Structure
 As mentioned earlier, arrays are a collection of values stored in multiple values in a single variable instead of storing each value in a separate variable. To declare an array in Java, define the variable type followed by square brackets.
 ```
-String[] books:```<a href="https://sophyia.pieces.cloud/?p=c38743878e" target="_blank" rel="noopener noreferrer">Save this code</a>
+String[] books:
+```
+
+<a href="https://sophyia.pieces.cloud/?p=c38743878e" target="_blank" rel="noopener noreferrer">Save this code</a>
 An example of an array is a carton of eggs, because a carton has eggs lined up in a sequence and each section holds an egg.
 Arrays are commonly used to build other, more complicated data structures. They are also used for sorting algorithms.
 
 ### Multi-dimensional arrays
-These are simply arrays of arrays, which means one array inside another—multi-dimensional arrays store values/elements in a tabular form.
-The syntax of multi-dimensional arrays:
+These are simply arrays of arrays, which means one array inside another—multidimensional arrays store values/elements in a tabular form.
+The syntax of multidimensional arrays:
 ```
 data_type[1st dimension][2nd dimension][]..[Nth dimension]
-array_name = new data_type[size1][size2]….[sizeN];```<a href="https://sophyia.pieces.cloud/?p=2a1b459dc1" target="_blank" rel="noopener noreferrer">Save this code</a>
+array_name = new data_type[size1][size2]….[sizeN];
+```
+
+<a href="https://sophyia.pieces.cloud/?p=2a1b459dc1" target="_blank" rel="noopener noreferrer">Save this code</a>
 
 - ```data_type``` represents the data type, e.g., ```int```, ```String```, ```char
-```
+
 
 - ```dimension``` represents the dimension of arrays you want to create, e.g., 1D, 2D, etc.
 - ```array_name``` represents the name of the array
@@ -59,7 +89,7 @@ array_name = new data_type[size1][size2]….[sizeN];```<a href="https://sophyia.
 
 ### Two-dimensional arrays
 A two-dimensional array is an array of one-dimensional arrays. It is the simplest form of any multi-dimensional array.
-An example of two multi-dimensional arrays:
+An example of two multidimensional arrays:
 
 ```
 class example {
@@ -78,9 +108,10 @@ class example {
 ```
 **Output:**
 
-A three-dimensional array is a complex form of multi-dimensional array because it has three sides/dimensions. An easy way to understand it is that this form of a multi-dimensional array is an array of two-dimensional arrays.
+A three-dimensional array is a complex form of multidimensional array because it has three sides/dimensions. An easy way to understand it is that this form of a multi-dimensional array is an array of two-dimensional arrays.
 
-An example of three multi-dimensional arrays:
+An example of three multidimensional arrays:
+
 ```
 class example {
   public static void main(String[] args) {
@@ -101,11 +132,13 @@ class example {
 <a href="https://sophyia.pieces.cloud/?p=9f534cab37" target="_blank" rel="noopener noreferrer">Save this code</a>
 
 If we execute the code above, the output is:
+
 ```
 5 0
 1 7
 2 9
 ```
+
 In Java, the size of a multi-dimensional array is the total number of elements stored, which means multi-dimensional arrays can be calculated by multiplying the dimensions' length.
 
 **Note:** The best way to display the data in a multi-dimensional array is by using nested or double nested for-loops, as the case may be.
@@ -119,6 +152,7 @@ Sometimes, ArrayLists may be slower than standard arrays. Still, they’re helpf
 One key advantage of an ArrayList is that, unlike an array, you can declare an ArrayList regardless of size. If you do not know the extent of elements to be stored, you can use an ArrayList.
 
 This is a code snippet of an ArrayList without declaring the size:
+
 ```
 import java.io.*;
 import java.util.*;
@@ -138,15 +172,20 @@ class example {
 ```
 
 <a href="https://sophyia.pieces.cloud/?p=ebcf4e8043" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 **Output:**
 In Java, Lists are interfaces that provide a way to store an ordered<a href="https://www.javatpoint.com/collections-in-java" target="_blank" rel="noopener noreferrer"> collection</a>. They are a child interface of Collection. Lists are ordered collections of objects/elements where duplicate values are stored. Similar to Arrays and ArrayLists, Lists allow for the insertion of elements and access to the position of elements. Also, the Lists interface is seen in the ```java.util``` package and inherits the ```Collection``` interface.
 Since Lists are interface inheritors, Lists can't create objects. You will need a class to create an object; that is where ArrayList comes into play.
 
 Here is an example of using an ArrayList to create a List object:
-```
-List<Obj> list = new ArrayList<Obj> ();```<a href="https://sophyia.pieces.cloud/?p=9d18439d79" target="_blank" rel="noopener noreferrer">Save this code</a>
 
-Some of the operations in a List Interface include:
+```
+List<Obj> list = new ArrayList<Obj> ();
+```
+
+<a href="https://sophyia.pieces.cloud/?p=9d18439d79" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+Some operations in a List Interface include:
 - **add(),** adds elements to the List Interface; it takes two parameters.
 - **add(Object),** adds an element at the end of a List.
 - **add(int index, Object)**, adds an element at a specific index in the List.

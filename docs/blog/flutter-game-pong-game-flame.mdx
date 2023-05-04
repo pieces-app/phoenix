@@ -1,10 +1,33 @@
+---
+title: Flutter Game: Build a Pong Game with Flutter Flame
+description: Building apps with Flutter is really cool. You know what’s cooler? Building games. This article will show you how to build a Flutter game from start to finish with a Flutter Flame tutorial.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/flutter-game-pong-game-flame" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd522ced888d66a24221d4_flutter-pong_d4e57c6c71cfed2a205d0cbf935b2891_2000.jpeg)
-"flutter-9; flame"
+<GridFlexRow><Tag>flutter</Tag> <Tag>flame</Tag></GridFlexRow>
+
 # Flutter Game: Build a Pong Game with Flutter Flame
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 
-Building apps with Flutter is really cool. You know what’s cooler?
-Building games. This article will show you how to build a Flutter game from start to finish with a Flutter Flame tutorial.
+Building apps with Flutter is really cool. You know what’s cooler? Building games. This article will show you how to build a Flutter game from start to finish with a Flutter Flame tutorial.
 Let’s create a Flutter game! We can build the classic pong game in Flutter using the 🔥<a href="https://flame-engine.org/" target="_blank" rel="noopener noreferrer">Flame</a> game engine.
 
 Flame is a 2D game engine built for Flutter. It’s built on top of the framework and simplifies game development. Flame provides us with everything we’ll need to build a flutter game.

@@ -1,68 +1,92 @@
+---
+title: Create a Crypto Integration in Your Flutter Apps
+description: Forms are a major way to retrieve user data in most applications today. A form consists of many input fields together that take in a user’s response or request. Also, developers might want users to make certain decisions based on their interactions, and then save this data to a server. This form data can also be used later on in the application, thus calling for the creation of a more complex form that is referred to as a dynamic form.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/crypto-integration-flutter-apps" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62ed6373eb86d367268d59e3_flutter3.png)
-"flutter; dart; crypto"
+<GridFlexRow><Tag>flutter</Tag><Tag>dart</Tag><Tag>crypto</Tag></GridFlexRow>
+
 # Create a Crypto Integration in Your Flutter Apps
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 
-## <strong id="">Metamask**
-id="">Metamask is a cryptocurrency wallet that allows you to transact with the Ethereum blockchain. It’s simply your wallet available through their browser extensions and applications, which you can connect to sites that support payment via Metamask. It really is that simple, and that’s all you need to know for this article, but if you’re interested in learning more, check out their <a href="https://metamask.io/" target="_blank" id="">official site</a>.
+## <strong Metamask**
+Metamask is a cryptocurrency wallet that allows you to transact with the Ethereum blockchain. It’s simply your wallet available through their browser extensions and applications, which you can connect to sites that support payment via Metamask. It really is that simple, and that’s all you need to know for this article, but if you’re interested in learning more, check out their <a href="https://metamask.io/" target="_blank" official site</a>.
 ![](https://uploads-ssl.webflow.com/max/698/1*O-u58Uwm7dKHjIyt4jW6IQ.png" id="" width="auto" height="auto" loading="au)
 
-### <strong id="">Flutter Setup**
-id="">The Flutter web setup should be quite easy. Just make sure that Flutter Web is enabled for the project; this shouldn’t be an issue if you’re already using Flutter 3.0. Simply create a new project You can title it Flutter Crypto App or Crypto Wallet Flutter:
-id="">‍
+### <strong Flutter Setup**
+The Flutter web setup should be quite easy. Just make sure that Flutter Web is enabled for the project; this shouldn’t be an issue if you’re already using Flutter 3.0. Simply create a new project You can title it Flutter Crypto App or Crypto Wallet Flutter:
+‍
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62cf13b0c26ae1fc078afe1e_raycast-untitled%20(3).png" loading="lazy" id="" width="auto" height="au)
-id="">Done! Well, not really. You have your Flutter project setup though.
+Done! Well, not really. You have your Flutter project setup though.
 
-### <strong id="">Required packages**
-id="">Of course, hats off to the Flutter community for making our tasks easy! We will be using the following package to implement our Metamask flutter integration:
-- id=""><a href="https://pub.dev/packages/provider" target="_blank" id="">provider</a>
-id="">And that’s it! That’s pretty much all you need to get into the world of Web3 via Flutter3.
+### <strong Required packages**
+Of course, hats off to the Flutter community for making our tasks easy! We will be using the following package to implement our Metamask flutter integration:
+- <a href="https://pub.dev/packages/provider" target="_blank"> provider</a>
+And that’s it! That’s pretty much all you need to get into the world of Web3 via Flutter3.
 
-### <strong id="">‍Coding**
-id="">Ready? Here we go!
-id="">First, we will be setting up our provider for Metamask. Start here:
-id="">We’ll be needing the following variables to manage various scenarios:
+### <strong ‍Coding**
+Ready? Here we go!
+First, we will be setting up our provider for Metamask. Start here:
+We’ll be needing the following variables to manage various scenarios:
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62cc2dd17ad9ae286542d3b4_raycast-untitled%20(1).png" loading="lazy" id="" width="auto" height="au)
 
-id="">Don’t worry! I’ll explain all of this!
-- id="">currentAddress → The present address of our Metamask.
-- id="">operatingChain → The Ethereum chain we’ll be operating on. For now, it will be test networks, so we set it to 4 (Rinkeby Test Network).
-- id="">isEnabled → Checks whether the browser supports Metamask.
-- id="">isInOperatingChain → A bool variable that tells, whether we are connected to the correct chain or not.
-- id="">isConnected → A state that shows whether Metamask has been connected or not.
+Don’t worry! I’ll explain all of this!
+- currentAddress → The present address of our Metamask.
+- operatingChain → The Ethereum chain we’ll be operating on. For now, it will be test networks, so we set it to 4 (Rinkeby Test Network).
+- isEnabled → Checks whether the browser supports Metamask.
+- isInOperatingChain → A bool variable that tells, whether we are connected to the correct chain or not.
+- isConnected → A state that shows whether Metamask has been connected or not.
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62cc2ecf2ed81fc21797b47d_raycast-untitled%20(3).png" loading="lazy" id="" width="auto" height="au)
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62cc2f29e23f79354dc94a4a_raycast-untitled%20(4).png" loading="lazy" id="" width="auto" height="au)
-id="">Let me break it down for you:
-- id="">Get the accounts on Ethereum
-- id="">If the accounts are not empty, get the first address
-- id="">Get the ID of the current chain.
+Let me break it down for you:
+- Get the accounts on Ethereum
+- If the accounts are not empty, get the first address
+- Get the ID of the current chain.
 
-id="">To initialize, we need to clear the currentAddress and reset the currentChain for two conditions every time:
-- id="">If the chain itself changed
-id="">We’re done with one “3”— the Web3 part. Now it’s time for Flutter3.
+To initialize, we need to clear the currentAddress and reset the currentChain for two conditions every time:
+- If the chain itself changed
+We’re done with one “3”— the Web3 part. Now it’s time for Flutter3.
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62cc2fd33c60ffd74b085314_raycast-untitled%20(6).png" loading="lazy" id="" width="auto" height="au)
 
-id="">Now, we’ll make a button to start connecting to Metamask with conditions.
+Now, we’ll make a button to start connecting to Metamask with conditions.
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62cc303d8c00d25b4ef30e0d_raycast-untitled%20(4).svg" loading="lazy" id="" width="auto" height="au)
 
-id="">Sadly, Metamask doesn’t work in debug mode, so you have to run the web server for Flutter web and visit the URL.
+Sadly, Metamask doesn’t work in debug mode, so you have to run the web server for Flutter web and visit the URL.
 
-id="">In case you want to hot reload/restart, after pressing “r” in the terminal, make sure to reload the web browser yourself.
+In case you want to hot reload/restart, after pressing “r” in the terminal, make sure to reload the web browser yourself.
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62cc307187e915240186f60a_raycast-untitled%20(7).png" loading="lazy" id="" width="auto" height="au)
 
 ![](https://uploads-ssl.webflow.com/max/1180/1*lE6GKmaFtYEZO-ZdoJaV_w.png" id="" width="auto" height="auto" loading="au)
 
-id="">And that’s all! 😀 Both of our “3s” are together and the combined effect will look something like this!
+And that’s all! 😀 Both of our “3s” are together and the combined effect will look something like this!
 
 ![](https://uploads-ssl.webflow.com/max/1400/1*gPnJr8WDM22pk4PQhkwGVQ.gif" id="" width="auto" height="auto" loading="au)
-id="">Metamask in Flutter web 🔥
-id="">Yay!! You did it. I hope you’ve learned something. Make sure to check out other articles on Flutter by exploring the blog.
+Metamask in Flutter web 🔥
+Yay!! You did it. I hope you’ve learned something. Make sure to check out other articles on Flutter by exploring the blog.
 
-id=""><strong id="">💻 GitHub Repo** → <a href="https://github.com/mhmzdev/flutter-metamask" target="_blank" id="">https://github.com/mhmzdev/flutter-metamask</a>
-id="">‍
+**💻 GitHub Repo** → <a href="https://github.com/mhmzdev/flutter-metamask" target="_blank" https://github.com/mhmzdev/flutter-metamask</a>
+‍

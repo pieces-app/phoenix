@@ -1,5 +1,29 @@
+---
+title: Using React Beautiful DnD to Implement Drag and Drop
+description: The React front-end application world is an ocean of infinite possibilities for building your application. You can have your users interact with your product in so many ways! However, some recognizable patterns are used in most applications. For example, because drag and drop functionality is so frequently used, we can use React Beautiful DnD to make our applications more user-friendly.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/implement-react-beautiful-dnd" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd7ea93271665943e7dbfe_next_js-mongoDB_b45a57c76edef5b72174d838fcbfc26b_2000.jpeg)
-"react-7; **frontend**
+<GridFlexRow><Tag>react</Tag> <Tag>frontend</Tag></GridFlexRow>
+
 # Using React Beautiful DnD to Implement Drag and Drop
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 

@@ -1,5 +1,29 @@
+---
+title: Improving Scroll Effects with Locomotive Scroll in Vue
+description: Websites, especially those with enormous amounts of material, can use scrolling animations as features to make browsing more enjoyable. With the advent of specialized libraries, scrolling animations are becoming increasingly widespread on the web. Web pages may use a variety of scroll movements, including sticky scroll, smooth scroll, CSS parallax, and more. In this article, we’ll be improving our scroll effects with the Locomotive scroll library.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/improving-scroll-effects-with-locomotive-scroll-in-vue" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dc2c325b0a943777ca81d0_locomotivescroll_c5f3aafaf65de797267f5e7e2ff55ddb_2000.jpeg)
-"vue; scroll"
+<GridFlexRow><Tag>vue</Tag> <Tag>scroll</Tag></GridFlexRow>
+
 # Improving Scroll Effects with Locomotive Scroll in Vue
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 

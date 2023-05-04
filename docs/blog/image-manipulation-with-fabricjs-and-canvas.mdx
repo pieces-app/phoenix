@@ -1,5 +1,29 @@
+---
+title: Image Manipulation with Fabric.js and Canvas
+description: Fabric.js is a JavaScript library that makes working with HTML Canvas easy. It provides a unique object model and interactive platform to work with Canvas. Fabric.js was designed to tackle the difficulties of using the Canvas API. With Fabric.js, you can work with both images and animations. For example, Fabric.js allows you to drag, scale, and rotate images. You can also group and manipulate shapes and objects together. Fabric.js even provides the necessary functionality to serialize a Canvas element to SVG or JSON and enables you to reuse it as needed.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/image-manipulation-with-fabricjs-and-canvas" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd7222d84e6f7c4552eef3_fabric_jsandcanvas_37dd7b53621222d42a387b7f73f5fb5b_2000.jpeg)
-"canvas; ui"
+<GridFlexRow><Tag>canvas</Tag> <Tag>ui</Tag></GridFlexRow>
+
 # Image Manipulation with Fabric.js and Canvas
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 

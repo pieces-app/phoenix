@@ -1,5 +1,29 @@
+---
+title: Getting Started with VueJS: Introduction to Vue 3
+description: Vue 3 is a JavaScript framework for building user interfaces. It builds on top of standard HTML, CSS and JavaScript, and provides a declarative and component-based programming model that helps you efficiently develop user interfaces that can be either simple or complex.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/getting-started-with-vuejs-introduction-to-vue-3" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd7d9898b76104c31f7faa_laptopinthedark_cb992d31992668f51c0eb232f1f87f4b_2000.jpeg)
-"vue; cli"
+<GridFlexRow><Tag>vue</Tag> <Tag>cli</Tag></GridFlexRow>
+
 # Getting Started with VueJS: Introduction to Vue 3
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 

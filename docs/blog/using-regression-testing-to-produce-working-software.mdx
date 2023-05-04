@@ -1,5 +1,29 @@
+---
+title: Using regression testing to produce working software
+description: Sometimes, changes in a software program occur due to alterations of new codes and requirements. For instance, when there’s a slight change in your code, another part of the code can suddenly start malfunctioning. Or, you deploy a bug, and then the application ceases to work as it should. Regression testing ensures that these alterations don't negatively influence the pre-existing features and functionality, ensuring that the product works well even with these new modifications.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/using-regression-testing-to-produce-working-software" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd7efee12bd20d981ce0ec_regression-testing_167d153b5eb89190eef55bbc12a987b3_2000.jpeg)
-"testing-4"
+<Tag>testing</Tag>
+
 # Using regression testing to produce working software
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 
@@ -14,11 +38,11 @@ For better comprehension, simply put:
 Regression testing usually involves a series of tests.
 
 ### Types of Regression Testing:
-- **Unit regression testing: **When coding changes for a single unit, the authoring developer of the code reruns all of the formerly passed unit tests, making this testing very effective compared to other types of testing. Unit tests are isolated.
-- **Progressive regression testing: **Progressive regression testing** **is efficient in cases where the developer designs changes in the software or application requirements.
-- **Selective regression testing: **This test involves rerunning only specific functions and/or variables as opposed to testing all software units.** **Only those aspects that may have been affected by a change are tested.
-- **Retest all regression testing: **All tests are rerun with this type of regression test, resulting in the execution of unnecessary test cases. This strategy is not recommended for cases of minor changes to an app. Retesting all is not advisable for minor modifications due to its high expense and time requirements.
-- **Complete regression testing: **Complete regression testing is useful when multiple changes have been implemented in pre-existing codes. Executing this type of test is valuable for identifying unexpected bugs. After complete regression testing, the finalized software is ready for release.
+- **Unit regression testing:** When coding changes for a single unit, the authoring developer of the code reruns all of the formerly passed unit tests, making this testing very effective compared to other types of testing. Unit tests are isolated.
+- **Progressive regression testing:** Progressive regression testing** is efficient in cases where the developer designs changes in the software or application requirements.
+- **Selective regression testing:** This test involves rerunning only specific functions and/or variables as opposed to testing all software units.** Only those aspects that may have been affected by a change are tested.
+- **Retest all regression testing:** All tests are rerun with this type of regression test, resulting in the execution of unnecessary test cases. This strategy is not recommended for cases of minor changes to an app. Retesting all is not advisable for minor modifications due to its high expense and time requirements.
+- **Complete regression testing:** Complete regression testing is useful when multiple changes have been implemented in pre-existing codes. Executing this type of test is valuable for identifying unexpected bugs. After complete regression testing, the finalized software is ready for release.
 
 ## Why and When is Regression Testing Necessary?
 

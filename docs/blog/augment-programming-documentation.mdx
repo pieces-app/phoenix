@@ -1,5 +1,28 @@
+---
+title: Pieces User Stories: Augment programming documentation
+description: Let's say I'm searching for code online. Maybe the article wasn't well written or the documentation isn't all that great, because, let's be honest, the programming documentation out there isn’t always that great, says Moon.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/augment-programming-documentation" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62f418f72a9d9585ea5e4f86_augment-programming-moon.jpg)
-"ocr; programming"
+<GridFlexRow><Tag>ocr</Tag> <Tag>programming</Tag></GridFlexRow>
+
 # Pieces User Stories: Augment programming documentation
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 

@@ -1,5 +1,28 @@
+---
+title: How to use Sanity.io as a Headless CMS in Next.js
+description: Sanity.io is a unified content platform where you can store and manage content for a website or application. Unlike traditional **Content Management Systems** (CMS) like WordPress or Wix, which keep your content and display it on the front-end for you, Sanity is a headless CMS that stores your content but lets you decide how you want that content to be displayed. With Sanity.io, you can show your content on different web and mobile applications.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/how-to-use-sanityio-as-a-headless-cms-in-nextjs" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd710455beb63a72270a5a_sanity_io_8dc51aeb13ee9b62ceb5d404ce37858d_2000.jpeg)
-""
+
 # How to use Sanity.io as a Headless CMS in Next.js
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 

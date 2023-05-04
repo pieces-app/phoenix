@@ -1,5 +1,29 @@
+---
+title: Understanding the Bulma CSS Framework
+description: First made available in 2016, the Bulma CSS Framework is relatively new, open-source, free, and simple to use. It’s quickly becoming popular because of its ability to solve a wide range of problems and its use of different means to create a coordinated interface for front-end developers.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/understanding-bulma" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd736c6f36a9fd5f67cdbe_understandingbulma_62235de72ce33ac485d4398de29c906c_2000.jpeg)
-"bulma; frameworks"
+<GridFlexRow><Tag>bulma</Tag> <Tag>frameworks</Tag></GridFlexRow>
+
 # Understanding the Bulma CSS Framework
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 

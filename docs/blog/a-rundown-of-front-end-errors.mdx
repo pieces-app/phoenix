@@ -1,3 +1,25 @@
+---
+title: A Rundown of Front-End Errors
+description: The unfortunate reality of software development is that things won't always go according to plan in the real world. Errors are always around. Therefore, error handling is a vital part of a development project, and can help you and your users quickly identify what’s going wrong so that it can be fixed.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/a-rundown-of-front-end-errors" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd7bef1b2429019fd98da7_save-helpful-flutter-widgets_65d8df6a34252b05cf0fc5e63d7e5bd8_2000.jpeg)
 
 # A Rundown of Front-End Errors

@@ -1,5 +1,29 @@
+---
+title: The Media Source Extension <> JavaScript API: The foundation of streaming on the web
+description: Since its inception way back in 2013, influential companies like Netflix, Amazon and Apple have poured millions of dollars into creating new TV shows, movies and other video content. Over the past decade, many business areas have been leveraged by this unique ecosystem, including tech. Because distributing video is challenging and costly, the tech industry has been tasked with making it faster, cheaper and easier to stream content. As a result, the way we stream video on the web is vastly different than it was a decade ago.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/the-media-source-extension-javascript-api-the-foundation-of-streaming-on-the-web" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd7cbe1b2429efebda4190_segments_3dee7b8cfb581c8d69adc424e23919b5_2000.jpeg)
-"video; javascript-8"
+<GridFlexRow><Tag>javascript</Tag> <Tag>video</Tag></GridFlexRow>
+
 # The Media Source Extension <> JavaScript API: The foundation of streaming on the web
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 
@@ -11,7 +35,7 @@ They were the first solutions for playing videos on the web, but they quickly ra
 In January 2013, the World Wide Web Consortium (W3C) wrote a new standard to address these challenges: <a href="https://www.w3.org/TR/2013/WD-media-source-20130129/" target="_blank" rel="noopener noreferrer">Media Source Extensions</a> (MSE).
 
 MSE aimed to be incorporated into the HTML5 standard. It set specifications for the byte streams and video/audio codecs supported on web browsers through video and audio HTML5 tags.
-In September 2013, Youtube was one of the first video pioneers to use MSE.
+In September 2013, YouTube was one of the first video pioneers to use MSE.
 
 ## The MSE advantage
 Handling video data on the web is challenging.

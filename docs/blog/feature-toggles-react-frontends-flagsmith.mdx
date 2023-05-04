@@ -1,5 +1,29 @@
+---
+title: Feature Toggles for React Frontends Using Flagsmith
+description: Feature Toggles (often also referred to as Feature Flags) are a powerful technique that allows teams to modify system behavior without changing code. They allow you to manage components and compartmentalize risk. But before we jump into the how, let’s take a brief walk into why.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/feature-toggles-react-frontends-flagsmith" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd58f2b5a69d9fe5566775_arial-photo1_863eb00a2661e98876e45dbf9b9c2b90_2000.jpeg)
-"react-7; **frontend**
+<GridFlexRow><Tag>react</Tag> <Tag>frontend</Tag></GridFlexRow>
+
 # Feature Toggles for React Frontends Using Flagsmith
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 

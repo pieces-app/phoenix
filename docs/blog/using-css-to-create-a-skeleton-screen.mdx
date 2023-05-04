@@ -1,5 +1,29 @@
+---
+title: Using CSS to Create a Skeleton Screen
+description: The web has recently undergone improvements that benefit both consumers and developers. Because new methods of enhancing user experiences continue to emerge over time, user experience is a major focus that goes beyond present metrics.
+---
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+<link rel="canonical" href="https://code.pieces.app/blog/using-css-to-create-a-skeleton-screen" />
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd621a590b5942edaa13d4_skeletonscreen_32de434d531b22f6cfba32446cd43db4_2000.jpeg)
-"css; **react**
+<GridFlexRow><Tag>css</Tag> <Tag>react</Tag></GridFlexRow>
+
 # Using CSS to Create a Skeleton Screen
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 
