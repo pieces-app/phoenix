@@ -1,0 +1,44 @@
+export const InstallButton = props => {
+    return <a style={{textDecoration: "none"}} target="_blank" href={ props.src }>
+        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+            <p style={{
+                padding: "8px 20px",
+                borderRadius: "8px",
+                border: "1px solid #f3f5f6",
+                color: "white",
+                fontWeight: "500",
+                background: "black",
+                marginBottom: "8px",
+                marginTop: "3px",
+                marginRight: "16px"
+            }}>{props.children}</p>
+        </div>
+    </a>
+};
+
+export const GridFlexRowCenter = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+export const Spacer = props => {
+    return <div style={{height: "16px"}}></div>
+};
+
+# Woo-hoo! You saved your first snippet.
+
+Find your snippet in the Pieces desktop app (located in your applications folder). From the desktop app, you can see all of your snippets, which have been automatically enriched with tags, descriptions, related links and more.
+
+<InstallButton src={"pieces-for-developers://"}>View Snippet</InstallButton>
+
+<GridFlexRowCenter>
+    <InstallButton src={"https://code.pieces.app/onboarding/chrome/welcome"}></InstallButton>
+    <InstallButton src={"https://code.pieces.app/onboarding/chrome/finished"}></InstallButton>
+</GridFlexRowCenter>
+
+<Spacer></Spacer>
