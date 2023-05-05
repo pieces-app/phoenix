@@ -76,13 +76,19 @@ fetch(&#x60;${baseURL}/users&#x60;)
 .catch(error => console.log(error.message))
 ```
 If you noticed, the ```GET``` method isn't specified like so:
+
 ```
-fetch(&#x60;${baseURL}/users&#x60;, { method: "GET" })```
+fetch(&#x60;${baseURL}/users&#x60;, { method: "GET" })
+```
+
 But, it’s still able to fetch the list of users from the ```/users``` endpoint.
 
 Also, you can fetch data for a single user by attaching the ID of the user to the end of the endpoint URL, e.g., ```users/1```, like so:
+
 ```
-fetch(&#x60;${baseURL}/users/1&#x60;)```
+fetch(&#x60;${baseURL}/users/1&#x60;)
+```
+
 The ```fetch()``` method returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="noopener noreferrer">promise</a> and using the ```then()``` method, the response can be converted to JSON. This is done using the ```json()``` method, which also returns a promise and finally, the data can be accessed using the ```then()``` method again. The ```catch()``` method at the last line is used to handle errors should any occur.
 
 ### POST Method
