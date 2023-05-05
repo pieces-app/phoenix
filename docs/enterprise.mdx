@@ -1,0 +1,47 @@
+export const InstallButton = props => {
+    return <a style={{textDecoration: "none"}} target="_blank" href={ props.src }>
+        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+            <p style={{
+                padding: "8px 20px",
+                borderRadius: "8px",
+                border: "1px solid #f3f5f6",
+                color: "white",
+                fontWeight: "500",
+                background: "black",
+                marginBottom: "8px",
+                marginTop: "3px",
+                marginRight: "16px"
+            }}>{props.children}</p>
+        </div>
+    </a>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "wrap"
+    }}>{props.children}</div>;
+};
+
+# The fastest way for dev teams to save and reuse snippets
+No user account, email or credit card required.
+
+<Image src={"/assets/headers/light/enterprise_header_coffee.png"} />
+
+<InstallButton src={"https://code.pieces.app/contact"} >Request a Demo</InstallButton>
+
+## Pieces is massively flexible to suit individual and developer team needs
+
+- Save internally-approved snippets and templates to your personal repo
+- Auto-complete in your editor from your Pieces micro-repo (coming soon)
+- Applications across your development and design teams, including website devs, front end devs, database engineers, cloud/platform engineers, machine learning engineers and more
+
+### So many ways to use Pieces for Developers
+<InstallButton src={"https://pieces.app"}>Get Pieces</InstallButton>
+
+<GridFlexRow>
+    <div
+</GridFlexRow>
+
