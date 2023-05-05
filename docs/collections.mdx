@@ -1,1 +1,70 @@
-# Collections Landing Page
+---
+title: Save Code Snippet Collections - Pieces for Developers
+description: Pieces-curated collections of the most useful code snippets for popular languages and frameworks. Save collections and snippets in your Pieces app and use later in your IDE.
+---
+
+export const GridFlexSpaceBetweenRow = props => {
+    return <div style={{
+        paddingLeft: "8px",
+        paddingRight: "8px",
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        flexWrap: "wrap"
+    }}>{props.children}</div>;
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+};
+
+export const MarketplaceButton = props => {
+    return <a style={{textDecoration: "none"}}
+              href={props.src}>
+        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+            <p class="dark:text-white text-black"
+               style={{
+                   padding: "8px 20px",
+                   borderRadius: "8px",
+                   border: "1px solid #f3f5f6",
+                   fontWeight: "500",
+                   background: "transparent",
+                   marginBottom: "8px",
+               }}>{props.children}</p>
+        </div>
+    </a>
+};
+
+export const Spacer = props => {
+    return <div style={{height: "20px"}}></div>
+};
+
+<Image src="/assets/headers/light/collections_header.png" />
+
+# Snippet Collections
+
+Whether you’re learning a new language or you’ve been coding in a framework for years, our team has curated collections of the most useful snippets for you. Save a collection today for the snippets and their contexts!
+
+<Accordion defaultOpen title="Chrome">
+    <GridFlexSpaceBetweenRow>
+        <GridFlexRow>
+            <Image width="30px" src={"/assets/logos/chrome_logo.png"}/>
+            <Heading type="h3" style={{marginTop: "16px", marginLeft: "8px"}}>Chrome Extension</Heading>
+        </GridFlexRow>
+        <p> These TypeScript snippets range from picking properties from an interface to removing falsy values. We made sure to offer all useful TypeScript code snippets.</p>
+        <GridFlexRow>
+            <MarketplaceButton
+                src="https://chrome.google.com/webstore/detail/pieces-save-code-snippets/igbgibhbfonhmjlechmeefimncpekepm">Chrome
+                Marketplace</MarketplaceButton>
+        </GridFlexRow>
+    </GridFlexSpaceBetweenRow>
+
+    The Pieces Chrome Extension makes it easy to save from the web. There are customizable features and more that you
+    can manage from inside of your from browser.
+
+</Accordion>
