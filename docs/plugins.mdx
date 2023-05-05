@@ -15,15 +15,19 @@ export const GridFlexSpaceBetweenRow = props => {
 };
 
 export const PluginButton = props => {
-    return <div style={{ padding: "8px", border: "2px solid grey", borderRadius: "16px" }}>
+    return <div style={{ padding: "8px", border: "2px solid grey", borderRadius: "16px", marginRight: "8px" }}>
         <img style={{ height: "90px", width: "90px" }} src={ props.src } />
         <p><strong>{ props.text }</strong></p>
     </div>
-}
+};
+
+export const Spacer = props => {
+    return <div style={{height: "16px"}}></div>
+};
 
 
 # Pieces for Developers
-#### Plugins
+<Heading type="h3">Plugins</Heading>
 
 
 <HeaderImage src="/assets/headers/dark/plugins_landing_header.png"
@@ -33,7 +37,29 @@ Use these Pieces extensions and plugins inside your IDE and browser and enable k
 
 Our browser and IDE plugins are deeply integrated into your development tools, adding an intelligent personal micro-repository that changes the way you interact with code snippets.
 
+## IDE Plugins
 
 <GridFlexSpaceBetweenRow>
-    <PluginButton src={"/assets/vscode_logo"} text={"VS Code"}></PluginButton>
+    <PluginButton src={"/assets/logo/vscode_logo.png"} text={"VS Code IDE"}></PluginButton>
+    <PluginButton src={"/assets/logo/jetbrains_logo.png"} text={"Jetbrains IDE"}></PluginButton>
+    <PluginButton src={"/assets/logo/ue_logo.png"} text={"UltraEdit IDE"}></PluginButton>
 </GridFlexSpaceBetweenRow>
+
+<Spacer></Spacer>
+
+## Browser Extensions
+
+<GridFlexSpaceBetweenRow>
+    <PluginButton src={"/assets/logo/chrome_logo.png"} text={"Chrome"}></PluginButton>
+    <PluginButton src={"/assets/logo/edge_logo.png"} text={"Edge"}></PluginButton>
+</GridFlexSpaceBetweenRow>
+
+<Spacer></Spacer>
+
+## Productivity Tools
+
+<GridFlexSpaceBetweenRow>
+    <PluginButton src={"/assets/logo/github_logo.png"} text={"GitHub"}></PluginButton>
+    <PluginButton src={"/assets/logo/teams_logo.png"} text={"Teams"}></PluginButton>
+</GridFlexSpaceBetweenRow>
+
