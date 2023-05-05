@@ -15,9 +15,9 @@ export const GridFlexRow = props => {
 };
 
 export const PluginButton = props => {
-    return <div style={{ padding: "8px", border: "2px solid grey", borderRadius: "16px", marginRight: "16px" }}>
+    return <div style={{ padding: "8px", border: "2px solid grey", borderRadius: "16px", marginRight: "16px", textAlign: "center" }}>
         <img style={{ height: "90px", width: "90px" }} src={ props.src } />
-        <p><strong>{ props.text }</strong></p>
+        <p style={{ marginTop: "0px" }}><strong>{ props.text }</strong></p>
     </div>
 };
 
