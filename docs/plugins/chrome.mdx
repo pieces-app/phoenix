@@ -1,0 +1,61 @@
+export const InstallButton = props => {
+    return <a style={{textDecoration: "none"}} target="_blank" href="https://chrome.google.com/webstore/detail/pieces-save-code-snippets/igbgibhbfonhmjlechmeefimncpekepm">
+        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+            <p style={{
+                padding: "8px 20px",
+                borderRadius: "8px",
+                border: "1px solid #f3f5f6",
+                color: "white",
+                fontWeight: "500",
+                background: "black",
+                marginBottom: "8px",
+                marginTop: "3px",
+                marginRight: "16px"
+            }}>{props.children}</p>
+        </div>
+    </a>
+}
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "wrap"
+    }}>{props.children}</div>;
+};
+
+export const GridFlexRowCenter = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        flexWrap: "wrap"
+    }}>{props.children}</div>;
+};
+
+export const PluginSections = props => {
+    return <GridFlexRow>
+        <img src={ props.src } />
+        <div>
+            <p><strong>{ props.heading }</strong></p>
+            <p>{props.text }</p>
+        </div>
+
+    </GridFlexRow>
+}
+
+# The fastest, smartest Micro-Repo, deeply integrated into Chrome
+<GridFlexRow>
+    <img style={{width: "25px" }} src={"/assets/chrome_logo.png"} />
+    <Heading type={"h2"} >Save Chrome snippets even faster - 100% Free!</Heading>
+</GridFlexRow>
+
+
+<GridFlexRow>
+    <InstallButton>Get Pieces for Chrome</InstallButton>
+</GridFlexRow>
+
+### Transform how you code with your very own Chrome browser repository
+
+<PluginSections src={"/assets/graphics/plugins_save_code_chrome.png"} heading={"Save useful code to your Pieces micro-repo"} text={"Templates, terminal commands, useful Chrome snippets... save code snippets you find on the web in one-click for later re-use."}></PluginSections>
