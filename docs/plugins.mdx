@@ -1,7 +1,7 @@
 export const HeaderImage = props => {
     return <picture>
         <source srcSet={props.srcset} media="(prefers-color-scheme: dark)"/>
-        <img src={props.src}/>
+        <Image src={props.src}/>
     </picture>
 };
 
@@ -16,7 +16,7 @@ export const GridFlexRow = props => {
 
 export const PluginButton = props => {
     return <div style={{ padding: "8px", border: "2px solid grey", borderRadius: "16px", marginRight: "16px", textAlign: "center" }}>
-        <img style={{ height: "90px", width: "90px" }} src={ props.src } />
+        <Image height={"90px"} width={"90px"} src={ props.src } />
         <p style={{ marginTop: "0px" }}><strong>{ props.text }</strong></p>
     </div>
 };
@@ -31,7 +31,7 @@ export const Spacer = props => {
 
 
 <HeaderImage src="/assets/headers/dark/plugins_header_landing.png"
-             srcset="docs/assets/headers/light/plugins_header_landing.png"></HeaderImage>
+             srcset="/assets/headers/light/plugins_header_landing.png"></HeaderImage>
 
 Use these Pieces extensions and plugins inside your IDE and browser and enable key AI features like Auto-Save, Auto-Complete and single-click save from any webpage.
 
