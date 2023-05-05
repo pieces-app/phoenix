@@ -1,0 +1,61 @@
+export const GridFlexRowCenter = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "wrap"
+    }}>{props.children}</div>;
+};
+
+export const InstallButton = props => {
+    return <a style={{textDecoration: "none"}} target="_blank" href={ props.src }>
+        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+            <p style={{
+                padding: "8px 20px",
+                borderRadius: "8px",
+                border: "1px solid #f3f5f6",
+                color: "white",
+                fontWeight: "500",
+                background: "black",
+                marginBottom: "8px",
+                marginTop: "3px",
+                marginRight: "16px"
+            }}>{props.children}</p>
+        </div>
+    </a>
+}
+
+export const Spacer = props => {
+    return <div style={{ width: "16px"}}></div>
+}
+
+# Whoops!  You need to install Pieces OS to run your Safari plugin
+
+100% free, no credit card or email address required!
+
+<GridFlexRowCenter>
+    <Tabs
+        values={[
+            {label: 'MacOS', value: 'macos'},
+            {label: 'Windows', value: 'windows'},
+            {label: 'Linux', value: 'linux'}
+        ]}
+    >
+        <TabItem value="macos">
+            <p>Compatible with macOS 10.15 (Catalina) and higher</p>
+            <InstallButton
+                src="https://builds.pieces.app/stages/production/macos_packaging/pkg/download">Download</InstallButton>
+        </TabItem>
+        <TabItem value="windows">
+            <p>Compatible with Windows 10 version 1809 and higher</p>
+            <InstallButton
+                src="https://builds.pieces.app/stages/production/macos_packaging/pkg/download">Download</InstallButton>
+        </TabItem>
+        <TabItem value="linux">
+            <p>FIND THIS INFO </p>
+            <InstallButton src="#">Download</InstallButton>
+        </TabItem>
+    </Tabs>
+    <Spacer></Spacer>
+    <Image width="200" src={"/assets/graphics/os_ghost.png"} />
+</GridFlexRowCenter>
