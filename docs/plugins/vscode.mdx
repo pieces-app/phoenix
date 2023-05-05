@@ -1,3 +1,78 @@
 ---
-redirect: https://code.pieces.app/plugins
+title: Get the Best VS Code Extension for Developers | Pieces
+description: The best VS Code extensions are deeply integrated within your IDE. Install Pieces: the fastest, smartest AI assistant for code snippets and screenshots.
 ---
+
+<link rel="canonical" href="https://code.pieces.app/plugins/vscode" />
+
+export const InstallButton = props => {
+    return <a style={{textDecoration: "none"}} target="_blank" href="https://marketplace.visualstudio.com/items?itemName=MeshIntelligentTechnologiesInc.pieces-vscode">
+        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+            <p style={{
+                padding: "8px 20px",
+                borderRadius: "8px",
+                border: "1px solid #f3f5f6",
+                color: "white",
+                fontWeight: "500",
+                background: "black",
+                marginBottom: "8px",
+                marginTop: "3px",
+                marginRight: "16px"
+            }}>{props.children}</p>
+        </div>
+    </a>
+}
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "wrap"
+    }}>{props.children}</div>;
+};
+
+export const GridFlexRowCenter = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        flexWrap: "wrap"
+    }}>{props.children}</div>;
+};
+
+export const PluginSection = props => {
+    return <GridFlexRowCenter>
+        <img src={ props.src } />
+        <div>
+            <p><strong>{ props.heading }</strong></p>
+            <p>{props.text }</p>
+        </div>
+
+    </GridFlexRowCenter>
+};
+
+export const Spacer = props => {
+    return <div style={{height: "5px"}}></div>
+}
+
+# The best VS Code extensions are backed the smartest Micro-Repo, deeply integrated into VS Code
+
+<GridFlexRow>
+    <img style={{width: "25px" }} src={"/assets/vscode_logo.png"} />
+    <Heading type={"h2"} >Save Chrome snippets even faster - 100% Free!</Heading>
+</GridFlexRow>
+
+<GridFlexRow>
+    <InstallButton>Get Pieces for VSCode</InstallButton>
+</GridFlexRow>
+
+### Transform how you code with your personal micro-repo for code snippets in Visual Studio Code
+
+<PluginSection src={"/assets/graphics/vscode/plugins_save_code_vscode.png"} heading={"Save useful code to your Pieces micro-repo"} text={"Templates, terminal commands, useful Visual Studio code snippets… create VS Code bookmarks of the repetitive elements of your code in one-click for later re-use with the best VS Code extension for developers."}></PluginSection>
+<PluginSection src={"/assets/graphics/vscode/plugins_find_reuse_vscode.png"} heading={"Find and re-use just the right snippet when you need it"} text={"Blazing fast, powerful search of your Pieces snippets right inside your editor with a personal Visual Studio code repository."}></PluginSection>
+<PluginSection src={"/assets/graphics/vscode/plugins_auto_save_vscode.png"} heading={"Forget VS Code Auto Save, let Pieces auto-save your useful snippets"} text={"Pieces trains on your behavior to auto save VSCode snippets you frequently use. Since you might not realize you need them later until it’s too late."}></PluginSection>
+<PluginSection src={"/assets/graphics/vscode/plugins_share_vscode.png"} heading={"Share VS Code snippets without breaking your coding flow"} text={"Share code snippets in Slack or Teams with a simple right-click action. Your colleagues receive both the snippet and its related context - tags, descriptions and more."}></PluginSection>
+<PluginSection src={"/assets/graphics/vscode/plugins_auto_complete_vscode.png"} heading={"Auto-complete VS Code snippets from your Pieces repo"} text={"Leverage VS Code code completion suggestions from your personal micro-repo. The VS Code auto complete feature supercharges your productivity so you can focus on the next task. No size limit!"}></PluginSection>
+
+**dont forget about the bottom footer and also the cta**
