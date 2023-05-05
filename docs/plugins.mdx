@@ -1,7 +1,7 @@
 export const HeaderImage = props => {
     return <picture>
         <source srcSet={props.srcset} media="(prefers-color-scheme: dark)"/>
-        <Image src={props.src} />
+        <img src={props.src} />
     </picture>
 };
 
@@ -16,7 +16,7 @@ export const GridFlexRow = props => {
 
 export const PluginButton = props => {
     return <div style={{ padding: "8px", border: "2px solid grey", borderRadius: "16px", marginRight: "16px", textAlign: "center" }}>
-        <Image height={"90px"} width={"90px"} src={ props.src } />
+        <img src={ props.src } />
         <p style={{ marginTop: "0px" }}><strong>{ props.text }</strong></p>
     </div>
 };
