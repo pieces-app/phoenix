@@ -7,6 +7,28 @@ export const GridFlexRowCenter = props => {
     }}>{props.children}</div>;
 };
 
+export const InstallButton = props => {
+    return <a style={{textDecoration: "none"}} target="_blank" href={ props.src }>
+        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+            <p style={{
+                padding: "8px 20px",
+                borderRadius: "8px",
+                border: "1px solid #f3f5f6",
+                color: "white",
+                fontWeight: "500",
+                background: "black",
+                marginBottom: "8px",
+                marginTop: "3px",
+                marginRight: "16px"
+            }}>{props.children}</p>
+        </div>
+    </a>
+}
+
+export const Spacer = props => {
+    return <div style={{ width: "16px"}}></div>
+}
+
 # Whoops!  You need to install Pieces OS to run your JetBrains plugin
 
 100% free, no credit card or email address required!
@@ -34,5 +56,6 @@ export const GridFlexRowCenter = props => {
             <InstallButton src="#">Download</InstallButton>
         </TabItem>
     </Tabs>
+    <Spacer></Spacer>
     <Image width="200" src={"/assets/graphics/os_ghost.png"} />
 </GridFlexRowCenter>
