@@ -2,6 +2,24 @@ export const Spacer = props => {
     return <div style={{height: "16px"}}></div>
 };
 
+export const InstallButton = props => {
+    return <a style={{textDecoration: "none"}} target="_blank" href={ props.src }>
+        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+            <p style={{
+                padding: "8px 20px",
+                borderRadius: "8px",
+                border: "1px solid #f3f5f6",
+                color: "white",
+                fontWeight: "500",
+                background: "black",
+                marginBottom: "8px",
+                marginTop: "3px",
+                marginRight: "16px"
+            }}>{props.children}</p>
+        </div>
+    </a>
+};
+
 # Welcome to Pieces for VS Code!
 ## The tool you love, you're about to love even more
 
@@ -33,3 +51,6 @@ Our VS Code Extension in combination with our <a target="_blank" href="https://p
 - Save time with In-Project Snippet Discovery
 - Enjoy real-time and scope-relevant suggestions
 - Extract and use code and text from screenshots
+
+<InstallButton src="https://pieces.app/">Learn More</InstallButton>
+
