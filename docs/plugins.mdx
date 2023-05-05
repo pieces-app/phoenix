@@ -5,17 +5,17 @@ export const HeaderImage = props => {
     </picture>
 };
 
-export const GridFlexSpaceBetweenRow = props => {
+export const GridFlexRow = props => {
     return <div style={{
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'start',
         flexWrap: "wrap"
     }}>{props.children}</div>;
 };
 
 export const PluginButton = props => {
-    return <div style={{ padding: "8px", border: "2px solid grey", borderRadius: "16px", marginRight: "8px" }}>
+    return <div style={{ padding: "8px", border: "2px solid grey", borderRadius: "16px", marginRight: "16px" }}>
         <img style={{ height: "90px", width: "90px" }} src={ props.src } />
         <p><strong>{ props.text }</strong></p>
     </div>
@@ -39,27 +39,27 @@ Our browser and IDE plugins are deeply integrated into your development tools, a
 
 ## IDE Plugins
 
-<GridFlexSpaceBetweenRow>
+<GridFlexRow>
     <PluginButton src={"/assets/logo/vscode_logo.png"} text={"VS Code IDE"}></PluginButton>
     <PluginButton src={"/assets/logo/jetbrains_logo.png"} text={"Jetbrains IDE"}></PluginButton>
     <PluginButton src={"/assets/logo/ue_logo.png"} text={"UltraEdit IDE"}></PluginButton>
-</GridFlexSpaceBetweenRow>
+</GridFlexRow>
 
 <Spacer></Spacer>
 
 ## Browser Extensions
 
-<GridFlexSpaceBetweenRow>
+<GridFlexRow>
     <PluginButton src={"/assets/logo/chrome_logo.png"} text={"Chrome"}></PluginButton>
     <PluginButton src={"/assets/logo/edge_logo.png"} text={"Edge"}></PluginButton>
-</GridFlexSpaceBetweenRow>
+</GridFlexRow>
 
 <Spacer></Spacer>
 
 ## Productivity Tools
 
-<GridFlexSpaceBetweenRow>
+<GridFlexRow>
     <PluginButton src={"/assets/logo/github_logo.png"} text={"GitHub"}></PluginButton>
     <PluginButton src={"/assets/logo/teams_logo.png"} text={"Teams"}></PluginButton>
-</GridFlexSpaceBetweenRow>
+</GridFlexRow>
 
