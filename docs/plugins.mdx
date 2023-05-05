@@ -1,1 +1,44 @@
-# Plugins Landing Page
+---
+title: Pieces for Developers | Plugins
+description:
+---
+
+export const HeaderImage = props => {
+    return <picture>
+        <source srcSet={props.srcset} media="(prefers-color-scheme: dark)"/>
+        <img src={props.src}/>
+    </picture>
+};
+
+export const GridFlexSpaceBetweenRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        flexWrap: "wrap"
+    }}>{props.children}</div>;
+};
+
+export const PluginButton = props => {
+    return <div style={{ padding: "8px", border: "2px solid grey", borderRadius: "16px" }}>
+        <img style={{ height: "90px", width: "90px" }} src={ props.src } />
+        <p><strong>{ props.text }</strong></p>
+    </div>
+}
+
+
+# Pieces for Developers
+#### Plugins
+
+
+<HeaderImage src="/assets/headers/dark/plugins_landing_header.png"
+             srcset="docs/assets/headers/light/plugins_landing_header.png"></HeaderImage>
+
+Use these Pieces extensions and plugins inside your IDE and browser and enable key AI features like Auto-Save, Auto-Complete and single-click save from any webpage.
+
+Our browser and IDE plugins are deeply integrated into your development tools, adding an intelligent personal micro-repository that changes the way you interact with code snippets.
+
+
+<GridFlexSpaceBetweenRow>
+    <PluginButton src={"/assets/vscode_logo"} text={"VS Code"}></PluginButton>
+</GridFlexSpaceBetweenRow>
