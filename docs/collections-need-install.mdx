@@ -30,6 +30,13 @@ export const DownloadPieces = props => {
     return <div>
         <h1>You're Almost There!</h1>
         <p>To save this collection, install the Pieces app. Learn more about Pieces below.</p>
+        { props.children }
+    </div>
+}
+
+
+<FlexColumn>
+    <DownloadPieces>
         <Tabs
             values={[
                 { label: 'MacOS', value: 'macos' },
@@ -43,17 +50,13 @@ export const DownloadPieces = props => {
             </TabItem>
             <TabItem value="windows">
                 <p>Compatible with Windows 10 version 1809 and higher</p>
-                <InstallButton src="https://builds.pieces.app/stages/production/macos_packaging/pkg/download">Download</InstallButton></TabItem>
+                <InstallButton src="https://builds.pieces.app/stages/production/macos_packaging/pkg/download">Download</InstallButton>
+            </TabItem>
             <TabItem value="linux">
                 <p>FIND THIS INFO </p>
                 <InstallButton src="#">Download</InstallButton>
             </TabItem>
         </Tabs>
-    </div>
-}
-
-
-<FlexColumn>
-    <DownloadPieces></DownloadPieces>
+    </DownloadPieces>
     <Image src={"/assets/headers/light/collections_header_need_install.png"} />
 </FlexColumn>
