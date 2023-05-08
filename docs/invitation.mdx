@@ -1,0 +1,41 @@
+export const InstallButton = props => {
+    return <a style={{textDecoration: "none"}} target="_blank" href={ props.src }>
+        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+            <p style={{
+                padding: "8px 20px",
+                borderRadius: "8px",
+                border: "1px solid #f3f5f6",
+                color: "white",
+                fontWeight: "500",
+                background: "black",
+                marginBottom: "8px",
+                marginTop: "3px",
+                marginRight: "16px"
+            }}>{props.children}</p>
+        </div>
+    </a>
+};
+
+export const GridFlexRowCenter = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+# You've been invited to Pieces!
+
+Pieces is the fastest, easiest way to save code snippets right from your IDE.
+
+<GridFlexRowCenter>
+    <InstallButton src="https://pieces.app">Try Pieces</InstallButton>
+
+    <InstallButton src="#">Explore Features</InstallButton>
+</GridFlexRowCenter>
+
+Already have Pieces Installed?
+
+<a href="https://code.pieces.app/plugins">Check out our Integrations</a>
