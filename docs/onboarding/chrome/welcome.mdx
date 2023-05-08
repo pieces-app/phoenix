@@ -1,0 +1,60 @@
+export const InstallButton = props => {
+    return <a style={{textDecoration: "none"}} target="_blank" href={ props.src }>
+        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+            <p style={{
+                padding: "8px 20px",
+                borderRadius: "8px",
+                border: "1px solid #f3f5f6",
+                color: "white",
+                fontWeight: "500",
+                background: "black",
+                marginBottom: "8px",
+                marginTop: "3px",
+                marginRight: "16px"
+            }}>{props.children}</p>
+        </div>
+    </a>
+};
+
+export const GridFlexRowCenter = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+
+};
+
+export const Spacer = props => {
+    return <div style={{height: "16px"}}></div>
+};
+
+# Welcome to Pieces! Let's save a snippet
+
+Hover over a code block to reveal the _**"Copy and Save" button**_. Once clicked, the snippet will automatically be saved to your Pieces micro-repo and copied to your clipboard.
+
+Pro-tip: You can also save via the right-click context menu.
+
+```javascript
+const deepClone = (obj: any) => {
+	if (obj === null) return null;
+  let clone = { ...obj };
+
+  Object.keys(clone).forEach(
+	  (key) =>
+      (clone[key] = typeof obj[key] === "object" ? deepClone(obj[key]) : obj[key])
+   );
+	 return Array.isArray(obj) && obj.length
+	   ? (clone.length = obj.length) && Array.from(clone)
+	   : Array.isArray(obj)
+     ? Array.from(obj)
+     : clone;
+};
+```
+
+<GridFlexRowCenter>
+    <InstallButton src={"https://code.pieces.app/onboarding/chrome/location"}>Next</InstallButton>
+</GridFlexRowCenter>
+
+<Spacer></Spacer>
