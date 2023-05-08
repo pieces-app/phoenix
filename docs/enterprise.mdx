@@ -25,6 +25,16 @@ export const GridFlexRow = props => {
     }}>{props.children}</div>;
 };
 
+export const Card = props => {
+    return <div style={{
+        display: "flex",
+        justifyContent: "center",
+        padding: "8px",
+        border: "1px solid gray",
+        borderRadius: "15px",
+    }}>{props.children}</div>;
+};
+
 # The fastest way for dev teams to save and reuse snippets
 No user account, email or credit card required.
 
@@ -42,6 +52,6 @@ No user account, email or credit card required.
 <InstallButton src={"https://pieces.app"}>Get Pieces</InstallButton>
 
 <GridFlexRow>
-    <div></div>
+    <Card>Convert screenshot of code/text to copy-able text</Card>
 </GridFlexRow>
 
