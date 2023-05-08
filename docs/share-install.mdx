@@ -1,3 +1,21 @@
+export const InstallButton = props => {
+    return <a style={{textDecoration: "none"}} target="_blank" href={ props.src }>
+        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+            <p style={{
+                padding: "8px 20px",
+                borderRadius: "8px",
+                border: "1px solid #f3f5f6",
+                color: "white",
+                fontWeight: "500",
+                background: "black",
+                marginBottom: "8px",
+                marginTop: "3px",
+                marginRight: "16px"
+            }}>{props.children}</p>
+        </div>
+    </a>
+};
+
 # Let’s get you started!
 
 **100% free**, no credit card or email address required!
