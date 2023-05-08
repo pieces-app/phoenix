@@ -16,6 +16,15 @@ export const InstallButton = props => {
     </a>
 };
 
+export const GridFlexRowCenter = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "wrap"
+    }}>{props.children}</div>;
+};
+
 export const GridFlexRow = props => {
     return <div style={{
         display: 'flex',
@@ -27,13 +36,24 @@ export const GridFlexRow = props => {
 
 export const Card = props => {
     return <div style={{
+        maxWidth: "250px",
         display: "flex",
         justifyContent: "center",
         padding: "32px 16px",
         border: "1px solid gray",
         borderRadius: "15px",
+        textAlign: "center"
     }}>{props.children}</div>;
 };
+
+export const FabIcon = props => {
+    return <div style={{
+        backgroundColor: "white",
+        borderRadius: "30px",
+        height: "80px",
+        width: "80px"
+    }}>{ props.children } </div>
+}
 
 # The fastest way for dev teams to save and reuse snippets
 No user account, email or credit card required.
@@ -60,3 +80,12 @@ No user account, email or credit card required.
     <Card>Find end to end reference for a piece of modelling code instead of looking up docs for each step</Card>
 </GridFlexRow>
 
+### Deeply integrated with VS Code, IntelliJ, PyCharm, Chrome and other key tools
+
+<GridFlexRowCenter>
+    <Card><Image width="40" height="40" src="/assets/logos/vscode_logo.png" /></Card>
+    <Card><Image width="40" height="40" src="/assets/logos/jetbrains_logo.png" /></Card>
+    <Card><Image width="40" height="40" src="/assets/logos/chrome_logo.png" /></Card>
+    <Card><Image width="40" height="40" src="/assets/logos/ue_logo.png" /></Card>
+    <Card><Image width="40" height="40" src="/assets/logos/pycharm_logo.png" /></Card>
+</GridFlexRowCenter>
