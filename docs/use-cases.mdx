@@ -5,8 +5,13 @@ export const UserTestimonials = props => {
             <p>{ props.quote }</p>
             <p><strong>{ props.text }</strong></p>
         </div>
-        <Image width="100px" src={"https://assets.website-files.com/6143afec68f55570f449ef97/614a1410ac4ad020a1f08e14_Mark.svg"}></Image>
+        <Image width="100px" src={ props.src }></Image>
     </div>;
+}
+
+export const Spacer = props => {
+    return <div style={{ height: "16px" }}>
+    </div>
 }
 
 # An ever-growing list of ways to use Pieces
@@ -14,8 +19,8 @@ export const UserTestimonials = props => {
 <Tabs
     values={[
         {label: 'General Use Cases', value: 'general'},
-        {label: 'For Teams', value: 'teams'},
-        {label: 'For Front-End', value: 'frontend'},
+        {label: 'Teams', value: 'teams'},
+        {label: 'Front-End', value: 'frontend'},
         {label: 'Back-End', value: 'backend'},
         {label: 'Specialist', value: 'specialist'},
         {label: 'Students', value: 'students'}
@@ -29,12 +34,19 @@ export const UserTestimonials = props => {
         - Save boilerplate code or have it saved automatically for you with auto-save
         - Save alternative algorithms or pseudocode that isn’t ready for production
         - Save code when resolving merge conflicts, just in case
+
+        <Image width="350px" src="/assets/graphics/use-cases/use_cases_general.png" />
+
         - Save interesting snippets of code instead of starring or forking the entire repo for just a few lines
         - Save resources and lightweight libraries that help you solve problems without large overhead or third-party dependencies
         - Auto-complete READMEs, CONTRIBUTING, CODE_OF_CONDUCT with standardized information within and across projects
         - Temporarily save code you’ll need to move soon
         - Save screenshots from multiple repos and compare them back-to-back to find errors where git pulls/merges/PRs have been improperly managed on specific sections of code
         - Organize snippets from various client projects with tags
+
+        <Spacer></Spacer>
+
+        <UserTestimonials quote="I save a lot of my responses that are not available on the web. Specifically any sort of command I would use with GCloud, as well as little templates of code, like my try catches— I’ll actually just right-click, send to Pieces and autocomplete that into IntelliJ, VS Code, or any one of my editors." text="Mark Widman - Full Stack Developer @ Pieces" src="https://assets.website-files.com/6143afec68f55570f449ef97/614a1410ac4ad020a1f08e14_Mark.svg"></UserTestimonials>
 
     </TabItem>
 
