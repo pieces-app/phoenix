@@ -1,0 +1,78 @@
+---
+title: Get Chrome Snippets Extension | Pieces
+description: Get Pieces for Developers in your browser. The fastest, smartest AI Assistant for Chrome snippets. Save code from your browser to your clipboard in one click.
+---
+
+<link rel="canonical" href="https://code.pieces.app/plugins/chrome" />
+
+export const InstallButton = props => {
+    return <a style={{textDecoration: "none"}} target="_blank" href="https://chrome.google.com/webstore/detail/pieces-save-code-snippets/igbgibhbfonhmjlechmeefimncpekepm">
+        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+            <p style={{
+                padding: "8px 20px",
+                borderRadius: "8px",
+                border: "1px solid #f3f5f6",
+                color: "white",
+                fontWeight: "500",
+                background: "black",
+                marginBottom: "8px",
+                marginTop: "3px",
+                marginRight: "16px"
+            }}>{props.children}</p>
+        </div>
+    </a>
+}
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "wrap"
+    }}>{props.children}</div>;
+};
+
+export const GridFlexRowCenter = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        flexWrap: "wrap"
+    }}>{props.children}</div>;
+};
+
+export const PluginSection = props => {
+    return <GridFlexRowCenter>
+        <img src={ props.src } />
+        <div>
+            <p><strong>{ props.heading }</strong></p>
+            <p>{props.text }</p>
+        </div>
+
+    </GridFlexRowCenter>
+};
+
+export const Spacer = props => {
+    return <div style={{height: "5px"}}></div>
+}
+
+# The fastest, smartest Micro-Repo, deeply integrated into Chrome
+<GridFlexRow>
+    <img style={{width: "25px" }} src={"/assets/chrome_logo.png"} />
+    <Heading type={"h2"} >Save Chrome snippets even faster - 100% Free!</Heading>
+</GridFlexRow>
+
+<GridFlexRow>
+    <InstallButton>Get Pieces for Chrome</InstallButton>
+</GridFlexRow>
+
+![](/assets/headers/light/plugin_header_chrome.png)
+
+### Transform how you code with your very own Chrome browser repository
+
+<PluginSection src={"/assets/graphics/chrome/plugins_save_code_chrome.png"} heading={"Save useful code to your Pieces micro-repo"} text={"Templates, terminal commands, useful Chrome snippets... save code snippets you find on the web in one-click for later re-use."}></PluginSection>
+<PluginSection src={"/assets/graphics/chrome/plugins_find_reuse_chrome.png"} heading={"Find and re-use just the right Chrome code snippets when you need it"} text={"Blazing fast, powerful search of your Pieces snippets right inside your editor."}></PluginSection>
+<PluginSection src={"/assets/graphics/chrome/plugins_auto_save_chrome.png"} heading={"Let Pieces auto-save useful Chrome snippets"} text={"Pieces permanent clipboard Chrome extension for code snippets trains on your behavior and auto-saves frequently used or useful snippets. Since you might not realize you need them later until it’s too late."}></PluginSection>
+<PluginSection src={"/assets/graphics/chrome/plugins_share_chrome.png"} heading={"Share Chrome snippets without breaking your research flow"} text={"Share snippets in Slack or Teams with a simple button click. Your colleagues receive both the snippet and its related context - tags, descriptions and more."}></PluginSection>
+
+**dont forget about the bottom footer and also the cta**

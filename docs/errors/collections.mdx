@@ -1,0 +1,17 @@
+export const FlexColumn = props => {
+    return <div style={{
+        paddingLeft: "8px",
+        paddingRight: "8px",
+        display: 'flex',
+        flexDirection: 'column',
+        flexWrap: "wrap"
+    }}>{props.children}</div>;
+};
+
+
+<FlexColumn>
+    <Image width="300" src={"/assets/headers/light/errors_header_collection.png"} />
+    <h1>Hmm...something went wrong</h1>
+    <h2>Restart Pieces OS to save this collection</h2>
+    <p>If the problem persists, please contact <a target={"_blank"} href={"mailto:support@pieces.app"}>support@pieces.app</a>.</p>
+</FlexColumn>

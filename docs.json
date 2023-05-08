@@ -25,14 +25,19 @@
       "link": "/blog"
     },
     {
-      "title": "News",
-      "icon": "newspaper",
-      "link": "https://news.pieces.app"
+      "title": "Contact Us",
+      "icon": "address-card",
+      "link": "/contact"
     },
     {
       "title": "Download Pieces",
       "icon": "download",
       "link": "#"
+    },
+    {
+      "title": "News",
+      "icon": "newspaper",
+      "link": "https://news.pieces.app"
     },
     {
       "title": "Plugins",
@@ -48,11 +53,6 @@
       "title": "Updates",
       "icon": "pencil",
       "link": "/updates"
-    },
-    {
-      "title": "Contact Us",
-      "icon": "address-card",
-      "link": "/contact"
     }
   ]
 }

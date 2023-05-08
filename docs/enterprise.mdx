@@ -1,0 +1,105 @@
+export const InstallButton = props => {
+    return <a style={{textDecoration: "none"}} target="_blank" href={ props.src }>
+        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+            <p style={{
+                padding: "8px 20px",
+                borderRadius: "8px",
+                border: "1px solid #f3f5f6",
+                color: "white",
+                fontWeight: "500",
+                background: "black",
+                marginBottom: "8px",
+                marginTop: "3px",
+                marginRight: "16px"
+            }}>{props.children}</p>
+        </div>
+    </a>
+};
+
+export const GridFlexSpaceEvenlyRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        flexWrap: "wrap"
+    }}>{props.children}</div>;
+};
+
+export const GridFlexRowCenter = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "wrap"
+    }}>{props.children}</div>;
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "wrap"
+    }}>{props.children}</div>;
+};
+
+export const Card = props => {
+    return <div style={{
+        maxWidth: "250px",
+        display: "flex",
+        justifyContent: "center",
+        padding: "32px 16px",
+        border: "1px solid gray",
+        borderRadius: "15px",
+        textAlign: "center"
+    }}>{props.children}</div>;
+};
+
+export const FabIcon = props => {
+    return <div style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        backgroundColor: "white",
+        borderRadius: "30px",
+        height: "80px",
+        width: "80px",
+        margin: "0"
+    }}>{ props.children } </div>
+}
+
+# The fastest way for dev teams to save and reuse snippets
+No user account, email or credit card required.
+
+<Image src={"/assets/headers/light/enterprise_header_coffee.png"} />
+
+<InstallButton src={"https://code.pieces.app/contact"}>Request a Demo</InstallButton>
+
+## Pieces is massively flexible to suit individual and developer team needs
+
+- Save internally-approved snippets and templates to your personal repo
+- Auto-complete in your editor from your Pieces micro-repo (coming soon)
+- Applications across your development and design teams, including website devs, front end devs, database engineers, cloud/platform engineers, machine learning engineers and more
+
+### So many ways to use Pieces for Developers
+<InstallButton src={"https://pieces.app"}>Get Pieces</InstallButton>
+
+<GridFlexRow>
+    <Card>Convert screenshots of code/text to copy-able text</Card>
+    <Card>Storing code too important to lose, but not important enough for source control</Card>
+    <Card>Store templates reused often - HTML structures, CSS blocks, Javascript loops, switch cases, imports, class structures, function blocks, decorator objects and more</Card>
+    <Card>Replacement for a code snippet bookmarks folder in a browser, with better search</Card>
+    <Card>Save common error messages and then attach specific related links that solved these error messages for future use</Card>
+    <Card>Find end to end reference for a piece of modelling code instead of looking up docs for each step</Card>
+</GridFlexRow>
+
+### Deeply integrated with VS Code, IntelliJ, PyCharm, Chrome and other key tools
+
+<GridFlexSpaceEvenlyRow>
+    <a href="https://chrome.google.com/webstore/detail/pieces-save-code-snippets/igbgibhbfonhmjlechmeefimncpekepm"><Image width="50%" src="/assets/logos/chrome_logo.png" /></a>
+    <a href="https://plugins.jetbrains.com/plugin/17328-pieces--save-search-share--reuse-code-snippets"><Image width="50%" src="/assets/logos/jetbrains_logo.png" /></a>
+    <a href="https://marketplace.visualstudio.com/items?itemName=MeshIntelligentTechnologiesInc.pieces-vscode"><Image width="50%" src="/assets/logos/vscode_logo.png" /></a>
+    <a href="https://marketplace.visualstudio.com/items?itemName=MeshIntelligentTechnologiesInc.pieces-vscode"><Image width="50%" src="/assets/logos/pycharm_logo.png" /></a>
+    <a href="https://microsoftedge.microsoft.com/addons/detail/pieces-save-code-snippet/hglfimcdgonaeeobjckfdabcldfidmim"><Image width="50%" src="/assets/logos/edge_logo.png" /></a>
+</GridFlexSpaceEvenlyRow>
+

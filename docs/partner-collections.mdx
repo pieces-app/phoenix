@@ -1,0 +1,171 @@
+export const GridFlexRowCenter = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "wrap"
+    }}>{props.children}</div>
+};
+
+export const Spacer = props => {
+    return <div style={{ width: "16px"}}></div>
+}
+
+export const Card = props => {
+    return <div style={{
+        display: "flex",
+        flexDirection: "column",
+        border: "2px solid #e4e7eb",
+        borderRadius: "10px",
+        margin: "8px 16px"
+    }}>
+        <div style={{padding: "10px"}}>
+            {props.children}
+        </div>
+    </div>
+};
+
+export const Snippets = props => {
+    return <p style={{marginTop: "0px", marginBottom: "4px"}}>{props.children}</p>
+};
+
+export const Title = props => {
+    return <h3 style={{marginTop: "4px"}}>{props.children}</h3>
+};
+
+export const Snip = props => {
+    return <p style={{lineHeight: "1.25", marginTop: "0px"}}>{props.children}</p>
+};
+
+export const ClickThrough = props => {
+    return <a style={{textDecoration: "none"}} href={props.src}>
+        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+            <p style={{
+                padding: "8px 20px",
+                borderRadius: "8px",
+                border: "1px solid #f3f5f6",
+                backgroundColor: "black",
+                color: "white",
+                fontWeight: "500",
+                marginBottom: "8px",
+                marginTop: "30px"
+            }}>{props.children}</p>
+        </div>
+    </a>
+};
+
+<Image width="400" src="/assets/headers/light/partner_collections_header_framework.png" />
+
+# Snippet Collections
+
+Whether you’re learning a new language or you’ve been coding in a framework for years, our team has curated collections of the most useful snippets for you. Save a collection today for the snippets and their contexts!
+
+<GridFlexRowCenter>
+    <Card>
+        <Image src="https://assets.website-files.com/6143afec68f555387049efb3/62e32a4edc5c101fc25fe25d_collections_web_images-26-p-800.jpg" />
+        <Title>How to Validate Incoming Requests in ExpressJS</Title>
+        <Snippets>11 Snippets</Snippets>
+        <Snip>Protect your snippets from invalid requests.</Snip>
+        <GridFlexRowCenter>
+            <ClickThrough src="/partner-collections/how-to-validate-incoming-requests-in-expressjs">Explore</ClickThrough>
+            <Spacer></Spacer>
+            <ClickThrough src="https://mohammadfaisal.pieces.cloud/?p=ea5c40a7ea">Add to Pieces</ClickThrough>
+        </GridFlexRowCenter>
+    </Card>
+
+    <Card>
+        <Image src="https://assets.website-files.com/6143afec68f555387049efb3/62e32a424c15a6f5c6aaba47_collections_web_images-24-p-800.jpg" />
+        <Title>How to Add Production Grade NodeJS Logging</Title>
+        <Snippets>22 Snippets</Snippets>
+        <Snip>Setup logging for a production-grade NodeJS application.</Snip>
+        <GridFlexRowCenter>
+            <ClickThrough src="/partner-collections/how-to-add-production-grade-nodejs-logging">Explore</ClickThrough>
+            <Spacer></Spacer>
+            <ClickThrough src="https://mohammadfaisal.pieces.cloud/?p=3db64cbdb1">Add to Pieces</ClickThrough>
+        </GridFlexRowCenter>
+    </Card>
+
+    <Card>
+        <Image src="https://assets.website-files.com/6143afec68f555387049efb3/62e32a4edc5c101fc25fe25d_collections_web_images-26-p-800.jpg" />
+        <Title>AWS Lambda that Reacts to S3 File Upload</Title>
+        <Snippets>5 Snippets</Snippets>
+        <Snip>A very common use case is solved with the power of AWS SAM.</Snip>
+        <GridFlexRowCenter>
+            <ClickThrough src="/partner-collections/aws-lambda-that-reacts-to-s3-file-upload">Explore</ClickThrough>
+            <Spacer></Spacer>
+            <ClickThrough src="https://mohammadfaisal.pieces.cloud/?p=d9d3409d45">Add to Pieces</ClickThrough>
+        </GridFlexRowCenter>
+    </Card>
+
+    <Card>
+        <Image src="https://assets.website-files.com/6143afec68f555387049efb3/62e32a4edc5c101fc25fe25d_collections_web_images-26-p-800.jpg" />
+        <Title>Http Server Performance: NodeJS vs. Go</Title>
+        <Snippets>6 Snippets</Snippets>
+        <Snip>Who delivers the higher number of concurrent requests?</Snip>
+        <GridFlexRowCenter>
+            <ClickThrough src="/partner-collections/http-server-performance-nodejs-vs-go">Explore</ClickThrough>
+            <Spacer></Spacer>
+            <ClickThrough src="https://jansunavec.pieces.cloud/?p=d3f943a641">Add to Pieces</ClickThrough>
+        </GridFlexRowCenter>
+    </Card>
+
+    <Card>
+        <Image src="https://assets.website-files.com/6143afec68f555387049efb3/62e32a7c490b42a7d9f4e586_collections_web_images-25-p-800.jpg" />
+        <Title>JWT: Ultimate How-To Guide With Best Practices In JavaScript</Title>
+        <Snippets>10 Snippets</Snippets>
+        <Snip>JSON Web Token in Node.js from basics to code examples.</Snip>
+        <GridFlexRowCenter>
+            <ClickThrough src="/partner-collections/jwt-ultimate-how-to-guide-with-best-practices-in-javascript">Explore</ClickThrough>
+            <Spacer></Spacer>
+            <ClickThrough src="https://martinnovak.pieces.cloud/?p=ab0a4baf50">Add to Pieces</ClickThrough>
+        </GridFlexRowCenter>
+    </Card>
+
+    <Card>
+        <Image src="https://assets.website-files.com/6143afec68f555387049efb3/62e32a7c490b42a7d9f4e586_collections_web_images-25-p-800.jpg" />
+        <Title>Add a Messenger-like Chess Game to Your Flutter App</Title>
+        <Snippets>8 Snippets</Snippets>
+        <Snip>Learn how to add a playable chess game to your Flutter app.</Snip>
+        <GridFlexRowCenter>
+            <ClickThrough src="/partner-collections/how-to-add-a-messenger-like-chess-game-to-your-flutter-chat-app">Explore</ClickThrough>
+            <Spacer></Spacer>
+            <ClickThrough src="https://devenjoshi.pieces.cloud/?p=866047ac88">Add to Pieces</ClickThrough>
+        </GridFlexRowCenter>
+    </Card>
+
+    <Card>
+        <Image src="https://assets.website-files.com/6143afec68f555387049efb3/62e32a9c386f3590874bb6c1_collections_web_images-29-p-800.jpg" />
+        <Title>How to build a JSON API with Python</Title>
+        <Snippets>10 Snippets</Snippets>
+        <Snip>Create an API that allows client-side interaction with an underlying database.</Snip>
+        <GridFlexRowCenter>
+            <ClickThrough src="/partner-collections/how-to-build-a-json-api-with-python">Explore</ClickThrough>
+            <Spacer></Spacer>
+            <ClickThrough src="https://petergleeson.pieces.cloud/?p=cc164da6eb">Add to Pieces</ClickThrough>
+        </GridFlexRowCenter>
+    </Card>
+
+    <Card>
+        <Image src="https://assets.website-files.com/6143afec68f555387049efb3/62e32aa686e85255dc29793b_collections_web_images-27-p-800.jpg" />
+        <Title>How to Use Morgan in Your Node.js Project</Title>
+        <Snippets>8 Snippets</Snippets>
+        <Snip>Using Morgan as a logging tool in HTTP servers implemented using Express & Node.js.</Snip>
+        <GridFlexRowCenter>
+            <ClickThrough src="/partner-collections/how-to-use-morgan-in-your-node-js-project">Explore</ClickThrough>
+            <Spacer></Spacer>
+            <ClickThrough src="https://thomassentre.pieces.cloud/?p=df8d41963c">Add to Pieces</ClickThrough>
+        </GridFlexRowCenter>
+    </Card>
+
+    <Card>
+        <Image src="https://assets.website-files.com/6143afec68f555387049efb3/62e32ab2be01f74b029bbf0d_collections_web_images-28-p-800.jpg" />
+        <Title>Create Simple Animations for your Articles with Flutter</Title>
+        <Snippets>10 Snippets</Snippets>
+        <Snip>Use Flutter to add animations to your blog posts and articles to spice them up.</Snip>
+        <GridFlexRowCenter>
+            <ClickThrough src="/partner-collections/create-simple-animations-for-your-articles-with-flutter">Explore</ClickThrough>
+            <Spacer></Spacer>
+            <ClickThrough src="https://romainrastel.pieces.cloud/?p=db53489fc9">Add to Pieces</ClickThrough>
+        </GridFlexRowCenter>
+    </Card>
+</GridFlexRowCenter>

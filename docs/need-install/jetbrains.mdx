@@ -1,0 +1,54 @@
+export const InstallButton = props => {
+    return <a style={{textDecoration: "none"}} target="_blank" href={ props.src }>
+        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+            <p class="dark:text-white text-black" style={{
+                padding: "8px 20px",
+                borderRadius: "8px",
+                border: "1px solid #f3f5f6",
+                background: "transparent",
+                marginBottom: "8px",
+                marginTop: "3px",
+                marginRight: "16px"
+            }}>{props.children}</p>
+        </div>
+    </a>
+}
+
+# Woo Hoo! You're getting set up with Pieces for Developers!
+
+### You installed our JetBrains Plugin 🎉 Let’s finish your Pieces for Developers setup!
+
+<Image width="300" src={"/assets/graphics/jetbrains/need_install_setup_jetbrains.png"} />
+
+The JetBrains plugin is the fastest way to save snippets & their context, but where do your saved snippets go?
+
+### View and reuse your snippets with Pieces for Developers
+
+<Image width="300" src={"/assets/graphics/jetbrains/need_install_download_jetbrains.png"} />
+
+Pieces Desktop and Pieces OS work together to manage the save snippets you find inside your IDE with JetBrains.
+
+<Tabs
+    values={[
+        {label: 'MacOS', value: 'macos'},
+        {label: 'Windows', value: 'windows'},
+        {label: 'Linux', value: 'linux'}
+    ]}
+>
+    <TabItem value="macos">
+        <p>Compatible with macOS 10.15 (Catalina) and higher</p>
+        <InstallButton
+            src="https://builds.pieces.app/stages/production/macos_packaging/pkg/download">Download</InstallButton>
+    </TabItem>
+    <TabItem value="windows">
+        <p>Compatible with Windows 10 version 1809 and higher</p>
+        <InstallButton
+            src="https://builds.pieces.app/stages/production/macos_packaging/pkg/download">Download</InstallButton>
+    </TabItem>
+    <TabItem value="linux">
+        <p>FIND THIS INFO </p>
+        <InstallButton src="#">Download</InstallButton>
+    </TabItem>
+</Tabs>
+
+Problems downloading? Check out our <a href="/support">support center</a> or <a href="mailto:support@pieces.app">contact us</a>

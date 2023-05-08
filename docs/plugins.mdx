@@ -1,1 +1,65 @@
-# Plugins Landing Page
+export const HeaderImage = props => {
+    return <picture>
+        <source srcSet={props.srcset} media="(prefers-color-scheme: dark)"/>
+        <img src={props.src} />
+    </picture>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "wrap"
+    }}>{props.children}</div>;
+};
+
+export const PluginButton = props => {
+    return <div style={{ padding: "8px", border: "2px solid grey", borderRadius: "16px", marginRight: "16px", textAlign: "center" }}>
+        <img src={ props.src } />
+        <p style={{ marginTop: "0px" }}><strong>{ props.text }</strong></p>
+    </div>
+};
+
+export const Spacer = props => {
+    return <div style={{height: "16px"}}></div>
+};
+
+
+# Pieces for Developers
+<Heading type="h3">Plugins</Heading>
+
+
+<HeaderImage src="/assets/headers/dark/plugin_header_landing.png"
+             srcset="/assets/headers/light/plugin_header_landing.png"></HeaderImage>
+
+Use these Pieces extensions and plugins inside your IDE and browser and enable key AI features like Auto-Save, Auto-Complete and single-click save from any webpage.
+
+Our browser and IDE plugins are deeply integrated into your development tools, adding an intelligent personal micro-repository that changes the way you interact with code snippets.
+
+## IDE Plugins
+
+<GridFlexRow>
+    <PluginButton src={"/assets/logos/vscode_logo.png"} text={"VS Code IDE"}></PluginButton>
+    <PluginButton src={"/assets/logos/jetbrains_logo.png"} text={"Jetbrains IDE"}></PluginButton>
+    <PluginButton src={"/assets/logos/ue_logo.png"} text={"UltraEdit IDE"}></PluginButton>
+</GridFlexRow>
+
+<Spacer></Spacer>
+
+## Browser Extensions
+
+<GridFlexRow>
+    <PluginButton src={"/assets/logos/chrome_logo.png"} text={"Chrome"}></PluginButton>
+    <PluginButton src={"/assets/logos/edge_logo.png"} text={"Edge"}></PluginButton>
+</GridFlexRow>
+
+<Spacer></Spacer>
+
+## Productivity Tools
+
+<GridFlexRow>
+    <PluginButton src={"/assets/logos/github_logo.png"} text={"GitHub"}></PluginButton>
+    <PluginButton src={"/assets/logos/teams_logo.png"} text={"Teams"}></PluginButton>
+</GridFlexRow>
+
