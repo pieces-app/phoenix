@@ -1,0 +1,45 @@
+
+export const UserTestimonials = props => {
+    return <div style={{ padding: "40px" }}>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+            <p>{ props.quote }</p>
+            <p><strong>{ props.text }</strong></p>
+        </div>
+        <Image width="100px" src={"https://assets.website-files.com/6143afec68f55570f449ef97/614a1410ac4ad020a1f08e14_Mark.svg"}></Image>
+    </div>;
+}
+
+# An ever-growing list of ways to use Pieces
+
+<Tabs
+    values={[
+        {label: 'General Use Cases', value: 'general'},
+        {label: 'For Teams', value: 'teams'},
+        {label: 'For Front-End', value: 'frontend'},
+        {label: 'Back-End', value: 'backend'},
+        {label: 'Specialist', value: 'specialist'},
+        {label: 'Students', value: 'students'}
+    ]}
+>
+    <TabItem value="general">
+        <Header type="h1">General Use Cases</Header>
+
+        - Save code from the web and then auto-complete it in your IDE a few seconds later
+        - Replace your code snippet bookmarks in your browser (plus, they’re searchable)
+        - Save boilerplate code or have it saved automatically for you with auto-save
+        - Save alternative algorithms or pseudocode that isn’t ready for production
+        - Save code when resolving merge conflicts, just in case
+        - Save interesting snippets of code instead of starring or forking the entire repo for just a few lines
+        - Save resources and lightweight libraries that help you solve problems without large overhead or third-party dependencies
+        - Auto-complete READMEs, CONTRIBUTING, CODE_OF_CONDUCT with standardized information within and across projects
+        - Temporarily save code you’ll need to move soon
+        - Save screenshots from multiple repos and compare them back-to-back to find errors where git pulls/merges/PRs have been improperly managed on specific sections of code
+        - Organize snippets from various client projects with tags
+
+
+
+        <InstallButton
+            src="https://builds.pieces.app/stages/production/macos_packaging/pkg/download">Download</InstallButton>
+    </TabItem>
+
+</Tabs>
