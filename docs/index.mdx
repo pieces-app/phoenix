@@ -220,27 +220,26 @@ Pieces for Developers was built from the ground up to serve as a centralized pla
 When you save something to the Pieces code snippet manager it not only saves the material itself; but further, our Context Awareness Engine in combination with ChatGPT automatically attaches related context & metadata enabling powerful organization, search, and suggestion capabilities.
 
 <Image zoom src={"https://storage.googleapis.com/pieces_static_resources/pfd_wiki/AI_GENERATED_SMART_CONTEXT.gif"}/>
-<FlexRowBetween>
-    <FlexColumn>
-        <Card heading={"Smart Titles & Descriptions"}
-              className={"fa-solid fa-heading"}
-              text={"No need to spend time manually naming or writing descriptions for your snippets. Pieces for Developers will automatically analyze your saved snippet to apply a helpful name and description."}></Card>
-        <Card heading={"Related Links & URLs"}
-              className={"fa-solid fa-link-horizontal"}
-              text={"Easily Attach Documentation Pages, Wiki Links, Jira Tickets, Pull Requests, GitHub Issues, etc. to your saved materials. With Pieces you can easily add a link to a saved code snippet and go back to your snippet later for all the context and metadata attached."}></Card>
-        <Card heading={"Natural-Language Tags"}
-              className={"fa-solid fa-language"}
-              text={"We automatically add tags to every saved snippet, so it’s easier to find or reference later. Edit tags on your snippets for personalized context on the instance or history that snippet is used for. Search for the snippet later using those keywords and tags."}></Card>
-    </FlexColumn>
-</FlexRowBetween>
+
+<FlexColumn>
+    <Accordion title="🧠 Smart Titles & Descriptions">
+        No need to spend time manually naming or writing descriptions for your snippets. Pieces for Developers will automatically analyze your saved snippet to apply a helpful name and description.
+    </Accordion>
+
+    <Accordion title="🔗 Related Links & URLs">
+        Easily Attach Documentation Pages, Wiki Links, Jira Tickets, Pull Requests, GitHub Issues, etc. to your saved materials. With Pieces you can easily add a link to a saved code snippet and go back to your snippet later for all the context and metadata attached.
+    </Accordion>
+
+    <Accordion title="🌐 Natural-Language Tags">
+        We automatically add tags to every saved snippet, so it’s easier to find or reference later. Edit tags on your snippets for personalized context on the instance or history that snippet is used for. Search for the snippet later using those keywords and tags.
+    </Accordion>
+</FlexColumn>
 
 <Spacer></Spacer>
 
 <Heading type={"h2"}>Backtrack through your workflow with ease</Heading>
 
 More and more developer resources live online nowadays - tutorial sites, Stack Overflow posts, documentation & open source packages, wiki's and blog posts, the list goes on...
-
-This combined with the constant switching back to the IDE, and other tools, often causes developers to lose track of where they were and start over again at the search bar.
 
 <FlexRowBetween>
     <Image src={"https://storage.googleapis.com/pieces_static_resources/pfd_wiki/WORKFLOW_ACTIVITY.gif"}/>
@@ -255,6 +254,8 @@ This combined with the constant switching back to the IDE, and other tools, ofte
     </FlexColumn>
 
 </FlexRowBetween>
+
+This combined with the constant switching back to the IDE, and other tools, often causes developers to lose track of where they were and start over again at the search bar.
 
 <Spacer></Spacer>
 
