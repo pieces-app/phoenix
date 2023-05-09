@@ -20,9 +20,14 @@
       "link": "https://pieces.app/about/"
     },
     {
-      "title": "Blog",
+      "title": "Coding Blog",
       "icon": "blog",
       "link": "/blog"
+    },
+    {
+      "title": "Documentation & Updates",
+      "icon": "newspaper",
+      "link": "https://news.pieces.app"
     },
     {
       "title": "Contact Us",
@@ -35,11 +40,6 @@
       "link": "#"
     },
     {
-      "title": "News",
-      "icon": "newspaper",
-      "link": "https://news.pieces.app"
-    },
-    {
       "title": "Plugins",
       "icon": "puzzle-piece",
       "link": "/plugins"
@@ -48,11 +48,6 @@
       "title": "Support",
       "icon": "headset",
       "link": "/support"
-    },
-    {
-      "title": "Updates",
-      "icon": "pencil",
-      "link": "/updates"
     }
   ]
 }
