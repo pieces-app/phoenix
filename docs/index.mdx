@@ -10,10 +10,6 @@ export const HeroOpening = props => {
     </div>;
 };
 
-export const HeroSubtitle = props => {
-    return <div style={{width: "100%", textAlign: "center"}}><p>{props.children}</p></div>;
-};
-
 export const InstallButton = props => {
     return <a style={{textDecoration: "none"}} target="_blank" href={props.src}>
         <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
@@ -34,7 +30,7 @@ export const InstallButton = props => {
 
 export const ReleaseButton = props => {
     return <a target="_blank" style={{textDecoration: "none"}}
-              href={ props.src }>
+              href={props.src}>
         <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
             <p class="dark:text-white text-black"
                style={{
@@ -49,7 +45,25 @@ export const ReleaseButton = props => {
                }}>{props.children}</p>
         </div>
     </a>
-}
+};
+
+export const ReleasePill = props => {
+    return <a target="_blank" style={{textDecoration: "none"}}
+              href={props.src}>
+        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+            <p style={{
+                padding: "2px 20px",
+                borderRadius: "20px",
+                border: "1px solid #f3f5f6",
+                backgroundColor: "#f3f4f5",
+                color: "black",
+                fontWeight: "500",
+                marginTop: "8px",
+                marginBottom: "15px"
+            }}>{props.children}</p>
+        </div>
+    </a>
+};
 
 export const Spacer = props => {
     return <div style={{width: "100%", height: "150px"}}></div>;
@@ -75,6 +89,7 @@ export const FlexColumn = props => {
 
 export const ButtonCard = props => {
     return <div style={{width: "250px", height: "250px", textAlign: "left", border: "1px solid black", padding: "5px"}}>
+        <i class={ props.className }
         <h3 style={{lineHeight: "1", fontSize: "16px"}}>{props.heading}</h3>
         <p style={{lineHeight: "1", fontSize: "12px"}}>{props.text}</p>
         <button style={{lineHeight: "1", fontSize: "12px", fontWeight: "bold"}}><span>{props.button}</span></button>
@@ -96,25 +111,26 @@ export const MicroCards = props => {
 };
 
 
+<ReleasePill src={"#"}>Version 1.14.0 Now Available! 🎉</ReleasePill>
+
 # Pieces for Developers.
 
 ## The Tool Between Your Tools.
 
-<HeroSubtitle>Pieces is a first-in-kind productivity suite that optimizes developer tools and eliminates
-    the chaos of context switching.</HeroSubtitle>
+Pieces is a first-in-kind productivity suite that optimizes developer tools and eliminates the chaos of context switching.
 
 <FlexRow>
     <InstallButton src={"/install"}>Download</InstallButton>
     <ReleaseButton src={"https://www.youtube.com/watch?v=bczfW9wk8Bo"}>Watch Video</ReleaseButton>
 </FlexRow>
 
-<Image src="/assets/headers/macos_home.png" />
+<Image src="/assets/headers/macos_home.png"/>
 
 <Spacer></Spacer>
 
-<Image src="/assets/dev-icons.png" />
-
 <Heading type="h2"> Trusted by the worlds best developers</Heading>
+
+<Image src="/assets/dev-icons.png"/>
 
 From students and indie developers, to startups and open source teams, to enterprise organizations and beyond,
 Pieces for Developers is purpose built as a cohesive layer and a "tool between tools" that boosts productivity
@@ -132,7 +148,7 @@ Along the journey our users have saved things like Boilerplate/Reference snippet
 <FlexRowBetween>
     <ButtonCard heading={"Simple Copy & Paste"}
                 text={"Have a script you want to save, but not commit? Simply copy the code snippet, click the Pieces for Developers Desktop App window, and paste. Instantly, your code snippet is there for later."}
-                button={"Try it out"}></ButtonCard>
+                button={"Try it out"} className={"fa-solid fa-copy"}></ButtonCard>
     <ButtonCard heading={"In-Project Snippet Discovery"}
                 text={"Discover and extract reusable boilerplate and commonly used code snippets using our In-Project Snippet Discovery features running entirely offline and on-device."}
                 button={"Watch the Video"}></ButtonCard>
