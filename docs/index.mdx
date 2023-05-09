@@ -81,8 +81,9 @@ export const FlexColumn = props => {
 }
 
 export const ButtonCard = props => {
-    return <div style={{textAlign: "left", border: "1px solid black", padding: "16px"}}>
+    return <div style={{textAlign: "left", border: "1px solid transparent", padding: "16px", borderRadius: "16px" }}>
         <div style={{ display: "flex", flexDirection: "start"}}>
+            <Image src={ props.src } />
             <i class={props.className}></i>
             <div style={{ width: "8px"}}></div>
             <h3 style={{lineHeight: "1", fontSize: "16px", marginTop: "0px"}}>{props.heading}</h3>
@@ -152,17 +153,20 @@ Along the journey our users have saved things like Boilerplate/Reference snippet
 >
     <TabItem value="first">
         <ButtonCard heading={"Simple Copy & Paste"}
+                    src={"https://storage.googleapis.com/pieces_static_resources/pfd_wiki/DROP_A_FILE.gif"}
                     text={"Have a script you want to save, but not commit? Simply copy the code snippet, click the Pieces for Developers Desktop App window, and paste. Instantly, your code snippet is there for later."}
                     button={"Try it out"} className={"fa-solid fa-copy"}></ButtonCard>
 
     </TabItem>
     <TabItem value="second">
         <ButtonCard heading={"In-Project Snippet Discovery"}
+                    src={"https://storage.googleapis.com/pieces_static_resources/pfd_wiki/SNIPPET_DISCOVERY.gif"}
                     text={"Discover and extract reusable boilerplate and commonly used code snippets using our In-Project Snippet Discovery features running entirely offline and on-device."}
                     button={"Watch the Video"} className={"fa-brands fa-searchengin"}></ButtonCard>
     </TabItem>
     <TabItem value="third">
         <ButtonCard heading={"Use Code from Screenshots"}
+                    src={"https://storage.googleapis.com/pieces_static_resources/pfd_wiki/CODE_FROM_SCREENSOT3.gif"}
                     text={"Need to convert a screenshot with a code snippet into usable text? We’ve got you. Drag and drop into the Pieces for Developers Desktop App and watch the magic happen within seconds."}
                     button={"Watch the Video"} className={"fa-solid fa-camera"}></ButtonCard>
     </TabItem>
