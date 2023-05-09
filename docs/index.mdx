@@ -1,7 +1,7 @@
 <!-- Hero Custom Elements -->
 export const HeroOpening = props => {
     return <div style={{width: '100%', textAlign: 'center'}}><h1
-        style={{ fontWeight: 'bold', marginTop: '16px', marginBottom: '16px'}}>{props.children}</h1>
+        style={{fontWeight: 'bold', marginTop: '16px', marginBottom: '16px'}}>{props.children}</h1>
     </div>;
 };
 
@@ -9,11 +9,42 @@ export const HeroSubtitle = props => {
     return <div style={{width: '100%', textAlign: 'center'}}><p>{props.children}</p></div>;
 };
 
-export const HeroButton = props => {
-    return <div style={{width: '100%', textAlign: 'center'}}>
-        <button><span>{props.children}</span></button>
-    </div>;
+export const InstallButton = props => {
+    return <a style={{textDecoration: "none"}} target="_blank" href={props.src}>
+        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+            <p style={{
+                padding: "8px 20px",
+                borderRadius: "8px",
+                border: "1px solid #f3f5f6",
+                color: "white",
+                fontWeight: "500",
+                background: "black",
+                marginBottom: "8px",
+                marginTop: "3px",
+                marginRight: "16px"
+            }}>{props.children}</p>
+        </div>
+    </a>
 };
+
+export const ReleaseButton = props => {
+    return <a target="_blank" style={{textDecoration: "none"}}
+              href={ props.src }>
+        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+            <p class="dark:text-white text-black"
+               style={{
+                   padding: "8px 20px",
+                   borderRadius: "8px",
+                   border: "1px solid #f3f5f6",
+                   fontWeight: "500",
+                   background: "transparent",
+                   marginBottom: "8px",
+                   marginTop: "3px",
+                   marginRight: "16px"
+               }}>{props.children}</p>
+        </div>
+    </a>
+}
 
 export const HeroImage = props => {
     return <div style={{width: '100%', textAlign: 'center'}}><img src={props.src}/></div>;
@@ -29,135 +60,185 @@ export const BodyImage = props => {
 };
 
 export const BodyVideo = props => {
-    return <div style={{width: '50%', textAlign: 'left'}}><video src={props.src}/></div>;
+    return <div style={{width: '50%', textAlign: 'left'}}>
+        <video src={props.src}/>
+    </div>;
 };
 
-export const Body = props => {
-    return <div style={{width: '100%', textAlign: 'left'}}><Heading type={ props.type }
-        style={{fontWeight: 'bold', marginTop: '16px', marginBottom: '16px'}}>{props.children}</Heading></div>;
-};
-
-export const BodyH2 = props => {
-    return <div style={{width: '100%', textAlign: 'left'}}><h2
-        style={{fontWeight: 'bold', marginTop: '16px', marginBottom: '16px'}}>{props.children}</h2></div>;
-};
 
 export const BodyP = props => {
     return <div style={{width: '100%', textAlign: 'left'}}><p
         style={{marginTop: '16px', marginBottom: '16px'}}>{props.children}</p></div>;
 };
 
-export const FlexRow = props => {
+export const FlexRowBetween = props => {
     return <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>{props.children}</div>;
 };
 
-export const ButtonCard = props => {
-    return <div style={{width: '250px', height: '250px', textAlign: 'left', border: '1px solid black', padding: '5px'}}>
-        <h3 style={{ lineHeight: '1', fontSize: '16px' }}>{ props.heading }</h3>
-        <p style={{ lineHeight: '1', fontSize: '12px' }}>{ props.text }</p>
-        <button style={{ lineHeight: '1', fontSize: '12px', fontWeight: 'bold' }}><span>{ props.button }</span></button>
-    </div>
+export const FlexRow = props => {
+    return <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>{props.children}</div>;
 };
 
 export const FlexColumn = props => {
-    return <div style={{width: '100%', textAlign: 'left', display: 'flex', flexDirection: 'column',  padding: '5px'}}>{ props.children }</div>
+    return <div style={{
+        width: '100%',
+        textAlign: 'left',
+        display: 'flex',
+        flexDirection: 'column',
+        padding: '5px'
+    }}>{props.children}</div>
 }
+
+export const ButtonCard = props => {
+    return <div style={{width: '250px', height: '250px', textAlign: 'left', border: '1px solid black', padding: '5px'}}>
+        <h3 style={{lineHeight: '1', fontSize: '16px'}}>{props.heading}</h3>
+        <p style={{lineHeight: '1', fontSize: '12px'}}>{props.text}</p>
+        <button style={{lineHeight: '1', fontSize: '12px', fontWeight: 'bold'}}><span>{props.button}</span></button>
+    </div>
+};
 
 export const Card = props => {
     return <div style={{width: '350px', height: '150px', textAlign: 'left', border: '1px solid black', padding: '5px'}}>
-        <h3 style={{ lineHeight: '1', fontSize: '16px' }}>{ props.heading }</h3>
-        <p style={{ lineHeight: '1', fontSize: '12px' }}>{ props.text }</p>
+        <h3 style={{lineHeight: '1', fontSize: '16px'}}>{props.heading}</h3>
+        <p style={{lineHeight: '1', fontSize: '12px'}}>{props.text}</p>
     </div>;
 };
 
 export const MicroCards = props => {
     return <div style={{width: '350px', height: '150px', textAlign: 'left', border: '1px solid black', padding: '5px'}}>
-        <h3 style={{ lineHeight: '1', fontSize: '16px' }}>{ props.heading }</h3>
-        <p style={{ lineHeight: '1', fontSize: '12px' }}>{ props.text }</p>
+        <h3 style={{lineHeight: '1', fontSize: '16px'}}>{props.heading}</h3>
+        <p style={{lineHeight: '1', fontSize: '12px'}}>{props.text}</p>
     </div>;
 };
 
 
 <HeroOpening>Pieces for Developers.</HeroOpening>
-<HeroOpening>The Tool Between Your Tools.</HeroOpening>
+
+## The Tool Between Your Tools.
+
 <HeroSubtitle>Pieces is a first-in-kind productivity suite that optimizes developer tools and eliminates
     the chaos of context switching.</HeroSubtitle>
 
-<HeroButton>Download on Macos</HeroButton>
+<FlexRow>
+    <InstallButton src={"/install"}></InstallButton>
+    <ReleaseButton src={"https://www.youtube.com/watch?v=bczfW9wk8Bo"}>Watch Video</ReleaseButton>
+</FlexRow>
+
 <HeroImage src="https://pieces.app/img/MACOS_HERO.png"></HeroImage>
+<Image src="/assets/headers/macos_home.png" />
 
 <Spacer></Spacer>
 
-<BodyImage src="/assets/dev-icons.png"></BodyImage>
-<Body type={"h2"}>Trusted by the worlds best developers</Body>
-<BodyP>From students and indie developers, to startups and open source teams, to enterprise organizations and beyond,
-    Pieces for Developers is purpose built as a cohesive layer and a "tool between tools" that boosts productivity
-    around code snippets in three major workflow processes: researching and problem-solving in the browser,
-    collaborating with colleagues, and lastly, writing, reviewing, referencing, reusing code in their IDE.</BodyP>
+<Image src="/assets/dev-icons.png"/>
+
+<Heading type="h2"> Trusted by the worlds best developers</Heading>
+
+From students and indie developers, to startups and open source teams, to enterprise organizations and beyond,
+Pieces for Developers is purpose built as a cohesive layer and a "tool between tools" that boosts productivity
+around code snippets in three major workflow processes: researching and problem-solving in the browser,
+collaborating with colleagues, and lastly, writing, reviewing, referencing, reusing code in their IDE.
+
 <Spacer></Spacer>
-<BodyH2>Save key materials from your developer workflow</BodyH2>
-<BodyP>Pieces for Developers was built from the ground up to serve as a centralized place to save all types of materials
-    and resources related a developers work-in-progress journey.</BodyP>
-<BodyP>Along the journey our users have saved things like Boilerplate/Reference snippets, Common Bash/Powershell
-    Commands, CI/CD Configurations, HTTP Requests, Screenshots, Architecture/UML Diagrams, Text Notes, and so much
-    more.</BodyP>
+
+<Heading type={"h2"}>Save key materials from your developer workflow</Heading>
+
+Pieces for Developers was built from the ground up to serve as a centralized place to save all types of materials and resources related a developers work-in-progress journey.
+
+Along the journey our users have saved things like Boilerplate/Reference snippets, Common Bash/Powershell Commands, CI/CD Configurations, HTTP Requests, Screenshots, Architecture/UML Diagrams, Text Notes, and so much more.
+
+<FlexRowBetween>
+    <ButtonCard heading={"Simple Copy & Paste"}
+                text={"Have a script you want to save, but not commit? Simply copy the code snippet, click the Pieces for Developers Desktop App window, and paste. Instantly, your code snippet is there for later."}
+                button={"Try it out"}></ButtonCard>
+    <ButtonCard heading={"In-Project Snippet Discovery"}
+                text={"Discover and extract reusable boilerplate and commonly used code snippets using our In-Project Snippet Discovery features running entirely offline and on-device."}
+                button={"Watch the Video"}></ButtonCard>
+    <ButtonCard heading={"Use Code from Screenshots"}
+                text={"Need to convert a screenshot with a code snippet into usable text? We’ve got you. Drag and drop into the Pieces for Developers Desktop App and watch the magic happen within seconds."}
+                button={"Watch the Video"}></ButtonCard>
+</FlexRowBetween>
+
 
 <FlexRow>
-    <ButtonCard heading={"Simple Copy & Paste"} text={"Have a script you want to save, but not commit? Simply copy the code snippet, click the Pieces for Developers Desktop App window, and paste. Instantly, your code snippet is there for later."} button={"Try it out"}></ButtonCard>
-    <ButtonCard heading={"In-Project Snippet Discovery"} text={"Discover and extract reusable boilerplate and commonly used code snippets using our In-Project Snippet Discovery features running entirely offline and on-device."} button={"Watch the Video"}></ButtonCard>
-    <ButtonCard heading={"Use Code from Screenshots"} text={"Need to convert a screenshot with a code snippet into usable text? We’ve got you. Drag and drop into the Pieces for Developers Desktop App and watch the magic happen within seconds."} button={"Watch the Video"}></ButtonCard>
-</FlexRow>
-
-<HeroButton>Download on Macos</HeroButton>
-<Spacer></Spacer>
-
-<BodyH2>Powerful Context and Auto-Enrichment with Proprietary AI & ChatGPT</BodyH2>
-<BodyP>When you save something to the Pieces code snippet manager it not only saves the material itself; but further, our Context Awareness Engine in combination with ChatGPT automatically attaches related context & metadata enabling powerful organization, search, and suggestion capabilities.</BodyP>
-<FlexRow>
-    <FlexColumn>
-        <Card heading={"Smart Titles & Descriptions"} text={"No need to spend time manually naming or writing descriptions for your snippets. Pieces for Developers will automatically analyze your saved snippet to apply a helpful name and description."}></Card>
-        <Card heading={"Related Links & URLs"} text={"Easily Attach Documentation Pages, Wiki Links, Jira Tickets, Pull Requests, GitHub Issues, etc. to your saved materials. With Pieces you can easily add a link to a saved code snippet and go back to your snippet later for all the context and metadata attached."}></Card>
-        <Card heading={"Natural-Language Tags"} text={"We automatically add tags to every saved snippet, so it’s easier to find or reference later. Edit tags on your snippets for personalized context on the instance or history that snippet is used for. Search for the snippet later using those keywords and tags."}></Card>
-    </FlexColumn>
-    <BodyVideo src=""></BodyVideo>
-</FlexRow>
-
-<Spacer></Spacer>
-
-<BodyH2>Backtrack through your workflow with ease</BodyH2>
-<BodyP>More and more developer resources live online nowadays - tutorial sites, Stack Overflow posts, documentation & open source packages, wiki's and blog posts, the list goes on...</BodyP>
-<BodyP>This combined with the constant switching back to the IDE, and other tools, often causes developers to lose track of where they were and start over again at the search bar.</BodyP>
-<FlexRow>
-    <BodyVideo src='https://pieces.app/vid/ACTIVITY_MACOS.mp4'></BodyVideo>
-    <FlexColumn>
-        <MicroCards heading={"Workflow Activity Feed"} text={"Workflow Activity now makes it easier than ever to backtrack through your work in progress journey and access useful metadata associated with your saved snippets."}></MicroCards>
-        <MicroCards heading={"Related Metadata"} text={"Quickly find and access related links, shared snippets, associated tags, snippet collaborators, and other metadata that is connected to your saved materials."}></MicroCards>
-    </FlexColumn>
+    <InstallButton src={"/install"}>Download</InstallButton>
 </FlexRow>
 
 <Spacer></Spacer>
 
-<BodyH2>Search like never before, built for developers</BodyH2>
-<BodyP>Global Search is an entirely new way to find developer materials. This sets the stage for exciting future search capabilities, allowing you to solve problems faster and find the materials you need quickly and easily with natural language.</BodyP>
-<FlexRow>
+<Heading type={"h2"}>Powerful Context and Auto-Enrichment with Proprietary AI & ChatGPT</Heading>
+
+When you save something to the Pieces code snippet manager it not only saves the material itself; but further, our Context Awareness Engine in combination with ChatGPT automatically attaches related context & metadata enabling powerful organization, search, and suggestion capabilities.
+
+<FlexRowBetween>
     <FlexColumn>
-        <MicroCards heading={"Find Code & Beyond"} text={"What’s more helpful: finding code snippets or finding a website related to the code snippet? Both? Global Search in Pieces for Developers not only finds you related code snippets, but also websites with more documentation about your query."}></MicroCards>
-        <MicroCards heading={"Suggested Searches"} text={"Pieces has a sense of what you’re looking for before you can think of a query. Use Suggested Searches to find what you’re looking for in record time."}></MicroCards>
+        <Card heading={"Smart Titles & Descriptions"}
+              text={"No need to spend time manually naming or writing descriptions for your snippets. Pieces for Developers will automatically analyze your saved snippet to apply a helpful name and description."}></Card>
+        <Card heading={"Related Links & URLs"}
+              text={"Easily Attach Documentation Pages, Wiki Links, Jira Tickets, Pull Requests, GitHub Issues, etc. to your saved materials. With Pieces you can easily add a link to a saved code snippet and go back to your snippet later for all the context and metadata attached."}></Card>
+        <Card heading={"Natural-Language Tags"}
+              text={"We automatically add tags to every saved snippet, so it’s easier to find or reference later. Edit tags on your snippets for personalized context on the instance or history that snippet is used for. Search for the snippet later using those keywords and tags."}></Card>
     </FlexColumn>
+
+    <Image src={"https://storage.googleapis.com/pieces_static_resources/pfd_wiki/AI_GENERATED_SMART_CONTEXT.gif"}/>
+</FlexRowBetween>
+
+<Spacer></Spacer>
+
+<Heading type={"h2"}>Backtrack through your workflow with ease</Heading>
+
+More and more developer resources live online nowadays - tutorial sites, Stack Overflow posts, documentation & open source packages, wiki's and blog posts, the list goes on...
+
+This combined with the constant switching back to the IDE, and other tools, often causes developers to lose track of where they were and start over again at the search bar.
+
+<FlexRowBetween>
+    <Image src={"https://storage.googleapis.com/pieces_static_resources/pfd_wiki/WORKFLOW_ACTIVITY.gif"}/>
+
+    <FlexColumn>
+        <MicroCards heading={"Workflow Activity Feed"}
+                    text={"Workflow Activity now makes it easier than ever to backtrack through your work in progress journey and access useful metadata associated with your saved snippets."}></MicroCards>
+        <MicroCards heading={"Related Metadata"}
+                    text={"Quickly find and access related links, shared snippets, associated tags, snippet collaborators, and other metadata that is connected to your saved materials."}></MicroCards>
+    </FlexColumn>
+
+</FlexRowBetween>
+
+<Spacer></Spacer>
+
+<Heading type={"h2"}>Search like never before, built for developers</Heading>
+
+Global Search is an entirely new way to find developer materials. This sets the stage for exciting future search capabilities, allowing you to solve problems faster and find the materials you need quickly and easily with natural language.</BodyP>
+
+<FlexRowBetween>
+
+    <FlexColumn>
+        <MicroCards heading={"Find Code & Beyond"}
+                    text={"What’s more helpful: finding code snippets or finding a website related to the code snippet? Both? Global Search in Pieces for Developers not only finds you related code snippets, but also websites with more documentation about your query."}></MicroCards>
+        <MicroCards heading={"Suggested Searches"}
+                    text={"Pieces has a sense of what you’re looking for before you can think of a query. Use Suggested Searches to find what you’re looking for in record time."}></MicroCards>
+    </FlexColumn>
+
+    <BodyVideo src={"https://storage.googleapis.com/pieces_static_resources/pfd_wiki/GLOBAL_SEARCH.gif"}></BodyVideo>
+
+</FlexRowBetween>
+
+<Spacer></Spacer>
+
+<Heading type={"h2"}>Proactive suggestion to get what you need, faster</Heading>
+
+Pieces for Developers is constantly learning more about your patterns and the materials you use most frequently, which enables us to provide you with the right information at the right time.
+
+<FlexRowBetween>
+    <FlexColumn>
+        <MicroCards heading={"Sort by Suggested"}
+                    text={"Sort your Carousel View by Suggestions & Relevance based on recently saved Pieces. We want users to be able to reference, share, and reuse the right snippets at the right time, and we're only getting started."}></MicroCards>
+        <MicroCards heading={"Suggested Smart Actions"}
+                    text={"Move through the UI faster and get the most out of Pieces for Developers with our Suggested Actions."}></MicroCards>
+    </FlexColumn>
+
+    <Image src={"https://storage.googleapis.com/pieces_static_resources/pfd_wiki/SORT.gif"}/>
     <BodyVideo src='https://pieces.app/vid/GLOBAL_SEARCH_MACOS.mp4'></BodyVideo>
-</FlexRow>
 
-<Spacer></Spacer>
-
-<BodyH2>Proactive suggestion to get what you need, faster</BodyH2>
-<BodyP>Pieces for Developers is constantly learning more about your patterns and the materials you use most frequently, which enables us to provide you with the right information at the right time.</BodyP>
-<FlexRow>
-    <FlexColumn>
-        <MicroCards heading={"Sort by Suggested"} text={"Sort your Carousel View by Suggestions & Relevance based on recently saved Pieces. We want users to be able to reference, share, and reuse the right snippets at the right time, and we're only getting started."}></MicroCards>
-        <MicroCards heading={"Suggested Smart Actions"} text={"Move through the UI faster and get the most out of Pieces for Developers with our Suggested Actions."}></MicroCards>
-    </FlexColumn>
-    <BodyVideo src='https://pieces.app/vid/GLOBAL_SEARCH_MACOS.mp4'></BodyVideo>
-</FlexRow>
+</FlexRowBetween>
 
 
 
