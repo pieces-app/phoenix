@@ -30,24 +30,14 @@
       "link": "https://news.pieces.app"
     },
     {
-      "title": "Contact Us",
+      "title": "Get in Touch",
       "icon": "address-card",
       "link": "/contact"
-    },
-    {
-      "title": "Download Pieces",
-      "icon": "download",
-      "link": "#"
     },
     {
       "title": "Plugins",
       "icon": "puzzle-piece",
       "link": "/plugins"
-    },
-    {
-      "title": "Support",
-      "icon": "headset",
-      "link": "/support"
     }
   ]
 }
