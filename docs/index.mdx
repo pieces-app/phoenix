@@ -107,7 +107,7 @@ export const ButtonCard = props => {
             <h3 style={{lineHeight: "1", fontSize: "16px", marginTop: "0px"}}>{props.heading}</h3>
         </div>
         <p style={{lineHeight: "1", fontSize: "12px"}}>{props.text}</p>
-        <button style={{lineHeight: "1", fontSize: "12px", fontWeight: "bold"}}><span>{props.button}</span></button>
+        <InstallButton src={"/install"}><span style={{lineHeight: "1", fontSize: "12px", fontWeight: "bold"}}>{props.button}</span></InstallButton>
     </div>
 };
 
@@ -172,20 +172,20 @@ Along the journey our users have saved things like Boilerplate/Reference snippet
     <TabItem value="first">
         <ButtonCard heading={"Simple Copy & Paste"}
                     src={"https://storage.googleapis.com/pieces_static_resources/pfd_wiki/DROP_A_FILE.gif"}
-                    text={"Have a script you want to save, but not commit? Simply copy the code snippet, click the Pieces for Developers Desktop App window, and paste. Instantly, your code snippet is there for later."}
+                    text={"Have a script you want to save, but not commit? Simply copy the code snippet, click the Pieces for Developers Desktop App window, and paste. Instantly, your code snippet is there for later. Along the journey our users have saved things like Boilerplate/Reference snippets, Common Bash/Powershell Commands, CI/CD Configurations, HTTP Requests, Screenshots, Architecture/UML Diagrams, Text Notes, and so much more."}
                     button={"Try it out"} className={"fa-solid fa-copy"}></ButtonCard>
 
     </TabItem>
     <TabItem value="second">
         <ButtonCard heading={"In-Project Snippet Discovery"}
                     src={"https://storage.googleapis.com/pieces_static_resources/pfd_wiki/SNIPPET_DISCOVERY.gif"}
-                    text={"Discover and extract reusable boilerplate and commonly used code snippets using our In-Project Snippet Discovery features running entirely offline and on-device."}
+                    text={"Discover and extract reusable boilerplate and commonly used code snippets using our In-Project Snippet Discovery features running entirely offline and on-device. Your code snippet is now available for the next project that you start or the next file that you open and need to configure."}
                     button={"Watch the Video"} className={"fa-brands fa-searchengin"}></ButtonCard>
     </TabItem>
     <TabItem value="third">
         <ButtonCard heading={"Use Code from Screenshots"}
                     src={"https://storage.googleapis.com/pieces_static_resources/pfd_wiki/CODE_FROM_SCREENSOT3.gif"}
-                    text={"Need to convert a screenshot with a code snippet into usable text? We’ve got you. Drag and drop into the Pieces for Developers Desktop App and watch the magic happen within seconds."}
+                    text={"Need to convert a screenshot with a code snippet into usable text? We’ve got you. Drag and drop into the Pieces for Developers Desktop App and watch the magic happen within seconds. Take screenshots directly from YouTube Videos and turn them into usable code snippets."}
                     button={"Watch the Video"} className={"fa-solid fa-camera"}></ButtonCard>
     </TabItem>
 </Tabs>
