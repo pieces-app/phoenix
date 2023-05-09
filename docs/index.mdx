@@ -3,6 +3,24 @@ title: Pieces for Developers - Desktop App Home
 description: The Pieces for Developers Suite brings proprietary AI in combination with ChatGPT to your favorite developer tools to save time researching, collaborating, coding, and documenting.
 ---
 
+export const HeaderInstallButton = props => {
+    return <a style={{textDecoration: "none"}} target="_blank" href={props.src}>
+        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+            <p style={{
+                padding: "8px 20px",
+                borderRadius: "8px",
+                border: "1px solid #f3f5f6",
+                color: "white",
+                fontWeight: "500",
+                background: "black",
+                marginBottom: "8px",
+                marginTop: "3px",
+                marginRight: "16px"
+            }}>{props.children}</p>
+        </div>
+    </a>
+};
+
 export const InstallButton = props => {
     return <a style={{textDecoration: "none"}} target="_blank" href={props.src}>
         <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
@@ -119,7 +137,7 @@ export const MicroCards = props => {
 Pieces is a first-in-kind productivity suite that optimizes developer tools and eliminates the chaos of context switching.
 
 <FlexRow>
-    <InstallButton src={"/install"}>Download</InstallButton>
+    <HeaderInstallButton src={"/install"}>Download for macOS</HeaderInstallButton>
     <ReleaseButton src={"https://www.youtube.com/watch?v=bczfW9wk8Bo"}>Watch Video</ReleaseButton>
 </FlexRow>
 
