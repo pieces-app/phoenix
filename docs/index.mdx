@@ -111,7 +111,9 @@ export const FlexCenterColumn = props => {
         flexDirection: "column",
         justifyContent: "center",
         textAlign: "center",
-        padding: "5px"
+        padding: "5px",
+        flexWrap: "nowrap",
+        alignItems: "center"
     }}>{props.children}</div>
 }
 
@@ -148,9 +150,9 @@ export const MicroCards = props => {
 <FlexCenterColumn>
     <ReleasePill src={"#"}>Version 1.14.0 Now Available! 🎉</ReleasePill>
 
-    # Pieces for Developers.
+    <Heading type={"h1"}>Pieces for Developers.</Heading>
 
-    ## The Tool Between Your Tools.
+    <Heading type={"h2"}>The Tool Between Your Tools.</Heading>
 
     Pieces is a first-in-kind productivity suite that optimizes developer tools and eliminates the chaos of context
     switching.
@@ -160,7 +162,7 @@ export const MicroCards = props => {
         <ReleaseButton src={"https://www.youtube.com/watch?v=bczfW9wk8Bo"}>Watch Video</ReleaseButton>
     </FlexRow>
 
-    <Image style={{borderRadius: "40px"}} src="/assets/headers/macos_home.png"/>
+    <img style={{borderRadius: "20px"}} src="/assets/headers/macos_home.png"/>
 
 </FlexCenterColumn>
 <Spacer></Spacer>
