@@ -82,16 +82,17 @@ export const FlexColumn = props => {
 
 export const ButtonCard = props => {
     return <div style={{width: "250px", height: "250px", textAlign: "left", border: "1px solid black", padding: "5px"}}>
-        <i class={ props.className }></i>
+        <i class={props.className}></i>
         <h3 style={{lineHeight: "1", fontSize: "16px"}}>{props.heading}</h3>
         <p style={{lineHeight: "1", fontSize: "12px"}}>{props.text}</p>
         <button style={{lineHeight: "1", fontSize: "12px", fontWeight: "bold"}}><span>{props.button}</span></button>
-        </div>
+    </div>
 };
 
 export const Card = props => {
-    return <div style={{width: "350px", height: "150px", textAlign: "left", border: "1px solid transparent", padding: "5px"}}>
-        <i class={ props.className }></i>
+    return <div
+        style={{width: "350px", height: "150px", textAlign: "left", border: "1px solid transparent", padding: "5px"}}>
+        <i class={props.className}></i>
         <h3 style={{lineHeight: "1", fontSize: "16px"}}>{props.heading}</h3>
         <p style={{lineHeight: "1", fontSize: "12px"}}>{props.text}</p>
     </div>;
@@ -118,7 +119,7 @@ Pieces is a first-in-kind productivity suite that optimizes developer tools and 
     <ReleaseButton src={"https://www.youtube.com/watch?v=bczfW9wk8Bo"}>Watch Video</ReleaseButton>
 </FlexRow>
 
-<Image src="/assets/headers/macos_home.png"/>
+<Image style={{borderRadius: "16px"}} src="/assets/headers/macos_home.png"/>
 
 <Spacer></Spacer>
 
@@ -139,16 +140,33 @@ Pieces for Developers was built from the ground up to serve as a centralized pla
 
 Along the journey our users have saved things like Boilerplate/Reference snippets, Common Bash/Powershell Commands, CI/CD Configurations, HTTP Requests, Screenshots, Architecture/UML Diagrams, Text Notes, and so much more.
 
+<Tabs
+    values={[
+        {label: 'Simple Copy & Paste', value: "first"},
+        {label: 'In-Project Snippet Discovery', value: "second"},
+        {label: 'Use Code from Screenshots', value: "third"},
+    ]}
+>
+    <TabItem value="first">
+        <ButtonCard heading={"Simple Copy & Paste"}
+                    text={"Have a script you want to save, but not commit? Simply copy the code snippet, click the Pieces for Developers Desktop App window, and paste. Instantly, your code snippet is there for later."}
+                    button={"Try it out"} className={"fa-solid fa-copy"}></ButtonCard>
+
+    </TabItem>
+    <TabItem value="second">
+        <ButtonCard heading={"In-Project Snippet Discovery"}
+                    text={"Discover and extract reusable boilerplate and commonly used code snippets using our In-Project Snippet Discovery features running entirely offline and on-device."}
+                    button={"Watch the Video"} className={"fa-brands fa-searchengin"}></ButtonCard>
+    </TabItem>
+    <TabItem value="third">
+        <ButtonCard heading={"Use Code from Screenshots"}
+                    text={"Need to convert a screenshot with a code snippet into usable text? We’ve got you. Drag and drop into the Pieces for Developers Desktop App and watch the magic happen within seconds."}
+                    button={"Watch the Video"} className={"fa-solid fa-camera"}></ButtonCard>
+    </TabItem>
+</Tabs>
+
 <FlexRowBetween>
-    <ButtonCard heading={"Simple Copy & Paste"}
-                text={"Have a script you want to save, but not commit? Simply copy the code snippet, click the Pieces for Developers Desktop App window, and paste. Instantly, your code snippet is there for later."}
-                button={"Try it out"} className={"fa-solid fa-copy"}></ButtonCard>
-    <ButtonCard heading={"In-Project Snippet Discovery"}
-                text={"Discover and extract reusable boilerplate and commonly used code snippets using our In-Project Snippet Discovery features running entirely offline and on-device."}
-                button={"Watch the Video"} className={"fa-brands fa-searchengin"}></ButtonCard>
-    <ButtonCard heading={"Use Code from Screenshots"}
-                text={"Need to convert a screenshot with a code snippet into usable text? We’ve got you. Drag and drop into the Pieces for Developers Desktop App and watch the magic happen within seconds."}
-                button={"Watch the Video"} className={"fa-solid fa-camera"}></ButtonCard>
+
 </FlexRowBetween>
 
 
@@ -191,11 +209,11 @@ This combined with the constant switching back to the IDE, and other tools, ofte
 
     <FlexColumn>
         <Card heading={"Workflow Activity Feed"}
-               className={"fa-solid fa-chart-line"}
-                    text={"Workflow Activity now makes it easier than ever to backtrack through your work in progress journey and access useful metadata associated with your saved snippets."}></Card>
+              className={"fa-solid fa-chart-line"}
+              text={"Workflow Activity now makes it easier than ever to backtrack through your work in progress journey and access useful metadata associated with your saved snippets."}></Card>
         <Card heading={"Related Metadata"}
-               className={"fa-solid fa-list"}
-                    text={"Quickly find and access related links, shared snippets, associated tags, snippet collaborators, and other metadata that is connected to your saved materials."}></Card>
+              className={"fa-solid fa-list"}
+              text={"Quickly find and access related links, shared snippets, associated tags, snippet collaborators, and other metadata that is connected to your saved materials."}></Card>
     </FlexColumn>
 
 </FlexRowBetween>
@@ -210,11 +228,11 @@ Global Search is an entirely new way to find developer materials. This sets the 
 
     <FlexColumn>
         <Card heading={"Find Code & Beyond"}
-               className={"fa-brands  fa-magnifying-glass"}
-                    text={"What’s more helpful: finding code snippets or finding a website related to the code snippet? Both? Global Search in Pieces for Developers not only finds you related code snippets, but also websites with more documentation about your query."}></Card>
+              className={"fa-brands  fa-magnifying-glass"}
+              text={"What’s more helpful: finding code snippets or finding a website related to the code snippet? Both? Global Search in Pieces for Developers not only finds you related code snippets, but also websites with more documentation about your query."}></Card>
         <Card heading={"Suggested Searches"}
-               className={"fa-solid fa-comment"}
-                    text={"Pieces has a sense of what you’re looking for before you can think of a query. Use Suggested Searches to find what you’re looking for in record time."}></Card>
+              className={"fa-solid fa-comment"}
+              text={"Pieces has a sense of what you’re looking for before you can think of a query. Use Suggested Searches to find what you’re looking for in record time."}></Card>
     </FlexColumn>
 
     <Image src={"https://storage.googleapis.com/pieces_static_resources/pfd_wiki/GLOBAL_SEARCH.gif"}></Image>
@@ -231,10 +249,10 @@ Pieces for Developers is constantly learning more about your patterns and the ma
     <FlexColumn>
         <Card heading={"Sort by Suggested"}
               className={"fa-solid fa-sort"}
-                    text={"Sort your Carousel View by Suggestions & Relevance based on recently saved Pieces. We want users to be able to reference, share, and reuse the right snippets at the right time, and we're only getting started."}></Card>
+              text={"Sort your Carousel View by Suggestions & Relevance based on recently saved Pieces. We want users to be able to reference, share, and reuse the right snippets at the right time, and we're only getting started."}></Card>
         <Card heading={"Suggested Smart Actions"}
               className={"fa-solid fa-brain-circuit"}
-                    text={"Move through the UI faster and get the most out of Pieces for Developers with our Suggested Actions."}></Card>
+              text={"Move through the UI faster and get the most out of Pieces for Developers with our Suggested Actions."}></Card>
     </FlexColumn>
 
     <Image src={"https://storage.googleapis.com/pieces_static_resources/pfd_wiki/SORT.gif"}/>
