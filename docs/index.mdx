@@ -1,12 +1,12 @@
 <!-- Hero Custom Elements -->
 export const HeroOpening = props => {
-    return <div style={{width: '100%', textAlign: 'center'}}><h1
-        style={{fontWeight: 'bold', marginTop: '16px', marginBottom: '16px'}}>{props.children}</h1>
+    return <div style={{width: "100%", textAlign: "center"}}><h1
+        style={{fontWeight: "bold", marginTop: "16px", marginBottom: "16px"}}>{props.children}</h1>
     </div>;
 };
 
 export const HeroSubtitle = props => {
-    return <div style={{width: '100%', textAlign: 'center'}}><p>{props.children}</p></div>;
+    return <div style={{width: "100%", textAlign: "center"}}><p>{props.children}</p></div>;
 };
 
 export const InstallButton = props => {
@@ -47,67 +47,67 @@ export const ReleaseButton = props => {
 }
 
 export const HeroImage = props => {
-    return <div style={{width: '100%', textAlign: 'center'}}><img src={props.src}/></div>;
+    return <div style={{width: "100%", textAlign: "center"}}><img src={props.src}/></div>;
 };
 
 <!-- Body Elements -->
 export const Spacer = props => {
-    return <div style={{width: '100%', height: '150px'}}></div>;
+    return <div style={{width: "100%", height: "150px"}}></div>;
 };
 
 export const BodyImage = props => {
-    return <div style={{width: '50%', textAlign: 'left'}}><img src={props.src}/></div>;
+    return <div style={{width: "50%", textAlign: "left"}}><img src={props.src}/></div>;
 };
 
 export const BodyVideo = props => {
-    return <div style={{width: '50%', textAlign: 'left'}}>
+    return <div style={{width: "50%", textAlign: "left"}}>
         <video src={props.src}/>
     </div>;
 };
 
 
 export const BodyP = props => {
-    return <div style={{width: '100%', textAlign: 'left'}}><p
-        style={{marginTop: '16px', marginBottom: '16px'}}>{props.children}</p></div>;
+    return <div style={{width: "100%", textAlign: "left"}}><p
+        style={{marginTop: "16px", marginBottom: "16px"}}>{props.children}</p></div>;
 };
 
 export const FlexRowBetween = props => {
-    return <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>{props.children}</div>;
+    return <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>{props.children}</div>;
 };
 
 export const FlexRow = props => {
-    return <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>{props.children}</div>;
+    return <div style={{display: "flex", flexDirection: "row", justifyContent: "center"}}>{props.children}</div>;
 };
 
 export const FlexColumn = props => {
     return <div style={{
-        width: '100%',
-        textAlign: 'left',
-        display: 'flex',
-        flexDirection: 'column',
-        padding: '5px'
+        width: "100%",
+        textAlign: "left",
+        display: "flex",
+        flexDirection: "column",
+        padding: "5px"
     }}>{props.children}</div>
 }
 
 export const ButtonCard = props => {
-    return <div style={{width: '250px', height: '250px', textAlign: 'left', border: '1px solid black', padding: '5px'}}>
-        <h3 style={{lineHeight: '1', fontSize: '16px'}}>{props.heading}</h3>
-        <p style={{lineHeight: '1', fontSize: '12px'}}>{props.text}</p>
-        <button style={{lineHeight: '1', fontSize: '12px', fontWeight: 'bold'}}><span>{props.button}</span></button>
+    return <div style={{width: "250px", height: "250px", textAlign: "left", border: "1px solid black", padding: "5px"}}>
+        <h3 style={{lineHeight: "1", fontSize: "16px"}}>{props.heading}</h3>
+        <p style={{lineHeight: "1", fontSize: "12px"}}>{props.text}</p>
+        <button style={{lineHeight: "1", fontSize: "12px", fontWeight: "bold"}}><span>{props.button}</span></button>
     </div>
 };
 
 export const Card = props => {
-    return <div style={{width: '350px', height: '150px', textAlign: 'left', border: '1px solid black', padding: '5px'}}>
-        <h3 style={{lineHeight: '1', fontSize: '16px'}}>{props.heading}</h3>
-        <p style={{lineHeight: '1', fontSize: '12px'}}>{props.text}</p>
+    return <div style={{width: "350px", height: "150px", textAlign: "left", border: "1px solid black", padding: "5px"}}>
+        <h3 style={{lineHeight: "1", fontSize: "16px"}}>{props.heading}</h3>
+        <p style={{lineHeight: "1", fontSize: "12px"}}>{props.text}</p>
     </div>;
 };
 
 export const MicroCards = props => {
-    return <div style={{width: '350px', height: '150px', textAlign: 'left', border: '1px solid black', padding: '5px'}}>
-        <h3 style={{lineHeight: '1', fontSize: '16px'}}>{props.heading}</h3>
-        <p style={{lineHeight: '1', fontSize: '12px'}}>{props.text}</p>
+    return <div style={{width: "350px", height: "150px", textAlign: "left", border: "1px solid black", padding: "5px"}}>
+        <h3 style={{lineHeight: "1", fontSize: "16px"}}>{props.heading}</h3>
+        <p style={{lineHeight: "1", fontSize: "12px"}}>{props.text}</p>
     </div>;
 };
 
@@ -236,7 +236,7 @@ Pieces for Developers is constantly learning more about your patterns and the ma
     </FlexColumn>
 
     <Image src={"https://storage.googleapis.com/pieces_static_resources/pfd_wiki/SORT.gif"}/>
-    <BodyVideo src='https://pieces.app/vid/GLOBAL_SEARCH_MACOS.mp4'></BodyVideo>
+    <BodyVideo src={"https://pieces.app/vid/GLOBAL_SEARCH_MACOS.mp4"}></BodyVideo>
 
 </FlexRowBetween>
 
