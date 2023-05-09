@@ -134,8 +134,11 @@ export const ButtonCard = props => {
 export const Card = props => {
     return <div
         style={{width: "350px", height: "150px", textAlign: "left", border: "1px solid transparent", padding: "5px"}}>
-        <i class={props.className}></i>
-        <h3>{props.heading}</h3>
+        <div style={{display: "flex", flexDirection: "start"}}>
+            <i class={props.className}></i>
+            <div style={{width: "8px"}}></div>
+            <h3 style={{lineHeight: "1", marginTop: "0px"}}>{props.heading}</h3>
+        </div>
         <p style={{lineHeight: "1.5", fontSize: "14px"}}>{props.text}</p>
     </div>;
 };
