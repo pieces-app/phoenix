@@ -21,7 +21,7 @@ export const InstallButton = props => {
                 fontWeight: "500",
                 background: "black",
                 marginBottom: "8px",
-                marginTop: "3px",
+                marginTop: "16px",
                 marginRight: "16px"
             }}>{props.children}</p>
         </div>
@@ -97,7 +97,7 @@ export const ButtonCard = props => {
 };
 
 export const Card = props => {
-    return <div style={{width: "350px", height: "150px", textAlign: "left", border: "1px solid black", padding: "5px"}}>
+    return <div style={{width: "350px", height: "150px", textAlign: "left", border: "1px solid transparent", padding: "5px"}}>
         <i class={ props.className }></i>
         <h3 style={{lineHeight: "1", fontSize: "16px"}}>{props.heading}</h3>
         <p style={{lineHeight: "1", fontSize: "12px"}}>{props.text}</p>
