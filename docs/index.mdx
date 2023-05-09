@@ -1,4 +1,9 @@
-<!-- Hero Custom Elements -->
+---
+title: Pieces for Developers - Desktop App Home
+description: The Pieces for Developers Suite brings proprietary AI in combination with ChatGPT to your favorite developer tools to save time researching, collaborating, coding, and documenting.
+---
+
+
 export const HeroOpening = props => {
     return <div style={{width: "100%", textAlign: "center"}}><h1
         style={{fontWeight: "bold", marginTop: "16px", marginBottom: "16px"}}>{props.children}</h1>
@@ -46,29 +51,8 @@ export const ReleaseButton = props => {
     </a>
 }
 
-export const HeroImage = props => {
-    return <div style={{width: "100%", textAlign: "center"}}><img src={props.src}/></div>;
-};
-
-<!-- Body Elements -->
 export const Spacer = props => {
     return <div style={{width: "100%", height: "150px"}}></div>;
-};
-
-export const BodyImage = props => {
-    return <div style={{width: "50%", textAlign: "left"}}><img src={props.src}/></div>;
-};
-
-export const BodyVideo = props => {
-    return <div style={{width: "50%", textAlign: "left"}}>
-        <video src={props.src}/>
-    </div>;
-};
-
-
-export const BodyP = props => {
-    return <div style={{width: "100%", textAlign: "left"}}><p
-        style={{marginTop: "16px", marginBottom: "16px"}}>{props.children}</p></div>;
 };
 
 export const FlexRowBetween = props => {
@@ -112,7 +96,7 @@ export const MicroCards = props => {
 };
 
 
-<HeroOpening>Pieces for Developers.</HeroOpening>
+# Pieces for Developers.
 
 ## The Tool Between Your Tools.
 
@@ -120,11 +104,10 @@ export const MicroCards = props => {
     the chaos of context switching.</HeroSubtitle>
 
 <FlexRow>
-    <InstallButton src={"/install"}></InstallButton>
+    <InstallButton src={"/install"}>Download</InstallButton>
     <ReleaseButton src={"https://www.youtube.com/watch?v=bczfW9wk8Bo"}>Watch Video</ReleaseButton>
 </FlexRow>
 
-<HeroImage src="https://pieces.app/img/MACOS_HERO.png"></HeroImage>
 <Image src="/assets/headers/macos_home.png" />
 
 <Spacer></Spacer>
@@ -217,7 +200,7 @@ Global Search is an entirely new way to find developer materials. This sets the 
                     text={"Pieces has a sense of what you’re looking for before you can think of a query. Use Suggested Searches to find what you’re looking for in record time."}></MicroCards>
     </FlexColumn>
 
-    <BodyVideo src={"https://storage.googleapis.com/pieces_static_resources/pfd_wiki/GLOBAL_SEARCH.gif"}></BodyVideo>
+    <Image src={"https://storage.googleapis.com/pieces_static_resources/pfd_wiki/GLOBAL_SEARCH.gif"}></Image>
 
 </FlexRowBetween>
 
@@ -236,7 +219,6 @@ Pieces for Developers is constantly learning more about your patterns and the ma
     </FlexColumn>
 
     <Image src={"https://storage.googleapis.com/pieces_static_resources/pfd_wiki/SORT.gif"}/>
-    <BodyVideo src={"https://pieces.app/vid/GLOBAL_SEARCH_MACOS.mp4"}></BodyVideo>
 
 </FlexRowBetween>
 
