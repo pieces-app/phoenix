@@ -101,7 +101,7 @@ export const FlexColumn = props => {
 export const ButtonCard = props => {
     return <div style={{textAlign: "left", border: "1px solid transparent", padding: "16px", borderRadius: "16px" }}>
         <div style={{ display: "flex", flexDirection: "start"}}>
-            <Image src={ props.src } />
+            <img alt={"image"} src={ props.src } />
             <i class={props.className}></i>
             <div style={{ width: "8px"}}></div>
             <h3 style={{lineHeight: "1", fontSize: "16px", marginTop: "0px"}}>{props.heading}</h3>
@@ -141,7 +141,7 @@ Pieces is a first-in-kind productivity suite that optimizes developer tools and 
     <ReleaseButton src={"https://www.youtube.com/watch?v=bczfW9wk8Bo"}>Watch Video</ReleaseButton>
 </FlexRow>
 
-<Image style={{borderRadius: "16px"}} src="/assets/headers/macos_home.png"/>
+<Image style={{borderRadius: "40px"}} src="/assets/headers/macos_home.png"/>
 
 <Spacer></Spacer>
 
