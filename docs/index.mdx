@@ -151,6 +151,14 @@ export const Card = props => {
     </div>;
 };
 
+export const CallToAction = props => {
+  return <div style={{ padding: "32px", border: "1px solid gray", borderRadius: "16px", backgroundImage: "url(/assets/graphics/robot_tree_farm_lighter.png)"}}>
+      <h3>{ props.heading }</h3>
+      { props.text }
+      <InstallButton src={"/install"}>{ props.button }</InstallButton>
+  </div>
+};
+
 <HeaderSpacer></HeaderSpacer>
 
 <FlexCenterColumn>
@@ -221,7 +229,8 @@ When you save something to the Pieces code snippet manager it not only saves the
 
 <FlexRowBetween>
     <FlexColumn>
-        <Accordion title="🧠 Smart Titles & Descriptions">
+        <Image zoom src={"https://storage.googleapis.com/pieces_static_resources/pfd_wiki/AI_GENERATED_SMART_CONTEXT.gif"}/>
+        <Accordion defaultOpen title="🧠 Smart Titles & Descriptions">
             No need to spend time manually naming or writing descriptions for your snippets. Pieces for Developers will
             automatically analyze your saved snippet to apply a helpful name and description.
         </Accordion>
@@ -238,10 +247,11 @@ When you save something to the Pieces code snippet manager it not only saves the
             snippet later using those keywords and tags.
         </Accordion>
     </FlexColumn>
-    <Image zoom src={"https://storage.googleapis.com/pieces_static_resources/pfd_wiki/AI_GENERATED_SMART_CONTEXT.gif"}/>
 </FlexRowBetween>
 
 <Spacer></Spacer>
+
+<CallToAction heading={"100% secure by default 🔐"} text={"All Pieces for Developers features, including our machine learning capabilities, run locally on your machine. Choose to use Pieces connected to the cloud, or not, it’s up to you!"} button={"Download on macOS"}></CallToAction>
 
 <Heading type={"h2"}>Backtrack through your workflow with ease</Heading>
 
@@ -299,7 +309,7 @@ Pieces for Developers is constantly learning more about your patterns and the ma
                   text={"Sort your Carousel View by Suggestions & Relevance based on recently saved Pieces. We want users to be able to reference, share, and reuse the right snippets at the right time."}></Card>
             <Card heading={"Suggested Smart Actions"}
                   className={"fa-solid fa-face-smirking"}
-                  text={"Move through the UI faster and get the most out of Pieces for Developers with our Suggested Actions."}></Card>
+                  text={"Move through the UI faster and get the most out of Pieces for Developers with our Suggested Actions. Pieces will recommend different productive improvements to your workflow."}></Card>
         </FlexRow>
     </FlexColumn>
 
