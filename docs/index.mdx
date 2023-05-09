@@ -145,7 +145,7 @@ export const Card = props => {
         <div style={{display: "flex", flexDirection: "start"}}>
             <i style={{ marginTop: "7px"}} class={props.className}></i>
             <div style={{width: "8px"}}></div>
-            <h3 style={{lineHeight: "1.5", marginTop: "0px"}}>{props.heading}</h3>
+            <h3 style={{lineHeight: "1.5", marginTop: "0px", marginBottom: "0px" }}>{props.heading}</h3>
         </div>
         <p style={{lineHeight: "1.5", fontSize: "14px"}}>{props.text}</p>
     </div>;
@@ -156,7 +156,7 @@ export const Card = props => {
 <FlexCenterColumn>
     <ReleasePill src={"#"}>Version 1.14.0 Now Available! 🎉</ReleasePill>
 
-    <Heading style={{ fontSize: "3em" }} type={"h1"}>Pieces for Developers.</Heading>
+    <Heading style={{ fontSize: "3em" }} type={"h1"}>Pieces for Developers</Heading>
 
     <Heading style={{ marginTop: "0px"}} type={"h2"}>The Tool Between Your Tools.</Heading>
 
