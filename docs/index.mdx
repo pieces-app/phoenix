@@ -100,8 +100,8 @@ export const FlexColumn = props => {
 
 export const ButtonCard = props => {
     return <div style={{textAlign: "left", border: "1px solid transparent", padding: "16px", borderRadius: "16px" }}>
+        <img alt={"image"} src={ props.src } />
         <div style={{ display: "flex", flexDirection: "start"}}>
-            <img alt={"image"} src={ props.src } />
             <i class={props.className}></i>
             <div style={{ width: "8px"}}></div>
             <h3 style={{lineHeight: "1", fontSize: "16px", marginTop: "0px"}}>{props.heading}</h3>
