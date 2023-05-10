@@ -43,12 +43,11 @@ export const GridFlexRowCenter = props => {
 
 export const PluginSection = props => {
     return <GridFlexRowCenter>
-        <Image src={ props.src } />
+        { props.children }
         <div>
             <p><strong>{ props.heading }</strong></p>
             <p>{props.text }</p>
         </div>
-
     </GridFlexRowCenter>
 };
 
@@ -59,6 +58,7 @@ export const Spacer = props => {
 # The best IntelliJ plugins are backed by the fastest, smartest Micro-Repo.
 
 <GridFlexRow>
+    <Image width={"25px"} src={"/assets/logos/jetbrains_logo.png"} />
     <Heading type={"h2"} >Save Intellij snippets even faster - 100% Free!</Heading>
 </GridFlexRow>
 
@@ -70,7 +70,12 @@ export const Spacer = props => {
 
 ### Transform how you code with your personal micro-repo of IntelliJ code snippets
 
-<PluginSection src={"/assets/graphics/jetbrains/plugins_share_jetbrains.png"} heading={"Share IntelliJ Idea code snippets without breaking your coding flow"} text={"Share code snippets in Slack or Teams with a simple right-click action using the Pieces plugin for IntelliJ. Your coworkers receive both the snippet and its related metadata - tags, descriptions and more."}></PluginSection>
-<PluginSection src={"/assets/graphics/jetbrains/plugins_auto_save_jetbrains.png"} heading={"Auto-save IntelliJ snippets"} text={"After you add the plugin to IntelliJ, Pieces helps you auto save frequently used or useful snippets based on your behavior. Since you might not realize you need them later until it’s too late."}></PluginSection>
-<PluginSection src={"/assets/graphics/jetbrains/plugins_access_jetbrains.png"} heading={"Access JetBrains snippets in your personal IntelliJ repository"} text={"Snippets are auto-classified by language and viewable in your JetBrains TreeView. Click on any snippet to reuse it!"}></PluginSection>
-<PluginSection src={"/assets/graphics/jetbrains/plugins_auto_complete_jetbrains.png"} heading={"IntelliJ Auto-Complete"} text={"Our IntelliJ code completion plugin suggests auto-completions as you type in your IDE, trained on your saved Pieces snippets. Auto-complete in IntelliJ with no size limit!"}></PluginSection>
+<PluginSection heading={"Share IntelliJ Idea code snippets without breaking your coding flow"} text={"Share code snippets in Slack or Teams with a simple right-click action using the Pieces plugin for IntelliJ. Your coworkers receive both the snippet and its related metadata - tags, descriptions and more."}>
+
+    <Image width={"25px"} src={"/assets/graphics/jetbrains/plugins_share_jetbrains.png"} />
+</PluginSection>
+<PluginSection heading={"Auto-save IntelliJ snippets"} text={"After you add the plugin to IntelliJ, Pieces helps you auto save frequently used or useful snippets based on your behavior. Since you might not realize you need them later until it’s too late."}>
+    <Image width={"25px"} src={"/assets/graphics/jetbrains/plugins_auto_save_jetbrains.png"} />
+</PluginSection>
+<Image width={"25px"} src={"/assets/graphics/jetbrains/plugins_access_jetbrains.png"} />
+<PluginSection heading={"IntelliJ Auto-Complete"} text={"Our IntelliJ code completion plugin suggests auto-completions as you type in your IDE, trained on your saved Pieces snippets. Auto-complete in IntelliJ with no size limit!"}><Image width={"25px"} src={"/assets/graphics/jetbrains/plugins_auto_complete_jetbrains.png"} /></PluginSection>
