@@ -41,19 +41,28 @@ export const MarketplaceButton = props => {
 };
 
 export const Spacer = props => {
-    return <div style={{height: "20px"}}></div>
+    return <div style={{height: "50px"}}></div>
 };
 
-<Image src="/assets/headers/light/collections_header.png"/>
+---
 
-# Snippet Collections
+<HeaderSpacer></HeaderSpacer>
 
-Whether you’re learning a new language or you’ve been coding in a framework for years, our team has curated collections of the most useful snippets for you. Save a collection today for the snippets and their contexts!
+<GridFlexRowCenter>
+
+    <Heading style={{ textAlign: "center" }} type={"h1"}>Snippet Collections</Heading>
+    Whether you’re learning a new language or you’ve been coding in a framework for years, our team has curated collections of the most useful snippets for you. Save a collection today for the snippets and their contexts!
+
+    <div style={{ display: "flex", flexDirection: "row" }}>
+        <Image width={"550px"} margin-top={"0px"} margin-bottom={"0px"} src={"/assets/headers/light/collections_header.png"} />
+    </div>
+</GridFlexRowCenter>
+
 
 <Accordion defaultOpen title="Python">
     <GridFlexSpaceBetweenRow>
         <GridFlexRow>
-            <Image width="30px" src={"/assets/graphics/collections/collection_python.png"}/>
+            <Image width="30px" src={"/assets/icons/python_icon.png"}/>
             <Heading type="h3" style={{marginTop: "16px", marginLeft: "8px"}}>Python Collection</Heading>
         </GridFlexRow>
         <MarketplaceButton
@@ -69,7 +78,7 @@ Whether you’re learning a new language or you’ve been coding in a framework 
 <Accordion defaultOpen title="Typescript">
     <GridFlexSpaceBetweenRow>
         <GridFlexRow>
-            <Image width="30px" src={"/assets/graphics/collections/collection_typescript.png"}/>
+            <Image width="30px" src={"/assets/icons/typescript_icon.png"}/>
             <Heading type="h3" style={{marginTop: "16px", marginLeft: "8px"}}>TypeScript Collection</Heading>
         </GridFlexRow>
         <MarketplaceButton
@@ -85,7 +94,7 @@ Whether you’re learning a new language or you’ve been coding in a framework 
 <Accordion defaultOpen title="Dart">
     <GridFlexSpaceBetweenRow>
         <GridFlexRow>
-            <Image width="30px" src={"/assets/graphics/collections/collection_dart.png"}/>
+            <Image width="30px" src={"/assets/icons/dart_icon.png"}/>
             <Heading type="h3" style={{marginTop: "16px", marginLeft: "8px"}}>Dart Collection</Heading>
         </GridFlexRow>
         <MarketplaceButton
@@ -101,7 +110,7 @@ Whether you’re learning a new language or you’ve been coding in a framework 
 <Accordion defaultOpen title="SQL">
     <GridFlexSpaceBetweenRow>
         <GridFlexRow>
-            <Image width="30px" src={"/assets/graphics/collections/collection_dart.png"}/>
+            <Image width="30px" src={"/assets/icons/sql_icon.png"}/>
             <Heading type="h3" style={{marginTop: "16px", marginLeft: "8px"}}>SQL Collection</Heading>
         </GridFlexRow>
         <MarketplaceButton
@@ -117,7 +126,7 @@ Whether you’re learning a new language or you’ve been coding in a framework 
 <Accordion defaultOpen title="Node.js">
     <GridFlexSpaceBetweenRow>
         <GridFlexRow>
-            <Image width="30px" src={"/assets/graphics/collections/collection_nodejs.png"}/>
+            <Image width="30px" src={"/assets/icons/nodejs_icon.png"}/>
             <Heading type="h3" style={{marginTop: "16px", marginLeft: "8px"}}>Node.js Collection</Heading>
         </GridFlexRow>
         <MarketplaceButton
@@ -133,7 +142,7 @@ Whether you’re learning a new language or you’ve been coding in a framework 
 <Accordion defaultOpen title="JavaScript">
     <GridFlexSpaceBetweenRow>
         <GridFlexRow>
-            <Image width="30px" src={"/assets/graphics/collections/collection_javascript.png"}/>
+            <Image width="30px" src={"/assets/icons/javascript_icon.png"}/>
             <Heading type="h3" style={{marginTop: "16px", marginLeft: "8px"}}>JavaScript Collection</Heading>
         </GridFlexRow>
         <MarketplaceButton
