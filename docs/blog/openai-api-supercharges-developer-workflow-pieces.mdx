@@ -19,13 +19,6 @@ export const GridFlexRow = props => {
 
 };
 
-export const Author = props => {
-    return <div style={{display: "flex", flexDirection: "row", flexWrap: "nowrap"}}>
-        <Image width="35" src={ props.src } />
-        <p style={{marginTop: "0px", marginBottom: "0px"}}>{ props.text }</p>
-    </div>
-}
-
 <link rel="canonical" href="https://code.pieces.app/blog/openai-api-supercharges-developer-workflow-pieces" />
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6413278cc8f8674946b70a71_openai-api_f9fcc810f099afaa098121a7ae8b8ed8_2000.jpeg)
@@ -33,7 +26,10 @@ export const Author = props => {
 
 # OpenAI API Supercharges Pieces for Developers
 
-<Author src="/assets/blog/authors/pfd_author_logo.png" text="The Pieces Team"></Author>
+<GridFlexRow>
+    <Image width={"35px"} src={"/assets/blog/authors/pfd_author_logo.png"} />
+    The Pieces Team
+</GridFlexRow>
 
 > March 16, 2023
 
