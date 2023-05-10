@@ -26,6 +26,7 @@ export const AuthorRow = props => {
         justifyContent: 'start',
         flexWrap: "nowrap",
         alignItems: "center",
+        maxHeight: "50px",
     }}>{props.children}</div>
 };
 
@@ -38,8 +39,8 @@ export const AuthorRow = props => {
 # OpenAI API Supercharges Pieces for Developers
 
 <AuthorRow>
-    <Image margin-right={"8px"} margin-top={"0px"} margin-bottom={"0px"} width={"35px"} src={"/assets/pieces_light.png"} />
-    The Pieces Team
+    <Image margin-top={"0px"} margin-bottom={"0px"} width={"35px"} src={"/assets/pieces_light.png"} />
+    <p style={{ marginLeft: "8px"}}>The Pieces Team</p>
 </AuthorRow>
 
 > March 16, 2023
