@@ -59,12 +59,16 @@ export const HeaderSpacer = props => {
     return <div style={{width: "100%", height: "100px"}}></div>;
 };
 
+export const BodySpacer = props => {
+    return <div style={{height: "5px"}}></div>
+}
+
 
 <GridFlexRowCenter>
 
     # The best IntelliJ plugins are backed by the fastest, smartest Micro-Repo.
 
-    <div style={{ flex: "row" }}>
+    <div style={{ display: "flex", flexDirection: "row" }}>
         <Image max-width={"600px"} margin-top={"0px"} margin-bottom={"0px"} border-radius={"20px"} width={"35px"} src={"/assets/logos/jetbrains_logo.png"} />
         <Heading style={{ marginTop: "32px" }} type={"h2"}>Save Intellij snippets even faster - 100% Free!</Heading>
     </div>
@@ -80,11 +84,23 @@ export const HeaderSpacer = props => {
 
     <Image max-width={"600px"} src={"/assets/graphics/jetbrains/plugins_share_jetbrains.png"}/>
 </PluginSection>
+
+<Spacer></Spacer>
+
 <PluginSection heading={"Auto-save IntelliJ snippets"}
                text={"After you add the plugin to IntelliJ, Pieces helps you auto save frequently used or useful snippets based on your behavior. Since you might not realize you need them later until it’s too late."}>
     <Image max-width={"600px"} src={"/assets/graphics/jetbrains/plugins_auto_save_jetbrains.png"}/>
 </PluginSection>
-<Image max-width={"600px"} src={"/assets/graphics/jetbrains/plugins_access_jetbrains.png"}/>
+
+<Spacer></Spacer>
+
+<PluginSection heading={"Access JetBrains snippets in your personal IntelliJ repository"}
+               text={"Snippets are auto-classified by language and viewable in your JetBrains TreeView. Click on any snippet to reuse it!"}>
+
+    <Image max-width={"600px"} src={"/assets/graphics/jetbrains/plugins_access_jetbrains.png"} />
+</PluginSection>
+
+
 <PluginSection heading={"IntelliJ Auto-Complete"}
                text={"Our IntelliJ code completion plugin suggests auto-completions as you type in your IDE, trained on your saved Pieces snippets. Auto-complete in IntelliJ with no size limit!"}><Image max-width={"600px"}
     src={"/assets/graphics/jetbrains/plugins_auto_complete_jetbrains.png"}/></PluginSection>
