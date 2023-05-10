@@ -15,21 +15,31 @@ export const GridFlexRow = props => {
         flexDirection: 'row',
         justifyContent: 'start',
         flexWrap: "nowrap"
-    }}>{props.children}</div>;
+    }}>{props.children}</div>
+};
 
+export const AuthorRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap",
+        alignItems: "center",
+    }}>{props.children}</div>
 };
 
 <link rel="canonical" href="https://code.pieces.app/blog/openai-api-supercharges-developer-workflow-pieces" />
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6413278cc8f8674946b70a71_openai-api_f9fcc810f099afaa098121a7ae8b8ed8_2000.jpeg)
+
 <GridFlexRow><Tag>openai</Tag> <Tag>software</Tag><Tag>development</Tag> <Tag>devtools</Tag></GridFlexRow>
 
 # OpenAI API Supercharges Pieces for Developers
 
-<GridFlexRow>
-    <Image margin-top={"0px"} margin-bottom={"0px"} width={"35px"} src={"/assets/pieces_light.png"} />
+<AuthorRow>
+    <Image margin-right={"8px"} margin-top={"0px"} margin-bottom={"0px"} width={"35px"} src={"/assets/pieces_light.png"} />
     The Pieces Team
-</GridFlexRow>
+</AuthorRow>
 
 > March 16, 2023
 
