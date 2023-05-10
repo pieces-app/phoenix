@@ -21,7 +21,7 @@ export const GridFlexRow = props => {
 
 export const Author = props => {
     return <div style={{display: "flex", flexDirection: "row", flexWrap: "nowrap"}}>
-        <img style={{ height: "35px", width: "35px" }} src={ props.src } />
+        <Image height="35px" width="35px" src={ props.src }></Image>
         <p style={{marginTop: "0px", marginBottom: "0px"}}>{ props.text }</p>
     </div>
 }
