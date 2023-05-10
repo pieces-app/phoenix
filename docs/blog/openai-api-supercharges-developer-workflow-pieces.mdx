@@ -21,7 +21,7 @@ export const GridFlexRow = props => {
 
 export const Author = props => {
     return <div style={{display: "flex", flexDirection: "row", flexWrap: "nowrap"}}>
-        <Image height="35px" width="35px" src={ props.src }></Image>
+        <Image width="35" src={ props.src } />
         <p style={{marginTop: "0px", marginBottom: "0px"}}>{ props.text }</p>
     </div>
 }
@@ -33,7 +33,7 @@ export const Author = props => {
 
 # OpenAI API Supercharges Pieces for Developers
 
-<Author src="{{ authors.pieces.image }}" text="{{ authors.pieces.name }}"></Author>
+<Author src="/assets/blog/authors/pfd_author_logo.png" text="The Pieces Team"></Author>
 
 > March 16, 2023
 
