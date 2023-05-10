@@ -7,7 +7,7 @@ description: The best VS Code extensions are deeply integrated within your IDE. 
 
 export const InstallButton = props => {
     return <a style={{textDecoration: "none"}} target="_blank"
-              href="https://marketplace.visualstudio.com/items?itemName=MeshIntelligentTechnologiesInc.pieces-vscode">
+              href={ props.href }>
         <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
             <p style={{
                 padding: "8px 20px",
@@ -77,7 +77,7 @@ export const CallToAction = props => {
     }}>
         <h3>{props.heading}</h3>
         {props.text}
-        <InstallButton>{props.button}</InstallButton>
+        <InstallButton src={"https://marketplace.visualstudio.com/items?itemName=MeshIntelligentTechnologiesInc.pieces-vscode"}>Get Pieces for VSCode</InstallButton>
     </div>
 };
 
@@ -117,7 +117,7 @@ export const CallToAction = props => {
 
 <BodySpacer></BodySpacer>
 
-<CallToAction heading={"One of the best VS Code extensions for web development, thoughtfully designed by fellow developers"} text={"Runs locally on your machine with the option to connect to the Cloud for sharing, backup, sync and more. Fully keyboard shortcut-enabled and deeply embedded into VS Code - save, edit, classify, share your snippets entirely from Pieces: the must have plugin for VS Code"} button="Get Pieces for Jetbrains"}></CallToAction>
+<CallToAction heading={"One of the best VS Code extensions for web development, thoughtfully designed by fellow developers"} text={"Runs locally on your machine with the option to connect to the Cloud for sharing, backup, sync and more. Fully keyboard shortcut-enabled and deeply embedded into VS Code - save, edit, classify, share your snippets entirely from Pieces: the must have plugin for VS Code"}></CallToAction>
 
 <BodySpacer></BodySpacer>
 
