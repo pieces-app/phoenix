@@ -3,10 +3,11 @@ title: Get the Best VS Code Extension for Developers | Pieces
 description: The best VS Code extensions are deeply integrated within your IDE. Install Pieces - the fastest, smartest AI assistant for code snippets and screenshots.
 ---
 
-<link rel="canonical" href="https://code.pieces.app/plugins/vscode" />
+<link rel="canonical" href="https://code.pieces.app/plugins/vscode"/>
 
 export const InstallButton = props => {
-    return <a style={{textDecoration: "none"}} target="_blank" href="https://marketplace.visualstudio.com/items?itemName=MeshIntelligentTechnologiesInc.pieces-vscode">
+    return <a style={{textDecoration: "none"}} target="_blank"
+              href="https://marketplace.visualstudio.com/items?itemName=MeshIntelligentTechnologiesInc.pieces-vscode">
         <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
             <p style={{
                 padding: "8px 20px",
@@ -38,43 +39,109 @@ export const GridFlexRowCenter = props => {
         flexDirection: 'row',
         justifyContent: 'center',
         flexWrap: "wrap"
-    }}>{props.children}</div>;
+    }}>{props.children}</div>
 };
 
 export const PluginSection = props => {
-    return <GridFlexRowCenter>
-        <img src={ props.src } />
+    return <GridFlexRow>
+        {props.children}
         <div>
-            <p><strong>{ props.heading }</strong></p>
-            <p>{props.text }</p>
+            <p><strong>{props.heading}</strong></p>
+            <p>{props.text}</p>
         </div>
-
-    </GridFlexRowCenter>
+    </GridFlexRow>
 };
 
 export const Spacer = props => {
     return <div style={{height: "5px"}}></div>
-}
+};
 
-# The best VS Code extensions are backed the smartest Micro-Repo, deeply integrated into VS Code
+export const HeaderSpacer = props => {
+    return <div style={{width: "100%", height: "100px"}}></div>;
+};
 
-<GridFlexRow>
-    <img style={{width: "25px" }} src={"https://docs.page/pieces-app/phoenix~10/assets/logos/vscode_logo.png"} />
-    <Heading type={"h2"} >Save Chrome snippets even faster - 100% Free!</Heading>
-</GridFlexRow>
+export const BodySpacer = props => {
+    return <div style={{height: "100px"}}></div>
+};
 
-<GridFlexRow>
-    <InstallButton>Get Pieces for VSCode</InstallButton>
-</GridFlexRow>
+export const CallToAction = props => {
+    return <div style={{
+        marginTop: "150px",
+        marginBottom: "150px",
+        padding: "32px",
+        border: "1px solid gray",
+        borderRadius: "16px",
+        backgroundImage: "url(/assets/graphics/robot_tree_farm_lighter.png)",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center"
+    }}>
+        <h3>{props.heading}</h3>
+        {props.text}
+        <InstallButton
+            src={"https://plugins.jetbrains.com/plugin/17328-pieces--save-search-share--reuse-code-snippets"}>{props.button}</InstallButton>
+    </div>
+};
+
+<HeaderSpacer></HeaderSpacer>
+
+<GridFlexRowCenter>
+
+    <Heading style={{textAlign: "center"}} type={"h1"}>The best VS Code extensions are backed the smartest Micro-Repo,
+        deeply integrated into VS Code.</Heading>
+
+    <div style={{display: "flex", flexDirection: "row"}}>
+        <Image margin-top={"0px"} margin-bottom={"0px"} border-radius={"20px"} width={"35px"}
+               src={"/assets/logos/vscode_logo.png"}/>
+        <Spacer></Spacer>
+        <Heading style={{marginTop: "16px", fontWeight: "400"}} type={"h2"}>Save Chrome snippets even faster - 100%
+            Free!</Heading>
+    </div>
+    <InstallButton
+        src={"https://marketplace.visualstudio.com/items?itemName=MeshIntelligentTechnologiesInc.pieces-vscode"}>Get
+        Pieces for VSCode</InstallButton>
+</GridFlexRowCenter>
 
 ![](/assets/headers/light/plugin_header_vscode.png)
 
+<BodySpacer></BodySpacer>
+
 ### Transform how you code with your personal micro-repo for code snippets in Visual Studio Code
 
-<PluginSection src={"/assets/graphics/vscode/plugins_save_code_vscode.png"} heading={"Save useful code to your Pieces micro-repo"} text={"Templates, terminal commands, useful Visual Studio code snippets… create VS Code bookmarks of the repetitive elements of your code in one-click for later re-use with the best VS Code extension for developers."}></PluginSection>
-<PluginSection src={"/assets/graphics/vscode/plugins_find_reuse_vscode.png"} heading={"Find and re-use just the right snippet when you need it"} text={"Blazing fast, powerful search of your Pieces snippets right inside your editor with a personal Visual Studio code repository."}></PluginSection>
-<PluginSection src={"/assets/graphics/vscode/plugins_auto_save_vscode.png"} heading={"Forget VS Code Auto Save, let Pieces auto-save your useful snippets"} text={"Pieces trains on your behavior to auto save VSCode snippets you frequently use. Since you might not realize you need them later until it’s too late."}></PluginSection>
-<PluginSection src={"/assets/graphics/vscode/plugins_share_vscode.png"} heading={"Share VS Code snippets without breaking your coding flow"} text={"Share code snippets in Slack or Teams with a simple right-click action. Your colleagues receive both the snippet and its related context - tags, descriptions and more."}></PluginSection>
-<PluginSection src={"/assets/graphics/vscode/plugins_auto_complete_vscode.png"} heading={"Auto-complete VS Code snippets from your Pieces repo"} text={"Leverage VS Code code completion suggestions from your personal micro-repo. The VS Code auto complete feature supercharges your productivity so you can focus on the next task. No size limit!"}></PluginSection>
+<PluginSection heading={"Save useful code to your Pieces micro-repo"}
+               text={"Templates, terminal commands, useful Visual Studio code snippets… create VS Code bookmarks of the repetitive elements of your code in one-click for later re-use with the best VS Code extension for developers."}>
+    <Image width={"550px"} src={"/assets/graphics/vscode/plugins_save_code_vscode.png"} />
+</PluginSection>
 
-**dont forget about the bottom footer and also the cta**
+<BodySpacer></BodySpacer>
+
+<PluginSection heading={"Find and re-use just the right snippet when you need it"}
+               text={"Blazing fast, powerful search of your Pieces snippets right inside your editor with a personal Visual Studio code repository."}>
+    <Image width={"550px"} src={"/assets/graphics/vscode/plugins_find_reuse_vscode.png"} />
+</PluginSection>
+
+<BodySpacer></BodySpacer>
+
+<CallToAction heading={"One of the best VS Code extensions for web development, thoughtfully designed by fellow developers"} text={"Runs locally on your machine with the option to connect to the Cloud for sharing, backup, sync and more. Fully keyboard shortcut-enabled and deeply embedded into VS Code - save, edit, classify, share your snippets entirely from Pieces: the must have plugin for VS Code"} button="Get Pieces for Jetbrains"}></CallToAction>
+
+<BodySpacer></BodySpacer>
+
+<PluginSection heading={"Forget VS Code Auto Save, let Pieces auto-save your useful snippets"}
+               text={"Pieces trains on your behavior to auto save VSCode snippets you frequently use. Since you might not realize you need them later until it’s too late."}>
+    <Image width={"550px"} src={"/assets/graphics/vscode/plugins_auto_save_vscode.png"} />
+</PluginSection>
+
+<BodySpacer></BodySpacer>
+
+<PluginSection heading={"Share VS Code snippets without breaking your coding flow"}
+               text={"Share code snippets in Slack or Teams with a simple right-click action. Your colleagues receive both the snippet and its related context - tags, descriptions and more."}>
+    <Image width={"550px"} src={"/assets/graphics/vscode/plugins_share_vscode.png"} />
+</PluginSection>
+
+<BodySpacer></BodySpacer>
+
+<PluginSection src={"/assets/graphics/vscode/plugins_auto_complete_vscode.png"}
+               heading={"Auto-complete VS Code snippets from your Pieces repo"}
+               text={"Leverage VS Code code completion suggestions from your personal micro-repo. The VS Code auto complete feature supercharges your productivity so you can focus on the next task. No size limit!"}>
+    <Image width={"550px"} src={"/assets/graphics/vscode/plugins_share_vscode.png"} />
+</PluginSection>
