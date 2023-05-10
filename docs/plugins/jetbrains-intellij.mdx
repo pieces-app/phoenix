@@ -6,7 +6,7 @@ description: The best IntelliJ plugins are deeply integrated within your IDE. In
 <link rel="canonical" href="https://code.pieces.app/plugins/jetbrains-intellij"/>
 
 export const InstallButton = props => {
-    return <a style={{textDecoration: "none"}} target="_blank" href="https://plugins.jetbrains.com/plugin/17328-pieces">
+    return <a style={{textDecoration: "none"}} target="_blank" href={ props.src }>
         <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
             <p style={{
                 padding: "8px 20px",
@@ -62,8 +62,11 @@ export const HeaderSpacer = props => {
 # The best IntelliJ plugins are backed by the fastest, smartest Micro-Repo.
 
 <GridFlexRowCenter>
-    <Image margin-top={"0px"} margin-bottom={"0px"} border-radius={"20px"} width={"35px"} src={"/assets/logos/jetbrains_logo.png"} />
-    <Heading type={"h2"}>Save Intellij snippets even faster - 100% Free!</Heading>
+    <div>
+        <Image margin-top={"0px"} margin-bottom={"0px"} border-radius={"20px"} width={"35px"} src={"/assets/logos/jetbrains_logo.png"} />
+        <Heading style={{ marginTop: "32px" }} type={"h2"}>Save Intellij snippets even faster - 100% Free!</Heading>
+    </div>
+    <InstallButton src={"https://plugins.jetbrains.com/plugin/17328-pieces--save-search-share--reuse-code-snippets"}>Get Pieces for JetBrains</InstallButton>
 </GridFlexRowCenter>
 
 <GridFlexRow>
