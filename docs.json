@@ -5,9 +5,6 @@
   "logo": "/assets/pieces_dark.png",
   "logoDark": "/assets/pieces_light.png",
   "noindex": true,
-  "variables": {
-    "base_route": "https://code.pieces.app"
-  },
   "docsearch": {
     "appId": "LPKUAAND39",
     "apiKey": "8686752130f8ebd90d93e626476b5893",
@@ -39,5 +36,13 @@
       "icon": "puzzle-piece",
       "link": "/plugins"
     }
-  ]
+  ],
+  "variables": {
+    "authors": {
+      "pieces": {
+        "name": "The Pieces Team",
+        "image": "/assets/blog/authors/pfd_author_logo.png"
+      }
+    }
+  }
 }
