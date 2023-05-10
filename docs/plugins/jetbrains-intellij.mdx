@@ -37,7 +37,6 @@ export const GridFlexRowCenter = props => {
         flexDirection: 'row',
         justifyContent: 'center',
         flexWrap: "wrap",
-        textAlign: "center"
     }}>{props.children}</div>;
 };
 
@@ -85,7 +84,7 @@ export const CallToAction = props => {
 
 <GridFlexRowCenter>
 
-    <Heading type={"h1"}>The best IntelliJ plugins are backed by the fastest, smartest Micro-Repo.</Heading>
+    <Heading style={{ textAlign: "center" }} type={"h1"}>The best IntelliJ plugins are backed by the fastest, smartest Micro-Repo.</Heading>
 
     <div style={{ display: "flex", flexDirection: "row" }}>
         <Image margin-top={"0px"} margin-bottom={"0px"} border-radius={"20px"} width={"35px"} src={"/assets/logos/jetbrains_logo.png"} />
@@ -115,7 +114,7 @@ export const CallToAction = props => {
 
 <BodySpacer></BodySpacer>
 
-<CallToAction heading={"One of the best IntelliJ plugins for web development, thoughtfully designed by fellow developers"} text={"Runs locally on your machine with the option to connect to the Cloud for sharing, backup, sync and more. Fully keyboard shortcut-enabled and deeply embedded into JetBrains - save, edit, classify, share your snippets entirely from Pieces: the must have plugin for IntelliJ"} button={"https://plugins.jetbrains.com/plugin/17328-pieces--save-search-share--reuse-code-snippets"} src={"/assets/cta/cta_get_jetbrains.png"}></CallToAction>
+<CallToAction heading={"One of the best IntelliJ plugins for web development, thoughtfully designed by fellow developers"} text={"Runs locally on your machine with the option to connect to the Cloud for sharing, backup, sync and more. Fully keyboard shortcut-enabled and deeply embedded into JetBrains - save, edit, classify, share your snippets entirely from Pieces: the must have plugin for IntelliJ"} button="Get Pieces for Jetbrains"} src={"https://plugins.jetbrains.com/plugin/17328-pieces--save-search-share--reuse-code-snippets"}></CallToAction>
 
 
 <BodySpacer></BodySpacer>
