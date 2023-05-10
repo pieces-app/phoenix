@@ -4,7 +4,7 @@ description: AI and Machine Learning are transforming the way we live and work. 
 ---
 
 export const Tag = props => {
-    return <div style={{ marginBottom: "32px", padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content", margin: "0px 8px" }}>
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content", margin: "0px 8px" }}>
         { props.children }
     </div>
 };
@@ -14,7 +14,8 @@ export const GridFlexRow = props => {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'start',
-        flexWrap: "nowrap"
+        flexWrap: "nowrap",
+        marginBottom: "32px",
     }}>{props.children}</div>
 };
 
