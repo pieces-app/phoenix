@@ -32,6 +32,15 @@ export const GridFlexRow = props => {
     }}>{props.children}</div>;
 };
 
+export const GridFlexEnd = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'end',
+        flexWrap: "wrap-reverse"
+    }}>{props.children}</div>;
+};
+
 export const MarketplaceButton = props => {
     return <a style={{textDecoration: "none"}}
               href={props.src}>
@@ -62,12 +71,12 @@ export const HeaderSpacer = props => {
 
 <GridFlexRowCenter>
 
-    <Heading style={{ textAlign: "center" }} type={"h1"}>Snippet Collections</Heading>
+    <Heading style={{ textAlign: "center" }} type={"h1"}>Save Code Snippet Collections</Heading>
 
-    Whether you’re learning a new language or you’ve been coding in a framework for years, our team has curated collections of the most useful snippets for you. Save a collection today for the snippets and their contexts!
+    <p style={{ textAlign: "center"}}> Whether you’re learning a new language or you’ve been coding in a framework for years, our team has curated collections of the most useful snippets for you. Save a collection today for the snippets and their contexts!</p>
 
     <div style={{ display: "flex", flexDirection: "row" }}>
-        <Image width={"550px"} margin-top={"0px"} margin-bottom={"0px"} src={"/assets/headers/light/collections_header.png"} />
+        <Image width={"650px"} margin-top={"0px"} margin-bottom={"0px"} src={"/assets/headers/light/collections_header.png"} />
     </div>
 </GridFlexRowCenter>
 
@@ -78,10 +87,12 @@ export const HeaderSpacer = props => {
             <Image width="30px" src={"/assets/icons/python_icon.png"}/>
             <Heading type="h3" style={{marginTop: "16px", marginLeft: "8px"}}>Python Collection</Heading>
         </GridFlexRow>
-        <MarketplaceButton
-            src="/collections/python">Inspect</MarketplaceButton>
-        <MarketplaceButton
-            src="https://python.pieces.cloud/">Add to Pieces</MarketplaceButton>
+        <GridFlexEnd>
+            <MarketplaceButton
+                src="/collections/python">Inspect</MarketplaceButton>
+            <MarketplaceButton
+                src="https://python.pieces.cloud/">Add to Pieces</MarketplaceButton>
+        </GridFlexEnd>
     </GridFlexSpaceBetweenRow>
     <p style={{marginTop: "0px"}}><strong>18 Snippets</strong></p>
     <p style={{marginTop: "0px"}}>These Python code snippets do everything from creating singleton classes to merging
@@ -90,16 +101,18 @@ export const HeaderSpacer = props => {
 
 <Spacer></Spacer>
 
-<Accordion defaultOpen title="Typescript">
+<Accordion title="Typescript">
     <GridFlexSpaceBetweenRow>
         <GridFlexRow>
             <Image width="30px" src={"/assets/icons/typescript_icon.png"}/>
             <Heading type="h3" style={{marginTop: "16px", marginLeft: "8px"}}>Typescript Collection</Heading>
         </GridFlexRow>
-        <MarketplaceButton
-            src="/collections/typescript">Inspect</MarketplaceButton>
-        <MarketplaceButton
-            src="https://typescript.pieces.cloud/">Add to Pieces</MarketplaceButton>
+        <GridFlexEnd>
+            <MarketplaceButton
+                src="/collections/typescript">Inspect</MarketplaceButton>
+            <MarketplaceButton
+                src="https://typescript.pieces.cloud/">Add to Pieces</MarketplaceButton>
+        </GridFlexEnd>
     </GridFlexSpaceBetweenRow>
     <p style={{marginTop: "0px"}}><strong>16 Snippets</strong></p>
     <p style={{marginTop: "0px"}}>These TypeScript snippets range from picking properties from an interface to removing
@@ -114,8 +127,12 @@ export const HeaderSpacer = props => {
             <Image width="30px" src={"/assets/icons/dart_icon.png"}/>
             <Heading type="h3" style={{marginTop: "16px", marginLeft: "8px"}}>Dart Collection</Heading>
         </GridFlexRow>
-        <MarketplaceButton
-            src="https://dart.pieces.cloud/">Add to Pieces</MarketplaceButton>
+        <GridFlexEnd>
+            <MarketplaceButton
+                src="/collections/dart">Inspect</MarketplaceButton>
+            <MarketplaceButton
+                src="https://dart.pieces.cloud/">Add to Pieces</MarketplaceButton>
+        </GridFlexEnd>
     </GridFlexSpaceBetweenRow>
     <p style={{marginTop: "0px"}}><strong>16 Snippets</strong></p>
     <p style={{marginTop: "0px"}}>This collection is full of our team members’ most useful Dart code samples. Add these
@@ -124,14 +141,19 @@ export const HeaderSpacer = props => {
 
 <Spacer></Spacer>
 
-<Accordion defaultOpen title="SQL">
+<Accordion title="SQL">
     <GridFlexSpaceBetweenRow>
         <GridFlexRow>
             <Image width="30px" src={"/assets/icons/sql_icon.png"}/>
             <Heading type="h3" style={{marginTop: "16px", marginLeft: "8px"}}>SQL Collection</Heading>
         </GridFlexRow>
-        <MarketplaceButton
-            src="https://sql.pieces.cloud/">Add to Pieces</MarketplaceButton>
+        <GridFlexEnd>
+            <MarketplaceButton
+                src="/collections/sql">Inspect</MarketplaceButton>
+            <MarketplaceButton
+                src="https://sql.pieces.cloud/">Add to Pieces</MarketplaceButton>
+        </GridFlexEnd>
+
     </GridFlexSpaceBetweenRow>
     <p style={{marginTop: "0px"}}><strong>26 Snippets</strong></p>
     <p style={{marginTop: "0px"}}>This collection of SQL code snippets ranges from Select to Exist. Find the data you
@@ -146,8 +168,13 @@ export const HeaderSpacer = props => {
             <Image width="30px" src={"/assets/icons/nodejs_icon.png"}/>
             <Heading type="h3" style={{marginTop: "16px", marginLeft: "8px"}}>Node.js Collection</Heading>
         </GridFlexRow>
-        <MarketplaceButton
-            src="https://nodejs.pieces.cloud/">Add to Pieces</MarketplaceButton>
+        <GridFlexEnd>
+            <MarketplaceButton
+                src="/collections/nodejs">Inspect</MarketplaceButton>
+            <MarketplaceButton
+                src="https://nodejs.pieces.cloud/">Add to Pieces</MarketplaceButton>
+        </GridFlexEnd>
+
     </GridFlexSpaceBetweenRow>
     <p style={{marginTop: "0px"}}><strong>20 Snippets</strong></p>
     <p style={{marginTop: "0px"}}>If you want to take full advantage of Node.js, these are some of the most useful
@@ -156,14 +183,19 @@ export const HeaderSpacer = props => {
 
 <Spacer></Spacer>
 
-<Accordion defaultOpen title="JavaScript">
+<Accordion title="JavaScript">
     <GridFlexSpaceBetweenRow>
         <GridFlexRow>
             <Image width="30px" src={"/assets/icons/javascript_icon.png"}/>
             <Heading type="h3" style={{marginTop: "16px", marginLeft: "8px"}}>JavaScript Collection</Heading>
         </GridFlexRow>
-        <MarketplaceButton
-            src="https://javascript.pieces.cloud/">Add to Pieces</MarketplaceButton>
+        <GridFlexEnd>
+            <MarketplaceButton
+                src="/collections/javascript">Inspect</MarketplaceButton>
+            <MarketplaceButton
+                src="https://javascript.pieces.cloud/">Add to Pieces</MarketplaceButton>
+        </GridFlexEnd>
+
     </GridFlexSpaceBetweenRow>
     <p style={{marginTop: "0px"}}><strong>17 Snippets</strong></p>
     <p style={{marginTop: "0px"}}>We have the most popular JavaScript snippets, ranging popular lodash functions to DOM
