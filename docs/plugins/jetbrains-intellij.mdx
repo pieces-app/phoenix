@@ -41,13 +41,13 @@ export const GridFlexRowCenter = props => {
 };
 
 export const PluginSection = props => {
-    return <GridFlexRowCenter>
+    return <GridFlexRow>
         {props.children}
         <div>
             <p><strong>{props.heading}</strong></p>
             <p>{props.text}</p>
         </div>
-    </GridFlexRowCenter>
+    </GridFlexRow>
 };
 
 export const Spacer = props => {
