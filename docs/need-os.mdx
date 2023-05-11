@@ -64,6 +64,7 @@ export const CenterFlexRow = props => {
         ]}
     >
         <TabItem value="macos">
+            <Spacer></Spacer>
             <div style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
                 <InstallButton
                     src="https://builds.pieces.app/stages/production/macos_packaging/pkg/download">Download</InstallButton>
@@ -77,27 +78,34 @@ export const CenterFlexRow = props => {
 
         </TabItem>
         <TabItem value="windows">
-            <InstallButton
-                src="https://builds.pieces.app/stages/production/macos_packaging/pkg/download">Download</InstallButton>
 
-            Compatible with Windows 10 version 1809 and higher
-
-            <Image width="200" src={"/assets/graphics/os_ghost_windows.png"} />
-
+            <Spacer></Spacer>
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
+                <InstallButton
+                    src="#">Download</InstallButton>
+            </div>
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
+                Compatible with Windows 10 version 1809 and higher
+            </div>
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
+                <Image src={"/assets/graphics/os/os_ghost_windows.png"} />
+            </div>
         </TabItem>
         <TabItem value="linux">
             <CenterFlexRow>
                 <InstallButton src="https://snapcraft.io/pieces-for-developers">Pieces Desktop App on Snapcraft.io</InstallButton>
                 <InstallButton src="https://snapcraft.io/pieces-os">Pieces OS on Snapcraft.io</InstallButton>
             </CenterFlexRow>
-            To run Pieces for Developers on Linux, be sure to download both of the applications from the Snap Store before installing. You can also follow the instructions below these install buttons to install via terminal.
 
             <Image width="200" src={"/assets/graphics/os/os_ghost_windows.png"} />
+
+            To [run Pieces for Developers on Linux](https://docs.pieces.app/installation-getting-started/linux), be sure to download both of the applications from the Snap Store before installing. You can also follow the instructions below these install buttons to install via terminal.
 
         </TabItem>
     </Tabs>
 </GridFlexRowCenter>
 
+<BodySpacer></BodySpacer>
 <BodySpacer></BodySpacer>
 
 <Image width="400" src={"/assets/graphics/os/need_pieces_os.png"} />
