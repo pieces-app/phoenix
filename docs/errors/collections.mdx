@@ -10,7 +10,8 @@ export const FlexColumn = props => {
         display: 'flex',
         flexDirection: 'column',
         flexWrap: "wrap",
-        textAlign: "center"
+        textAlign: "center",
+        alignItems: "center"
     }}>{props.children}</div>;
 };
 
@@ -26,3 +27,5 @@ export const HeaderSpacer = props => {
     <Heading style={{ marginTop: "24px" }} type={"h2"}>Restart Pieces OS to save this collection</Heading>
     <p>If the problem persists, please contact <a target={"_blank"} href={"mailto:support@pieces.app"}>support@pieces.app</a>.</p>
 </FlexColumn>
+
+<HeaderSpacer></HeaderSpacer>
