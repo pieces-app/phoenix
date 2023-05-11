@@ -1,10 +1,3 @@
-export const HeaderImage = props => {
-    return <picture>
-        <source srcSet={props.srcset} media="(prefers-color-scheme: dark)"/>
-        <img src={props.src} />
-    </picture>
-};
-
 export const GridFlexRow = props => {
     return <div style={{
         display: 'flex',
@@ -16,7 +9,7 @@ export const GridFlexRow = props => {
 
 export const PluginButton = props => {
     return <div style={{ padding: "8px", border: "2px solid grey", borderRadius: "16px", marginRight: "16px", textAlign: "center" }}>
-        <img src={ props.src } />
+        { props.children }
         <p style={{ marginTop: "0px" }}><strong>{ props.text }</strong></p>
     </div>
 };
@@ -29,9 +22,7 @@ export const Spacer = props => {
 # Pieces for Developers
 <Heading type="h3">Plugins</Heading>
 
-
-<HeaderImage src="/assets/headers/dark/plugin_header_landing.png"
-             srcset="/assets/headers/light/plugin_header_landing.png"></HeaderImage>
+<Image src={"/assets/headers/dark/plugin_header_landing.png"} />
 
 Use these Pieces extensions and plugins inside your IDE and browser and enable key AI features like Auto-Save, Auto-Complete and single-click save from any webpage.
 
@@ -40,9 +31,15 @@ Our browser and IDE plugins are deeply integrated into your development tools, a
 ## IDE Plugins
 
 <GridFlexRow>
-    <PluginButton src={"/assets/logos/vscode_logo.png"} text={"VS Code IDE"}></PluginButton>
-    <PluginButton src={"/assets/logos/jetbrains_logo.png"} text={"Jetbrains IDE"}></PluginButton>
-    <PluginButton src={"/assets/logos/ue_logo.png"} text={"UltraEdit IDE"}></PluginButton>
+    <PluginButton text={"VS Code IDE"}>
+        <Image src={"/assets/logos/vscode_logo.png"} />
+    </PluginButton>
+    <PluginButton src={"/assets/logos/jetbrains_logo.png"} text={"Jetbrains IDE"}>
+        <Image src={"/assets/logos/jetbrains_logo.png"} />
+    </PluginButton>
+    <PluginButton src={"/assets/logos/ue_logo.png"} text={"UltraEdit IDE"}>
+        <Image src={"/assets/logos/ue_logo.png"} />
+    </PluginButton>
 </GridFlexRow>
 
 <Spacer></Spacer>
@@ -50,8 +47,12 @@ Our browser and IDE plugins are deeply integrated into your development tools, a
 ## Browser Extensions
 
 <GridFlexRow>
-    <PluginButton src={"/assets/logos/chrome_logo.png"} text={"Chrome"}></PluginButton>
-    <PluginButton src={"/assets/logos/edge_logo.png"} text={"Edge"}></PluginButton>
+    <PluginButton text={"Chrome"}>
+        <Image src={"/assets/logos/ue_logo.png"} />
+    </PluginButton>
+    <PluginButton text={"Edge"}>
+        <Image src={"/assets/logos/edge_logo.png"} />
+    </PluginButton>
 </GridFlexRow>
 
 <Spacer></Spacer>
@@ -59,7 +60,11 @@ Our browser and IDE plugins are deeply integrated into your development tools, a
 ## Productivity Tools
 
 <GridFlexRow>
-    <PluginButton src={"/assets/logos/github_logo.png"} text={"GitHub"}></PluginButton>
-    <PluginButton src={"/assets/logos/teams_logo.png"} text={"Teams"}></PluginButton>
+    <PluginButton text={"GitHub"}>
+        <Image src={"/assets/logos/github_logo.png"} />
+    </PluginButton>
+    <PluginButton text={"Teams"}>
+        <Image src={"/assets/logos/teams_logo.png"} />
+    </PluginButton>
 </GridFlexRow>
 
