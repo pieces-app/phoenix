@@ -24,14 +24,13 @@ export const PluginPluginInstallButton = props => {
                 background: "black",
                 marginBottom: "8px",
                 marginTop: "3px",
-                marginRight: "16px"
             }}>{props.children}</p>
         </div>
     </a>
 };
 
 export const PluginButton1 = props => {
-    return <div style={{ padding: "8px 32px", border: "2px solid grey", borderRadius: "16px", marginRight: "16px", textAlign: "center", minWidth: "165px" }}>
+    return <div style={{ padding: "8px 32px", border: "2px solid grey", borderRadius: "16px", marginRight: "16px", textAlign: "center", minWidth: "165px", alignItems: "center", display: "flex", flexDirection: "column"}}>
         { props.children }
         <p style={{ marginTop: "0px" }}><strong>{ props.text }</strong></p>
         <PluginInstallButton src={ props.src }>Get</PluginInstallButton>
