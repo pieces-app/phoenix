@@ -56,14 +56,17 @@ export const GridFlexRow = props => {
 
 <Image margin-top={"0px"} margin-bottom={"0px"} width="400" src={"/assets/graphics/collections/collection_typescript.png"} />
 
-<Heading style={{textAlign: "center"}} type={"h1"}>Typescript Collection</Heading>
+<Heading type={"h1"}>Typescript Collection</Heading>
 
 These TypeScript snippets range from picking properties from an interface to removing falsy values. We made sure to offer all useful TypeScript code snippets.
 
 <InstallButton>Add to Pieces</InstallButton>
 
+<HeaderSpacer></HeaderSpacer>
+
 ---
 
+<HeaderSpacer></HeaderSpacer>
 
 If you are a TypeScript developer, add any of these snippets to Pieces for some extreme time-saving shortcuts. Coding in TypeScript can be challenging and getting used to the intricacies of adding typing to traditional JavaScript can be quite confusing.
 
@@ -75,7 +78,7 @@ This collection of TypeScript examples is aimed at helping you perform common Ty
     <Tag>typescript</Tag><Tag>pick</Tag>
 </GridFlexRow>
 
-> Construct a new type based on partial properties of an interface.
+Construct a new type based on partial properties of an interface.
 
 ```typescript
 interface MyInterface {
@@ -102,7 +105,7 @@ Related Links
     <Tag>typescript</Tag><Tag>omit</Tag>
 </GridFlexRow>
 
-> Exclude properties from a given interface with this TypeScript snippet.
+Exclude properties from a given interface with this TypeScript snippet.
 
 ```typescript
 interface MyInterface {
@@ -129,7 +132,7 @@ Related Links
     <Tag>typescript</Tag><Tag>get value</Tag>
 </GridFlexRow>
 
-> Get value of an object with an interface using this TypeScript code sample.
+Get value of an object with an interface using this TypeScript code sample.
 
 ```typescript
 interface MyInterface {
@@ -166,7 +169,7 @@ Related Links
     <Tag>typescript</Tag><Tag>record</Tag>
 </GridFlexRow>
 
-> Map a string key to a custom interface in an object.
+Map a string key to a custom interface in an object.
 
 ```typescript
 const myTypedObject: Record = {
@@ -192,7 +195,7 @@ Related Links
     <Tag>typescript</Tag><Tag>every</Tag><Tag>collection</Tag>
 </GridFlexRow>
 
-> Returns true if all elements in a collection are true.
+Returns true if all elements in a collection are true.
 
 ```typescript
 const all = (arr: T[], fn: (t: T) => boolean = Boolean) => arr.every(fn);
@@ -213,7 +216,7 @@ Related Links
     <Tag>typescript</Tag><Tag>some</Tag>
 </GridFlexRow>
 
-> Tests whether at least one element in the array passes the test implemented by a provided function.
+Tests whether at least one element in the array passes the test implemented by a provided function.
 
 ```typescript
 const some = (arr: T[], fn: (t: T) => boolean = Boolean) => arr.some(fn);
@@ -234,7 +237,7 @@ Related Links
     <Tag>typescript</Tag><Tag>filter</Tag><Tag>compact</Tag>
 </GridFlexRow>
 
-> Tests whether at least one element in the array passes the test implemented by a provided function.
+Tests whether at least one element in the array passes the test implemented by a provided function.
 
 ```typescript
 const compact = (arr: any[]) => arr.filter(Boolean);

@@ -1,0 +1,300 @@
+---
+title: Dart Code Samples Collection
+description: This collection is full of our team members’ most useful Dart code samples. Add these Dart snippets to Pieces for some extreme time-savers.
+---
+
+<link rel="canonical" href="https://code.pieces.app/collections/dart" />
+
+export const HeaderSpacer = props => {
+    return <div style={{width: "100%", height: "100px"}}></div>;
+};
+
+export const GridFlexRowCenter = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+};
+
+export const InstallButton = props => {
+    return <a style={{textDecoration: "none"}} href={ props.src }>
+        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+            <p style={{
+                padding: "8px 20px",
+                borderRadius: "8px",
+                border: "1px solid #f3f5f6",
+                color: "white",
+                fontWeight: "500",
+                background: "black",
+                marginBottom: "8px",
+                marginTop: "3px",
+                marginRight: "16px"
+            }}>{props.children}</p>
+        </div>
+    </a>
+};
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content", margin: "0px 8px" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap",
+        marginBottom: "32px",
+    }}>{props.children}</div>
+};
+
+<HeaderSpacer></HeaderSpacer>
+
+<Image margin-top={"0px"} margin-bottom={"0px"} width="400" src={"/assets/graphics/collections/collection_dart.png"} />
+
+<Heading type={"h1"}>Dart Code Samples</Heading>
+
+These TypeScript snippets range from picking properties from an interface to removing falsy values. We made sure to offer all useful TypeScript code snippets.
+
+<InstallButton src={"https://dart.pieces.cloud/"}>Add to Pieces</InstallButton>
+
+<HeaderSpacer></HeaderSpacer>
+
+---
+
+<HeaderSpacer></HeaderSpacer>
+
+Check out the following Dart code examples ranging from Dart unit testing to converting Dart to [JavaScript snippets](https://code.pieces.app/collections/javascript). When you add these Dart snippets to Pieces you can use them in your IDE for some extreme time-savers.
+
+We had some of our team members share their most useful Dart snippets. These Dart sample code snippets are great for any developer to improve their workflow. Additionally, we added some general-purpose snippets that we think some may just find helpful!
+
+### Dart unit testing
+
+<GridFlexRow>
+    <Tag>dart</Tag><Tag>unit tests</Tag>
+</GridFlexRow>
+
+Create a group of dart unit tests.
+
+```dart
+group('group of tests', () {
+  test('unit test', () {
+    expect(true, true);
+  });
+});
+```
+
+Related Links
+
+- [How to Write Unit Tests](https://docs.flutter.dev/cookbook/testing/unit/introduction#5-combine-multiple-tests-in-a-group)
+- [Dart Test Package](https://pub.dev/packages/test)
+
+<InstallButton src={"https://dart.pieces.cloud/?p=5c4f4ea404"}>Add to Pieces</InstallButton>
+
+---
+
+### Copy files from Dart Package
+
+<GridFlexRow>
+    <Tag>typescript</Tag><Tag>files</Tag><Tag>dart package</Tag>
+</GridFlexRow>
+
+Uses Dart packaging URI to get the path to a package allowing one to pull assets/files from a Dart package. This ultimately allows “Flutter-like” asset bundling within a Dart package.
+
+```dart
+import 'dart:isolate';
+
+var resolvedUri = await Isolate.resolvePackageUri(Uri(scheme: 'package', path: 'my_package/src/assets/cool_image.jpg'));
+```
+
+Related Links
+
+- [How to Determine the Dart Directory Which a File is Being Executed](https://stackoverflow.com/questions/69391937/is-there-a-way-to-determine-the-directory-of-the-file-in-which-the-dart-file-is)
+- [How to Find File in Your Dart Package](https://www.reddit.com/r/dartlang/comments/t1tfrx/how_to_find_files_in_my_package/)
+
+<InstallButton src={"https://typescript.pieces.cloud/?p=bcef4ea3d9"}>Add to Pieces</InstallButton>
+
+---
+
+### Dart Singleton example
+
+<GridFlexRow>
+    <Tag>typescript</Tag><Tag>singleton</Tag><Tag>pattern</Tag><Tag>object oriented</Tag>
+</GridFlexRow>
+
+Create a singleton class structure in Dart to ensure only one instance of a class is created. This can be used to update properties, enhance performance, and manage state.
+
+```dart
+class SingletonClass {
+  static final SingletonClass _instance = SingletonClass._internal();
+
+  factory SingletonClass() {
+    return _instance;
+  }
+
+  SingletonClass._internal();
+
+  String property1 = 'Default Property 1';
+  String property2 = 'Default Property 2';
+}
+
+/// Example consuming the singleton class and accessing/manipulating properties
+/// To evaluate the difference between a normal class and a singleton class, comment
+/// out the factory constructor and _instance in SingletonClass and re-run.
+void main() {
+  /// Properties before
+  String property1Before = SingletonClass().property1;
+  String property2Before = SingletonClass().property2;
+
+  print('property1Before: $property1Before'); // Default Property 1
+  print('property2Before: $property2Before'); // Default Property 2
+
+  /// Updating the properties
+  SingletonClass().property1 = 'Updated Property 1';
+  SingletonClass().property2 = 'Updated Property 2';
+
+  /// Properties after
+  print('property1After: ${SingletonClass().property1}'); // Updated Property 1
+  print('property2After: ${SingletonClass().property2}'); // Updated Property 2
+}
+```
+
+Related Links
+
+- [How to build a Singleton in Dart](https://stackoverflow.com/questions/12649573/how-do-you-build-a-singleton-in-dart)
+
+<InstallButton src={"https://dart.pieces.cloud/?p=dc6a40885b"}>Add to Pieces</InstallButton>
+
+---
+
+### How to convert an object to JSON
+
+<GridFlexRow>
+    <Tag>dart</Tag><Tag>JSON</Tag><Tag>object to JSON</Tag>
+</GridFlexRow>
+
+This Dart code sample will convert an object into a JSON string.
+
+```dart
+import 'dart:convert';
+
+JsonEncoder().convert(yourObject)
+```
+
+Related Links
+
+- [Dart examples code for a JsonEncoder class](https://api.flutter.dev/flutter/dart-convert/JsonEncoder-class.html)
+- [Dart code for JsonEncoder constructor](https://api.dart.dev/stable/2.1.1/dart-convert/JsonEncoder/JsonEncoder.html)
+
+<InstallButton src={"https://dart.pieces.cloud/?p=1f1443b30d"}>Add to Pieces</InstallButton>
+
+---
+
+### How to convert JSON to an Object
+
+<GridFlexRow>
+    <Tag>dart</Tag><Tag>JSON</Tag><Tag>Object</Tag>
+</GridFlexRow>
+
+Converts JSON into an object.
+
+```dart
+
+import 'dart:convert';
+
+JsonDecoder().convert(yourJson)
+```
+
+Related Links
+
+- [How to decode a Json file in Flutter](https://flutteragency.com/how-to-decode-json-in-flutter/)
+- [JsonDecoder class - sample Dart code](https://api.dart.dev/stable/2.17.3/dart-convert/JsonDecoder-class.html)
+- [Dart code example to decode a Json file in flutter](https://stackoverflow.com/a/58393044)
+
+<InstallButton src={"https://dart.pieces.cloud/?p=87be4589f6"}>Add to Pieces</InstallButton>
+
+---
+
+### How to create a Dart data class
+
+<GridFlexRow>
+    <Tag>dart</Tag><Tag>data class</Tag>
+</GridFlexRow>
+
+Creates a data class.
+
+```dart
+@immutable
+class User {
+  final String name;
+  final int age;
+
+  User(this.name, this.age);
+
+  User copyWith({
+    String name,
+    int age,
+  }) {
+    return User(
+      name ?? this.name,
+      age ?? this.age,
+    );
+  }
+
+  @override
+  bool operator ==(Object o) {
+    if (identical(this, o)) return true;
+
+    return o is User && o.name == name && o.age == age;
+  }
+
+  @override
+  int get hashCode => name.hashCode ^ age.hashCode;
+}
+```
+
+Related Links
+
+- [How to create a immutable class](https://api.flutter.dev/flutter/meta/Immutable-class.html)
+- [Understanding data classes - IBM documentation](https://www.ibm.com/docs/en/zos/2.4.0?topic=classes-understanding-data)
+
+<InstallButton src={"https://dart.pieces.cloud/?p=1a63488211"}>Add to Pieces</InstallButton>
+
+---
+
+### How to call a conditional function using Dart source code
+
+<GridFlexRow>
+    <Tag>dart</Tag><Tag>conditional function</Tag>
+</GridFlexRow>
+
+Calls function depending on conditional values.
+
+```dart
+void func1(){
+ print("func 1 called");
+}
+
+void func2(){
+ print("func 2 called");
+}
+
+void main() {
+ const someValue = 3;
+ (someValue == 4? func1 : func2)();
+}
+```
+
+Related Links
+
+- [How to call a function in a condition - Dart Flutter](https://stackoverflow.com/questions/68880685/flutter-how-to-call-a-function-in-a-condition)
+- [Dart conditional operators](https://www.w3adda.com/dart-tutorial/dart-conditional-operators)
+
+<InstallButton src={"https://dart.pieces.cloud/?p=259f42b516"}>Add to Pieces</InstallButton>
+
+
+
