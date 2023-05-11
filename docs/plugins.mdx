@@ -12,9 +12,9 @@ export const GridFlexRow = props => {
     }}>{props.children}</div>;
 };
 
-export const InstallButton = props => {
+export const PluginPluginInstallButton = props => {
     return <a style={{textDecoration: "none"}} target="_blank" href={props.src}>
-        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+        <div style={{ minWidth: "fit-content"}}>
             <p style={{
                 padding: "8px 20px",
                 borderRadius: "8px",
@@ -34,7 +34,7 @@ export const PluginButton1 = props => {
     return <div style={{ padding: "8px 32px", border: "2px solid grey", borderRadius: "16px", marginRight: "16px", textAlign: "center", minWidth: "165px" }}>
         { props.children }
         <p style={{ marginTop: "0px" }}><strong>{ props.text }</strong></p>
-        <InstallButton src={ props.src }>Get</InstallButton>
+        <PluginInstallButton src={ props.src }>Get</PluginInstallButton>
     </div>
 };
 
