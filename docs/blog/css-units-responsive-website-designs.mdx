@@ -3,11 +3,11 @@ title: Why CSS Units Matter to Your Responsive Website Designs
 description: Time is measured, the food we eat is measured, the places we travel to are measured… As humans, we like to give things specific measurements. Units of measurement are standard quantities that are used to express an amount of a certain thing, like meters (distance), kilograms (weight), seconds (time), or Celsius (temperature).
 ---
 
-<link rel="canonical" href="https://code.pieces.app/blog/css-units-responsive-website-designs" />
+<link rel="canonical" href="https://code.pieces.app/blog/css-units-responsive-website-designs"/>
 
 export const Tag = props => {
-    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
-        { props.children }
+    return <div style={{padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content"}}>
+        {props.children}
     </div>
 };
 
@@ -39,6 +39,7 @@ export const AuthorRow = props => {
 };
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63fcdaa8f9979771bb2f2e21_cssunits_327924109e361894bf17b97beddadfee_2000.jpeg)
+
 <GridFlexRow><Tag>css</Tag> <Tag>webdev</Tag></GridFlexRow>
 
 # Why CSS Units Matter to Your Responsive Website Designs
@@ -84,6 +85,7 @@ Below are the frequently used relative units that we’ll discuss:
 - Viewport height (```vh```)
 
 When using Element (```em```), the font sizes of child elements depend on the font size of their parent element.
+
 ```
 <section>
         <p id= “first” >Css Units</p>
@@ -93,6 +95,7 @@ When using Element (```em```), the font sizes of child elements depend on the fo
 ```
 
 In the code snippet above, we can see that the three paragraphs are all children of the section element.
+
 ```
 section{
  font-size: 20px;
@@ -107,11 +110,13 @@ section{
  Font-size:0.5em; /*10px*/
 
 ```
+
 In the stylesheet above, the parent element (section) has a font size of 20px. Each paragraph has a unique font sizes that depends on the font size of the parent element.
 
 ```
 1em
 ```
+
 always equals the font size of the parent element. This makes it easy to calculate the font size of each child element in CSS units.
 
 The font size of the first paragraph is 40px ( 20px * 2em = 40px).
@@ -125,6 +130,7 @@ Generally, browsers set their font sizes to 16px. So if we set an element’s di
 
 Example:
 Just like ```em``` units, values with percentages depend on the value of the parent element’s CSS units.
+
 ```
 section{
  width:100%;
@@ -139,6 +145,7 @@ section{
  width:10%;
 
 ```
+
 In the code snippet above, the parent element has a width of 100%. All elements have a width of 100% by default; I have explicitly added “100%” in this example to give more context.
 The first paragraph’s width is set to 50%, so it is 50% of the width of the parent element.
 If we view this webpage on a desktop with a screen width of 1200px, then the first paragraph is 50% of 1200px.
@@ -151,6 +158,7 @@ Percentage CSS units work the same way with margins, paddings, heights, and so o
 A viewport is the visible part of a webpage. The size of a viewport varies based on the type of device being used. Hence, the viewport is 100% as wide as the visible part of the webpage. In order to calculate the width of an element, you should understand that ```1vw``` is equivalent to 1% of the viewport’s width.
 
 Let’s return to our paragraphs from earlier and give them widths in ```vws```.
+
 ```
 #first{
  background-color: red;
@@ -173,11 +181,13 @@ Let’s return to our paragraphs from earlier and give them widths in ```vws```.
 ```
 
 Since ```1vw``` = 1% of the viewport width, ```100vw``` = 100% of the viewport width. Let’s take a look at our paragraphs and how they’ve scaled based on their parameters.
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63fcdaa9f99797750a2f2f27_image3_bf91d00557f09c3c57874122b9ff3fdd_800.png)
 
 Just like the viewport width, the viewport height refers to the height of the visible window on device. ```1vh``` is equivalent to 1% of the viewport height.
 
 So, if an element is set to ```50vh```, in the browser, that element is 50% (half) of the viewport height. The red element in the image below is ```50vh``` high.
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63fcdaa9f99797e6212f2f02_image1_54ab62d59a788be940ca67dcbe505c8b_800.png)
 
 ## Recommended Use Cases for CSS Units
