@@ -6,8 +6,8 @@ description: Time is measured, the food we eat is measured, the places we travel
 <link rel="canonical" href="https://code.pieces.app/blog/css-units-responsive-website-designs"/>
 
 export const Tag = props => {
-    return <div style={{padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content"}}>
-        {props.children}
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content", margin: "0px 8px" }}>
+        { props.children }
     </div>
 };
 
@@ -19,23 +19,6 @@ export const GridFlexRow = props => {
         flexWrap: "nowrap"
     }}>{props.children}</div>;
 
-};
-
-export const Author = props => {
-    return <div style={{display: "flex", flexDirection: "row", flexWrap: "nowrap"}}>
-        <Image width="35" src={props.src}/>
-        <p style={{marginTop: "0px", marginBottom: "0px"}}>{props.text}</p>
-    </div>
-};
-
-export const AuthorRow = props => {
-    return <div style={{
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'start',
-        flexWrap: "nowrap",
-        alignItems: "center",
-    }}><Author src={ props.src } text={ props.text }></Author></div>
 };
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63fcdaa8f9979771bb2f2e21_cssunits_327924109e361894bf17b97beddadfee_2000.jpeg)
