@@ -1,9 +1,15 @@
+---
+title: IntelliJ IDE plugin - Install Pieces OS
+description: To use our Pieces for Developers IntelliJ plugin - download Pieces OS. It runs 100% local and is free.
+---
+
 export const GridFlexRowCenter = props => {
     return <div style={{
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'start',
-        flexWrap: "wrap"
+        flexWrap: "wrap",
+        textAlign: "center"
     }}>{props.children}</div>;
 };
 
@@ -29,11 +35,32 @@ export const Spacer = props => {
     return <div style={{ width: "16px"}}></div>
 }
 
-# Whoops!  You need to install Pieces OS to run your JetBrains plugin
+export const BodySpacer = props => {
+    return <div style={{height: "100px"}}></div>
+};
 
-100% free, no credit card or email address required!
+export const HeaderSpacer = props => {
+    return <div style={{width: "100%", height: "100px"}}></div>;
+};
+
+export const CenterFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>
+};
+
+<HeaderSpacer></HeaderSpacer>
 
 <GridFlexRowCenter>
+    # Whoops!  You need to install Pieces OS to run your Chrome Extension
+
+    <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", textAlign: "center" }}>
+        100% free, no credit card or email address required!
+    </div>
+
     <Tabs
         values={[
             {label: 'MacOS', value: 'macos'},
@@ -42,20 +69,52 @@ export const Spacer = props => {
         ]}
     >
         <TabItem value="macos">
-            <p>Compatible with macOS 10.15 (Catalina) and higher</p>
-            <InstallButton
-                src="https://builds.pieces.app/stages/production/macos_packaging/pkg/download">Download</InstallButton>
+            <Spacer></Spacer>
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
+                <InstallButton
+                    src="https://builds.pieces.app/stages/production/macos_packaging/pkg/download">Download</InstallButton>
+            </div>
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
+                Compatible with macOS 10.15 (Catalina) and higher
+            </div>
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
+                <Image src={"/assets/graphics/os/os_ghost_macos.png"} />
+            </div>
+
         </TabItem>
         <TabItem value="windows">
-            <p>Compatible with Windows 10 version 1809 and higher</p>
-            <InstallButton
-                src="https://builds.pieces.app/stages/production/os_server/windows/download">Download</InstallButton>
+
+            <Spacer></Spacer>
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
+                <InstallButton
+                    src="#">Download</InstallButton>
+            </div>
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
+                Compatible with Windows 10 version 1809 and higher
+            </div>
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
+                <Image src={"/assets/graphics/os/os_ghost_windows.png"} />
+            </div>
         </TabItem>
         <TabItem value="linux">
-            <p>FIND THIS INFO </p>
-            <InstallButton src="#">Download</InstallButton>
+            <CenterFlexRow>
+                <InstallButton src="https://snapcraft.io/pieces-for-developers">Pieces Desktop App on Snapcraft.io</InstallButton>
+                <InstallButton src="https://snapcraft.io/pieces-os">Pieces OS on Snapcraft.io</InstallButton>
+            </CenterFlexRow>
+
+            To [run Pieces for Developers on Linux](https://docs.pieces.app/installation-getting-started/linux), be sure to download both of the applications from the Snap Store before installing.
+
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
+                <Image src={"/assets/graphics/os/os_ghost_windows.png"} />
+            </div>
+
         </TabItem>
     </Tabs>
-    <Spacer></Spacer>
-    <Image width="200" src={"/assets/graphics/os_ghost_windows.png"} />
 </GridFlexRowCenter>
+
+<Image width="400" src={"/assets/graphics/os/need_pieces_os.png"} />
+
+## Why do you need Pieces OS?
+- Runs locally on your machine with the option to connect to the Cloud for backup, sync and sharing
+- Runs unobtrusively in the background - you don’t have to have the app open to save snippets
+- Enables tool to tool workflow, like saving a snippet from a webpage to your IDE
