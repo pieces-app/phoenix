@@ -28,12 +28,16 @@ export const PluginInstallButton = props => {
     </a>
 };
 
+export const LearnMore = props => {
+    return <a href={ props.src } style={{ marginTop: "0px", marginBottom: "0px" }}>Learn more</a>
+}
+
 export const PluginButton1 = props => {
     return <div style={{ padding: "8px 32px", border: "2px solid grey", borderRadius: "16px", marginRight: "16px", textAlign: "center", minWidth: "165px", alignItems: "center", display: "flex", flexDirection: "column"}}>
         { props.children }
         <p style={{ marginTop: "0px" }}><strong>{ props.text }</strong></p>
         <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" , alignItems: "center"}}>
-            <p style={{ marginTop: "0px", marginBottom: "0px" }}>Learn more</p>
+            <LearnMore src={ props.srcset }></LearnMore>
             <SpacerW></SpacerW>
             <PluginInstallButton src={ props.src }>Get</PluginInstallButton>
         </div>
@@ -90,7 +94,7 @@ export const FlexColumn = props => {
 Explore our IDE plugins and extensions to utilize the power of our AI features to boost code snippet management. Get started with a plugin below:
 
 <GridFlexRow>
-    <PluginButton1 text={"VS Code IDE"} src={"https://marketplace.visualstudio.com/items?itemName=MeshIntelligentTechnologiesInc.pieces-vscode"}>
+    <PluginButton1 text={"VS Code IDE"} src={"https://marketplace.visualstudio.com/items?itemName=MeshIntelligentTechnologiesInc.pieces-vscode"} srcSet={"/plugins/vscode"}>
         <Image width="75" src={"/assets/logos/vscode_logo.png"} />
     </PluginButton1>
     <PluginButton src={"/assets/logos/jetbrains_logo.png"} text={"Jetbrains IDE"}>
