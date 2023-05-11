@@ -31,22 +31,15 @@ export const LearnMore = props => {
     return <a href={ props.src } style={{ marginTop: "0px", marginBottom: "0px" }}>Learn more</a>
 }
 
-export const PluginButton1 = props => {
+export const PluginCard = props => {
     return <div style={{ padding: "8px 32px", border: "2px solid grey", borderRadius: "16px", marginRight: "16px", textAlign: "center", minWidth: "165px", alignItems: "center", display: "flex", flexDirection: "column"}}>
         { props.children }
         <p style={{ marginTop: "0px" }}><strong>{ props.text }</strong></p>
-        <div style={{ display: "flex", flexDirection: "column", flexWrap: "wrap" , alignItems: "center"}}>
+        <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" , alignItems: "center"}}>
             <LearnMore src={ props.srcset }></LearnMore>
             <SpacerW></SpacerW>
             <PluginInstallButton src={ props.src }>Get</PluginInstallButton>
         </div>
-    </div>
-};
-
-export const PluginButton = props => {
-    return <div style={{ padding: "8px 32px", border: "2px solid grey", borderRadius: "16px", marginRight: "16px", textAlign: "center", maxHeight: "225px", minWidth: "165px" }}>
-        { props.children }
-        <p style={{ marginTop: "0px" }}><strong>{ props.text }</strong></p>
     </div>
 };
 
@@ -93,15 +86,12 @@ export const FlexColumn = props => {
 Explore our IDE plugins and extensions to utilize the power of our AI features to boost code snippet management. Get started with a plugin below:
 
 <GridFlexRow>
-    <PluginButton1 text={"VS Code IDE"} src={"https://marketplace.visualstudio.com/items?itemName=MeshIntelligentTechnologiesInc.pieces-vscode"} srcSet={"/plugins/vscode"}>
+    <PluginCard text={"VS Code IDE"} src={"https://marketplace.visualstudio.com/items?itemName=MeshIntelligentTechnologiesInc.pieces-vscode"} srcSet={"/plugins/vscode"}>
         <Image width="75" src={"/assets/logos/vscode_logo.png"} />
-    </PluginButton1>
-    <PluginButton src={"/assets/logos/jetbrains_logo.png"} text={"Jetbrains IDE"}>
+    </PluginCard>
+    <PluginCard text={"Jetbrains IDE"} src={"https://plugins.jetbrains.com/plugin/17328-pieces--save-search-share--reuse-code-snippets"} srcSet={"/plugins/jetbrains-intellij"}>
         <Image width="75" src={"/assets/logos/jetbrains_logo.png"} />
-    </PluginButton>
-    <PluginButton src={"/assets/logos/ue_logo.png"} text={"UltraEdit IDE"}>
-        <Image width="75" src={"/assets/logos/ue_logo.png"} />
-    </PluginButton>
+    </PluginCard>
 </GridFlexRow>
 
 <Spacer></Spacer>
@@ -111,26 +101,15 @@ Explore our IDE plugins and extensions to utilize the power of our AI features t
 Add Pieces AI superpowers to your browser and never leave helpful code behind - enhance code snippets that you find, so you can rediscover them easier later.
 
 <GridFlexRow>
-    <PluginButton text={"Chrome"}>
+    <PluginCard text={"Chrome"} src={"https://chrome.google.com/webstore/detail/pieces/igbgibhbfonhmjlechmeefimncpekepm?hl=en"} srcSet={"/plugins/chrome"}>
         <Image width="75" src={"/assets/logos/chrome_logo.png"} />
-    </PluginButton>
-    <PluginButton text={"Edge"}>
+    </PluginCard>
+    <PluginCard text={"Edge"} src={"https://microsoftedge.microsoft.com/addons/detail/pieces-save-code-snippet/hglfimcdgonaeeobjckfdabcldfidmim"} srcSet={"/plugins/edge"}>
         <Image width="75" src={"/assets/logos/edge_logo.png"} />
-    </PluginButton>
+    </PluginCard>
 </GridFlexRow>
 
 <Spacer></Spacer>
 
-## Productivity Tools
 
-Save code snippets at the source and take advantage of our powerful markdown preview when you share gists and save code from your conversations in Teams.
-
-<GridFlexRow>
-    <PluginButton text={"GitHub"}>
-        <Image width="75" src={"/assets/logos/github_logo.png"} />
-    </PluginButton>
-    <PluginButton text={"Teams"}>
-        <Image width="75" src={"/assets/logos/teams_logo.png"} />
-    </PluginButton>
-</GridFlexRow>
 
