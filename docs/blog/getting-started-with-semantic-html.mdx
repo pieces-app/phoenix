@@ -63,7 +63,7 @@ Writing semantic HTML improves the browser readability of HTML documents, ensuri
 ### Structure
 Semantic HTML provides a better structure for web pages, whereas a code block describes what it presents. An example with appropriate tags can be seen here:
 
-```
+```html
 <!-- Ordered List -->
 <ol>
     <li>
@@ -102,7 +102,7 @@ In general, writing semantic HTML code goes beyond presentation and focuses on w
 
 The first building block in a web page is the doctype declared at the top of the document. Following this, we have the ```<html></html>``` tag, which wraps other elements in the document. Within the HTML tag, we have the ```<head></head>``` and ```<body></body>``` tag, respectively. The head tags hold information about the web page, while the body tag holds the web page contents:
 
-```
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -127,7 +127,7 @@ There are a handful of semantic HTML elements, but for this article, we’ll be 
 The header elements contain introductory elements for the web page, such as navigation items, logo, and hero section of the page.
 The nav tag holds useful links for navigating a current web page or to other pages in an HTML document:
 
-```
+```html
 <!-- Example of a navigation links -->
 <nav>
     <ul>
@@ -161,7 +161,7 @@ This element is a section of standalone information that another semantic elemen
 
 This element defines a summary for a ```<details>``` element block:
 
-```
+```html
 <!-- Example of a details and summary -->
 <details>
     <summary>This is the summary for the full details </summary>
@@ -178,7 +178,7 @@ When the summary element above it toggles the content in the details tag, it app
 
 The figcaption element represents a caption that describes its parent ```<figure></figure>``` tag:
 
-```
+```html
 <figure>
     <img src="sample-image.webp" alt="a sample image">
     <figcaption>
@@ -192,7 +192,7 @@ The figcaption element represents a caption that describes its parent ```<figure
 
 The abbr element defines an abbreviation/acronym; it has a title <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes#attribute_list" target="_blank" rel="noopener noreferrer">attribute</a> containing the expanded version:
 
-```
+```html
 <!-- How to use abbr tag -->
 <abbr title="HyperText Markup Language">HTML</abbr>
 ```
@@ -205,7 +205,7 @@ The ```<code>``` tag displays its content as a computer code sample.
 These semantic elements give their contents the role of headings, with priority levels from one to six. For example, the ```<h1>``` represents the most important heading on the page. The browser user agent has a default style applied to the heading group tags that emphasize the priority level of each element.
 The ```<picture>``` tag allows you to provide different images for different contexts. It can contain zero or more ```<source>``` tags and a ```<img>``` tag. When a ```<source>``` condition is met, the ```srcset``` link will replace the ```<img>``` placeholder; otherwise, the link in the ```src``` attribute for the ```<img>``` tag is displayed:
 
-```
+```html
 <picture>
   <source media="(min-width: 60em)" srcset="images/dino-wide.jpg">
   <source media="(min-width: 38em)" srcset="images/dino-rectangle.jpg">
