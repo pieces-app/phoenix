@@ -7,16 +7,14 @@ description: The best IntelliJ plugins are deeply integrated within your IDE. In
 
 export const InstallButton = props => {
     return <a style={{textDecoration: "none"}} target="_blank" href={props.src}>
-        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+        <div style={{ minWidth: "125px", maxWidth: "225px" }}>
             <p style={{
-                padding: "8px 20px",
                 borderRadius: "8px",
-                border: "1px solid #f3f5f6",
-                color: "white",
+                border: "1px solid grey",
                 fontWeight: "500",
-                background: "black",
+                background: "transparent",
+                marginBottom: "8px",
                 marginTop: "3px",
-                marginRight: "16px"
             }}>{props.children}</p>
         </div>
     </a>
