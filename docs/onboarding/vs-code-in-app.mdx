@@ -20,12 +20,24 @@ export const InstallButton = props => {
     </a>
 };
 
-# Welcome to Pieces for VS Code!
-## The tool you love, you're about to love even more
+export const CenterFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>
+};
 
-<a target="_blank" href="https://www.youtube.com/watch?v=azAk_zQfAak">
-    <Image width="500" src={"/assets/graphics/vscode/onboarding_started_yt_vscode.png"}/>
-</a>
+<CenterFlexRow>
+    # Welcome to Pieces for VS Code!
+</CenterFlexRow>
+
+<CenterFlexRow>
+    ### The tool you love, you're about to love even more
+</CenterFlexRow>
+
+<YouTube id="azAk_zQfAak" />
 
 ---
 
