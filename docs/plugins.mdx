@@ -14,7 +14,7 @@ export const GridFlexRow = props => {
 
 export const PluginInstallButton = props => {
     return <a style={{textDecoration: "none"}} target="_blank" href={props.src}>
-        <div style={{ minWidth: "225px"}}>
+        <div style={{ minWidth: "125px", maxWidth: "225px" }}>
             <p style={{
                 padding: "8px 32px",
                 borderRadius: "8px",
@@ -33,7 +33,10 @@ export const PluginButton1 = props => {
     return <div style={{ padding: "8px 32px", border: "2px solid grey", borderRadius: "16px", marginRight: "16px", textAlign: "center", minWidth: "165px", alignItems: "center", display: "flex", flexDirection: "column"}}>
         { props.children }
         <p style={{ marginTop: "0px" }}><strong>{ props.text }</strong></p>
-        <PluginInstallButton src={ props.src }>Get</PluginInstallButton>
+        <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
+            <p style={{ marginTop: "0px", marginBottom: "0px" }}>learn more</p>
+            <PluginInstallButton src={ props.src }>Get</PluginInstallButton>
+        </div>
     </div>
 };
 
@@ -80,7 +83,7 @@ export const FlexColumn = props => {
 
 ## IDE Plugins
 
-Explore our IDE plugins and extensions to utilize the power of our AI features to boost code snippet management. Get started with a plugin or click learn more to see what they do.
+Explore our IDE plugins and extensions to utilize the power of our AI features to boost code snippet management. Get started with a plugin below:
 
 <GridFlexRow>
     <PluginButton1 text={"VS Code IDE"} src={"https://marketplace.visualstudio.com/items?itemName=MeshIntelligentTechnologiesInc.pieces-vscode"}>
