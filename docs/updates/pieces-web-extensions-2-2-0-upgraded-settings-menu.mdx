@@ -1,7 +1,9 @@
 ---
-title: Pieces Web Extensions 2.2.0: Upgraded Settings Menu
+title: Pieces Web Extensions 2.2.0 | Upgraded Settings Menu
 description: Thanks to feedback from our users, we’re adjusting how the Web Extension works slightly. Sometimes, you don’t want Pieces buttons to show up for every single block of code on the web, so we’re making it easier to customize your experience.
 ---
+
+<link rel="canonical" href="https://code.pieces.app/updates/pieces-web-extension-adjust-default-settings" />
 
 export const Tag = props => {
     return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
@@ -18,8 +20,6 @@ export const GridFlexRow = props => {
     }}>{props.children}</div>;
 };
 
-<link rel="canonical" href="https://code.pieces.app/updates/pieces-web-extension-adjust-default-settings" />
-
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/631b6f60616efa8126d1876d_webextensions2_2_0_c96848c3097f81aa39c9d8f48afe0de1_2000.png)
 <GridFlexRow><Tag>new features</Tag><Tag>integrations</Tag> <Tag>ux ui updates</Tag></GridFlexRow>
 
@@ -27,15 +27,18 @@ export const GridFlexRow = props => {
 > **Published by the Pieces Team** | May 1st, 2023
 
 The Pieces web extensions are having a moment— did you see that we just got verified on the Chrome Web Store? We’re keeping that momentum rolling with better code detection, a new and improved settings menu and groundwork for new features.
+
 Go update your extension right now! You don’t want to miss this release.
 
 ## Settings upgrade
-It wasn’t too long ago that we introduced Settings to our Web Extensions— the first version is now getting an upgrade. Instead of opening a new tab to customize your experience, you can toggle to dark mode or move your buttons to the top right of a code block from the popover menu.
+It wasn’t too long ago that we introduced Settings to our Web Extensions — the first version is now getting an upgrade. Instead of opening a new tab to customize your experience, you can toggle to dark mode or move your buttons to the top right of a code block from the popover menu.
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/631b6f61616efab667d187cd_ScreenShot2022-09-08at3_46_03PM_962d5e3e95413961e25b117f683e83cd_800.png)
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/631b6f61616efa84efd187da_ScreenShot2022-09-08at4_12_25PM_ab6418ba34d16a96cf70c87c59d74509_800.png)
 
 ## Code block identification improvements
 To improve code block identification, we’re introducing a new method of recursively searching a webpage with all of the ways that we know how to identify code. You’ll notice that buttons appear more consistently across websites!
+
 We’ve also laid the groundwork for the next big feature on our roadmap: auto-suggesting snippets. Starting today, we’ll help you to retrace your steps from query to snippet by capturing  additional related links. In the future, this algorithm will help us to auto-save useful snippets from the web.
 
 ## Support
