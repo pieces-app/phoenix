@@ -18,10 +18,9 @@ export const PluginInstallButton = props => {
             <p style={{
                 padding: "4px 32px",
                 borderRadius: "8px",
-                border: "1px solid #f3f5f6",
-                color: "white",
+                border: "1px solid grey",
                 fontWeight: "500",
-                background: "black",
+                background: "transparent",
                 marginBottom: "8px",
                 marginTop: "3px",
             }}>{props.children}</p>
@@ -33,8 +32,8 @@ export const PluginButton1 = props => {
     return <div style={{ padding: "8px 32px", border: "2px solid grey", borderRadius: "16px", marginRight: "16px", textAlign: "center", minWidth: "165px", alignItems: "center", display: "flex", flexDirection: "column"}}>
         { props.children }
         <p style={{ marginTop: "0px" }}><strong>{ props.text }</strong></p>
-        <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
-            <p style={{ marginTop: "0px", marginBottom: "0px" }}>learn more</p>
+        <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" , alignItems: "center"}}>
+            <p style={{ marginTop: "0px", marginBottom: "0px" }}>Learn more</p>
             <SpacerW></SpacerW>
             <PluginInstallButton src={ props.src }>Get</PluginInstallButton>
         </div>
