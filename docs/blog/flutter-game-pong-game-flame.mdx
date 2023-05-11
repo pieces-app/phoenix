@@ -411,7 +411,7 @@ We also check if our paddle is going out of the bounds of the game window. If it
 We can test our updates by holding down the up or down arrow keys and seeing the paddle move smoothly.
 
 Build & run:
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632b2cff2e460d46093f496c_image14_a3e95eae1aab106b4125b790cc9095b6.g)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632b2cff2e460d46093f496c_image14_a3e95eae1aab106b4125b790cc9095b6.gif)
 
 ## Flutter Game: **Adding the Ball**
 Create a new file called ball.dart and add the following code to it:
@@ -510,7 +510,7 @@ Let’s add the ball component to our ```PongGame``` component:
 <a href="https://takrutvik.pieces.cloud/?p=3bd642b823" target="_blank" rel="noopener noreferrer">Save this code</a>
 
 Build & run:
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632b2cff2e460d4f7e3f495f_image2_9b36be6ed231327334326d9aae2c124b.g)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632b2cff2e460d4f7e3f495f_image2_9b36be6ed231327334326d9aae2c124b.gif)
 
 ### Collision Detection with the Ball
 Now that we have our ```Ball``` spawning in the center of the screen and moving, let's get to the interesting part of the game: making the ball bounce when it collides with a ```PlayerPaddle``` or the top and bottom edges of the game.
@@ -567,6 +567,7 @@ if (other is ScreenHitbox) {
 ```
 
 <a href="https://takrutvik.pieces.cloud/?p=afa941beb6" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 Here, we’re first checking if the body that our ball collided with is ```ScreenHitBox``` or not. If it is, we check for the edge with which our ball collided.
 
 We don’t want the ball to bounce off of the left and right edges. We’ll later add some code there to update the players’ scores.
@@ -574,7 +575,7 @@ We don’t want the ball to bounce off of the left and right edges. We’ll late
 If it’s the top or bottom edge, we reverse the ball’s ```velocity``` in the y direction. Test it by changing the ball’s ```spawnAngle``` to **90 **such that it’ll be thrown towards the top or bottom edges.
 
 Build & run:
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632b2cff2e460dc5b83f4962_image1_4f5588e134b95813c36399572affdcf1.g)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632b2cff2e460dc5b83f4962_image1_4f5588e134b95813c36399572affdcf1.gif)
 
 ### Paddle Collision Update
 Replace the ```// TODO: paddle collision update``` with the following:
@@ -620,7 +621,7 @@ void updateBallTrajectory(Vector2 collisionPoint, Rect paddleRect) {
 This method will reverse the ball’s ```velocity``` along the x- or y-axis, depending on where it touches the paddle, which is known by checking the ```collisionPoint``` with the ```paddleRect``` position. If the collision is on the left or right side, we reverse the ```velocity``` along the x-axis. If the collision is on the top or bottom, we reverse the velocity along the y-axis.
 
 Build & run:
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632b2cff2e460d35593f4960_image12_b4d9343f319966c1b84e562634bdd4dd.g)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632b2cff2e460d35593f4960_image12_b4d9343f319966c1b84e562634bdd4dd.gif)
 
 ## Flutter Game: AI Paddle
 Now that we’ve got the ball bouncing off the edges and the paddle, let’s add the AI opponent 🤖 you can play against.
@@ -741,7 +742,7 @@ final ballPositionWrtPaddleHeight = ball.y + (size.y);
 Here, we check if the updated position will be within the boundaries of our game world. If it isn’t, we don’t update the position of the paddle.
 
 Build & run:
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632b2cff2e460d51623f4964_image11_3b66b431322d9f152fabf7d7051480ce.g)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632b2cff2e460d51623f4964_image11_3b66b431322d9f152fabf7d7051480ce.gif)
 
 ### AI Collision Update
 Within the ```Ball``` component’s ```update``` method, replace ```// TODO: add AI paddle collision update``` with the following:
@@ -759,7 +760,7 @@ if (other is AIPaddle) {
 Now, our ball will also collide with the ```AIPaddle``` and bounce off of it after a collision.
 
 Build & run:
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632b2cff2e460d133f3f496b_image6_1f84df923e8c59560d40545849d9ebfa.g)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632b2cff2e460d133f3f496b_image6_1f84df923e8c59560d40545849d9ebfa.gif)
 
 ## Add the Scoring System
 
@@ -866,7 +867,7 @@ This method takes in the ```ScoreText``` object and increments its ```score``` b
 Now as you or the AI opponent misses the ball, the opposite player will get the point and their score will be updated.
 
 Build & run:
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632b2cff2e460d0aea3f496d_image8_0d0906c5587f39462b8bbbeb9d1f3dc1.g)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632b2cff2e460d0aea3f496d_image8_0d0906c5587f39462b8bbbeb9d1f3dc1.gif)
 
 ## Flutter Game: Adding Collision Audio
 A game without audio is definitely not something you would play. So, let’s add a collision sound whenever the ball collides with other game bodies.
@@ -900,7 +901,7 @@ _playCollisionAudio
 <a href="https://takrutvik.pieces.cloud/?p=f9454e864c" target="_blank" rel="noopener noreferrer">Save this code</a>
 
 Final demo:
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/641a021b177c3b6221a9b66e_ezgifcom-video-to-gif_2e3e5f6d95abb88dfaea4fc6ad782656.g)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/641a021b177c3b6221a9b66e_ezgifcom-video-to-gif_2e3e5f6d95abb88dfaea4fc6ad782656.gif)
 
 ## Bonus
 In the final demo, our Ball speeds up a little when it collides with either the player’s paddle or the AI paddle. For this, we’re simply increasing the ball's velocity in the y-direction by giving it some additional ```nudgeSpeed```. I suggest making the nudge speed 300/200, but you can make it whatever you prefer.
