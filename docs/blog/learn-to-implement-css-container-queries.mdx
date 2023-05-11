@@ -32,13 +32,17 @@ When creating a component, we frequently include a variety of versions and alter
 
 ## What Are CSS Container Queries?
 The first thing to know about CSS container queries is that “containers” are the elements being queried, but rules within container queries affect only the container descendants. In other words, you may define main as a container, or perhaps article, or even list items. With this, container queries will allow defining rules for how elements within them change across container sizes.
+
 <a href="https://alistapart.com/article/container-queries-once-more-unto-the-breach" target="_blank" rel="noopener noreferrer">CSS Containment</a> incorporates the container queries specification. The contain feature was first introduced in the CSS Containment proposal to support efficiency improvements. It offers a method for web designers to isolate DOM elements and communicate to browsers that they are separate from the rest of the document.
+
 Using the ```container-type``` attribute, a component can check its nearest parent for defined containment.
+
 That’s it – similar to how media queries for CSS are written, here it is applied to components.
 
 ### Container Queries Syntax
 To query a component based on its parent width, we need to use the ```container-type``` property. Consider the following example:
-```
+
+```css
 .wrapper {
   container-type: inline-size;
 }
@@ -47,7 +51,8 @@ To query a component based on its parent width, we need to use the ```container-
 <a href="https://victorchisom25.pieces.cloud/?p=c6744b8f13" target="_blank" rel="noopener noreferrer">Save this code</a>
 
 This allows us to begin querying a component. In the example below, we need to add a certain style if the container of the ```.card``` element has a width of ```400px``` or more:
-```
+
+```css
 @container (min-width: 400px) {
   .card {
     display: flex;
@@ -59,7 +64,8 @@ This allows us to begin querying a component. In the example below, we need to a
 <a href="https://victorchisom25.pieces.cloud/?p=8d0946bf48" target="_blank" rel="noopener noreferrer">Save this code</a>
 
 While the above method is effective, using many containers can make it a little overwhelming. For this reason, it's best to give a container a name:
-```
+
+```css
 .wrapper {
   container-type: inline-size;
   container-name: card;
@@ -69,7 +75,8 @@ While the above method is effective, using many containers can make it a little 
 <a href="https://victorchisom25.pieces.cloud/?p=c8e74ba294" target="_blank" rel="noopener noreferrer">Save this code</a>
 
 The container name can now be added next to ```@container``` as shown below:
-```
+
+```css
 @container card (min-width: 400px) {
   .card {
     display: flex;
@@ -81,7 +88,8 @@ The container name can now be added next to ```@container``` as shown below:
 <a href="https://victorchisom25.pieces.cloud/?p=5be049a19b" target="_blank" rel="noopener noreferrer">Save this code</a>
 
 Let's go back to the first example to see how container queries can help us avoid using several CSS classes:
-```
+
+```css
 .wrapper {
   container-type: inline-size;
   container-name: card;
@@ -103,7 +111,7 @@ Let's go back to the first example to see how container queries can help us avoi
 ## When and Where to Use CSS Container Queries
 For this project, we'll utilize plain HTML and CSS. This is our first HTML. You'll see that we've included a link to our own "styles.css file" as well:
 
-```
+```html
 <!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
@@ -123,9 +131,10 @@ For this project, we'll utilize plain HTML and CSS. This is our first HTML. You'
 <a href="https://victorchisom25.pieces.cloud/?p=79a2439458" target="_blank" rel="noopener noreferrer">Save this code</a>
 
 To get started, we'll make a very straightforward card with a picture, a title, and some text. A ```card-header``` with an image and a ```card-body``` with a title and other card elements will make up this card. The image remains on the left and the remaining text content is on the right because the card is styled with ```flex``` and ```flex-direction: row```**.**
+
 To center everything on the page, we'll surround this card in a container and use a ```div``` with the class parent set to ```big```:
 
-```
+```html
 <body>
     <div class="container">
       <div class="parent large">
@@ -160,7 +169,7 @@ To center everything on the page, we'll surround this card in a container and us
 
 <a href="https://victorchisom25.pieces.cloud/?p=e01148b22e" target="_blank" rel="noopener noreferrer">Save this code</a>
 
-```
+```css
 /* styles.css */
 body {
  background-color: rgb(230, 205, 173);
@@ -207,7 +216,7 @@ Your page will look like this:
 
 The same card will be copied and pasted into a new ```div``` that has the class ```parent small```. For the ```small``` class, we will additionally specify some styles:
 
-```
+```html
 <!-- index.html -->
 <body>
     <div class="container">
@@ -222,8 +231,12 @@ The same card will be copied and pasted into a new ```div``` that has the class 
             </div>
         </div>
     </div>
-</body>```<a href="https://victorchisom25.pieces.cloud/?p=248f4db9a9" target="_blank" rel="noopener noreferrer">Save this code</a>
+</body>
 ```
+
+<a href="https://victorchisom25.pieces.cloud/?p=248f4db9a9" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+```css
 // styles.css
 .small {
  width: 500px;
@@ -238,7 +251,8 @@ Keep in mind that both cards are identical, and are simply arranged in two disti
 Now, let’s add container queries…
 
 In the event that the container's width is less than 500 pixels, we want the text content to appear below the image on the card. In order for container queries to function, we must apply CSS to the container to establish the "containment context&quot;; the children within this containment context respond to the container's properties via container queries. To contain these cards, we will create ```divs``` with the class ```parent```. To accomplish this, we change the ```parent``` class's CSS:
-```
+
+```css
 /* styles.css */
 .parent {
  contain: layout inline-size style;
@@ -247,7 +261,8 @@ In the event that the container's width is less than 500 pixels, we want the tex
 
 <a href="https://victorchisom25.pieces.cloud/?p=3c554f9a73" target="_blank" rel="noopener noreferrer">Save this code</a>
 Now, we can add container queries to our card:
-```
+
+```css
 /* styles.css */
 @container(max-width: 500px) {
  .card {
@@ -259,9 +274,7 @@ Now, we can add container queries to our card:
 
 <a href="https://victorchisom25.pieces.cloud/?p=a21847a741" target="_blank" rel="noopener noreferrer">Save this code</a>
 
-The end! Now, if you return to your browser, you’ll see that the new styles have been applied to the card within the ```div``` with the class ```small```.
-
-Congratulations! 🎊
+The end! Now, if you return to your browser, you’ll see that the new styles have been applied to the card within the ```div``` with the class ```small```. Congratulations! 🎊
 
 Rather than merely using the device characteristics, we were able to modify the styling based on the container size (screen size). This is the power of container queries.
 
@@ -273,6 +286,7 @@ Given the widespread fragmentation of devices and browsers, CSS will inevitably 
 Container queries are only supported on Chrome Canary and Safari, and require that the ```enable-container-queries``` flag is enabled. You can download Chrome Canary <a href="https://www.google.com/intl/en_in/chrome/canary/" target="_blank" rel="noopener noreferrer">here</a>. Once installed, open the URL <a href="http://chrome://flags/#enable-container-queries" target="_blank" rel="noopener noreferrer">chrome://flags/#enable-container-queries</a> and enable container queries:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63d193b7ca2581de94d6af4c_image4_d18f047c0557b62f5739b83317c79371_800.png)
 There is a polyfill under development that you can use for container queries today. You can check it out <a href="https://www.bram.us/2021/04/27/a-first-look-at-cqfill-a-polyfill-for-css-container-queries/" target="_blank" rel="noopener noreferrer">here.</a>
+
 This table below shows an up-to-date list of browser support:
 
 ✅  Available in Chromium 106 and up.
@@ -307,3 +321,4 @@ These restrictions are the outcome of a design decision:
 In order to keep the polyfill simple(-ish), compact, and effective, we want to make sure that it functions properly for the majority of use-cases. This sounds entirely logical.
 
 ## Conclusion
+In time, we’ll be able to approach responsive designs in a much more intelligent way thanks to container queries. Nevertheless, container queries are still in their infancy. But as you can tell, they are easy to implement and can help developers with maintainability while working with CSS.
