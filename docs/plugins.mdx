@@ -12,6 +12,32 @@ export const GridFlexRow = props => {
     }}>{props.children}</div>;
 };
 
+export const InstallButton = props => {
+    return <a style={{textDecoration: "none"}} target="_blank" href={props.src}>
+        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+            <p style={{
+                padding: "8px 20px",
+                borderRadius: "8px",
+                border: "1px solid #f3f5f6",
+                color: "white",
+                fontWeight: "500",
+                background: "black",
+                marginBottom: "8px",
+                marginTop: "3px",
+                marginRight: "16px"
+            }}>{props.children}</p>
+        </div>
+    </a>
+};
+
+export const PluginButton1 = props => {
+    return <div style={{ padding: "8px 32px", border: "2px solid grey", borderRadius: "16px", marginRight: "16px", textAlign: "center", maxHeight: "225px", minWidth: "165px" }}>
+        { props.children }
+        <p style={{ marginTop: "0px" }}><strong>{ props.text }</strong></p>
+        <InstallButton src={ props.src }>Get</InstallButton>
+    </div>
+};
+
 export const PluginButton = props => {
     return <div style={{ padding: "8px 32px", border: "2px solid grey", borderRadius: "16px", marginRight: "16px", textAlign: "center", maxHeight: "225px", minWidth: "165px" }}>
         { props.children }
@@ -39,6 +65,8 @@ export const FlexColumn = props => {
     }}>{props.children}</div>;
 };
 
+<link rel="canonical" href="https://code.pieces.app/plugins" />
+
 <HeaderSpacer></HeaderSpacer>
 
 <FlexColumn>
@@ -56,9 +84,9 @@ export const FlexColumn = props => {
 Explore our IDE plugins and extensions to utilize the power of our AI features to boost code snippet management. Get started with a plugin or click learn more to see what they do.
 
 <GridFlexRow>
-    <PluginButton text={"VS Code IDE"}>
+    <PluginButton1 text={"VS Code IDE"} src={"https://marketplace.visualstudio.com/items?itemName=MeshIntelligentTechnologiesInc.pieces-vscode"}>
         <Image width="75" src={"/assets/logos/vscode_logo.png"} />
-    </PluginButton>
+    </PluginButton1>
     <PluginButton src={"/assets/logos/jetbrains_logo.png"} text={"Jetbrains IDE"}>
         <Image width="75" src={"/assets/logos/jetbrains_logo.png"} />
     </PluginButton>
