@@ -1,5 +1,5 @@
 ---
-title: FFI Programming: Using FFIGen in Dart 2.18 (Foreign Function Interface)
+title: FFI Programming | Using FFIGen in Dart 2.18 (Foreign Function Interface)
 description: This article will demonstrate how to use FFI (Foreign Function Interface) inside Dart. FFI is used to call programs across different programming languages. We will see how FFIGen, a tool that helps us in generating these bindings, can be utilized for FFI in Dart.
 ---
 
@@ -42,6 +42,7 @@ Before explaining the answer to this question, you need to know about FFI (Forei
 ### **FFI Programming explained**
 
 FFI stands for Foreign Function Interface and allows one programming language to work with libraries written in another language. It's a common technique used by many programming languages, including Java, which refers to it as <a href="http://wiki.c2.com/?JavaNativeInterface">JavaNativeInterface</a>. FFI was originally created in <a href="http://wiki.c2.com/?CommonLisp">CommonLisp</a> but can be used in any language.
+
 When a low-level language is referred to as the "**host**" language and a high-level language is referred to as the "**guest**" language, communication between them is established as follows:
 - An API is provided for the host language to connect with guests.
 - A tool that doesn't belong to either language is used to build the bridge.
@@ -71,7 +72,9 @@ There are times when you want to create your own fresh library, but more often, 
 - Automatically generating the FFI bindings
 
 If you like automation, you probably chose the second option. As a result, we have<a href="https://pub.dev/packages/ffigen"> package:ffigen</a>
+
 The "package:ffigen" is created to save time when integrating large APIs with C code. Writing Dart bindings for these APIs can be very time-consuming. The Dart team created a binding generator, called "ffigen," which automatically generates FFI wrappers from C header files.
+
 Under the hood, this package uses<a href="https://medium.datadriveninvestor.com/whats-llvm-4c0c3ed43a72"> LLVM</a> and LibClang to parse C header files. To install LLVM inside macOS, run:
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/637e8a6d159139b2aa9cd881_image8_e1950f8c97b57475c401bd6c54716a14_800.png)
@@ -87,10 +90,12 @@ Instantiable Native Types: In Dart code, you can create instances of arrays, poi
 Purely Marker Native Types: Platform agnostic types like Bool, Double, Int64, Int32 cannot be created in Dart code.
 
 There are also<a href="https://api.dart.dev/stable/dart-ffi/Abi-class.html"> ABI</a> marker types that extend AbiSpecificInteger, like Size Short, etc.
+
 So, we’ve explained **FFI** and **ffigen**— let’s explore what’s new in ffigen in Dart 2.18.
 
 ## FFI Programming: What’s new in FFI Gen
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/637e8a6e15913916779cd895_image23_33ca671085291684a39ed958d46518ba_800.png)
+
 The Dart team wants Dart to support interoperability with all the primary languages on the platforms where Dart runs.
 
 As of<a href="https://dart.dev/guides/language/evolution#dart-218"> Dart 2.18</a>, Dart code can now call Objective-C and Swift code since these are used for writing APIs for macOS and IOS. This interop mechanism supports across all types of apps from CLI apps to backend apps to Flutter code.
@@ -99,14 +104,19 @@ This feature is not limited to command-line apps. Even Dart mobile and server ap
 This unlocks many possibilities since before 2.18, it was only possible to call the C/C++based libraries.
 
 According to the official blog:
+
 This new mechanism utilizes the fact that Objective-C and Swift code can be exposed as C code based on API bindings. The Dart API wrapper generation tool,<a href="https://pub.dev/packages/ffigen"> ffigen</a>, can create these bindings from API headers.
+
 This support for Objective-C and Swift is marked as experimental starting from Dart 2.18. If you experience any problems, you can comment on the<a href="https://github.com/dart-lang/sdk/issues/49673"> feedback issue</a> on GitHub.
 
 ## Dart CLI App with Objective-C-based libraries
 In this section, we will create a Dart-based command line application that demonstrates how to call an Objective-C-based library using the new functionalities from ffigen.
-We will choose any objective c library present inside the macOS, and integrate it inside the Dart CLI App.
+
+We will choose any objective-c library present inside the macOS, and integrate it inside the Dart CLI App.
+
 One such library is<a href="https://developer.apple.com/documentation/foundation/nsurlcache"> NSURLCache</a>.
-macOS has an API for querying URL cache information exposed by the<a href="https://developer.apple.com/documentation/foundation/nsurlcache"> NSURLCache</a> class.
+
+- macOS has an API for querying URL cache information exposed by the<a href="https://developer.apple.com/documentation/foundation/nsurlcache"> NSURLCache</a> class.
 
 The NSURLCache implements the caching of responses to URL load requests by mapping<a href="https://developer.apple.com/documentation/foundation/nsurlrequest"> NSURLRequest</a> objects to<a href="https://developer.apple.com/documentation/foundation/nscachedurlresponse"> NSCachedURLResponse</a> objects. It provides a composite in-memory and on-disk cache, and lets you manipulate the sizes of both the in-memory and on-disk portions.
 
@@ -125,6 +135,7 @@ Note: There are various templates available for Dart; see below. By default, it 
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/637e8a6e159139bbec9cd88e_image7_2167c37e2564acebf893dc19f337e3c7_800.png)
 This gives us a basic template with all of the necessary files, for instance, pubspec or linter. Open the pubspec file to check the dependencies that come bundled with this template.
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/637e8a6d15913911d39cd886_image21_770b7af9e34fe2a64f28dd74dc3ba760_800.png)
 
 <a href="https://aseem.pieces.cloud/?p=d3e748a926">Save to Pieces</a>
@@ -138,11 +149,11 @@ Create a file called url_cache_config.yaml and put the below contents inside it.
 <a href="https://aseem.pieces.cloud/?p=65524da897">Save to Pieces</a>
 
 Let’s see the above configuration options:
-- name The name for the class which will be generated, after we run the ffigen, this class will be called URLCacheLibrary
-- language Must be one of &#x60;c&#x60;, or ‘objc’. Defaults to ‘c’. Since the library we select is written in Objective-C, we specify objc
-- output Output path of the generated bindings. This file will have all the FFI bindings which take care of the functions inside Obj-C
-- headers This includes the path to the header files It includes everything from the location as specified under the entry points. In our case, the header files are present inside the Foundation.framework
-- exclude-all-by-default When a declaration filter (eg functions or structs:) is empty, it defaults to including everything. If this flag is enabled, the default behavior is to exclude everything instead.
+- **name**: The name for the class which will be generated, after we run the ffigen, this class will be called URLCacheLibrary
+- **language**: Must be one of &#x60;c&#x60;, or ‘objc’. Defaults to ‘c’. Since the library we select is written in Objective-C, we specify objc
+- **output**: Output path of the generated bindings. This file will have all the FFI bindings which take care of the functions inside Obj-C
+- **headers**: This includes the path to the header files It includes everything from the location as specified under the entry points. In our case, the header files are present inside the Foundation.framework
+- **exclude-all-by-default**: When a declaration filter (e.g. functions or structs) is empty, it defaults to including everything. If this flag is enabled, the default behavior is to exclude everything instead.
 
 ## **Objective-C Config Options**
 - objc-interfaces This filters for the interface declarations. In our case, we specify the NSURLCache interface
@@ -155,11 +166,14 @@ To generate the bindings, run the following:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/637e8a6e15913905cd9cd88f_image6_063dc5d88c1cc7ccd52ff3c60dbbef36_800.png)
 
 <a href="https://aseem.pieces.cloud/?p=e942439276">Save to Pieces</a>
+
 This command creates a new file (url_cache_bindings.dart) as specified inside the output parameter of the url_cache_config.yaml, which contains a bunch of generated API bindings. Using this binding file, we can write our Dart main method.
 
 ### **Integrate into Dart**
 We generated the bindings using the FFI Gen in the above step. Let’s see how to integrate it with Dart.
+
 First, We create a new dart file called url_cache.dart.
+
 Inside this file, we will be loading and interacting with the generated library.
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/637e8a6e159139694b9cd89d_image5_c6861b77ad7d6dbc51cbf7d68d1ee7af_800.png)
@@ -172,6 +186,7 @@ We mentioned the path of the library in the first step. Since the library we are
 > Note: We can use our own library or a static library (linked inside our app).
 
 **Dynamic Linking**: In this type, the external libraries are placed inside the final executable; however, the actual linking happens at the run time. In dynamic linking, only one copy of the shared library is kept inside the memory which **reduces the program size, memory, and disk space**. Since the libraries are shared, **dynamic linking programs are slower** in comparison to static linking programs.
+
 A dynamically linked library is distributed in a separate file or folder within the app and loaded on demand. A dynamically linked library can be loaded into Dart via DynamicLibrary.open.
 
 **Static Linking**: In this type, modules are copied inside the program before creating the final executable. Since these programs include libraries, they are **large in size**. However, because the libraries are already compiled, these programs are **faster than dynamically linked programs**.
@@ -180,13 +195,18 @@ A statically linked library is embedded into the app’s executable image and lo
 
 **Next**, we construct the URLCacheLibrary by using the constructor which needs the dylib path. For this, we call DynamicLibrary.open. This loads the library file and provides access to its symbols.
 
-Note: This process loads the library into the DartVM only once, regardless of the function calls.
+> This process loads the library into the DartVM only once, regardless of the function calls.
+
 Once the library gets initialized, we can call the different methods present inside it (which were generated).
+
 We are looking for a NSURLCache class. This class implements the caching of responses to URL load requests by mapping<a href="https://developer.apple.com/documentation/foundation/nsurlrequest"> NSURLRequest</a> objects to<a href="https://developer.apple.com/documentation/foundation/nscachedurlresponse"> NSCachedURLResponse</a> objects. For getting an instance of this class, we call sharedURLCache.
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/637e8a6d159139c8219cd887_image11_fc5b568db7a37cf2bd8ba41360f7e4e1_800.png)
 
 <a href="https://aseem.pieces.cloud/?p=423c4f9502">Save to Pieces</a>
+
 Since we have the instance of URLCache, we can access the different methods currentDiskUsage, currentMemoryUsage, diskCapacity, and memoryCapacity. Let’s run the Dart code using:
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/637e8a6d15913943839cd889_image9_9ef9dc5521edb1f637f90d89bb2ad25e_800.png)
 
 <a href="https://aseem.pieces.cloud/?p=bc80478570">Save to Pieces</a>
@@ -196,6 +216,7 @@ The result is:
 
 ## Using Configuration Inside Pubspec
 In the above section, we saw how to use the configuration specified inside a separate config file. Let’s see how to use the configuration inside the pubspec.
+
 We’ll choose another Objective-C library present in macOS. One such library is<a href="https://developer.apple.com/documentation/foundation/nstimezone?language=objc]"> NSTimeZone</a>.
 
 This API is used for querying the time zones and standard time policies of a region. These time zones have identifiers such as America/Los_Angeles and can also be identified by abbreviations such as PST for Pacific Standard Time.
