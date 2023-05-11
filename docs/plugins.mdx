@@ -31,7 +31,7 @@ export const InstallButton = props => {
 };
 
 export const PluginButton1 = props => {
-    return <div style={{ padding: "8px 32px", border: "2px solid grey", borderRadius: "16px", marginRight: "16px", textAlign: "center", maxHeight: "225px", minWidth: "165px" }}>
+    return <div style={{ padding: "8px 32px", border: "2px solid grey", borderRadius: "16px", marginRight: "16px", textAlign: "center", minWidth: "165px" }}>
         { props.children }
         <p style={{ marginTop: "0px" }}><strong>{ props.text }</strong></p>
         <InstallButton src={ props.src }>Get</InstallButton>
