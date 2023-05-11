@@ -1,5 +1,5 @@
 ---
-title: React SetInterval Conflicts: How to Easily Resolve Them
+title: React SetInterval Conflicts | How to Easily Resolve Them
 description: Have you ever noticed React setInterval functions acting strangely? I’ve found that React Hooks can often help to fix setInterval problems.
 ---
 
@@ -33,9 +33,11 @@ In this article, I'll demonstrate how to use ```setInterval``` with React Hooks.
 ## Overview of SetInterval
 At each specified timing event, the ```setInterval()``` React method repeats a block of code.
 This is JavaScript's standard ```setInterval``` syntax:
-```
+
+```javascript
 setInterval(function, milliseconds)
 ```
+
 Its qualities are:
 - **Function**: The functions store executable code in a local scope.
 - **Milliseconds**:  The milliseconds are a timer that triggers the function to execute a line of code.
@@ -46,6 +48,7 @@ We won't go into more detail in this React ```setInterval``` introduction. Inste
 Every time the<a href="https://reactjs.org/docs/state-and-lifecycle.html" target="_blank" rel="noopener noreferrer"> state</a> of a component changes, React prepares a render. This takes place once a render has been scheduled. React will look for the ideal time to do this. When we call the ```setState``` function in React, we are change the state, which results in an update (in React Hooks, we would use ```useState```).
 
 A component may re-render itself for one of four reasons: state changes, parent (or child) re-renderings,<a href="https://reactjs.org/docs/context.html" target="_blank" rel="noopener noreferrer"> context</a> changes, and hook changes. A widespread misconception is that when the component's props change, re-renders likewise take place. On its own, this is untrue.
+
 If React executes a<a href="https://reactjs.org/docs/react-component.html" target="_blank" rel="noopener noreferrer"> component</a> more than once when using ```setInterval``` without a React Hook, the ```SetInterval``` will crash. If you use React and don't use the React Hook to build a counter increment mechanism with React ```setInterval``` in an initial page load, it will crash the counter. Therefore, we'll construct a counter increment in this tutorial using React Hooks.
 
 ### Bad Practices When Using SetInterval in React.js
@@ -54,9 +57,9 @@ Below is an example of the problem with utilizing ```setInterval``` in JavaScrip
 
 **Bad Practice**
 
-```
-import { useState } from "react&quot;;
-import { Fragment } from "react&quot;;
+```javascript
+import { useState } from "react";
+import { Fragment } from "react";
 function App() {
  let [count, setCount] = useState(0);
  setInterval(() => {
@@ -70,6 +73,7 @@ return (
 }
 export default App
 ```
+
 We can see that ```setInterval``` was not used in a React Hook in the code above, which is not best practice.
 The code will be printed when the page loads for the first time, and along the way, the counter will begin to act improperly, which is not the best scenario.
 
@@ -80,10 +84,11 @@ In this section, we’ll be working with code samples and using a counter in Rea
 ### Using SetInterval in a Function-Based Component
 Immediately after the page loads for the first time, we'll call ```setInterval```.
 Here, we'll make use of ```setInterval``` by automating its execution upon a page's initial load:
-```
-import { useEffect } from "react&quot;;
-import { useState } from "react&quot;;
-import { Fragment } from "react&quot;;
+
+```javascript
+import { useEffect } from "react";
+import { useState } from "react";
+import { Fragment } from "react";
 function App() {
  let [count, setCount] = useState({
   num: 0,
@@ -107,7 +112,8 @@ return (
 }
 export default App
 ```
-React Hooks like<a href="https://reactjs.org/docs/hooks-state.html" target="_blank" rel="noopener noreferrer"> ```useState```</a> and<a href="https://www.google.com/search?q=react+useEffect&amp;rlz=1C1ONGR_enNG1008NG1008&amp;oq=react+useEffect&amp;aqs=chrome..69i57j0i512l3j0i20i263i512j0i512j69i60l2.5344j0j4&amp;sourceid=chrome&amp;ie=UTF-8" target="_blank" rel="noopener noreferrer"> ```useEffect```</a> were utilized in the code above.
+
+React Hooks like<a href="https://reactjs.org/docs/hooks-state.html" target="_blank" rel="noopener noreferrer"> ```useState```</a> and<a href="https://www.google.com/search?q=react+useEffect&rlz=1C1ONGR_enNG1008NG1008&oq=react+useEffect&aqs=chrome..69i57j0i512l3j0i20i263i512j0i512j69i60l2.5344j0j4&sourceid=chrome&ie=UTF-8" target="_blank" rel="noopener noreferrer"> ```useEffect```</a> were utilized in the code above.
 
 The ```useState``` is dependent on its prior state:
 ```
@@ -127,7 +133,7 @@ setCount((prevState) => {
 }, [])
 ```
 Output:
-![](/6143afec68f555387049efb3/63878e41c47f5726807b7e2a_image7_500c7375fc04ff89348244a79c76c3bb_800.png)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6143afec68f555387049efb3/63878e41c47f5726807b7e2a_image7_500c7375fc04ff89348244a79c76c3bb_800.png)
 
 As you can see, the ```useEffect``` method, which has a return function, is used in the code above.
 The cleaning function (after the user exits the page and the component unmounts) is the return function.
@@ -142,8 +148,9 @@ Furthermore, to start ```setInterval``` and stop crashes and errors, the ```setI
 Read more about the React<a href="https://reactjs.org/docs/state-and-lifecycle.html" target="_blank" rel="noopener noreferrer"> Lifecycle</a>.
 
 Keep in mind that the interval begins as soon as a component loads for the first time. ```UseEffect``` is utilized in the function base component.
-```
-import React from "react&quot;;
+
+```javascript
+import React from "react";
 class App extends React.Component {
  state = { count: 0 };
  componentDidMount() {
@@ -166,14 +173,16 @@ render() {
 }
 export default App
 ```
+
 Output:
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63878e41c47f5777f67b7e2b_image1_fae1e6f6a2275037f169ca9c04b5e522_800.png)
 
 ### Calling React SetInterval from onClick in a Function-based Component
 We can quickly use an ```onClick``` to call ```setInterval```.
-```
-import { useState } from "react&quot;;
+
+```javascript
+import { useState } from "react";
 function App() {
  const [count, setCount] = useState(0);
 const startCountHandler = () => {
@@ -191,13 +200,16 @@ return (
 }
 export default App
 ```
+
 Output:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63878e41c47f575e307b7e2d_image5_16d5b4cd954ec316c1688ca980ed7667_800.png)
 
 ### Using Clear Interval from an onClick in a Function-based Component
+
 To stop the counter in this area, we'll use<a href="https://developer.mozilla.org/en-US/docs/Web/API/clearInterval" target="_blank" rel="noopener noreferrer"> clearinterval</a>. It is incredibly simple to use.
-```
-import { useState } from "react&quot;;
+
+```javascript
+import { useState } from "react";
 function App() {
  const [count, setCount] = useState(0);
  const [intervalId, setIntervalId] = useState(0);
@@ -223,17 +235,21 @@ return (
 }
 export default App
 ```
+
 To store the interval id obtained from ```setInterval```, a new state was made. The function for establishing the interval is activated when we click the start button, and we added ```setIntervalId(newIntervalId)``` inside the React ```SetInterval``` function to save the interval id in the state we generated for the ```intervalID```.
+
 Output:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63878e41c47f5701327b7e2e_image2_528402bdf8649552a6a563bfbb958a3c_800.png)
+
 We can start the counter by pressing the start button, and stop the counter by pressing the stop button. By hitting the start button once more, a paused counter can be started again.
 
 ### Starting SetInterval in a Class-based Component from onClick
 In this part, we'll call ```setInterval``` from a class-based component's<a href="https://reactjs.org/docs/handling-events.html" target="_blank" rel="noopener noreferrer"> onClick</a> event.
 
 Note: Take care to bind the ‘this’ keyword, or else you can’t access the ```this.setState``` in the ```startCountHandler``` function.
-```
-import React from "react&quot;;
+
+```javascript
+import React from "react";
 class App extends React.Component {
  constructor(props) {
   super(props);
@@ -262,16 +278,21 @@ render() {
 }
 export default App
 ```
+
 Output:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63878e41c47f571e4d7b7e30_image6_fa54be2aa4ad64ee632bf2eaf0d20d70_800.png)
 ### Stopping the Countdown in Class-based Components Using clearInterval
 
 In this section, we'll utilize ```clearInterval``` in a class-based component to stop the counter from running during an ```onClick``` event.
+
 Let's get going.
+
 The function that will stop or pause the counter increment will be the React ```setInterval``` handler, to which we will bind the keyword "this."<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this" target="_blank" rel="noopener noreferrer"> Learn more about the “this” keyword</a>.
+
 The code for a class-based component is shown below.
-```
-import React, { useEffect, useState } from "react&quot;;
+
+```javascript
+import React, { useEffect, useState } from "react";
 class App extends React.Component {
  constructor(props) {
   super(props);
@@ -316,10 +337,12 @@ render() {
 }
 export default App
 ```
+
 Output:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63878e41c47f5729bd7b7e2c_image4_aa4ac120590b8c621251fcb1e1794c75_800.png)
 ### Utilizing a Backward Counter
-```
+
+```javascript
 import { useState, useEffect } from 'react';
 const ForwardCounter = () => {
  const [counter, setCounter] = useState(0);
@@ -333,16 +356,22 @@ useEffect(() => {
 };
 export default ForwardCounter
 ```
+
 The aforementioned code is a straightforward example of utilizing ```setInterval``` in a React Hook to interact with a backward counter.
+
 Please be aware that using ```setInterval``` in a React Hook ```useEffect``` will cause the cleanup function to run.
+
 ### The Cleanup Function in useEffect
 In this section, we'll demonstrate how to send a request to a fake server utilizing the<a href="https://reactjs.org/docs/hooks-effect.html" target="_blank" rel="noopener noreferrer"> useEffect cleanup function</a> rather than while the user is still typing.
+
 The cleaning function, which runs after the user exits the page and the component unmounts, is the return function.
 This greatly helps to avoid sending many requests while a user is typing, which would slow down our web app. Creating a search mechanism that returns a list of values from a server in this way is great practice.
+
 Here, we'll implement this process using<a href="https://developer.mozilla.org/en-US/docs/Web/API/setTimeout" target="_blank" rel="noopener noreferrer"> ```setTimeout```</a> rather than ```setInterval```.
-Now, we’ll use ```<a href="https://developer.mozilla.org/en-US/docs/Web/API/clearInterval" target="_blank" rel="noopener noreferrer">clearInterval</a>``` to do the cleanup operation.
-```
-import { useEffect, useState } from "react&quot;;
+Now, we’ll use <a href="https://developer.mozilla.org/en-US/docs/Web/API/clearInterval" target="_blank" rel="noopener noreferrer">```clearInterval```</a> to do the cleanup operation.
+
+```javascript
+import { useEffect, useState } from "react";
 function App() {
  const [enteredValue, setEnteredValue] = useState("");
 useEffect(() => {
@@ -370,9 +399,13 @@ return (
 }
 export default App
 ```
+
 Output:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63878e41c47f57dbbe7b7e2f_image3_af7f215fe7c98c3870012aeed1efd176_800.png)
 We can see from the output in the<a href="https://developer.mozilla.org/en-US/docs/Web/API/console" target="_blank" rel="noopener noreferrer"> console</a> that the console log was produced four times, which indicates that I actually waited four times before inputting another character.
-Make sure to test this out for yourself to see how it performs.
-All I ask is that you start using this in your React project so that you discover its value.
+
+Make sure to test this out for yourself to see how it performs. All I ask is that you start using this in your React project so that you discover its value.
+
 ## Conclusion
+
+I hope you had a good time reading this article! We learned how to utilize React setInterval and clearInterval in class & function-based components without crashes and errors, as well as how React renders a component and affects setInterval. Start making changes to your app so that it takes advantage of the strategies we discussed in this post. Setting up setInterval in your program allows you to add more features and ensures that everything runs smoothly.
