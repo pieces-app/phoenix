@@ -35,7 +35,7 @@ export const AuthorRow = props => {
         justifyContent: 'start',
         flexWrap: "nowrap",
         alignItems: "center",
-    }}>{props.children}</div>
+    }}><Author src={ props.src } text={ props.text }></Author></div>
 };
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63fcdaa8f9979771bb2f2e21_cssunits_327924109e361894bf17b97beddadfee_2000.jpeg)
@@ -44,8 +44,7 @@ export const AuthorRow = props => {
 
 # Why CSS Units Matter to Your Responsive Website Designs
 
-<AuthorRow>
-    <Author src={"/assets/blog/authors/queendolin_akpan.jpeg"} text={"Queendoline Akpan"}></Author>
+<AuthorRow src={"/assets/blog/authors/queendolin_akpan.jpeg"} text={"Queendoline Akpan"}>
 </AuthorRow>
 
 Everything in life is measured.
