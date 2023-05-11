@@ -16,7 +16,7 @@ export const PluginInstallButton = props => {
     return <a style={{textDecoration: "none"}} target="_blank" href={props.src}>
         <div style={{ minWidth: "125px", maxWidth: "225px" }}>
             <p style={{
-                padding: "8px 32px",
+                padding: "4px 32px",
                 borderRadius: "8px",
                 border: "1px solid #f3f5f6",
                 color: "white",
@@ -35,6 +35,7 @@ export const PluginButton1 = props => {
         <p style={{ marginTop: "0px" }}><strong>{ props.text }</strong></p>
         <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
             <p style={{ marginTop: "0px", marginBottom: "0px" }}>learn more</p>
+            <SpacerW></SpacerW>
             <PluginInstallButton src={ props.src }>Get</PluginInstallButton>
         </div>
     </div>
@@ -49,6 +50,10 @@ export const PluginButton = props => {
 
 export const Spacer = props => {
     return <div style={{height: "16px"}}></div>
+};
+
+export const SpacerW = props => {
+    return <div style={{ width: "8px"}}></div>
 };
 
 export const HeaderSpacer = props => {
