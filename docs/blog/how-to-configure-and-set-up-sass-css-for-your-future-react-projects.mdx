@@ -3,6 +3,8 @@ title: How to Configure and Set Up Sass CSS for your Future React projects
 description: This article focuses on how to use and set up Sass to CSS for your React projects. If you’re interested in learning more about Sass CSS, this article is perfect for you.
 ---
 
+<link rel="canonical" href="https://code.pieces.app/blog/how-to-configure-and-set-up-sass-css-for-your-future-react-projects" />
+
 export const Tag = props => {
     return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
         { props.children }
@@ -48,47 +50,52 @@ Next, let’s take a look at some of the attractive benefits of using Sass CSS:
 
 ## Creating Our React Project
 To start this Sass CSS tutorial we need to create our React project, the first thing we need to do is head to the terminal and type in the following command:
-```
+
+```javascript
 npx create-react-app my-sass
 ```
 If you don’t like ```create-react-app```, <a href="https://code.pieces.app/blog/alternatives-to-create-react-app" target="_blank" rel="noopener noreferrer">try out one of these alternatives.</a> The image below shows our simple React website, with our React environment files:
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63e28189dc5c2ff5d3f25060_image9_685e77b2af6a2cf324d920a231e93262_800.png)
+
 This is what it looks like in the browser:
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63e28189dc5c2f5025f24fb5_image4_cde8a141cceb067cd49b0505b1940037_800.png)
 
 ### Folder Structure
+
 Now, let’s take a quick look at our folder structure below at our React environment files:
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63e28189dc5c2f4ee5f24fb6_image8_46311971c73a12993a20828fd83c9d4f_800.png)
 
 We have a pretty simple folder structure here. However, running Sass CSS in a project takes a little bit of previous knowledge, especially when configuring it. However, to make the process run a lot smoother, we can install two different extensions for VS Code:
 
-- **<a href="https://marketplace.visualstudio.com/items?itemName=Syler.sass-indented" target="_blank" rel="noopener noreferrer">Sass Extension</a>: **Sass helps with auto-complete formatting and highlighting:
+- **<a href="https://marketplace.visualstudio.com/items?itemName=Syler.sass-indented" target="_blank" rel="noopener noreferrer">Sass Extension</a>**: Sass helps with auto-complete formatting and highlighting:
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63e28189dc5c2f117df24fb8_image12_16c2084cbbb04fefcc78ac2dd9ea6dbd_800.jp)
 
-- **<a href="https://marketplace.visualstudio.com/items?itemName=glenn2223.live-sass" target="_blank" rel="noopener noreferrer">Live Sass Compiler</a>: **Live Sass Compiler is a VS Code extension that enables us to compile/transpile our SASS/SCSS files to CSS files in real-time with live browser reloads:
+- **<a href="https://marketplace.visualstudio.com/items?itemName=glenn2223.live-sass" target="_blank" rel="noopener noreferrer">Live Sass Compiler</a>**: Live Sass Compiler is a VS Code extension that enables us to compile/transpile our SASS/SCSS files to CSS files in real-time with live browser reloads:
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63e28189dc5c2f5893f25036_image3_503acd52eb22db9539affbaf5207a598_800.png)
 
 ## Navbar
 The first thing we’ll build in our demo React project is our Navbar. However, first, we need to create our ```Component``` folder in our ```src```, and then create a file in our  ```Component``` folder named ```Navbar.js```. In our ```Navbar.js``` file, we will edit our code to be like this:
-```
+
+```javscript
 import React from 'react'
 function Navbar() {
  return (
- <**div** className="navbar">
- <**a** href="/home">Home</**a**>
- <**a** href="/about">About</**a**>
- <**a** href="/profile">Profile</**a**>
- <**a** href="/contact">Contact</**a**>
+ <iv className="navbar">
+ <a href="/home">Home</a>
+ <a href="/about">About</a>
+ <a href="/profile">Profile</a>
+ <a href="/contact">Contact</a>
  </**div**>
    )
 }
 export default Navbar
 ```
+
 The image below shows the result on the browser:
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63e28189dc5c2fba26f25026_image13_f6fa7b1e93f1a4121560011d40e3d10a_800.png)
@@ -99,16 +106,17 @@ In this section, we’ll create our styles folder to write our Sass code. The fi
 
 Now, in ```Navbar.scss```, we can make the following changes:
 
-```
+```javascript
 .navbar{
   width:100%;
   height: 80px;
   background-color: grey;
-
 ```
+
 Before checking to see if this code works in the browser, we should first ```import '../Styles/Navbar.css';``` into the ```App.js``` file, then click on “watch sass” located in the bottom right corner of our VS Code editor. This will then automatically generate these two files shown in the image below:
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63e28189dc5c2f5711f25024_image6_0e04c0e1d01a4d596105bbff511643cf_800.png)
+
 This is because we’re using the Live Sass Compiler extension. When we check our demo project in the browser, we’ll see the image below as the result of our CSS:
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63e28189dc5c2f7d58f2502a_image1_780651bc9beb8f95d23ffbc356c3b1a0_800.png)
@@ -116,43 +124,51 @@ Although we can see the CSS grey color in our browser, we still have not done mu
 
 ## Sass CSS Variables
 The great thing about Sass is that we can define variables, as seen in the code changes made in our ```Navbar.scss``` below:
-```
+
+```javascript
 $blackColor: rgb(24, 24, 24);
 .navbar{
   width:100%;
   height: 80px;
   background-color: $blackColor;
+```
 
-```
 Here, we first defined a variable called ```BlackColor```, then set it equal to the ```rgb``` value ```black```. So, instead of using the ```rgb``` value every time we want to render black, we can simply render the color like this:
-```
+
+```javascript
 background-color: $blackColor
 ```
+
 When we save this, it compiles, and we can see the changes in ```Navbar.css``` like this:
-```
+
+```javascript
 .navbar {
  width: 100%;
  height: 80px;
  background-color: rgb(24, 24, 24);
-}/*# sourceMappingURL=Navbar.css.map */```
+}/*# sourceMappingURL=Navbar.css.map */
+```
+
 This is what it should look like now in our browser:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63e28189dc5c2f238df25025_image7_b3dbd32f73f89b0d522fb9f7e9966003_800.png)
 
 ### Organize folder Structure for Sass variables
 Now, one thing we can do to improve our folder and design structure is to create a separate file only for our variables. To do that, we’ll first create a folder in our ```src``` called ```Variables```, then create a file in the ```Variables``` folder named ```Variables.scss```, where we declare all of the different variables we’ll be using in our demo app.
 The reason for this is that the whole point of declaring a variable is to be able to reuse that variable. For instance, if we want to use the black color in different Sass files, we can define it in the ```Variables.scss```  file, and instead of directly defining the variable in our ```Navbar.scss file```, we can simply make the following changes:
-```
+
+```javascript
 @import "../Variables/Variables.scss&quot;;
 $blackColor: rgb(24, 24, 24);
 .navbar{
   width:100%;
   height: 80px;
   background-color: $blackColor;
-
 ```
+
 What we did above is import from the path to this file, which is ```"../Variables/Variables.scss"```.  When we check the project on our browser, we’ll notice that everything works and the background color is still black.
 Now, let’s style our Navbar a little bit more by making the following code changes in our ```Variables.scss``` and ```Navbar.css``` files:
-```
+
+```javascript
 //Variables.scss
 $blackColor: rgb(26, 26, 26);
 $whiteColor: rgb(232, 232, 232);
@@ -168,14 +184,15 @@ $blackColor: rgb(24, 24, 24);
   color: $whiteColor;
   font-size: 25px;
   text-decoration: none;
-
 ```
+
 The image below shows us the changes in the browser:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63e28189dc5c2f1efef24fb7_image5_fd40f4bed92218203d0baf29baf9c42b_800.png)
 
 ## Declaring a Font in Sass CSS
 To declare a font, we have to make the following code changes to our ```Variables.scss``` and ```Navbar.css``` files:
-```
+
+```javascript
 //Variables.scss
 ///Colors
 $blackColor: rgb(26, 26, 26);
@@ -198,15 +215,16 @@ $bodyFont: 'Times New Roman', Times, Serif;
    font-size: 25px;
    text-decoration: none;
    font-family: $titleFont;
-
 ```
+
 The image below shows the changes made to our project in the browser:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63e28189dc5c2fd526f25027_image11_2ca43191bbb09461908bef53fb21cee6_800.png)
 
 This image shows that our text moved to the center, and the font changed as a result of our Sass variable declared in the ```Variables.scss``` file.
 
 Next, let’s make some more changes to this in our ```Navbar.js``` and ```Navbar.scss``` file:
-```
+
+```javascript
 //Navbar.js
 import React from 'react'
 import '../Styles/Navbar.css';
@@ -224,8 +242,10 @@ function Navbar() {
 }
 export default Navbar
 ```
+
 Here, we created a ```div```, then a ```className``` of ```links```, and then made the following changes to our ```Navbar.scss``` file:
-```
+
+```javascript
 //Navbar.scss
 @import "../Variables/Variables.scss&quot;;
 .navbar{
@@ -249,8 +269,9 @@ Here, we created a ```div```, then a ```className``` of ```links```, and then ma
 body {
   margin: 0%;
   padding: 0%;
-
+}
 ```
+
 In the image below, we see that we now have a beautiful Navbar:
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63e2818adc5c2fe519f2506e_image10_ff4d3ab0c7e1cc284215df92fa5b09c9_800.png)
@@ -259,7 +280,8 @@ Cool, right?
 
 ## Creating and Styling our Main Page in Sass CSS
 To create our main page, the first thing we’ll want to do is create another component file in our ```Component``` folder, named ```MainPage.js```. Let’s make the following changes in our newly created component file:
-```
+
+```javascript
 import React from 'react'
 function MainPage() {
  return (
@@ -270,12 +292,14 @@ function MainPage() {
 }
 export default MainPage
 ```
+
 We can see the result in the image below:
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63e28189dc5c2f5dd9f25028_image15_d364bbc7f41c7ff63f42b05e110875ff_800.png)
 
 There’s one thing that’s important to understand in Sass: If we want to access or edit our ```H1``` tag for example, we can create another styles file called ```MainPage.scss```, and make the following changes:
-```
+
+```javascript
 @import "../Variables/Variables.scss&quot;;
 .MainPage{
  display: flex;
@@ -286,19 +310,23 @@ h1 {
  color: $redColor;
 
 ```
+
 In our ```Variables.scss``` file, we can add these changes:
-```
+
+```javascript
 $blackColor: rgb(26, 26, 26);
 $whiteColor: rgb(232, 232, 232);
 $redColor: rgb(175, 2, 2)
 ```
+
 Here, we added ```$redColor: rgb(175, 2, 2);```, which makes the text red. We can see the result in the image below:
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63e28189dc5c2fc58ff2502b_image14_598173aa9b61181f6c6f2bb7d7e2863d_800.png)
 
 ## Creating and Styling Our Button in Sass CSS
 Next, we’re going to create a button and style it using Sass CSS. What we want to do is create a specific style for this button, and then reuse it many times throughout our demo application. To accomplish this, we’ll make the following changes to our ```MainPage.scss``` file:
-```
+
+```javascript
 @import "../Variables/Variables.scss&quot;;
 .MainPage{
  display: flex;
@@ -316,13 +344,15 @@ button {
  border-radius: 8px;
  color: $whiteColor;
  font-size: 25px;
-
 ```
+
 When we check the result on our browser, this is how our button looks:
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63e28189dc5c2fbbcdf25029_image2_c3d23832efdf6d5e7f359a1c9325255a_800.png)
 
 Now, we want to use an essential syntax in Sass known as ```@Mixin```, which serves as a function:
-```
+
+```javascript
 ///Variables.scss
 //Colors
 $blackColor: rgb(26, 26, 26);
@@ -339,10 +369,11 @@ $bodyFont: 'Times New Roman', Times, Serif;
   border-radius: 8px;
   color: $whiteColor;
   font-size: 25px;
+```
 
-```
 Here, we declared the name of a specific style called ```buttonStyle``` and passed in our button style. In our ```MainPage.scss``` file, the following changes were made:
-```
+
+```javascript
 //MainPage.scss
 @import "../Variables/Variables.scss&quot;;
 .MainPage{
@@ -355,8 +386,8 @@ h1 {
 }
  button {
    @include buttonStyle();
-
 ```
+
 In our button, we ```@include``` the ```buttonStyle``` mixin that we created. By checking the demo application in our browser, we can see that everything still works seamlessly.
 
 ## Conclusion

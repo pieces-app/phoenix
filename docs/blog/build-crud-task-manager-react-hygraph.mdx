@@ -1,6 +1,6 @@
 ---
 title: Build a Task Manager CRUD App with React and Hygraph
-description: In this article, we will introduce readers to how to build a fully functional CRUD application using Hygraph as our backend, React as our frontend, and ApolloClient to manage our state and fetch and mutate our data. We’ll leverage the Content and Mutation APIs that the Hygraph software exposes to us to perform a simple example of querying and mutating data using a task manager app: creating tasks, reading tasks, updating tasks, and finally deleting a task with Apollo Client. We’ll also demonstrate how to set up and manage our content and connect Hygraph to React.
+description: In this article, we will introduce readers to how to build a fully functional CRUD application using Hygraph as our backend, React as our frontend, and ApolloClient to manage our state and fetch and mutate our data.
 ---
 
 <link rel="canonical" href="https://code.pieces.app/blog/build-crud-task-manager-react-hygraph" />
@@ -26,7 +26,6 @@ export const GridFlexRow = props => {
 <GridFlexRow><Tag>tutorial</Tag> <Tag>productivity</Tag></GridFlexRow>
 
 # Build a Task Manager CRUD App with React and Hygraph
-> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 
 In this article, we will introduce readers to how to build a fully functional CRUD application using Hygraph as our backend, React as our frontend, and ApolloClient to manage our state and fetch and mutate our data. We’ll leverage the Content and Mutation APIs that the Hygraph software exposes to us to perform a simple example of querying and mutating data using a task manager app: creating tasks, reading tasks, updating tasks, and finally deleting a task with<a href="https://blog.logrocket.com/data-retrieval-in-graphql-with-react-apollo/" target="_blank" rel="noopener noreferrer"> Apollo Client</a>. We’ll also demonstrate how to set up and manage our content and connect Hygraph to React.
 
@@ -36,10 +35,10 @@ CRUD apps consist of three components in fully fledged applications:
 - **API (or server)**: the code and procedures.
 - **Database**: stores information and makes it accessible to users.
 - **User interface (UI): **makes it easier for users to use the application.
-When using Restful APIs to perform CRUD operations and making API requests, ```GET```, ```POST```, ```PUT```, and ```DELETE```  are the most commonly used HTTP methods. GraphQL uses two types of API requests:<a href="https://graphql.org/learn/queries/" target="_blank" rel="noopener noreferrer"> Queries and Mutations</a>**.** A query is used to read the data while mutation is used to create, update and delete the data, which we’ll do once we’ve built our task manager.
+When using Restful APIs to perform CRUD operations and making API requests, ```GET```, ```POST```, ```PUT```, and ```DELETE```  are the most commonly used HTTP methods. GraphQL uses two types of API requests:<a href="https://graphql.org/learn/queries/" target="_blank"> Queries and Mutations</a>**.** A query is used to read the data while mutation is used to create, update and delete the data, which we’ll do once we’ve built our task manager.
 
 ## Why use Hygraph for our Task Manager?
-<a href="https://graphcms.com/" target="_blank" rel="noopener noreferrer">Hygraph,</a> formerly known as GraphCMS, is a backend-only content management system (i.e., a <a href="https://code.pieces.app/blog/how-to-use-sanityio-as-a-headless-cms-in-nextjs" target="_blank" rel="noopener noreferrer">headless CMS</a>) that uses<a href="https://graphql.org/" target="_blank" rel="noopener noreferrer"> GraphQL</a> to query data and perform mutations (or updates) to the content, making it accessible via a single endpoint (API) for display on any device without a built-in frontend or presentation layer. It allows teams to use a single content repository to deliver content from a single source to endless frontend platforms via API, such as websites, mobile apps, TVs, and so on. Hygraph also allows teams to use any preferred tech stack or framework, including popular ones like React, Angular, or Vue. It integrates easily with Netlify, Vercel, and Gatsby Cloud for quick previews.
+<a href="https://graphcms.com/" target="_blank" rel="noopener noreferrer">Hygraph,</a> formerly known as GraphCMS, is a backend-only content management system (i.e., a <a href="https://code.pieces.app/blog/how-to-use-sanityio-as-a-headless-cms-in-nextjs" target="_blank" >headless CMS</a>) that uses<a href="https://graphql.org/" target="_blank" rel="noopener noreferrer"> GraphQL</a> to query data and perform mutations (or updates) to the content, making it accessible via a single endpoint (API) for display on any device without a built-in frontend or presentation layer. It allows teams to use a single content repository to deliver content from a single source to endless frontend platforms via API, such as websites, mobile apps, TVs, and so on. Hygraph also allows teams to use any preferred tech stack or framework, including popular ones like React, Angular, or Vue. It integrates easily with Netlify, Vercel, and Gatsby Cloud for quick previews.
 To follow this tutorial, you need:
 - <a href="https://nodejs.org/en/" target="_blank" rel="noopener noreferrer">Node.js</a>
 - <a href="https://www.npmjs.com/" target="_blank" rel="noopener noreferrer">npm</a>
