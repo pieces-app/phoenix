@@ -1,7 +1,9 @@
 ---
 title: How to Download a YouTube video in MP3 Format with Python
-description: Without a doubt, YouTube is the most popular video-sharing platform in the world. As a software developer, you may encounter a situation where you want to script something to download videos either in audio or video format. To achieve this, you can use <a href="https://pytube.io/en/latest/" target="_blank" rel="noopener noreferrer">pytube</a>. At its core, pytube is a lightweight, dependency-free library written in Python. Not only does it include a command-line utility that allows you to download videos right from the terminal, but it also makes pipelining easy by allowing you to specify callback functions for different download events.
+description: Without a doubt, YouTube is the most popular video-sharing platform in the world. As a software developer, you may encounter a situation where you want to script something to download videos either in audio or video format. To achieve this, you can use pytube. At its core, pytube is a lightweight, dependency-free library written in Python. Not only does it include a command-line utility that allows you to download videos right from the terminal, but it also makes pipelining easy by allowing you to specify callback functions for different download events.
 ---
+
+<link rel="canonical" href="https://code.pieces.app/blog/how-to-download-a-youtube-video-in-mp3-format-with-python" />
 
 export const Tag = props => {
     return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
@@ -16,10 +18,7 @@ export const GridFlexRow = props => {
         justifyContent: 'start',
         flexWrap: "nowrap"
     }}>{props.children}</div>;
-
 };
-
-<link rel="canonical" href="https://code.pieces.app/blog/how-to-download-a-youtube-video-in-mp3-format-with-python" />
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dc2d82a2feda7b102a5316_pytube_7c68fae2281f3a139bc380c73a277eb2_2000.jpeg)
 <GridFlexRow><Tag>python</Tag> <Tag>video</Tag></GridFlexRow>
@@ -35,93 +34,151 @@ Without a doubt, YouTube is the most popular video-sharing platform in the world
 - Fundamental knowledge of Python
 
 ## Step 1: Create a Virtual Environment
+
 When working on any Python project that involves the installation and use of third party dependency-free libraries, the first thing to do is create a virtual environment. A virtual environment is a Python environment where the libraries and scripts installed into it are isolated from those installed in other virtual environments. The virtual environment retains the libraries installed in the “system” Python by default. For example, the library installed as part of your operating system can allow you to create a “virtual” isolated Python installation, and you install packages into that virtual installation.
+
 By virtue of creating a virtual environment, when you switch projects, you can simply create a new virtual environment and not have to worry about breaking the packages installed in the other environments. It is one of the most important tools used by Python developers. With a virtual environment, you will have full control over the libraries used in the project.
+
 In this tutorial, you will use the pytube and Flask APIs.
+
 To create a virtual environment, go to your project’s directory and run ```venv```:
 
-For Unix/macOS
+For Unix/macOS:
 
-```
+```shell
 python3 -m venv env
 ```
 
 <a href="https://user-c185237a-4958-4e1e-a972-57cc037976e7-agyqaaz4hq-uc.a.run.app/?p=0aea42a721" target="_blank" rel="noopener noreferrer">Save this code</a>
 
-For Windows
+For Windows:
+
+```bash
+python -m venv env
 ```
-python -m venv env```<a href="https://user-c185237a-4958-4e1e-a972-57cc037976e7-agyqaaz4hq-uc.a.run.app/?p=6adf4b9147" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+<a href="https://user-c185237a-4958-4e1e-a972-57cc037976e7-agyqaaz4hq-uc.a.run.app/?p=6adf4b9147" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 Before you can start installing or using packages in your virtual environment, you’ll need to activate it. Activating a virtual environment will put the virtual environment-specific ```python``` and ```pip``` executables into your shell’s ```PATH```.
-For Unix/macOS
+
+For Unix/macOS:
+```shell
+source env/bin/activate
 ```
-source env/bin/activate```<a href="https://user-c185237a-4958-4e1e-a972-57cc037976e7-agyqaaz4hq-uc.a.run.app/?p=53d84bbbf9">Save this code</a>
+
+<a href="https://user-c185237a-4958-4e1e-a972-57cc037976e7-agyqaaz4hq-uc.a.run.app/?p=53d84bbbf9">Save this code</a>
+
 For Windows
+```bash
+.\\env\\Scripts\\activate
 ```
-.\\env\\Scripts\\activate```<a href="https://user-c185237a-4958-4e1e-a972-57cc037976e7-agyqaaz4hq-uc.a.run.app/?p=06c640aa00">Save this code</a>
+
+<a href="https://user-c185237a-4958-4e1e-a972-57cc037976e7-agyqaaz4hq-uc.a.run.app/?p=06c640aa00">Save this code</a>
+
 ## Step 2: Install the Needed Libraries
 To complete the environment setup, you’ll need to install ```Flask``` and ```pytube```. You install these by creating a ```requirements.txt``` file. The ```requirements.txt``` file is a text file where you list the libraries required for your application. It is the convention typically used by developers that makes it easier to manage applications where numerous libraries exist as dependencies. Although you will not use the Flask API library until later in the tutorial, follow these steps to install it now:
 - Open the folder in Visual Studio Code.
 - Create a new file.
 - Name the file ```requirements.txt``` and add the following text:
-```
-flask
-requests
-pytube```<a href="https://user-c185237a-4958-4e1e-a972-57cc037976e7-agyqaaz4hq-uc.a.run.app/?p=e25c45987e" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+```flask requests pytube```
+
+<a href="https://user-c185237a-4958-4e1e-a972-57cc037976e7-agyqaaz4hq-uc.a.run.app/?p=e25c45987e" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 - Save the file by clicking Ctrl-S on Windows, or Cmd-S if you are using MacOS.
+
 - Return to the command or terminal window and perform the installation by using pip to run the following command:
+
+```shell
+pip install -r requirements.txt
 ```
-pip install -r requirements.txt```<a href="https://user-c185237a-4958-4e1e-a972-57cc037976e7-agyqaaz4hq-uc.a.run.app/?p=3b9f4b90e5" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+<a href="https://user-c185237a-4958-4e1e-a972-57cc037976e7-agyqaaz4hq-uc.a.run.app/?p=3b9f4b90e5" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 This command will download and install the necessary libraries and their dependencies.
+
 ## Step 3: Collect the Input URL and Extract Audio
+
 The next step is to get the URL of the video from which the audio will be extracted. However, before doing that, you need to import the necessary libraries (i.e., pytube and OS). While the pytube library provides the facilities to download YouTube videos from the web, the OS library provides a portable way of using operating-system-dependent functionality:
-```
+
+```shell
 from pytube import YouTube
-import os```<a href="https://user-c185237a-4958-4e1e-a972-57cc037976e7-agyqaaz4hq-uc.a.run.app/?p=2607449932" target="_blank" rel="noopener noreferrer">Save this code</a>
-With the libraries imported, you’ll now get the url of the video to be downloaded from the user. To do this, use the ```input()``` function to get the url from the user and the ```YouTube()``` function as imported from the pytube library to save it as a variable for downloading:
+import os
 ```
+<a href="https://user-c185237a-4958-4e1e-a972-57cc037976e7-agyqaaz4hq-uc.a.run.app/?p=2607449932" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+With the libraries imported, you’ll now get the url of the video to be downloaded from the user. To do this, use the ```input()``` function to get the url from the user and the ```YouTube()``` function as imported from the pytube library to save it as a variable for downloading:
+
+```python
 yt = YouTube(str(input("Enter the URL of the video you want to download: \\n>> "))}
 ```
 
 <a href="https://user-c185237a-4958-4e1e-a972-57cc037976e7-agyqaaz4hq-uc.a.run.app/?p=cca64c9db0" target="_blank" rel="noopener noreferrer">Save this code</a>
 Since the audio of the YouTube video is the focus of this tutorial, you’ll extract the audio from the variable you created in the previous block of code. To do this, you need to use the ```streams()``` and ```filter()``` methods while setting the ```only_audio``` Boolean parameter as ```True```, signifying that only the audio should be extracted:
-```
+
+```python
 audio = yt.streams.filter(only_audio = True).first(}
 ```
 
 <a href="https://user-c185237a-4958-4e1e-a972-57cc037976e7-agyqaaz4hq-uc.a.run.app/?p=3015438dfc" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 ## Step 4: Set a Destination for Saved Files
+
 The next step is to determine the destination where the file will be saved. This can be done by creating a variable called destination that will hold the path to your video as a string. In this instance, there will be an option for the user to save the audio file in the same directory as the project:
-```
+
+```python
 print("Enter the destination (leave blank for current directory)")
-destination = str(input(">> ")) or '.'```<a href="https://user-c185237a-4958-4e1e-a972-57cc037976e7-agyqaaz4hq-uc.a.run.app/?p=237941b8f5" target="_blank" rel="noopener noreferrer">Save this code</a>
-## Step 5: Download and Save the File
-The final step is to download and save the audio file:
-<a href="https://user-c185237a-4958-4e1e-a972-57cc037976e7-agyqaaz4hq-uc.a.run.app/?p=237941b8f5">https://user-c185237a-4958-4e1e-a972-57cc037976e7-agyqaaz4hq-uc.a.run.app/?p=237941b8f5</a>
-You can see from the line of code above that the ```output_path``` parameter is set as the destination variable you created earlier to hold the file path for the audio file. You will then save the audio file as .mp3:
+destination = str(input(">> ")) or '.'
 ```
+
+<a href="https://user-c185237a-4958-4e1e-a972-57cc037976e7-agyqaaz4hq-uc.a.run.app/?p=237941b8f5" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+## Step 5: Download and Save the File
+
+The final step is to download and save the audio file:
+
+<a href="https://user-c185237a-4958-4e1e-a972-57cc037976e7-agyqaaz4hq-uc.a.run.app/?p=237941b8f5">https://user-c185237a-4958-4e1e-a972-57cc037976e7-agyqaaz4hq-uc.a.run.app/?p=237941b8f5</a>
+
+You can see from the line of code above that the ```output_path``` parameter is set as the destination variable you created earlier to hold the file path for the audio file. You will then save the audio file as .mp3:
+
+```python
 base, ext = os.path.splitext(out_file)
 new_file = base + '.mp3'
 os.rename(out_file, new_file}
 ```
 
 <a href="https://user-c185237a-4958-4e1e-a972-57cc037976e7-agyqaaz4hq-uc.a.run.app/?p=641447bb49" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 With the video saved, you’ll then display a result of success for the user to know that the audio has been successfully downloaded:
-```
+
+```python
 print(yt.title + " has been successfully downloaded in .mp3 format."}
 ```
 
 <a href="https://user-c185237a-4958-4e1e-a972-57cc037976e7-agyqaaz4hq-uc.a.run.app/?p=80084f8fc9" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 ## Step 6: Test in the Terminal
+
 Next, you can test the program you’ve built on the terminal. To do this, go to the project directory in your terminal and run the command shown below:
+
+```shell
+python <file_name>.py
 ```
-python <file_name>.py```<a href="https://user-c185237a-4958-4e1e-a972-57cc037976e7-agyqaaz4hq-uc.a.run.app/?p=82ad46b468" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+<a href="https://user-c185237a-4958-4e1e-a972-57cc037976e7-agyqaaz4hq-uc.a.run.app/?p=82ad46b468" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 ## Step 7: Use Flask to Build a Web Application to Prioritize Functionality
 Flask is a micro web framework written in Python that is used to develop web applications. In this tutorial, you’ll use Flask to create a web application that will take the format shown below.
+
 Flask uses templates to expand the functionality of a web application while maintaining a simple and organized file structure. Templates are enabled using the Jinja2 template engine, which was installed when you downloaded Flask. Templates also allow data to be shared and processed before being turned into content and sent back to the client.
+
 Now, create a folder called ```templates``` in your project folder. In that folder, you’ll create two files – ```index.html``` and ```results.html```. This will form the baseline for your web application’s frontend.
+
 At this point, your project folder should look like this:
+
 Add the following block of code to the ```index.html``` file:
-```
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -146,9 +203,14 @@ Add the following block of code to the ```index.html``` file:
       </div>
   </div>
 </body>
-</html>```<a href="https://c185237a-4958-4e1e-a972-57cc037976e7.pieces.cloud/?p=987c449505" target="_blank" rel="noopener noreferrer">Save this code</a>
-Add this to the ```results.html``` file:
+</html>
 ```
+
+<a href="https://c185237a-4958-4e1e-a972-57cc037976e7.pieces.cloud/?p=987c449505" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+Add this to the ```results.html``` file:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -169,9 +231,14 @@ Add this to the ```results.html``` file:
         </div>
     </div>
 </body>
-</html>```<a href="https://c185237a-4958-4e1e-a972-57cc037976e7.pieces.cloud/?p=377a498957" target="_blank" rel="noopener noreferrer">Save this code</a>
-Now, edit the ```app.py``` file you created earlier to reflect the flask ```POST``` and ```GET``` methods. The file should look like this:
+</html>
 ```
+
+<a href="https://c185237a-4958-4e1e-a972-57cc037976e7.pieces.cloud/?p=377a498957" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+Now, edit the ```app.py``` file you created earlier to reflect the flask ```POST``` and ```GET``` methods. The file should look like this:
+
+```python
 from flask import Flask, redirect, url_for, request, render_template, session
 from pytube import YouTube
 import os
@@ -194,15 +261,26 @@ def index_post():
 ```
 
 <a href="https://c185237a-4958-4e1e-a972-57cc037976e7.pieces.cloud/?p=7ad74295d5" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 At this point, with your web application created, you can test it. To do this, open your terminal and run the following command to set the Flask runtime to development. This implies that each time there is a change, the server will automatically reload:
-```
+
+```shell
 # Windows
 set FLASK_ENV=development
 # Linux/macOS
-export FLASK_ENV=development```<a href="https://c185237a-4958-4e1e-a972-57cc037976e7.pieces.cloud/?p=37dc4c967d" target="_blank" rel="noopener noreferrer">Save this code</a>
-Then, run the application!
+export FLASK_ENV=development
 ```
-flask run```<a href="https://c185237a-4958-4e1e-a972-57cc037976e7.pieces.cloud/?p=7ec848b148" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+<a href="https://c185237a-4958-4e1e-a972-57cc037976e7.pieces.cloud/?p=37dc4c967d" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+Then, run the application!
+
+```shell
+flask run
+```
+<a href="https://c185237a-4958-4e1e-a972-57cc037976e7.pieces.cloud/?p=7ec848b148" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 After running the command above, open the application in a browser by navigating to http://localhost:5000. You should see the form displayed. Congratulations!
+
 ## Conclusion
 Finally, it’s important to note that this tutorial only touches on one of the features of pytube. Pytube as a Python module complements applications in a plethora of situations. For instance, apart from supporting the download of a YouTube video in audio or video format, pytube also enables the download of a complete YouTube playlist. Furthermore, the library integrates track caption support, and has the ability to capture thumbnail URLs.

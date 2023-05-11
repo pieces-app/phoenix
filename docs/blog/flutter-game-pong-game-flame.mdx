@@ -1,7 +1,9 @@
 ---
-title: Flutter Game: Build a Pong Game with Flutter Flame
+title: Flutter Game | Build a Pong Game with Flutter Flame
 description: Building apps with Flutter is really cool. You know what’s cooler? Building games. This article will show you how to build a Flutter game from start to finish with a Flutter Flame tutorial.
 ---
+
+<link rel="canonical" href="https://code.pieces.app/blog/flutter-game-pong-game-flame" />
 
 export const Tag = props => {
     return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
@@ -19,8 +21,6 @@ export const GridFlexRow = props => {
 
 };
 
-<link rel="canonical" href="https://code.pieces.app/blog/flutter-game-pong-game-flame" />
-
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd522ced888d66a24221d4_flutter-pong_d4e57c6c71cfed2a205d0cbf935b2891_2000.jpeg)
 <GridFlexRow><Tag>flutter</Tag> <Tag>flame</Tag></GridFlexRow>
 
@@ -28,12 +28,14 @@ export const GridFlexRow = props => {
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 
 Building apps with Flutter is really cool. You know what’s cooler? Building games. This article will show you how to build a Flutter game from start to finish with a Flutter Flame tutorial.
+
 Let’s create a Flutter game! We can build the classic pong game in Flutter using the 🔥<a href="https://flame-engine.org/" target="_blank" rel="noopener noreferrer">Flame</a> game engine.
 
 Flame is a 2D game engine built for Flutter. It’s built on top of the framework and simplifies game development. Flame provides us with everything we’ll need to build a flutter game.
-![](https://uploads-ssl.webflow.com/video/744509891?h=fee931dbde&amp;app_id=122963" width="384" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="final_demo"></ifr)
 
-Some of the concepts we’ll learn are: flutter game development
+![](https://uploads-ssl.webflow.com/video/744509891?h=fee931dbde&amp;app_id=122963)
+
+Some of the concepts we’ll learn are: flutter game development:
 - Collision detection in Flame
 - Building a simple AI opponent
 - Using Flame audio flutter
@@ -43,26 +45,35 @@ Some of the concepts we’ll learn are: flutter game development
 Grab a coffee; let’s get started! Flutter game on! 🎮
 ## Flutter Game: Getting Started with game development in flutter
 Let’s create a new flutter project and enter the folder with the following commands:
-```
+
+```shell
 flutter create pong_game
 cd pong_game
 ```
+
 Next, add the required Flame dependencies:
-```
+
+```shell
 flutter pub add flame
 ```
+
 For the game, our file structure will look like this:
-```
+
+```text
 -lib/
 ··|---main.dart
 ··|---pong_game.dart
 ··|---player_paddle.dart
 ··|---ball.dart
 ··|---ai_paddle.dart
-··|---scoretext.dart```<a href="https://takrutvik.pieces.cloud/?p=fc3248810b" target="_blank" rel="noopener noreferrer">Save this code</a>
+··|---scoretext.dart
+```
+
+<a href="https://takrutvik.pieces.cloud/?p=fc3248810b" target="_blank" rel="noopener noreferrer">Save this code</a>
 
 We’ll update our main.dart with the following code:
-```
+
+```dart
 void main() {
   final game = PongGame();
   runApp(GameWidget(game: game));
@@ -72,7 +83,8 @@ void main() {
 <a href="https://takrutvik.pieces.cloud/?p=310c4baaa2" target="_blank" rel="noopener noreferrer">Save this code</a>
 
 Now, in the pong_game.dart file, we’ll add the the following:
-```
+
+```dart
 class PongGame extends FlameGame
  with HasCollisionDetection, HasKeyboardHandlerComponents {
  PongGame();
@@ -96,8 +108,10 @@ class PongGame extends FlameGame
 <a href="https://takrutvik.pieces.cloud/?p=bc43458be4" target="_blank" rel="noopener noreferrer">Save this code</a>
 
 Here, we have the ```PongGame``` declared. Notice that it has two mixings: ```HasCollisionDetection``` and ```HasKeyboardHandlerComponents```. This will let Flame know that our game is going to use these two things and allow us to work with collision detection and take keyboard inputs at the component level.
+
 We’re also overriding the ```onKeyEvent``` here and returning ```KeyEventResult.handled```. This is because if you’re on macOS, then you’ll notice key press sounds as you’re receiving keyboard inputs in the game. Returning ```KeyEventResult.handled``` will disable those sounds.
-Build &amp; run:
+
+Build & run:
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632b2d002e460d860b3f4970_image4_72ed6baeec79e636ccc5b099718d2d57_800.png)
 
@@ -106,6 +120,7 @@ Before moving on to building our game, let’s take a look at how collision dete
 
 ### HitBoxes
 In many game systems, collision detection works by having a HitBox around the game object. HitBoxes react to collisions and can send callbacks with the collision information.
+
 Flame supports adding different HitBoxes to our components like ```PolygonHitBox```, ```RectangleHitBox```, ```CircleHitBox``` or ```ScreenHitBox```, which is usually used for declaring the world boundaries/screen edges that components may collide with.
 
 **Note:** We can use multiple HitBoxes on a component to provide more accurate collision detection for it. For example, a game character can have separate HitBoxes around its arms, its legs, and so on.
@@ -115,6 +130,7 @@ For this, we first need to add the ```HasCollisionDetection``` mixing to our Fla
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632b2cff2e460d6b313f4948_image9_dea7a62fbd18753619d0050c38babbb5_800.png)
 For the components, we want to get notified when they collide with other bodies that are capable of collision. For this, we’ll add the ```CollisionCallbacks``` mixing to those components.
+
 ```
 class MyComponent extends PositionComponent with CollisionCallbacks {
 
