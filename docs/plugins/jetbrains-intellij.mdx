@@ -53,7 +53,7 @@ export const PluginSection = props => {
     return <GridFlexRow>
         {props.children}
         <div>
-            <p><strong>{props.heading}</strong></p>
+            <h3><strong>{props.heading}</strong></h3>
             <p>{props.text}</p>
         </div>
     </GridFlexRow>
@@ -63,14 +63,14 @@ export const PluginSectionEnd = props => {
     return <GridFlexRowEnd>
         {props.children}
         <div>
-            <p><strong>{props.heading}</strong></p>
+            <h3><strong>{props.heading}</strong></h3>
             <p>{props.text}</p>
         </div>
     </GridFlexRowEnd>
 };
 
 export const Spacer = props => {
-    return <div style={{height: "8px"}}></div>
+    return <div style={{height: "16px"}}></div>
 };
 
 export const SpacerW = props => {
@@ -98,6 +98,7 @@ export const CallToAction = props => {
     }}>
         <h3>{props.heading}</h3>
         {props.text}
+        <Spacer></Spacer>
         <InstallButton
             src={"https://plugins.jetbrains.com/plugin/17328-pieces--save-search-share--reuse-code-snippets"}>Get Pieces for JetBrains</InstallButton>
     </div>
@@ -117,7 +118,6 @@ export const CallToAction = props => {
         <Heading style={{marginTop: "16px", fontWeight: "400"}} type={"h2"}>Save Intellij snippets even faster - 100%
             Free!</Heading>
     </div>
-    <Spacer></Spacer>
     <InstallButton src={"https://plugins.jetbrains.com/plugin/17328-pieces--save-search-share--reuse-code-snippets"}>Get
         Pieces for JetBrains</InstallButton>
 </GridFlexRowCenter>
