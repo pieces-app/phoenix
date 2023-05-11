@@ -60,17 +60,17 @@ export const PluginSection = props => {
 };
 
 export const PluginSectionEnd = props => {
-    return <GridFlexRow>
+    return <GridFlexRowEnd>
         {props.children}
         <div>
             <p><strong>{props.heading}</strong></p>
             <p>{props.text}</p>
         </div>
-    </GridFlexRow>
+    </GridFlexRowEnd>
 };
 
-export const Spacer = props => {
-    return <div style={{height: "5px"}}></div>
+export const SpacerW = props => {
+    return <div style={{width: "8px"}}></div>
 };
 
 export const HeaderSpacer = props => {
