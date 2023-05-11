@@ -7,8 +7,9 @@ description: The best IntelliJ plugins are deeply integrated within your IDE. In
 
 export const InstallButton = props => {
     return <a style={{textDecoration: "none"}} target="_blank" href={props.src}>
-        <div style={{ minWidth: "125px", maxWidth: "225px" }}>
+        <div style={{ minWidth: "125px" }}>
             <p style={{
+                padding: "2px 24px",
                 borderRadius: "8px",
                 border: "1px solid grey",
                 fontWeight: "500",
@@ -29,6 +30,16 @@ export const GridFlexRow = props => {
     }}>{props.children}</div>;
 };
 
+export const GridFlexRowEnd = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'end',
+        flexWrap: "wrap",
+        textAlign: "end",
+    }}>{props.children}</div>;
+};
+
 export const GridFlexRowCenter = props => {
     return <div style={{
         display: 'flex',
@@ -39,6 +50,16 @@ export const GridFlexRowCenter = props => {
 };
 
 export const PluginSection = props => {
+    return <GridFlexRow>
+        {props.children}
+        <div>
+            <p><strong>{props.heading}</strong></p>
+            <p>{props.text}</p>
+        </div>
+    </GridFlexRow>
+};
+
+export const PluginSectionEnd = props => {
     return <GridFlexRow>
         {props.children}
         <div>
@@ -100,6 +121,10 @@ export const CallToAction = props => {
 
 <BodySpacer></BodySpacer>
 
+---
+
+<BodySpacer></BodySpacer>
+
 <PluginSection heading={"Share IntelliJ Idea code snippets without breaking your coding flow"}
                text={"Share code snippets in Slack or Teams with a simple right-click action using the Pieces plugin for IntelliJ. Your coworkers receive both the snippet and its related metadata - tags, descriptions and more."}>
     <Image width={"550px"} src={"/assets/graphics/jetbrains/plugins_share_jetbrains.png"}/>
@@ -107,15 +132,14 @@ export const CallToAction = props => {
 
 <BodySpacer></BodySpacer>
 
-<PluginSection heading={"Auto-save IntelliJ snippets"}
+<PluginSectionEnd heading={"Auto-save IntelliJ snippets"}
                text={"After you add the plugin to IntelliJ, Pieces helps you auto save frequently used or useful snippets based on your behavior. Since you might not realize you need them later until it’s too late."}>
     <Image width={"550px"} src={"/assets/graphics/jetbrains/plugins_auto_save_jetbrains.png"}/>
-</PluginSection>
+</PluginSectionEnd>
 
 <BodySpacer></BodySpacer>
 
 <CallToAction heading={"Call to Action"} text={"Heres the call to action text just seeing what it looks like to resolve this error."}></CallToAction>
-
 
 <BodySpacer></BodySpacer>
 
@@ -126,7 +150,7 @@ export const CallToAction = props => {
 
 <BodySpacer></BodySpacer>
 
-<PluginSection heading={"IntelliJ Auto-Complete"}
+<PluginSectionEnd heading={"IntelliJ Auto-Complete"}
                text={"Our IntelliJ code completion plugin suggests auto-completions as you type in your IDE, trained on your saved Pieces snippets. Auto-complete in IntelliJ with no size limit!"}>
     <Image width={"550px"} src={"/assets/graphics/jetbrains/plugins_auto_complete_jetbrains.png"}/>
-</PluginSection>
+</PluginSectionEnd>
