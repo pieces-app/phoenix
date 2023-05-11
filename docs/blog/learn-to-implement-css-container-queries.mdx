@@ -290,20 +290,26 @@ There is a polyfill under development that you can use for container queries tod
 This table below shows an up-to-date list of browser support:
 
 ✅  Available in Chromium 106 and up.
+
 Experimental support first appeared in Chromium 91.0.4459.0 with the #enable-container-queries flag enabled
+
 🚫 No support
 
 ✅ Available in Safari 16.0 and up.
+
 Experimental support first appeared in Safari Technology Preview 142.
 
 To stay up-to-date regarding browser support, you can follow these tracking issues:
+
 - Blink/Chromium: <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=1145970" target="_blank" rel="noopener noreferrer">Issue #1145970</a> – Fixed (Closed)
 - Gecko/Firefox: <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1744221" target="_blank" rel="noopener noreferrer">Issue #1744221</a> – NEW
 - WebKit/Safari: <a href="https://bugs.webkit.org/show_bug.cgi?id=229659" target="_blank" rel="noopener noreferrer">Issue #229659</a> – Resolved/Fixed
 
 ### Polyfill
 A polyfill is a piece of code (or plugin) that provides the technology that you, the developer, expect the browser to provide natively. You can learn more about it in this article: <a href="https://remysharp.com/2010/10/08/what-is-a-polyfill/" target="_blank" rel="noopener noreferrer">What is a Polyfill?</a>
+
 Polyfill is not like ```cqfill```, <a href="https://www.bram.us/2021/04/27/a-first-look-at-cqfill-a-polyfill-for-css-container-queries/" target="_blank" rel="noopener noreferrer">which is covered here</a>. Characteristics of a polyfill for container queries include the following:
+
 - It does not require you to declare a separate custom property ```-–css-contain``` that duplicates the value of the ```contain``` property.
 - It does not require you to duplicate your ```@container``` rule into a ```@media``` rule.
 - It parses the newer container queries syntax that uses the ```container-type``` + ```container-name``` properties (shorthanded to ```container```).
@@ -311,7 +317,9 @@ Polyfill is not like ```cqfill```, <a href="https://www.bram.us/2021/04/27/a-fir
 Because of this, the polyfill is a drop-in piece of code that will auto-magically do its thing.
 
 A polyfill transpiles CSS code on the client-side and implements container query functionality using ```ResizeObserver``` and ```MutationObserver```.
+
 Additionally, this polyfill does not rely on ```requestAnimationFrame```, which makes it more performant.
+
 Do note that this polyfill comes with a few limitations:
 - Currently, only a small number of queries are supported. Only the following values are supported: ```min-width```, ```max-width```, ```min-height```, and ```max-height```.
 - No layering of CQs inside of other media queries is supported; only top-level container queries are.
