@@ -8,7 +8,7 @@ export const GridFlexRow = props => {
 };
 
 export const PluginButton = props => {
-    return <div style={{ padding: "8px", border: "2px solid grey", borderRadius: "16px", marginRight: "16px", textAlign: "center" }}>
+    return <div style={{ padding: "8px 32px", border: "2px solid grey", borderRadius: "16px", marginRight: "16px", textAlign: "center", maxHeight: "225px" }}>
         { props.children }
         <p style={{ marginTop: "0px" }}><strong>{ props.text }</strong></p>
     </div>
@@ -41,13 +41,13 @@ Our browser and IDE plugins are deeply integrated into your development tools, a
 
 <GridFlexRow>
     <PluginButton text={"VS Code IDE"}>
-        <Image src={"/assets/logos/vscode_logo.png"} />
+        <Image width="75" src={"/assets/logos/vscode_logo.png"} />
     </PluginButton>
     <PluginButton src={"/assets/logos/jetbrains_logo.png"} text={"Jetbrains IDE"}>
-        <Image src={"/assets/logos/jetbrains_logo.png"} />
+        <Image width="75" src={"/assets/logos/jetbrains_logo.png"} />
     </PluginButton>
     <PluginButton src={"/assets/logos/ue_logo.png"} text={"UltraEdit IDE"}>
-        <Image src={"/assets/logos/ue_logo.png"} />
+        <Image width="75" src={"/assets/logos/ue_logo.png"} />
     </PluginButton>
 </GridFlexRow>
 
@@ -57,10 +57,10 @@ Our browser and IDE plugins are deeply integrated into your development tools, a
 
 <GridFlexRow>
     <PluginButton text={"Chrome"}>
-        <Image src={"/assets/logos/ue_logo.png"} />
+        <Image width="75" src={"/assets/logos/chrome_logo.png"} />
     </PluginButton>
     <PluginButton text={"Edge"}>
-        <Image src={"/assets/logos/edge_logo.png"} />
+        <Image width="75" src={"/assets/logos/edge_logo.png"} />
     </PluginButton>
 </GridFlexRow>
 
@@ -70,10 +70,10 @@ Our browser and IDE plugins are deeply integrated into your development tools, a
 
 <GridFlexRow>
     <PluginButton text={"GitHub"}>
-        <Image src={"/assets/logos/github_logo.png"} />
+        <Image width="75" src={"/assets/logos/github_logo.png"} />
     </PluginButton>
     <PluginButton text={"Teams"}>
-        <Image src={"/assets/logos/teams_logo.png"} />
+        <Image width="75" src={"/assets/logos/teams_logo.png"} />
     </PluginButton>
 </GridFlexRow>
 
