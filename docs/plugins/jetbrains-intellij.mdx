@@ -69,6 +69,10 @@ export const PluginSectionEnd = props => {
     </GridFlexRowEnd>
 };
 
+export const Spacer = props => {
+    return <div style={{height: "8px"}}></div>
+};
+
 export const SpacerW = props => {
     return <div style={{width: "8px"}}></div>
 };
@@ -113,6 +117,7 @@ export const CallToAction = props => {
         <Heading style={{marginTop: "16px", fontWeight: "400"}} type={"h2"}>Save Intellij snippets even faster - 100%
             Free!</Heading>
     </div>
+    <Spacer></Spacer>
     <InstallButton src={"https://plugins.jetbrains.com/plugin/17328-pieces--save-search-share--reuse-code-snippets"}>Get
         Pieces for JetBrains</InstallButton>
 </GridFlexRowCenter>
@@ -139,7 +144,7 @@ export const CallToAction = props => {
 
 <BodySpacer></BodySpacer>
 
-<CallToAction heading={"One of the best IntelliJ plugins for web development, thoughtfully designed by fellow developers"} text={"Runs locally on your machine with the option to connect to the Cloud for sharing, backup, and sync. Fully keyboard shortcut-enabled, Deeply embedded into JetBrains - save, edit, classify, share your snippets entirely from Pieces: the must have plugin for IntelliJ"}></CallToAction>
+<CallToAction heading={"One of the best IntelliJ plugins for web development, thoughtfully designed by fellow developers"} text={"Runs local - or connect to the Cloud for sharing and more. Deeply embedded into JetBrains - save, edit, classify, share your snippets entirely from Pieces: the must have plugin for IntelliJ."}></CallToAction>
 
 <BodySpacer></BodySpacer>
 
