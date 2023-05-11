@@ -244,6 +244,7 @@ We create a new dart file called timezones.dart. Inside this file, we load and i
 <a href="https://aseem.pieces.cloud/?p=95d04686fd">Save to Pieces</a>
 
 We construct the TimeZoneLibrary by using the constructor which needs the dylib path. Once the library is initialized, we call the different methods present inside it.
+
 We will be integrating the NSTimeZone inside Dart and calling some of its functions:
 - name: The geopolitical region ID that identifies the receiver.
 - secondsFromGMT: The current difference in seconds between the receiver and Greenwich Mean Time.
@@ -270,12 +271,16 @@ The current issues with multithreading are a limitation to Dart’s experimental
 - While FFI Gen supports converting Dart functions to Objective-C blocks, most Apple APIs don’t guarantee on which thread a callback will run.
 - Dart isolates are not the same as threads. Isolates run on threads but aren’t guaranteed to run on any particular thread. The VM can change which thread an isolate is running on without warning.
 - Apple APIs are not<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/ThreadSafetySummary/ThreadSafetySummary.html"> thread-safe</a>.
+
 Since the VM can change the thread in which an isolate can run, this means a callback created in one isolate might be invoked on a different or no isolate. However, there are some tweaks around this, as implemented in <a href="https://github.com/dart-lang/http/blob/master/pkgs/cupertino_http/src/CUPHTTPClientDelegate.m">cupertino:http</a>.
 
 ## FFI Programming: Testing FFIGen
 Up to this point, we’ve learned how to generate bindings and consume them from a Dart CLI. In this section, we’ll see how to test the generated bindings.
+
 We’ll install the dependencies<a href="https://pub.dev/packages/yaml"> YAML</a> and<a href="https://pub.dev/packages/logging"> logging</a> and create a file called ffi_2_18_test.
-Note: The tests should follow the naming pattern <name>_test.dart.
+
+> Note: The tests should follow the naming pattern _test.dart.
+
 The YAML dependency helps in the parsing of a YAML file, whereas logging provides us with the APIs useful for logging (based on the configuration as specified).
 
 ### **Set up Logging**
@@ -284,9 +289,11 @@ We’ll configure the logging level and add a handler for the log messages. The 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/637e8a6d15913983d99cd885_image25_6b28a8793c4e6721234f0fed3de7f534_800.png)
 
 <a href="https://aseem.pieces.cloud/?p=3548498159">Save to Pieces</a>
+
 The function logWarnings is called inside setUpAll. The function registered under setUpAll will be run once, before all of the tests.
 
 **Test for NSURLCache**
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/637e8a6e15913986939cd898_image27_983602cbdf4bb69213f01e1c45d9dc6d_800.png)
 
 <a href="https://aseem.pieces.cloud/?p=0b98428212">Save to Pieces</a>
@@ -296,6 +303,7 @@ We’ll begin writing a test using the test method. The first thing we do is cre
 Next, we use the<a href="https://pub.dev/documentation/yaml/latest/yaml/loadYaml.html"> loadYaml</a> function, which loads a single document from the YAML string. Since this method expects the parameter to be a string, we use the readAsStringSync to convert the file contents into a string synchronously.
 
 The return value is mostly normal Dart objects. Since we are using the YAML file, we specify the result as<a href="https://pub.dev/documentation/yaml/latest/yaml/YamlMap-class.html"> YamlMap</a>. YAML mappings support some key types that the default Dart map implementation doesn’t have.
+
 Next, we use the<a href="https://pub.dev/documentation/ffigen/latest/ffigen/Config-class.html"> Config</a> from the FFI Gen to create the configuration required for testing from the above YAML map. Finally, we use <a href="https://pub.dev/documentation/ffigen/latest/ffigen/parse.html">parse</a> to generate the bindings.
 
 The output from the above step is compared against the strings; for instance:
@@ -334,7 +342,6 @@ It generates the config file during the runtime and then it gets compared with t
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/637e8a6e159139d8fa9cd890_image17_5742967ac62bdc07adbb10a4339d4b24_800.png)
 
 ## Conclusion
-
 In this article, we talked about FFI (Foreign Function Interface) and how to use it with Dart. It's a new feature in Dart 2.18 but still considered experimental. We showed how to create Dart CLI apps that connect to Objective-C libraries and explained different ways to set up the ffi bindings. Lastly, we tested our configurations.
 
 Interested in learning more about <a href="https://code.pieces.app/blog/dart-on-cli-foundations">Dart on CLI: Foundations</a>?
