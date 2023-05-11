@@ -6,7 +6,7 @@ description: The best IntelliJ plugins are deeply integrated within your IDE. In
 <link rel="canonical" href="https://code.pieces.app/plugins/jetbrains-intellij"/>
 
 export const InstallButton = props => {
-    return <a style={{textDecoration: "none"}} target="_blank" href={ props.src }>
+    return <a style={{textDecoration: "none"}} target="_blank" href={props.src}>
         <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
             <p style={{
                 padding: "8px 20px",
@@ -69,14 +69,14 @@ export const CallToAction = props => {
         padding: "32px",
         border: "1px solid gray",
         borderRadius: "16px",
-        backgroundImage: "url(/assets/graphics/robot_tree_farm_lighter.png)",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center"
     }}>
         <h3>{props.heading}</h3>
         {props.text}
-        <InstallButton src={ "https://plugins.jetbrains.com/plugin/17328-pieces--save-search-share--reuse-code-snippets" }>{props.button}</InstallButton>
+        <InstallButton
+            src={"https://plugins.jetbrains.com/plugin/17328-pieces--save-search-share--reuse-code-snippets"}>{props.button}</InstallButton>
     </div>
 };
 
@@ -84,14 +84,18 @@ export const CallToAction = props => {
 
 <GridFlexRowCenter>
 
-    <Heading style={{ textAlign: "center" }} type={"h1"}>The best IntelliJ plugins are backed by the fastest, smartest Micro-Repo.</Heading>
+    <Heading style={{textAlign: "center"}} type={"h1"}>The best IntelliJ plugins are backed by the fastest, smartest
+        Micro-Repo.</Heading>
 
-    <div style={{ display: "flex", flexDirection: "row" }}>
-        <Image margin-top={"0px"} margin-bottom={"0px"} border-radius={"20px"} width={"35px"} src={"/assets/logos/jetbrains_logo.png"} />
+    <div style={{display: "flex", flexDirection: "row"}}>
+        <Image margin-top={"0px"} margin-bottom={"0px"} border-radius={"20px"} width={"35px"}
+               src={"/assets/logos/jetbrains_logo.png"}/>
         <Spacer></Spacer>
-        <Heading style={{ marginTop: "16px", fontWeight: "400" }} type={"h2"}>Save Intellij snippets even faster - 100% Free!</Heading>
+        <Heading style={{marginTop: "16px", fontWeight: "400"}} type={"h2"}>Save Intellij snippets even faster - 100%
+            Free!</Heading>
     </div>
-    <InstallButton src={"https://plugins.jetbrains.com/plugin/17328-pieces--save-search-share--reuse-code-snippets"}>Get Pieces for JetBrains</InstallButton>
+    <InstallButton src={"https://plugins.jetbrains.com/plugin/17328-pieces--save-search-share--reuse-code-snippets"}>Get
+        Pieces for JetBrains</InstallButton>
 </GridFlexRowCenter>
 
 ![](/assets/headers/light/plugin_header_jetbrains.png)
@@ -112,17 +116,21 @@ export const CallToAction = props => {
 
 <BodySpacer></BodySpacer>
 
-<CallToAction heading={"One of the best IntelliJ plugins for web development, thoughtfully designed by fellow developers"} text={"Runs locally on your machine with the option to connect to the Cloud for sharing, backup, sync and more. Fully keyboard shortcut-enabled and deeply embedded into JetBrains - save, edit, classify, share your snippets entirely from Pieces: the must have plugin for IntelliJ"} button="Get Pieces for Jetbrains"}></CallToAction>
+<CallToAction
+    heading={"One of the best IntelliJ plugins for web development, thoughtfully designed by fellow developers"}
+    text={"Runs locally on your machine with the option to connect to the Cloud for sharing, backup, sync and more. Fully keyboard shortcut-enabled and deeply embedded into JetBrains - save, edit, classify, share your snippets entirely from Pieces: the must have plugin for IntelliJ"}
+    button="Get Pieces for Jetbrains"}></CallToAction>
 
 <BodySpacer></BodySpacer>
 
 <PluginSection heading={"Access JetBrains snippets in your personal IntelliJ repository"}
                text={"Snippets are auto-classified by language and viewable in your JetBrains TreeView. Click on any snippet to reuse it!"}>
-    <Image width={"550px"} src={"/assets/graphics/jetbrains/plugins_access_jetbrains.png"} />
+    <Image width={"550px"} src={"/assets/graphics/jetbrains/plugins_access_jetbrains.png"}/>
 </PluginSection>
 
 <BodySpacer></BodySpacer>
 
 <PluginSection heading={"IntelliJ Auto-Complete"}
-               text={"Our IntelliJ code completion plugin suggests auto-completions as you type in your IDE, trained on your saved Pieces snippets. Auto-complete in IntelliJ with no size limit!"}><Image width={"550px"}
-    src={"/assets/graphics/jetbrains/plugins_auto_complete_jetbrains.png"}/></PluginSection>
+               text={"Our IntelliJ code completion plugin suggests auto-completions as you type in your IDE, trained on your saved Pieces snippets. Auto-complete in IntelliJ with no size limit!"}>
+    <Image width={"550px"} src={"/assets/graphics/jetbrains/plugins_auto_complete_jetbrains.png"}/>
+</PluginSection>
