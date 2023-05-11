@@ -7,16 +7,15 @@ description: Get Pieces for Developers in your browser. The fastest, smartest AI
 
 export const InstallButton = props => {
     return <a style={{textDecoration: "none"}} target="_blank" href={props.src}>
-        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+        <div style={{ minWidth: "125px", maxWidth: "fit-content"}}>
             <p style={{
-                padding: "8px 20px",
+                padding: "2px 24px",
                 borderRadius: "8px",
-                border: "1px solid #f3f5f6",
-                color: "white",
+                border: "1px solid grey",
                 fontWeight: "500",
-                background: "black",
+                background: "transparent",
+                marginBottom: "8px",
                 marginTop: "3px",
-                marginRight: "16px"
             }}>{props.children}</p>
         </div>
     </a>
@@ -28,6 +27,16 @@ export const GridFlexRow = props => {
         flexDirection: 'row',
         justifyContent: 'start',
         flexWrap: "wrap"
+    }}>{props.children}</div>;
+};
+
+export const GridFlexRowEnd = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'end',
+        flexWrap: "wrap",
+        textAlign: "end",
     }}>{props.children}</div>;
 };
 
@@ -44,14 +53,28 @@ export const PluginSection = props => {
     return <GridFlexRow>
         {props.children}
         <div>
-            <p><strong>{props.heading}</strong></p>
+            <h3><strong>{props.heading}</strong></h3>
             <p>{props.text}</p>
         </div>
     </GridFlexRow>
 };
 
+export const PluginSectionEnd = props => {
+    return <GridFlexRowEnd>
+        {props.children}
+        <div>
+            <h3><strong>{props.heading}</strong></h3>
+            <p>{props.text}</p>
+        </div>
+    </GridFlexRowEnd>
+};
+
 export const Spacer = props => {
-    return <div style={{height: "5px"}}></div>
+    return <div style={{height: "16px"}}></div>
+};
+
+export const SpacerW = props => {
+    return <div style={{width: "8px"}}></div>
 };
 
 export const HeaderSpacer = props => {
@@ -69,15 +92,15 @@ export const CallToAction = props => {
         padding: "32px",
         border: "1px solid gray",
         borderRadius: "16px",
-        backgroundImage: "url(/assets/graphics/robot_tree_farm_lighter.png)",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center"
     }}>
         <h3>{props.heading}</h3>
         {props.text}
+        <Spacer></Spacer>
         <InstallButton
-            src={"https://chrome.google.com/webstore/detail/pieces-save-code-snippets/igbgibhbfonhmjlechmeefimncpekepm"}>{props.button}</InstallButton>
+            src={"https://plugins.jetbrains.com/plugin/17328-pieces--save-search-share--reuse-code-snippets"}>Get Pieces for JetBrains</InstallButton>
     </div>
 };
 
@@ -91,15 +114,13 @@ export const CallToAction = props => {
     <div style={{display: "flex", flexDirection: "row"}}>
         <Image margin-top={"0px"} margin-bottom={"0px"} border-radius={"20px"} width={"35px"}
                src={"/assets/logos/chrome_logo.png"}/>
-        <div style={{width: "8px"}}></div>
-        <Heading style={{marginTop: "16px", fontWeight: "400"}} type={"h2"}>Save Chrome snippets even faster - 100%
-            Free!
-            Free!</Heading>
+        <SpacerW></SpacerW>
+        <Heading style={{marginTop: "16px", fontWeight: "400"}} type={"h2"}>Save Chrome snippets even faster - 100% Free!</Heading>
     </div>
-    <InstallButton>Get Pieces for Chrome</InstallButton>
+    <InstallButton src={"https://chrome.google.com/webstore/detail/pieces-save-code-snippets/igbgibhbfonhmjlechmeefimncpekepm"}>Get Pieces for Chrome</InstallButton>
 </GridFlexRowCenter>
 
-![](/assets/headers/light/plugin_header_vscode.png)
+![](/assets/headers/light/plugin_header_chrome.png)
 
 <BodySpacer></BodySpacer>
 
@@ -120,10 +141,14 @@ export const CallToAction = props => {
 
 <BodySpacer></BodySpacer>
 
-<PluginSection heading={"Find and re-use just the right Chrome code snippets when you need it"}
+<PluginSectionEnd heading={"Find and re-use just the right Chrome code snippets when you need it"}
                text={"Blazing fast, powerful search of your Pieces snippets right inside your editor."}><Image
     width={"550px"} src={"/assets/graphics/chrome/plugins_find_reuse_chrome.png"}></Image>
-</PluginSection>
+</PluginSectionEnd>
+
+<BodySpacer></BodySpacer>
+
+<CallToAction heading={"The must-have snippet app for Chrome, thoughtfully designed by fellow developers"} text={"Runs local - or connect to the Cloud for sharing and more. Deeply embedded into Chrome - save, edit, classify, share your snippets entirely from Pieces: the must have extension for Chrome."}></CallToAction>
 
 <BodySpacer></BodySpacer>
 
@@ -135,9 +160,9 @@ export const CallToAction = props => {
 
 <BodySpacer></BodySpacer>
 
-<PluginSection heading={"Share Chrome snippets without breaking your research flow"}
+<PluginSectionEnd heading={"Share Chrome snippets without breaking your research flow"}
                text={"Share snippets in Slack or Teams with a simple button click. Your colleagues receive both the snippet and its related context - tags, descriptions and more."}>
 
     <Image
         width={"550px"} src={"/assets/graphics/chrome/plugins_share_chrome.png"}></Image>
-</PluginSection>
+</PluginSectionEnd>

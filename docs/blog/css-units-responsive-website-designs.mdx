@@ -3,6 +3,8 @@ title: Why CSS Units Matter to Your Responsive Website Designs
 description: Time is measured, the food we eat is measured, the places we travel to are measured… As humans, we like to give things specific measurements. Units of measurement are standard quantities that are used to express an amount of a certain thing, like meters (distance), kilograms (weight), seconds (time), or Celsius (temperature).
 ---
 
+<link rel="canonical" href="https://code.pieces.app/blog/css-units-responsive-website-designs" />
+
 export const Tag = props => {
     return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
         { props.children }
@@ -19,13 +21,31 @@ export const GridFlexRow = props => {
 
 };
 
-<link rel="canonical" href="https://code.pieces.app/blog/css-units-responsive-website-designs" />
+export const Author = props => {
+    return <div style={{display: "flex", flexDirection: "row", flexWrap: "nowrap"}}>
+        <Image width="35" src={props.src}/>
+        <p style={{marginTop: "0px", marginBottom: "0px"}}>{props.text}</p>
+    </div>
+};
+
+export const AuthorRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap",
+        alignItems: "center",
+    }}>{props.children}</div>
+};
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63fcdaa8f9979771bb2f2e21_cssunits_327924109e361894bf17b97beddadfee_2000.jpeg)
 <GridFlexRow><Tag>css</Tag> <Tag>webdev</Tag></GridFlexRow>
 
 # Why CSS Units Matter to Your Responsive Website Designs
-> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
+
+<AuthorRow>
+    <Author src={"/assets/blog/authors/queendolin_akpan.jpeg"} text={"Queendoline Akpan"}></Author>
+</AuthorRow>
 
 Everything in life is measured.
 Time is measured, the food we eat is measured, the places we travel to are measured… As humans, we like to give things specific measurements. Units of measurement are standard quantities that are used to express an amount of a certain thing, like meters (distance), kilograms (weight), seconds (time), or Celsius (temperature).
@@ -71,6 +91,7 @@ When using Element (```em```), the font sizes of child elements depend on the fo
         <p id= “third”>Mathematics</p>
 </section&gt
 ```
+
 In the code snippet above, we can see that the three paragraphs are all children of the section element.
 ```
 section{
@@ -87,8 +108,11 @@ section{
 
 ```
 In the stylesheet above, the parent element (section) has a font size of 20px. Each paragraph has a unique font sizes that depends on the font size of the parent element.
+
 ```
-1em``` always equals the font size of the parent element. This makes it easy to calculate the font size of each child element in CSS units.
+1em
+```
+always equals the font size of the parent element. This makes it easy to calculate the font size of each child element in CSS units.
 
 The font size of the first paragraph is 40px ( 20px * 2em = 40px).
 Of the second paragraph, 20px ( 20px * 1em = 20px).
@@ -147,10 +171,12 @@ Let’s return to our paragraphs from earlier and give them widths in ```vws```.
  font-weight: bold;
 
 ```
+
 Since ```1vw``` = 1% of the viewport width, ```100vw``` = 100% of the viewport width. Let’s take a look at our paragraphs and how they’ve scaled based on their parameters.
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63fcdaa9f99797750a2f2f27_image3_bf91d00557f09c3c57874122b9ff3fdd_800.png)
 
 Just like the viewport width, the viewport height refers to the height of the visible window on device. ```1vh``` is equivalent to 1% of the viewport height.
+
 So, if an element is set to ```50vh```, in the browser, that element is 50% (half) of the viewport height. The red element in the image below is ```50vh``` high.
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63fcdaa9f99797e6212f2f02_image1_54ab62d59a788be940ca67dcbe505c8b_800.png)
 
@@ -159,7 +185,9 @@ It can be confusing to figure out which CSS units to use in a given scenario. It
 - Use pixels when working with properties aren’t really affected by responsiveness, like ```border-radius```, ```box shadow```, or ```border-width```.
 - When setting font sizes, use ```rem```. Because it points to the root element, make sure that the font size of your root element is either 16px or 10px. (10px might make it easier to calculate ```rem``` values!)
 - Don’t use pixels to set the font sizes of your root elements. If a user tries to manually change their browser’s font size, your webpage will not scale properly. Instead, set your root elements’ font sizes in percentages, as explained below.
+
 If you’ll be working in 16px, use 100% as your font size. With 10px, use 62.5% as your font size.
+
 If your default font size is 16 px and you want to set a font size of 18px, your rem would be 18/16, or 1.125rem. Calculating these ratios while coding is challenging, so I recommend setting your root font size to 10px (62.5%). This way, you can easily divide by 10 and get your values in ```rem```.
 Using the same example, if your default font size is 10px and you want to set a font size to 18px, your rem will be 18/10, or 1.8rem. Easy, right?
 - When working with margins and paddings, use ```em``` units. Because the font size is related to the parent element, and every other property will adjust according to that particular element’s font size, everything can be adjusted at once.
@@ -167,3 +195,4 @@ Using the same example, if your default font size is 10px and you want to set a 
 - Use ```vh``` and ```vw``` when working with elements that depend on the viewport of the website.
 
 ## Conclusion
+Using CSS units might take time to get used to, but with constant practice they will become second nature and you’ll know which unit to use in your frontend development projects.
