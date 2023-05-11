@@ -30,7 +30,9 @@ Building accessible web content and products should be the goal of every develop
 
 ## What is Accessibility?
 Accessibility means providing access to the web and making accommodations available for users who either have disabilities, are underrepresented, or have been marginalized.
+
 In accessibility, products are built so that they benefit users with limited abilities. Accessible products include the web, authoring tools, or agents used to access the internet.
+
 The sole aim of accessibility is to make the web viable for users of all kinds, whether they’re exposed to it by sight, sound, or touch.
 
 ## Why Is Accessibility Important?
@@ -47,14 +49,19 @@ People with limitations have fought for inclusivity and their right to use the w
 <a href="https://en.m.wikipedia.org/wiki/WAI-ARIA" target="_blank" rel="noopener noreferrer">WAI-ARIA</a> is an acronym for Web Accessibility Initiative – Accessible Rich Internet Applications. These are technical principles and specifications written and published by the <a href="https://www.w3.org/" target="_blank" rel="noopener noreferrer">W3C</a> that state how to improve the accessibility of the web.
 
 By adding and enhancing accessible semantics to the HTML, ARIAs offer better descriptions. They use CSS, JavaScript, and related technologies to make web content accessible.
+
 The ARIA principles are commonly used by developers implementing web applications, web browsers, assistive technologies, and other accessibility evaluation tools.
+
 ARIA does not give new characteristics; it only gives descriptions where needed and fills in the gaps. ARIA is necessary when building a product, especially one with consideration for users who are exposed to the web by assistive technology like screen readers and refreshable braille displays.
 
 Consequently, ARIA helps users who have limited visual access to the web. It enables the author to describe the user interface in such a way that the information can be interpreted by assistive technology.
+
 > When a user uses the screen reader, the name, the role, and the state of an element is announced to the user.
 
 For example, a checkbox is announced as a checkbox, including details of what it indicates, and whether it is checked or unchecked.
+
 When a developer writes HTML code, the browser uses the codes to create a Document Object Model (DOM). This is a collection of JavaScript objects that correspond with the HTML elements. This HTML is combined with CSS to form the GUI.
+
 The browser also converts the code to another part called the accessibility tree; this is how the web is made available to users with disabilities.
 
 An<a href="https://www.w3.org/TR/accname-1.1/#dfn-accessibility-tree" target="_blank" rel="noopener noreferrer"> accessibility tree</a> is a structure of accessible elements that represents the user interface of a product on the web:
@@ -62,6 +69,7 @@ An<a href="https://www.w3.org/TR/accname-1.1/#dfn-accessibility-tree" target="_b
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63b43fe0bcb59ae9b0da1061_image1_40821a640877f1774b1c23d0cfe1e291_800.jpg)
 
 The accessibility tree is made of code with semantics. The web filters generic elements like divs. The accessibility tree has lines of code that are less than those in the DOM because they only contain code with descriptions, either with original tags or code written using ARIA.
+
 Further, ARIA can be used to create elements that are not present, like the tab element, size-able widget element, carousel element, etc., and build custom controls.
 
 ## Implementing ARIA on the Web
@@ -73,7 +81,7 @@ There are five important rules that guide developers through using ARIA and impl
 **Rule 1:** Always use the native semantics that have built-in roles instead of altering, taking control of, or adding ARIA roles. This is because no ARIA is better than a bad ARIA. The misdirected focus of creating accessibility can turn to confusion.
 **Rule 2:** Only change the native semantics when absolutely necessary.
 **Rule 3:** Ensure that all the interactive ARIAs are accessible using the keyboard.
-**Rule 4**: Do not use role="presentation" or aria-hidden="true" on a focusable element. This is because the users will have nothing to focus on. In the case of ```aria-hidden```, it can cause the parent of an interactive element to be hidden.
+**Rule 4:** Do not use ```role="presentation"``` or ```aria-hidden="true"``` on a focusable element. This is because the users will have nothing to focus on. In the case of ```aria-hidden```, it can cause the parent of an interactive element to be hidden.
 **Rule 5:** All interactive elements must have an accessible name (the name of the UI element).
 
 ### How to Use ARIA
@@ -96,14 +104,17 @@ There is a pool of ARIA attributes used, but in this article, we’ll talk about
 2. ```aria-label```; This label helps users understand the purpose of an element. The label element is not enough to indicate the element's purpose.
 
 These attributes only work for some elements, like input.
-```
-aria-label``` is useful for creating custom widgets and is used for accessible labeling. It replaces other native labeling systems.
+
+```aria-label``` is useful for creating custom widgets and is used for accessible labeling. It replaces other native labeling systems.
 
 3. ```aria-labelledby```: This is used to reference elements that act as accessible labels. It overrides other labeling systems, including ARIA.
 
 Side note: ARIA works with ids.
+
 After all is said and done, note that building accessible websites requires a change in mindset and a willingness to learn methods and techniques different from what we’re used to.
+
 It’s okay to start slowly, learning a new attribute every day, week, or month. The important thing is that the benefit compounds over time.
+
 Just remember that by building accessible interfaces, you have made a corner of the web better for millions of people.
 
 ## Sources
