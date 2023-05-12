@@ -87,7 +87,7 @@ Here is the code used in importing the file, and the error describing the code:
 As displayed in the above code, the problem originates where the path begins. When declaring a path, the number of dots required is just two; on the contrary, the three dots used here generate the error.
 Here is the correct code for declaring the path:
 
-```
+```javascript
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import '../src/CSS_Files/style.css'
@@ -96,7 +96,7 @@ import '../src/CSS_Files/style.css'
 Also, when you have another style overriding the main class, it is usually a result of specificity. Specificity here states that if two or more CSS rules factor towards the same element, the selector with the pre-eminent specificity value will "win," and you will apply its style declaration to that HTML element.
 Specificity here, for instance:
 
-```
+```html
 <html>
     <head>
       <style>
@@ -108,12 +108,13 @@ Specificity here, for instance:
     <p>Hello World!</p>
 
     </body>
-    </html&gt
+    </html>
 ```
 
 Here we have used the "p" element as a selector, and specified a red color for this element. The resulting text will be red:
 
 <a href="https://www.w3schools.com/css/css_specificity.asp" target="_blank" rel="noopener noreferrer">Source</a>
+
 In some cases, this text color is further styled or restyled in the CSS style sheet with the CSS rule:
 
 ```!important```
@@ -129,10 +130,12 @@ These are usually a result of:
 - Failure to include curly braces. Make sure each declaration block begins with an opening curly brace {, and ends with a closing curly brace }
 - Sticking with the correct syntax for CSS property names and values, ex: background-color: lightblue; not background color: light-blue;
 - Separating property name from the value with a colon.
+
 <a href="https://discuss.codecademy.com/t/what-other-common-css-syntax-errors-should-i-look-out-for/363583" target="_blank" rel="noopener noreferrer">Source</a>
 
 ### Render Errors
 When components aren't written appropriately, use React as an instance. Passing props directly to a state might result in side effects that will cause render errors.
+
 Specifically, 404 is categorized as a render error code that appears when trying to render a page. It means that the page is not found. It occurs when you're trying to render a page that doesn’t exist, or when you generate the wrong page in the wrong route. You may encounter this error in these instances:
 - You are trying to access a missing page, a non-existent or deleted page.
 - There's a mistype of a URL on a page.
@@ -142,6 +145,7 @@ Specifically, 404 is categorized as a render error code that appears when trying
 
 ### Network Errors
 Network errors usually happen when making API/third party requests, and this can also lead to the layout getting disoriented because assets aren’t loaded. For instance, updating the front end of your website or application can suddenly result in network errors with a request block on the browser log. Sometimes, the API is on a separate port or host from the front end in cases like these.
+
 Network error messages can appear like this:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6331d191a7d17afbd46997a3_image2_73a76b5481512bd11dd1c99fe9733efe_800.png)
 
@@ -156,13 +160,14 @@ We use media queries to write custom styles for devices meeting a specified scre
 
 This is the correct media query syntax:
 
-```
+```css
 @media type and (condition) {
   //features to be changed (CSS classes)
 ```
 
 For instance:
 Javascript is not a typed language; therefore, you most likely will run into issues where you see “null” or “undefined” where text is supposed to be. In addition, data type errors often happen when we access a variable that does not exist, or the API returns a wrong value.
+
 One fix for this is opting for TypeScript, where you can specify the exact data type expected, allowing you to catch these errors during the build.
 
 ## Conclusion
