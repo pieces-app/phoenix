@@ -37,10 +37,11 @@ In this article, we’ll learn about RTK Query and how to utilize it in React to
 
 The <a href="https://redux-toolkit.js.org/rtk-query/overview" target="_blank" rel="noopener noreferrer">RTK Query</a> is a data retrieval and caching tool that is quite effective. It lets you avoid having to create data fetching and caching logic manually. RTK Query intended to simplify common instances for data loading in a web application. For example, usually, web applications perform CRUD operations from a server and maintain synchronization between the cached data on the client and the server.
 The Redux Toolkit package installation comes with RTK Query, which includes the following API:
-- **<a href="https://redux-toolkit.js.org/rtk-query/api/fetchBaseQuery" target="_blank" rel="noopener noreferrer">fetchBaseQuery()</a>: **This is a condensed fetch wrapper that seeks to make requests easier. It’s designed to be the ```baseQuery``` that most developers should use with ```createApi```.
-- **<a href="https://redux-toolkit.js.org/rtk-query/api/createApi" target="_blank" rel="noopener noreferrer">createApi()</a>: **This** **is the foundation of RTK Query's features. It enables you to specify a collection of "endpoints" that specify how to get data from async sources, such as backend APIs and other async sources, along with the setting of how to get the data and convert it. ```createApi()``` makes an "API slice" structure for you that comprises Redux logic and, optionally, React hooks, which enable you to fetch and cache data easily.
-- **<a href="https://redux-toolkit.js.org/rtk-query/api/ApiProvider" target="_blank" rel="noopener noreferrer"><ApiProvider/></a>**: You can use this as a ```Provider``` if you don't already have a Redux store.
-- **<a href="https://redux-toolkit.js.org/rtk-query/api/setupListeners" target="_blank" rel="noopener noreferrer">setupListeners()</a>: **This is a tool for enabling the ```refetchOnFocus``` and ```refetchOnReconnect``` characteristics. It requires the delivery strategy from your store. You can provide a callback for more precise control by doing ```setupListeners(store.dispatch)```, which will configure listeners with the suggested defaults.
+
+- <a href="https://redux-toolkit.js.org/rtk-query/api/fetchBaseQuery" target="_blank" rel="noopener noreferrer">```fetchBaseQuery()```</a>: This is a condensed fetch wrapper that seeks to make requests easier. It’s designed to be the ```baseQuery``` that most developers should use with ```createApi```.
+- <a href="https://redux-toolkit.js.org/rtk-query/api/createApi" target="_blank" rel="noopener noreferrer">```createApi()```</a>: This is the foundation of RTK Query's features. It enables you to specify a collection of "endpoints" that specify how to get data from async sources, such as backend APIs and other async sources, along with the setting of how to get the data and convert it. ```createApi()``` makes an "API slice" structure for you that comprises Redux logic and, optionally, React hooks, which enable you to fetch and cache data easily.
+- <a href="https://redux-toolkit.js.org/rtk-query/api/ApiProvider" target="_blank" rel="noopener noreferrer">```<ApiProvider/>```</a>: You can use this as a ```Provider``` if you don't already have a Redux store.
+- <a href="https://redux-toolkit.js.org/rtk-query/api/setupListeners" target="_blank" rel="noopener noreferrer">```setupListeners()```</a>: This is a tool for enabling the ```refetchOnFocus``` and ```refetchOnReconnect``` characteristics. It requires the delivery strategy from your store. You can provide a callback for more precise control by doing ```setupListeners(store.dispatch)```, which will configure listeners with the suggested defaults.
 
 ## Scaffolding a New React Project
 It’s relatively easy to get started with React. You can use the React project creation tool to scaffold a new project with a few sample files to begin.
@@ -50,6 +51,7 @@ Use the terminal to run the following command to start a new React project:
 ```shell
 yarn create react-app react-RTK Query
 ```
+
 Once the project is created, remove the unnecessary files from the src folder after the project has been created.
 
 Run the following command from the terminal to install the form library:
