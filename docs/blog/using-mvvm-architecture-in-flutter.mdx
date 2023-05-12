@@ -83,7 +83,7 @@ According to the <a href="https://docs.flutter.dev/development/data-and-backend/
 A state can be contained in a single widget, known as a local state. Flutter provides inbuilt classes and methods to deal with self-contained states like ```StatefulWidget``` and ```setState```.
 
 However, a state that has to be shared across different widgets is known as an app state. It is at this point that we introduce state management tools.
-```We will be using <a href="https://pub.dev/packages/provider" target="_blank"> ```Provider``` </a> for state management.
+We will be using <a href="https://pub.dev/packages/provider" target="_blank"> ```Provider``` </a> for state management.
 
 Let’s say you were architecting an application that includes only the screen below. How would you do it?
 
@@ -98,6 +98,7 @@ Each screen is called “view” and the file is suffixed with ```_view```. The 
 
 ### **Naming convention for ViewModel**:
  Each screen has a ViewModel associated with it and the file is suffixed with ```_view_model```. The ViewModel notifies the changes to the UI (if any) using <a href="https://api.flutter.dev/flutter/foundation/ChangeNotifier/notifyListeners.html"> ```notifyListeners``` </a>.
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62ead8e3629c9081ff5d75c8_1*7kmY0bEok_LIUyU9Iv8akA.png)
 
 These are the basics of MVVM architecture, as we can see in the screenshot above. This can be replicated for all of your app's screens. You can read more about <a href="https://code.pieces.app/blog/file-handling-web-development" target="_blank">The Best File Formats for Web Development</a> for a better understanding. Now, let’s see a slight addition on top of this structure.
@@ -105,7 +106,7 @@ These are the basics of MVVM architecture, as we can see in the screenshot above
 ### Extending the MVVM toolkit with Repository and Services
 In the real world, our app needs to interact with APIs or third-party integrations. So, we introduce something called a Repository.
 
-A repository pattern provides an abstraction of data so that your application can work with a simple abstraction that has an interface. Using this pattern can help to achieve loose coupling. If implemented correctly, the Repository pattern can be a great way to ensure you follow the ```Single Responsibility Principle for your data access code.
+A repository pattern provides an abstraction of data so that your application can work with a simple abstraction that has an interface. Using this pattern can help to achieve loose coupling. If implemented correctly, the Repository pattern can be a great way to ensure you follow the ```Single Responsibility Principle``` for your data access code.
 
 Some benefits of using the Repository pattern:
 - It makes mocking easier and allows to do unit tests
@@ -120,9 +121,11 @@ This abstract class helps to create a boundary, and we are free to work on eithe
 Here, the ```HomeRepository``` has only one method, ```fetchData```. This method returns the response as a model called ```CarouselModel```.
 
 Next, let’s implement the ```HomeRepository```:
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62ebaf4ab4e31a3ef38ece9a_raycast-untitled%20(70).png)
 
 Inside the method ```fetchData```, we introduce a delay and then load the data from the assets, which is a JSON file. This delay is basically a substitute for calling the API, but I hope I am able to convey my thoughts to the reader.
+
 As your application grows, you may find yourself adding more and more methods to a given repository. In this scenario, consider creating multiple repositories and keeping related methods together.
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62ead8e311ea59bb35c97110_1*q1BNWS5-00kEkAVE3ob9qw.png)
 
@@ -182,10 +185,10 @@ Before we can use methods of other classes, we first need to create the object o
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62ebb11691d6ba21a83895c0_raycast-untitled%20(73).png)
 
-Here, we create a constructor inside our HomeViewModel and specify the homeRepo as our required parameter. This way, we direct whomever needs access to our ViewModel first through the homeRepo.
+Here, we create a constructor inside our HomeViewModel and specify the homeRepo as our required parameter. This way, we direct whoever needs access to our ViewModel first through the homeRepo.
 
 ### Initialize the service locator
-You need to register the services on app startup, so you can do that in ```main.dart.
+You need to register the services on app startup, so you can do that in ```main.dart```.
 
 Replace the standard:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62ebb1365376ebf6da90b627_raycast-untitled%20(74).png)
