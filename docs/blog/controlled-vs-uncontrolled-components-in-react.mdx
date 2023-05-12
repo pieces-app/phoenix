@@ -82,7 +82,7 @@ Here's a simple example of how you can create an uncontrolled component:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62f42df7f09d03702f9c3405_raycast-untitled%20(87).png)
 And here is what the above component will look like:
 
-As you can see, this App component consists of form and a bunch of span elements. We use the <a href="https://jsonplaceholder.typicode.com/" target="_blank" JSON placeholder API</a> in the component to fetch the post based on id. This is the summary of our component, but let’s understand a bit more about how the App component works internally.
+As you can see, this App component consists of form and a bunch of span elements. We use the <a href="https://jsonplaceholder.typicode.com/" target="_blank"> JSON placeholder API</a> in the component to fetch the post based on id. This is the summary of our component, but let’s understand a bit more about how the App component works internally.
 - We are making use of a ref object here. This ref object is named as selectRef and this is being passed on to the select element as a ref prop.
 - Here comes the catch— we don’t need to watch for any changes that happen to the select element, nor do we need to make use of a state variable to keep track of the current value that is selected in this element.
 - This begs the question, how do we get the latest value from the select element?
