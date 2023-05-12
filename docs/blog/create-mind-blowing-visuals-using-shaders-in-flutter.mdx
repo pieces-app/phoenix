@@ -49,8 +49,11 @@ For a gentle introduction to writing a GLSL shader, we will be coding a simple e
 
 Let’s go over the code step-by-step:
 - GLSL has built-in variables like gl_FragCoord and gl_FragColor. gl_FragCoord gives you the pixel vector position, and you set the pixel color through the gl_FragColor. When you specify a vec4, you’re actually setting the rgba values of the color for that pixel.
+
 - GLSL allows us to create conditional compilation blocks and defining values in the pre-compilation stage. These blocks or values start with #. #ifdef(if defined)#endif is a conditional operation block that is checked before compilation. The 2nd line executes if the GL_ES is defined, which is a version of GLSL for embedded systems like mobile devices and video game consoles.
+
 - Level of precision is everything when you’re dealing with colors. The more precise you are, the better quality you get. The 2nd line sets the float precision to mediump. You can also change it to lowp or highp if you want.
+
 - Inputs for GLSL shaders are defined by adding a uniform in front of them at the top of your code. One of the most important inputs is the u_resolution (also called the iResolution) of type vec2 which gives you the resolution of the screen.
 
 ## Implementing Shaders in Flutter
@@ -144,5 +147,5 @@ In addition, note that there isn’t Flutter web support for shaders at this poi
 
 ### Next Steps
 The initial release for supporting Flutter shaders paves the way for some creative coding and unlocks new and never-before-seen experiences.
-While I researched shaders in Flutter, I found some interesting features on the Flutter GitHub that may land in the near future. Some of them add support for compiling your <a href="https://github.com/flutter/flutter/issues/93498#issuecomment-1141271458" target="_blank" GLSL shaders to SPIR-V through the Flutter CLI.</a> There are even proposals that would make it possible to <a href="https://github.com/flutter/flutter/issues/58361" target="_blank" create custom shaders and ColorFilters with SKSL</a>, which could be extremely useful for image/video editing apps and games in general.
-If you are interested in staying up-to-date on new developments in shaders or reading more technical articles like this, be sure to subscribe to the <a href="https://code.pieces.app/blog" target="_blank" Pieces blog</a> to get updates on weekly articles and check out <a href="https://code.pieces.app/install" target="_blank" Pieces</a>, the fastest, smartest AI Assistant for code snippets and screenshots.
+While I researched shaders in Flutter, I found some interesting features on the Flutter GitHub that may land in the near future. Some of them add support for compiling your <a href="https://github.com/flutter/flutter/issues/93498#issuecomment-1141271458" target="_blank"> GLSL shaders to SPIR-V through the Flutter CLI.</a> There are even proposals that would make it possible to <a href="https://github.com/flutter/flutter/issues/58361" target="_blank"> create custom shaders and ColorFilters with SKSL</a>, which could be extremely useful for image/video editing apps and games in general.
+If you are interested in staying up-to-date on new developments in shaders or reading more technical articles like this, be sure to subscribe to the <a href="https://code.pieces.app/blog" target="_blank"> Pieces blog</a> to get updates on weekly articles and check out <a href="https://code.pieces.app/install" target="_blank"> Pieces</a>, the fastest, smartest AI Assistant for code snippets and screenshots.
