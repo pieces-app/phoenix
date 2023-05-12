@@ -33,7 +33,7 @@ In the age of <a href="https://pages.github.com/" target="_blank"> GitHub pages<
 
 Cloud compute platforms are where developers go when they require a <a href="https://www.atlassian.com/continuous-delivery/principles/cloud-computing" target="_blank"> high degree of customizability, scalable resources, and efficient pricing</a> for their web application development. Whether you wish to deploy a personal portfolio site or a SaaS product with 100,000 users, the cloud will help you accomplish that. There are different ways of leveraging cloud resources, <a href="https://azure.microsoft.com/en-us/overview/what-is-a-virtual-machine/" target="_blank"> virtual machines (VMs)</a> being one of the most common methods.
 
-The challenge with VMs is that many pieces of information can get lost when you make changes. Getting into the habit of saving these edits allows you to be more productive; you'll know <strong exactly** what you did, and eventually be able to automate your deployments (be it through <a href="https://www.shellscript.sh/" target="_blank"> shell scripts</a>, <a href="https://www.docker.com/resources/what-container" target="_blank"> containers</a>, or <a href="https://en.wikipedia.org/wiki/Configuration_management#Operating_system_configuration_management" target="_blank"> configuration management tools</a>).
+The challenge with VMs is that many pieces of information can get lost when you make changes. Getting into the habit of saving these edits allows you to be more productive; you'll know **exactly** what you did, and eventually be able to automate your deployments (be it through <a href="https://www.shellscript.sh/" target="_blank"> shell scripts</a>, <a href="https://www.docker.com/resources/what-container" target="_blank"> containers</a>, or <a href="https://en.wikipedia.org/wiki/Configuration_management#Operating_system_configuration_management" target="_blank"> configuration management tools</a>).
 
 <a href="https://pieces.app/"> Pieces for Developers</a> can help track changes to configuration files, secrets, commands and more in your web application development projects. Let’s look at a specific scenario!
 
@@ -41,13 +41,13 @@ The challenge with VMs is that many pieces of information can get lost when you 
 You and your friend are launching a podcast on Koalas. In your research, you've quickly realized that a website will be necessary for the podcast to gain traction.
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6_koala_liam-01_9746c2757408f969c1c24ac1eff33f9b_800.jpeg)
 
-You begin by googling podcast website hosting, but are displeased by the prices you see. "Fear not!" you proclaim to your friend. "I am a seasoned Linux user who knows enough cloud compute to be dangerous. If we spin up a VM, I could get <a href="https://wordpress.org/" target="_blank" Wordpress</a> running today!"
+You begin by googling podcast website hosting, but are displeased by the prices you see. "Fear not!" you proclaim to your friend. "I am a seasoned Linux user who knows enough cloud compute to be dangerous. If we spin up a VM, I could get <a href="https://wordpress.org/" target="_blank"> Wordpress</a> running today!"
 
 Your friend glances at you thoughtfully. "I have faith that you can do that," they begin. "But remember when you lost our database password? It’s really important you keep track of all the changes you make to the web server."
 
 You pause. You're used to moving fast and breaking things, not writing documentation. You experience vivid mental imagery of the file-folder hell you have for shell command snippets; randomly placed text files with no context.
 
-Your friend interrupts to show you something on their laptop. "Here," they say, "I'll send you a link to an app you can use to capture the <strong commands** you run, <strong app secrets**, and <strong config files**. It's called Pieces for Developers. All you gotta do is copy and paste things into it."
+Your friend interrupts to show you something on their laptop. "Here," they say, "I'll send you a link to an app you can use to capture the **commands** you run, **app secrets**, and **config files**. It's called Pieces for Developers. All you gotta do is copy and paste things into it."
 "Oh!" You respond sarcastically. "Another clipboard app! Just what I need."
 "Well, not exactly..."
 
@@ -55,7 +55,7 @@ Your friend interrupts to show you something on their laptop. "Here," they say, 
 
 I begin my website by spinning up a virtual machine instance on my favorite cloud compute platform. I opt to perform the installation of Wordpress by hand, because the vanilla Ubuntu server is free. Plus, I gain a sick satisfaction from watching progress bars fill in my terminal.
 
-![](3_Untitled_ebe3a28b7cb223be2f521d987c5fac78_800.png" width="auto" height="auto" loading="auto" id)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/3_Untitled_ebe3a28b7cb223be2f521d987c5fac78_800.png)
 
 ### SSH
 My Ubuntu virtual machine needs a public key for SSH authentication:
@@ -63,7 +63,8 @@ My Ubuntu virtual machine needs a public key for SSH authentication:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/7_Untitled1_b1220d11e3ad1efe9f028d834c42b173_800.png)
 
 I create a new key pair by running the command
-```
+
+```shell
 ssh-keygen -t rsa -b 4096
 ```
 I name my new keypair koalaCast.
@@ -101,13 +102,15 @@ II then save that, along with any other MySQL commands, to Pieces for Developers
 When using Apache web server, website configuration details are written in virtual host syntax. It is unique to Apache, and important to retain when setting up a web server. The content of this file determines how your website will handle user traffic.
 
 I’ll create my website directory, and assign proper permissions...
-```
+
+```shell
 mkdir /var/www/koalacast.io
 chown -R $USER:$USER /var/www/koalacast.io
 ```
 
 Then, create a blank .conf file to which I’ll write virtual host instructions.
-```
+
+```shell
 vi /etc/apache2/sites-available/koalacast.io.conf
 ```
 
@@ -126,11 +129,11 @@ I devise the following configuration while reading <a href="https://httpd.apache
 
 ...and save to Pieces for Developers. If there are connection issues on port 80, I can quickly reference the Apache configuration files that I wrote for that virtual host.
 
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/9_Untitled3_33c358e8eab9857ed3c6c251850a8e89_800.png" width="auto" height="auto" loading="auto" id)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/9_Untitled3_33c358e8eab9857ed3c6c251850a8e89_800.png)
 
 I also drop in a related link to the Apache documentation. This allows me to view that webpage from my virtual host snippet!
 
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/1_Untitled4_47ffa92aff146dc97b36459f60f1b854_800.png" width="auto" height="auto" loading="auto" id)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/1_Untitled4_47ffa92aff146dc97b36459f60f1b854_800.png)
 
 ### SQL commands
 The SQL commands I run are not logged to my bash history, but I still want to keep track of what changes I make to my database.
@@ -142,17 +145,17 @@ sudo mysql -u root
 ```
 it may not be captured in a .mysql_history file. To be safe, I drop all SQL commands into Pieces for Developers before I run them!
 
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/2_Screen_Shot_2021-12-16_at_11_44_46_AM_b5c8c67bdd20ea35a7fe1886717d5263_800.png" width="auto" height="auto" loading="auto" id)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/2_Screen_Shot_2021-12-16_at_11_44_46_AM_b5c8c67bdd20ea35a7fe1886717d5263_800.png)
 
 ## The outcome
 The koalacast website has been fully set up, and your Pieces app contains all the file changes and secrets you created during the installation process and the rest of your web application development.
 You and your friend hop on a call so they can access the web server and its moving parts.
 “Hey, can you send me the public key for the SSH user koalacast?”
 
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/c_koalacast-public-key-revision_f28bc2db2243759cf2af3938dc9c054b.gif" width="auto" height="auto" loading="auto" id)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/c_koalacast-public-key-revision_f28bc2db2243759cf2af3938dc9c054b.gif)
 
 “You’ve got the database password, right?”
 
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/d_pieces_cloudCompute_mysql_d3dbbfa1aa369ca49477aee341d5d61a.gif" width="auto" height="auto" loading="auto" id)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/d_pieces_cloudCompute_mysql_d3dbbfa1aa369ca49477aee341d5d61a.gif)
 
 
