@@ -71,8 +71,8 @@ In the code block above, we have a thunk "fetchUserName" that accepts model type
 
 ### Hooks and Typing Hooks
 Easy Peasy comes with a few custom hooks that help use its features or access the store:
-- useStoreAction hook**: grants you access to the actions in the store
-- useStore:** enables you to access the store instance
+- useStoreAction hook: grants you access to the actions in the store
+- useStore: enables you to access the store instance
 
 You can check out the <a href="https://easy-peasy.vercel.app/docs/api/use-store-actions.html"> documentation</a> for additional information on the custom hooks and how to use them for React state management.
 When using React-Typescript, you need to type the hooks to have the store model type. We can achieve this with the createTypedHooks function.
@@ -80,7 +80,7 @@ When using React-Typescript, you need to type the hooks to have the store model 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62e4320d085a96eac266aaeb_raycast-untitled%20(61).png)
 
 In the code block above, we call the createTypedHooks function with the store model passed as type and assigned to the typedHooks variable. Then, we move on to export reassigned typed version of the hooks. Finally, we will go on to use the typed hooks in the application:
-![](3afec68f555387049efb3/62e4178790f073ec7d86672e_raycast-untitled%20(44).png")
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62e4178790f073ec7d86672e_raycast-untitled%20(44).png)
 
 In the following section, we will build a simple React to-do list application that uses Easy Peasy for React state management and persisting state. The application features include adding a new list item, editing existing list items, and deleting existing items. We will not use Easy Peasy thunks, as the application requires no side effects.
 
@@ -93,7 +93,7 @@ The command above creates a new React typescript application. Then, we’ll inst
 
 ### Setting Up the Store
 In the src folder, we will create a folder called store with this structure:
-![](3afec68f555387049efb3/62e41946a91d31ed8fb86584_raycast-untitled%20(47).png)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62e41946a91d31ed8fb86584_raycast-untitled%20(47).png)
 
 Once we have the file structure for the store set in the interface file, we have the types for our model:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62e4197c765430258003a309_raycast-untitled%20(48).png)
@@ -110,13 +110,13 @@ In the previous section for React custom hooks, we covered how to type Easy Peas
 
 We’ll need to create the store for React state management. We handle this in the index.ts file:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62e419ea6c8bceef62e05ab2_raycast-untitled%20(50).png)
-In the code block above, we create a new store by calling the createStore function with the type StoreModel. Then, we call the persist function with the model passed as a parameter; this will persist the store in <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage" sessionStorage</a>. Check the <a href="https://easy-peasy.vercel.app/docs/api/persist.html" documentation</a> for more information on extensively using the persist function.
+In the code block above, we create a new store by calling the createStore function with the type StoreModel. Then, we call the persist function with the model passed as a parameter; this will persist the store in <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage" sessionStorage</a>. Check the <a href="https://easy-peasy.vercel.app/docs/api/persist.html"> documentation</a> for more information on extensively using the persist function.
 
 ### Integrating Easy Peasy State Management
 To integrate the store into our app, we must wrap the application within the StoreProvider component from Easy Peasy.
 NB: If you are using React 18, you will need to cast the StoreProvider component; this will override the type error for children. You will also need to disable React.StrictMode in the index.tsx file.
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62e41a1e6c8bce397de06023_raycast-untitled%20(51).png)
-We cast the type for the StoreProvider component from the code block and setting the prop type for children to React.ReactNode. Then, in the app function, we wrap the application in the StoreProvider component with the store props accepting the store created as value. Finally, the <a href="https://easy-peasy.vercel.app/docs/api/persist.html#rehydrating-your-store" useStoreRehydrated</a> hook checks for the persisted data and rehydrates the state with the data found.
+We cast the type for the StoreProvider component from the code block and setting the prop type for children to React.ReactNode. Then, in the app function, we wrap the application in the StoreProvider component with the store props accepting the store created as value. Finally, the <a href="https://easy-peasy.vercel.app/docs/api/persist.html#rehydrating-your-store"> useStoreRehydrated</a> hook checks for the persisted data and rehydrates the state with the data found.
 
 ### Using Easy Peasy for React Typescript State Management
 
