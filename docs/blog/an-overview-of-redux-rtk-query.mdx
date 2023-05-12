@@ -44,8 +44,10 @@ The Redux Toolkit package installation comes with RTK Query, which includes the 
 
 ## Scaffolding a New React Project
 It’s relatively easy to get started with React. You can use the React project creation tool to scaffold a new project with a few sample files to begin.
+
 Use the terminal to run the following command to start a new React project:
-```
+
+```shell
 yarn create react-app react-RTK Query
 ```
 Once the project is created, remove the unnecessary files from the src folder after the project has been created.
@@ -54,9 +56,10 @@ Run the following command from the terminal to install the form library:
 RTK Query will cache the data it has downloaded from the server in the Redux store, but to allow this, the store must first be configured. The Redux store has to be updated using the Redux slice reducer, and the custom middleware is generated automatically when the API slice is created.
 
 Let's make a file called store.js in the src directory, our Redux store, and head over to our index.js file to enclose our ```<App/>``` with a provider:
-```
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit&quot;;
-import { todoApi } from "./TodoApi&quot;;
+
+```javascript
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { todoApi } from "./TodoApi";
 export const store = configureStore({
   reducer: {
     [todoApi.reducerPath]: todoApi.reducer,
@@ -65,10 +68,12 @@ export const store = configureStore({
     getDefaultMiddleware().concat(todoApi.middleware),
 })
 ```
+
 Configuration of Redux store
-```
-import { Provider } from "react-redux&quot;;
-import { store } from "./Services/Store&quot;;
+
+```javascript
+import { Provider } from "react-redux";
+import { store } from "./Services/Store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -78,18 +83,20 @@ root.render(
   </React.StrictMode>
 )
 ```
+
 Wrapping the ```<App/>``` component with a provider
 
 ## Implementing CRUD Operations
 
 ### Queries
 The most typical application of RTK Query is with CRUD operations. However, you are generally advised to only use queries for requests that receive data. A query operation can be performed with any fetching data library. It’s best to use a Mutation for anything that modifies data on the server or could potentially invalidate the cache.
+
 By default, RTK Query includes ```fetchBaseQuery```, a lightweight fetch wrapper that automatically manages request headers and answers parsing in a manner akin to that of widely used libraries like Axios.
 
 Let's begin with creating a new file called ```TodoApi.js``` and import the following:
 
-```
-import { createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react&quot;;
+```javascript
+import { createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 export const todoApi = createApi({
   reducerPath: "todoApi",
   baseQuery: fetchBaseQuery({
@@ -98,19 +105,21 @@ export const todoApi = createApi({
   endpoints: (builder) => ({})
 })
 ```
+
 The ```createApi()``` takes an object with the following properties:
 
 <a href="https://redux-toolkit.js.org/rtk-query/api/createApi#reducerpath" target="_blank" rel="noopener noreferrer">reducerPath</a>: This particular key specifies the location of the cache's storage in the Redux store.
 <a href="https://redux-toolkit.js.org/rtk-query/api/createApi#basequery" target="_blank" rel="noopener noreferrer">baseQuery</a>: This enables us to construct a query by only supplying the base URL — each endpoint's default query for data requests.
 <a href="https://redux-toolkit.js.org/rtk-query/api/createApi#endpoints" target="_blank" rel="noopener noreferrer">Endpoints</a> This is a collection of activities that you want to be carried out on your server. With the help of the builder syntax, you define them as an object.
-N/B: There are two basic endpoint types: <a href="https://redux-toolkit.js.org/rtk-query/usage/queries" target="_blank" rel="noopener noreferrer">query</a> and <a href="https://redux-toolkit.js.org/rtk-query/usage/mutations" target="_blank" rel="noopener noreferrer">mutation</a>.
 
-**Query: **They serve as endpoints for requests to READ data, specifically for reading data from the server.
-**Mutation: **These data updates are sent to the server through mutations, and the local cache is updated. Mutations may also invalidate cached information and necessitate re-fetches, e.g., CREATE, UPDATE, DELETE.
+Note: There are two basic endpoint types: <a href="https://redux-toolkit.js.org/rtk-query/usage/queries" target="_blank" rel="noopener noreferrer">query</a> and <a href="https://redux-toolkit.js.org/rtk-query/usage/mutations" target="_blank" rel="noopener noreferrer">mutation</a>.
+
+**Query:** They serve as endpoints for requests to READ data, specifically for reading data from the server.
+**Mutation:** These data updates are sent to the server through mutations, and the local cache is updated. Mutations may also invalidate cached information and necessitate re-fetches, e.g., CREATE, UPDATE, DELETE.
 
 ### Specifying endpoints
 
-```
+```javascript
 endpoints: (builder) => ({
     addTodo: builder.mutation({
       query: (todo) => ({
@@ -152,7 +161,9 @@ endpoints: (builder) => ({
       }),
       invalidatesTags: ["Todo"]
     }),
-  })```
+  })
+```
+
 These are the endpoints for performing the **CRUD **operations:
 **addTodo**: Endpoint of a mutation for creating a todo.
 **getAllTodos**: Query endpoint in charge of retrieving all the todos from the server.
@@ -161,7 +172,8 @@ These are the endpoints for performing the **CRUD **operations:
 
 Now that we have our endpoints, you may be wondering, “How can we utilize them?”
 The RTK Query automatically generates a React hook for us to access the endpoints, and they usually begin with "use*NameOfEndpoint**Endpoint type*:
-```
+
+```javascript
 //auto generated hook
 export const {
   useAddTodoMutation,
@@ -170,17 +182,22 @@ export const {
   useUpdateTodoMutation,
 } = todoApi
 ```
+
 Auto-Generated Hook
 
 ### Fetch All Todos
 Let's head over to our App.js file, where we display our todos to the DOM. We also need to import the auto-generated hook:
+
 ```
 import { useGetAllTodosQuery } from "./Services/TodoApi"
 ```
+
 When a query hook is called, it returns an object with properties like the most recent information for the query request and status booleans for the request's lifecycle state. The most popular properties are shown below:
+
 ```
 const { data, error, isLoading, isFetching, refetch } = useGetAllTodosQuery()
 ```
+
 Destructuring data from the auto-generated hook
 **data**: This is the most recent result returned, if any.
 **error**: This results in an error, if any.
@@ -190,17 +207,22 @@ Destructuring data from the auto-generated hook
 
 ### Add Todo
 To add a todo, we need to pass an object with the properties title, body and a unique id to the ```addtodo```** **mutation endpoint that we implemented earlier.
+
 Let's head over to our ```Modal.js``` file, where we’ll create a new todo:
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6356b285b0edabbf113058b9_image1_e06c93d3dbb6016170e65e92380350b6_800.png)
 
 ```
-import { useAddTodoMutation } from "./Services/TodoApi&quot;;```<pre>const [addTodo, result] = useAddTodoMutation()
+import { useAddTodoMutation } from "./Services/TodoApi";
 ```
+
+```<pre>const [addTodo, result] = useAddTodoMutation()```
+
 The mutation hook returns a tuple unlike that of the Query. The "trigger" function is the first item in the tuple, and an object with status, error, and data is the second item.
 
 Now that we know that ```addTask```** **is a trigger function, we need to pass in an object that has the properties we specified in the ```addTask```** **endpoint:
-```
+
+```javascript
 //add a todo
  const addTodoHandler = () => {
     addTodo({
@@ -216,6 +238,7 @@ Now that we know that ```addTask```** **is a trigger function, we need to pass i
 refetch()
 }
 ```
+
 The ```unwrap()```** **function helps if you need to access the error or success payload immediately after a mutation. Wherever we refer to the ```addTodoHandler```** **in our app, a new todo will be created. However, our UI won't be updated until the page is refreshed.
 
 You can use the refetch method returned as a result property from a ```useQuery``` hook to obtain complete granular control over re-fetching data.
@@ -224,18 +247,40 @@ You can use the refetch method returned as a result property from a ```useQuery`
 
 ### Update Todo
 First, to update a todo, we have to import the mutation hook:
-```
+
+```javascript
 import {useUpdateTodoMutation} from"../../Services/TodoApi"
 const [updateTodo] = useUpdateTodoMutation()
 ```
+
 Destructuring our trigger function is done with the ```updateTodo```**. **We call this when we want a particular todo to be edited by passing in the current todo to be updated:
 
 Also, like our ```updateTodo```,** **we have to import the mutation hook:
+
 ```
 import {useDeleteTodoMutation } from "../../Services/TodoApi"
 ```
 We also have to use our delete trigger function returned from the mutation hook:
-```
+
+```javascript
 const [deleteTodo] = useDeleteTodoMutation()
+
 ```
 And we'd call it whenever we want to delete a particular todo, thereby passing the unique ```id``` of the todo to be deleted:
+
+```javascript
+const DeleteTodoHandler = () => {
+
+deleteTodo({id})
+      .unwrap()
+      .then((data) => {
+ console.log("Todo deleted");
+      })
+      .catch((err) => {
+ console.log(err);
+      });
+  };
+```
+
+### Conclusion
+With a simple example like the one above where we perform CRUD operations on a JSON server, we display the obtained data in the UI depending on the request's state and cache the information in the form. Therefore, RTK Query not only uses an understandable API, but also significantly minimizes the amount of code written. The functionality of this program can always be expanded, and you can learn more about [RTK Query here](https://redux-toolkit.js.org/rtk-query/overview).
