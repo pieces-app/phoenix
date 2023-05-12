@@ -30,12 +30,16 @@ export const GridFlexRow = props => {
 
 ## What are Code Snippets?
 Code snippets are ready-made bits of reusable source code that you can save for reuse as needed. With code snippets, you can quickly insert the chunks of reusable code into your codebase, reducing the time you would spend repeatedly typing the same code and thus significantly speeding up your development workflow.
+
 Generally speaking, it’s preferable to avoid repetition when there’s an obvious solution: You save contacts on your phone instead of typing the numbers for every phone call, and you let websites store cookies on your computer to remember your log-in details and preferences. Using Visual Studio Code snippets follows this same line of thought.
+
 Here are a few specific reasons code snippets can be helpful to your development workflow:
 
 ### Increase Development Speed
 Imagine building a website of ten landing pages using HTML5. Typing the HTML document boilerplate for each page would be daunting and, frankly, a waste of your time.
+
 With code snippets in Visual Studio, you write the code and save it as a snippet. Then, you can easily reuse the snippet on each page to write the boilerplate in a templated fashion.
+
 This way, you save yourself from unnecessary amounts of keystrokes, giving you the time to focus on other development needs. Especially when it comes to large blocks of code, it’s easy to see how using code snippets can be a significant productivity booster.
 
 ### Prevent Typing Errors
@@ -46,29 +50,33 @@ Finally, typing the same lines of code can make your software development workfl
 
 ## How to Create Code Snippets in VS Code
 Now that you’re aware of the benefits code snippets provide to developers, let’s take a look at how you can create and use VS Code user snippets.
+
 Most code editors and IDEs have out-of-the-box support for code snippets, and VS Code is no exception. Follow the steps in the tutorial below to get started.
 
 ### Step 1: Create a Snippet File
-VS Code snippets are written in JavaScript Object Notation (JSON) files that can define an unlimited number of snippets. To create a snippet, start by opening the command palette. Depending on your operating system (OS), you can do that using the command <em Ctrl+Shift+P on Windows or <em CMD+Shift+P on a Mac. Type the word “snippet” into the search bar and toggle the <strong Preferences: Configure User Snippets** option.
+VS Code snippets are written in JavaScript Object Notation (JSON) files that can define an unlimited number of snippets. To create a snippet, start by opening the command palette. Depending on your operating system (OS), you can do that using the command Ctrl+Shift+P on Windows or CMD+Shift+P on a Mac. Type the word “snippet” into the search bar and toggle the **Preferences: Configure User Snippets** option.
+
 This will present you with a drop-down of different languages and selections to choose from:
-![](9efb3/628febbf8eb12071bc700919_1*GkfrX___u75rSJlYf58QTg.png" width="auto" height="auto" loading="auto" id)
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/628febbf8eb12071bc700919_1*GkfrX___u75rSJlYf58QTg.png)
 
 ### Step 2: Define Your Snippet’s Scope
 Next, you’ll need to define the snippet’s scope, which refers to the languages the snippet will be available in. VS Code supports two types of scopes:
-- <strong Language-specific scope snippets:** You can use these code snippets only in a particular language.
-For this tutorial, you will be creating VS Code Global snippets. From the drop-down list, select the <strong New Global Snippets file** option and then give the snippet file a name:
-![](9efb3/628febbf2b058d41129e4f5a_1*Q5Iukv40FV4d79_14RA67g.png" width="auto" height="auto" loading="auto" id)
-With that done, VS Code will create a new snippet file that includes a few comments and an example snippet, as pictured here:
+- **Language-specific scope snippets:** You can use these code snippets only in a particular language.
 
-![](9efb3/628febbffad35e43f58913ff_1*GTg3-pJRoTUmQvd2HEZJdQ.png" width="auto" height="auto" loading="auto" id)
+For this tutorial, you will be creating VS Code Global snippets. From the drop-down list, select the **New Global Snippets file** option and then give the snippet file a name:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/628febbf2b058d41129e4f5a_1*Q5Iukv40FV4d79_14RA67g.png)
+
+With that done, VS Code will create a new snippet file that includes a few comments and an example snippet, as pictured here:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/628febbffad35e43f58913ff_1*GTg3-pJRoTUmQvd2HEZJdQ.png)
 
 ### Step 3: Write the Snippet’s Syntax
 The example snippet of code above is a sample template to show you the format for how to create your own snippet. Line by line, here’s an overview of what each field does:
-- <strong Scope: **This determines the languages allowed to use the snippet. You can specify as many languages as you wish, separated by commas. If the scope is omitted, the snippet can be accessed from any language. In this example, the snippet is scoped to only JavaScript and TypeScript.
-- <strong Prefix:** This defines one or more words you need to type for the snippet to appear. In the example, you need to type “log” to display the snippet.
-- <strong Body:** This is where you define the code snippet. It can be a string if it is a single line of code or an array of strings if it has multiple lines, where each string forms a new line in the snippet. In this example, the actual code is `console.log`.
-- <strong `$1`** and <strong `$2`**: These are called <em tab stops. They enable you to pinpoint where the cursor should be placed within the code snippet after being injected and also allow you to tab through the code easily using the tab key. `$1` is simply a placeholder for where the cursor should be initially placed after invoking the snippet, and `$2` is the next point the cursor placement should move to after hitting the tab key.
-- <strong Description:** This describes VS code snippets by allowing you to provide details on what it’s all about. If it is omitted, the name of the snippet will be used instead. In this example, the description tells you that the snippet’s purpose is to “log output to console.”
+- **Scope: **This determines the languages allowed to use the snippet. You can specify as many languages as you wish, separated by commas. If the scope is omitted, the snippet can be accessed from any language. In this example, the snippet is scoped to only JavaScript and TypeScript.
+- **Prefix:** This defines one or more words you need to type for the snippet to appear. In the example, you need to type “log” to display the snippet.
+- **Body:** This is where you define the code snippet. It can be a string if it is a single line of code or an array of strings if it has multiple lines, where each string forms a new line in the snippet. In this example, the actual code is `console.log`.
+- **`$1`** and **`$2`**: These are called tab stops. They enable you to pinpoint where the cursor should be placed within the code snippet after being injected and also allow you to tab through the code easily using the tab key. `$1` is simply a placeholder for where the cursor should be initially placed after invoking the snippet, and `$2` is the next point the cursor placement should move to after hitting the tab key.
+- **Description:** This describes VS code snippets by allowing you to provide details on what it’s all about. If it is omitted, the name of the snippet will be used instead. In this example, the description tells you that the snippet’s purpose is to “log output to console.”
 Now that you have an example code snippet saved, let’s take a look at how you can use it in your workflow.
 
 ## Using VS Code Snippets in Your Workflows
@@ -77,19 +85,19 @@ There are several ways you can use this snippet in your actual development workf
 ### Using VS Code IntelliSense
 VS Code IntelliSense is the easiest way to use code snippets. It automatically aids you by providing autosuggestion and autocompletion, among several other features. To use VS Code IntelliSense, start by typing the prefix for the snippet. This will display a context menu with hints at what you might be trying to achieve:
 
-![](9efb3/628febbfde3f345750ba1c3a_1*CmveYIe8J-fj9D_rWSqzGA.png" width="auto" height="auto" loading="auto" id)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/628febbfde3f345750ba1c3a_1*CmveYIe8J-fj9D_rWSqzGA.png)
 
 You can then select the code snippet by hitting the tab key to automatically insert it into your code:
 
-![](9efb3/628febbfc77efa0704750bbe_1*J_aOkaPp6lKNRCZQO2q38w.png" width="auto" height="auto" loading="auto" id)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/628febbfc77efa0704750bbe_1*J_aOkaPp6lKNRCZQO2q38w.png)
 
 As you can see, the cursor is immediately placed where the `$1` placeholder was in the snippet’s file.
 
 ### Using the Snippet Picker
-Another method to use snippets in your code is with VS Code’s <a href="https://docs.microsoft.com/en-us/visualstudio/ide/reference/code-snippet-picker?view=vs-2022" target="_blank" Code Snippet Picker</a>. Open the command palette and type “insert” into the search bar. Then select the <strong Insert Snippet** option.
+Another method to use snippets in your code is with VS Code’s <a href="https://docs.microsoft.com/en-us/visualstudio/ide/reference/code-snippet-picker?view=vs-2022" target="_blank"> Code Snippet Picker</a>. Open the command palette and type “insert” into the search bar. Then select the **Insert Snippet** option.
 This displays a drop-down list of all the custom VS Code snippets you have created:
 
-![](9efb3/628febbfc7827367645f2aae_1*It8jEEyCkmwrVZj7dyIrsQ.png" width="auto" height="auto" loading="auto" id)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/628febbfc7827367645f2aae_1*It8jEEyCkmwrVZj7dyIrsQ.png)
 
 From here, you can select the appropriate snippet, and it will be inserted into your code.
 
@@ -101,11 +109,11 @@ Pieces is an artificial intelligence (AI) tool that allows you to instantly save
 To start creating code snippets with Pieces, <a href="https://code.pieces.app/install" target="_blank" download Pieces for Developers for your OS</a> and install the <a href="https://code.pieces.app/plugins" target="_blank" integrations</a> for your code editor and web browser.
 On a web browser, hover your cursor over any code block to display the Pieces buttons. Clicking on that widget allows you to save that block of code to Pieces:
 
-![](9efb3/628febbfda668846aa593dfb_1*5MYTRnwA_Jpe7k37a8gI7w.png" width="auto" height="auto" loading="auto" id)
-In your code editor, highlight the snippet with your mouse, right-click to open VS Code’s context menu, and click on <strong Save to Pieces** to save the snippet to Pieces:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/628febbfda668846aa593dfb_1*5MYTRnwA_Jpe7k37a8gI7w.png)
+In your code editor, highlight the snippet with your mouse, right-click to open VS Code’s context menu, and click on **Save to Pieces** to save the snippet to Pieces:
 
-![](9efb3/628febbf345e6d42792e0faf_1*L9MhY00TnGCRUIPArbw3hw.png" width="auto" height="auto" loading="auto" id)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/628febbf345e6d42792e0faf_1*L9MhY00TnGCRUIPArbw3hw.png)
 With your snippets saved in Pieces for Developers, you can easily reuse them by clicking on the cascading-windows icons on the Pieces app sidebar to copy the snippet to your clipboard and then paste it into your codebase.
 
 
-![](9efb3/628febbf2adf0f5933d0d8f2_1*DtbbzawMoz0bSWbYG9ZiVA.png" width="auto" height="auto" loading="auto" id)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/628febbf2adf0f5933d0d8f2_1*DtbbzawMoz0bSWbYG9ZiVA.png)
