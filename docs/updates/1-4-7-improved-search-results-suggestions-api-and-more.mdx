@@ -3,14 +3,13 @@ title: 1.4.7 | Improved search results, Suggestions API and more
 description: Lots of useful improvements in today's release! Most importantly, this release marks the release of critical API infrastructure that will support upcoming user features around auto-saving snippets and other machine learning-driven suggestions. Pieces is about to get a whole lot smarter!
 ---
 
+<link rel="canonical" href="https://code.pieces.app/updates/1-1-5-pieces-chrome-extension-improved-snippet-saving" />
+
 export const Tag = props => {
     return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
         { props.children }
     </div>
 }
-
-<link rel="canonical" href="https://code.pieces.app/updates/1-1-5-pieces-chrome-extension-improved-snippet-saving" />
-
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/630d2cce95cf243d002af251_ezgif_com-gif-maker5_4e0dfdc675326261be9285fc63414c71_2000.png)
 <Tag>ux ui updates</Tag>
@@ -59,6 +58,6 @@ Lots of useful improvements in today's release! Most importantly, this release m
 - New Connector API Endpoint: /{application}/intention - an optional step in the new suggestion flow where developers can receive the origin of where the piece was copied. **For Example: you can call this on a copy event, where we will return a result that lets the developer know that the user copied this code snippet from the IntelliJ integration**
 - New Connector API Endpoint: /{application}/suggestion - the main suggestion endpoint and the only required endpoint if a developer wants to use this for auto-uploading. **For Example: you can call this on a paste event, where we will return a result that lets the developer know that the Pieces system suggested to save this piece**
 - New Connector API Endpoint: /{application}/reaction - another optional endpoint in the suggestion flow where a developer can choose to respond to the result of the suggested actions. **For example: if the developer wants the user to take some sort of confirmation action based on a suggestion, this is the endpoint to call to indicate the result of the action**
-- New Mechanism enumeration added to Asset and FlattenedAsset to provide information about how the asset was saved. <strong>Manual</strong>: via user action, no auto-save. <strong>Automatic</strong>: via auto-save, no user action. <strong>Recommended</strong>: via auto-suggestion, requires user action [i.e. from /{application}/reaction]
+- New Mechanism enumeration added to Asset and FlattenedAsset to provide information about how the asset was saved. **Manual**: via user action, no auto-save. **Automatic**: via auto-save, no user action. **Recommended**: via auto-suggestion, requires user action (i.e. from /{application}/reaction)
 - Renamed Timestamp model to GroupedTimestamp
 - An API Endpoint to allow developers to delete data
