@@ -28,52 +28,57 @@ export const GridFlexRow = props => {
 ## What is Pieces?
 Pieces is the fastest, smartest AI Assistant for snippets. We're enabling developers to automatically or manually save useful code snippets, extract code from screenshots, auto-complete code and more.
 
-To learn more about Pieces and how it improves developer productivity, <a href="https://code.pieces.app" target="_blank" check out the rest of our site.</a>
+To learn more about Pieces and how it improves developer productivity, <a href="https://code.pieces.app" target="_blank"> check out the rest of our site.</a>
 
 ### Understanding our Stack
-In order to understand how we use Pieces to build Pieces, it’s helpful to review our tech stack. Pieces is primarily built using <a href="https://flutter.dev/" target="_blank" Flutter</a> and <a href="https://dart.dev/" target="_blank" Dart</a>. A while back, we chose Flutter and Dart for a few key reasons:
+In order to understand how we use Pieces to build Pieces, it’s helpful to review our tech stack. Pieces is primarily built using <a href="https://flutter.dev/" target="_blank"> Flutter</a> and <a href="https://dart.dev/" target="_blank"> Dart</a>. A while back, we chose Flutter and Dart for a few key reasons:
 - Strong-typed
 - Can utilize platform-specific APIs if needed
 - High performance rendering and animations out-of-the-box
-- Default <a href="https://dart.dev/guides/language/effective-dart/style" target="_blank" code style</a> and conventions
+- Default <a href="https://dart.dev/guides/language/effective-dart/style" target="_blank"> code style</a> and conventions
 - Works for desktop apps, web apps, and mobile apps
 
-Further, instead of a DOM tree, Flutter utilizes a <a href="https://docs.flutter.dev/development/ui/widgets-intro" target="_blank" widget tree</a>. Widget trees are where you find all UI elements (referred to as widgets in Flutter). Like a DOM tree, widget trees get complex extremely fast, and developers find themselves reusing a lot of the same widgets and callback functions across many areas of an application.
+Further, instead of a DOM tree, Flutter utilizes a <a href="https://docs.flutter.dev/development/ui/widgets-intro" target="_blank"> widget tree</a>. Widget trees are where you find all UI elements (referred to as widgets in Flutter). Like a DOM tree, widget trees get complex extremely fast, and developers find themselves reusing a lot of the same widgets and callback functions across many areas of an application.
 
 ## Pieces + Flutter = <3&nbsp;
 While building the Pieces app with Flutter and Dart, our team found many valuable use cases for saving snippets in the Pieces app to improve our productivity. Let’s review some of them.&nbsp;
 
 ### Saving &amp; Reusing Widgets
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6231ee022f29f04f0580f14c_Common%20Container%20Widget%20Template.png" loading="lazy" width="auto" height="auto" id="" alt="A code snippet with Flutter and Dart)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6231ee022f29f04f0580f14c_Common%20Container%20Widget%20Template.png)
+
 If you’ve ever written with Flutter, you’ve probably seen a snippet just like this a thousand times. This is a preset container with a templated child widget for easy plug and play.
 One might think, “Can’t you just abstract this away into a new widget?” Yes, of course you can, but that abstracted widget will still include its own set of custom properties in order to use it. Both a custom widget and a Flutter widget can have many different properties, which can be hard to remember.
-When building the Pieces app, we saved snippets like this into Pieces ALL. THE. TIME. Once you save, quickly give it a name and continue on.&nbsp;
+
+When building the Pieces app, we saved snippets like this into Pieces ALL. THE. TIME. Once you save, quickly give it a name and continue on.
+
 When I need to reuse this Container Widget again, which is in almost every Widget, Pieces makes it simple to find with fast, non-obtrusive search. All I need to do is enter a keyword (i.e: Container), or some of the metadata - where it’s from, the title, description, or tags.&nbsp;
+
 Now, we no longer worry about messing up another widget tree in order to copy and paste it or other Flutter default code that we've saved in Pieces.
 
 ### Saving Flutter and Dart Examples
 When combing through Flutter and Dart doc sites or watching demo videos, there are hundreds of code examples that come in handy when implementing new features or figuring out which widget to use for certain purposes.&nbsp;From Flutter widget tree diagrams to Flutter widget snippets and beyond, there's so much useful code to save for later. 
+
 Where Pieces really comes in handy is being able to (1) save these code examples with a single click while also capturing the context of where it came from and (2) extract code from a screenshot from, say, a YouTube demo video using OCR.
 
 ### Using the Pieces Chrome Extension
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6231edadb00ee55b58a9cf3e_9rUWMAA7V_jXrrw3TiiF1JHPiutd2QEHYw3zrVNqJpyKhY8dMmGsYB8NjhijjFf4l8deX-hsGpbm3fTj8VsEeYmADdqzsd8qyzdaOOI-eIz9QRFeiF3-AkCG1bWSTuNofDszDyVW.png" width="auto" height="auto" loading="auto" id="" alt="Flutter Documentation with "Save to Pieces" Butto)
-Using the example screenshot above, when creating a grid list with Flutter, I use the <a href="https://chrome.google.com/webstore/detail/pieces/igbgibhbfonhmjlechmeefimncpekepm?hl=en" target="_blank" Pieces Chrome Extension</a> to single-click save the code snippet while automatically tagging the website it came from.
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6231edadb00ee55b58a9cf3e_9rUWMAA7V_jXrrw3TiiF1JHPiutd2QEHYw3zrVNqJpyKhY8dMmGsYB8NjhijjFf4l8deX-hsGpbm3fTj8VsEeYmADdqzsd8qyzdaOOI-eIz9QRFeiF3-AkCG1bWSTuNofDszDyVW.png)
+Using the example screenshot above, when creating a grid list with Flutter, I use the <a href="https://chrome.google.com/webstore/detail/pieces/igbgibhbfonhmjlechmeefimncpekepm?hl=en" target="_blank"> Pieces Chrome Extension</a> to single-click save the code snippet while automatically tagging the website it came from.
 Now, when I need to use a grid widget in Pieces, I can find this example and the link to the documentation in a matter of seconds.
 ‍
 
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6231edad7f81fbf50fd9399c__lYd2632HtulJBLsFFU9NRBdVw5YbNwPdMVp6QBH64QKTPW_6J1TQp0Wbj4uBAOAO6u8R8QkokBLf5zkBi1FXv954hV_yFOVrtJIxVq1ZqH5_mxqdlBnvBomsGcTWjkxNK54dsDI.png" width="auto" height="auto" loading="auto" id="" alt="Pieces Desktop App on mac)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6231edad7f81fbf50fd9399c__lYd2632HtulJBLsFFU9NRBdVw5YbNwPdMVp6QBH64QKTPW_6J1TQp0Wbj4uBAOAO6u8R8QkokBLf5zkBi1FXv954hV_yFOVrtJIxVq1ZqH5_mxqdlBnvBomsGcTWjkxNK54dsDI.png)
 
 ### Using Pieces OCR (Optical Character Recognition)
 The other great way we use Pieces when saving Flutter, Dart, and other code examples, is using the OCR feature to extract text/code from screenshots.
-One of the best ways to learn how to use specific Widgets is to watch Flutter's <a href="https://www.youtube.com/playlist?list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG" target="_blank" Widget of the Week</a> videos on YouTube. These are short, extremely focused examples of implementing a Widget.
+One of the best ways to learn how to use specific Widgets is to watch Flutter's <a href="https://www.youtube.com/playlist?list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG" target="_blank"> Widget of the Week</a> videos on YouTube. These are short, extremely focused examples of implementing a Widget.
 
 Since these videos move quickly, we often take screenshots of the final implementation so we can (1) reference the code later on and (2) actually use the code from the example.
 We do this by simply dragging the screenshot into Pieces and voila, the code is extracted and ready to use.
-To see OCR in action, try <a href="https://www.codefromscreenshot.com/" target="_blank" CodefromScreenshot</a>.
+To see OCR in action, try <a href="https://www.codefromscreenshot.com/" target="_blank"> CodefromScreenshot</a>.
 
 ### Import Statements
 
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6231eef2aaffb2239485eb78_Common%20Import%20Statements.png" loading="lazy" width="auto" height="auto" id="" alt="A code snippet with Dart and Flutte)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6231eef2aaffb2239485eb78_Common%20Import%20Statements.png)
 Nothing is more annoying than having to manually write an import statement. Flutter does have nice tools to alleviate this pain, but even they can be annoying if you’re moving quickly.
 As shown in the screenshot above, most of our files require some of the same common imports. The annoying thing, even when using Flutter and Dart tooling, is that you still have to make extra keystrokes to import all of the classes you’re using in the file.
 
@@ -85,7 +90,7 @@ I’ll admit, sometimes it gets a little scary when you’re about to restructur
 When this happens, I (1) don’t want to cause any regressions, (2) need to refer to my old tree to make sure I have feature-parity and (3) don’t want to flip back-and-forth trying to decode my Git changes. So, to make life easier, I save my old tree in Pieces!
 This gives me great peace of mind knowing that I can always refer back to the old tree if needed, and now can confidently start my updates on a blank canvas.
 ‍
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6231edad19b463b7b5caddff_hLE_1pE2OuEBZuDm6Ooyn4-9gmBOoyl0SFtns5_kscXCe68ZoLaYmWoPF2BIn5wOybz8gsSFN8Wta0EHwrZsWF02uuH1kx_GnPdTH2gHR9uUahw6srT4ZNByeno9V8nrVdcMGCgf.png" width="auto" height="auto" loading="auto" id="" alt="A code snippet with Flutte)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6231edad19b463b7b5caddff_hLE_1pE2OuEBZuDm6Ooyn4-9gmBOoyl0SFtns5_kscXCe68ZoLaYmWoPF2BIn5wOybz8gsSFN8Wta0EHwrZsWF02uuH1kx_GnPdTH2gHR9uUahw6srT4ZNByeno9V8nrVdcMGCgf.png)
 
 ### Merge Conflicts
 Have you ever spent a few days working on something with a lot of nitty-gritty details and you’re a little nervous something might get messed up when it’s time to merge? Well, when working with Flutter, you know sometimes merge conflicts with widget trees can be impossible to read, especially when you start trying to line up closing parenthesis, brackets and semicolons.
