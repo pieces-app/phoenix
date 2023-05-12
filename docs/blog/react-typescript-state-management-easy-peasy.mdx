@@ -110,11 +110,13 @@ In the previous section for React custom hooks, we covered how to type Easy Peas
 
 We’ll need to create the store for React state management. We handle this in the index.ts file:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62e419ea6c8bceef62e05ab2_raycast-untitled%20(50).png)
-In the code block above, we create a new store by calling the createStore function with the type StoreModel. Then, we call the persist function with the model passed as a parameter; this will persist the store in <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage" sessionStorage</a>. Check the <a href="https://easy-peasy.vercel.app/docs/api/persist.html"> documentation</a> for more information on extensively using the persist function.
+In the code block above, we create a new store by calling the createStore function with the type StoreModel. Then, we call the persist function with the model passed as a parameter; this will persist the store in <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage"> sessionStorage</a>. Check the <a href="https://easy-peasy.vercel.app/docs/api/persist.html"> documentation</a> for more information on extensively using the persist function.
 
 ### Integrating Easy Peasy State Management
 To integrate the store into our app, we must wrap the application within the StoreProvider component from Easy Peasy.
+
 NB: If you are using React 18, you will need to cast the StoreProvider component; this will override the type error for children. You will also need to disable React.StrictMode in the index.tsx file.
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62e41a1e6c8bce397de06023_raycast-untitled%20(51).png)
 We cast the type for the StoreProvider component from the code block and setting the prop type for children to React.ReactNode. Then, in the app function, we wrap the application in the StoreProvider component with the store props accepting the store created as value. Finally, the <a href="https://easy-peasy.vercel.app/docs/api/persist.html#rehydrating-your-store"> useStoreRehydrated</a> hook checks for the persisted data and rehydrates the state with the data found.
 
