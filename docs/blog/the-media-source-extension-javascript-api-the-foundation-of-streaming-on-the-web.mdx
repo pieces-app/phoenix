@@ -1,6 +1,6 @@
 ---
 title: The Media Source Extension | JavaScript API - The foundation of streaming on the web
-description: Since its inception way back in 2013, influential companies like Netflix, Amazon and Apple have poured millions of dollars into creating new TV shows, movies and other video content. Over the past decade, many business areas have been leveraged by this unique ecosystem, including tech. Because distributing video is challenging and costly, the tech industry has been tasked with making it faster, cheaper and easier to stream content.
+description: Since its inception way back in 2013, influential companies like Netflix, Amazon and Apple have poured millions of dollars into creating new TV shows, movies and other video content.
 ---
 
 <link rel="canonical" href="https://code.pieces.app/blog/the-media-source-extension-javascript-api-the-foundation-of-streaming-on-the-web" />
@@ -23,7 +23,7 @@ export const GridFlexRow = props => {
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd7cbe1b2429efebda4190_segments_3dee7b8cfb581c8d69adc424e23919b5_2000.jpeg)
 <GridFlexRow><Tag>javascript</Tag> <Tag>video</Tag></GridFlexRow>
 
-# The Media Source Extension <> JavaScript API: The foundation of streaming on the web
+# The Media Source Extension - JavaScript API: The foundation of streaming on the web
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 
 The streaming universe is booming.
@@ -75,7 +75,7 @@ Nowadays, manipulating binary data on the front end is not very common, but this
 
 The magic happens in the <a href="https://www.w3.org/TR/2011/WD-html5-20110113/video.html#attr-media-src" target="_blank" rel="noopener noreferrer"><video/> HTML5 element</a>. Many developers know that we have to specify a media element to the ```src``` attribute like so:
 ```html
-<video src="https://myvideo.com/birthday.mp4"/>
+<video src="https://myvideo.com/birthday.mp4" />
 ```
 
 But a few know that we can pass a URL that is directly linked to an object that lives in memory.
@@ -120,6 +120,7 @@ A few methods live in the ```MediaSource``` instance. One of them is ```addSourc
 const mimeCodec = 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"';
 const bufferVideo = mediaSource.addSourceBuffer(mimeCodec)
 ```
+
 <a href="https://3863d558-45a9-40e6-9dff-136019435fd6.pieces.cloud/?p=37f44cad38" target="_blank" rel="noopener noreferrer">Click to save this command to Pieces</a>
 
 The ```addSourceBuffer``` methods take a single parameter that needs to be specified to tell the ```SourceBuffer``` the kind of data we will insert in the buffer.
