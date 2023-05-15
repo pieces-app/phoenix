@@ -52,9 +52,13 @@ Here are a few short and long-term benefits of writing tests:
 ### Data Leaks in React
 
 A primary issue when developing React applications is a data leak.
+
 Below is a warning message you might come across in React when working with asynchronous calls:
+
 Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
+
 React cannot detect data leaks directly. That's why it offers a warning to guide you toward figuring them out on your own.
+
 React components that perform state updates and run asynchronous operations can lead to data leak issues if you update the state after the component is unmounted. Here is a typical scenario that causes a data leak:
 - The user clicks on a link that steers them to another page before the event handler had finished fetching the data.
 - The first act ends, and passes the data retrieved from the API, and then calls the function, which updates the state.
