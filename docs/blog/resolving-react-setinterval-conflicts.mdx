@@ -116,7 +116,8 @@ export default App
 React Hooks like<a href="https://reactjs.org/docs/hooks-state.html" target="_blank" rel="noopener noreferrer"> ```useState```</a> and<a href="https://www.google.com/search?q=react+useEffect&rlz=1C1ONGR_enNG1008NG1008&oq=react+useEffect&aqs=chrome..69i57j0i512l3j0i20i263i512j0i512j69i60l2.5344j0j4&sourceid=chrome&ie=UTF-8" target="_blank" rel="noopener noreferrer"> ```useEffect```</a> were utilized in the code above.
 
 The ```useState``` is dependent on its prior state:
-```
+
+```javascript
 setCount((prevState) => {
   return {
    num: prevState.num + 1,
@@ -132,6 +133,7 @@ setCount((prevState) => {
  }, 1000);
 }, [])
 ```
+
 Output:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6143afec68f555387049efb3/63878e41c47f5726807b7e2a_image7_500c7375fc04ff89348244a79c76c3bb_800.png)
 
