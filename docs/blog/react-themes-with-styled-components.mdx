@@ -60,14 +60,14 @@ In the code block, the opacity style value depends on the show prop. If _show is
 The code block above creates a global styled component that we can use to style components outside its scope.
 
 ## React Themes
-Styled-components supports multiple themes for React apps; use <em ThemeProvider to provide the theme via a context API. To do so, pass a theme rule object as a value to its theme prop, access the theme rule in all styled-components using prop.theme, and set up a theme object in the theme folder.
+Styled-components supports multiple themes for React apps; use ThemeProvider to provide the theme via a context API. To do so, pass a theme rule object as a value to its theme prop, access the theme rule in all styled-components using ```prop.theme```, and set up a theme object in the theme folder.
 
 The theme object exported as the default in the code block above has two properties: dark and light. We’ll pass the proper property to the ThemeProvider component based on the selected theme. The following action will wrap the application with ThemeProvider:
 
 From the code block above, we have the ```currentTheme``` state; this controls the theme rule to pass to ```ThemeProvider```. The ```ToggleButton``` component allows us to toggle between light and dark themes.
 
 ## Using Themes in Styled-Components
-To use the theme rules in the style component, we will need to access the theme from the <em props object:
+To use the theme rules in the style component, we will need to access the theme from the props object:
 
 In the code block above, we are destructuring the theme property from the props object. This will give us access to all of the theme rules. Using the code sample above, we have:
 
