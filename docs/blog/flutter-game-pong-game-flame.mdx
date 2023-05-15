@@ -183,13 +183,14 @@ Replace the ```onload``` method within ```PongGame``` with the following:
 ```
 
 <a href="https://takrutvik.pieces.cloud/?p=fce246ae92" target="_blank" rel="noopener noreferrer">Save this code</a>
-```
-ScreenHitBox``` will represent the edges of our game screen. If any other components collide with the edges, we’ll be notified of the collision.
+
+```ScreenHitBox``` will represent the edges of our game screen. If any other components collide with the edges, we’ll be notified of the collision.
 
 ### Player Paddle
 Now, we’ll add the player paddle to the flutter game tutorial.
 Create a new file called ```player_paddle.dart``` and add the following to it:
-```
+
+```dart
 // TODO: add key event enum
 
 class PlayerPaddle extends PositionComponent
@@ -239,7 +240,7 @@ In the ```onLoad``` method, we’re setting the size for our paddle component an
 
 Within the ```onload``` method of the ```PongGame``` component, add the ```PlayerPaddle```:
 
-```
+```dart
 @override
  Future<void> onLoad() async {
    addAll(
