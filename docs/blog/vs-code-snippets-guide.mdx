@@ -72,7 +72,7 @@ With that done, VS Code will create a new snippet file that includes a few comme
 
 ### Step 3: Write the Snippet’s Syntax
 The example snippet of code above is a sample template to show you the format for how to create your own snippet. Line by line, here’s an overview of what each field does:
-- **Scope: **This determines the languages allowed to use the snippet. You can specify as many languages as you wish, separated by commas. If the scope is omitted, the snippet can be accessed from any language. In this example, the snippet is scoped to only JavaScript and TypeScript.
+- **Scope:** This determines the languages allowed to use the snippet. You can specify as many languages as you wish, separated by commas. If the scope is omitted, the snippet can be accessed from any language. In this example, the snippet is scoped to only JavaScript and TypeScript.
 - **Prefix:** This defines one or more words you need to type for the snippet to appear. In the example, you need to type “log” to display the snippet.
 - **Body:** This is where you define the code snippet. It can be a string if it is a single line of code or an array of strings if it has multiple lines, where each string forms a new line in the snippet. In this example, the actual code is `console.log`.
 - **`$1`** and **`$2`**: These are called tab stops. They enable you to pinpoint where the cursor should be placed within the code snippet after being injected and also allow you to tab through the code easily using the tab key. `$1` is simply a placeholder for where the cursor should be initially placed after invoking the snippet, and `$2` is the next point the cursor placement should move to after hitting the tab key.
@@ -91,7 +91,7 @@ You can then select the code snippet by hitting the tab key to automatically ins
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/628febbfc77efa0704750bbe_1*J_aOkaPp6lKNRCZQO2q38w.png)
 
-As you can see, the cursor is immediately placed where the `$1` placeholder was in the snippet’s file.
+As you can see, the cursor is immediately placed where the ```$1``` placeholder was in the snippet’s file.
 
 ### Using the Snippet Picker
 Another method to use snippets in your code is with VS Code’s <a href="https://docs.microsoft.com/en-us/visualstudio/ide/reference/code-snippet-picker?view=vs-2022" target="_blank"> Code Snippet Picker</a>. Open the command palette and type “insert” into the search bar. Then select the **Insert Snippet** option.
@@ -101,12 +101,12 @@ This displays a drop-down list of all the custom VS Code snippets you have creat
 
 From here, you can select the appropriate snippet, and it will be inserted into your code.
 
-## Using Pieces — a Better Way to Save Code Snippets
-As your snippets grow in lines and complexity, it can become difficult to go through the process of creating them in VS Code. Enter <a href="https://code.pieces.app/install" target="_blank" Pieces for Developers</a>, the perfect code snippets plugin to solve that problem.
+## Using Pieces — a Better Way to Save Code Snippets
+As your snippets grow in lines and complexity, it can become difficult to go through the process of creating them in VS Code. Enter <a href="https://code.pieces.app/install" target="_blank"> Pieces for Developers</a>, the perfect code snippets plugin to solve that problem.
 Pieces is an artificial intelligence (AI) tool that allows you to instantly save code snippets from your web browser, code editor, and even images. Pieces for Developers makes the process of creating, finding, and using snippets a breeze.
 
 ### Creating VS Code Snippets with Pieces
-To start creating code snippets with Pieces, <a href="https://code.pieces.app/install" target="_blank" download Pieces for Developers for your OS</a> and install the <a href="https://code.pieces.app/plugins" target="_blank" integrations</a> for your code editor and web browser.
+To start creating code snippets with Pieces, <a href="https://code.pieces.app/install" target="_blank"> download Pieces for Developers for your OS</a> and install the <a href="https://code.pieces.app/plugins" target="_blank"> integrations</a> for your code editor and web browser.
 On a web browser, hover your cursor over any code block to display the Pieces buttons. Clicking on that widget allows you to save that block of code to Pieces:
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/628febbfda668846aa593dfb_1*5MYTRnwA_Jpe7k37a8gI7w.png)
@@ -114,6 +114,5 @@ In your code editor, highlight the snippet with your mouse, right-click to open 
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/628febbf345e6d42792e0faf_1*L9MhY00TnGCRUIPArbw3hw.png)
 With your snippets saved in Pieces for Developers, you can easily reuse them by clicking on the cascading-windows icons on the Pieces app sidebar to copy the snippet to your clipboard and then paste it into your codebase.
-
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/628febbf2adf0f5933d0d8f2_1*DtbbzawMoz0bSWbYG9ZiVA.png)
