@@ -58,7 +58,8 @@ The Mutation Observer interface provides the ability to watch for changes being 
 
 ## How to Create an Intersection Observer in Javascript
 You can create an intersection observer by calling its constructor and passing into it a callback function to be run whenever a threshold is crossed in one direction or another:
-```
+
+```javascript
 let options = {
   root: document.querySelector('#scrollArea'),
   rootMargin: '0px',
@@ -66,6 +67,7 @@ let options = {
 }
 let observer = new IntersectionObserver(callback, options)
 ```
+
 From the above, a threshold of 1.0 entails that when 100% of the target is visible within the element specified by the root option, the callback is invoked.
 
 ## Intersection Observer Options
@@ -77,19 +79,23 @@ The root is the element used as the viewport for checking visibility of the targ
 ### rootMargin
 This is the margin around the root. It could have values similar to the CSS margin property, e.g. "20px 30px 40px" (top, right, bottom), or they can carry percentage values. This set of values either allows growth or shrinks each side of the root element's bounding box before carrying out intersections.
 
-The threshold can be a single number or an array of numbers that indicate the target’s percentage of visibility at which the observer's callback should be executed. To detect when visibility passes the 50% mark, you can use a value of 0.5. If you want to ensure that the callback runs every time visibility passes another 25%, the array should be specified as [0, 0.25, 0.5, 0.75, 1]. The default is always 0, which means that as soon as even one pixel is visible, the callback will run. A value of 1.0 means that the threshold is not passed until every pixel is visible.
+The threshold can be a single number or an array of numbers that indicate the target’s percentage of visibility at which the observer's callback should be executed. To detect when visibility passes the 50% mark, you can use a value of 0.5. If you want to ensure that the callback runs every time visibility passes another 25%, the array should be specified as **0, 0.25, 0.5, 0.75, 1**. The default is always 0, which means that as soon as even one pixel is visible, the callback will run. A value of 1.0 means that the threshold is not passed until every pixel is visible.
+
 The Intersection Observer API considers rectangles. Therefore, if the visible portion of an element is not rectangular, the element's intersection rectangle will be the smallest rectangle that contains all the visible portions of the element.
 
 ### How to Target an Element to be Observed
 After creating the observer, a target element to watch should be given:
 
-```
+```javascript
 let target = document.querySelector('#listItem');
 observer.observe(target);
 // the callback you setup for the observer will be executed now for the first time.
-// it will wait until you assign a target to our observer (even if the target is currently not visible)```
-Whenever the target meets a threshold specified for the Intersection Observer, the callback is invoked:
+// it will wait until you assign a target to our observer (even if the target is currently not visible)
 ```
+
+Whenever the target meets a threshold specified for the Intersection Observer, the callback is invoked:
+
+```javascript
 let callback = (entries, observer) => {
   entries.forEach((entry) => {
  // Each entry describes an intersection change for one observed
@@ -107,3 +113,4 @@ let callback = (entries, observer) => {
 The above code includes a list of entries received by the callback; it includes one entry for each target that reported a change in the intersection status. Cross-check the value of the ```isIntersecting``` property to observe if the entry represents an element that is currently intersecting with the root. Keep in mind that your callback is executed on the main thread. This means that it should operate as quickly as possible. If it is going to be time-consuming, use ```Window.requestIdleCallback()```. Also, remember that if you specified the root option, the target must always be a descendant of the root element.
 
 ## Conclusion
+As far as user interaction, regardless of the method you’re using and the problem you might want to solve, the Javascript Intersection Observer may be the best method to use. It provides simplicity and clarity, and it implements the conventional method of observing changes in the intersection of a target element.
