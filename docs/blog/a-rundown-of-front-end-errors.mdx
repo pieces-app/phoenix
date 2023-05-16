@@ -52,9 +52,13 @@ Here are a few short and long-term benefits of writing tests:
 ### Data Leaks in React
 
 A primary issue when developing React applications is a data leak.
+
 Below is a warning message you might come across in React when working with asynchronous calls:
+
 Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
+
 React cannot detect data leaks directly. That's why it offers a warning to guide you toward figuring them out on your own.
+
 React components that perform state updates and run asynchronous operations can lead to data leak issues if you update the state after the component is unmounted. Here is a typical scenario that causes a data leak:
 - The user clicks on a link that steers them to another page before the event handler had finished fetching the data.
 - The first act ends, and passes the data retrieved from the API, and then calls the function, which updates the state.
@@ -66,6 +70,7 @@ You need to fix this data leak! Here's a helpful <a href="https://www.loginradiu
 
 ### Uncaught Exception
 An exception is mainly an occurrence that happens during the execution of a program. It interrupts the flow of the program's instructions. When a developer doesn’t catch an exception in a system, it results in an uncaught exception. If the program is in the middle of processing data, it can lead to unexpected behavior and may cause data loss. It can also lead to a security issue if the exception is not handled correctly and reveals too much information about the program or system to an attacker.
+
 You can prevent uncaught exception errors by adequately handling exceptions in the code. It would be best to catch exceptions in a try/catch block or by using a finally block. In some cases, throwing the exception to a higher level may be necessary so you can handle it appropriately. Proper handling of exceptions will ensure that the program behaves as expected and prevents data loss or security issues. You can learn more about how to handle exceptions <a href="https://stackoverflow.com/questions/62475654/how-to-manage-uncaught-exceptions-in-javascript-in-order-to-show-the-error-mes" target="_blank" rel="noopener noreferrer">here</a>.
 
 ### CORS Request Errors
@@ -79,7 +84,7 @@ Browser incompatibility refers to the inability of a website to perform flexibly
 In these scenarios, <a href="https://www.browserstack.com/guide/cross-browser-compatibility-testing-beyond-chrome" target="_blank" rel="noopener noreferrer">cross-browser compatibility testing</a> comes in. Cross-browser compatibility testing is a non-functional form of testing with a primary goal of availing your website's essential features and functionality to users of different browser-OS combinations, devices, and assistive tools. It considers that not all browsers and devices work on the same configurations; they face browser compatibility issues on different levels. This inconsistency is why you might observe the lack of application uniformity across browsers and devices. You wouldn’t want some prospective users to be unable to access the application features. This testing tool ensures that your website is tested and debugged for different scenarios, so it will work consistently on all platforms and browsers.
 
 ### Style Errors
-Style errors usually occur when the style file path is incorrect**. **A path reflects the address of a file, so a wrong path can quickly produce an error without your noticing it. Take, for example, this scenario:
+**Style errors usually occur when the style file path is incorrect**. A path reflects the address of a file, so a wrong path can quickly produce an error without your noticing it. Take, for example, this scenario:
 You are importing a CSS file into your React program. You run the code, and then an error occurs, stating that you have provided a wrong path, or that the style file path is not correct. However, when you check your path, you see nothing abnormal.
 Here is the code used in importing the file, and the error describing the code:
 
@@ -87,7 +92,7 @@ Here is the code used in importing the file, and the error describing the code:
 As displayed in the above code, the problem originates where the path begins. When declaring a path, the number of dots required is just two; on the contrary, the three dots used here generate the error.
 Here is the correct code for declaring the path:
 
-```
+```javascript
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import '../src/CSS_Files/style.css'
@@ -96,7 +101,7 @@ import '../src/CSS_Files/style.css'
 Also, when you have another style overriding the main class, it is usually a result of specificity. Specificity here states that if two or more CSS rules factor towards the same element, the selector with the pre-eminent specificity value will "win," and you will apply its style declaration to that HTML element.
 Specificity here, for instance:
 
-```
+```html
 <html>
     <head>
       <style>
@@ -108,12 +113,13 @@ Specificity here, for instance:
     <p>Hello World!</p>
 
     </body>
-    </html&gt
+    </html>
 ```
 
 Here we have used the "p" element as a selector, and specified a red color for this element. The resulting text will be red:
 
 <a href="https://www.w3schools.com/css/css_specificity.asp" target="_blank" rel="noopener noreferrer">Source</a>
+
 In some cases, this text color is further styled or restyled in the CSS style sheet with the CSS rule:
 
 ```!important```
@@ -129,10 +135,12 @@ These are usually a result of:
 - Failure to include curly braces. Make sure each declaration block begins with an opening curly brace {, and ends with a closing curly brace }
 - Sticking with the correct syntax for CSS property names and values, ex: background-color: lightblue; not background color: light-blue;
 - Separating property name from the value with a colon.
+
 <a href="https://discuss.codecademy.com/t/what-other-common-css-syntax-errors-should-i-look-out-for/363583" target="_blank" rel="noopener noreferrer">Source</a>
 
 ### Render Errors
 When components aren't written appropriately, use React as an instance. Passing props directly to a state might result in side effects that will cause render errors.
+
 Specifically, 404 is categorized as a render error code that appears when trying to render a page. It means that the page is not found. It occurs when you're trying to render a page that doesn’t exist, or when you generate the wrong page in the wrong route. You may encounter this error in these instances:
 - You are trying to access a missing page, a non-existent or deleted page.
 - There's a mistype of a URL on a page.
@@ -142,6 +150,7 @@ Specifically, 404 is categorized as a render error code that appears when trying
 
 ### Network Errors
 Network errors usually happen when making API/third party requests, and this can also lead to the layout getting disoriented because assets aren’t loaded. For instance, updating the front end of your website or application can suddenly result in network errors with a request block on the browser log. Sometimes, the API is on a separate port or host from the front end in cases like these.
+
 Network error messages can appear like this:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6331d191a7d17afbd46997a3_image2_73a76b5481512bd11dd1c99fe9733efe_800.png)
 
@@ -156,13 +165,14 @@ We use media queries to write custom styles for devices meeting a specified scre
 
 This is the correct media query syntax:
 
-```
+```css
 @media type and (condition) {
   //features to be changed (CSS classes)
 ```
 
 For instance:
 Javascript is not a typed language; therefore, you most likely will run into issues where you see “null” or “undefined” where text is supposed to be. In addition, data type errors often happen when we access a variable that does not exist, or the API returns a wrong value.
+
 One fix for this is opting for TypeScript, where you can specify the exact data type expected, allowing you to catch these errors during the build.
 
 ## Conclusion

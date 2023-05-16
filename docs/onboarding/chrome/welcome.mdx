@@ -30,11 +30,35 @@ export const Spacer = props => {
     return <div style={{height: "16px"}}></div>
 };
 
-# Welcome to Pieces! Let's save a snippet
+export const HeaderSpacer = props => {
+    return <div style={{width: "100%", height: "100px"}}></div>;
+};
 
-Hover over a code block to reveal the _**"Copy and Save" button**_. Once clicked, the snippet will automatically be saved to your Pieces micro-repo and copied to your clipboard.
+export const CenterFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        flexWrap: "nowrap",
+        textAlign: "center"
+    }}>{props.children}</div>
+};
 
-Pro-tip: You can also save via the right-click context menu.
+<HeaderSpacer></HeaderSpacer>
+
+<CenterFlexRow>
+    # Welcome to Pieces! Let's save a snippet
+</CenterFlexRow>
+
+<CenterFlexRow>
+    Hover over a code block to reveal the _**"Copy and Save" button**_. Once clicked, the snippet will automatically be saved to your Pieces micro-repo and copied to your clipboard.
+</CenterFlexRow>
+
+<CenterFlexRow>
+    _Pro-tip: You can also save via the right-click context menu._
+</CenterFlexRow>
+
+
 
 ```javascript
 const deepClone = (obj: any) => {

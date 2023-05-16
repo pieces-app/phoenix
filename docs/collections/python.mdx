@@ -1,3 +1,243 @@
 ---
-redirect: https://code.pieces.app/collections
+title: Python Code Snippets Collection
+description: These Python code snippets do everything from creating singleton classes to merging dictionaries. Let’s enforce some Python best practices!
 ---
+
+<link rel="canonical" href="https://code.pieces.app/collections/python" />
+
+export const HeaderSpacer = props => {
+    return <div style={{width: "100%", height: "100px"}}></div>;
+};
+
+export const GridFlexRowCenter = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+};
+
+export const InstallButton = props => {
+    return <a style={{textDecoration: "none"}} href={ props.src }>
+        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+            <p style={{
+                padding: "8px 20px",
+                borderRadius: "8px",
+                border: "1px solid #f3f5f6",
+                color: "white",
+                fontWeight: "500",
+                background: "black",
+                marginBottom: "8px",
+                marginTop: "3px",
+                marginRight: "16px"
+            }}>{props.children}</p>
+        </div>
+    </a>
+};
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content", margin: "0px 8px" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap",
+        marginBottom: "32px",
+    }}>{props.children}</div>
+};
+
+<HeaderSpacer></HeaderSpacer>
+
+<Image margin-top={"0px"} margin-bottom={"0px"} width="400" src={"/assets/graphics/collections/collection_python.png"} />
+
+<Heading type={"h1"}>Python Code Snippets</Heading>
+
+These Python code snippets do everything from creating singleton classes to merging dictionaries. Let’s enforce some Python best practices!
+
+<InstallButton src={"https://python.pieces.cloud/"}>Add to Pieces</InstallButton>
+
+<HeaderSpacer></HeaderSpacer>
+
+---
+
+<HeaderSpacer></HeaderSpacer>
+
+We've provided some common Python snippets that may be helpful in your development work. Feel free to add any of these Python code examples to your personal Pieces micro repository.
+
+When downloading code snippets in Python to Pieces, developers will receive relevant tags for easy and fast search in Pieces, a description for context, and related links.
+
+### How to remove Python falsy values
+
+<GridFlexRow>
+    <Tag>python</Tag><Tag>remove falsy</Tag><Tag>list</Tag>
+</GridFlexRow>
+
+Removes Python falsy values from a list by using the filter function.
+
+```python
+def remove_falsy(unfiltered_list):
+    return list(filter(bool, unfiltered_list))
+```
+
+Related Links
+
+- [Python code snippet to remove falsy values](https://devsheet.com/code-snippet/python-code-to-remove-falsy-valuesnone-false-etc/)
+- [Remove falsy values from a list in Python](https://www.geeksforgeeks.org/remove-falsy-values-from-a-list-in-python/)
+
+<InstallButton src={"https://python.pieces.cloud/?p=e11f4c9010"}>Add to Pieces</InstallButton>
+
+---
+
+### How to Flatten a List in Python
+
+<GridFlexRow>
+    <Tag>python</Tag><Tag>list</Tag><Tag>flatten</Tag><Tag>recursion</Tag>
+</GridFlexRow>
+
+Flattens a nested list using recursion.
+
+```python
+def flatten_list(nested_list):
+    if not(bool(nested_list)):
+        return nestedList
+
+    if isinstance(nested_list[0], list):
+        return flatten_list(*nested_list[:1]) + flatten_list(nested_list[1:])
+
+    return nested_list[:1] + flatten_list(nested_list[1:])
+```
+
+Related Links
+
+- [Python Program to Flatten a nested List using Recursion](https://www.tutorialspoint.com/python-program-to-flatten-a-nested-list-using-recursion)
+- [Flatten a nested list in Python](https://www.geeksforgeeks.org/python-program-to-flatten-a-nested-list-using-recursion/)
+
+<InstallButton src={"https://python.pieces.cloud/?p=b1fe48bde9"}>Add to Pieces</InstallButton>
+
+---
+
+### How to check for duplicates in a list Python code
+
+<GridFlexRow>
+    <Tag>python</Tag><Tag>list</Tag><Tag>check duplicates</Tag>
+</GridFlexRow>
+
+Using this Python code checks whether a list has duplicate values by using set to grab only unique elements.
+
+```python
+def check_for_duplicates(input):
+    return len(input) != len(set(input))
+```
+
+Related Links
+
+- [Python Sets](https://www.w3schools.com/python/python_sets.asp)
+- [Set types in Python](https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset)
+
+<InstallButton src={"https://python.pieces.cloud/?p=a4fc4ba3c4"}>Add to Pieces</InstallButton>
+
+---
+
+### How to check memory usage
+
+<GridFlexRow>
+    <Tag>python</Tag><Tag>memory usage</Tag><Tag>memory</Tag>
+</GridFlexRow>
+
+This snippet in Python checks the total memory an object consumes.
+
+```python
+import sys
+
+a = 100;
+print(sys.getsizeof(a))
+```
+
+Related Links
+
+- [How to check memory usage in Python](https://code.pieces.app/collections/python#)
+- [How much of your memory is used by an object in Python](https://www.geeksforgeeks.org/find-out-how-much-memory-is-being-used-by-an-object-in-python/)
+- [Use Python to check memory size of an object](https://stackoverflow.com/questions/17574076/what-is-the-difference-between-len-and-sys-getsizeof-methods-in-python)
+
+<InstallButton src={"https://python.pieces.cloud/?p=405442b8da"}>Add to Pieces</InstallButton>
+
+---
+
+### How to sort a list of dictionaries in python
+
+<GridFlexRow>
+    <Tag>python</Tag><Tag>dictionaries</Tag>
+</GridFlexRow>
+
+Sorts a list of dictionaries in Python.
+
+```python
+new_dict = {k: v for k, v in sorted(d.items(), key=lambda item: item[1])}
+```
+
+Related Links
+
+- [Sort Python dictionaries by key of value](https://pythonguides.com/python-dictionary-sort/)
+- [Sort dictionary by value in Python](https://favtutor.com/blogs/python-sort-dictionary)
+
+<InstallButton src={"https://python.pieces.cloud/?p=6f3c4aa83f"}>Add to Pieces</InstallButton>
+
+---
+
+### How to merge multiple dictionaries in Python
+
+<GridFlexRow>
+    <Tag>python</Tag><Tag>merge dictionary</Tag><Tag>dictionary</Tag>
+</GridFlexRow>
+
+Merge two python dictionaries into one, or as many dictionaries as you have.
+
+```python
+def merge_dicts(*dicts):
+  super_dict = {}
+  for dict in dicts:
+      for k, v in dict.items():
+          super_dict[k] = v
+
+ return super_dict
+```
+
+Related Links
+
+- [How to merge dictionaries in Python](https://www.freecodecamp.org/news/merge-dictionaries-in-python/)
+- [5 ways to merge dictionaries in Python](https://towardsdatascience.com/merge-dictionaries-in-python-d4e9ce137374)
+
+<InstallButton src={"https://python.pieces.cloud/?p=e4ed49b423"}>Add to Pieces</InstallButton>
+
+---
+
+### How to check if a file exists in Python
+
+<GridFlexRow>
+    <Tag>python</Tag><Tag>file</Tag>
+</GridFlexRow>
+
+Checks if a file exists in Python or not.
+
+```python
+from os import path
+
+def check_for_file(file_name):
+	print("File exists: ", path.exists(file_name))
+```
+
+Related Links
+
+- [How to check if a file exists or not in Python](https://www.pythontutorial.net/python-basics/python-check-if-file-exists/)
+- [How to check if a file already exists in Python](https://flexiple.com/python/python-check-if-file-exists#section5)
+
+<InstallButton src={"https://sql.pieces.cloud/?p=a71748ad84"}>Add to Pieces</InstallButton>
+
+
+

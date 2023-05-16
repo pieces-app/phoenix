@@ -1,6 +1,6 @@
 ---
-title: Remult, TypeScript, and React: The Perfect Combo for a Full-stack App
-description: A full-stack application is made up of frameworks, libraries, and tools for developing two separate domain applications: the backend and the frontend. Building these two applications can be very hectic, especially if the frameworks are developed from different programming languages or if one developer is working on both sides of the application. However, we’re grateful to the JavaScript developers for creating backend frameworks that allow us to use JavaScript to build both the client and server sides of our application. The Remult developers expanded on this concept by developing a framework that allows us to build both the client and server sides of an application in a single project rather than having two separate projects. We’ll explore how this can be implemented in this tutorial. Then, we’ll learn how to build a full-stack application with TypeScript and React using Remult.
+title: Remult, TypeScript, and React | The Perfect Combo for a Full-stack App
+description: A full-stack application is made up of frameworks, libraries, and tools for developing two separate domain applications - the backend and the frontend. Building these two applications can be very hectic, especially if the frameworks are developed from different programming languages or if one developer is working on both sides of the application.
 ---
 
 export const Tag = props => {
@@ -47,12 +47,15 @@ This is a hands-on tutorial, so to follow along, be sure that you’ve done thes
 
 ## Project Setup
 Without further ado, let’s scaffold a Remult React full stack application using Vite by running the command below:
-```
+
+```shell
 npm create -y vite@latest remult-react-blog -- --template react-ts
 cd remult-react-blog
 ```
+
 The above commands will scaffold a new React project with the following folder structure:
-```
+
+```text
 📦remult-react-blog
 ┣ 📂public
 ┃ ┗ 📜vite.svg
@@ -71,24 +74,31 @@ The above commands will scaffold a new React project with the following folder s
 ┣ 📜tsconfig.node.json
 ┗ 📜vite.config.ts
 ```
+
 In order to get your React application running, change the directory into the project folder, install the required packages, and start the application by running the commands below:
-```
+
+```shell
 cd remult-react-blog
 npm install
 ```
+
 Now, let’s set up the backend of the application.
 
 ### Install Dependencies
 The first step in setting up the backend is to install the required dependencies. We’ll use **Express **for the backend, and since Remult creates both the backend and frontend in one project, we’ll need to have them running concurrently.  So run the commands to install **Express **and the **Remult** SDK, and use ```ts-node``` to run the application in development.
-```
+
+```shell
 npm i express remult
 npm i --save-dev @types/express ts-node-dev concurrently
 ```
+
 Next, wait for the installation to be completed and proceed to creating the backend.
 
 ### Create the Backend
+
 With the required packages for the backend setup installed, create a TypeScript config file and add the configurations below:
-```
+
+```json
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
@@ -96,49 +106,63 @@ With the required packages for the backend setup installed, create a TypeScript 
     "emitDecoratorMetadata": true,
     "esModuleInterop": true
   }
+```
 
-```
 Then, create a **server **folder in the **src **folder. Next, in the server folder, create an **index.ts **file and make an Express server with the code snippets below:
-```
+
+```javascript
 import express from 'express';
 const app = express();
 app.listen(3002, () => console.log("Server started"))
 ```
+
 Since the application is using the Common.js module, you need to remove the ```"type": "module"``` entry from the **package.json** file created by Vite.
+
 Next, create an **api.ts** file on the **server **and load Remult in the backend as an Express middleware with the code snippet below:
-```
+
+```javascript
 import { remultExpress } from 'remult/remult-express';
 export const api = remultExpress()
 ```
+
 Then, register the Remult **API** middleware in the **server/index.ts** file with this code snippet:
-```
+
+```javascript
 Import {api} from “./api”;
 app.use(api)
 ```
+
 Next, update the** **```tsconfig.json``` file to enable TypeScript decorators in the React.js full stack App with the entry below:
-```
+
+```json
 "experimentalDecorators": true
 ```
+
 A Remult application is configured to run the frontend and backend from the same domain in production. However, in development, the API server listens to <a href="http://localhost:3002/" target="_blank" rel="noopener noreferrer">http://localhost:3002</a>, while the frontend listens to port <a href="http://localhost:5173/" target="_blank" rel="noopener noreferrer">http://localhost:5173</a>. Therefore, you need to use the Vite proxy feature to divert all requests to the **API** to <a href="http://localhost:5173/api" target="_blank" rel="noopener noreferrer">http://localhost:5173/api</a>. To do this, update the **vite.confg.ts** file with the code snippet below:
-```
+
+```javascript
 export default defineConfig({
   plugins: [react()],
   server: { proxy: { '/api': 'http://localhost:3002' } }
-})```
-Next, update the **package.json** file to add a start script to run the application in development with the entry below:
+})
 ```
+
+Next, update the **package.json** file to add a start script to run the application in development with the entry below:
+
+```json
 "dev": "concurrently -k -n \\"API,WEB\\" -c \\"bgBlue.bold,bgGreen.bold\\" \\"ts-node-dev -P tsconfig.server.json src/server/\\" \\"vite\\"&quot
 ```
 Now, run the application with this command:
 
 With the backend created, let’s proceed to connecting the application to a MongoDB database to store our blog data. To get started, install the MongoDB package by running the command below:
 
-```
+```shell
 npm i mongdb
 ```
+
 Then, update the** server/index.ts **file and connect it to MongoDB with the following code snippet:
 
-```
+```javascript
 import { remultExpress } from 'remult/remult-express';
 import { MongoClient } from 'mongodb';
 import { MongoDataProvider } from 'remult/remult-mongo';
@@ -157,7 +181,8 @@ With the above code snippet, we imported the ```remultExpress```** **middleware,
 Now, with the connection to our database established, let's create a Blog entity to define and create our blog model. To do this, we’ll create a **shared **folder in the server folder. We’re saving it in this file because Remult classes are shared between the frontend and backend. This means we can access in the frontend any class created in the backend.
 
 In the **shared** folder, create a blog.ts file and add the code below:
-```
+
+```javascript
 import { Entity, Fields } from 'remult';
 @Entity('blogs', {
   allowApiCrud: true
@@ -173,10 +198,12 @@ export class Blogs {
   content = '';
 
 ```
+
 In the above code snippets, we imported the Remult ```Entity``` and ```Fields```** **decorators. We used the ```Entity```** **decorator to create a blogs entity, which will be translated to a model in our MongoDB base with the fields we defined in the ```Blogs``` class using the ```Fields``` decorator. We also set** **```allowApiCrud```** **to ```true``` in the ```@Entity``` decorator to allow us to perform CRUD operations on this entity.
 
 Next, update the **server/index.ts** file to register the entity in the ```remultExpress``` middleware with this code snippet:
-```
+
+```javascript
 import { Blogs } from './shared /blog';
 app.use(remultExpress({
   dataProvider: async () => {
@@ -187,6 +214,7 @@ app.use(remultExpress({
   entities: [Blogs],
 }))
 ```
+
 In the above code snippet, we imported the Blogs entity and registered it to the application in the array of **entities** object.
 
 ## Create CRUD Operations
@@ -194,9 +222,10 @@ In the above code snippet, we imported the Blogs entity and registered it to the
 Now let’s create our CRUD functions so that we Create, Read, Update and Delete a blog from our database.
 
 First, you need to create a ```blogController.ts``` file in the **server/shared **folder. In the ```blogController.ts```** **file, add the following code:
-```
-import { BackendMethod, remult } from "remult&quot;;
-import { Blogs } from "./blog&quot;;
+
+```javascript
+import { BackendMethod, remult } from "remult";
+import { Blogs } from "./blog";
 export class BlogsController {
   @BackendMethod({ allowed: true })
   static async create(title: string, coverImage: string, content: string) {
@@ -214,19 +243,21 @@ static async updateOne(id: string, title: string, coverImage: string, content: s
 }
 static async deleteOne(id:string) {
   return await this.blogRepo.delete(id)
-
 ```
+
 In the above code snippets, we imported the Remult ```BackendMethod``` decorator and ```Remult```** **object. The ```BackendMethod```** **decorator tells Remult to expose the methods we defined in the ```BlogsController``` as API endpoints. Then, we used the ```remult.repo```** **method to create a repository for our Blogs entity. This provides us with the methods we need to perform database CRUD operations in each controller method.
 
 Next, you also need to register the ```BlogsController``` like you did for the ```Blogs```** **entity in the ```server/index.ts``` file. This can done with the code snippet below:
 
 We’re done setting up the backend part of the application. Now, let’s move to our React frontend and consume the API’s we’ve created in our backend.
+
 To get started, create a controllers folder in the **src **to create some React controllers for your application.
 
 First, create a **Form.ts** file in the controllers folder, and add the code below:
-```
-import { useState } from "react&quot;;
-import { BlogsController } from "../server/shared /blogController&quot;;
+
+```javascript
+import { useState } from "react";
+import { BlogsController } from "../server/shared /blogController";
 export function Form() {
   const [title, setTitle] = useState("");
   const [coverImage, setCoverImage] = useState("");
@@ -275,13 +306,14 @@ return (
   </div>
 </div>
 );
-
 ```
+
 In the above code snippet, we imported the ```BlogsController``` class so we can access the API endpoints that we defined there. We also created a state variable to store the blog ```title``` and ```coverImage``` ```content```** **values from the form data. We made a** **```create```** **function and called the create endpoint from our ```BlogsController``` class, passing the variables we defined for the form values to create a new blog.
 
 We need this form to display in a modal when clicked. Therefore, we need to create a Modal.tsx file in the controllers file to create a ```Modal``` component. This can be done by using the code snippet below:
-```
-import { Form } from "./Form&quot;;
+
+```javascript
+import { Form } from "./Form";
 export function Modal() {
 return (
   <div
@@ -313,13 +345,14 @@ return (
   </div>
 </div>
 );
-
 ```
+
 In the above code, we used the ```Bootstrap``` classes to create a modal for the form component. Then, we imported the ```Form``` component and rendered it in the modal body.
 
 Next, we’ll need to add a clickable button to show the modal component we just created. To add a button in the header part of the application, create a Header.ts file in the controllers folder and add the code below:
-```
-import { Modal } from "./Modal&quot;;
+
+```javascript
+import { Modal } from "./Modal";
 export function Header() {
 return (
   <nav className="navbar navbar-light bg-light">
@@ -336,14 +369,15 @@ return (
   <Modal/>
 </nav>
 );
+```
 
-```
 Now, let’s update the code in the** **```App.tsx``` file to make the ```Header``` component available, read the blog data from our Remult backend, and render it to users with the following:
-```
-import { useEffect, useState } from "react&quot;;
-import { Header } from "./components/Header&quot;;
-import { BlogsController } from "./server/shared /blogController&quot;;
-import { Blogs } from "./server/shared /blog&quot;;
+
+```javascript
+import { useEffect, useState } from "react";
+import { Header } from "./components/Header";
+import { BlogsController } from "./server/shared /blogController";
+import { Blogs } from "./server/shared /blog";
 function App() {
   const [blogs, setBlogs] = useState<Blogs[]>([]);
   useEffect(() => {
@@ -391,9 +425,11 @@ return (
 }
 export default App
 ```
+
 Also, with the above code snippet, we created a delete function to delete blogs from our database by calling the ```deleteOne``` endpoint using the ```BlogsController```** **controller class.
 
 Next, open your browser and navigate to <a href="http://localhost:5173/" target="_blank" rel="noopener noreferrer">http://localhost:5173</a>, and you should see the output on the screenshot below:
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63614dff1eb9182703a65da6_image2_79575295c40725aca88abdf2c4081a89_800.png)
 
 Click the Add New button to create a new blog.
@@ -401,4 +437,5 @@ Click the Add New button to create a new blog.
 
 ## Conclusion and Resources
 In this tutorial, we went through a React TypesScript tutorial to build a full-stack application using Remult. We began by learning what Remult is and why a developer would use it to build full-stack web applications. Then, we built a blog application with CRUD operations as a demonstration.
+
 Now that you’ve learned about Remult, how would you use it in your next project? To learn more about Remult, check out the official <a href="https://remult.dev/" target="_blank" rel="noopener noreferrer">documentation</a>.

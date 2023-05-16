@@ -30,9 +30,29 @@ export const Spacer = props => {
     return <div style={{height: "16px"}}></div>
 };
 
-# Woo-hoo! You saved your first snippet.
+export const HeaderSpacer = props => {
+    return <div style={{width: "100%", height: "100px"}}></div>;
+};
 
-Find your snippet in the Pieces desktop app (located in your applications folder). From the desktop app, you can see all of your snippets, which have been automatically enriched with tags, descriptions, related links and more.
+export const CenterFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>
+};
+
+
+<HeaderSpacer></HeaderSpacer>
+
+<CenterFlexRow>
+    # Woo-hoo! You saved your first snippet.
+</CenterFlexRow>
+
+<CenterFlexRow>
+    Find your snippet in the Pieces desktop app (located in your applications folder). From the desktop app, you can see all of your snippets, which have been automatically enriched with tags, descriptions, related links and more.
+</CenterFlexRow>
 
 <GridFlexRowCenter>
     <InstallButton src={"pieces-for-developers://"}>View Snippet</InstallButton>

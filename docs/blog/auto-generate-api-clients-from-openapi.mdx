@@ -1,6 +1,6 @@
 ---
 title: Auto-generate API Clients from OpenAPI
-description: Consuming HTTP APIs is an indispensable part of web development. For any frontend client to be able to talk to an API, a contract has to be established. This contract, in simple terms, can be split into the following aspects:
+description: Consuming HTTP APIs is an indispensable part of web development. For any frontend client to be able to talk to an API, a contract has to be established. This contract, in simple terms, can be split into the following aspects.
 ---
 
 export const Tag = props => {
@@ -58,7 +58,7 @@ That’s why we’re here.
 ## Create a NestJS app to host our REST APIs
 It’s not super important to fully understand NestJS; having a general idea of what’s happening will suffice because we are using NestJS as an example. APIs can be written in any server side programming language. We will use the <a href="https://www.npmjs.com/package/@nestjs/cli" target="_blank" rel="noopener noreferrer">NestJS CLI</a> to bootstrap a NestJS project and get us up and running.
 
-```
+```shell
 npx @nestjs/cli new open-api-nestjs-server
 ```
 
@@ -108,21 +108,27 @@ For instance, an auth token can be injected for all the requests like this:
 
 ## Publish the package using GitHub actions
 We have looked into how the client can be consumed, but there is still one piece pending. We have to publish the client to an npm repository. We will use <a href="https://github.com/features/actions" target="_blank" rel="noopener noreferrer">GitHub Actions</a> to automate the entire workflow.
+
 Remember that we already have all the scripts ready in our ```package.json```. So, if you plan to automate this with any other CI, that should be straightforward.
+
 To begin, we’ll have to configure an npm to point to the GitHub npm repository. That can be done by adding a ```.npmrc``` file.
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/630f8ce2c647006d0baf9779_image_61d77e179d75a0ffb2d61f30ed3b2e07_800.png)
 
 We’ll also need to create an access token for the scripts to be able to talk to the npm repository. This can be done by adding a new <a href="https://github.com/settings/tokens" target="_blank" rel="noopener noreferrer">personal access token</a>. We will need a subset of these <a href="https://docs.github.com/en/packages/learn-github-packages/about-permissions-for-github-packages#about-scopes-and-permissions-for-package-registries" target="_blank" rel="noopener noreferrer">permissions</a> for our token to work:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/630f8ce2c647009fd1af9777_Personalaccesstoken_597b0ed6c4f547255563561c07710322_800.png)
+
 We can now add this token as a <a href="https://github.com/gsp-labs/open-api-nestjs-server/settings/secrets/actions" target="_blank" rel="noopener noreferrer">repository secret</a>. In our case, we have assigned the token to ```MY_NPM_AUTH_TOKEN``` which is referred to inside ```.npmrc```.
+
 That’s all the setup we need! Let’s get started on the Github Actions workflow.
 
 The logical flow of our workflow is:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/630f8ce2c64700360caf977b_CIflow_88f99041f092dcc7ae0784d44c9ce9a1_800.png)
+
 In production-grade applications, we will have unit + integration + smoke tests that will tell us if the application’s code is healthy. Also, there will be health checks performed post-deployment to assess if the server is ready to accept incoming traffic. For these reasons, it makes sense to generate the API client once everything is ready. There’s no point in publishing an API client for a failed deployment, because it’s not going to work.
 
 ## The workflow
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/630f8ce2c64700e025af9782_GitHubAction_cf8d6dfec093f381393611491b6efab2_800.png)
+
 Note: Since we do not have integration tests or an actual deployment, they are commented in the above snippet.
 
 ## Final thoughts and summary
@@ -133,6 +139,7 @@ This is a convenient mechanism to increase adoption and reduce implementation ef
 
 ### Why did we bother with all this automation?
 For starters, one client library certainly isn’t enough. APIs often offer multiple client libraries for many popular programming languages. After all, a client library is only any good for developers if it’s written in the language they want to use.
+
 The other reason you’d want to automate the generation of client libraries is to ensure that they’re kept up to date. An outdated client library is no good. In fact, it’s probably better to have no client libraries at all than to have outdated ones.
 Although it may take a fair bit of effort to set up an automated client library generation, it immediately solves both problems. With an automated system in place, you can create client libraries for as many programming languages as you want, as often as you want.
 

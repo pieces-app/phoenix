@@ -29,26 +29,40 @@ export const GridFlexRow = props => {
 
 React is one of the most prominent JavaScript frameworks in web development, providing different frameworks and libraries that aid front-end development. One example of these React frameworks is Next.js.
 Next.js is a React framework that allows you to build <a href="https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps/Introduction" target="_blank" rel="noopener noreferrer">server-side rendered web applications</a> that leverage the features provided by React technology. In addition, Next.js enables you to build full-stack applications with no configuration. You can find additional information on the features Next.js has to offer on their <a href="https://nextjs.org/" target="_blank" rel="noopener noreferrer">official website</a>.
+
 In this article, we’ll review building a full-stack application that integrates MongoDB and NextAuth for authentication. You’ll need a basic knowledge of Next.js and JavaScript to follow along. Also, you’ll need to have <a href="https://nodejs.org/en/download/" target="_blank" rel="noopener noreferrer">Node.js</a> installed on your system.
 
 ## Getting Started and Installing Dependencies
 In this section, we’ll create a Next.js application and install the dependencies needed for this project. To create a Next.js application, run the command linked below: 
+
+```shell
+npx create-next-app@latest
 ```
-npx create-next-app@latest```<a href="https://user-147066d7-6cd9-463c-bdbe-2c385fc39ce0-fhcmbheklq-uc.a.run.app/?p=dea04eae01" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+<a href="https://user-147066d7-6cd9-463c-bdbe-2c385fc39ce0-fhcmbheklq-uc.a.run.app/?p=dea04eae01" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 The command above will create a new Next.js application in the folder next-mongodb. Following, we install all the required dependencies by running the command below in the terminal:
+
+```shell
+yarn add @next-auth/mongodb-adapter mongodb mongoose next-auth
 ```
-yarn add @next-auth/mongodb-adapter mongodb mongoose next-auth```<a href="https://user-147066d7-6cd9-463c-bdbe-2c385fc39ce0-fhcmbheklq-uc.a.run.app/?p=4bd44c823e" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+<a href="https://user-147066d7-6cd9-463c-bdbe-2c385fc39ce0-fhcmbheklq-uc.a.run.app/?p=4bd44c823e" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 After installing the dependencies, we’ll bootstrap the application and add the styles.
 
 ### Next.js Setup
 To set up the app, we add the pages and style next. In the styles folder, we’ll use the files at the following link:
+
 <a href="https://github.com/MelvinManni/next-mongoose/tree/main/styles" target="_blank" rel="noopener noreferrer">https://github.com/MelvinManni/next-mongoose/tree/main/styles</a>
+
 After this, we set up the phonebook card component and pages for the application. In the next section, we’ll cover how to set up authentication for the application using NextAuth.
 
 ### NextAuth
 
 NextAuth is a library that allows you to easily add authentication to your application. It has built-in support for most authentication services like Google, Auth0, Facebook, GitHub, etc. For this tutorial, we’ll be using GitHub authentication. To get started, we create an ```auth``` folder under the ```api``` folder. Inside the newly created ```auth``` folder, we will create a new file ```[...nextauth].js``` with the code below:
-```
+
+```javascript
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter&quot;;
 import NextAuth from "next-auth/next&quot;;
 import Github from "next-auth/providers/github&quot;;
@@ -69,17 +83,21 @@ export default NextAuth({
     jwt: true
   },
   adapter: MongoDBAdapter(clientPromise),
-});```<a href="https://user-147066d7-6cd9-463c-bdbe-2c385fc39ce0-fhcmbheklq-uc.a.run.app/?p=fd444990e3" target="_blank" rel="noopener noreferrer">Save this code</a>
+});
+```
+<a href="https://user-147066d7-6cd9-463c-bdbe-2c385fc39ce0-fhcmbheklq-uc.a.run.app/?p=fd444990e3" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 The code block above will provide an authentication API for the application. We have the client ID and client secret on lines 9 and 10. The values for the fields are available from <a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a>.
 - Navigate to Settings.
 - Click on Developer settings > OAuth Apps > New OAuth App.
-- Fill in the details for your OAuth app. Enter http://localhost:3000/api/auth/callback/github as the value for the authorization callback URL.
+- Fill in the details for your OAuth app. Enter [http://localhost:3000/api/auth/callback/github](http://localhost:3000/api/auth/callback/github) as the value for the authorization callback URL.
 - Register your application.
 - Find the client id. Also, you can click the “Generate a new client secret” button to create a client secret.
 
 ### MongoDB Integration
 Since we’ll need a database for our application, we have to choose and add a database as an adapter to the authentication configuration, which allows us to save users and sessions on the database, as we can see on line 21. Therefore, we passed the MongoDBAdapter, which accepts a client connection as a promise.
-```
+
+```javascript
 import { MongoClient } from "mongodb"
 import mongoose from 'mongoose';
 const uri = process.env.MONGO_URI;
@@ -109,13 +127,18 @@ if (process.env.NODE_ENV === "development") {
 export const connectMongo = async () => mongoose.connect(uri);
 // Export a module-scoped MongoClient promise. By doing this in a
 // separate module, the client
-export default clientPromise```<a href="https://user-147066d7-6cd9-463c-bdbe-2c385fc39ce0-fhcmbheklq-uc.a.run.app/?p=98e1438723" target="_blank" rel="noopener noreferrer">Save this code</a>
+export default clientPromise
+```
+
+<a href="https://user-147066d7-6cd9-463c-bdbe-2c385fc39ce0-fhcmbheklq-uc.a.run.app/?p=98e1438723" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 In the code block above, there are two different connections to MongoDB.
 - We have a second connection in the ```connectMongo``` function; this is a mongoose connection to the MongoDB client. We’ll be using this everywhere else in the application API.
 
 ## Application API Routes
 This section will look at creating the API Routes for the application. First, we’ll create a folder called ```phonebooks``` under the ```api``` folder. After that, we’ll set up our model for the phonebook collection.
-```
+
+```javascript
 import mongoose from "mongoose&quot;;
 const PhonebookSchema = new mongoose.Schema({
   user: {
@@ -136,8 +159,10 @@ module.exports = mongoose.models.Phonebook || mongoose.model('Phonebook', Phoneb
 
 <a href="https://user-147066d7-6cd9-463c-bdbe-2c385fc39ce0-fhcmbheklq-uc.a.run.app/?p=839a438828" target="_blank" rel="noopener noreferrer">Save this code</a>
 Use the code block above to create a collection schema using mongoose for the phonebook collection. We’ll also create a mongoose collection schema for the auto-created collections from NextAuth. All of the models can be found <a href="https://github.com/MelvinManni/next-mongoose/tree/main/config/database/models" target="_blank" rel="noopener noreferrer">here</a>.
+
 Following this, we create an index.js file under the phonebooks folders with the following code:
-```
+
+```javascript
 import { getToken } from "next-auth/jwt&quot;;
 import Phonebook from "../../../config/database/models/phonebook&quot;;
 import Session from "../../../config/database/models/session&quot;;
@@ -190,8 +215,10 @@ export default async function handler(req, res) {
 ```
 
 <a href="https://user-147066d7-6cd9-463c-bdbe-2c385fc39ce0-fhcmbheklq-uc.a.run.app/?p=94cd45b0eb" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 The code above exports a function that calls another function in a switch case, with the request method passed as a condition to the switch case. The exported function will call ```getPhonebooks``` if the request method is ```GET```. This will return all the contacts saved in the current user's phonebook. A ```POST``` request needs an object that fits the phonebook schema and creates a new contact detail on the current user's phonebook. If we check line 38, we have the ```verifyUserSession``` function, which checks the request session to list the current user and passes the user id to the req object under the ```user``` key.
-```
+
+```javascript
 import { connectMongo } from "../database/connection&quot;;
 const secret = process.env.SECRET;
 export default async function verifyUserSession({ req, res, getToken, Session }) {
@@ -212,8 +239,10 @@ export default async function verifyUserSession({ req, res, getToken, Session })
 ```
 
 <a href="https://user-147066d7-6cd9-463c-bdbe-2c385fc39ce0-fhcmbheklq-uc.a.run.app/?p=dd794a8ac6" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 Next, we’ll set up API routes for handling fetching, updating, and deleting a contact. Finally, we’ll create a new file [id].js in the phonebooks folder. This will let us pass a query id to the req object for requests made to the phonebooks API route.
-```
+
+```javascript
 import { getToken } from "next-auth/jwt&quot;;
 import Phonebook from "../../../config/database/models/phonebook&quot;;
 import Session from "../../../config/database/models/session&quot;;
@@ -285,12 +314,14 @@ export default async function handler(req, res) {
 ```
 
 <a href="https://85d3a788-9617-4a31-862b-bc26c649acca.pieces.cloud/?p=b7e646b6cb" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 The ```getPhonebook``` function will return a single contact from a user's phonebook with an id matching the query id. In addition, the application will execute the updatePhonebook function for "PATCH" request methods; the function will update the current contact with an id matching the query id, and the deletePhonebook function will delete a user's contact matching the query id.
 
 ### Consuming API
 Following, we look at how to use the APIs created for the application. Firstly, we’ll look at handling authentication for the application's client side.
 Under the pages folder, we create an index.js file with this code:
-```
+
+```javascript
 import { useSession, signIn, signOut } from "next-auth/react&quot;;
 import Head from "next/head&quot;;
 import Link from "next/link&quot;;
@@ -357,9 +388,12 @@ export default function Home() {
 ```
 
 <a href="https://user-147066d7-6cd9-463c-bdbe-2c385fc39ce0-fhcmbheklq-uc.a.run.app/?p=4e1a4aa63b" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 On line 10, we have the session variable destructured from the ```useSession``` hook from NextAuth. The session variable holds the details of the current user session; it returns an object of the current session details or is undefined if a session does not exist. On line 34, we have a ternary operator that checks if a session exists. The operation renders a button that calls the ```signIn``` function from NextAuth if there is no active session; otherwise, it renders the current user's phonebook with all contact details. Finally, on line 12, we have the ```getPhonebooks``` callback. This handles fetching the current users and assigning the value to the phonebooks state.
+
 Following this, we set up the page to add a new contact to a user's phonebook. Under the pages folder, we’ll create a new ```add-phonebook.js``` file:
-```
+
+```javascript
 import { useSession, signIn, signOut } from "next-auth/react&quot;;
 import Head from "next/head&quot;;
 import Link from "next/link&quot;;
@@ -442,8 +476,10 @@ export default function Home() {
 ```
 
 <a href="https://user-147066d7-6cd9-463c-bdbe-2c385fc39ce0-fhcmbheklq-uc.a.run.app/?p=596748a49c" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 The ```handleSubmit``` function above will make a ```POST``` request to the phonebooks API with the state passed as the request body. This will allow the creation of a new contact for the current user's phonebook. Under the ```PhonebookCard```, we have a delete request to the phonebooks API with the contact ID passed as request query:
-```
+
+```javascript
 import { useRouter } from "next/router&quot;;
 import React, { useState } from "react&quot;;
 import styles from "../styles/Phonebook.module.css&quot;;
@@ -496,9 +532,12 @@ export default function PhonebookCard({ name, mobile, fax, work, id, refresh }) 
 ```
 
 <a href="https://user-147066d7-6cd9-463c-bdbe-2c385fc39ce0-fhcmbheklq-uc.a.run.app/?p=ad6d4e8503" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 On line 13, we have the ```handleDelete``` function. This deletes a contact matching the ID passed to the request query. The ```handleEdit``` function on line 9 will replace the current route with the ```update-phonebook``` route.
+
 Finally, we’ll update a phonebook. To do this, we create a [id].js file under ```update-phonebook``` folder in pages:
-```
+
+```javascript
 import { useSession, signIn, signOut } from "next-auth/react&quot;;
 import Head from "next/head&quot;;
 import Link from "next/link&quot;;
@@ -588,8 +627,10 @@ export default function Home({ contact }) {
 ```
 
 <a href="https://user-147066d7-6cd9-463c-bdbe-2c385fc39ce0-fhcmbheklq-uc.a.run.app/?p=0e2140924f" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 The code block above fetches the contact detail with an ID matching the router query, allowing us to edit and persist the new values in the database. Line 21 is a callback function that fetches the contact details from the database and assigns the value to the state. Finally, the ```handleSubmit``` function updates the existing value with the new value on the database.
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6334669e9a107a317fab7e02_image1_1f4c83410be9efbbe30952195dde866c.g)
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/6334669e9a107a317fab7e02_image1_1f4c83410be9efbbe30952195dde866c.gif)
 
 ## Deploying the Application
 We’ve successfully set up all the application features! The next step is to deploy the application. This article covers deploying the application on Vercel from your GitHub repository.

@@ -3,21 +3,19 @@ title: Get Chrome Snippets Extension | Pieces
 description: Get Pieces for Developers in your browser. The fastest, smartest AI Assistant for Chrome snippets. Save code from your browser to your clipboard in one click.
 ---
 
-<link rel="canonical" href="https://code.pieces.app/plugins/chrome" />
+<link rel="canonical" href="https://code.pieces.app/plugins/chrome"/>
 
 export const InstallButton = props => {
-    return <a style={{textDecoration: "none"}} target="_blank" href="https://chrome.google.com/webstore/detail/pieces-save-code-snippets/igbgibhbfonhmjlechmeefimncpekepm">
-        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+    return <a style={{textDecoration: "none"}} target="_blank" href={props.src}>
+        <div style={{ minWidth: "125px", maxWidth: "fit-content"}}>
             <p style={{
-                padding: "8px 20px",
+                padding: "2px 24px",
                 borderRadius: "8px",
-                border: "1px solid #f3f5f6",
-                color: "white",
+                border: "1px solid grey",
                 fontWeight: "500",
-                background: "black",
+                background: "transparent",
                 marginBottom: "8px",
                 marginTop: "3px",
-                marginRight: "16px"
             }}>{props.children}</p>
         </div>
     </a>
@@ -32,35 +30,101 @@ export const GridFlexRow = props => {
     }}>{props.children}</div>;
 };
 
+export const GridFlexRowEnd = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'end',
+        flexWrap: "wrap",
+        textAlign: "end",
+    }}>{props.children}</div>;
+};
+
 export const GridFlexRowCenter = props => {
     return <div style={{
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
         flexWrap: "wrap"
-    }}>{props.children}</div>;
+    }}>{props.children}</div>
 };
 
 export const PluginSection = props => {
-    return <GridFlexRowCenter>
-        <img src={ props.src } />
+    return <GridFlexRow>
+        {props.children}
         <div>
-            <p><strong>{ props.heading }</strong></p>
-            <p>{props.text }</p>
+            <h3><strong>{props.heading}</strong></h3>
+            <p>{props.text}</p>
         </div>
+    </GridFlexRow>
+};
 
-    </GridFlexRowCenter>
+export const PluginSectionEnd = props => {
+    return <GridFlexRowEnd>
+        {props.children}
+        <div>
+            <h3><strong>{props.heading}</strong></h3>
+            <p>{props.text}</p>
+        </div>
+    </GridFlexRowEnd>
 };
 
 export const Spacer = props => {
-    return <div style={{height: "5px"}}></div>
-}
+    return <div style={{height: "16px"}}></div>
+};
 
-# The fastest, smartest Micro-Repo, deeply integrated into Chrome
-<GridFlexRow>
-    <img style={{width: "25px" }} src={"/assets/chrome_logo.png"} />
-    <Heading type={"h2"} >Save Chrome snippets even faster - 100% Free!</Heading>
-</GridFlexRow>
+export const SpacerW = props => {
+    return <div style={{width: "8px"}}></div>
+};
+
+export const HeaderSpacer = props => {
+    return <div style={{width: "100%", height: "100px"}}></div>;
+};
+
+export const BodySpacer = props => {
+    return <div style={{height: "100px"}}></div>
+};
+
+export const CallToAction = props => {
+    return <div style={{
+        marginTop: "150px",
+        marginBottom: "150px",
+        padding: "32px",
+        border: "1px solid gray",
+        borderRadius: "16px",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center"
+    }}>
+        <h3>{props.heading}</h3>
+        {props.text}
+        <Spacer></Spacer>
+        <InstallButton
+            src={"https://plugins.jetbrains.com/plugin/17328-pieces--save-search-share--reuse-code-snippets"}>Get Pieces for JetBrains</InstallButton>
+    </div>
+};
+
+<HeaderSpacer></HeaderSpacer>
+
+<GridFlexRowCenter>
+
+    <Heading style={{textAlign: "center"}} type={"h1"}>The fastest, smartest Micro-Repo, deeply integrated into
+        Chrome</Heading>
+
+    <div style={{display: "flex", flexDirection: "row"}}>
+        <Image margin-top={"0px"} margin-bottom={"0px"} border-radius={"20px"} width={"35px"}
+               src={"/assets/logos/chrome_logo.png"}/>
+        <SpacerW></SpacerW>
+        <Heading style={{marginTop: "16px", fontWeight: "400"}} type={"h2"}>Save Chrome snippets even faster - 100% Free!</Heading>
+    </div>
+    <InstallButton src={"https://chrome.google.com/webstore/detail/pieces-save-code-snippets/igbgibhbfonhmjlechmeefimncpekepm"}>Get Pieces for Chrome</InstallButton>
+</GridFlexRowCenter>
+
+![](/assets/headers/light/plugin_header_chrome.png)
+
+<BodySpacer></BodySpacer>
+
+---
 
 <GridFlexRow>
     <InstallButton>Get Pieces for Chrome</InstallButton>
@@ -70,9 +134,35 @@ export const Spacer = props => {
 
 ### Transform how you code with your very own Chrome browser repository
 
-<PluginSection src={"/assets/graphics/chrome/plugins_save_code_chrome.png"} heading={"Save useful code to your Pieces micro-repo"} text={"Templates, terminal commands, useful Chrome snippets... save code snippets you find on the web in one-click for later re-use."}></PluginSection>
-<PluginSection src={"/assets/graphics/chrome/plugins_find_reuse_chrome.png"} heading={"Find and re-use just the right Chrome code snippets when you need it"} text={"Blazing fast, powerful search of your Pieces snippets right inside your editor."}></PluginSection>
-<PluginSection src={"/assets/graphics/chrome/plugins_auto_save_chrome.png"} heading={"Let Pieces auto-save useful Chrome snippets"} text={"Pieces permanent clipboard Chrome extension for code snippets trains on your behavior and auto-saves frequently used or useful snippets. Since you might not realize you need them later until it’s too late."}></PluginSection>
-<PluginSection src={"/assets/graphics/chrome/plugins_share_chrome.png"} heading={"Share Chrome snippets without breaking your research flow"} text={"Share snippets in Slack or Teams with a simple button click. Your colleagues receive both the snippet and its related context - tags, descriptions and more."}></PluginSection>
+<PluginSection heading={"Save useful code to your Pieces micro-repo"}
+               text={"Templates, terminal commands, useful Chrome snippets... save code snippets you find on the web in one-click for later re-use."}>
+    <Image witdh={"550px"} src={"/assets/graphics/chrome/plugins_save_code_chrome.png"}/>
+</PluginSection>
 
-**dont forget about the bottom footer and also the cta**
+<BodySpacer></BodySpacer>
+
+<PluginSectionEnd heading={"Find and re-use just the right Chrome code snippets when you need it"}
+               text={"Blazing fast, powerful search of your Pieces snippets right inside your editor."}><Image
+    width={"550px"} src={"/assets/graphics/chrome/plugins_find_reuse_chrome.png"}></Image>
+</PluginSectionEnd>
+
+<BodySpacer></BodySpacer>
+
+<CallToAction heading={"The must-have snippet app for Chrome, thoughtfully designed by fellow developers"} text={"Runs local - or connect to the Cloud for sharing and more. Deeply embedded into Chrome - save, edit, classify, share your snippets entirely from Pieces: the must have extension for Chrome."}></CallToAction>
+
+<BodySpacer></BodySpacer>
+
+<PluginSection heading={"Let Pieces auto-save useful Chrome snippets"}
+               text={"Pieces permanent clipboard Chrome extension for code snippets trains on your behavior and auto-saves frequently used or useful snippets. Since you might not realize you need them later until it’s too late."}>
+    <Image
+        width={"550px"} src={"/assets/graphics/chrome/plugins_auto_save_chrome.png"}></Image>
+</PluginSection>
+
+<BodySpacer></BodySpacer>
+
+<PluginSectionEnd heading={"Share Chrome snippets without breaking your research flow"}
+               text={"Share snippets in Slack or Teams with a simple button click. Your colleagues receive both the snippet and its related context - tags, descriptions and more."}>
+
+    <Image
+        width={"550px"} src={"/assets/graphics/chrome/plugins_share_chrome.png"}></Image>
+</PluginSectionEnd>

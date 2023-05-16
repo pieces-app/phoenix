@@ -66,11 +66,20 @@ export const Snip = props => {
     return <p style={{lineHeight: "1.25", marginTop: "0px"}}>{props.children}</p>
 }
 
-# Pieces for Developers Blog
+export const DateDivider = props => {
+    return <div style={{ margin: "150px 0px", width: "100%", display: "flex", flexDirection: "row", flexWrap: "nowrap", justifyContent: "center" }}>
+        <h2 style={{ margin: "auto", paddingRight: "16px" }}>{ props.children }</h2><span style={{ margin: "auto 0", width: "100%", border: "1px solid #b8bcc4", height: "2px" }}></span>
+    </div>
+}
+
+# Pieces for Developers
+Blog
 
 ![](/assets/blog/blog_header_lm.png)
 
 A blog about code snippets, developer tools and productivity, frameworks, languages and more. Everything you need to know to improve your workflow and enrich your time and code.
+
+<DateDivider>2023</DateDivider>
 
 <MainContainer>
     <Card>

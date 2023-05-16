@@ -30,30 +30,30 @@ export const GridFlexRow = props => {
 Today, I will try to answer the question of should we use Redux in NextJS and show you some alternative ways of doing things that you might want to consider.
 
 ## My Direct Answer
-If you want my direct opinion on this topic, <em you should really, really try to avoid using Redux in NextJS. It's not a nextJs best practice arguably.
+If you want my direct opinion on this topic, you should really, really try to avoid using Redux in NextJS. It's not a nextJs best practice arguably.
 Let me explain why.
 
 ### Reason 1: NextJS Architecture Is Not Suitable for Redux.
 The general architecture of a NextJS application is usually very different from a ReactJS application.
-In NextJS, we have the concepts of <em getServerSideProps and <em getStaticProps which can populate the data required for a page before rendering. So, using Redux in NextJS often doesn’t make that much sense.
+In NextJS, we have the concepts of getServerSideProps and getStaticProps which can populate the data required for a page before rendering. So, using Redux in NextJS often doesn’t make that much sense.
 
 ### Reason 2: Redux Has Other Alternatives.
-React now supports <em Context, which can share common states between components.
-If you have a lot of nested components that need a shared piece of data, then you can just use<em  React Context. Like the following:
+React now supports Context, which can share common states between components.
+If you have a lot of nested components that need a shared piece of data, then you can just use React Context. Like the following:
 
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62da88006734e50ded5e6fef_React%20Context.png" loading="lazy" id="" width="auto" height="auto" alt="A React code snippe)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62da88006734e50ded5e6fef_React%20Context.png)
 
 In fact, there are many scenarios where you wouldn’t even need any centralized state management solution. I will go over some of those scenarios in this article!
 
 ### <strong Reason 3: It’s Very, **Very<strong  Complex to Set Up.**
 If you still feel that you need Redux in your NextJS application, just a heads up...it’s really complex to set up Redux with NextJS. 
-You will need a special package named <a href="https://github.com/kirill-konshin/next-redux-wrapper" target="_blank" next-redux-wrapper</a> to get it to work. Even after that, handling the server and client states and making them sync is a lot of pain. Read more about that <a href="https://github.com/kirill-konshin/next-redux-wrapper" target="_blank" here.</a>
+You will need a special package named <a href="https://github.com/kirill-konshin/next-redux-wrapper" target="_blank"> next-redux-wrapper</a> to get it to work. Even after that, handling the server and client states and making them sync is a lot of pain. Read more about that <a href="https://github.com/kirill-konshin/next-redux-wrapper" target="_blank" here.</a>
 
 ### Reason 4: Optimizing Redux in NextJS is Complex.
 Even after all of these, if you managed to integrate Redux with NextJS, the next problem you will face is performance.
 One big argument against React Context is its performance implications and using Redux can sometimes solve that issue with the use of selectors.
 
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62da895f5aa61882ef08bb05_React%20Selector.png" loading="lazy" id="" width="auto" height="auto" alt="A React code snippe)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62da895f5aa61882ef08bb05_React%20Selector.png)
 
 Well, it’s hard to do in NextJS….
 I am not saying it’s impossible but optimizing Redux properly for performance in NextJS can be very hard and takes a very long time.
@@ -67,35 +67,39 @@ Let’s explore, shall we?
 Let’s just say you are building an e-commerce application where most of your URLs are pre-determined.
 In a normal ReactJS application, we might think of fetching the details of the product and saving it to a Redux state and show them on the page, but in NextJS, there is a better way to do this:
 
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62da8a915aa618faaf08f405_NextJS.png" loading="lazy" id="" width="auto" height="auto" alt="A NextJS code snippe)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62da8a915aa618faaf08f405_NextJS.png)
 
-So if you know that users will go to a page, <em /product/{productId} then you already know the <em productId even before you load the page. You can just pre-fetch the data, pre-generate the page, and send it to your visitors improving your application's performance. In these cases, you can use <em getStaticProps because you already know what data will be there on the page already. It helps with caching too!
+So if you know that users will go to a page, /product/{productId} then you already know the productId even before you load the page. You can just pre-fetch the data, pre-generate the page, and send it to your visitors improving your application's performance. In these cases, you can use getStaticProps because you already know what data will be there on the page already. It helps with caching too!
 
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62da8b5c4861551197adbb9f_Get%20Static%20Props.png" loading="lazy" id="" width="auto" height="auto" alt="A code snippet to get static prop)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62da8b5c4861551197adbb9f_Get%20Static%20Props.png)
 
-So <a href="https://medium.com/p/dadabf45e562" target="_blank" if you know what data is going to be rendered</a> on the page before you load the actual page, then you can just use <em getStaticProps and <em getServerSideProps and get the job done like a boss.
+So <a href="https://medium.com/p/dadabf45e562" target="_blank"> if you know what data is going to be rendered</a> on the page before you load the actual page, then you can just use getStaticProps and getServerSideProps and get the job done like a boss.
 
 ### Scenario 2: You Don’t Know What’s Coming
 This is a very common scenario in most real-life applications. We might know what comes in the initial page load, but the page's content depends on the user’s action.
 A good example can be a product page with pagination. You only know what to load on the first page, but after the initial page load, the users might want to see the next page.
 Like the following pagination on Amazon’s website:
 
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62da8c9863ff249cb4bfd2d3_amazon%20pagination.png" loading="lazy" id="" width="auto" height="auto" alt="An example of paginatio)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62da8c9863ff249cb4bfd2d3_amazon%20pagination.png)
 
 In this case, it’s tricky to use static generation because you have to fetch fresh data. Should you use Redux in this case?
-The answer is no. You would be better off using some kind of query library like <a href="https://swr.vercel.app/" target="_blank" <em swr</a> or <a href="https://react-query.tanstack.com/" target="_blank" <em react-query</a> to manage the API data.
+The answer is no. You would be better off using some kind of query library like <a href="https://swr.vercel.app/" target="_blank">swr</a> or <a href="https://react-query.tanstack.com/" target="_blank"> react-query</a> to manage the API data.
 
-The following is an example using <a href="https://tanstack.com/query/v4/docs/guides/paginated-queries" target="_blank" react-query:</a>
+The following is an example using <a href="https://tanstack.com/query/v4/docs/guides/paginated-queries" target="_blank"> react-query:</a>
 
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62da8d4efd3268457a22cad1_React%20Query.png" loading="lazy" id="" width="auto" height="auto" alt="A React code snippe)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62da8d4efd3268457a22cad1_React%20Query.png)
 So why would you fetch data and store it in the Redux store when you can get awesome features like caching and pre-fetching all without using Redux?
 
 ### Scenario 3: You Need to Share Some Common State Between Components
 Let’s say your application has some kind of authentication setup. In this case, you will want to share the authentication state between components. For example, you may want to do this to show and hide a login button.
+
 What do you do now? 
-You might think okay, so now I definitely need to use Redux to share the authentication state everywhere. Umm, actually, no. If you are handling such simple scenarios, you can just leverage good old browsers <em localStorage<strong  . **Maybe, wrap it up inside a nice little hook.
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62da8ee88435c0dffe10c8c9_LocalStorage%20Auth.png" loading="lazy" id="" width="auto" height="auto" alt="A React code snippe)
-If <em localStorage is not an option for you, then you should try to set up <em React Context first. But don’t get me wrong. Redux will work perfectly here. However, you should consider using <em React Context API first, which comes with the everything itself and saves you precious bundle size! And it’s also easier to set up!
+
+You might think okay, so now I definitely need to use Redux to share the authentication state everywhere. Umm, actually, no. If you are handling such simple scenarios, you can just leverage good old browsers localStorage<strong  . **Maybe, wrap it up inside a nice little hook.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62da8ee88435c0dffe10c8c9_LocalStorage%20Auth.png)
+
+If localStorage is not an option for you, then you should try to set up React Context first. But don’t get me wrong. Redux will work perfectly here. However, you should consider using React Context API first, which comes with the everything itself and saves you precious bundle size! And it’s also easier to set up!
 
 ## Do You Still Have Some Other Use Cases?
 After all these scenarios, you may still have a specific use-case where you need a common state shared between your components and Redux still might be a consideration. My only advice is to not rush to reach for it. Try to understand why you need it first and then use it properly so that it doesn’t create more problems than solving the ones you already have!

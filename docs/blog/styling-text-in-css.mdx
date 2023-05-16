@@ -48,7 +48,8 @@ There are several ways we can use the text color property on CSS:
 
 Color name: You can specify a color by a color name like red, blue, purple, etc.
 Example:
-```
+
+```html
 <!DOCTYPE html>
 <html>
 
@@ -63,11 +64,11 @@ Example:
     }
     .Tcpc {
       color: blue;
-\t font-size: 24px;
+   font-size: 24px;
     }
     .Tcp {
       color: purple;
-\t font-size: 24px;
+   font-size: 24px;
     }
   </style>
 </head>
@@ -77,15 +78,22 @@ Example:
   <p class="Tcpc">Notice that there is nobody selector in this page.(blue) It is essential to note if there is nobody selector or color specified in the body selector, the default color is likely black. On this page, there is nobody selector. </p>
   <p class="Tcp">Notice that there is nobody selector in this page. (purple)It is essential to note if there is nobody selector or color specified in the body selector, the default color is likely black. On this page, there is nobody selector.</p>
 </body>
-</html>```<a href="https://thankgod.pieces.cloud/?p=dc06478e0f" target="_blank" rel="noopener noreferrer">Save this code</a>
+</html>
+```
+
+<a href="https://thankgod.pieces.cloud/?p=dc06478e0f" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 Here is the outcome:
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ced3d45b3600ec77dc2411_image1_684ac013dc36ac8e3d2f8fa7e3b2e01f_800.png)
 
 Observe that the ```<h1>color names<h1>``` changed to black because there is no body selector on this page. In addition, the no body selector did not affect our ```<p></p>``` because we applied a different color name to our paragraph. It is essential to note if there is no body selector or color specified in the body selector, the default color is likely black.
+
 HEX value: This code comprises three pairs of natures representing the power of the three primary colors. Likely values range from ```00```, the lowest power of a primary color, to the highest power, ```FF```. For example, ```#000000```, is the hex color code for black, ```#FF0000```, is a color code for red and ```#0000FF``` for blue.
+
 Let's see the example:
-```
+
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -114,16 +122,21 @@ Let's see the example:
   <p class= "Tcpc">Note that the body selector determines the default text color for a page.. Still, if there is nobody selector or color specified in the body selector, the default color is likely black. On this page, the body selector text color is yellow. Thus, we will override it with our HEX value by defining the color properties to "#ff0000" a hex color code for red. </p>
   <p class= "Tcp">Note that the body selector determines the default text color for a page.. Still, if there is nobody selector or color specified in the body selector, the default color is likely black. On this page, the body selector text color is yellow. Thus, we will override it with our HEX value by defining the color properties to "#0000ff" a hex color code for blue.</p>
 </body>
-</html>```<a href="https://thankgod.pieces.cloud/?p=480b4e8f48" target="_blank" rel="noopener noreferrer">Save this code</a>
+</html>
+```
+
+<a href="https://thankgod.pieces.cloud/?p=480b4e8f48" target="_blank" rel="noopener noreferrer">Save this code</a>
 
 Here is the result:
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ced3d45b36003b33dc2410_image8_123031b0224140f3659a7990a2f590d6_800.png)
 
 Observe that the ```<h1>HEX value</h1>``` is yellow because the body selector or color specified in the body selector is yellow. Thus, the yellow body selector text color did not affect our ```<p></p>``` because we overrode it with our HEX value by defining the color properties to be applied in different HEX codes in our paragraph.
+
 RGB value: This color model combines primary red, green, and blue colors. It comprises three numbers separated by commas; each represents the power of the individual primary color as an integer between 0 and 255. For example, ```rgb(0, 0, 0)``` is for black, ```rgb(255, 0, 0)``` is for red, and ```rgb(0, 0, 255)``` for blue.
 Let's look at the example for in-depth knowledge:
-```
+
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -152,14 +165,21 @@ Let's look at the example for in-depth knowledge:
   <p class= "Tcpc">Note that the body selector determines the default text color for a page. Still, if there is nobody selector or color specified in the body selector, the default color is likely black. On this page, the body selector text color is pink. Thus, we will override it with our RGB value by defining the color properties to: rgb(0, 0, 255); RGB color code for blue. </p>
   <p class= "Tcp">Note that the body selector determines the default text color for a page. Still, if there is nobody selector or color specified in the body selector, the default color is likely black. On this page, the body selector text color is pink. Thus, we will override it with our RGB value by defining the color properties to rgb(0, 0, 0); RGB color code for black.</p>
 </body>
-</html>```<a href="https://thankgod.pieces.cloud/?p=87bd40bd70" target="_blank" rel="noopener noreferrer">Save this code</a>
+</html>
+```
+
+<a href="https://thankgod.pieces.cloud/?p=87bd40bd70" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 Here is the result of the above:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ced3d45b36005574dc2412_image5_5838e108e61204a4701bc8aba440e5f7_800.png)
+
 Observe that the ```<h1>RGB value</h1>``` is pink because the body selector or color specified in the body selector is pink. Thus, the body selector text color, pink, did not affect our ```<p></p>``` because we overrode it with our RGB value by defining the color properties to be applied in different RGB codes in our paragraph.
 
 ### Text direction property
 The <a href="https://www.w3schools.com/cssref/pr_text_direction.asp" target="_blank" rel="noopener noreferrer">text direction property</a> in CSS defines the direction of text and how it flows within a block-level element. It involves ```text```, ```inline``` and ```inline-block``` elements. Therefore, we change the text direction by setting the values.
+
 The text direction property has these values: ```rtl``` (right to left), ```ltr``` (left to right), ```initial```, and ```inherit```.
+
 Let's see an example of how it works with the property values:
 - ```ltr```: This text direction goes from left to right. It is a default value.
 - ```rtl```:** **The text direction goes from right to left.
@@ -167,7 +187,8 @@ Let's see an example of how it works with the property values:
 - ```Inherit```: This property inherits the parent element's property.
 
 Example of the above:
-```
+
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -193,7 +214,11 @@ p.ltr2{
 <p class="ltr2">This text direction goes from the right-to-left flow. It is a default value.
 </p>
 </body>
-</html>```<a href="https://thankgod.pieces.cloud/?p=40134289cf" target="_blank" rel="noopener noreferrer">Save this code</a>
+</html>
+```
+
+<a href="https://thankgod.pieces.cloud/?p=40134289cf" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 The result of the above code:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ced3d45b360079abdc239e_image13_ca40fd51eabf943c94b97f05ad5f6b98_800.png)
 
@@ -201,7 +226,8 @@ The result of the above code:
 The <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-indent" target="_blank" rel="noopener noreferrer">text-indent property</a> defines the space distance for the first line in a text block. This property only applies to the earliest line of text in a block-level element and determines the horizontal space level before the text lines. In addition, the property can have positive or negative values.
 
 See the example below:
-```
+
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -245,10 +271,16 @@ h3{
   <p>The text-indent property defines the space distance for the first line in a text block. This property only applies to the earliest line of text in a block-level element and determines the horizontal space level before the text lines. </p>
 </div>
 </body>
-</html>```<a href="https://thankgod.pieces.cloud/?p=80574f8bd6" target="_blank" rel="noopener noreferrer">Save this code</a>
+</html>
+```
+<a href="https://thankgod.pieces.cloud/?p=80574f8bd6" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 Here is the result:
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ced3d55b3600cf90dc2421_image7_630294c0a031e605170a88fe94859c11_800.png)
-Notice** **that the first line's indent moves to the right (positive value), and the other indent moves to the left (negative value).
+
+**Notice**that the first line's indent moves to the right (positive value), and the other indent moves to the left (negative value).
+
 The different values the text-indent property can have in CSS include the following:
 - Positive value:** **This means the indent of the first line is to the right.
 - Negative value: This means the indent of the first line is to the left.
@@ -256,10 +288,14 @@ The different values the text-indent property can have in CSS include the follow
 - Percentage value:** **This value defines the indent of the parent element's width.
 - Initial value: This value sets the property to its default value.
 - Inherit value: This value inherits the property from its parent element.
+
 We can use ```text-indent``` property in CSS in several ways, such as in a ```blockquote```, ```divs```, ```headings```, and so on.
+
 For instance, if you want to indent all the ```div``` elements containing text on your page to the right by 60px, specify the ```text-indent``` to 60px by using the CSS type ```selector div```.
+
 Let’s see how it works:
-```
+
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -287,7 +323,10 @@ div{
   <p>The text-indent property defines the space distance for the first line in a text block. This property only applies to the earliest line of text in a block-level element and determines the horizontal space level before the text lines. </p>
 </div>
 </body>
-</html>```<a href="https://thankgod.pieces.cloud/?p=b4f841975c" target="_blank" rel="noopener noreferrer">Save this code</a>
+</html>
+```
+
+<a href="https://thankgod.pieces.cloud/?p=b4f841975c" target="_blank" rel="noopener noreferrer">Save this code</a>
 
 Here is the result:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ced3d55b360000bcdc2420_image17_c06102a141e12985d0c892e878635e44_800.png)
@@ -295,7 +334,8 @@ Here is the result:
 You can indent the paragraphs using the CSS selector ```<p>``` to set the ```text-indent``` property to your desired value.
 
 See the example below:
-```
+
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -329,14 +369,19 @@ text-indent: 30pt;
   </body>
   </html>
 </body>
-</html>```<a href="https://thankgod.pieces.cloud/?p=67db448711" target="_blank" rel="noopener noreferrer">Save this code</a>
+</html>
+```
+
+<a href="https://thankgod.pieces.cloud/?p=67db448711" target="_blank" rel="noopener noreferrer">Save this code</a>
 
 Here is the result:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ced3d45b36009241dc2413_image2_d429e0418e484146601a4aca50e081a7_800.png)
 
 An ordered list (```<ol>```) indents its list items by default. Here, you can’t use the ```text-indent``` property. Instead, use the ```margin-left``` or ```padding-left``` property. For instance, if you want to reposition the list of items to the right, it can appear to align with the subheading. Set the ```padding-left``` property to 30em.
+
 Example:
-```
+
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -369,15 +414,22 @@ Example:
     <li>item four</li>
   </ol>
 </body>
-</html>```<a href="https://thankgod.pieces.cloud/?p=299943b474" target="_blank" rel="noopener noreferrer">Save this code</a>
+</html>
+```
+
+<a href="https://thankgod.pieces.cloud/?p=299943b474" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 Here's the result:
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ced3d45b36002526dc23fb_image14_48e3af4c8bcbfa6dc98236705a6f2ac4_800.png)
 
 An unordered list element (```<ul>```) will indent its list items or bullet points by default. For instance, if you want to alter the indentation distance, use the ```margin-left``` or ```padding-left``` property.
+
 Let's move the bullet points to the left rather than the right. Set the negative value by using the ```margin-left``` property.
+
 Example:
-```
+
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -410,19 +462,26 @@ Example:
     <li>item four</li>
   </ul>
 </body>
-</html>```<a href="https://thankgod.pieces.cloud/?p=cceb4daa14" target="_blank" rel="noopener noreferrer">Save this code</a>
+</html>
+```
+
+<a href="https://thankgod.pieces.cloud/?p=cceb4daa14" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 Here's the result compared to bullet points with default indentation:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ced3d45b360003f8dc239f_image15_6672ea1e6c1cc6595e90e8d956dfbdaf_800.png)
 
 ### Letter spacing property
 The <a href="https://www.w3schools.com/cssref/pr_text_letter-spacing.asp" target="_blank" rel="noopener noreferrer">letter-spacing property</a> controls the space between characters in a block of text. It supports font-relative values (```em```, ```rem```), absolute values (```px```), and the normal property, which resets the font's default. Using ```font-relative``` values is advised so that the letter spacing increases or decreases the gap between the character in a block of text and its proper size when the font size changes. Note using letter spacing that the value defined does not change the default. The different values the ```letter-spacing``` property has in CSS are as follows:
+
 Property Values
 - Normal: This defines normal space between characters. That is no extra space between characters because it's a default value.
 - Length:** **This defines the length used in the space between characters. Negative values are permitted.
 - Initial:** **This method sets the property to its default value.
 - Inherit:** **A property should inherit its value from its parent element.
+
 Let’s look at this example for a better understanding:
-```
+
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -447,15 +506,22 @@ h4 {
 <h3>The letter-spacing property controls the space between characters in a text.</h3>
 <h4>The letter-spacing property controls the space between characters in a text.</h4>
 </body>
-</html>```<a href="https://thankgod.pieces.cloud/?p=dba843ac80" target="_blank" rel="noopener noreferrer">Save this code</a>
+</html>
+```
+
+<a href="https://thankgod.pieces.cloud/?p=dba843ac80" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 Here is the outcome:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ced3d45b36007b36dc240f_image6_e8374db7871cd44f050fedc9b86a5528_800.png)
 
 ### Text decoration property
 It is possible to decorate text using CSS, and this property helps in doing so. The text-decoration property sets the appearance of decorative lines on the text. It is also a shorthand property for the following:
+
 This sets different kinds of text decoration, like underlines, overlines, underline overlines, and line-through.
+
 Let’s look at the example of how it works:
-```
+
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -489,14 +555,19 @@ div.ou {
 <div style="font-size:24px;"class="ou"> It sets different kinds of text-decoration examples, overline underline.</div>
 <br>
 </body>
-</html>```<a href="https://thankgod.pieces.cloud/?p=3b0a42807d" target="_blank" rel="noopener noreferrer">Save this code</a>
+</html>
+```
+
+<a href="https://thankgod.pieces.cloud/?p=3b0a42807d" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 Here is the result of the code:
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ced3d45b3600051fdc23b2_image3_78188839aee558712747f50a3e70bf27_800.png)
 
 This defines the color of the text decoration.
 Example:
-```
+
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -534,14 +605,19 @@ Example:
 <div style="font-size:24px;"class="ou"> It sets different kinds of text-decoration examples, overline underline.</div>
 <br>
 </body>
-</html>```<a href="https://thankgod.pieces.cloud/?p=50ab468f57" target="_blank" rel="noopener noreferrer">Save this code</a>
-Here is the effect:
+</html>
+```
 
+<a href="https://thankgod.pieces.cloud/?p=50ab468f57" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+Here is the effect:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ced3d45b36006039dc23b1_image12_3ac1a126ea9534c964d03cacd319da85_800.png)
+
 This sets the text decoration style, such as solid, wavy, dotted, dashed, or double.
 
 Example:
-```
+
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -587,13 +663,19 @@ div.lr {
 <div style="font-size:24px;"class="lr">It sets the text-decoration style, line-through and double.</div>
 
 </body>
-</html>```<a href="https://thankgod.pieces.cloud/?p=71f846a605" target="_blank" rel="noopener noreferrer">Save this code</a>
+</html>
+```
+
+<a href="https://thankgod.pieces.cloud/?p=71f846a605" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 Here is the result:
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ced3d45b36007d94dc23b0_image10_156316a662fe8b9f9be10f61d82b00ea_800.png)
 This specifies the thickness of the decoration line.
+
 Example:
-```
+
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -638,12 +720,17 @@ div.lr {
 <div style="font-size:24px;"class="lr">It sets the text-decoration style underline and thickness</div>
 <br>
 </body>
-</html>```<a href="https://thankgod.pieces.cloud/?p=faa740aef8" target="_blank" rel="noopener noreferrer">Save this code</a>
+</html>
+```
+
+<a href="https://thankgod.pieces.cloud/?p=faa740aef8" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 Here is the result for clarity:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ced3d45b36000a06dc23fa_image16_036b249348c8311b3c6413eefb27f337_800.png)
 
 ### Text shadow property
 The <a href="https://www.w3docs.com/learn-css/text-shadow.html" target="_blank" rel="noopener noreferrer">text-shadow property</a> adds a shadow to the text. It uses one or more text shadows to impact the element's text content. This property tolerates a ```comma-separated``` list of shadows and applies to the text.
+
 Property values of Text shadow:
 - h-shadow: This property is required and specifies the horizontal shadow's position. It allows negative values.
 - v-shadow: This property is required to define the position of the vertical shadow. It also allows negative values.
@@ -654,7 +741,8 @@ Property values of Text shadow:
 - Inherit: This property inherits the text shadow from its parent element.
 
 Example:
-```
+
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -679,22 +767,28 @@ h2.Ts1{
 <h2>Text-shadow with blur effect</h2>
 <h2 class="Ts1">The text-shadow property adds a shadow to the text.</h2>
 </body>
-</html>```<a href="https://thankgod.pieces.cloud/?p=5b23499158" target="_blank" rel="noopener noreferrer">Save this code</a>
+</html>
+```
+
+<a href="https://thankgod.pieces.cloud/?p=5b23499158" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 Here’s the result:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ced3d45b36001eb3dc23fc_image4_51951a553478cfe9a0f7bde66476c554_800.png)
 
 ### Text alignment property
 The <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-align" target="_blank" rel="noopener noreferrer">text-align property</a> helps to set the horizontal alignment of text in an element.
+
 Its property values include:
-- Left:** **This aligns the text to the left and is the default value.
-- Right: This aligns the text to the right.
-- Center:** **This aligns** **text to the center.
-- Justify:** **This stretches the element's text to be an equal width on every line.
-- Initial:** **This property represents the default value.
-- Inherit:** **This inherits the property from its parent element.
+- **Left:** This aligns the text to the left and is the default value.
+- **Right:** This aligns the text to the right.
+- **Center:** This aligns text to the center.
+- **Justify:** This stretches the element's text to be an equal width on every line.
+- **Initial:** This property represents the default value.
+- **Inherit:** This inherits the property from its parent element.
 
 Example:
-```
+
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -732,22 +826,28 @@ div.justify {
   <p>The text-align property helps to set the horizontal alignment of text in an element: This stretches the element's text to display the equal width of every line.</p>
 </div>
 </body>
-</html>```<a href="https://thankgod.pieces.cloud/?p=951e4fa056" target="_blank" rel="noopener noreferrer">Save this code</a>
+</html>
+```
+
+<a href="https://thankgod.pieces.cloud/?p=951e4fa056" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 Here is the result:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ced3d65b36006f7edc2441_image9_1eefb62824f0a883b913b4a8894ca979_800.png)
 
 ### Text transform property
 The <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-transform" target="_blank" rel="noopener noreferrer">text-transform property</a> modifies or controls the capitalization of text within an element. Thus, the ```text-transform``` property in CSS allows us to convert any HTML object's text to title case, upper case, or lowercase.
+
 The property values for the ```text-transform``` properties include the following:
 - None: This produces no capitalization; the text renders as it is in the element. It's a default value.
 - Capitalize: This transforms each word's first character to uppercase.
 - Uppercase: This property transforms of all the characters into uppercase.
 - Lowercase: This property modifies all characters to lowercase.
 - Initial: This property produces no capitalization. In addition, the text renders as it is in the element. It’s a default value.
-- Inherit:** **It simply inherits this property from its parent element.
+- Inherit:It simply inherits this property from its parent element.
 
 Example:
-```
+
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -774,8 +874,13 @@ Initial: This pro</div>
 <div class="cap">The text-transform property modifies or controls the capitalization of text within an element: It indicates transforming each word's first character or letter to uppercase.
 </div>
 </body>
-</html>```<a href="https://thankgod.pieces.cloud/?p=aa6e4fa006" target="_blank" rel="noopener noreferrer">Save this code</a>
+</html>
+```
+
+<a href="https://thankgod.pieces.cloud/?p=aa6e4fa006" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 Here is the outcome of the code:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ced3d55b360049b7dc241f_image11_e5098287ba4dfdffc20a7bcd077930de_800.png)
 
 ## Conclusion
+We can make text exceptional with CSS; the above guide is a sure way to do this. Practice more with the different properties to see how you can establish a good user experience with text.

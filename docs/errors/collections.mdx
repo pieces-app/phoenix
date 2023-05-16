@@ -1,17 +1,36 @@
+---
+title: Restart to Save this Collection
+description: Restart Pieces OS to save this collection. If the problem persists, please contact support@pieces.app.
+---
+
 export const FlexColumn = props => {
     return <div style={{
         paddingLeft: "8px",
         paddingRight: "8px",
         display: 'flex',
         flexDirection: 'column',
-        flexWrap: "wrap"
+        flexWrap: "wrap",
+        textAlign: "center",
+        alignItems: "center"
     }}>{props.children}</div>;
 };
 
+export const HeaderSpacer = props => {
+    return <div style={{width: "100%", height: "100px"}}></div>;
+};
+
+export const Spacer = props => {
+    return <div style={{ height: "20px" }}></div>
+}
+
+<HeaderSpacer></HeaderSpacer>
 
 <FlexColumn>
     <Image width="300" src={"/assets/headers/light/errors_header_collection.png"} />
-    <h1>Hmm...something went wrong</h1>
-    <h2>Restart Pieces OS to save this collection</h2>
+    <Spacer></Spacer>
+    <Heading type={"h1"}>Hmm...something went wrong</Heading>
+    <Heading style={{ marginTop: "24px" }} type={"h2"}>Restart Pieces OS to save this collection</Heading>
     <p>If the problem persists, please contact <a target={"_blank"} href={"mailto:support@pieces.app"}>support@pieces.app</a>.</p>
 </FlexColumn>
+
+<HeaderSpacer></HeaderSpacer>

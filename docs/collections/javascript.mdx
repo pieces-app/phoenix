@@ -1,3 +1,243 @@
 ---
-redirect: https://code.pieces.app/collections
+title: JavaScript Snippets Collection
+description: We have the most popular JavaScript snippets, ranging popular lodash functions to DOM manipulation. Add these JavaScript code snippets to Pieces.
 ---
+
+<link rel="canonical" href="https://code.pieces.app/collections/javascript" />
+
+export const HeaderSpacer = props => {
+    return <div style={{width: "100%", height: "100px"}}></div>;
+};
+
+export const GridFlexRowCenter = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+};
+
+export const InstallButton = props => {
+    return <a style={{textDecoration: "none"}} href={ props.src }>
+        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+            <p style={{
+                padding: "8px 20px",
+                borderRadius: "8px",
+                border: "1px solid #f3f5f6",
+                color: "white",
+                fontWeight: "500",
+                background: "black",
+                marginBottom: "8px",
+                marginTop: "3px",
+                marginRight: "16px"
+            }}>{props.children}</p>
+        </div>
+    </a>
+};
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content", margin: "0px 8px" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap",
+        marginBottom: "32px",
+    }}>{props.children}</div>
+};
+
+<HeaderSpacer></HeaderSpacer>
+
+<Image margin-top={"0px"} margin-bottom={"0px"} width="400" src={"/assets/graphics/collections/collection_javascript.png"} />
+
+<Heading type={"h1"}>JavaScript Snippets</Heading>
+
+We have the most popular JavaScript snippets, ranging popular lodash functions to DOM manipulation. Add these JavaScript code snippets to Pieces.
+
+<InstallButton src={"https://javascript.pieces.cloud/"}>Add to Pieces</InstallButton>
+
+<HeaderSpacer></HeaderSpacer>
+
+---
+
+<HeaderSpacer></HeaderSpacer>
+
+With the following useful JavaScript snippets, we collected some popular actions performed in JavaScript ranging from creating a promise, popular lodash functions in native JavaScript, DOM manipulation, etc.
+
+These JavaScript code snippets may be helpful to speed up your workflows while developing in your IDE or other text editors. You can save any of these JavaScript snippet examples to your personal Pieces micro repository, categorize and share them instantly.
+
+### How to create a promise function in Javascript
+
+<GridFlexRow>
+    <Tag>javascript</Tag><Tag>promise</Tag>
+</GridFlexRow>
+
+Create a Javascript promise to handle asynchronous events.
+
+```javascript
+new Promise((resolve, reject) => {
+  // asynchronous operation
+
+  // then in case of success
+  resolve();
+  // or
+  reject("failure reason");
+});
+```
+
+Related Links
+
+- [Understanding JavaScript promises](https://www.digitalocean.com/community/tutorials/understanding-javascript-promises)
+- [How to use a promise in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises)
+- [JavaScript promise examples](https://www.w3schools.com/js/js_promise.asp)
+
+<InstallButton src={"https://javascript.pieces.cloud/?p=d0f34b9c34"}>Add to Pieces</InstallButton>
+
+---
+
+### Count number of occurrences in array with JavaScript
+
+<GridFlexRow>
+    <Tag>javascript</Tag><Tag>count</Tag>
+</GridFlexRow>
+
+Use this JavaScript snippet to count the occurrences of a value in an array.
+
+```javascript
+const countOccurrences = (arr, val) => arr.reduce((a, v) => (v === val ? a + 1 : a), 0);
+```
+
+Related Links
+
+- [JavaScript code snippet - array prototype reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce)
+- [JavaScript array reduce](https://www.w3schools.com/jsref/jsref_reduce.asp)
+
+<InstallButton src={"https://javascript.pieces.cloud/?p=de804489b9"}>Add to Pieces</InstallButton>
+
+---
+
+### How to use defer in Javascript
+
+<GridFlexRow>
+    <Tag>javascript</Tag><Tag>defer</Tag>
+</GridFlexRow>
+
+JavaScript snippet that delays execution of function until the current call stack is cleared.
+
+```javascript
+const defer = (fn, ...args) => setTimeout(fn, 1, ...args);
+
+defer(console.log, 'a'), console.log('b'); // logs 'b' then 'a'
+```
+
+Related Links
+
+- [SetTimeOut in Javascript](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout)
+- [Window SetTimeOut Method](https://www.w3schools.com/jsref/met_win_settimeout.asp)
+
+<InstallButton src={"https://javascript.pieces.cloud/?p=60064ca3dc"}>Add to Pieces</InstallButton>
+
+---
+
+### How to find difference between arrays in JavaScript
+
+<GridFlexRow>
+    <Tag>javascript</Tag><Tag>difference</Tag>
+</GridFlexRow>
+
+Finds the difference between two arrays.
+
+```javascript
+const difference = (a, b) => {
+  const s = new Set(b);
+  return a.filter(x => !s.has(x));
+};
+
+difference([1, 2, 3], [1, 2, 4]); // [3]
+```
+
+Related Links
+
+- [Set object in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
+- [JavaScript code snippet - Array prototype filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
+- [JavaScript Snippet - Map Prototype Has](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/has)
+
+<InstallButton src={"https://javascript.pieces.cloud/?p=6ad141989c"}>Add to Pieces</InstallButton>
+
+---
+
+### How to remove duplicates from an Array in JavaScript
+
+<GridFlexRow>
+    <Tag>array</Tag><Tag>javascript</Tag><Tag>set</Tag><Tag>duplicate</Tag>
+</GridFlexRow>
+
+Remove duplicates from an array using a Set.
+
+```javascript
+const unique = [...new Set(array)];
+```
+
+Related Links
+
+- [JavaScript snippets: remove duplicates from an array](https://www.javascripttutorial.net/array/javascript-remove-duplicates-from-array/)
+- [JavaScript code to remove duplicates from an array](https://www.programiz.com/javascript/examples/remove-duplicate)
+- [Remove duplicate values from a JavaScript array](https://stackoverflow.com/questions/9229645/remove-duplicate-values-from-js-array)
+
+<InstallButton src={"https://javascript.pieces.cloud/?p=88004c842d"}>Add to Pieces</InstallButton>
+
+---
+
+### How to find object key in JavaScript
+
+<GridFlexRow>
+    <Tag>javascript</Tag><Tag>array</Tag><Tag>flatten</Tag>
+</GridFlexRow>
+
+Flattens a deeply nested array up until the specified depth.
+
+```javascript
+const findKey = (obj, fn) => Object.keys(obj).find(key => fn(obj[key], key, obj));
+```
+
+Related Links
+
+- [How to flatten a nested JavaScript array](https://codeburst.io/how-to-flatten-a-nested-javascript-array-628e01b85512)
+- [JavaScript Snippet: Flatten an array](https://flexiple.com/flatten-array-javascript/)
+
+<InstallButton src={"https://javascript.pieces.cloud/?p=e37a43a897"}>Add to Pieces</InstallButton>
+
+---
+
+### JavaScript array Intersection
+
+<GridFlexRow>
+    <Tag>javascript</Tag><Tag>array</Tag><Tag>flatten</Tag>
+</GridFlexRow>
+
+Flattens a deeply nested array up until the specified depth.
+
+```javascript
+const intersection = (a, b) => {
+  const s = new Set(b);
+
+  return a.filter(x => s.has(x));
+};
+```
+
+Related Links
+
+- [Find intersection of two arrays in JavaScript](https://www.techiedelight.com/find-intersection-arrays-javascript/)
+- [JavaScript Snippet - Map Prototype Has](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/has)
+- [Intersection example in JavaScript](https://www.programiz.com/javascript/examples/intersection-two-arrays)
+
+<InstallButton src={"https://javascript.pieces.cloud/?p=a628489d2c"}>Add to Pieces</InstallButton>
+
+
+

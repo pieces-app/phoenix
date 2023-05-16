@@ -1,6 +1,6 @@
 ---
 title: Exploring Methods of Creating SLL HTTPS for Localhost in Node.JS
-description: Node.js backends that are run in development environments are usually served via HTTP by default. However, you may need your backend to be served via HTTPS if you are integrating services, using external libraries, or testing strong content security policies, among other scenarios. It’s usually vital that these situations are tested in a development environment before being deployed to production. This article will explain an array of ways to configure Secure Sockets Layer (SSL) HTTPS on a local development Node.js Express backend.
+description: Node.js backends that are run in development environments are usually served via HTTP by default. However, you may need your backend to be served via HTTPS if you are integrating services, using external libraries, or testing strong content security policies, among other scenarios.
 ---
 
 export const Tag = props => {
@@ -16,7 +16,6 @@ export const GridFlexRow = props => {
         justifyContent: 'start',
         flexWrap: "nowrap"
     }}>{props.children}</div>;
-
 };
 
 <link rel="canonical" href="https://code.pieces.app/blog/exploring-methods-of-creating-sll-https-for-localhost-in-nodejs" />
@@ -45,13 +44,14 @@ However, no Certificate Authority issues a certificate for localhost because no 
 
 Let’s create a ```certificate key``` by typing the following commands in sequence:
 
+```shell
+mkdir ssl-cert
+cd ssl-cert
+mkdir Cert-Auth
+cd Cert-Auth
+openssl genrsa -out Cert-Auth.key -des3 2048
 ```
-$ mkdir ssl-cert
-$ cd ssl-cert
-$ mkdir Cert-Auth
-$ cd Cert-Auth
-$ openssl genrsa -out Cert-Auth.key -des3 2048
-```
+
 <a href="https://user-648f958b-2a5e-46c0-b5b3-819f06744dab-agyqaaz4hq-uc.a.run.app/?p=f07646b525" target="_blank" rel="noopener noreferrer">Save this code </a>
 
 The commands above will generate a private key and ask for a simple passphrase. The user will enter and re-enter the passphrase for confirmation.
@@ -62,8 +62,8 @@ The commands above will generate a private key and ask for a simple passphrase. 
 Upon creating a ```certificate key```, we’ll create a ```certificate authority pem file```. We need this file to create the ```certificate(.crt)``` file.
 To create the ```certificate(.crt)``` file, type the command below:
 
-```
-$ openssl req -x509 -sha256 -new -nodes -days 365 -key Cert-Auth.key -out Cert-Auth.pem
+```shell
+openssl req -x509 -sha256 -new -nodes -days 365 -key Cert-Auth.key -out Cert-Auth.pem
 ```
 
 <a href="https://user-648f958b-2a5e-46c0-b5b3-819f06744dab-agyqaaz4hq-uc.a.run.app/?p=3709458e8d" target="_blank" rel="noopener noreferrer">Save this code</a>
@@ -77,16 +77,17 @@ The Certificate Authority (CA) key and CA certificate have now been generated. S
 
 Next, we create a new directory called localhost in the root (```ssl-cert```) directory. Create a new file, ```localhost.ext```, inside localhost.
 
-```
-$ mkdir localhost
-$ cd localhost
-$ touch localhost.ext
+```shell
+mkdir localhost
+cd localhost
+touch localhost.ext
 ```
 
 <a href="https://user-648f958b-2a5e-46c0-b5b3-819f06744dab-agyqaaz4hq-uc.a.run.app/?p=680f4f99ce" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 After creating the ```localhost.ext``` file, we will open the file and add the code snippets below to it.
 
-```
+```text
 authorityKeyIdentifier = keyid,issuer
 basicConstraints = CA:FALSE
 keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
@@ -95,6 +96,7 @@ subjectAltName = @alt_names
 DNS.1 = localhost
 IP.1 = 127.0.0.1
 ```
+
 <a href="https://user-648f958b-2a5e-46c0-b5b3-819f06744dab-agyqaaz4hq-uc.a.run.app/?p=c13849946a" target="_blank" rel="noopener noreferrer">Save this code</a>
 
 The code above simply sets the configuration that our SSL certificate will contain. Our certificate works for localhost and also 127.0.0.1. More domains can be added to this file if you want the certificate to work for other host addresses. To dive into this further, read<a href="https://gist.github.com/cecilemuller/9492b848eb8fe46d462abeb26656c4f8#domain-name-certificate" target="_blank" rel="noopener noreferrer"> this article</a>.
@@ -103,63 +105,81 @@ The code above simply sets the configuration that our SSL certificate will conta
 
 After editing the ```localhost.ext``` file, we will generate the certificate signing request (CSR). The command below will be used to create a key, which will then be used to generate a CSR.
 
+```shell
+openssl genrsa -out localhost.key -des3 2048
 ```
-$ openssl genrsa -out localhost.key -des3 2048
-```
-
 <a href="https://user-648f958b-2a5e-46c0-b5b3-819f06744dab-agyqaaz4hq-uc.a.run.app/?p=3507499d51" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 The commands above will generate a private key and ask for a simple passphrase. The user will enter and re-enter the passphrase for confirmation.
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/639357d878d1eb5fb85dd3da_image3_2dad0306e648246120df0c6298e9565d_800.png)
 
 Once you’ve done that, type the below command to generate the CSR:
 
-```
-$ openssl req -new -key localhost.key -out localhost.csr
+```shell
+openssl req -new -key localhost.key -out localhost.csr
 ```
 
 <a href="https://user-648f958b-2a5e-46c0-b5b3-819f06744dab-agyqaaz4hq-uc.a.run.app/?p=6b874b8dff" target="_blank" rel="noopener noreferrer">Save this code</a>
 
 The commands above will generate a CSR and ask for certain pieces of information. They will also request a challenge password. A "**challenge password**" is essentially an embedded, one-time shared secret between you and the SSL certificate issuer (CA) that the issuer may use to authenticate you should that ever be necessary.
+
 Note the requested challenge password can be anything, but it should be a “**strong**” password.
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/639357d878d1eb62405dd3e4_image7_fdc3c3a19e671ccaf877876f15723d9e_800.png)
 
 ### Generate a Certificate(.crt) File
 We can now use our CSR to ask the CA to sign a certificate. It should be noted that the location from which the user executes commands affects the paths for the CA.key and CA.pem files (relative paths).
 
-```
-$ openssl x509 -req -in localhost.csr -CA ../CA.pem -CAkey ../CA.key -CAcreateserial -days 365 -sha256 -extfile localhost.ext -out localhost.crt
+```shell
+openssl x509 -req -in localhost.csr -CA ../CA.pem -CAkey ../CA.key -CAcreateserial -days 365 -sha256 -extfile localhost.ext -out localhost.crt
 ```
 
 <a href="https://user-648f958b-2a5e-46c0-b5b3-819f06744dab-agyqaaz4hq-uc.a.run.app/?p=1ed94bae94" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 This command accepts the certificate extensions file, the CA certificate (```Cert-Auth.pem``` and ```Cert-Auth.key```), and the CSR (```localhost.csr```) (```localhost.ext```). These parameters produce a localhost.crt certificate file that is valid for one year.
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/639357d878d1eb0cd35dd3de_image6_1454a74fd4d87cacb726008a93cb8237_800.png)
 
 We will decrypt ```localhost.key``` since our ```localhost.key``` is in encrypted form. we will do this with the command below:
+
+```shell
+openssl rsa -in localhost.key -out localhost.decrypted.key
 ```
-$ openssl rsa -in localhost.key -out localhost.decrypted.key```<a href="https://user-648f958b-2a5e-46c0-b5b3-819f06744dab-agyqaaz4hq-uc.a.run.app/?p=4129408a5d" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+<a href="https://user-648f958b-2a5e-46c0-b5b3-819f06744dab-agyqaaz4hq-uc.a.run.app/?p=4129408a5d" target="_blank" rel="noopener noreferrer">Save this code</a>
 
 ## Develop a server using Node.js that is being served up utilizing a localhost SSL certificate
+
 In order to test the certificate, we will create a Node.js application with express installed. To do this, we will type the commands below in sequence:
+
+```shell
+mkdir ssl-nodejs
+cd ssl-nodejs
+npm init -y
+npm i express
+touch index.js
 ```
-$ mkdir ssl-nodejs
-$ cd ssl-nodejs
-$ npm init -y
-$ npm i express
-$ touch index.js```<a href="https://user-648f958b-2a5e-46c0-b5b3-819f06744dab-agyqaaz4hq-uc.a.run.app/?p=a46f4a9d1c" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+<a href="https://user-648f958b-2a5e-46c0-b5b3-819f06744dab-agyqaaz4hq-uc.a.run.app/?p=a46f4a9d1c" target="_blank" rel="noopener noreferrer">Save this code</a>
 
 Upon installing the Node.js application, we will create an Express app with a “get” API route that simply outputs “hello world” upon a visit to the route.
-```
+
+```javascript
 const express = require('express');
 const app = express();
 app.use(express.json())
 app.get('/', (req, res)=> {
  res.send('hello world')
 })
-module.exports = app```<a href="https://user-648f958b-2a5e-46c0-b5b3-819f06744dab-agyqaaz4hq-uc.a.run.app/?p=65bb4ebe84" target="_blank" rel="noopener noreferrer">Save this code</a>
+module.exports = app
+```
+
+<a href="https://user-648f958b-2a5e-46c0-b5b3-819f06744dab-agyqaaz4hq-uc.a.run.app/?p=65bb4ebe84" target="_blank" rel="noopener noreferrer">Save this code</a>
 
 We will also import the Express app to our ```index.js file``` and use it to create the server.
-```
+
+```javascript
 const http = require('http');
 const fs = require("fs")
 const { getDesktopFolder } = require('platform-folders')
@@ -180,8 +200,12 @@ server.listen(3000, ()=> {
 Also, we added the dependency ```platform-folders``` which simply locates the absolute path of the desktop folder. Accompanied by the filesystem module, we will use this package to locate the ```localhost.decrypted.key``` and ```localhost.crt files``` on our PC from an absolute path.
 
 After creating the server, start it using the below command:
+
+```node
+node index.js
 ```
-$ node index.js```<a href="https://user-648f958b-2a5e-46c0-b5b3-819f06744dab-agyqaaz4hq-uc.a.run.app/?p=c37641a624" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+<a href="https://user-648f958b-2a5e-46c0-b5b3-819f06744dab-agyqaaz4hq-uc.a.run.app/?p=c37641a624" target="_blank" rel="noopener noreferrer">Save this code</a>
 
 ## Configure the Chrome web browser and the Postman API client to allow certificates we signed as the Certificate Authority (CA)
 Now that our server is serving up the SSL, we can test our<a href="https://localhost:3000/" target="_blank" rel="noopener noreferrer"> https://localhost:3000</a> link in our Chrome browser as shown below:
@@ -189,6 +213,7 @@ Now that our server is serving up the SSL, we can test our<a href="https://local
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/639357d878d1eb55935dd3dd_image12_7ba3c3ccc0331ac691d3f1cf46c687da_800.png)
 
 Even after serving up our localhost with SSL and inspecting the signed certificate, Chrome does not trust the CA that signed this certificate. This is correct behavior, because we signed it locally and didn’t use a third-party trusted Certificate Authority. Since this is for development purposes, we want to access localhost with our self-signed certificate.
+
 Therefore, we will access the <a href="http://chrome://flags/#allow-insecure-localhost" target="_blank" rel="noopener noreferrer">chrome://flags/#allow-insecure-localhost</a> URL on our Chrome browser and toggle the ```Allow invalid certificates for resources loaded from localhost``` button to ```enabled```.
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/639357d878d1eb35495dd3dc_image11_4085aa0f1e7e5f105af1bf593adfda7c_800.png)
@@ -198,11 +223,13 @@ Therefore, we will access the <a href="http://chrome://flags/#allow-insecure-loc
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/639357d878d1eb50d25dd3d9_image4_17c923c8adabc6387c6d36284f9cba46_800.png)
 
 ## Access localhost with HTTPS from the browser and the Postman API client
+
 From Postman, access ```SSL certificate verification``` in the general settings and make sure that SSL certificate verification is turned off.
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/639357d878d1ebe6355dd3e3_image13_abc081ab60da78e10285cdb83d4b8a2b_800.png)
 
 **N/B:** This is not advised to be done on production. However, we do this for development purposes in order to view the response of localhost on Postman.
+
 Once this is done, we can access the HTTPS localhost on Postman.
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/639357d878d1eb6b3f5dd3df_image5_1246ddc340f94cfe5950a37beb0a6cb1_800.png)
@@ -214,7 +241,7 @@ Once this is done, we can access the HTTPS localhost on Postman.
 ### Installing MK-CERT
 We’ll use Homebrew to install ```mk-cert``` on macOS.
 
-```
+```shell
 brew install mkcert
 ```
 
@@ -225,21 +252,23 @@ brew install mkcert
 To see more installation options for macOS, visit<a href="https://github.com/FiloSottile/mkcert#macos" target="_blank" rel="noopener noreferrer"> this link</a>.
 
 To install mkcert on Linux, click<a href="https://github.com/FiloSottile/mkcert#linux" target="_blank" rel="noopener noreferrer"> this link</a>.
+
 To install mkcert on Windows, click<a href="https://github.com/FiloSottile/mkcert#windows" target="_blank" rel="noopener noreferrer"> here</a>.
 
 ### Generate an SSL for localhost using MK-CERT
 To create an SSL certificate for localhost, run the command below:
 
-```
+```shell
 mkcert localhost
 ```
+
 <a href="https://user-648f958b-2a5e-46c0-b5b3-819f06744dab-agyqaaz4hq-uc.a.run.app/?p=52f24e9e3d" target="_blank" rel="noopener noreferrer">Save this code</a>
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/639357d878d1ebcc485dd3db_image10_1f31ac9875d1d302cba47a2491215d90_800.png)
 
 However, you can also choose to create a locally trusted CA by running the command:
 
-```
+```shell
 mkcert -install
 ```
 
@@ -247,7 +276,7 @@ mkcert -install
 
 This creates a local CA which is only trusted by your device. To locate the path to the local CA, you can type the command below:
 
-```
+```shell
 mkcert -CAROOT
 ```
 
@@ -256,7 +285,7 @@ mkcert -CAROOT
 ### Develop a server using Node.js that is being served up utilizing a localhost SSL certificate
 We’ll use our previous server example; however, we’ll make a few tweaks to the ```key``` and ```cert``` values passed into the server. ```mk-cert``` generates ```localhost.pem``` and ```localhost-key.pem``` files for localhost, therefore, the parameters of key and cert on our server will now contain the file paths to the localhost.pem and localhost-key.pem files, respectively.
 
-```
+```javascript
 const http = require('http');
 const fs = require("fs")
 const { getDesktopFolder } = require('platform-folders')
@@ -273,13 +302,15 @@ server.listen(3000, ()=> {
 ```
 
 <a href="https://user-648f958b-2a5e-46c0-b5b3-819f06744dab-agyqaaz4hq-uc.a.run.app/?p=9fb94a8797" target="_blank" rel="noopener noreferrer">Save this code</a>
-**Configure the Chrome web browser and the Postman API client to allow certificates we have signed as the CA**
-Since we have already configured the web browser to view self-signed certificates, we can easily view the result below:
 
+**Configure the Chrome web browser and the Postman API client to allow certificates we have signed as the CA**
+
+Since we have already configured the web browser to view self-signed certificates, we can easily view the result below:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/639357d878d1eb50d25dd3d9_image4_17c923c8adabc6387c6d36284f9cba46_800.png)
 
 ### Access localhost with HTTPS from the browser and the Postman API client
 We can access the HTTPS localhost on Postman as shown below:
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/639357d878d1eb6b3f5dd3df_image5_1246ddc340f94cfe5950a37beb0a6cb1_800.png)
 
 ## Conclusion

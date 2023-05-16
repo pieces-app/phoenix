@@ -1,10 +1,12 @@
 ---
 title: Build a Task Manager CRUD App with React and Hygraph
-description: In this article, we will introduce readers to how to build a fully functional CRUD application using Hygraph as our backend, React as our frontend, and ApolloClient to manage our state and fetch and mutate our data. We’ll leverage the Content and Mutation APIs that the Hygraph software exposes to us to perform a simple example of querying and mutating data using a task manager app: creating tasks, reading tasks, updating tasks, and finally deleting a task with Apollo Client. We’ll also demonstrate how to set up and manage our content and connect Hygraph to React.
+description: In this article, we will introduce readers to how to build a fully functional CRUD application using Hygraph as our backend, React as our frontend, and ApolloClient to manage our state and fetch and mutate our data.
 ---
 
+<link rel="canonical" href="https://code.pieces.app/blog/build-crud-task-manager-react-hygraph" />
+
 export const Tag = props => {
-    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content", margin: "0px 8px" }}>
         { props.children }
     </div>
 };
@@ -19,13 +21,11 @@ export const GridFlexRow = props => {
 
 };
 
-<link rel="canonical" href="https://code.pieces.app/blog/build-crud-task-manager-react-hygraph" />
-
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63efa8163dcbda5d8500e565_taskmanager_11f49c4b3e79aa28268b2e70c21d5c0c_2000.jpeg)
+
 <GridFlexRow><Tag>tutorial</Tag> <Tag>productivity</Tag></GridFlexRow>
 
 # Build a Task Manager CRUD App with React and Hygraph
-> Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 
 In this article, we will introduce readers to how to build a fully functional CRUD application using Hygraph as our backend, React as our frontend, and ApolloClient to manage our state and fetch and mutate our data. We’ll leverage the Content and Mutation APIs that the Hygraph software exposes to us to perform a simple example of querying and mutating data using a task manager app: creating tasks, reading tasks, updating tasks, and finally deleting a task with<a href="https://blog.logrocket.com/data-retrieval-in-graphql-with-react-apollo/" target="_blank" rel="noopener noreferrer"> Apollo Client</a>. We’ll also demonstrate how to set up and manage our content and connect Hygraph to React.
 
@@ -35,10 +35,10 @@ CRUD apps consist of three components in fully fledged applications:
 - **API (or server)**: the code and procedures.
 - **Database**: stores information and makes it accessible to users.
 - **User interface (UI): **makes it easier for users to use the application.
-When using Restful APIs to perform CRUD operations and making API requests, ```GET```, ```POST```, ```PUT```, and ```DELETE```  are the most commonly used HTTP methods. GraphQL uses two types of API requests:<a href="https://graphql.org/learn/queries/" target="_blank" rel="noopener noreferrer"> Queries and Mutations</a>**.** A query is used to read the data while mutation is used to create, update and delete the data, which we’ll do once we’ve built our task manager.
+When using Restful APIs to perform CRUD operations and making API requests, ```GET```, ```POST```, ```PUT```, and ```DELETE```  are the most commonly used HTTP methods. GraphQL uses two types of API requests:<a href="https://graphql.org/learn/queries/" target="_blank"> Queries and Mutations</a>**.** A query is used to read the data while mutation is used to create, update and delete the data, which we’ll do once we’ve built our task manager.
 
 ## Why use Hygraph for our Task Manager?
-<a href="https://graphcms.com/" target="_blank" rel="noopener noreferrer">Hygraph,</a> formerly known as GraphCMS, is a backend-only content management system (i.e., a <a href="https://code.pieces.app/blog/how-to-use-sanityio-as-a-headless-cms-in-nextjs" target="_blank" rel="noopener noreferrer">headless CMS</a>) that uses<a href="https://graphql.org/" target="_blank" rel="noopener noreferrer"> GraphQL</a> to query data and perform mutations (or updates) to the content, making it accessible via a single endpoint (API) for display on any device without a built-in frontend or presentation layer. It allows teams to use a single content repository to deliver content from a single source to endless frontend platforms via API, such as websites, mobile apps, TVs, and so on. Hygraph also allows teams to use any preferred tech stack or framework, including popular ones like React, Angular, or Vue. It integrates easily with Netlify, Vercel, and Gatsby Cloud for quick previews.
+<a href="https://graphcms.com/" target="_blank" rel="noopener noreferrer">Hygraph,</a> formerly known as GraphCMS, is a backend-only content management system (i.e., a <a href="https://code.pieces.app/blog/how-to-use-sanityio-as-a-headless-cms-in-nextjs" target="_blank" >headless CMS</a>) that uses<a href="https://graphql.org/" target="_blank" rel="noopener noreferrer"> GraphQL</a> to query data and perform mutations (or updates) to the content, making it accessible via a single endpoint (API) for display on any device without a built-in frontend or presentation layer. It allows teams to use a single content repository to deliver content from a single source to endless frontend platforms via API, such as websites, mobile apps, TVs, and so on. Hygraph also allows teams to use any preferred tech stack or framework, including popular ones like React, Angular, or Vue. It integrates easily with Netlify, Vercel, and Gatsby Cloud for quick previews.
 To follow this tutorial, you need:
 - <a href="https://nodejs.org/en/" target="_blank" rel="noopener noreferrer">Node.js</a>
 - <a href="https://www.npmjs.com/" target="_blank" rel="noopener noreferrer">npm</a>
@@ -80,41 +80,50 @@ Store your token somewhere secure. Later on, we’ll use it to authenticate and 
 
 ## Building our Task Manager Frontend with React
 In this section, we will install React and other dependencies that we will use to build our app. In your terminal, run either of the following commands:
-```
+
+```shell
 #yarn
 yarn create react-app project-manager &amp;&amp; cd project-manager
 ```
 Or
 
-```
+```shell
 #npm
 npx create-react-app project-manager &amp;&amp; cd project-manager
 ```
+
 To make the development of our application easier, we will use Material-UI. This is a React UI library that adheres to Google's Material Design and offers React components right out of the box to develop our UI. In addition to the Material UI, you will need to use some libraries to connect to our backend (Hygraph):
 - **```graphql```** this package provides logic for parsing GraphQL queries. It is used for interpreting GraphQL queries and mutations.
 - **```apollo-client```** this is a tool that helps connect to our Hygraph GraphQL server. It’s also used to fetch, cache, and modify application data, while automatically updating your UI.
 - **```react-router-dom```** a library that makes it possible to integrate dynamic routing into web applications. It enables you to show pages and lets users navigate through them.
 
 Run the command below to install ```react-router-dom``` into your React app.
-```
+
+```shell
 yarn add react-router-dom
 ```
+
 After installing ```react-router-dom```, you need to make it available anywhere in your task manager app. To do this, you need to import ```BrowserRouter``` from ```react-router-dom``` and then wrap the root (App) component in your ```index.js``` file.
-```
+
+```javascript
 root.render(
   <BrowserRouter>
       <App />
   </BrowserRouter>
 )
 ```
+
 To install Material UI, run the command below in your terminal:
 
 Install Apollo Client into our project by running the command below in your terminal:
-```
+
+```shell
 yarn add @apollo/client graphql
 ```
+
 To query tasks from our Hygraph endpoint, we need to develop a GraphQL client that will make our query available across our app. This is something we can do right in the ```index.js``` file:
-```
+
+```shell
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from "react-router-dom"
@@ -136,6 +145,7 @@ root.render(
   </BrowserRouter>
 )
 ```
+
 Here we implement the Apollo client and inject it into the application by wrapping it with the Apollo provider.
 Create a file in the project’s root directory named ```.env```. Add the following to ```.env```:
 In our ```src``` folder, create a new folder called ```component```. In this components folder, we’ll create the following files:
@@ -146,7 +156,8 @@ In our ```src``` folder, create a new folder called ```component```. In this com
 - **```AddTasks.js``` - **a page with a form for adding new tasks.
 
 In your ```BottomNav.js``` file, add the code below:
-```
+
+```javascript
 import { AddTask, Task } from '@mui/icons-material';
 import { BottomNavigation, BottomNavigationAction } from '@mui/material';
 import React, { useState } from 'react'
@@ -170,8 +181,10 @@ const BottomNav = () => {
 }
 export default BottomNav
 ```
+
 We use Material UI to create navigation in our task manager that allows us to navigate through the list of tasks as well as creating a task.
-```
+
+```javascript
 import React from 'react';
 import { Route, Routes } from "react-router-dom&quot;;
 import AddTask from './components/AddTask';
@@ -198,12 +211,14 @@ function App() {
 }
 export default App
 ```
+
 Here, we used features from the ```react-router-dom``` library to define our routes and their paths and attach them to their respective components.
 
 We have added additional styles to our application. Update your ```App.css``` with the code below:
 Let’s start by creating a file that we’ll use to store all of our queries and mutation queries. The goal is to migrate all of our code with a simple copy of the file. By doing so, we can manage our API-specific interactions in a single file, edit and update code, and reuse it between files.
 In the ```src``` folder, create a ```lib/api.js``` file and add the following code:
-```
+
+```javascript
 import { gql } from '@apollo/client';
 // getting all tasks
 export const ALL_TASK = gql&#x60;
@@ -217,12 +232,14 @@ export const ALL_TASK = gql&#x60;
     }
 &#x60
 ```
+
 We used ```gql```, a function for passing queries from the Apollo client library that we imported from the Apollo client, to wrap and define the query we want to execute. In our query, we passed a variable **DRAFT **because we also want to fetch the task in the draft. We are doing this because we won’t perform the published task operation from our front end in this tutorial.
 
 Publishing tasks from the front end without going to the Hygraph dashboard is possible. Read the<a href="https://hygraph.com/docs/api-reference/content-api/mutations" target="_blank" rel="noopener noreferrer"> Hygraph</a> documentation to learn how.
 
 In your ```components/Tasks.js``` file, add the following code:
-```
+
+```javascript
 import React  from 'react'
 import {AssignmentInd, Delete, Description, Update} from '@mui/icons-material';
 import { List, ListItemButton, ListItemIcon, ListItemText, Typography, Stack, Button, Modal, Box, FormControl, OutlinedInput, InputLabel } from '@mui/material';
@@ -264,10 +281,12 @@ const Task = ({ task, getTask }) => {
 }
 export default Task
 ```
+
 We used Material UI to build out our front end where we display the title, description, and assignee of each task. We pass ```task``` and ```getTask``` as props.
 
 In your ```component/TaskList.js``` file, add the following code:
-```
+
+```javascript
 import React from 'react'
 import { useQuery } from '@apollo/client';
 import { ALL_TASK } from '../lib/api';
@@ -300,6 +319,7 @@ const TaskList = () => {
 }
 export default TaskList
 ```
+
 We imported the ```useQuery``` hook provided by the Apollo client and we passed the ```ALL_TASK GraphQL``` query to it. We defined three states for the data in our hook.
 
 - **```loading```** - this is helpful while the query is being processed.
@@ -307,11 +327,13 @@ We imported the ```useQuery``` hook provided by the Apollo client and we passed 
 - **```data```** - this contains data returned by Hygrapyh.
 
 Inside the ```data``` object, we now have access to the tasks. When the application renders the component, the ```useQuery``` hook will be called.
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63efa8173dcbdabef400e5ca_image5_e70a85ae3bb39f782f7bc5180fee5e2a_800.jp)
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63efa8173dcbdabef400e5ca_image5_e70a85ae3bb39f782f7bc5180fee5e2a_800.jpG)
 
 ## Creating New Tasks with Mutation
 To create a task in your task manager, in your ```lib/api.js``` file, add the query below:
-```
+
+```javascript
 export const CREATE_TASK =  gql&#x60;
     mutation CreateTask($assignedTo: String, $description: String, $title: String) {
         createTask(
@@ -325,10 +347,12 @@ export const CREATE_TASK =  gql&#x60;
     }
 &#x60
 ```
+
 Before now, we’ve been calling the backend for data using **queries. **We now want to play around with them a bit, but to do so, we need to employ **mutations**. To perform the CRUD operations create, update, and delete, we used mutation as an operation type. We export the ```CREATE_TASK``` query; when we build a new model, Hygraph automatically provides a custom function called ```create__``` for us. The name of the model to be created is always prefixed to it. The ```createTask``` function was necessary because our model was given the name ```Task```. Use ```createTask``` as an operation name and pass on our variables that are required by the backend.
 
 In your ```AddTask.js``` file, add the code below:
-```
+
+```javascript
 import React, { useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { CREATE_TASK } from '../lib/api';
@@ -382,11 +406,12 @@ export default AddTask
 First, we used the ```useState``` hook from React to store the provided state. We then used the ```useMutation``` hook from the Apollo client. The ```useMutation``` hook depends on the ```createTask``` function to execute the ```CREATE_TASK``` mutation query. If the ```createTask``` function gets called, the mutation gets executed. We then use the ```handleOnChange``` function to update the ```state``` whenever the user inputs data.
 After entering dummy content and clicking on Add task in our task manager, if all goes well, a new task will be created and you will be able to view your content in the Hygraph Dashboard. Newly created tasks don’t automatically get published unless we call the publish function or publish it from the dashboard. But, we already defined our query to also fetch content from the draft, so newly created content will automatically be displayed on our front end.
 
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63efa8173dcbda9c9d00e61c_image1_3044f2ccaa4f784e5cec419fe94d3901.g)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63efa8173dcbda9c9d00e61c_image1_3044f2ccaa4f784e5cec419fe94d3901.gif)
 
 ### Updating Tasks in our Task Manager
 It's easy to update posts by simply adding new content to existing content and updating the Hygraph store. In our ```lib/api.js``` file, add the query below:
-```
+
+```javascript
 export const UPDATE_TASk = gql&#x60;
     mutation UpdateTask($assignedTo: String, $description: String, $title: String, $id: ID){
         updateTask(
@@ -400,9 +425,12 @@ export const UPDATE_TASk = gql&#x60;
 }
 &#x60
 ```
+
 Updating entities using mutations is similar to creating new ones, except you need two arguments in your query: the ```where``` object referencing the ```id``` of the task you want to update and the ```data``` object that holds the data to replace the old content.
+
 We'll need a form to collect the data we'll need to update a task. We’ll create a modal so that when a user tries to update a task by clicking on the update icon, it will call up a modal containing the form.
-```
+
+```javascript
 const [open, setOpen] = useState(false);
 const handleOpen = () => setOpen(true);
 const handleClose = () => setOpen(false);
@@ -417,11 +445,13 @@ const [updateTask] = useMutation(UPDATE_TASk, {
 });
 const handleUpdate = () => {
     updateTask({ variables: { id: task.id, ...replacementTask }})
+```
 
-```
 To better control the process of creating and updating content, we define several states. We then define functions that are responsible for handling form input and calling the Hygraph API services in our query.
+
 Add the ```handleOpen``` function to the Update icon:
-```
+
+```javascript
 <Button className='btn-delete task-btn'>
     <Update
     sx={{bgcolor: '#292f38', color: '#ccc'}}
@@ -429,8 +459,10 @@ Add the ```handleOpen``` function to the Update icon:
     />
 </Button&gt
 ```
+
 With this, when you click on the update button a modal will pop up containing the form field. Now below the ```Button``` container, add the modal component from Material UI to build our form field.
-```
+
+```javascript
 <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description">
   <Box sx={style}>
@@ -467,13 +499,15 @@ With this, when you click on the update button a modal will pop up containing th
   </Box>
 </Modal&gt
 ```
+
 With this, we can now successfully update our task. You will have to republish the task after editing it from the Hygraph dashboard.
 
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63efa8173dcbda47f900e61b_image8_25806bdf6354185e6a6f15449e256815.g)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63efa8173dcbda47f900e61b_image8_25806bdf6354185e6a6f15449e256815.gif)
 
 ### Deleting Tasks
 In this section, we’ll work on deleting each task from the front end of our task manager. In our ```lib/api.js``` file, add the following code:
-```
+
+```javascript
 export const DELETE_TASK = gql&#x60;
     mutation DeleteTask($id: ID!) {
         deleteTask(where: {id: $id}) {
@@ -485,9 +519,11 @@ export const DELETE_TASK = gql&#x60;
     }
 &#x60
 ```
+
 Here, we define the ```DELETE_TASK``` that we used to delete our task, and referenced the ```id``` variable of the task to be deleted.
 Update your ```component/Task.js``` file with the following code:
-```
+
+```javascript
 const [deleteTask] = useMutation(DELETE_TASK, {
     refetchQueries: [
         { query: getTask },

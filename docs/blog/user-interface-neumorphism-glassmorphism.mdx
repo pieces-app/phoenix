@@ -1,5 +1,5 @@
 ---
-title: User Interface Principles: Neumorphism and Glassmorphism
+title: User Interface Principles | Neumorphism and Glassmorphism
 description: Neumorphism entails building a soft user interface in which the User Interface components are positioned behind the background rather than directly on it. It gives the impression that background elements, such as buttons, are present but are only made visible by their projection.
 ---
 
@@ -28,8 +28,10 @@ export const GridFlexRow = props => {
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 
 Neumorphism entails building a soft user interface in which the User Interface components are positioned behind the background rather than directly on it.
+
 It gives the impression that background elements, such as buttons, are present but are only made visible by their projection. Neumorphism creates a continuous surface with bumps all through, giving the details the appearance of being inside the background and sticking out from beneath it. This design aesthetic focuses on contrast, intense colors, and skillfully applied shadows.
 Glassmorphism, on the other hand, harnesses the unique properties of glass to improve designs by giving design elements a transparent or crystaline appearance. It centers attention on the desired content and aids in the addition of a visual hierarchy to your designs.
+
 With neumorphism and glassmorphism, designers can maintain consistency with the way their designs look even as they design further.
 
 ## Neumorphism in User Interfaces
@@ -40,8 +42,9 @@ Neumorphism is a form of design that combines a monochromatic color scheme with 
 Neumorphism gives user interface elements powerful yet subtle graphic effects by combining background colors, shadows, forms, gradients, and highlights to give a soft visual effect. It’s scalable and very consistent, so it streamlines and improves user interface. Neumorphism aids UI designers in maintaining visual consistency even as they design and create aesthetically pleasing experiences for the users. With neumorphism, UI elements appear more tangible in appearance, which, in turn, conveys an exemplary user interface and experience.
 A completely white or black background would make distinguishing shadows challenging. Instead, we pick a shade of the color we want, preferably tinted. You need to experiment with colors and shadows to produce a neumorphic design.
 There are two ways of implementing neumorphism:
-         1. Drop shadow
-        2. Inner shadow
+1. Drop shadow
+2. Inner shadow
+
 Below is how they appear in UI:
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ee4919aab1c76f9d022b3e_image11_18a4ea1bf9fd197956852ff499763574_800.jp)
@@ -88,11 +91,15 @@ First, let’s look at how the box-shadow property works, and then we’ll add n
 The box-shadow property can be written in the following ways:
 **HTML**
 
-```
+```html
 <div class="element">
-</div>```<a href="https://aleru.pieces.cloud/?p=27954d91a1" target="_blank" rel="noopener noreferrer">Save this code</a>
-**CSS**
+</div>
 ```
+
+<a href="https://aleru.pieces.cloud/?p=27954d91a1" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+**CSS**
+```css
 .element {
  align-items: center;
  background-color: #ecf0f3;
@@ -114,13 +121,17 @@ The box-shadow property can be written in the following ways:
     ## Buttons
 The code sample below shows how to style a user interface button in the neumorphic method.
 **HTML**
-```
+```html
 <div class="element">
   <div class="enter">
     <p>Subscribe</p>
-  </div>```<a href="https://aleru.pieces.cloud/?p=c41f4f8429" target="_blank" rel="noopener noreferrer">Save this code</a>
-**CSS**
+  </div>
 ```
+<a href="https://aleru.pieces.cloud/?p=c41f4f8429" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+**CSS**
+
+```css
 body {
  align-items: center;
  display: flex;
@@ -144,9 +155,11 @@ font-weight: bold;
 
 <a href="https://aleru.pieces.cloud/?p=e83049ae6f" target="_blank" rel="noopener noreferrer">Save this code</a>
 **Output**
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ee4919aab1c7dbb1022b45_image18_f4d87fc32b51d91f223ccdcc2b014216_800.jp)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ee4919aab1c7dbb1022b45_image18_f4d87fc32b51d91f223ccdcc2b014216_800.jpg)
+
 **HTML**
-```
+
+```html
 <div class="buttons">
 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon">
   <path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z" />
@@ -172,9 +185,14 @@ font-weight: bold;
   <path stroke-linecap="round" stroke-linejoin="round" d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 011.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.56.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.893.149c-.425.07-.765.383-.93.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 01-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.397.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 01-.12-1.45l.527-.737c.25-.35.273-.806.108-1.204-.165-.397-.505-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.107-1.204l-.527-.738a1.125 1.125 0 01.12-1.45l.773-.773a1.125 1.125 0 011.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894z" />
   <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
 </svg>
-</div>```<a href="https://aleru.pieces.cloud/?p=6c0e479fa5" target="_blank" rel="noopener noreferrer">Save this code</a>
-**CSS**
+</div>
 ```
+
+<a href="https://aleru.pieces.cloud/?p=6c0e479fa5" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+**CSS**
+
+```css
 body {
  align-items: center;
  display: flex;
@@ -200,55 +218,84 @@ margin: 20px;
 ```
 
 <a href="https://aleru.pieces.cloud/?p=2f7048a279" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 **Output**
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ee4919aab1c744eb022b41_image1_946c5316c01a92f435cae5178b87806f_800.jp)
+
 Combining the various elements above makes for a cooler and much more user-friendly User Interface when used correctly by combining the right colors, shadows, and tints, as discussed earlier.
+
 ## More Use Cases of Neumorphism in User Interface
+
 ### Alert Pages
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ee4919aab1c74c2c022b3b_image3_2347406fe9ae5eff05007f3871f565be_800.jp)
+
 ### Buttons
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ee4919aab1c7f8ba022b3c_image5_9873c8387a0e07970b4f652fd72a330c_800.jp)
+
 ### Call-to-Action Forms/Pages
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ee4919aab1c76bb4022b3d_image13_d434b6e3145c87c5945a1a11fc2656ec_800.jp)
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ee4919aab1c78d28022b40_image12_9664774fa9544476e16ebdd10f09402f_800.jp)
+
 ### Sign-Up pages
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ee4919aab1c7eb4e022b4d_image2_8c1885781db7dd3d369057ed0ae44ba4_800.jp)
+
 ## User Interface Design with Glassmorphism
 Glassmorphism imitates the look of tinted glass or a translucent background with a beautiful border and shadow. The user interface elements frequently sit above a contrasting background and give the impression that they are mounted on sheets of glass. Glassmorphism is increasingly popular and probably won't go away anytime soon.
+
 Here is an example:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ee4919aab1c74df6022b48_image9_d39a7c8f256324f788081a55679f5c23_800.jp)
+
 Simple shapes that float over blurry backgrounds with contrasting colors produce the best results when designed with glassmorphism. The hue and transparency can be selected from light or dark mode as a useful tool for web or app development.
+
 Glassmorphism helps establish a hierarchy because of the addition of sufficient contrast and the differentiation of various User Interface elements.
+
 However, overusing glassmorphism in the UI might make it less user-friendly.
+
 ## Use Cases for Glassmorphism in User Interface Design
+
 A use case for the glassmorphism effect is in the unlock screen of iOS phones. This effect gives it transparency and blurs the background color causing a remarkable impact on the entire screen and another on the buttons.
+
 There is always a balance between the background blurring, the shadows, and the element's transparency with the glassmorphic effect. Also, remember that simple figures floating over blurry backgrounds with contrasting colors produce the best results in glassmorphism design.
+
 Another good example is the use case shown below:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ee4919aab1c77d7c022b49_image17_85492ad626718b7717d08c8486944076_800.jp)
+
 Glassmorphism solely depends on the blur effect, so borders give the design more definition and distinguish the element from the background. The transparent effect helps boost the overall appearance of the user interface design itself. The use of colorful backgrounds plays a huge role in glassmorphic design because when an element is placed over it, it highlights it well.
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ee4919aab1c76760022b47_image14_33400e414fd91def5d5935657c865ec7_800.jp)
+
 ## Attributes/Properties of Glassmorphism
 The purpose of implementing glassmorphism is to make a balance between these elements in your user interface:
-- **Transparency: **The key requirement for implementing glassmorphism is transparency. The element must be made for the top to attract more light and give a transparent effect to improve transparency.
-- **Blurred background: **The blur makes the background image seamlessly blend into the background while still giving an aesthetically pleasing appearance; this is what is remarkable about the idea of glassmorphism. The transparent layers are carefully and correctly positioned over the blurred background. The blurred background also helps give the foreground a glassy look.
-- **Border: **A border surrounding the glassmorphic element highlights it.
+
+- **Transparency:** The key requirement for implementing glassmorphism is transparency. The element must be made for the top to attract more light and give a transparent effect to improve transparency.
+- **Blurred background:** The blur makes the background image seamlessly blend into the background while still giving an aesthetically pleasing appearance; this is what is remarkable about the idea of glassmorphism. The transparent layers are carefully and correctly positioned over the blurred background. The blurred background also helps give the foreground a glassy look.
+- **Border:** A border surrounding the glassmorphic element highlights it.
 ## Implementing Glassmorphism with CSS
 The key to creating an ideal glassmorphism effect is choosing the appropriate transparency. Only the fill should be translucent; the form itself shouldn't be. You will achieve a true background blur in this manner.
+
 The following properties are employed to create the glassmorphism effect:
-```
+```css
 background: linear-gradient()
 box-shadow:(values) rgba();
 backdrop-filter: blur()
 ```
+
 Glassmorphism needs a compelling aesthetic element in the user interface to provide the greatest visual impact. This element might be a picture or a shape.
+
 ## Creating a Glass Pane for Your User Interface Design
+
 **HTML**
-```
+
+```html
 <div class="card">
   </div>
-  <h1>eureka</h1>```<a href="https://aleru.pieces.cloud/?p=2918468c8a" target="_blank" rel="noopener noreferrer">Save this code</a>
-**CSS**
+  <h1>eureka</h1>
 ```
+
+<a href="https://aleru.pieces.cloud/?p=2918468c8a" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+**CSS**
+
+```css
 body {
  display: flex;
  align-items: center;
@@ -280,12 +327,17 @@ h1 {
 ```
 
 <a href="https://aleru.pieces.cloud/?p=4f454e9181" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 **Output**
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ee4919aab1c748f8022b4a_image4_4f499e632a53627e4f7a2e80438097fe_800.jp)
+
 ## Pagination
+
 Another great way to implement glassmorphism is in pagination; glassmorphic objects partially allow you to see the image or colors behind them. The object or element is kept from merging into the background by adding a blur behind it. This blurriness is necessary to keep the text readable, one of the more important elements of user interface design.
+
 **HTML**
-```
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -322,9 +374,14 @@ Another great way to implement glassmorphism is in pagination; glassmorphic obje
     </ul>
   </div>
 </body>
-</html>```<a href="https://aleru.pieces.cloud/?p=4c584cb499" target="_blank" rel="noopener noreferrer">Save this code</a>
-**CSS**
+</html>
 ```
+
+<a href="https://aleru.pieces.cloud/?p=4c584cb499" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+**CSS**
+
+```css
 * {
  margin: 0;
  padding: 0;
@@ -370,18 +427,28 @@ Another great way to implement glassmorphism is in pagination; glassmorphic obje
 ```
 
 <a href="https://aleru.pieces.cloud/?p=5ff84e8138" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 **Output**
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ee4919aab1c7d74a022b4e_image7_a0be0f8289601754d9b5944b5798e235_800.jp)
+
 ## More Use Cases of Glassmorphism in User Interface Design
 Glassmorphism needs a compelling aesthetic element to provide the greatest visual impact. This might be a picture or a shape.
+
 **Call-to-Action Cards**
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ee4919aab1c71e0a022b3f_image16_003f6ab4b68d7c37edd3fbbcc290ca2a_800.jp)
+
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ee4919aab1c72a7d022b44_image19_2362a04b1e5f901b1fd10e7b4a1bcc30_800.jp)
+
 As shown above, the glassmorphic effect is over two photos, or on a bright background made of shapes that are clear and compelling and makes the glassy effect more pronounced.
+
 Let’s look at another example of the glassmorphic concept with the frosted glass effect used in the user interface of a credit card application page.
+
 First, let's create the background using the ```background``` property:
+
 **HTML**
-```
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -396,9 +463,14 @@ First, let's create the background using the ```background``` property:
 </head>
 <body>
 </body>
-</html>```<a href="https://aleru.pieces.cloud/?p=8ced4f9c06" target="_blank" rel="noopener noreferrer">Save this code</a>
-**CSS**
+</html>
 ```
+
+<a href="https://aleru.pieces.cloud/?p=8ced4f9c06" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+**CSS**
+
+```css
 * {
  margin: 0;
  padding: 0;
@@ -409,11 +481,13 @@ body {
  height: 100vh;
 }
 ```
-
 <a href="https://aleru.pieces.cloud/?p=cefe42a371" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 Let’s add the glassmorphism effect as we create the credit card. But first, let’s add a few more details to the HTML.
+
 **HTML**
-```
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -458,10 +532,15 @@ Let’s add the glassmorphism effect as we create the credit card. But first, le
   </div>
 </div>
 </body>
-</html>```<a href="https://aleru.pieces.cloud/?p=3c144e977c" target="_blank" rel="noopener noreferrer">Save this code</a>
+</html>
+```
+
+<a href="https://aleru.pieces.cloud/?p=3c144e977c" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 **CSS**
 To implement it with CSS, we do the following:
-```
+
+```css
 body {
  background: linear-gradient(to right, #bbd2c5, #536976, #292e49);
  height: 100vh;
@@ -570,10 +649,15 @@ input::placeholder{
 ```
 
 <a href="https://aleru.pieces.cloud/?p=af854989d2" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 **Output**
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63ee4919aab1c76760022b47_image14_33400e414fd91def5d5935657c865ec7_800.jp)
+
 ## Browser Compatibility
 Neumorphism is compatible with the latest forms of Chrome, Edge, Firefox, and Safari, and according to <a href="https://caniuse.com/" target="_blank" rel="noopener noreferrer">caniuse.com</a>, glassmorphism is supported by most, if not all, browsers.
+
 ## Conclusion
+
 Neumorphism is a visually pleasant concept of User Interface design and a popular trend more and more designers and developers are using to enhance user interfaces. It makes user interfaces more usable and aesthetically pleasing to users, although it can be a huge UI drawback when overused. Neumorphism takes cues from both skeuomorphism and flat design. These design philosophies aim to eliminate any flashy elements from the user interface and replace them with a soft look that is consistent throughout a project.
+
 It's a wonderful idea to use neumorphism while creating icons, social buttons, forms, and pagination in the right way with the right color shade combinations. Employing neumorphism lessens the possibility of adopting color schemes that clash, as some people find color combinations difficult.

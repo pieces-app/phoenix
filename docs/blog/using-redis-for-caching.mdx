@@ -199,13 +199,11 @@ Messages sent by other clients to these channels will be pushed by Redis to all 
 Once we have a Redis client subscribed to a channel, that client can no longer execute any other operations besides unsubscribing from the current channel and subscribing to more channels.
 
 ### Go-Redis Publisher
-```
-Go-redis``` allows users to publish messages and subscribe to channels. It also automatically re-connects to the Redis Server when there is a network error.
-Inside our ```get user``` function, we will create a publisher using<a href="https://github.com/go-redis/redis/blob/v8.11.5/commands.go#L3172"> ```redis.Publish(}
-```
+```Go-redis``` allows users to publish messages and subscribe to channels. It also automatically re-connects to the Redis Server when there is a network error.
+Inside our ```get user``` function, we will create a publisher using<a href="https://github.com/go-redis/redis/blob/v8.11.5/commands.go#L3172"> ```redis.Publish(}```</a>. This function takes two arguments: the name of the channel to which we want to send the message and the message.
 
-</a>. This function takes two arguments: the name of the channel to which we want to send the message and the message.
 In our case, we set the channel name to ```send-user-name``` and the payload is the response from ```redis.GetUser``` (see above).
+
 We are sending the marshaled payload to the channel using ```Publish``` because it allows us to transfer the data as ```[]byte```. Since we are using a ```User``` struct, it can be encoded into a ```[]byte```.
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f367de581b893ac75c5_image8_5324b0310d04e74fb704fe1ea062f38e_800.png)
 
@@ -213,19 +211,16 @@ We are sending the marshaled payload to the channel using ```Publish``` because 
 
 ### Go-Redis Subscriber
 
-We create a subscriber using the<a href="https://github.com/go-redis/redis/blob/v8.11.5/redis.go#L686" target="_blank" rel="noopener noreferrer"> ```redis.Subscribe(}
-```
-
-</a> function.
+We create a subscriber using the<a href="https://github.com/go-redis/redis/blob/v8.11.5/redis.go#L686" target="_blank" rel="noopener noreferrer"> ```redis.Subscribe(}```</a> function.
 We will have one argument: the channel we want to subscribe to. In our case, this is ```send-user-name```.
 
-```
-Subscribe``` subscribes the client to the specified channels. Since this method does not wait for a response from Redis, the subscription may not be active immediately.
+```Subscribe``` subscribes the client to the specified channels. Since this method does not wait for a response from Redis, the subscription may not be active immediately.
 
 We create a new file that connects to the same Redis instance and calls the following:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f367de581a428ac75c8_image17_2f92cd575c46ef68f626a4cbd8185d3c_800.png)
 
 <a href="https://aseem.pieces.cloud/?p=20544980a4" target="_blank" rel="noopener noreferrer">Save this code</a>
+
 The result of the ```subscribe``` is a Pub/Sub, and we extract the channel property out of this object.
 This ```Channel``` returns a Go channel for concurrently receiving messages. If the channel is full for 30 seconds, then the message is dropped.
 
@@ -253,8 +248,7 @@ Axios is a lightweight HTTP client which makes calling requests very intuitive. 
 ### Integrate with React
 We will be using the hooks ```useEffect``` and ```useState```. A <a href="https://code.pieces.app/blog/creating-custom-hooks-in-reactjs" target="_blank" rel="noopener noreferrer">React hook</a> is a special function that lets you “hook into” React features.
 
-### ```useEffect
-```
+### ```useEffect```
 
 Using this hook, we can inform React that our components need to do something after rendering. By default, ```useEffect``` runs after each render of the component where it’s called. A common use of this hook is to fetch and display data.
 React remembers the function you passed and invokes it after the DOM updates.
@@ -263,11 +257,11 @@ React remembers the function you passed and invokes it after the DOM updates.
 
 If we want our effects to run less often, we provide the second argument (which is an array of values). These can be considered the dependencies for the effect, and if there are any changes since the last time the effect was run, the effect runs again.
 
-### ```useState
-```
+### ```useState```
 
 This is a way of adding a state to components and preserving some values between function calls. In general, variables “disappear” when the function exits, but state variables are preserved by React. This state can be an array, object, number, boolean, etc. The argument passed to ```useState()``` is the initial state.
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f397de5813046ac777e_image18_0a65e97bc0a74efed2304d3524a9d718_800.png)
+
 <a href="https://aseem.pieces.cloud/?p=61fa45af76" target="_blank" rel="noopener noreferrer">Save this code</a>
 
 To make a ```GET``` request using Axios, we use the ```.get()``` method. The response is returned as an object.
@@ -278,10 +272,9 @@ When the page loads for the first time, the API hits our backend. The resulting 
 Notice that the source is the API.
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f387de5814e87ac7732_image12_a108dbaa5f3edee2e93e84ce6df54ae0_800.png)
-On the next request, the API hits our cache, displayed with ```source: cache
-```
-
+On the next request, the API hits our cache, displayed with ```source: cache```
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/632c8f367de581967eac759f_image19_c697bea62972566c270daf310c2a3445_800.png)
 
 ## Conclusion
+In this article, we used a postgres database to store users’ data. We created endpoints using Gorilla Mux, and on top of those endpoints, we integrated Redis caching into the API response from a React application. Remember that Redis is a powerful tool and what we covered is just the tip of the iceberg. For more information, consider reading the docs at [redis.io](http://redis.io/). You can also follow along with this article by watching this [YouTube tutorial](https://www.youtube.com/watch?v=pgh4DicuixA&t=1s).

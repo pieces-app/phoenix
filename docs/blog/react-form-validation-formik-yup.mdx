@@ -1,7 +1,9 @@
 ---
 title: Integrating Formik & Yup for React Form Validation
-description: In software development, forms offer a way of receiving data from users before sending information to the server. The data obtained through these forms must be validated and checked for mistakes that might break the server or cause problems. For example, you might need to verify that a username contains the required characters, or that the ```password``` field value and ```confirm-password``` field value match. In this article, we’ll examine how form validation in React Applications using two React form libraries: the Formik and Yup packages. To easily follow this article, fundamental knowledge of React is required. The code for the sample project we’ll be working with in this GitHub repository.
+description: In software development, forms offer a way of receiving data from users before sending information to the server. The data obtained through these forms must be validated and checked for mistakes that might break the server or cause problems. For example, you might need to verify that a username contains the required characters, or that the password field value and confirm-password field value match.
 ---
+
+<link rel="canonical" href="https://code.pieces.app/blog/react-form-validation-formik-yup" />
 
 export const Tag = props => {
     return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
@@ -19,8 +21,6 @@ export const GridFlexRow = props => {
 
 };
 
-<link rel="canonical" href="https://code.pieces.app/blog/react-form-validation-formik-yup" />
-
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dd6036a41bb07b4e1fd58a_yupandformik_27cf38bdb8b864349330198e161879c0_2000.jpeg)
 <GridFlexRow><Tag>react</Tag> <Tag>validation</Tag></GridFlexRow>
 
@@ -35,15 +35,21 @@ In software development, forms offer a way of receiving data from users before s
 
 ### Yup Schema
 The Yup schema allows you to create validation schema/rules that values should follow. You can create a Yup validation schema by calling ```Yup.object().shape()```. You’ll pass the schema object as a parameter with the schema rules as the value for the field keys. The schema has different datatypes: <a href="https://github.com/jquense/yup#string" target="_blank" rel="noopener noreferrer">string</a>, <a href="https://github.com/jquense/yup#number" target="_blank" rel="noopener noreferrer">numbers</a>, <a href="https://github.com/jquense/yup#date" target="_blank" rel="noopener noreferrer">date</a>, <a href="https://github.com/jquense/yup#tuple" target="_blank" rel="noopener noreferrer">tuple</a>, <a href="https://github.com/jquense/yup#array" target="_blank" rel="noopener noreferrer">arrays</a>, <a href="https://github.com/jquense/yup#object" target="_blank" rel="noopener noreferrer">objects</a>, <a href="https://github.com/jquense/yup#boolean" target="_blank" rel="noopener noreferrer">booleans</a>, and <a href="https://github.com/jquense/yup#mixed" target="_blank" rel="noopener noreferrer">mixed</a>. The mixed method allows you to create a schema that matches all data types or the ones you configured. Next, you’ll learn about the different Yup validation in React methods you can apply to schema types.
+
 Formik allows easy integration with Yup for validating form values and ensures that the submitted data is error-free and matches a predetermined schema. The following sections will cover how to use Formik and Yup to validate forms in a simple React Application.
 
 ## Create a React App
 To <a href="https://code.pieces.app/blog/alternatives-to-create-react-app" target="_blank" rel="noopener noreferrer">create a React app</a>, you’ll need to have <a href="https://nodejs.org/en/download/" target="_blank" rel="noopener noreferrer">Node.js</a> installed. In your terminal, run the following command:
+
+```shell
+npx create-react-app react-formik
 ```
-npx create-react-app react-formik```<a href="https://melvin.pieces.cloud/?p=4c0941b4eb" target="_blank" rel="noopener noreferrer">Save this code</a>
+
+<a href="https://melvin.pieces.cloud/?p=4c0941b4eb" target="_blank" rel="noopener noreferrer">Save this code</a>
 
 Once you create the application, update the ```App.css```** **file with the following styles:
-```
+
+```css
 *{
   outline: none;
   transition: 0.3s ease all;
@@ -150,7 +156,7 @@ button:focus:before {
 button:before {
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.6);
-  content: "&quot;;
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -171,13 +177,14 @@ button:before {
 
 ## Using Formik and Yup Form Validation
 The ```App.js```** **file has a simple sign-up form controlled by Formik. In order to validate Forms in React, inject the Yup form validation schema into the Formik object:
-```
-import logo from "./logo.svg&quot;;
-import { useFormik } from "formik&quot;;
-import * as Yup from "yup&quot;;
-import "./App.css&quot;;
-import StyledInput from "./components/StyledInput&quot;;
-import { useState } from "react&quot;;
+
+```javascript
+import logo from "./logo.svg";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import "./App.css";
+import StyledInput from "./components/StyledInput";
+import { useState } from "react";
 function App() {
   const [loading, setLoading] = useState(false);
   const validateSchema = Yup.object().shape({
@@ -270,7 +277,10 @@ function App() {
     </div>
   );
 }
-export default App;```<a href="https://melvin.pieces.cloud/?p=a0c94fadf8" target="_blank" rel="noopener noreferrer">Save this code</a>
+export default App;
+```
+
+<a href="https://melvin.pieces.cloud/?p=a0c94fadf8" target="_blank" rel="noopener noreferrer">Save this code</a>
 
 In the code block above, we can see the Yup and Formik validation schema for the sign-up form on line 10. This creates a set of rules that each form field will follow.
 On line 27, we have the ```useFormik``` hook with the initial values for the form state, the validation schema created with Yup and the ```onSubmit``` event for the form. Next, we linked the Formik values to the input fields. Using the First Name form field as a reference, we connected the field value from Formik to the value attribute and for the input to create a <a href="https://reactjs.org/docs/forms.html#controlled-components" target="_blank" rel="noopener noreferrer">controlled component</a>. Finally, we passed the ```handleSubmit``` function from Formik to the ```onSubmit``` event for the form.
@@ -283,13 +293,16 @@ Yup has some built-in validators that we can implement. As seen in the code bloc
 
 ### Custom Validations (RegEx)
 We can create our custom validation rules by using the ```matches()```** ** method for string schema. This accepts a regular expression and the validation message as a value:
-```
+```text
     password: Yup.string()
       .required("This field is required")
-      .min(8, "Pasword must be 8 or more characters")
-      .matches(/(?=.*[a-z])(?=.*[A-Z])\\w+/, "Password ahould contain at least one uppercase and lowercase character")
+      .min(8, "Password must be 8 or more characters")
+      .matches(/(?=.*[a-z])(?=.*[A-Z])\\w+/, "Password should contain at least one uppercase and lowercase character")
       .matches(/\\d/, "Password should contain at least one number")
-      .matches(/[&#x60;!@#$%^&amp;*()_+\\-=[\\]{};':"\\\\|,.<>/?~]/, "Password should contain at least one specia```<a href="https://melvin.pieces.cloud/?p=387d4d94a1" target="_blank" rel="noopener noreferrer">Save this code</a>
+      .matches(/[&#x60;!@#$%^&amp;*()_+\\-=[\\]{};':"\\\\|,.<>/?~]/, "Password should contain at least one special character")
+```
+
+<a href="https://melvin.pieces.cloud/?p=387d4d94a1" target="_blank" rel="noopener noreferrer">Save this code</a>
 
 The schema rule above will check if a value is a string and verify that the string value is not empty. Next, it will check to make sure that the minimum length for the string characters is eight. Finally, the following three validation rules for the value are customized using a regular expression:
 - The first expression checks if there is at least one uppercase letter and one lowercase letter in the string.
@@ -298,15 +311,16 @@ The schema rule above will check if a value is a string and verify that the stri
 
 This validation can be applied in real-life scenarios for creating a strong password, as seen in the code sample in the ```App.js```** **file:
 
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63b3030c83c6d5f6a08d4784_image3_2801fcfdf10873b9c7745fb26676c17a.g)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63b3030c83c6d5f6a08d4784_image3_2801fcfdf10873b9c7745fb26676c17a.gif)
 
 ### Validating a Dynamic Form with Formik and Yup
 The Formik validation package also comes with built-in components that let us control the form state and events. In this section we’ll examine how to create a dynamic form using Formik form components and Yup. First, we’ll set up a form that allows us to create a list of items:
-```
-import "./styles.css&quot;;
-import * as yup from "yup&quot;;
-import { Field, FieldArray, Form, Formik } from "formik&quot;;
-import React from "react&quot;;
+
+```javascript
+import "./styles.css";
+import * as yup from "yup";
+import { Field, FieldArray, Form, Formik } from "formik";
+import React from "react";
 export default function App() {
   const [list, setList] = React.useState([]);
   const validationSchema = yup.object().shape({
@@ -395,11 +409,12 @@ export default function App() {
     </div>
   );
 }
-```
+````
 
 <a href="https://melvin.pieces.cloud/?p=49dd4e86ae" target="_blank" rel="noopener noreferrer">Save this code</a>
 
 In the code block above, we have the Yup schema, which is an array type of strings. As we can see from the Yup validation schema, the array values are required; we cannot have an empty string as an array value.
+
 Next, we imported the ```Formik``` component from the Formik package; this wraps the form. Since we’re working with arrays/dynamic form values, we used the ```FieldArray``` component, which helps with array manipulations. On line 32, we have the ```FieldArray```, which is used to render each form field and button. The render props from the ```FieldArray``` had helper props passed to them. This prop allowed us to mutate the array values, as seen in the "Add New Item" button, where we used the ```push()``` method from the helpers to add new values at the end of the array. Also, the "remove" button calls the ```remove()```** **method on click, with the item's index to remove passed as a parameter:
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63b3030c83c6d599a08d4783_image1_4048e61d06aada1b9cb258fdbbe71f4d.g)
 

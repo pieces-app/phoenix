@@ -1,3 +1,259 @@
 ---
-redirect: https://code.pieces.app/collections
+title: Node.js Code Snippets Collection
+description: If you want to take full advantage of Node.js, these are some of the most useful node.js code snippets for backend development.
 ---
+
+<link rel="canonical" href="https://code.pieces.app/collections/node-js" />
+
+export const HeaderSpacer = props => {
+    return <div style={{width: "100%", height: "100px"}}></div>;
+};
+
+export const GridFlexRowCenter = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+};
+
+export const InstallButton = props => {
+    return <a style={{textDecoration: "none"}} href={ props.src }>
+        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+            <p style={{
+                padding: "8px 20px",
+                borderRadius: "8px",
+                border: "1px solid #f3f5f6",
+                color: "white",
+                fontWeight: "500",
+                background: "black",
+                marginBottom: "8px",
+                marginTop: "3px",
+                marginRight: "16px"
+            }}>{props.children}</p>
+        </div>
+    </a>
+};
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content", margin: "0px 8px" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap",
+        marginBottom: "32px",
+    }}>{props.children}</div>
+};
+
+<HeaderSpacer></HeaderSpacer>
+
+<Image margin-top={"0px"} margin-bottom={"0px"} width="400" src={"/assets/graphics/collections/collection_nodejs.png"} />
+
+<Heading type={"h1"}>Node.js Code Snippets</Heading>
+
+If you want to take full advantage of Node.js, these are some of the most useful node.js code snippets for backend development.
+
+<InstallButton src={"https://nodejs.pieces.cloud/"}>Add to Pieces</InstallButton>
+
+<HeaderSpacer></HeaderSpacer>
+
+---
+
+<HeaderSpacer></HeaderSpacer>
+
+Coding in Node.js can be challenging and getting used to the intricacies of Node.js code can be quite confusing. This collection of Node.js code  examples is aimed at helping you perform common Node.js functions. No matter your experience level, from beginner to advanced, the following Node.js sample code will be useful for all developers.
+
+If you are a Node.js Developer, add all of the following Node.js snippets to Pieces for some extreme time-saving shortcuts. When downloading this collection to Pieces, developers will receive relevant tags for easy and fast search in Pieces, a description for context, and related links.
+
+### How to Create a HTTP Server in Node.js
+
+<GridFlexRow>
+    <Tag>nodejs</Tag><Tag>javascript</Tag><Tag>node server</Tag><Tag>web server</Tag>
+</GridFlexRow>
+
+This Node.js code snippet creates a simple Node.js HTTP server that writes a response to the client and listens on port 8080. If it is running, a message will be logged stating "server running on port 8080".
+
+```javascript
+const http = require('http');
+
+http.createServer((request, response) => {
+
+	response.writeHead(200, {
+		'Content-Type': 'text/plain'
+	});
+	response.write('Hello from Pieces!');
+	response.end();
+
+}).listen(8080);
+
+console.log('server running on port 8080');
+```
+
+Related Links
+
+- [Node HTTP tutorial](https://zetcode.com/javascript/http/)
+- [Node.JS HTTP module](https://www.w3schools.com/nodejs/nodejs_http.asp)
+
+<InstallButton src={"https://nodejs.pieces.cloud/?p=f3ca47a4e1"}>Add to Pieces</InstallButton>
+
+---
+
+### Node.js Parse command-line arguments
+
+<GridFlexRow>
+    <Tag>nodejs</Tag><Tag>javascript</Tag><Tag>command-line arguments</Tag>
+</GridFlexRow>
+
+This basic Node.js code is used to grab specified command-line arguments, we use the process module which gives control over the current Node.js process, and we remove the first two arguments from the command-line, the Node.js executable and the executed file name.
+
+```javascript
+const getCmdArguments = () => process.argv.slice(2);
+```
+
+Related Links
+
+- [How do I pass command line arguments to a Node.js program](https://stackoverflow.com/questions/4351521/how-do-i-pass-command-line-arguments-to-a-node-js-program/4351548#4351548)
+- [The argy property](https://www.geeksforgeeks.org/node-js-process-argv-property/)
+
+<InstallButton src={"https://nodejs.pieces.cloud/?p=15304ca5f1"}>Add to Pieces</InstallButton>
+
+---
+
+### How to use Sleep in Node.js
+
+<GridFlexRow>
+    <Tag>nodejs</Tag><Tag>javascript</Tag><Tag>sleep</Tag><Tag>setTimeout</Tag>
+</GridFlexRow>
+
+Implementing the sleep function in Node.js using setTimeout along with a dynamic argument specifying time to wait.
+
+```javascript
+const sleep = ms => new Promise( res => setTimeout(res, ms));
+```
+
+Related Links
+
+- [Sleep in Node.js](https://masteringjs.io/tutorials/node/sleep)
+- [How to add Node.js Sleep function example](https://www.golinuxcloud.com/nodejs-sleep-function/)
+
+<InstallButton src={"https://nodejs.pieces.cloud/?p=808b479074"}>Add to Pieces</InstallButton>
+
+---
+
+### How to use the Assert function in Node.js
+
+<GridFlexRow>
+    <Tag>nodejs</Tag><Tag>javascript</Tag><Tag>assert</Tag>
+</GridFlexRow>
+
+The Assert Node.js example below uses the assert module to provide a set of assertion functions for verifying invariants.
+
+```javascript
+const assert = require('assert');
+
+assert(5 > 7);
+```
+
+Related Links
+
+- [Assert function in node.js](https://www.geeksforgeeks.org/node-js-assert-function/)
+- [Node.js assert function](https://nodejs.org/api/assert.html)
+
+<InstallButton src={"https://nodejs.pieces.cloud/?p=8014498246"}>Add to Pieces</InstallButton>
+
+---
+
+### Getting the information of all CPUs installed
+
+<GridFlexRow>
+    <Tag>nodejs</Tag><Tag>javascript</Tag><Tag>cpu</Tag>
+</GridFlexRow>
+
+Get information about all CPUs available using the os module.
+
+```javascript
+const os = require('os');
+const value =  os.cpus();
+
+console.log("os.cpus() ==> " + JSON.stringify(value) );
+Related links:
+```
+
+Related Links
+
+- [Node.js os cpus method](https://www.geeksforgeeks.org/node-js-os-cpus-method/)
+- [Node.js Documentation v19.7.0 - OS](https://nodejs.org/api/os.html)
+- [Using os module in NodeJS](https://medium.com/analytics-vidhya/os-module-in-nodejs-26459c17f5a)
+
+<InstallButton src={"https://nodejs.pieces.cloud/?p=5d5d41a11e"}>Add to Pieces</InstallButton>
+
+---
+
+### How to Store JSON in a File using Node.js
+
+<GridFlexRow>
+    <Tag>nodejs</Tag><Tag>javascript</Tag><Tag>json</Tag>
+</GridFlexRow>
+
+This Node.js code, given a data object, converts the object to a JSON string and stores it in a file with the specified path.
+
+```javascript
+const fileSystem = require('fs')
+
+const storeData = (data, path) => {
+  try {
+    fileSystem.writeFileSync(path, JSON.stringify(data))
+  } catch (error) {
+    console.error(error)
+  }
+}
+```
+
+Related Links
+
+- [How to write a JSON object to file in Node.js](https://flaviocopes.com/how-to-save-json-object-to-file-nodejs/)
+
+<InstallButton src={"https://nodejs.pieces.cloud/?p=94974b978f"}>Add to Pieces</InstallButton>
+
+---
+
+### How to get data out of an HTTP Get Request using Node.js code snippets
+
+<GridFlexRow>
+    <Tag>nodejs</Tag><Tag>javascript</Tag><Tag>http</Tag>
+</GridFlexRow>
+
+This simple Node.js code is used to get the data out of a Node.js HTTP get request with JavaScript, we can listen for the data event on the response and append it until the response has ended.
+
+```javascript
+const callback = (response) => {
+	let str = "";
+	response.on("data", (chunk) => {
+		str += chunk;
+	});
+
+	response.on("end", () => {
+		console.log(str);
+		// ...
+	});
+};
+
+const request = http.request(options, callback).end();
+```
+
+Related Links
+
+- [5 ways to make HTTP requests in Node.js](https://blog.logrocket.com/5-ways-to-make-http-requests-in-node-js/)
+- [How to get data out of a node.js HTTP get request](https://stackoverflow.com/questions/19539391/how-to-get-data-out-of-a-node-js-http-get-request)
+
+<InstallButton src={"https://nodejs.pieces.cloud/?p=511047bbf9"}>Add to Pieces</InstallButton>
+
+
+

@@ -29,7 +29,8 @@ export const GridFlexRow = props => {
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 
 ## What is styled-components?
-Styled-components is a library for styling React components. It lets you use <a href="https://en.wikipedia.org/wiki/CSS-in-JS" CSS-in-JS</a> by adding JavaScript logic to your CSS. This makes it simple to create dynamic styles for your React components and integrate your react component library.
+Styled-components is a library for styling React components. It lets you use <a href="https://en.wikipedia.org/wiki/CSS-in-JS"> CSS-in-JS</a> by adding JavaScript logic to your CSS. This makes it simple to create dynamic styles for your React components and integrate your react component library.
+
 ### Advantages of Styled-Components
 - Prevents class name collisions with unique class names
 - Dynamic and adaptive styles
@@ -44,28 +45,35 @@ or
 Once we install the library, we will start styling the application.
 
 ## Styling a React App with Styled-Components
-Styled-components lets you add styles to <a href="https://www.geeksforgeeks.org/react-styled-components-module/" target="_blank" React components</a> with the react inline stylestyled interface. You'll use tagged template literals to pass style rules to the component.
-import styled from "styled-components";
-‍
+Styled-components lets you add styles to <a href="https://www.geeksforgeeks.org/react-styled-components-module/" target="_blank"> React components</a> with the react inline styled interface. You'll use tagged template literals to pass style rules to the component.
+
+```import styled from "styled-components";```
 
 The component name follows the React naming convention. Access the <a href="https://code.pieces.app/blog/understanding-dom-and-virtual-dom-and-how-they-work-with-react" target="_blank"> DOM element</a> you want to style from the styled object and pass the style rules within template literals.
+
 Styling a real-life project's nav will look similar to this code block:
+
 The code block above creates a styled nav element. You can pass props or add JavaScript logic to styled components.
 
-In the code block, the opacity style value depends on the show prop. If <em show is true in <em MyComponents, the div's opacity is 1, else 0. Use <em createGlobalStyle for global styles that are not tied to a specific component.
+In the code block, the opacity style value depends on the show prop. If _show is true_ in  ```MyComponents```, the div's opacity is 1, else 0. Use ```createGlobalStyle``` for global styles that are not tied to a specific component.
+
 The code block above creates a global styled component that we can use to style components outside its scope.
 
 ## React Themes
-Styled-components supports multiple themes for React apps; use <em ThemeProvider to provide the theme via a context API. To do so, pass a theme rule object as a value to its theme prop, access the theme rule in all styled-components using prop.theme, and set up a theme object in the theme folder.
+Styled-components supports multiple themes for React apps; use ThemeProvider to provide the theme via a context API. To do so, pass a theme rule object as a value to its theme prop, access the theme rule in all styled-components using ```prop.theme```, and set up a theme object in the theme folder.
+
 The theme object exported as the default in the code block above has two properties: dark and light. We’ll pass the proper property to the ThemeProvider component based on the selected theme. The following action will wrap the application with ThemeProvider:
-From the code block above, we have the <em currentTheme state; this controls the theme rule to pass to <em ThemeProvider. The <em ToggleButton component allows us to toggle between light and dark themes.
+
+From the code block above, we have the ```currentTheme``` state; this controls the theme rule to pass to ```ThemeProvider```. The ```ToggleButton``` component allows us to toggle between light and dark themes.
 
 ## Using Themes in Styled-Components
-To use the theme rules in the style component, we will need to access the theme from the <em props object:
+To use the theme rules in the style component, we will need to access the theme from the props object:
 
 In the code block above, we are destructuring the theme property from the props object. This will give us access to all of the theme rules. Using the code sample above, we have:
+
 This will apply the primary color from the current selected theme's theme rule.
 
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/630cec306cc12c64c506d0c9_Togglingstyled-componentstheme_c80921e23facedb5c5725c6eae5c30fd.gif" id="" width="auto" height="auto" loading="au)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/630cec306cc12c64c506d0c9_Togglingstyled-componentstheme_c80921e23facedb5c5725c6eae5c30fd.gif)
 
 ## Conclusion
+This article explored how to add styled-components to your React application and create component-level styles. In addition, we looked at how to create light and dark themes for React applications using ThemeProvider. If you would like to look further into styled-components, check out the [official documentation](https://styled-components.com/docs/basics). You can also find the complete code for the project used in this article in my Github Repository or test the live version here: [https://theme-sc.vercel.app/](https://theme-sc.vercel.app/). Want to learn more? Check out this article about [how to implement drag and drop](https://code.pieces.app/blog/how-to-implement-drag-and-drop-in-react) in React.

@@ -1,9 +1,7 @@
-export const HeaderImage = props => {
-    return <picture>
-        <source srcSet={props.srcset} media="(prefers-color-scheme: dark)"/>
-        <img src={props.src} />
-    </picture>
-};
+---
+title: Supercharge Pieces with Browser and IDE Plugins
+description: Use Pieces' browser and IDE plugins for secure coding at lightning speeds. Pieces enables key AI features like Auto-Save, Auto-Complete and single-click save.
+---
 
 export const GridFlexRow = props => {
     return <div style={{
@@ -14,10 +12,34 @@ export const GridFlexRow = props => {
     }}>{props.children}</div>;
 };
 
-export const PluginButton = props => {
-    return <div style={{ padding: "8px", border: "2px solid grey", borderRadius: "16px", marginRight: "16px", textAlign: "center" }}>
-        <img src={ props.src } />
+export const PluginInstallButton = props => {
+    return <a style={{textDecoration: "none"}} target="_blank" href={props.src}>
+        <div style={{ minWidth: "125px", maxWidth: "225px" }}>
+            <p style={{
+                borderRadius: "8px",
+                border: "1px solid grey",
+                fontWeight: "500",
+                background: "transparent",
+                marginBottom: "8px",
+                marginTop: "3px",
+            }}>{props.children}</p>
+        </div>
+    </a>
+};
+
+export const LearnMore = props => {
+    return <a href={ props.src } style={{ marginTop: "0px", marginBottom: "0px" }}>Learn more</a>
+}
+
+export const PluginCard = props => {
+    return <div style={{ padding: "8px 32px", border: "2px solid grey", borderRadius: "16px", marginRight: "16px", textAlign: "center", minWidth: "165px", alignItems: "center", display: "flex", flexDirection: "column"}}>
+        { props.children }
         <p style={{ marginTop: "0px" }}><strong>{ props.text }</strong></p>
+        <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" , alignItems: "center"}}>
+            <LearnMore src={ props.srcset }></LearnMore>
+            <SpacerW></SpacerW>
+            <PluginInstallButton src={ props.src }>Get</PluginInstallButton>
+        </div>
     </div>
 };
 
@@ -25,41 +47,69 @@ export const Spacer = props => {
     return <div style={{height: "16px"}}></div>
 };
 
+export const SpacerW = props => {
+    return <div style={{ width: "8px"}}></div>
+};
 
-# Pieces for Developers
-<Heading type="h3">Plugins</Heading>
+export const HeaderSpacer = props => {
+    return <div style={{width: "100%", height: "100px"}}></div>;
+};
 
+export const FlexColumn = props => {
+    return <div style={{
+        paddingLeft: "8px",
+        paddingRight: "8px",
+        display: 'flex',
+        flexDirection: 'column',
+        flexWrap: "wrap",
+        textAlign: "center",
+        alignItems: "center"
+    }}>{props.children}</div>;
+};
 
-<HeaderImage src="/assets/headers/dark/plugin_header_landing.png"
-             srcset="/assets/headers/light/plugin_header_landing.png"></HeaderImage>
+<link rel="canonical" href="https://code.pieces.app/plugins" />
 
-Use these Pieces extensions and plugins inside your IDE and browser and enable key AI features like Auto-Save, Auto-Complete and single-click save from any webpage.
+<HeaderSpacer></HeaderSpacer>
 
-Our browser and IDE plugins are deeply integrated into your development tools, adding an intelligent personal micro-repository that changes the way you interact with code snippets.
+<FlexColumn>
+    <Image src={"/assets/headers/light/plugin_header_landing.png"} />
+    <Spacer></Spacer>
+    <Heading type={"h1"}>Supercharge Pieces with Browser and IDE Plugins</Heading>
+    <p>Use these Pieces extensions and plugins inside your IDE and browser and enable key AI features like Auto-Save, Auto-Complete and single-click save from any webpage.</p>
+    <p>Our browser and IDE plugins are deeply integrated into your development tools, adding an intelligent personal micro-repository that changes the way you interact with code snippets.</p>
+</FlexColumn>
+
+---
 
 ## IDE Plugins
 
+Explore our IDE plugins and extensions to utilize the power of our AI features to boost code snippet management. Get started with a plugin below:
+
 <GridFlexRow>
-    <PluginButton src={"/assets/logos/vscode_logo.png"} text={"VS Code IDE"}></PluginButton>
-    <PluginButton src={"/assets/logos/jetbrains_logo.png"} text={"Jetbrains IDE"}></PluginButton>
-    <PluginButton src={"/assets/logos/ue_logo.png"} text={"UltraEdit IDE"}></PluginButton>
+    <PluginCard text={"VS Code IDE"} src={"https://marketplace.visualstudio.com/items?itemName=MeshIntelligentTechnologiesInc.pieces-vscode"} srcSet={"/plugins/vscode"}>
+        <Image width="75" src={"/assets/logos/vscode_logo.png"} />
+    </PluginCard>
+    <PluginCard text={"Jetbrains IDE"} src={"https://plugins.jetbrains.com/plugin/17328-pieces--save-search-share--reuse-code-snippets"} srcSet={"/plugins/jetbrains-intellij"}>
+        <Image width="75" src={"/assets/logos/jetbrains_logo.png"} />
+    </PluginCard>
 </GridFlexRow>
 
 <Spacer></Spacer>
 
 ## Browser Extensions
 
+Add Pieces AI superpowers to your browser and never leave helpful code behind - enhance code snippets that you find, so you can rediscover them easier later.
+
 <GridFlexRow>
-    <PluginButton src={"/assets/logos/chrome_logo.png"} text={"Chrome"}></PluginButton>
-    <PluginButton src={"/assets/logos/edge_logo.png"} text={"Edge"}></PluginButton>
+    <PluginCard text={"Chrome"} src={"https://chrome.google.com/webstore/detail/pieces/igbgibhbfonhmjlechmeefimncpekepm?hl=en"} srcSet={"/plugins/chrome"}>
+        <Image width="75" src={"/assets/logos/chrome_logo.png"} />
+    </PluginCard>
+    <PluginCard text={"Edge"} src={"https://microsoftedge.microsoft.com/addons/detail/pieces-save-code-snippet/hglfimcdgonaeeobjckfdabcldfidmim"} srcSet={"/plugins/edge"}>
+        <Image width="75" src={"/assets/logos/edge_logo.png"} />
+    </PluginCard>
 </GridFlexRow>
 
 <Spacer></Spacer>
 
-## Productivity Tools
 
-<GridFlexRow>
-    <PluginButton src={"/assets/logos/github_logo.png"} text={"GitHub"}></PluginButton>
-    <PluginButton src={"/assets/logos/teams_logo.png"} text={"Teams"}></PluginButton>
-</GridFlexRow>
 

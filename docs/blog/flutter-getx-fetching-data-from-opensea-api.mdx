@@ -41,7 +41,7 @@ Flutter has numerous state management components, including Provider, GetX, Bloc
 
 Now, use the following Flutter GetX CLI command in your command prompt to install the packages:
 
-```
+```shell
 flutter pub get
 ```
 
@@ -51,7 +51,8 @@ flutter pub get
 ### Create a Model Based on Your Data:
 You can use this website to <a href="https://jsontodart.com/" target="_blank" rel="noopener noreferrer">create a DART model</a> from your JSON data.
 Next, you’ll be creating an ```OpenseaModel``` class that contains the JSON data as shown below:
-```
+
+```dart
 class OpenseaModel {
   OpenseaModel({
     required this.assets,
@@ -91,13 +92,18 @@ class Assets {
     _data['permalink'] = permalink;
     return _data;
   }
-}"https://amanullah.pieces.cloud/?p=b97c4fb8bf" target="_blank" rel="noopener noreferrer">Save to Pieces</a>
+}
+```
+
+<a href="https://amanullah.pieces.cloud/?p=b97c4fb8bf" target="_blank" rel="noopener noreferrer">Save to Pieces</a>
 
 ## Create a Flutter GetX Controller and make a Network Request Using the HTTP Package:
+
 Now, follow the steps below to create a Flutter GetX controller and fetch the data into the OpenSea model:
 - If the server returns a status code of 200, use the fromJSON() factory method to convert JSON Map into OpenSea model.
 - Throw an exception if the server does not respond with an OK status code of 200.
-```
+
+```javascript
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:getx_tutorials/models/opensea_model.dart';
@@ -135,7 +141,8 @@ class OpenseaController extends GetxController {
 
 ### Display the Data in an Appropriate Format:
 Now, on our home screen, we create an instance of our controller as well as a list view to display the data we retrieved from the OpenSea API.
-```
+
+```dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_tutorials/controllers/opensea_controller.dart';
@@ -190,6 +197,7 @@ class MyApp extends StatelessWidget {
 ```
 
 <a href="https://amanullah.pieces.cloud/?p=4ebd4cbbe4" target="_blank" rel="noopener noreferrer">Save to Pieces</a>
+
 Also, there is a ```_launchInBrowser() ```method that will open your images link in the browser.
 
 **Output:**
@@ -200,9 +208,10 @@ In this article, you learned how to use Flutter and GetX to Fetch data from an O
 
 ### Follow this Tutorial on YouTube:
 
-![](https://uploads-ssl.webflow.com/embed/Hjv0n_Qp9lQ?feature=oembed&list=PLrTDw7ICfHFkvOFW_AERUTUbpmIPFccjS&index=3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen title="Flutter Getx Rest API Tutorial - Fetching Data From Opensea Api"></ifr)
+![](https://uploads-ssl.webflow.com/embed/Hjv0n_Qp9lQ?feature=oembed&list=PLrTDw7ICfHFkvOFW_AERUTUbpmIPFccjS&index=3)
 
 **Full Source Code:**
 <a href="https://bit.ly/3NkrvkZ" target="_blank" rel="noopener noreferrer">https://bit.ly/3NkrvkZ</a>
 
 ### Bonus Tip!
+If you want to be more productive and grab the codes easily from any website, [try Pieces](https://code.pieces.app/install). It allows you to save snippets in one-click from the web or your editor, and it auto-saves your frequently used code. Pieces also recommends snippets with Framework standards, saves snippets from screenshots, and much more.

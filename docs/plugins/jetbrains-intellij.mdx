@@ -3,21 +3,19 @@ title: Get the Best IntelliJ Plugin for Developers | Pieces
 description: The best IntelliJ plugins are deeply integrated within your IDE. Install Pieces - the fastest, smartest AI Assistant for code snippets and screenshots.
 ---
 
-<link rel="canonical" href="https://code.pieces.app/plugins/jetbrains-intellij" />
+<link rel="canonical" href="https://code.pieces.app/plugins/jetbrains-intellij"/>
 
 export const InstallButton = props => {
-    return <a style={{textDecoration: "none"}} target="_blank" href="https://plugins.jetbrains.com/plugin/17328-pieces">
-        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+    return <a style={{textDecoration: "none"}} target="_blank" href={props.src}>
+        <div style={{ minWidth: "125px", maxWidth: "fit-content"}}>
             <p style={{
-                padding: "8px 20px",
+                padding: "2px 24px",
                 borderRadius: "8px",
-                border: "1px solid #f3f5f6",
-                color: "white",
+                border: "1px solid grey",
                 fontWeight: "500",
-                background: "black",
+                background: "transparent",
                 marginBottom: "8px",
                 marginTop: "3px",
-                marginRight: "16px"
             }}>{props.children}</p>
         </div>
     </a>
@@ -32,46 +30,132 @@ export const GridFlexRow = props => {
     }}>{props.children}</div>;
 };
 
+export const GridFlexRowEnd = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'end',
+        flexWrap: "wrap",
+        textAlign: "end",
+    }}>{props.children}</div>;
+};
+
 export const GridFlexRowCenter = props => {
     return <div style={{
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
         flexWrap: "wrap"
-    }}>{props.children}</div>;
+    }}>{props.children}</div>
 };
 
 export const PluginSection = props => {
-    return <GridFlexRowCenter>
-        <img src={ props.src } />
+    return <GridFlexRow>
+        {props.children}
         <div>
-            <p><strong>{ props.heading }</strong></p>
-            <p>{props.text }</p>
+            <h3><strong>{props.heading}</strong></h3>
+            <p>{props.text}</p>
         </div>
+    </GridFlexRow>
+};
 
-    </GridFlexRowCenter>
+export const PluginSectionEnd = props => {
+    return <GridFlexRowEnd>
+        {props.children}
+        <div>
+            <h3><strong>{props.heading}</strong></h3>
+            <p>{props.text}</p>
+        </div>
+    </GridFlexRowEnd>
 };
 
 export const Spacer = props => {
-    return <div style={{height: "5px"}}></div>
-}
+    return <div style={{height: "16px"}}></div>
+};
 
-# The best IntelliJ plugins are backed by the fastest, smartest Micro-Repo.
+export const SpacerW = props => {
+    return <div style={{width: "8px"}}></div>
+};
 
-<GridFlexRow>
-    <img style={{width: "25px" }} src={"/assets/intellij_logo.png"} />
-    <Heading type={"h2"} >Save Intellij snippets even faster - 100% Free!</Heading>
-</GridFlexRow>
+export const HeaderSpacer = props => {
+    return <div style={{width: "100%", height: "100px"}}></div>;
+};
 
-<GridFlexRow>
-    <InstallButton>Get Pieces for Jetbrains</InstallButton>
-</GridFlexRow>
+export const BodySpacer = props => {
+    return <div style={{height: "100px"}}></div>
+};
+
+export const CallToAction = props => {
+    return <div style={{
+        marginTop: "150px",
+        marginBottom: "150px",
+        padding: "32px",
+        border: "1px solid gray",
+        borderRadius: "16px",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center"
+    }}>
+        <h3>{props.heading}</h3>
+        {props.text}
+        <Spacer></Spacer>
+        <InstallButton
+            src={"https://plugins.jetbrains.com/plugin/17328-pieces--save-search-share--reuse-code-snippets"}>Get Pieces for JetBrains</InstallButton>
+    </div>
+};
+
+<HeaderSpacer></HeaderSpacer>
+
+<GridFlexRowCenter>
+
+    <Heading style={{textAlign: "center"}} type={"h1"}>The best IntelliJ plugins are backed by the fastest, smartest
+        Micro-Repo.</Heading>
+
+    <div style={{display: "flex", flexDirection: "row"}}>
+        <Image margin-top={"0px"} margin-bottom={"0px"} border-radius={"20px"} width={"35px"}
+               src={"/assets/logos/jetbrains_logo.png"}/>
+        <SpacerW></SpacerW>
+        <Heading style={{marginTop: "16px", fontWeight: "400"}} type={"h2"}>Save Intellij snippets even faster - 100%
+            Free!</Heading>
+    </div>
+    <InstallButton src={"https://plugins.jetbrains.com/plugin/17328-pieces--save-search-share--reuse-code-snippets"}>Get
+        Pieces for JetBrains</InstallButton>
+</GridFlexRowCenter>
 
 ![](/assets/headers/light/plugin_header_jetbrains.png)
 
+<BodySpacer></BodySpacer>
+
+---
+
 ### Transform how you code with your personal micro-repo of IntelliJ code snippets
 
-<PluginSection src={"/assets/graphics/jetbrains/plugins_share_jetbrains.png"} heading={"Share IntelliJ Idea code snippets without breaking your coding flow"} text={"Share code snippets in Slack or Teams with a simple right-click action using the Pieces plugin for IntelliJ. Your coworkers receive both the snippet and its related metadata - tags, descriptions and more."}></PluginSection>
-<PluginSection src={"/assets/graphics/jetbrains/plugins_auto_save_jetbrains.png"} heading={"Auto-save IntelliJ snippets"} text={"After you add the plugin to IntelliJ, Pieces helps you auto save frequently used or useful snippets based on your behavior. Since you might not realize you need them later until it’s too late."}></PluginSection>
-<PluginSection src={"/assets/graphics/jetbrains/plugins_access_jetbrains.png"} heading={"Access JetBrains snippets in your personal IntelliJ repository"} text={"Snippets are auto-classified by language and viewable in your JetBrains TreeView. Click on any snippet to reuse it!"}></PluginSection>
-<PluginSection src={"/assets/graphics/jetbrains/plugins_auto_complete_jetbrains.png"} heading={"IntelliJ Auto-Complete"} text={"Our IntelliJ code completion plugin suggests auto-completions as you type in your IDE, trained on your saved Pieces snippets. Auto-complete in IntelliJ with no size limit!"}></PluginSection>
+<PluginSection heading={"Share IntelliJ Idea code snippets without breaking your coding flow"}
+               text={"Share code snippets in Slack or Teams with a simple right-click action using the Pieces plugin for IntelliJ. Your coworkers receive both the snippet and its related metadata - tags, descriptions and more."}>
+    <Image width={"550px"} src={"/assets/graphics/jetbrains/plugins_share_jetbrains.png"}/>
+</PluginSection>
+
+<BodySpacer></BodySpacer>
+
+<PluginSectionEnd heading={"Auto-save IntelliJ snippets"}
+               text={"After you add the plugin to IntelliJ, Pieces helps you auto save frequently used or useful snippets based on your behavior. Since you might not realize you need them later until it’s too late."}>
+    <Image width={"550px"} src={"/assets/graphics/jetbrains/plugins_auto_save_jetbrains.png"}/>
+</PluginSectionEnd>
+
+<BodySpacer></BodySpacer>
+
+<CallToAction heading={"One of the best IntelliJ plugins for web development, thoughtfully designed by fellow developers"} text={"Runs local - or connect to the Cloud for sharing and more. Deeply embedded into JetBrains - save, edit, classify, share your snippets entirely from Pieces: the must have plugin for IntelliJ."}></CallToAction>
+
+<BodySpacer></BodySpacer>
+
+<PluginSection heading={"Access JetBrains snippets in your personal IntelliJ repository"}
+               text={"Snippets are auto-classified by language and viewable in your JetBrains TreeView. Click on any snippet to reuse it!"}>
+    <Image width={"550px"} src={"/assets/graphics/jetbrains/plugins_access_jetbrains.png"}/>
+</PluginSection>
+
+<BodySpacer></BodySpacer>
+
+<PluginSectionEnd heading={"IntelliJ Auto-Complete"}
+               text={"Our IntelliJ code completion plugin suggests auto-completions as you type in your IDE, trained on your saved Pieces snippets. Auto-complete in IntelliJ with no size limit!"}>
+    <Image width={"550px"} src={"/assets/graphics/jetbrains/plugins_auto_complete_jetbrains.png"}/>
+</PluginSectionEnd>

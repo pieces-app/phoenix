@@ -3,6 +3,8 @@ title: Understanding the Pillars of Object-Oriented Programming
 description: This article will give an overview of object-oriented programming (OOP), including a look at a few concepts related to OOP and steps for implementing its concepts in JavaScript.
 ---
 
+<link rel="canonical" href="https://code.pieces.app/blog/understanding-the-pillars-of-object-oriented-programming" />
+
 export const Tag = props => {
     return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content" }}>
         { props.children }
@@ -18,8 +20,6 @@ export const GridFlexRow = props => {
     }}>{props.children}</div>;
 
 };
-
-<link rel="canonical" href="https://code.pieces.app/blog/understanding-the-pillars-of-object-oriented-programming" />
 
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/63dc2dcfa494e79d32d1abc7_oop3_85066d077bf2008f39e8556cd3fbb91d_2000.jpeg)
 <Tag>development</Tag>
@@ -77,7 +77,8 @@ An object in JavaScript is a collection of data and similar functionality. It mo
 
 Abstraction requires that we package code into more uncomplicated form factors, and objects are a perfect way to achieve this. Of course, there are other ways to achieve abstraction in JavaScript, but for the purpose of this article, we’ll stick to using object literals to accomplish this result.
 An object is declared as so:
-```
+
+```javascript
 const objectname1 = {
                     property1: ”String”,
                     property2: 100,
@@ -87,7 +88,8 @@ const objectname1 = {
 Let’s use an example to illustrate object use in object-oriented programming.
 
 Next, we’ll attempt to create a car object inside of a land vehicle class. Instead of individually declaring the car's properties in the class, we can use an object to organize everything in one spot:
-```
+
+```javascript
 const car =
 {
     brand: ”Audi”,
@@ -107,6 +109,7 @@ car.model;
 car.year;
 car.dashDisplay
 ```
+
 As shown above, refactoring code with object literals makes it easier for a developer to see the essential parts of the code. It also prevents other objects, like the truck object, from accidentally accessing the properties of the car object. No changes or additions can be made quickly to the code.
 
 ## JavaScript Classes
@@ -117,7 +120,8 @@ To declare a class, we use the ```class``` keyword followed by the class name an
 
 One thing to note about classes is how different they are from functions. For example, they can only be called after they have been defined, unlike functions, which can be called before being defined. Therefore, calling a class before its definition will result in a reference error.
 It’s also important to note that defining a class with a class name is known as a class declaration.
-```
+
+```javascript
 class Person
 {
     constructor(name, age, height)
@@ -126,10 +130,11 @@ class Person
        this.age = age;
        this.height = height;
     }
+```
 
-```
 Further, defining a class without a name is known as a class expression.
-```
+
+```javascript
 let person = class{
     constructor(name, age, height)
     {
@@ -141,14 +146,15 @@ let person = class{
     {
      console.log(&#x60;Hey, my name is ${name} and I am ${age} years old)
     }
-
 ```
+
 The constructor method used above is unique, and can only be defined once in a class using the keyword constructor. It is used to create and initialize an object with a class. Declaring a constructor is optional, as one will be made in the background for the class if one is not defined.
 
 ## Inheritance Using Classes and Subclasses
 It’s possible to have one class share properties with another class. In JavaScript, we create one class called the main class. The main class has all the features and functionality needed across the board, and other classes inherit from that class. The other classes are known as subclasses, and they use the ```extends``` keyword followed by the name of the main class.
 Now, let's create a ```Lion``` class that is inherited from the ```Animal``` class to illustrate this:
-```
+
+```javascript
 class Animal
 {
     const trait =
@@ -187,6 +193,7 @@ class Lion extends Animal
     lion1.Feed(“Deer”);
     lion1.Walk(10)
 ```
+
 By adjusting the properties of the trait object in the ```Lion``` class and calling the ```Speak```, ```Feed``` and ```Walk``` functions. The resulting message would be the following:
 This animal makes a roar.
 It eats its fill of Deer.
@@ -197,7 +204,8 @@ The ```Lion``` class has inherited all the functionality and properties associat
 ## Polymorphism Through Method Overriding
 Just as inheritances enable the sharing of properties and functions, sometimes the shared functions might need to be tweaked to suit the class inheriting these functionalities. In this case, we have to use polymorphism. It allows a common method to be implemented differently in multiple objects. Polymorphism can be achieved through a process known as method overriding.
 Method overriding allows a subclass to implement the main class method differently by redefining the method in the subclass. A simple example to illustrate this is shown in the two classes below:
-```
+
+```javascript
 class Vehicle
 {
     Horn()
@@ -215,11 +223,15 @@ class Truck extends Vehicle
 let transport = new Truck();
 transport.Horn()
 ```
+
 The above code will output: A truck makes a loud honking sound.
+
 ## Encapsulation in JavaScript
 Encapsulation in JavaScript is done using an access modifier before the variable or function name. By starting a character with a hashtag(#), we make the variable or function private in the class, hiding it from other objects that have access to it. When a variable or function is made private, it can only be accessed within the declared class.
+
 Here’s a method and variable declaration that does this:
-```
+
+```javascript
 class Time
 {
     #hour = 22;
@@ -248,8 +260,10 @@ class Watch
     let time = new Time(19,30,0);
     time.#hour;    // this will produce an error
     time.#ResetToZero();     //this will also produce an error.
-
 ```
+
 Additionally, the only way to access a private variable or method from another class is by calling that method in a public method within the main class and using that method in the sub-class.
+
 ## Conclusion
+
 Object-oriented programming helps make you a better programmer and allows you to write more effective code. With the concepts explained and illustrated in this article, you can better implement object-oriented programming in your JavaScript code.

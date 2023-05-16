@@ -1,3 +1,232 @@
 ---
-redirect: https://code.pieces.app/collections
+title: SQL Code Snippets Collection
+description: This collection of SQL code snippets ranges from Select to Exist. Find the data you need as quickly as possible with this set of super useful SQL code snippets.
 ---
+
+<link rel="canonical" href="https://code.pieces.app/collections/sql" />
+
+export const HeaderSpacer = props => {
+    return <div style={{width: "100%", height: "100px"}}></div>;
+};
+
+export const GridFlexRowCenter = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        flexWrap: "nowrap"
+    }}>{props.children}</div>;
+};
+
+export const InstallButton = props => {
+    return <a style={{textDecoration: "none"}} href={ props.src }>
+        <div style={{maxWidth: "fit-content", minWidth: "fit-content"}}>
+            <p style={{
+                padding: "8px 20px",
+                borderRadius: "8px",
+                border: "1px solid #f3f5f6",
+                color: "white",
+                fontWeight: "500",
+                background: "black",
+                marginBottom: "8px",
+                marginTop: "3px",
+                marginRight: "16px"
+            }}>{props.children}</p>
+        </div>
+    </a>
+};
+
+export const Tag = props => {
+    return <div style={{ padding: "2px 16px", borderRadius: "20px", border: "1px solid gray", maxWidth: "fit-content", margin: "0px 8px" }}>
+        { props.children }
+    </div>
+};
+
+export const GridFlexRow = props => {
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'start',
+        flexWrap: "nowrap",
+        marginBottom: "32px",
+    }}>{props.children}</div>
+};
+
+<HeaderSpacer></HeaderSpacer>
+
+<Image margin-top={"0px"} margin-bottom={"0px"} width="400" src={"/assets/graphics/collections/collection_sql.png"} />
+
+<Heading type={"h1"}>SQL Code Snippets</Heading>
+
+This collection of SQL code snippets ranges from Select to Exist. Find the data you need as quickly as possible with this set of super useful SQL code snippets.
+
+<InstallButton src={"https://sql.pieces.cloud/"}>Add to Pieces</InstallButton>
+
+<HeaderSpacer></HeaderSpacer>
+
+---
+
+<HeaderSpacer></HeaderSpacer>
+
+SQL has a lot of repetitive statements, and with the following SQL command list, you will be able to grab many common SQL operations to make your ability to grab data even quicker!
+
+When adding any of the following SQL developer snippets to Pieces, developers will receive relevant tags for easy and fast search in Pieces, a description for context, and related links.
+
+### Select
+
+<GridFlexRow>
+    <Tag>sql</Tag><Tag>select</Tag>
+</GridFlexRow>
+
+Use the select SQL command to select data from a table.
+
+```sql
+SELECT * FROM table;
+```
+
+Related Links
+
+- [SQL select statement](https://www.w3schools.com/sql/sql_select.asp)
+- [SQL select statement examples](https://www.techonthenet.com/sql/select.php)
+
+<InstallButton src={"https://sql.pieces.cloud/?p=92c442a15d"}>Add to Pieces</InstallButton>
+
+---
+
+### Order By
+
+<GridFlexRow>
+    <Tag>sql</Tag><Tag>order by</Tag>
+</GridFlexRow>
+
+Use the SQL order by command to sort the result-set in ascending or descending order.
+
+```sql
+SELECT * FROM table_name ORDER BY column DESC;
+```
+
+Related Links
+
+- [Order by syntax in SQL](https://www.freecodecamp.org/news/ascending-order-with-sql-order-by/)
+- [Order by clause in SQL](https://www.tutorialspoint.com/sql/sql-order-by.htm)
+
+<InstallButton src={"https://sql.pieces.cloud/?p=5c4547af3c"}>Add to Pieces</InstallButton>
+
+---
+
+### Select distinct
+
+<GridFlexRow>
+    <Tag>sql</Tag><Tag>select</Tag><Tag>distinct</Tag>
+</GridFlexRow>
+
+The select distinct command in SQL is used to return only distinct values.
+
+```sql
+SELECT DISTINCT column1, column2, ...
+FROM table_name;
+```
+
+Related Links
+
+- [Select distinct statement in SQL](https://www.w3schools.com/sql/sql_distinct.asp)
+- [Select distinct clause in SQL](https://www.sqlservertutorial.net/sql-server-basics/sql-server-select-distinct/)
+- [Select distinct SQL example](https://www.mssqltips.com/sqlservertip/6810/sql-select-distinct-examples/)
+
+<InstallButton src={"https://sql.pieces.cloud/?p=23d8409298"}>Add to Pieces</InstallButton>
+
+---
+
+### AND
+
+<GridFlexRow>
+    <Tag>sql</Tag><Tag>and</Tag>
+</GridFlexRow>
+
+This sample SQL code displays a record if all the conditions separated by AND are true.
+
+```sql
+SELECT DISTINCT column1, column2, ...
+FROM table_name;
+```
+
+Related Links
+
+- [AND operator in SQL](https://mode.com/sql-tutorial/sql-and-operator/)
+- [AND, OR, NOT operators in SQL](https://www.w3schools.com/sql/sql_and_or.asp)
+- [SQL, AND, OR NOT operators](https://www.geeksforgeeks.org/sql-and-and-or-operators/)
+
+<InstallButton src={"https://sql.pieces.cloud/?p=7bd447af83"}>Add to Pieces</InstallButton>
+
+---
+
+### OR
+
+<GridFlexRow>
+    <Tag>sql</Tag><Tag>or</Tag>
+</GridFlexRow>
+
+The OR command in SQL displays a record if any of the conditions separated by OR is TRUE.
+
+```sql
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition1 OR condition2 OR condition3 ...;
+```
+
+Related Links
+
+- [OR operator in SQL](https://mode.com/sql-tutorial/sql-or-operator/)
+- [AND, OR, NOT operators in SQL](https://www.w3schools.com/sql/sql_and_or.asp)
+- [SQL AND, OR, NOT operators](https://www.geeksforgeeks.org/sql-and-and-or-operators/)
+
+<InstallButton src={"https://sql.pieces.cloud/?p=bca647b084"}>Add to Pieces</InstallButton>
+
+---
+
+### NOT
+
+<GridFlexRow>
+    <Tag>sql</Tag><Tag>not</Tag>
+</GridFlexRow>
+
+This NOT SQL sample code snippet displays a record if the condition(s) is NOT TRUE.
+
+```sql
+SELECT column1, column2, ...
+FROM table_name
+WHERE NOT condition;
+```
+
+Related Links
+
+- [NOT operator in SQL](https://mode.com/sql-tutorial/sql-not-operator/)
+- [NOT keyword in SQL](https://www.w3schools.com/mysql/mysql_insert.asp)
+
+<InstallButton src={"https://sql.pieces.cloud/?p=c97044b0e6"}>Add to Pieces</InstallButton>
+
+---
+
+### Insert into
+
+<GridFlexRow>
+    <Tag>sql</Tag><Tag>insert into</Tag>
+</GridFlexRow>
+
+This SQL code snippet inserts new records into a table.
+
+```sql
+INSERT INTO table_name (column1, column2, column3, ...)
+VALUES (value1, value2, value3, ...);
+```
+
+Related Links
+
+- [SQL insert into statement](https://www.w3schools.com/mysql/mysql_insert.asp)
+- [How to use insert into command in SQL](https://www.freecodecamp.org/news/insert-into-sql-how-to-insert-into-a-table-query-example-statement/)
+- [Insert query in SQL](https://www.tutorialspoint.com/sql/sql-insert-query.htm)
+
+<InstallButton src={"https://sql.pieces.cloud/?p=a71748ad84"}>Add to Pieces</InstallButton>
+
+
+

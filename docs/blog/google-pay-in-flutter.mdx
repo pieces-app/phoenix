@@ -1,6 +1,6 @@
 ---
 title: Google Pay in Flutter
-description: Google Pay, also known as G Pay, is a convenient digital wallet platform and online payment system that was created by Google. It allows users to make in-app, online, and in-person contactless purchases using their mobile devices. While the service is available globally, users in the United States and India can also use Google Pay on an iOS device, although its functionality is somewhat limited compared to Android devices. Google Pay also offers a handy feature called the "Google Pay widget". This widget can be added to the home screen of your Android device, providing quick access to the Google Pay app and making it even more convenient to use. With just a few taps, you can easily make a payment or access your stored passes and other digital information using the Google Pay widget.
+description: Google Pay, also known as G Pay, is a convenient digital wallet platform and online payment system that was created by Google. It allows users to make in-app, online, and in-person contactless purchases using their mobile devices.
 ---
 
 export const Tag = props => {
@@ -27,97 +27,117 @@ export const GridFlexRow = props => {
 # Google Pay in Flutter
 > Wed Apr 05 2023 16:53:15 GMT+0000 (Coordinated Universal Time)
 
-Google Pay, also known as G Pay, is a convenient <a href="https://en.wikipedia.org/wiki/Digital_wallet" digital wallet</a> platform and <a href="https://en.wikipedia.org/wiki/E-commerce_payment_system" online payment</a> system that was created by Google. It allows users to make in-app, online, and in-person <a href="https://en.wikipedia.org/wiki/Contactless_payment" contactless purchases</a> using their mobile devices. While the service is available globally, users in the United States and India can also use Google Pay on an iOS device, although its functionality is somewhat limited compared to Android devices. Google Pay also offers a handy feature called the "Google Pay widget". This widget can be added to the home screen of your Android device, providing quick access to the Google Pay app and making it even more convenient to use. With just a few taps, you can easily make a payment or access your stored passes and other digital information using the Google Pay widget.
+Google Pay, also known as G Pay, is a convenient <a href="https://en.wikipedia.org/wiki/Digital_wallet"> digital wallet</a> platform and <a href="https://en.wikipedia.org/wiki/E-commerce_payment_system"> online payment</a> system that was created by Google. It allows users to make in-app, online, and in-person <a href="https://en.wikipedia.org/wiki/Contactless_payment"> contactless purchases</a> using their mobile devices. While the service is available globally, users in the United States and India can also use Google Pay on an iOS device, although its functionality is somewhat limited compared to Android devices. Google Pay also offers a handy feature called the "Google Pay widget". This widget can be added to the home screen of your Android device, providing quick access to the Google Pay app and making it even more convenient to use. With just a few taps, you can easily make a payment or access your stored passes and other digital information using the Google Pay widget.
+
 In addition to being a payment platform, Google Pay also supports passes such as coupons, boarding passes, campus ID cards, car keys, event tickets, movie tickets, public transportation tickets, store cards, health records, and loyalty cards. This means that users can keep all of their important digital information in one place, making it easy to access and use.
+
 Overall, Google Pay is a versatile and convenient tool for making payments and managing various types of digital information all in one place.
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62d03c416ae93677e419c001_googlepay1.png" loading="lazy" alt="Google Pay logo." id="" width="auto" height="au)
 
-## <strong How it works**
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62d03c416ae93677e419c001_googlepay1.png)
+
+## How it works
 Google Pay offers a simple and streamlined payment process when making purchases within an app. When a user taps the Google Pay button in any app, a payment sheet will appear. This payment sheet displays all the payment methods that are currently saved to the user's Google Account.
+
 From there, users can easily select their preferred payment method from the list, without having to manually enter any payment details. If necessary, users can also quickly add a shipping address or enter new payment information before finalizing the payment.
+
 This approach makes the payment process quicker and more convenient for users, as they can complete their transactions without having to leave the app or enter their payment details repeatedly. Overall, Google Pay's payment sheet offers a seamless and hassle-free payment experience for users.
-‍
 
-![](8f555387049efb3/62d03c247c2d096f18d3ac5d_1*rZOj9-Q1oGbxo7qLKWHbfg.png" alt="A diagram of Google Pay being clicked then processing and going to My Store backend and then to a Payment service provider." id="" width="auto" height="auto" loading="au)
 
-### <strong Google Pay payment flow:**
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62d03c247c2d096f18d3ac5d_1*rZOj9-Q1oGbxo7qLKWHbfg.png)
+
+### **Google Pay payment flow:**
 - The user selects a payment method and G Pay returns a payment token for the selected method to the app.
 - The app submits the payment token to the backend.
 - The backend processes the purchase and sends the payment token to the Payment Service Provider (PSP).
 
-## <strong Integration of Google Pay**
-We will be looking at the <a href="https://pub.dev/packages/pay" target="_blank" pay</a> package for the integration of Google Pay. This package takes care of both <a href="https://www.apple.com/sg/apple-pay/" target="_blank" Apple Pay</a> and <a href="https://pay.google.com/" target="_blank" Google Pay</a>.
-Under the hood, this package uses the <a href="https://developers.google.com/pay/api" target="_blank" Google Pay API</a>. The things required to set up the Pay API will eventually be required to integrate the <a href="https://pub.dev/packages/pay" target="_blank" pay</a> package.
-<strong Setup:**
+## **Integration of Google Pay**
+We will be looking at the <a href="https://pub.dev/packages/pay" target="_blank"> pay</a> package for the integration of Google Pay. This package takes care of both <a href="https://www.apple.com/sg/apple-pay/" target="_blank"> Apple Pay</a> and <a href="https://pay.google.com/" target="_blank"> Google Pay</a>.
+Under the hood, this package uses the <a href="https://developers.google.com/pay/api" target="_blank"> Google Pay API</a>. The things required to set up the Pay API will eventually be required to integrate the <a href="https://pub.dev/packages/pay" target="_blank"> pay</a> package.
 
-- Check out their request for production access <a href="https://developers.google.com/pay/api/android/guides/test-and-deploy/request-prod-access" target="_blank" here</a>, wherein you set up the access to the Google Wallet API and other checklists.
+**Setup:**
+
+- Check out their request for production access <a href="https://developers.google.com/pay/api/android/guides/test-and-deploy/request-prod-access" target="_blank" >here</a>, wherein you set up the access to the Google Wallet API and other checklists.
+
 Now, let's set up your code.
-Internally, the Google API requires the following Gradle dependency (<strong from android native**) which is handled by the <strong pay package:**
-<em implementation "com.google.android.gms:play-services-wallet:18.0.0"
-Hence, we need to change the following in the <em build.gradle of your app:
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62d03ceec851def05a61b62b_googlepay3.png" loading="lazy" id="" width="auto" height="auto" alt="A block of cod)
-Now you have access to the <a href="https://pub.dev/documentation/pay/latest/pay/GooglePayButton-class.html" target="_blank" GooglePayButton</a> and the <a href="https://pub.dev/documentation/pay/latest/pay/ApplePayButton-class.html" target="_blank" ApplePayButton</a>.
 
-### <strong GooglePayButton**
-![](8f555387049efb3/62d03c24ddacc2546f6dc83d_1*nemAUFeDd-dH97qmeOecTg.png" alt="Image of the Google Pay button." id="" width="auto" height="auto" loading="au)
+Internally, the Google API requires the following Gradle dependency (**from android native**) which is handled by the **pay package:**
 
-<em GooglePayButton is a Flutter widget to show the Google Pay button according to the rules and constraints specified in <a href="https://pub.dev/documentation/pay/latest/pay/PayButton-class.html" target="_blank" <em PayButton</a>.
+```implementation "com.google.android.gms:play-services-wallet:18.0.0" ```
+
+Hence, we need to change the following in the build.gradle of your app:
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62d03ceec851def05a61b62b_googlepay3.png)
+
+Now you have access to the <a href="https://pub.dev/documentation/pay/latest/pay/GooglePayButton-class.html" target="_blank"> GooglePayButton</a> and the <a href="https://pub.dev/documentation/pay/latest/pay/ApplePayButton-class.html" target="_blank">ApplePayButton</a>.
+
+### **GooglePayButton**
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62d03c24ddacc2546f6dc83d_1*nemAUFeDd-dH97qmeOecTg.png)
+
+GooglePayButton is a Flutter widget to show the Google Pay button according to the rules and constraints specified in <a href="https://pub.dev/documentation/pay/latest/pay/PayButton-class.html" target="_blank"> PayButton</a>.
 This widget provides an alternative UI-based integration path that wraps the API calls of the payment libraries and includes them as part of the lifecycle of the widget. Hence:
-For instance, if the code is running on iOS, then &nbsp;<strong <em ApplePayButton** will be shown (provided you have set up the <a href="https://developer.apple.com/documentation/passkit/apple_pay/setting_up_apple_pay_requirements" target="_blank" ApplePay configuration</a>).
-This is what <strong <em GooglePayButton** looks like:
-<em Note: GooglePayButton extends from PayButton
+For instance, if the code is running on iOS, then &nbsp;**ApplePayButton** will be shown (provided you have set up the <a href="https://developer.apple.com/documentation/passkit/apple_pay/setting_up_apple_pay_requirements" target="_blank"> ApplePay configuration</a>).
+This is what **GooglePayButton** looks like:
+Note: GooglePayButton extends from PayButton
 ![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62d03d94ca9577399d9c0dd9_googlepay5.png" loading="lazy" id="" width="auto" height="auto" alt="GooglePayButton code bloc)
 
-### <strong Payment Configuration**
-In the above snippet, we see <em PaymentConfiguration, which is a required parameter. This parameter holds the information about a payment transaction.
-It loads the configuration information needed for the payment transaction, which is based on the source. There are two options available for this:
-<strong Inside PaymentConfiguration**
-The <em PaymentConfiguration is JSON in which each parameter stands for a request object as per the Google Pay API.
+### **Payment Configuration**
+In the above snippet, we see PaymentConfiguration, which is a required parameter. This parameter holds the information about a payment transaction.
 
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62d03df10976569ff5faf00f_googlepay7.png" loading="lazy" id="" width="auto" height="auto" alt="A block of code of the payment configuration in JSO)
-- <em data: This is the core of the <em PaymentRequest which is a JSONObject itself
-- <em environment: This can either be <strong TEST** or <strong PRODUCTION**
-- <em apiVersionMinor: The value is 0 for this specification
-- <em allowedPaymentMethods: This is of type <strong <em PaymentMethod** and specifies the support for one or more payment methods supported by the G Pay API
+It loads the configuration information needed for the payment transaction, which is based on the source. There are two options available for this:
+
+**Inside PaymentConfiguration**
+The PaymentConfiguration is JSON in which each parameter stands for a request object as per the Google Pay API.
+
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62d03df10976569ff5faf00f_googlepay7.png)
+
+- data: This is the core of the PaymentRequest which is a JSONObject itself
+- environment: This can either be **TEST** or **PRODUCTION**
+- apiVersionMinor: The value is 0 for this specification
+- allowedPaymentMethods: This is of type **PaymentMethod** and specifies the support for one or more payment methods supported by the G Pay API
 
 ## Payment Method
 This comprises 3 properties:
-- <em tokenizationSpecification: This is of type <strong <em TokenizationSpecification** and has two properties (explained below)
-- <em parameters: This is of the type <strong <em CardParameter** and has <strong 2 required** and <strong 5 optional** parameters (explained below)
-- <em parameters: Comprises a Gateway object which has two properties: <strong <em gateway** and <strong <em gatewayMerchantId.**
+- tokenizationSpecification: This is of type **TokenizationSpecification** and has two properties (explained below)
+- parameters: This is of the type **CardParameter** and has **2 required** and **5 optional** parameters (explained below)
+- parameters: Comprises a Gateway object which has two properties: **gateway** and **gatewayMerchantId.**
 
-<em Note: The values for gateway depend on the supported gateway.
-<strong CardParameter**
+Note: The values for gateway depend on the supported gateway.
 
-<em Note: We can only use these two under a TEST environment.
-- <em billingAddressRequired: Set to <em true if you require a billing address. This can increase friction.
-- <em billingAddressParameters: This is of the type <strong BillingAddressParameters** and has two parameters (explained below).
-- <em phoneNumberRequired: Set to <em true if a phone number is required to process the transaction.
-- <em merchantInfo: This <strong <em MerchantInfo **object provides information about the merchant that requests payment data and comprises of <strong <em merchantName**<em , the name rendered in the payment sheet. In the <em TEST environment, or if a merchant isn't recognized, a “Pay Unverified Merchant” message is displayed on the payment sheet.
-- <em transactionInfo: This <strong <em TransactionInfo** object is used to present a payment authorization dialog. It comprises a <strong <em currencyCode **(required)<strong , **an ISO 4217 Alphabetic currency code,<strong  **and a<strong  <em countryCode**, an ISO 3166–1 alpha-2 country code where the transaction is processed.
-<strong BillingAddressParameters**
+**CardParameter**
 
-## <strong Payment Results**
-Once the G Pay button is clicked, it triggers the presentation of the payment sheet. Once the user makes a selection, the sheet closes and you receive the result inside <strong <em onPaymentResult.**
+Note: We can only use these two under a TEST environment.
+- billingAddressRequired: Set to true if you require a billing address. This can increase friction.
+- billingAddressParameters: This is of the type **BillingAddressParameters** and has two parameters (explained below).
 
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62d03ed5f7d4ca03a44e0f03_googlepay8.png" loading="lazy" id="" width="auto" height="auto" alt="A block of code for payment result)
-- <em apiVersionMinor: The value is 0 for this specification
-- <em paymentMethodData: This value is of type <strong <em PaymentMethodData** and comprises four parameters:
-<strong PaymentMethodData**
+- phoneNumberRequired: Set to true if a phone number is required to process the transaction.
+- merchantInfo: This **MerchantInfo **object provides information about the merchant that requests payment data and comprises of **merchantName**, the name rendered in the payment sheet. In the TEST environment, or if a merchant isn't recognized, a “Pay Unverified Merchant” message is displayed on the payment sheet.
+- transactionInfo: This **TransactionInfo** object is used to present a payment authorization dialog. It comprises a **currencyCode **(required)**, **an ISO 4217 Alphabetic currency code,** **and a** countryCode**, an ISO 3166–1 alpha-2 country code where the transaction is processed.
 
-If the selection is successful, the result is fulfilled with a <a href="https://developers.google.com/pay/api/android/reference/object#PaymentData" target="_blank" <em PaymentData</a><em  object that includes relevant information about the payment method selected:
-- <em description: This contains the user-facing message describing the payment method
-- <em tokenizationData: This value is of type <strong <em PaymentMethodTokentizationData** and consists of two parameters (explained below)
-- <em info: This comprises three parameters: <strong <em billingAddress, <em cardDetails, **and <strong <em cardNetwork**
+**BillingAddressParameters**
 
-The billing address is present in the form of an <a href="https://developers.google.com/pay/api/android/reference/response-objects#Address" target="_blank" Address Object</a>. CardDetails are present in a string that represents the details of the card. This value is commonly the last four digits of the selected payment account number.
-CardNetwork is also a string that represents the payment card network of the selected payment. This value is one of the values present inside the format of <em allowedCardNetworks in <a href="https://developers.google.com/pay/api/android/reference/request-objects#CardParameters" target="_blank" CardParameters</a>.
-<strong PaymentMethodTokentizationData**
-- <em token: Generated payment method token, e.g. <strong PAYMENT_GATEWAY**, <strong DIRECT**
-You can now use this payment method information to perform the actual transaction. For instance, you can get the <em tokenizationData from the above response and extract the <em token from it.
+## **Payment Results**
+Once the G Pay button is clicked, it triggers the presentation of the payment sheet. Once the user makes a selection, the sheet closes and you receive the result inside **onPaymentResult.**
 
-Then, use this token to perform payment through your payment gateway. Check out the <a href="https://developers.google.com/pay/api/#participating-google-pay-processors" target="_blank" list of supported processors</a> to find out more about specific implementation details on each processor.
-<em GooglePayButton exposes one of the parameters called <em type (which is an enum) inside its definition. We can play with this param in order to display the Button as per the requirements. Following are the options provided:
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62d03ed5f7d4ca03a44e0f03_googlepay8.png)
+- apiVersionMinor: The value is 0 for this specification
+- paymentMethodData: This value is of type **PaymentMethodData** and comprises four parameters:
+
+**PaymentMethodData**
+
+If the selection is successful, the result is fulfilled with a <a href="https://developers.google.com/pay/api/android/reference/object#PaymentData" target="_blank" >PaymentData</a> object that includes relevant information about the payment method selected:
+- description: This contains the user-facing message describing the payment method
+- tokenizationData: This value is of type **PaymentMethodTokentizationData** and consists of two parameters (explained below)
+- info: This comprises three parameters: **billingAddress, cardDetails, **and **cardNetwork**
+
+The billing address is present in the form of an <a href="https://developers.google.com/pay/api/android/reference/response-objects#Address" target="_blank">Address Object</a>. CardDetails are present in a string that represents the details of the card. This value is commonly the last four digits of the selected payment account number.
+CardNetwork is also a string that represents the payment card network of the selected payment. This value is one of the values present inside the format of allowedCardNetworks in <a href="https://developers.google.com/pay/api/android/reference/request-objects#CardParameters" target="_blank">CardParameters</a>.
+
+**PaymentMethodTokentizationData**
+- token: Generated payment method token, e.g. **PAYMENT_GATEWAY**, **DIRECT**
+You can now use this payment method information to perform the actual transaction. For instance, you can get the tokenizationData from the above response and extract the token from it.
+
+Then, use this token to perform payment through your payment gateway. Check out the <a href="https://developers.google.com/pay/api/#participating-google-pay-processors" target="_blank"> list of supported processors</a> to find out more about specific implementation details on each processor.
+GooglePayButton exposes one of the parameters called type (which is an enum) inside its definition. We can play with this param in order to display the Button as per the requirements. Following are the options provided:
 - GooglePayButtonType.book
 - GooglePayButtonType.buy
 - GooglePayButtonType.checkout
@@ -127,16 +147,16 @@ Then, use this token to perform payment through your payment gateway. Check out 
 - GooglePayButtonType.subscribe
 
 ![](8f555387049efb3/62d03c24687fc54591e09d96_1*Y3Mt4ZVjyKWXGIKTQdMwDg.png" alt="A screenshot of the "Subscribe with G Pay" " id="" width="auto" height="auto" loading="au)
-If you prefer to have more control over each individual request separately from the button, you can instantiate a payment client and add the buttons to your layout independently using <a href="https://pub.dev/documentation/pay_android/latest/pay_android/RawGooglePayButton-class.html" target="_blank" RawGooglePayButton</a>.
+If you prefer to have more control over each individual request separately from the button, you can instantiate a payment client and add the buttons to your layout independently using <a href="https://pub.dev/documentation/pay_android/latest/pay_android/RawGooglePayButton-class.html" target="_blank"> RawGooglePayButton</a>.
 
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62d03f65044e32201c470c31_googlepay10.png" loading="lazy" id="" width="auto" height="auto" alt="A block of code for the raw payment butto)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62d03f65044e32201c470c31_googlepay10.png)
+
 The result of this button is:
 
-![](8f555387049efb3/62d03c24b69bc93ebd1d2f09_1*T8ZGoo2ZCW2fAhGzXD_DQQ.png" alt="G Pay button." id="" width="auto" height="auto" loading="au)
-Once the user clicks this button, you can initiate the request using <a href="https://pub.dev/documentation/pay/latest/pay/Pay/Pay.withAssets.html" target="_blank" <em Pay.withAssets</a>, which is an alternative to a <a href="https://pub.dev/documentation/pay/latest/pay/Pay-class.html" target="_blank" <em Pay</a><em  object with a list of configurations in String format.
-‍
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62d03c24b69bc93ebd1d2f09_1*T8ZGoo2ZCW2fAhGzXD_DQQ.png)
+Once the user clicks this button, you can initiate the request using <a href="https://pub.dev/documentation/pay/latest/pay/Pay/Pay.withAssets.html" target="_blank" >Pay.withAssets</a>, which is an alternative to a <a href="https://pub.dev/documentation/pay/latest/pay/Pay-class.html" target="_blank"> Pay</a> object with a list of configurations in String format.
 
-![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62d83b71593d0d226f43ff63_Initial%20Using%20with%20Pay.withAssets%20(1).png" loading="lazy" id="" width="auto" height="auto" alt="A block of code for the initial using Pay.withAsset)
+![](https://uploads-ssl.webflow.com/6143afec68f555387049efb3/62d83b71593d0d226f43ff63_Initial%20Using%20with%20Pay.withAssets%20(1).png)
 
 The response, which is the Google Pay token, can be sent to your server / PSP.
 
